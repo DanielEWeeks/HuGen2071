@@ -77,9 +77,65 @@
     "text": "3.2 GitHub Classroom\nAs GitHub Classroom will be used to distribute course materials and to submit assignments, it would be best if you get git working on your own computer. The easiest way to do this is to install RStudio, R, and git on your computer.\nPlease follow the detailed instructions in https://github.com/jfiksel/github-classroom-for-students\nIn particular, see Step 5 re generating an ssh key so you don’t need to login every time."
   },
   {
+    "objectID": "Rbasics.html",
+    "href": "Rbasics.html",
+    "title": "4  R Basics Group Exercise",
+    "section": "",
+    "text": "a <- data.frame(n = 1:4)\ndim(a)\n\n[1] 4 1\n\na\n\n  n\n1 1\n2 2\n3 3\n4 4"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-1",
+    "href": "Rbasics.html#exercise-1",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.2 Exercise 1",
+    "text": "4.2 Exercise 1\nThis exercise should help answer this question: ‘In what type of situations would “recycling” be useful?’\nUse recycling to insert into the data frame a a column named rowNum1 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\na$rowNum1 <- c(1,2)\na\n\n  n rowNum1\n1 1       1\n2 2       2\n3 3       1\n4 4       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-2",
+    "href": "Rbasics.html#exercise-2",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.3 Exercise 2",
+    "text": "4.3 Exercise 2\nUse a for loop to insert into the data frame a a column named rowNum2 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\n# Set value that we want to iterate 1, 2, 1, 2, ...\nj <- 1\n# Initialize rowNum2 to all missing values\na$rowNum2 <- NA  \n# Star the for loop, looping over the number of rows in a\nfor (i in c(1:nrow(a))) {\n   # Assign value j to row i\n   a$rowNum2[i] <- j\n   # Increment j\n   j <- j + 1\n   # If j is greater than 2, set it back to 1\n   if (j > 2) {\n     j <- 1\n   }\n}\na\n\n  n rowNum1 rowNum2\n1 1       1       1\n2 2       2       2\n3 3       1       1\n4 4       2       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-3",
+    "href": "Rbasics.html#exercise-3",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.4 Exercise 3",
+    "text": "4.4 Exercise 3\nUse a while loop to insert into the data frame a a column named rowNum3 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\na$rowNum3 = NA\ni <- 1 #set index\nwhile(i <= nrow(a)){ #set conditions for while loop\n\n  if ((i %% 2)) { #if statement for when \"i\" is odd\n    a$rowNum3[i] <- 1\n  }\n  else #else statement for when \"i\" is even\n    a$rowNum3[i] <- 2\n  \n  i <- i + 1 #counter for \"i\", increments by 1 with each loop iteration\n} \na\n\n  n rowNum1 rowNum2 rowNum3\n1 1       1       1       1\n2 2       2       2       2\n3 3       1       1       1\n4 4       2       2       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-4",
+    "href": "Rbasics.html#exercise-4",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.5 Exercise 4",
+    "text": "4.5 Exercise 4\nUse a repeat loop to insert into the data frame a a column named rowNum4 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\na$rowNum4 = NA\ni <- 1 #set index\nrepeat { \n\n  if ((i %% 2)) { #if statement for when \"i\" is odd\n    a$rowNum4[i] <- 1\n  }\n  else #else statement for when \"i\" is even\n    a$rowNum4[i] <- 2\n  \n  i <- i + 1 #counter for \"i\", increments by 1 with each loop iteration\n  if (i > nrow(a)) {\n    break\n  }\n} \na\n\n  n rowNum1 rowNum2 rowNum3 rowNum4\n1 1       1       1       1       1\n2 2       2       2       2       2\n3 3       1       1       1       1\n4 4       2       2       2       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-5",
+    "href": "Rbasics.html#exercise-5",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.6 Exercise 5",
+    "text": "4.6 Exercise 5\nUse the rep command to insert into the data frame a a column named rowNum5 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\n# This will only work correctly if nrow(a) is even\na$rowNum5 <- rep(c(1,2), nrow(a)/2)\na\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5\n1 1       1       1       1       1       1\n2 2       2       2       2       2       2\n3 3       1       1       1       1       1\n4 4       2       2       2       2       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-6",
+    "href": "Rbasics.html#exercise-6",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.7 Exercise 6",
+    "text": "4.7 Exercise 6\nUse vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows. Then insert this vector into the data frame a into a column named rowNum6.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\nr1 <- rep(1, 4)\nr2 <- rep(c(0,1), 2)\nr1\n\n[1] 1 1 1 1\n\nr2\n\n[1] 0 1 0 1\n\nr1 + r2\n\n[1] 1 2 1 2\n\na$rowNum6 <- r1 + r2\na\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5 rowNum6\n1 1       1       1       1       1       1       1\n2 2       2       2       2       2       2       2\n3 3       1       1       1       1       1       1\n4 4       2       2       2       2       2       2"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-7",
+    "href": "Rbasics.html#exercise-7",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.8 Exercise 7",
+    "text": "4.8 Exercise 7\nList all even rows of the data frame a.\nList rows 3 and 4 of the data frame a.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\n# All even rows\na[a$rowNum1==2,]\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5 rowNum6\n2 2       2       2       2       2       2       2\n4 4       2       2       2       2       2       2\n\n# All odd rows\na[a$rowNum1==1,]\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5 rowNum6\n1 1       1       1       1       1       1       1\n3 3       1       1       1       1       1       1"
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "4  Summary",
+    "title": "5  Summary",
     "section": "",
     "text": "In summary, this book is a work in progress."
   }
