@@ -151,7 +151,7 @@ a[a$rowNum1==1,]
 :::
 
 
-# Exercise 8
+## Exercise 8
 
 This exercise should help answer this question: "When reading a file, will missing data be automatically represented as NA values, or does that need to be coded/manually curated?"
 
