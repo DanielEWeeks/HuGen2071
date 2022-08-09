@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "HuGen2071_book",
+    "title": "HuGen2071 book",
     "section": "",
     "text": "This is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
   },
@@ -47,6 +47,13 @@
     "title": "1  Preparation",
     "section": "1.5 R Markdown",
     "text": "1.5 R Markdown\nTo introduce yourself or refresh yourself on R Markdown:\nhttps://rmarkdown.rstudio.com/ (click on Get Started)"
+  },
+  {
+    "objectID": "preparation.html#unix",
+    "href": "preparation.html#unix",
+    "title": "1  Preparation",
+    "section": "1.6 Unix",
+    "text": "1.6 Unix\nAnd finally, to introduce yourself or refresh yourself with Unix (well, Linux in this case, but close enough), try Lessons 1–11 here:\nhttps://www.webminal.org/"
   },
   {
     "objectID": "intro.html",
