@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HuGen2071_book",
+    "section": "",
+    "text": "This is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+  },
+  {
+    "objectID": "preparation.html",
+    "href": "preparation.html",
+    "title": "1  Preparation",
+    "section": "",
+    "text": "The first part of our HuGen 2071 course aims to teach you R in the context of applied data wrangling in a genetic context. In our experience, if you have never programmed before, it moves kind of fast. As such, it would be useful to review these sources below."
+  },
+  {
+    "objectID": "preparation.html#basic-programming-ideas",
+    "href": "preparation.html#basic-programming-ideas",
+    "title": "1  Preparation",
+    "section": "1.1 Basic programming ideas",
+    "text": "1.1 Basic programming ideas\n\n1.1.1 Introduction to Coding\nThis web page and two short videos discusses how computer programming is very similar to writing a recipe - you have to break a complex project down into precise smaller individual steps.\nhttps://subjectguides.york.ac.uk/coding/introduction"
+  },
+  {
+    "objectID": "preparation.html#r",
+    "href": "preparation.html#r",
+    "title": "1  Preparation",
+    "section": "1.2 R",
+    "text": "1.2 R\n\n1.2.1 PhD Training Workshop: Statistics in R\nThis online book has a nice introduction to the concepts of programming, RStudio, and R\nhttps://bookdown.org/animestina/R_Manchester/\nSee Chapters 1, 2, and 3"
+  },
+  {
+    "objectID": "preparation.html#r-and-rstudio",
+    "href": "preparation.html#r-and-rstudio",
+    "title": "1  Preparation",
+    "section": "1.3 R and RStudio",
+    "text": "1.3 R and RStudio\n\n1.3.1 R for the Rest of Us\nAcquaint or refresh yourself with R and RStudio — including installing them on your computer with this “R for the Rest of Us course” (24 min of videos + exercises):\nhttps://rfortherestofus.com/courses/getting-started/\nSlides: https://rfortherestofus.github.io/getting-started/slides/slides.html"
+  },
+  {
+    "objectID": "preparation.html#github",
+    "href": "preparation.html#github",
+    "title": "1  Preparation",
+    "section": "1.4 GitHub",
+    "text": "1.4 GitHub\nTo introduce yourself to GitHub:\nhttps://guides.github.com/introduction/git-handbook/\nhttps://guides.github.com/activities/hello-world/"
+  },
+  {
+    "objectID": "preparation.html#r-markdown",
+    "href": "preparation.html#r-markdown",
+    "title": "1  Preparation",
+    "section": "1.5 R Markdown",
+    "text": "1.5 R Markdown\nTo introduce yourself or refresh yourself on R Markdown:\nhttps://rmarkdown.rstudio.com/ (click on Get Started)"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Introduction",
+    "section": "",
+    "text": "Created by Daniel E. Weeks\nWebsite: https://www.publichealth.pitt.edu/home/directory/daniel-e-weeks"
+  },
+  {
+    "objectID": "logistics.html",
+    "href": "logistics.html",
+    "title": "3  Logistics",
+    "section": "",
+    "text": "Please go to https://github.com and set up a GitHub account.\nChoose your GitHub user name carefully, as you may end up using it later in a professional context."
+  },
+  {
+    "objectID": "logistics.html#github-classroom",
+    "href": "logistics.html#github-classroom",
+    "title": "3  Logistics",
+    "section": "3.2 GitHub Classroom",
+    "text": "3.2 GitHub Classroom\nAs GitHub Classroom will be used to distribute course materials and to submit assignments, it would be best if you get git working on your own computer. The easiest way to do this is to install RStudio, R, and git on your computer.\nPlease follow the detailed instructions in https://github.com/jfiksel/github-classroom-for-students\nIn particular, see Step 5 re generating an ssh key so you don’t need to login every time."
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "4  Summary",
+    "section": "",
+    "text": "In summary, this book is a work in progress."
+  }
+]
