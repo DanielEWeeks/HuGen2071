@@ -60,7 +60,7 @@
     "href": "intro.html",
     "title": "2  Introduction",
     "section": "",
-    "text": "Created by Daniel E. Weeks\nWebsite: https://www.publichealth.pitt.edu/home/directory/daniel-e-weeks"
+    "text": "Book source code: https://github.com/DanielEWeeks/HuGen2071\nCreated by Daniel E. Weeks\nWebsite: https://www.publichealth.pitt.edu/home/directory/daniel-e-weeks"
   },
   {
     "objectID": "logistics.html",
@@ -131,6 +131,13 @@
     "title": "4  R Basics Group Exercise",
     "section": "4.8 Exercise 7",
     "text": "4.8 Exercise 7\nList all even rows of the data frame a.\nList rows 3 and 4 of the data frame a.\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\n# All even rows\na[a$rowNum1==2,]\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5 rowNum6\n2 2       2       2       2       2       2       2\n4 4       2       2       2       2       2       2\n\n# All odd rows\na[a$rowNum1==1,]\n\n  n rowNum1 rowNum2 rowNum3 rowNum4 rowNum5 rowNum6\n1 1       1       1       1       1       1       1\n3 3       1       1       1       1       1       1"
+  },
+  {
+    "objectID": "Rbasics.html#exercise-8",
+    "href": "Rbasics.html#exercise-8",
+    "title": "4  R Basics Group Exercise",
+    "section": "4.9 Exercise 8",
+    "text": "4.9 Exercise 8\nThis exercise should help answer this question: “When reading a file, will missing data be automatically represented as NA values, or does that need to be coded/manually curated?”\nThe tab-delimited file in testdata.txt contains the following data:\n1       1       1\n2       2       2\n3       NA      99\n4       4       4\nYour collaborator who gave you these data informed you that in this file 99 stands for a missing value, as does NA.\nHowever if we use the read.table command with its default options to read this in, we fail to accomplish the desired task, as 99 is not reading as a missing value:\n\ninfile <- \"data/testdata.txt\"\n# Adjust the read.table options to read the file correctly as desired.\nb <- read.table(infile)\nb\n\n  V1 V2 V3\n1  1  1  1\n2  2  2  2\n3  3 NA 99\n4  4  4  4\n\nstr(b)\n\n'data.frame':   4 obs. of  3 variables:\n $ V1: int  1 2 3 4\n $ V2: int  1 2 NA 4\n $ V3: int  1 2 99 4\n\n\nUse the read.table command to read this file in while automatically setting both the ’NA” and the 99 to NA. This can be done by adjusting the various options of the read.table command.\n\n\n\n\n\n\nTip\n\n\n\nRead the help page for the read.table command\n\n\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\nTo read this in properly, we have to let ‘read.table’ know that there is no header and that which values should be mapped to the missing NA value:\n\nb <- read.table(infile, header = FALSE, na.strings = c(\"NA\",\"99\"))\nb\n\n  V1 V2 V3\n1  1  1  1\n2  2  2  2\n3  3 NA NA\n4  4  4  4\n\nstr(b)\n\n'data.frame':   4 obs. of  3 variables:\n $ V1: int  1 2 3 4\n $ V2: int  1 2 NA 4\n $ V3: int  1 2 NA 4\n\nsummary(b)\n\n       V1             V2              V3       \n Min.   :1.00   Min.   :1.000   Min.   :1.000  \n 1st Qu.:1.75   1st Qu.:1.500   1st Qu.:1.500  \n Median :2.50   Median :2.000   Median :2.000  \n Mean   :2.50   Mean   :2.333   Mean   :2.333  \n 3rd Qu.:3.25   3rd Qu.:3.000   3rd Qu.:3.000  \n Max.   :4.00   Max.   :4.000   Max.   :4.000  \n                NA's   :1       NA's   :1"
   },
   {
     "objectID": "summary.html",
