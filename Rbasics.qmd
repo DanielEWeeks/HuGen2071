@@ -1,0 +1,151 @@
+# R Basics Group Exercise
+
+## Set up the data frame `a`
+
+```{r}
+a <- data.frame(n = 1:4)
+dim(a)
+a
+```
+
+## Exercise 1
+
+This exercise should help answer this question: 'In what type of situations would "recycling" be useful?'
+
+Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+a$rowNum1 <- c(1,2)
+a
+```
+:::
+
+## Exercise 2
+
+Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+# Set value that we want to iterate 1, 2, 1, 2, ...
+j <- 1
+# Initialize rowNum2 to all missing values
+a$rowNum2 <- NA  
+# Star the for loop, looping over the number of rows in a
+for (i in c(1:nrow(a))) {
+   # Assign value j to row i
+   a$rowNum2[i] <- j
+   # Increment j
+   j <- j + 1
+   # If j is greater than 2, set it back to 1
+   if (j > 2) {
+     j <- 1
+   }
+}
+a
+```
+:::
+
+## Exercise 3
+
+Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+a$rowNum3 = NA
+i <- 1 #set index
+while(i <= nrow(a)){ #set conditions for while loop
+
+  if ((i %% 2)) { #if statement for when "i" is odd
+    a$rowNum3[i] <- 1
+  }
+  else #else statement for when "i" is even
+    a$rowNum3[i] <- 2
+  
+  i <- i + 1 #counter for "i", increments by 1 with each loop iteration
+} 
+a
+```
+:::
+
+## Exercise 4
+
+Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+a$rowNum4 = NA
+i <- 1 #set index
+repeat { 
+
+  if ((i %% 2)) { #if statement for when "i" is odd
+    a$rowNum4[i] <- 1
+  }
+  else #else statement for when "i" is even
+    a$rowNum4[i] <- 2
+  
+  i <- i + 1 #counter for "i", increments by 1 with each loop iteration
+  if (i > nrow(a)) {
+    break
+  }
+} 
+a
+```
+:::
+
+## Exercise 5
+
+Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+# This will only work correctly if nrow(a) is even
+a$rowNum5 <- rep(c(1,2), nrow(a)/2)
+a
+```
+:::
+
+## Exercise 6
+
+Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows.  Then insert this vector into the data frame `a` into a column named `rowNum6`.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+r1 <- rep(1, 4)
+r2 <- rep(c(0,1), 2)
+r1
+r2
+r1 + r2
+a$rowNum6 <- r1 + r2
+a
+```
+:::
+
+## Exercise 7
+
+List all even rows of the data frame `a`.
+
+List rows 3 and 4 of the data frame `a`.
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+# All even rows
+a[a$rowNum1==2,]
+# All odd rows
+a[a$rowNum1==1,]
+```
+:::

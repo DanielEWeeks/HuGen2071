@@ -10,6 +10,7 @@ book:
     - preparation.qmd
     - intro.qmd
     - logistics.qmd 
+    - Rbasics.qmd
     - summary.qmd
     - references.qmd
 
