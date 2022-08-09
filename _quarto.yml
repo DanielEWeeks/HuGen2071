@@ -4,7 +4,7 @@ project:
 book:
   title: "HuGen2071_book"
   author: "Daniel E. Weeks"
-  date: "`r format(Sys.time(), '%B %d, %Y')`"
+  date: August 9, 2022
   chapters:
     - index.qmd
     - preparation.qmd
