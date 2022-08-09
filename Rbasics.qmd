@@ -149,3 +149,52 @@ a[a$rowNum1==2,]
 a[a$rowNum1==1,]
 ```
 :::
+
+
+# Exercise 8
+
+This exercise should help answer this question: "When reading a file, will missing data be automatically represented as NA values, or does that need to be coded/manually curated?"
+
+The tab-delimited file in `testdata.txt` contains the following data:
+
+```
+1       1       1
+2       2       2
+3       NA      99
+4       4       4
+```
+
+Your collaborator who gave you these data informed you that in this file `99` stands for a missing value, as does `NA`.
+
+However if we use the `read.table` command with its default options to read this in, we fail to accomplish the desired task, as `99` is not reading as a missing value:
+
+```{r}
+infile <- "data/testdata.txt"
+# Adjust the read.table options to read the file correctly as desired.
+b <- read.table(infile)
+b
+str(b)
+```
+
+Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`.  This can be done by adjusting the various options of the `read.table` command.
+
+:::{.callout-tip}
+### Tip
+
+Read the help page for the `read.table` command
+:::
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+To read this in properly, we have to let 'read.table' know
+that there is no header and that which values should be mapped
+to the missing NA value:
+
+```{r}
+b <- read.table(infile, header = FALSE, na.strings = c("NA","99"))
+b
+str(b)
+summary(b)
+```
+:::
