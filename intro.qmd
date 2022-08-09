@@ -1,0 +1,7 @@
+# Introduction
+
+This is a book created from markdown and executable code using Quarto within RStudio.
+
+Created by Daniel E. Weeks
+
+Website: <https://www.publichealth.pitt.edu/home/directory/daniel-e-weeks>

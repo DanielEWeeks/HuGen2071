@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "HuGen2071_book"
+  author: "Daniel E. Weeks"
+  date: "`r format(Sys.time(), '%B %d, %Y')`"
+  chapters:
+    - index.qmd
+    - preparation.qmd
+    - intro.qmd
+    - logistics.qmd 
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

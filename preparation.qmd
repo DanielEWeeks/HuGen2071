@@ -1,0 +1,45 @@
+# Preparation
+
+The first part of our HuGen 2071 course aims to teach you R in the context of applied data wrangling in a genetic context. In our experience, if you have never programmed before, it moves kind of fast. As such, it would be useful to review these sources below.
+
+## Basic programming ideas
+
+### Introduction to Coding
+
+This web page and two short videos discusses how computer programming is very similar to writing a recipe - you have to break a complex project down into precise smaller individual steps.
+
+<https://subjectguides.york.ac.uk/coding/introduction>
+
+## R
+
+### PhD Training Workshop: Statistics in R
+
+This online book has a nice introduction to the concepts of programming, RStudio, and R
+
+<https://bookdown.org/animestina/R_Manchester/>
+
+See Chapters 1, 2, and 3
+
+## R and RStudio
+
+### R for the Rest of Us
+
+Acquaint or refresh yourself with R and RStudio --- including installing them on your computer with this "R for the Rest of Us course" (24 min of videos + exercises):
+
+<https://rfortherestofus.com/courses/getting-started/>
+
+Slides: <https://rfortherestofus.github.io/getting-started/slides/slides.html>
+
+## GitHub
+
+To introduce yourself to GitHub:
+
+<https://guides.github.com/introduction/git-handbook/>
+
+<https://guides.github.com/activities/hello-world/>
+
+## R Markdown
+
+To introduce yourself or refresh yourself on R Markdown:
+
+<https://rmarkdown.rstudio.com/> (click on Get Started)
