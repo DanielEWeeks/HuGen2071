@@ -43,3 +43,9 @@ To introduce yourself to GitHub:
 To introduce yourself or refresh yourself on R Markdown:
 
 <https://rmarkdown.rstudio.com/> (click on Get Started)
+
+## Unix
+
+And finally, to introduce yourself or refresh yourself with Unix (well, Linux in this case, but close enough), try Lessons 1--11 here:
+
+<https://www.webminal.org/>
