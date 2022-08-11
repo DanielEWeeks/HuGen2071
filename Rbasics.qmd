@@ -8,11 +8,24 @@ dim(a)
 a
 ```
 
-## Exercise 1
+## Exercise 1: recycling
 
 This exercise should help answer this question: 'In what type of situations would "recycling" be useful?'
 
 Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip}
+### Tip
+
+The R command
+
+```
+a$rowNum1 <- NA
+```
+
+would insert a new row into the data frame `a` full of `NA` values.
+
+:::
 
 :::{.callout-tip collapse="true"}
 ### Expand to see the answer
@@ -23,9 +36,67 @@ a
 ```
 :::
 
-## Exercise 2
+## Exercise 2: vector addition
+
+Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows.  Then insert this vector into the data frame `a` into a column named `rowNum6`.
+
+:::{.callout-tip}
+### Tip
+
+What vector could you add to this vector so the sum is the vector (1, 2, 1, 2)?
+
+```{r}
+rep(1, 4)
+```
+:::
+
+:::{.callout-tip collapse="true"}
+### Expand to see the answer
+
+```{r}
+r1 <- rep(1, times = 4)
+r2 <- rep(c(0,1), times = 2)
+r1
+r2
+r1 + r2
+a$rowNum6 <- r1 + r2
+a
+```
+:::
+
+## Exercise 3: `for` loops
+
+Loops allow you to repeat actions on each item from a vector of items.
+
+Here is an example `for` loop, iterating through the values of `i` from 1 to 3:
+
+```{r}
+for (i in 1:3) {
+  print(paste("i =",i))
+}
+```
+
+This does the same thing as this repetitive code:
+
+```{r}
+i.vector <- c(1,2,3)
+i <- i.vector[1]
+print(paste("i =",i))
+i <- i.vector[2]
+print(paste("i =",i))
+i <- i.vector[3]
+print(paste("i =",i))
+```
+
 
 Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in even rows and a 2 in odd rows.
+
+:::{.callout-tip}
+### Tip
+
+Think about how as `i` increments from 1 to `nrow(a)`, how could we map that sequence (e.g. 1, 2, 3, 4) to the desired sequence of 1, 2, 1, 2.
+
+:::
 
 :::{.callout-tip collapse="true"}
 ### Expand to see the answer
@@ -35,7 +106,7 @@ Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that
 j <- 1
 # Initialize rowNum2 to all missing values
 a$rowNum2 <- NA  
-# Star the for loop, looping over the number of rows in a
+# Start the for loop, looping over the number of rows in a
 for (i in c(1:nrow(a))) {
    # Assign value j to row i
    a$rowNum2[i] <- j
@@ -50,7 +121,17 @@ a
 ```
 :::
 
-## Exercise 3
+## Exercise 4: `while` loops
+
+Here's an example `while` loop:
+
+```{r}
+i <- 1
+while (i < 4) {
+  print(paste("i =",i))
+  i <- i + 1
+}
+```
 
 Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
 
@@ -74,7 +155,18 @@ a
 ```
 :::
 
-## Exercise 4
+## Exercise 5: `repeat` loops
+
+Here's an example `repeat` loop:
+
+```{r}
+i <- 1
+repeat {
+  print(paste("i =",i))
+  i <- i + 1
+  if (i > 3) break
+}
+```
 
 Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in even rows and a 2 in odd rows.
 
@@ -82,7 +174,7 @@ Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` t
 ### Expand to see the answer
 
 ```{r}
-a$rowNum4 = NA
+a$rowNum4 <- NA
 i <- 1 #set index
 repeat { 
 
@@ -101,7 +193,7 @@ a
 ```
 :::
 
-## Exercise 5
+## Exercise 6: using the `rep` function
 
 Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in even rows and a 2 in odd rows.
 
@@ -115,23 +207,7 @@ a
 ```
 :::
 
-## Exercise 6
 
-Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows.  Then insert this vector into the data frame `a` into a column named `rowNum6`.
-
-:::{.callout-tip collapse="true"}
-### Expand to see the answer
-
-```{r}
-r1 <- rep(1, 4)
-r2 <- rep(c(0,1), 2)
-r1
-r2
-r1 + r2
-a$rowNum6 <- r1 + r2
-a
-```
-:::
 
 ## Exercise 7
 
@@ -152,6 +228,11 @@ a[a$rowNum1==1,]
 
 
 ## Exercise 8
+
+:::{.callout-note}
+
+Learning objective: Learn how to alter the options of an R command to achieve your goals.
+:::
 
 This exercise should help answer this question: "When reading a file, will missing data be automatically represented as NA values, or does that need to be coded/manually curated?"
 
