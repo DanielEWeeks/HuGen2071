@@ -140,9 +140,184 @@
     "text": "4.9 Exercise 8\n\n\n\n\n\n\nNote\n\n\n\nLearning objective: Learn how to alter the options of an R command to achieve your goals.\n\n\nThis exercise should help answer this question: “When reading a file, will missing data be automatically represented as NA values, or does that need to be coded/manually curated?”\nThe tab-delimited file in testdata.txt contains the following data:\n1       1       1\n2       2       2\n3       NA      99\n4       4       4\nYour collaborator who gave you these data informed you that in this file 99 stands for a missing value, as does NA.\nHowever if we use the read.table command with its default options to read this in, we fail to accomplish the desired task, as 99 is not reading as a missing value:\n\ninfile <- \"data/testdata.txt\"\n# Adjust the read.table options to read the file correctly as desired.\nb <- read.table(infile)\nb\n\n  V1 V2 V3\n1  1  1  1\n2  2  2  2\n3  3 NA 99\n4  4  4  4\n\nstr(b)\n\n'data.frame':   4 obs. of  3 variables:\n $ V1: int  1 2 3 4\n $ V2: int  1 2 NA 4\n $ V3: int  1 2 99 4\n\n\nUse the read.table command to read this file in while automatically setting both the ’NA” and the 99 to NA. This can be done by adjusting the various options of the read.table command.\n\n\n\n\n\n\nTip\n\n\n\nRead the help page for the read.table command\n\n\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\nTo read this in properly, we have to let ‘read.table’ know that there is no header and that which values should be mapped to the missing NA value:\n\nb <- read.table(infile, header = FALSE, na.strings = c(\"NA\",\"99\"))\nb\n\n  V1 V2 V3\n1  1  1  1\n2  2  2  2\n3  3 NA NA\n4  4  4  4\n\nstr(b)\n\n'data.frame':   4 obs. of  3 variables:\n $ V1: int  1 2 3 4\n $ V2: int  1 2 NA 4\n $ V3: int  1 2 NA 4\n\nsummary(b)\n\n       V1             V2              V3       \n Min.   :1.00   Min.   :1.000   Min.   :1.000  \n 1st Qu.:1.75   1st Qu.:1.500   1st Qu.:1.500  \n Median :2.50   Median :2.000   Median :2.000  \n Mean   :2.50   Mean   :2.333   Mean   :2.333  \n 3rd Qu.:3.25   3rd Qu.:3.000   3rd Qu.:3.000  \n Max.   :4.00   Max.   :4.000   Max.   :4.000  \n                NA's   :1       NA's   :1"
   },
   {
+    "objectID": "R_char_exer.html",
+    "href": "R_char_exer.html",
+    "title": "5  R Character Exercise",
+    "section": "",
+    "text": "library(tidyverse)\n# library(tidylog)\nlibrary(knitr)"
+  },
+  {
+    "objectID": "R_char_exer.html#question-1",
+    "href": "R_char_exer.html#question-1",
+    "title": "5  R Character Exercise",
+    "section": "9.1 Question 1",
+    "text": "9.1 Question 1\nThe clinical group, which measured height, used integer IDs, but the medical group, which measured the blood pressure, decided to prefix the integer IDs with the string ‘SG’ (so as to distinguish them from other studies that were also using integer IDs). So ID ‘1’ was mapped to ID ‘SG0001’.\nDiscuss how, using R commands, you would reformat the integer IDs to be in the format “SGXXXX”. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.\n\n\n\nThe clin data frame\n\n\nID\nheight\n\n\n\n\n1\n152\n\n\n104\n172\n\n\n2112\n180\n\n\n2543\n163\n\n\n\n\n\nHint: Use the formatC function."
+  },
+  {
+    "objectID": "R_char_exer.html#answer-1",
+    "href": "R_char_exer.html#answer-1",
+    "title": "5  R Character Exercise",
+    "section": "9.2 Answer 1",
+    "text": "9.2 Answer 1\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nclin$SUBJECT_ID <- paste0(\"SG\", formatC(clin$ID, width = 4, flag = \"0000\"))\nkable(clin)\n\n\n\n\nID\nheight\nSUBJECT_ID\n\n\n\n\n1\n152\nSG0001\n\n\n104\n172\nSG0104\n\n\n2112\n180\nSG2112\n\n\n2543\n163\nSG2543"
+  },
+  {
+    "objectID": "R_char_exer.html#question-2",
+    "href": "R_char_exer.html#question-2",
+    "title": "5  R Character Exercise",
+    "section": "9.3 Question 2",
+    "text": "9.3 Question 2\nDiscuss how, using R commands, you would reformat the “SGXXXX” IDs to be integer IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.\n\n\n\nThe lab data frame\n\n\nID\nSBP\n\n\n\n\nSG0001\n120\n\n\nSG0104\n111\n\n\nSG2112\n125\n\n\nSG2543\n119\n\n\n\n\n\nHint: Use either the gsub command or the str_replace_all command."
+  },
+  {
+    "objectID": "R_char_exer.html#answer-2",
+    "href": "R_char_exer.html#answer-2",
+    "title": "5  R Character Exercise",
+    "section": "9.4 Answer 2",
+    "text": "9.4 Answer 2\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nlab$ID2 <- as.numeric(gsub(\"SG\",\"\",lab$ID))\nkable(lab)\n\n\n\n\nID\nSBP\nID2\n\n\n\n\nSG0001\n120\n1\n\n\nSG0104\n111\n104\n\n\nSG2112\n125\n2112\n\n\nSG2543\n119\n2543\n\n\n\n\n\n\nlab$ID2 <- NA\nlab$ID2 <- str_replace_all(lab$ID, pattern = \"SG\", replacement = \"\") %>% as.numeric()\nkable(lab)\n\n\n\n\nID\nSBP\nID2\n\n\n\n\nSG0001\n120\n1\n\n\nSG0104\n111\n104\n\n\nSG2112\n125\n2112\n\n\nSG2543\n119\n2543"
+  },
+  {
+    "objectID": "R_char_exer.html#question-3",
+    "href": "R_char_exer.html#question-3",
+    "title": "5  R Character Exercise",
+    "section": "9.5 Question 3",
+    "text": "9.5 Question 3\nThe genotype group used IDs in the style “TaqMan-SG0001-190601”, where the first string is “TaqMan” and the ending string is the date of the genotyping experiment.\nDiscuss how, using R commands, you would extract an “SGXXXX” style ID from the “TaqMan-SG0001-190601” style IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.\nNote that one of the IDs has a lower case ‘g’ in it - how would you correct this, using R commands?\n\n\n\nThe geno data frame\n\n\nSample\nrs1212\n\n\n\n\nTaqMan-SG0001-190601\nG/C\n\n\nTaqMan-SG0104-190602\nG/G\n\n\nTaqMan-SG2112-190603\nC/C\n\n\nTaqMan-Sg2543-190603\nC/G\n\n\n\n\n\nHint: Use either the str_split_fixed function or the separate function."
+  },
+  {
+    "objectID": "R_char_exer.html#answer-3",
+    "href": "R_char_exer.html#answer-3",
+    "title": "5  R Character Exercise",
+    "section": "9.6 Answer 3",
+    "text": "9.6 Answer 3\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\na <- str_split_fixed(geno$Sample, pattern = \"-\",n=3)\na\n\n     [,1]     [,2]     [,3]    \n[1,] \"TaqMan\" \"SG0001\" \"190601\"\n[2,] \"TaqMan\" \"SG0104\" \"190602\"\n[3,] \"TaqMan\" \"SG2112\" \"190603\"\n[4,] \"TaqMan\" \"Sg2543\" \"190603\"\n\ngeno$ID <- toupper(a[,2])\nkable(geno)\n\n\n\n\nSample\nrs1212\nID\n\n\n\n\nTaqMan-SG0001-190601\nG/C\nSG0001\n\n\nTaqMan-SG0104-190602\nG/G\nSG0104\n\n\nTaqMan-SG2112-190603\nC/C\nSG2112\n\n\nTaqMan-Sg2543-190603\nC/G\nSG2543\n\n\n\n\n\nThe separate function from the tidyr package is also useful:\n\ngeno %>% separate(Sample, into=c(\"Tech\",\"ID\",\"Suffix\"), sep=\"-\")\n\n    Tech     ID Suffix rs1212\n1 TaqMan SG0001 190601    G/C\n2 TaqMan SG0104 190602    G/G\n3 TaqMan SG2112 190603    C/C\n4 TaqMan Sg2543 190603    C/G"
+  },
+  {
+    "objectID": "R_char_exer.html#question-4",
+    "href": "R_char_exer.html#question-4",
+    "title": "5  R Character Exercise",
+    "section": "10.1 Question 4",
+    "text": "10.1 Question 4\nDiscuss how you would use R commands to split the ‘joint’ data frame into an ‘SG’ and ‘RP’ specific piece? Write down your ideas in the next section, and, if you have time, try them out within an R chunk.\n\n\n\nThe joint data frame\n\n\nID\nSBP\n\n\n\n\nSG0001\n120\n\n\nSG0104\n111\n\n\nSG2112\n125\n\n\nSG2543\n119\n\n\nRP5002\n121\n\n\nRP5012\n118\n\n\nRP5113\n112\n\n\nRP5213\n142"
+  },
+  {
+    "objectID": "R_char_exer.html#answer-4",
+    "href": "R_char_exer.html#answer-4",
+    "title": "5  R Character Exercise",
+    "section": "10.2 Answer 4",
+    "text": "10.2 Answer 4\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\ngrep(pattern = \"SG\",joint$ID)\n\n[1] 1 2 3 4\n\ngrep(pattern = \"RP\", joint$ID)\n\n[1] 5 6 7 8\n\njoint.SG <- joint[grep(pattern = \"SG\",joint$ID), ]\njoint.RP <- joint[grep(pattern = \"RP\", joint$ID), ]\nkable(joint.SG)\n\n\n\n\nID\nSBP\n\n\n\n\nSG0001\n120\n\n\nSG0104\n111\n\n\nSG2112\n125\n\n\nSG2543\n119\n\n\n\n\nkable(joint.RP)\n\n\n\n\n\nID\nSBP\n\n\n\n\n5\nRP5002\n121\n\n\n6\nRP5012\n118\n\n\n7\nRP5113\n112\n\n\n8\nRP5213\n142\n\n\n\n\n# Reset row names\nrownames(joint.RP) <- NULL\nkable(joint.RP)\n\n\n\n\nID\nSBP\n\n\n\n\nRP5002\n121\n\n\nRP5012\n118\n\n\nRP5113\n112\n\n\nRP5213\n142"
+  },
+  {
+    "objectID": "R_Functions.html",
+    "href": "R_Functions.html",
+    "title": "6  R Functions Excercise",
+    "section": "",
+    "text": "library(tidyverse)\n# library(tidylog)"
+  },
+  {
+    "objectID": "R_Functions.html#question-how-could-we-construct-a-list-of-file-names",
+    "href": "R_Functions.html#question-how-could-we-construct-a-list-of-file-names",
+    "title": "6  R Functions Excercise",
+    "section": "10.1 Question: How could we construct a list of file names?",
+    "text": "10.1 Question: How could we construct a list of file names?\nHow could we construct a list of file names?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHint: the list.files command provides a handy way to get a list of the input files:\n\nfls <- list.files(path=\"data\",pattern=\"dataset*\")\nfls\n\n[1] \"dataset1.txt\" \"dataset2.txt\" \"dataset3.txt\" \"dataset4.txt\" \"dataset5.txt\"\n[6] \"dataset6.txt\""
+  },
+  {
+    "objectID": "R_Functions.html#question-outline-a-possible-algorithm",
+    "href": "R_Functions.html#question-outline-a-possible-algorithm",
+    "title": "6  R Functions Excercise",
+    "section": "10.2 Question: Outline a possible algorithm",
+    "text": "10.2 Question: Outline a possible algorithm\nOutline a possible algorithm that loops through a list of input data set files named “dataset1.txt”, “dataset2.txt”, “dataset3.txt”, etc., building up the results table as above.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nRead in the input file names into a list\nSet up an empty results table\nFor each file in our file name list\n\nRead the file\nCompute the statistics\nInsert the information into the results table\nReturn the filled-in results table"
+  },
+  {
+    "objectID": "R_Functions.html#question-construct-a-more-detailed-step-by-step-algorithm.",
+    "href": "R_Functions.html#question-construct-a-more-detailed-step-by-step-algorithm.",
+    "title": "6  R Functions Excercise",
+    "section": "10.3 Question: Construct a more detailed step-by-step algorithm.",
+    "text": "10.3 Question: Construct a more detailed step-by-step algorithm.\nConstruct a more detailed step-by-step algorithm.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nInput the path to the folder containing the data files\nRead in the input file names into a list fls\nCount the number of input files N\nSet up an empty results table with N rows\nFor each file in our file name list fls\n\nRead the file\nCompute the statistics\nInsert the information into the correct row of the results table\n\nReturn the filled-in results table"
+  },
+  {
+    "objectID": "R_Functions.html#task-write-a-read_data_file-function.",
+    "href": "R_Functions.html#task-write-a-read_data_file-function.",
+    "title": "6  R Functions Excercise",
+    "section": "10.4 Task: Write a read_data_file function.",
+    "text": "10.4 Task: Write a read_data_file function.\nWrite a read_data_file function to accomplish the required steps for a single input data file.\n\nMake the number in the data file name an argument.\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHere we make the number in the data file name an argument\n\nresults <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)\nread_data_file <- function(n=1, results) {\n  fl1 <- read.table(paste0(\"data/dataset\",n,\".txt\"),sep=\"\\t\",header=TRUE)\n  results$dataset[n] <- paste0(\"dataset\",n,\".txt\")\n  results$N <- nrow(fl1)\n  results$mean[n] <- mean(fl1$trait)\n  results$median[n] <- median(fl1$trait)\n  results$var[n] <- var(fl1$trait)\n  invisible(results)\n}\n\n\n\n\n\nMake the path to the input file an argument to your read_data_file function.\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHere we make the path to the input file an argument.\n\nread_data_file_v2 <- function(flnm, results) {\n  fl1 <- read.table(paste0(\"data/\",flnm),sep=\"\\t\",header=TRUE)\n  results$dataset[n] <- flnm\n  results$N <- nrow(fl1)\n  results$mean[n] <- mean(fl1$trait)\n  results$median[n] <- median(fl1$trait)\n  results$var[n] <- var(fl1$trait)\n  invisible(results)\n}"
+  },
+  {
+    "objectID": "R_Functions.html#question-what-does-the-above-code-assume",
+    "href": "R_Functions.html#question-what-does-the-above-code-assume",
+    "title": "6  R Functions Excercise",
+    "section": "10.5 Question: What does the above code assume?",
+    "text": "10.5 Question: What does the above code assume?\nWhat does the above code assume?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nAssumes a file naming style of ’dataset*.txt’ where the asterisk represents 1, 2, 3, …\nAssumes the files are in the “data” folder."
+  },
+  {
+    "objectID": "R_Functions.html#question-extend-your-function-to-process-all-of-the-files",
+    "href": "R_Functions.html#question-extend-your-function-to-process-all-of-the-files",
+    "title": "6  R Functions Excercise",
+    "section": "10.6 Question: Extend your function to process all of the files",
+    "text": "10.6 Question: Extend your function to process all of the files\nThe above function read_data_file processes one file at a time. How would you write a function to loop this over to process all of our files?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nfls <- list.files(path=\"data\",pattern=\"dataset*\")\n\nloop_over_dataset <- function(fls) {\n  # Input: the list of file names\n  # Output: the 'results table\n  # Count the number of data set file names in fls\n  n_datasets <- length(fls)\n  # Set up a results dataframe with n_datasets rows\n  results <- data.frame(dataset=rep(NA,n_datasets),N=NA, mean=NA, median=NA, var=NA)\n  for (n in 1:n_datasets) {\n    results <- read_data_file(n=n, results=results)\n  }\n  return(results)\n}\n\n\nloop_over_dataset(fls = fls)\n\n       dataset  N        mean      median       var\n1 dataset1.txt 26  0.09762111  0.21989574 0.5974116\n2 dataset2.txt 26  0.43486401  0.35587359 1.0936651\n3 dataset3.txt 26  0.07508335  0.04456140 0.7950574\n4 dataset4.txt 26  0.06259720  0.04813915 0.9186042\n5 dataset5.txt 26 -0.09288522 -0.19155759 0.9978161\n6 dataset6.txt 26 -0.20266667 -0.23845426 1.5605823"
+  },
+  {
+    "objectID": "R_Functions.html#bonus-question",
+    "href": "R_Functions.html#bonus-question",
+    "title": "6  R Functions Excercise",
+    "section": "10.7 Bonus question",
+    "text": "10.7 Bonus question\nCan you find a subtle mistake in the read_data_file function?\nresults <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)\nread_data_file <- function(n=1, results) {\n  fl1 <- read.table(paste0(\"data/dataset\",n,\".txt\"),sep=\"\\t\",header=TRUE)\n  results$dataset[n] <- paste0(\"dataset\",n,\".txt\")\n  results$N <- nrow(fl1)\n  results$mean[n] <- mean(fl1$trait)\n  results$median[n] <- median(fl1$trait)\n  results$var[n] <- var(fl1$trait)\n  invisible(results)\n}\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nIf N varies across the data sets, then this line will not do the right thing:\nresults$N <- nrow(fl1)\n\nresults <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)\nread_data_file <- function(n=1, results) {\n  fl1 <- read.table(paste0(\"data/dataset\",n,\".txt\"),sep=\"\\t\",header=TRUE)\n  results$dataset[n] <- paste0(\"dataset\",n,\".txt\")\n  results$N[n] <- nrow(fl1)\n  results$mean[n] <- mean(fl1$trait)\n  results$median[n] <- median(fl1$trait)\n  results$var[n] <- var(fl1$trait)\n  invisible(results)\n}"
+  },
+  {
+    "objectID": "exercise_tidyverse.html",
+    "href": "exercise_tidyverse.html",
+    "title": "7  R Tidyverse Exercise",
+    "section": "",
+    "text": "9 Untidy data\nLet’s use the World Health Organization TB data set from the tidyr package\n\nwho <- tidyr::who\ndim(who)\n\n[1] 7240   60\n\nhead(who[,1:6] %>% filter(!is.na(new_sp_m014)))\n\n# A tibble: 6 × 6\n  country     iso2  iso3   year new_sp_m014 new_sp_m1524\n  <chr>       <chr> <chr> <int>       <int>        <int>\n1 Afghanistan AF    AFG    1997           0           10\n2 Afghanistan AF    AFG    1998          30          129\n3 Afghanistan AF    AFG    1999           8           55\n4 Afghanistan AF    AFG    2000          52          228\n5 Afghanistan AF    AFG    2001         129          379\n6 Afghanistan AF    AFG    2002          90          476\n\n\nSee the help page for who for more information about this data set.\nIn particular, note this description:\n“The data uses the original codes given by the World Health Organization. The column names for columns five through 60 are made by combining new_ to a code for method of diagnosis (rel = relapse, sn = negative pulmonary smear, sp = positive pulmonary smear, ep = extrapulmonary) to a code for gender (f = female, m = male) to a code for age group (014 = 0-14 yrs of age, 1524 = 15-24 years of age, 2534 = 25 to 34 years of age, 3544 = 35 to 44 years of age, 4554 = 45 to 54 years of age, 5564 = 55 to 64 years of age, 65 = 65 years of age or older).”\nSo new_sp_m014 represents the counts of new TB cases detected by a positive pulmonary smear in males in the 0-14 age group.\n\n\n10 Tidy data\nTidy data: Have each variable in a column.\nQuestion: Are these data tidy?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nNo these data are not tidy because aspects of the data that should be variables are encoded in the name of the variables.\nThese aspects are\n\ntest type.\nsex of the subjects.\nage range of the subjects.\n\n\n\n\nQuestion: How would we make these data tidy?\nConsider this portion of the data:\n\nhead(who[,1:5] %>% filter(!is.na(new_sp_m014) & new_sp_m014>0), 1)\n\n# A tibble: 1 × 5\n  country     iso2  iso3   year new_sp_m014\n  <chr>       <chr> <chr> <int>       <int>\n1 Afghanistan AF    AFG    1998          30\n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nWe would replace the new_sp_m014 with the following four columns:\ntype  sex   age   n\nsp    m     014  30\nThis would place each variable in its own column.\n\n\n\n\n\n11 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X     Y      Z\n  <date>       <dbl> <dbl>  <dbl>\n1 2009-01-01  0.0496  1.63 -0.236\n2 2009-01-02 -0.0590 -3.61  1.58 \n3 2009-01-03  0.0444  1.24  1.35 \n4 2009-01-04 -2.18    1.08 -8.09 \n5 2009-01-05  1.21    1.58  0.794\n6 2009-01-06 -0.866   2.71  4.57 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.0496\n2 2009-01-02 X     -0.0590\n3 2009-01-03 X      0.0444\n4 2009-01-04 X     -2.18  \n5 2009-01-05 X      1.21  \n6 2009-01-06 X     -0.866 \n\n\n\n\n12 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.0496\n2 2009-01-01 Y      1.63  \n3 2009-01-01 Z     -0.236 \n4 2009-01-02 X     -0.0590\n5 2009-01-02 Y     -3.61  \n6 2009-01-02 Z      1.58  \n\n\n\n\n13 WHO TB data\nQuestion: How would we convert this to tidy form?\n\nhead(who[,1:6] %>% filter(!is.na(new_sp_m014)))\n\n# A tibble: 6 × 6\n  country     iso2  iso3   year new_sp_m014 new_sp_m1524\n  <chr>       <chr> <chr> <int>       <int>        <int>\n1 Afghanistan AF    AFG    1997           0           10\n2 Afghanistan AF    AFG    1998          30          129\n3 Afghanistan AF    AFG    1999           8           55\n4 Afghanistan AF    AFG    2000          52          228\n5 Afghanistan AF    AFG    2001         129          379\n6 Afghanistan AF    AFG    2002          90          476\n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nwho.long <- who %>% pivot_longer(starts_with(\"new\"), names_to = \"demo\", values_to = \"n\") %>%  filter(!is.na(n))\nhead(who.long)\n\n# A tibble: 6 × 6\n  country     iso2  iso3   year demo             n\n  <chr>       <chr> <chr> <int> <chr>        <int>\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n\n\n\n\n\nQuestion: How would we split demo into variables?\n\nhead(who.long)\n\n# A tibble: 6 × 6\n  country     iso2  iso3   year demo             n\n  <chr>       <chr> <chr> <int> <chr>        <int>\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n\n\nLook at the variable naming scheme:\n\nnames(who) %>% grep(\"m014\",., value=TRUE)\n\n[1] \"new_sp_m014\" \"new_sn_m014\" \"new_ep_m014\" \"newrel_m014\"\n\n\nQuestion: How should we adjust the demo strings so as to be able to easily split all of them into the desired variables?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nwho.long <- who.long %>%  \n  mutate(demo = str_replace(demo, \"newrel\", \"new_rel\"))\ngrep(\"m014\",who.long$demo, value=TRUE) %>%  unique()\n\n[1] \"new_sp_m014\"  \"new_sn_m014\"  \"new_ep_m014\"  \"new_rel_m014\"\n\n\n\n\n\nQuestion: After adjusting the demo strings, how would we then separate them into the desired variables?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nwho.long <- who.long %>% \n  separate(demo, into = c(\"new\", \"type\", \"sexagerange\"), sep=\"_\") %>% \n  separate(sexagerange, into=c(\"sex\",\"age_range\"), sep=1) %>%\n  select(-new)\nhead(who.long)\n\n# A tibble: 6 × 8\n  country     iso2  iso3   year type  sex   age_range     n\n  <chr>       <chr> <chr> <int> <chr> <chr> <chr>     <int>\n1 Afghanistan AF    AFG    1997 sp    m     014           0\n2 Afghanistan AF    AFG    1997 sp    m     1524         10\n3 Afghanistan AF    AFG    1997 sp    m     2534          6\n4 Afghanistan AF    AFG    1997 sp    m     3544          3\n5 Afghanistan AF    AFG    1997 sp    m     4554          5\n6 Afghanistan AF    AFG    1997 sp    m     5564          2\n\n\n\n\n\n\n\n14 Conclusion\nNow our untidy data are tidy.\n\nhead(who.long)\n\n# A tibble: 6 × 8\n  country     iso2  iso3   year type  sex   age_range     n\n  <chr>       <chr> <chr> <int> <chr> <chr> <chr>     <int>\n1 Afghanistan AF    AFG    1997 sp    m     014           0\n2 Afghanistan AF    AFG    1997 sp    m     1524         10\n3 Afghanistan AF    AFG    1997 sp    m     2534          6\n4 Afghanistan AF    AFG    1997 sp    m     3544          3\n5 Afghanistan AF    AFG    1997 sp    m     4554          5\n6 Afghanistan AF    AFG    1997 sp    m     5564          2\n\n\n\n\n15 Acknowledgment\nThis exercise was modeled, in part, on this exercise:\nhttps://people.duke.edu/~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#how-to-list-all-duplicates",
+    "href": "recoding_reshaping_interactive.html#how-to-list-all-duplicates",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "15.1 How to list all duplicates",
+    "text": "15.1 How to list all duplicates\nUse Tidyverse commands to list all duplicates for sample_id and for subject_id. Sort the results by the ID.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n15.2 Sample ID\n\nds %>%\n    group_by(sample_id) %>%\n    filter(n() > 1) %>%\n    select(sample_id, subject_id, Sample_trimester, Gestationalage_sample) %>%\n    arrange(sample_id, Sample_trimester, Gestationalage_sample) %>%\n    head()\n\n# A tibble: 6 × 4\n# Groups:   sample_id [3]\n  sample_id subject_id Sample_trimester Gestationalage_sample\n  <chr>     <chr>                 <dbl>                 <dbl>\n1 SAMP002   SUBJ20                    2                 19.3 \n2 SAMP002   SUBJ20                    2                 19.7 \n3 SAMP003   SUBJ12                    1                  8.25\n4 SAMP003   SUBJ12                    1                  8.35\n5 SAMP004   SUBJ35                    2                 20.4 \n6 SAMP004   SUBJ35                    2                 20.9 \n\n\n\n\n15.3 Subject ID\n\nds %>%\n    group_by(subject_id) %>%\n    filter(n() > 1) %>%\n    select(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %>%\n    arrange(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %>%\n    head(10)\n\n# A tibble: 10 × 4\n# Groups:   subject_id [2]\n   subject_id sample_id Sample_trimester Gestationalage_sample\n   <chr>      <chr>                <dbl>                 <dbl>\n 1 SUBJ01     SAMP011                  1                  9.00\n 2 SUBJ01     SAMP034                  3                 39.8 \n 3 SUBJ01     SAMP034                  3                 42.1 \n 4 SUBJ01     SAMP103                  2                 19.9 \n 5 SUBJ01     SAMP103                  2                 20.0 \n 6 SUBJ01     SAMP155                  3                 40.0 \n 7 SUBJ01     SAMP155                  3                 40.5 \n 8 SUBJ01     SAMP155                  3                 40.7 \n 9 SUBJ01     SAMP155                  3                 41.6 \n10 SUBJ02     SAMP113                  3                 38.6"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#sample-id",
+    "href": "recoding_reshaping_interactive.html#sample-id",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "15.2 Sample ID",
+    "text": "15.2 Sample ID\n\nds %>%\n    group_by(sample_id) %>%\n    filter(n() > 1) %>%\n    select(sample_id, subject_id, Sample_trimester, Gestationalage_sample) %>%\n    arrange(sample_id, Sample_trimester, Gestationalage_sample) %>%\n    head()\n\n# A tibble: 6 × 4\n# Groups:   sample_id [3]\n  sample_id subject_id Sample_trimester Gestationalage_sample\n  <chr>     <chr>                 <dbl>                 <dbl>\n1 SAMP002   SUBJ20                    2                 19.3 \n2 SAMP002   SUBJ20                    2                 19.7 \n3 SAMP003   SUBJ12                    1                  8.25\n4 SAMP003   SUBJ12                    1                  8.35\n5 SAMP004   SUBJ35                    2                 20.4 \n6 SAMP004   SUBJ35                    2                 20.9"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#subject-id",
+    "href": "recoding_reshaping_interactive.html#subject-id",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "15.3 Subject ID",
+    "text": "15.3 Subject ID\n\nds %>%\n    group_by(subject_id) %>%\n    filter(n() > 1) %>%\n    select(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %>%\n    arrange(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %>%\n    head(10)\n\n# A tibble: 10 × 4\n# Groups:   subject_id [2]\n   subject_id sample_id Sample_trimester Gestationalage_sample\n   <chr>      <chr>                <dbl>                 <dbl>\n 1 SUBJ01     SAMP011                  1                  9.00\n 2 SUBJ01     SAMP034                  3                 39.8 \n 3 SUBJ01     SAMP034                  3                 42.1 \n 4 SUBJ01     SAMP103                  2                 19.9 \n 5 SUBJ01     SAMP103                  2                 20.0 \n 6 SUBJ01     SAMP155                  3                 40.0 \n 7 SUBJ01     SAMP155                  3                 40.5 \n 8 SUBJ01     SAMP155                  3                 40.7 \n 9 SUBJ01     SAMP155                  3                 41.6 \n10 SUBJ02     SAMP113                  3                 38.6"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#comment",
+    "href": "recoding_reshaping_interactive.html#comment",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "16.1 Comment",
+    "text": "16.1 Comment\nView b2 via the View(b2) command in RStudio - it nicely put all the different gestational age observations into one list for each sample_id x Sample_trimester combination."
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#comment-1",
+    "href": "recoding_reshaping_interactive.html#comment-1",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "17.1 Comment:",
+    "text": "17.1 Comment:\nThe margin parameter of the prop.table command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.\n\nprop.table(table(ds$case_control_status, ds$race), margin = 1)\n\n   \n             B          W      White\n  0 0.67326733 0.32673267 0.00000000\n  1 0.64444444 0.34444444 0.01111111\n\n\n\nprop.table(table(ds$case_control_status, ds$race))\n\n   \n              B           W       White\n  0 0.356020942 0.172774869 0.000000000\n  1 0.303664921 0.162303665 0.005235602"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#xtabs-table-with-labels",
+    "href": "recoding_reshaping_interactive.html#xtabs-table-with-labels",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "17.2 xtabs table with labels",
+    "text": "17.2 xtabs table with labels\n\nprop.table(xtabs(~case_control_status + race, data = ds), margin = 1)\n\n                   race\ncase_control_status          B          W      White\n                  0 0.67326733 0.32673267 0.00000000\n                  1 0.64444444 0.34444444 0.01111111"
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#comment-2",
+    "href": "recoding_reshaping_interactive.html#comment-2",
+    "title": "8  R Recoding Reshaping Exercise",
+    "section": "20.1 Comment",
+    "text": "20.1 Comment\nI usually prefer to use a merge command like left_join to merge in the new IDs into my data frame.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nkey <- data.frame(SubjID = names(DictPer), ID = DictPer)\nhead(key)\n\n       SubjID ID\nSUBJ48 SUBJ48 40\nSUBJ46 SUBJ46  2\nSUBJ28 SUBJ28 23\nSUBJ26 SUBJ26 38\nSUBJ49 SUBJ49 10\nSUBJ19 SUBJ19 27\n\nb5 <- left_join(ds, key, by = c(subject_id = \"SubjID\"))\nb5 %>%\n    select(subject_id, ID) %>%\n    head()\n\n  subject_id ID\n1     SUBJ48 40\n2     SUBJ46  2\n3     SUBJ28 23\n4     SUBJ26 38\n5     SUBJ49 10\n6     SUBJ48 40"
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "5  Summary",
+    "title": "9  Summary",
     "section": "",
     "text": "In summary, this book is a work in progress."
   }
