@@ -6,7 +6,7 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
-# Load Libraries
+## Load Libraries
 
 ```{r load_libraries,message=FALSE}
 library(tidyverse)
@@ -14,7 +14,7 @@ library(tidyverse)
 ```
 
 
-# Project 1 Data
+## Project 1 Data
 
 In the `ds` data frame we have the synthetic yet realistic data we will be using in Project 1.
 
@@ -29,7 +29,7 @@ names(dd)
 ```
 
 
-# Exercise 1
+## Exercise 1
 
 **Skill**: Checking for duplicated IDs
 
@@ -87,7 +87,7 @@ sum(duplicated(ds$subject_id))
 
 :::
 
-# Checking for duplicates
+## Checking for duplicates
 
 How do we return every row that contains a duplicate?
 
@@ -97,13 +97,13 @@ f
 f[duplicated(f$ID),]
 ```
 
-# Counting the number of occurences of the ID
+## Counting the number of occurences of the ID
 
 ```{r}
 f %>% group_by(ID) %>% summarise(n=n())
 ```
 
-# Count `sample_id` duplicates
+## Count `sample_id` duplicates
 
 Using Tidyverse commands, count how many times each `sample_id` occcurs in the `ds` data frame, reporting the counts in descending order, from highest to lowest.
 
@@ -126,7 +126,7 @@ ds  %>% group_by(sample_id) %>%
 
 :::
 
-# Checking for duplicates 
+## Checking for duplicates 
 
 Here we list all of the rows containing a duplicated 'ID'
 value using functions from the 'tidyverse' package:
@@ -137,14 +137,14 @@ f %>% group_by(ID) %>% filter(n()>1)
 
 
 
-## How to list all duplicates
+### How to list all duplicates
 
 Use Tidyverse commands to list all duplicates for `sample_id` and for `subject_id`.  Sort the results by the ID. 
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-## Sample ID
+### Sample ID
 
 ```{r}
 ds  %>% group_by(sample_id) %>% 
@@ -154,7 +154,7 @@ ds  %>% group_by(sample_id) %>%
         head()
 ```
 
-## Subject ID
+### Subject ID
 
 ```{r}
 ds  %>% group_by(subject_id) %>% filter(n() > 1) %>% select(subject_id,
@@ -171,7 +171,7 @@ ds  %>% group_by(subject_id) %>% filter(n() > 1) %>% select(subject_id,
 
 
 
-# Exercise 2
+## Exercise 2
 
 **Skill**: Reshaping data
 
@@ -190,13 +190,13 @@ head(b2)
 
 
 
-## Comment
+### Comment
 
 View `b2` via the `View(b2)` command in RStudio - it nicely put all the different gestational age observations into one list for each `sample_id` x `Sample_trimester` combination.  
 
 :::
 
-# Exercise 3
+## Exercise 3
 
 **Skill**: Aggregating data
 
@@ -210,7 +210,7 @@ Make a table showing the proportion of blacks and whites that are controls and c
 prop.table(table(ds$case_control_status,ds$race), margin = 2)
 ```
 
-## Comment:
+### Comment:
 
 The `margin` parameter of the `prop.table` command has to be specified in order to get the desired answer: "1 indicates rows, 2 indicates columns.  
 
@@ -229,7 +229,7 @@ Construct more readable tables with labels using `xtabs`
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-## `xtabs` table with labels
+### `xtabs` table with labels
 
 
 
@@ -274,7 +274,7 @@ spread(race, prop)
 
 
 
-# Exercise 4
+## Exercise 4
 
 **Skill**: Summarizing within groups
 
@@ -296,7 +296,7 @@ Note: With `split(x, f)`, any missing values in `f` are dropped together with th
 
 :::
 
-# Exercise 5: Recoding data
+## Exercise 5: Recoding data
 
 **Approach 1**
 
@@ -326,13 +326,13 @@ head(DictPer)
 :::
 
 
-# Recoding data
+## Recoding data
 
 **Approach 2**
 
 * Implement our dictionaries using left joins 
 
-## Comment
+### Comment
 
 I usually prefer to use a merge command like `left_join` to merge in the new IDs into my data frame.  
 
@@ -348,7 +348,7 @@ b5 %>% select(subject_id,ID) %>%  head()
 
 :::
 
-# Exercise 6
+## Exercise 6
 
 **Skill**: Filtering rows.
 
@@ -366,7 +366,7 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()
 
 :::
 
-# Exercise 7
+## Exercise 7
 
 **Skill**: Selecting columns
 

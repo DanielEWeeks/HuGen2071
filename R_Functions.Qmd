@@ -1,13 +1,13 @@
 # R Functions Excercise
 
-# Load Libraries
+## Load Libraries
 
 ```{r load_libraries,message=FALSE}
  library(tidyverse)
 # library(tidylog)
 ```
 
-# Location
+## Location
 
 This file `exercise1_solution.Qmd` is in the "`r basename(getwd())`" sub-folder of the "`r basename(dirname(getwd()))`" folder of our Lectures repository.
 
@@ -18,7 +18,7 @@ paste0(basename(dirname(getwd())),"/",basename(getwd()))
 
 
 
-# Data set creation code
+## Data set creation code
 
 ```
 i <- 6
@@ -34,7 +34,7 @@ write_tsv(b,paste0("data/dataset",i,".txt"))
 
 
 
-# Example 
+## Example 
 
 Here we have been sent three data sets in the files that contain the trait quantitative values for each person in the data set:
 
@@ -79,7 +79,7 @@ Your colleague initially sent you the three data sets above, but now your collea
 
 As you can see, the code above is very repetitive.  So let's automate this by writing a function that loops through a list of data set files named "dataset1.txt", "dataset2.txt", "dataset3.txt", etc., building up the results table as above.
 
-## Question: How could we construct a list of file names?
+### Question: How could we construct a list of file names?
 
 How could we construct a list of file names?
 
@@ -97,7 +97,7 @@ fls
 :::
 
 
-## Question: Outline a possible algorithm
+### Question: Outline a possible algorithm
 
 Outline a possible algorithm that loops through a list of input data set files named "dataset1.txt", "dataset2.txt", "dataset3.txt", etc., building up the results table as above.
 
@@ -114,7 +114,7 @@ Outline a possible algorithm that loops through a list of input data set files n
 
 :::
 
-## Question: Construct a more detailed step-by-step algorithm.
+### Question: Construct a more detailed step-by-step algorithm.
 
 Construct a more detailed step-by-step algorithm.
 
@@ -133,7 +133,7 @@ Construct a more detailed step-by-step algorithm.
 
 :::
 
-## Task: Write a `read_data_file` function.  
+### Task: Write a `read_data_file` function.  
 
 Write a `read_data_file` function to accomplish the required steps for a single input data file.
 
@@ -180,7 +180,7 @@ read_data_file_v2 <- function(flnm, results) {
 
 :::
 
-## Question: What does the above code assume?
+### Question: What does the above code assume?
 
 What does the above code assume?
 
@@ -193,7 +193,7 @@ Assumes the files are in the "data" folder.
 
 :::
 
-## Question: Extend your function to process all of the files
+### Question: Extend your function to process all of the files
 
 The above function `read_data_file` processes one file at a time. How would you write a function to loop this over to process all of our files?
 
@@ -225,7 +225,7 @@ loop_over_dataset(fls = fls)
 
 :::
 
-## Bonus question
+### Bonus question
 
 Can you find a subtle mistake in the `read_data_file` function?
 

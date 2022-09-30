@@ -1,7 +1,7 @@
 # R Character Exercise
 
 
-# Load Libraries
+## Load Libraries
 
 ```{r load_libraries,message=FALSE}
 library(tidyverse)
@@ -9,13 +9,13 @@ library(tidyverse)
 library(knitr)
 ```
 
-# Useful RStudio cheatsheet
+## Useful RStudio cheatsheet
 
 See the "String manipulation with stringr cheatsheet" at
 
 https://www.rstudio.com/resources/cheatsheets/
 
-# Scenario 1
+## Scenario 1
 
 You are working with three different sets of collaborators: 1) the clinical group that did the field work and generated the anthropometric measurements; 2) the medical laboratory that measured blood pressure in a controlled environment; and 3) the molecular laboratory that generated the genotypes.
 
@@ -28,9 +28,9 @@ geno <- read.table(file = "data/genotype_data.txt", header = TRUE)
 kable(geno)
 ```
 
-# Discussion Questions
+## Discussion Questions
 
-## Question 1
+### Question 1
 
 The clinical group, which measured height, used integer IDs, but the medical group, which measured the blood pressure, decided to prefix the integer IDs with the string 'SG' (so as to distinguish them from other studies that were also using integer IDs). So ID '1' was mapped to ID 'SG0001'.
 
@@ -43,7 +43,7 @@ kable(clin, caption = "The `clin` data frame")
 
 Hint: Use the `formatC` function.
 
-## Answer 1
+### Answer 1
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -54,7 +54,7 @@ kable(clin)
 ```
 :::
 
-## Question 2
+### Question 2
 
 Discuss how, using R commands, you would reformat the "SGXXXX" IDs to be integer IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
 
@@ -65,7 +65,7 @@ kable(lab, caption = "The `lab` data frame")
 
 Hint: Use either the `gsub` command or the `str_replace_all` command.
 
-## Answer 2
+### Answer 2
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -82,7 +82,7 @@ kable(lab)
 ```
 :::
 
-## Question 3
+### Question 3
 
 The genotype group used IDs in the style "TaqMan-SG0001-190601", where the first string is "TaqMan" and the ending string is the date of the genotyping experiment.
 
@@ -97,7 +97,7 @@ kable(geno, caption="The `geno` data frame")
 
 Hint: Use either the `str_split_fixed` function or the `separate` function.
 
-## Answer 3
+### Answer 3
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -116,7 +116,7 @@ geno %>% separate(Sample, into=c("Tech","ID","Suffix"), sep="-")
 ```
 :::
 
-# Scenario 2
+## Scenario 2
 
 A replication sample has been measured, and that is using IDs in the style "RP5XXX".
 
@@ -125,7 +125,7 @@ joint <- read.table(file = "data/joint_data.txt", header = TRUE)
 kable(joint)
 ```
 
-## Question 4
+### Question 4
 
 Discuss how you would use R commands to split the 'joint' data frame into an 'SG' and 'RP' specific piece? Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
 
@@ -134,7 +134,7 @@ Discuss how you would use R commands to split the 'joint' data frame into an 'SG
 kable(joint, caption = "The `joint` data frame")
 ```
 
-## Answer 4
+### Answer 4
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution

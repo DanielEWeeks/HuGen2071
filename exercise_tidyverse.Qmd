@@ -1,7 +1,7 @@
 # R Tidyverse Exercise
 
 
-# Load Libraries
+## Load Libraries
 
 Load the `tidyverse` packages
 
@@ -10,7 +10,7 @@ Load the `tidyverse` packages
 # library(tidylog)
 ```
 
-# Untidy data
+## Untidy data
 
 Let's use the World Health Organization TB data set from the `tidyr` package
 
@@ -28,7 +28,7 @@ In particular, note this description:
 
 So `new_sp_m014` represents the counts of new TB cases detected by a positive pulmonary smear in males in the 0-14 age group.
 
-# Tidy data
+## Tidy data
 
 Tidy data: Have each variable in a column.
 
@@ -71,7 +71,7 @@ This would place each variable in its own column.
 
 :::
 
-# Gather
+## Gather
 
 ```{r}
 stocks <- tibble(
@@ -87,14 +87,14 @@ stocks %>% gather("stock", "price", -time) %>% head()
 ```
 
 
-# Pivot_longer
+## Pivot_longer
 
 ```{r}
 stocks %>% pivot_longer(c(X,Y,Z), names_to= "stock", values_to = "price") %>% 
   head()
 ```
 
-# WHO TB data
+## WHO TB data
 
 Question: How would we convert this to tidy form?
 
@@ -155,7 +155,7 @@ head(who.long)
 
 :::
 
-# Conclusion
+## Conclusion
 
 Now our untidy data are tidy.
 
@@ -163,7 +163,7 @@ Now our untidy data are tidy.
 head(who.long)
 ```
 
-# Acknowledgment
+## Acknowledgment
 
 This exercise was modeled, in part, on this exercise:
 
