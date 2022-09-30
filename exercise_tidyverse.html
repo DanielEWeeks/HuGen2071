@@ -198,7 +198,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -350,26 +355,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X     Y      Z
-  &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01 -0.451 -2.06 -5.99 
-2 2009-01-02  1.56   5.85 -2.93 
-3 2009-01-03  0.359 -2.79  0.319
-4 2009-01-04 -0.751 -2.27  0.148
-5 2009-01-05  1.68  -2.34 -3.04 
-6 2009-01-06  0.248  1.33  3.71 </code></pre>
+  time            X      Y     Z
+  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 2009-01-01  0.635 -0.549  4.04
+2 2009-01-02  0.674 -1.42   5.73
+3 2009-01-03 -1.29   0.646 -4.66
+4 2009-01-04 -0.559 -1.62   2.42
+5 2009-01-05  0.848 -0.848 -3.70
+6 2009-01-06 -1.97   5.40  -2.58</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.451
-2 2009-01-02 X      1.56 
-3 2009-01-03 X      0.359
-4 2009-01-04 X     -0.751
-5 2009-01-05 X      1.68 
-6 2009-01-06 X      0.248</code></pre>
+1 2009-01-01 X      0.635
+2 2009-01-02 X      0.674
+3 2009-01-03 X     -1.29 
+4 2009-01-04 X     -0.559
+5 2009-01-05 X      0.848
+6 2009-01-06 X     -1.97 </code></pre>
 </div>
 </div>
 </section>
@@ -382,12 +387,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.451
-2 2009-01-01 Y     -2.06 
-3 2009-01-01 Z     -5.99 
-4 2009-01-02 X      1.56 
-5 2009-01-02 Y      5.85 
-6 2009-01-02 Z     -2.93 </code></pre>
+1 2009-01-01 X      0.635
+2 2009-01-01 Y     -0.549
+3 2009-01-01 Z      4.04 
+4 2009-01-02 X      0.674
+5 2009-01-02 Y     -1.42 
+6 2009-01-02 Z      5.73 </code></pre>
 </div>
 </div>
 </section>
