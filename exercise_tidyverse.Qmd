@@ -1,0 +1,172 @@
+# R Tidyverse Exercise
+
+
+# Load Libraries
+
+Load the `tidyverse` packages
+
+```{r load_libraries,message=FALSE}
+ library(tidyverse)
+# library(tidylog)
+```
+
+# Untidy data
+
+Let's use the World Health Organization TB data set from the `tidyr` package
+
+```{r}
+who <- tidyr::who
+dim(who)
+head(who[,1:6] %>% filter(!is.na(new_sp_m014)))
+```
+
+See the help page for `who` for more information about this data set.
+
+In particular, note this description:
+
+"The data uses the original codes given by the World Health Organization. The column names for columns five through 60 are made by combining new_ to a code for method of diagnosis (rel = relapse, sn = negative pulmonary smear, sp = positive pulmonary smear, ep = extrapulmonary) to a code for gender (f = female, m = male) to a code for age group (014 = 0-14 yrs of age, 1524 = 15-24 years of age, 2534 = 25 to 34 years of age, 3544 = 35 to 44 years of age, 4554 = 45 to 54 years of age, 5564 = 55 to 64 years of age, 65 = 65 years of age or older)."
+
+So `new_sp_m014` represents the counts of new TB cases detected by a positive pulmonary smear in males in the 0-14 age group.
+
+# Tidy data
+
+Tidy data: Have each variable in a column.
+
+Question: Are these data tidy?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+No these data are not tidy because aspects of the data that should be variables are encoded in the name of the variables.
+
+These aspects are 
+
+1. test type.
+2. sex of the subjects.
+3. age range of the subjects.
+
+
+:::
+
+
+Question: How would we make these data tidy?
+
+Consider this portion  of the data:
+
+```{r}
+head(who[,1:5] %>% filter(!is.na(new_sp_m014) & new_sp_m014>0), 1)
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+We would replace the `new_sp_m014` with the following four columns:
+
+```
+type  sex   age   n
+sp    m     014  30
+```
+
+This would place each variable in its own column. 
+
+:::
+
+# Gather
+
+```{r}
+stocks <- tibble(
+  time = as.Date('2009-01-01') + 0:9,
+  X = rnorm(10, 0, 1),
+  Y = rnorm(10, 0, 2),
+  Z = rnorm(10, 0, 4)
+)
+
+head(stocks)
+
+stocks %>% gather("stock", "price", -time) %>% head()
+```
+
+
+# Pivot_longer
+
+```{r}
+stocks %>% pivot_longer(c(X,Y,Z), names_to= "stock", values_to = "price") %>% 
+  head()
+```
+
+# WHO TB data
+
+Question: How would we convert this to tidy form?
+
+```{r}
+head(who[,1:6] %>% filter(!is.na(new_sp_m014)))
+```
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+who.long <- who %>% pivot_longer(starts_with("new"), names_to = "demo", values_to = "n") %>%  filter(!is.na(n))
+head(who.long)
+```
+
+:::
+
+
+Question: How would we split `demo` into variables?
+
+```{r}
+head(who.long)
+```
+
+Look at the variable naming scheme:
+
+```{r}
+names(who) %>% grep("m014",., value=TRUE)
+```
+
+Question: How should we adjust the `demo` strings so as to be able to easily split all of them into the desired variables?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+who.long <- who.long %>%  
+  mutate(demo = str_replace(demo, "newrel", "new_rel"))
+grep("m014",who.long$demo, value=TRUE) %>%  unique()
+```
+
+:::
+
+
+Question: After adjusting the `demo` strings, how would we then separate them into the desired variables?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+who.long <- who.long %>% 
+  separate(demo, into = c("new", "type", "sexagerange"), sep="_") %>% 
+  separate(sexagerange, into=c("sex","age_range"), sep=1) %>%
+  select(-new)
+head(who.long)
+```
+
+:::
+
+# Conclusion
+
+Now our untidy data are tidy.
+
+```{r}
+head(who.long)
+```
+
+# Acknowledgment
+
+This exercise was modeled, in part, on this exercise:
+
+https://people.duke.edu/~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html
+
+

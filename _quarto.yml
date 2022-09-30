@@ -11,6 +11,10 @@ book:
     - intro.qmd
     - logistics.qmd 
     - Rbasics.qmd
+    - R_char_exer.Qmd
+    - R_Functions.Qmd
+    - exercise_tidyverse.Qmd
+    - recoding_reshaping_interactive.Qmd
     - summary.qmd
     - references.qmd
 

@@ -1,0 +1,155 @@
+# R Character Exercise
+
+
+# Load Libraries
+
+```{r load_libraries,message=FALSE}
+library(tidyverse)
+# library(tidylog)
+library(knitr)
+```
+
+# Useful RStudio cheatsheet
+
+See the "String manipulation with stringr cheatsheet" at
+
+https://www.rstudio.com/resources/cheatsheets/
+
+# Scenario 1
+
+You are working with three different sets of collaborators: 1) the clinical group that did the field work and generated the anthropometric measurements; 2) the medical laboratory that measured blood pressure in a controlled environment; and 3) the molecular laboratory that generated the genotypes.
+
+```{r}
+clin <- read.table(file = "data/clinical_data.txt", header=TRUE)
+kable(clin)
+lab <- read.table(file = "data/lab_data.txt", header = TRUE)
+kable(lab)
+geno <- read.table(file = "data/genotype_data.txt", header = TRUE)
+kable(geno)
+```
+
+# Discussion Questions
+
+## Question 1
+
+The clinical group, which measured height, used integer IDs, but the medical group, which measured the blood pressure, decided to prefix the integer IDs with the string 'SG' (so as to distinguish them from other studies that were also using integer IDs). So ID '1' was mapped to ID 'SG0001'.
+
+Discuss how, using R commands, you would reformat the integer IDs to be in the format "SGXXXX". Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
+
+```{r}
+#| echo: false
+kable(clin, caption = "The `clin` data frame")
+```
+
+Hint: Use the `formatC` function.
+
+## Answer 1
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+clin$SUBJECT_ID <- paste0("SG", formatC(clin$ID, width = 4, flag = "0000"))
+kable(clin)
+```
+:::
+
+## Question 2
+
+Discuss how, using R commands, you would reformat the "SGXXXX" IDs to be integer IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
+
+```{r}
+#| echo: false
+kable(lab, caption = "The `lab` data frame")
+```
+
+Hint: Use either the `gsub` command or the `str_replace_all` command.
+
+## Answer 2
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+lab$ID2 <- as.numeric(gsub("SG","",lab$ID))
+kable(lab)
+```
+
+```{r}
+lab$ID2 <- NA
+lab$ID2 <- str_replace_all(lab$ID, pattern = "SG", replacement = "") %>% as.numeric()
+kable(lab)
+```
+:::
+
+## Question 3
+
+The genotype group used IDs in the style "TaqMan-SG0001-190601", where the first string is "TaqMan" and the ending string is the date of the genotyping experiment.
+
+Discuss how, using R commands, you would extract an "SGXXXX" style ID from the "TaqMan-SG0001-190601" style IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
+
+Note that one of the IDs has a lower case 'g' in it - how would you correct this, using R commands?
+
+```{r}
+#| echo: false
+kable(geno, caption="The `geno` data frame")
+```
+
+Hint: Use either the `str_split_fixed` function or the `separate` function.
+
+## Answer 3
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+a <- str_split_fixed(geno$Sample, pattern = "-",n=3)
+a
+geno$ID <- toupper(a[,2])
+kable(geno)
+```
+
+The `separate` function from the `tidyr` package is also useful:
+
+```{r}
+geno %>% separate(Sample, into=c("Tech","ID","Suffix"), sep="-")
+```
+:::
+
+# Scenario 2
+
+A replication sample has been measured, and that is using IDs in the style "RP5XXX".
+
+```{r}
+joint <- read.table(file = "data/joint_data.txt", header = TRUE)
+kable(joint)
+```
+
+## Question 4
+
+Discuss how you would use R commands to split the 'joint' data frame into an 'SG' and 'RP' specific piece? Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
+
+```{r}
+#| echo: false
+kable(joint, caption = "The `joint` data frame")
+```
+
+## Answer 4
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+grep(pattern = "SG",joint$ID)
+grep(pattern = "RP", joint$ID)
+joint.SG <- joint[grep(pattern = "SG",joint$ID), ]
+joint.RP <- joint[grep(pattern = "RP", joint$ID), ]
+kable(joint.SG)
+kable(joint.RP)
+# Reset row names
+rownames(joint.RP) <- NULL
+kable(joint.RP)
+```
+:::
+
+
