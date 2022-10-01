@@ -1,0 +1,245 @@
+# R Graphics Exercise
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+require(knitr)
+# Set so that long lines in R will be wrapped:
+opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+
+## Load Libraries
+
+```{r load_libraries,message=FALSE}
+library(tidyverse)
+library(ggforce)
+# library(tidylog)
+# Set the default font to be a bit larger:
+theme_set(theme_gray(base_size = 18))
+```
+
+## Exercise 1
+
+Read in and set up the data set `b`, a cleaned version of our simulated data set:
+
+```{r}
+a <- read.csv("data/study1.csv")
+a$ind <- seq_along(a$t)
+b <- a[-c(1001:1004),]
+b$g.f <- factor(b$g)
+b$geno <- paste(b$all1,b$all2,sep="/")
+```
+
+Using ggplot and data set `b`, plot `ind` vs. `t`, coloring by case-control status (`trait`).  What do you observe about the data?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
+   geom_point()
+```
+
+:::
+
+## Exercise 2
+
+Using ggplot, plot `ind` vs. `t`, coloring by case-control status (`trait`) and faceting by `geno`.  What do you observe about the data?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
+  geom_point() + 
+  facet_grid(~ geno)
+```
+
+:::
+
+## Always plot your data
+
+```{r}
+library(tidyverse)
+d <- read_tsv("data/example.tsv")
+n1 <- rep(c("x","y"), 13)
+n2 <- c("","",rep("_",24))
+n3 <- c("", "", c(sort(rep(c(1:12), 2))))
+names(d) <- paste0(n1,n2,n3)
+names(d)
+```
+
+## Similar regression lines
+
+These three data sets have very similar regression lines:
+
+```{r}
+summary(lm(x ~ y, data=d)) %>%  coef()
+summary(lm(x_1 ~ y_1, data=d)) %>%  coef()
+summary(lm(x_3 ~ y_3, data=d)) %>%  coef()
+```
+
+
+```{r,message=FALSE}
+ggplot(d,aes(x=x,y=y)) + geom_point() +
+  geom_smooth(method="lm") + ggtitle("Linear regression of y ~ x")
+```
+
+Now try this:
+
+```
+ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
+  geom_smooth(method="lm")
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
+```{r}
+ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
+  geom_smooth(method="lm") + ggtitle("Linear regression of y_1 ~ x_1")
+```
+
+:::
+
+And now try this:
+
+```
+ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
+  geom_smooth(method="lm")
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+### Always plot your data!
+
+
+```{r}
+ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
+  geom_smooth(method="lm") + ggtitle("Linear regression of y_3 ~ x_3")
+```
+
+:::
+
+
+
+## Always plot your data
+
+```{r message=FALSE,warning=FALSE}
+f <- read_tsv("data/BoxPlots.tsv")
+# Delete the first column
+f <- f[,-1]
+head(f)
+```
+
+Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated. 
+
+```{r}
+head(stack(f),2)
+```
+
+Now try this:
+
+```
+ggplot(stack(f), aes(x = ind, y = values)) +
+  geom_boxplot()
+```
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
+## Identical box plots
+
+These data have essentially identical box plots. 
+
+```{r echo=FALSE}
+ggplot(stack(f), aes(x = ind, y = values)) +
+  geom_boxplot()
+```
+
+:::
+
+## Boxplots
+
+While the box plots are identical, box plots may not tell the whole story.
+
+Let's try violin plots instead:
+
+```
+ggplot(stack(f), aes(x = ind, y = values)) +
+  geom_violin()
+```
+
+A violin plot is a mirrored density plot.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
+## Non-identical violin plots
+
+```{r echo=FALSE}
+ggplot(stack(f), aes(x = ind, y = values)) +
+  geom_violin()
+```
+
+:::
+
+## Sina plots
+
+Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191.
+https://www.biorxiv.org/content/early/2015/10/02/028191
+
+```
+library(ggforce)
+ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina()
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+## Sina plots
+
+```{r echo=FALSE}
+library(ggforce)
+ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina()
+```
+
+:::
+
+## Sina plots
+
+`method == "counts"`: The borders are defined by the number of samples that occupy the same bin.
+
+```
+ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina(method="count")
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+## Sina plots
+
+```{r echo=FALSE}
+ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina(method="count")
+```
+
+:::
+
+
+## Source of data
+
+Illustrative data sets from
+<https://www.autodeskresearch.com/publications/samestats>
+
+
+
+

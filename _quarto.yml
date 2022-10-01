@@ -16,6 +16,7 @@ book:
     - exercise_tidyverse.Qmd
     - recoding_reshaping_interactive.Qmd
     - merging_exercise.Qmd
+    - R_graphics_exercises.Qmd
     - summary.qmd
     - references.qmd
 
