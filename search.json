@@ -228,14 +228,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  <date>       <dbl>  <dbl>  <dbl>\n1 2009-01-01 -0.987   2.47  -2.89 \n2 2009-01-02 -0.656   2.45   0.350\n3 2009-01-03 -1.05    0.805  3.21 \n4 2009-01-04  0.0149 -1.55  -3.94 \n5 2009-01-05 -0.374   0.668  0.295\n6 2009-01-06  2.13   -1.15  -5.77 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X     -0.987 \n2 2009-01-02 X     -0.656 \n3 2009-01-03 X     -1.05  \n4 2009-01-04 X      0.0149\n5 2009-01-05 X     -0.374 \n6 2009-01-06 X      2.13"
+    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  <date>       <dbl>  <dbl>  <dbl>\n1 2009-01-01  0.252   4.56   1.90 \n2 2009-01-02  1.78    0.686  0.457\n3 2009-01-03  0.613  -0.907 -0.573\n4 2009-01-04  0.0756  1.39  -1.32 \n5 2009-01-05  0.436  -2.43  -8.72 \n6 2009-01-06 -1.83   -1.06  -7.70 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.252 \n2 2009-01-02 X      1.78  \n3 2009-01-03 X      0.613 \n4 2009-01-04 X      0.0756\n5 2009-01-05 X      0.436 \n6 2009-01-06 X     -1.83"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.987\n2 2009-01-01 Y      2.47 \n3 2009-01-01 Z     -2.89 \n4 2009-01-02 X     -0.656\n5 2009-01-02 Y      2.45 \n6 2009-01-02 Z      0.350"
+    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock price\n  <date>     <chr> <dbl>\n1 2009-01-01 X     0.252\n2 2009-01-01 Y     4.56 \n3 2009-01-01 Z     1.90 \n4 2009-01-02 X     1.78 \n5 2009-01-02 Y     0.686\n6 2009-01-02 Z     0.457"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -420,9 +420,107 @@
     "text": "9.9 Merge in new phenotype information\nCarefully merge in the new data in using tidyverse commands.\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\n\n[1] 0\n\nsum(duplicated(new$subject_id))\n\n[1] 1\n\n# Which one is duplicated\nnew %>%\n    group_by(subject_id) %>%\n    mutate(n = n()) %>%\n    filter(n > 1)\n\ngroup_by: one grouping variable (subject_id)\n\n\nmutate (grouped): new variable 'n' (integer) with 2 unique values and 0% NA\n\n\nfilter (grouped): removed 52 rows (96%), 2 rows remaining\n\n\n# A tibble: 2 × 3\n# Groups:   subject_id [1]\n  subject_id trait     n\n  <chr>      <dbl> <int>\n1 SUBJ09      115.     2\n2 SUBJ09      115.     2\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\n\n[1] 0\n\nsum(is.na(new$subject_id))\n\n[1] 0\n\n# Check the dimensions\ndim(b)\n\n[1] 54  5\n\ndim(new)\n\n[1] 54  2\n\nb2 <- left_join(b, new, by = \"subject_id\")\n\nleft_join: added one column (trait)\n\n\n           > rows only in x    2\n\n\n           > rows only in y  ( 1)\n\n\n           > matched rows     53    (includes duplicates)\n\n\n           >                 ====\n\n\n           > rows total       55\n\nhead(b2)\n\n  subject_id maternal_age_delivery case_control_status prepregnancy_BMI ID\n1     SUBJ01              20.01345                   0         45.29379  6\n2     SUBJ02              22.22541                   1         41.63679  4\n3     SUBJ03              20.80036                   1         32.55473 41\n4     SUBJ04              21.94422                   0         35.09978 14\n5     SUBJ05              20.18760                   0         41.85877 51\n6     SUBJ06              25.70581                   0         38.02936 37\n     trait\n1 138.1346\n2 113.3822\n3 116.0071\n4 127.5887\n5 113.8754\n6 110.7376\n\ndim(b2)\n\n[1] 55  6\n\nb3 <- full_join(b, new, by = \"subject_id\")\n\nfull_join: added one column (trait)\n\n\n           > rows only in x    2\n\n\n           > rows only in y    1\n\n\n           > matched rows     53    (includes duplicates)\n\n\n           >                 ====\n\n\n           > rows total       56\n\ndim(b3)\n\n[1] 56  6\n\n\nanti_join() return all rows from x without a match in y.\n\nanti_join(b, new, by = \"subject_id\")\n\nanti_join: added no columns\n\n\n           > rows only in x    2\n\n\n           > rows only in y  ( 1)\n\n\n           > matched rows    (52)\n\n\n           >                 ====\n\n\n           > rows total        2\n\n\n  subject_id maternal_age_delivery case_control_status prepregnancy_BMI ID\n1     SUBJ18              27.54075                   1         44.14983 18\n2     SUBJ24              21.93645                   0         31.73762  9\n\nanti_join(new, b, by = \"subject_id\")\n\nanti_join: added no columns\n\n\n           > rows only in x    1\n\n\n           > rows only in y  ( 2)\n\n\n           > matched rows    (53)\n\n\n           >                 ====\n\n\n           > rows total        1\n\n\n# A tibble: 1 × 2\n  subject_id trait\n  <chr>      <dbl>\n1 SUBJ00      127."
   },
   {
+    "objectID": "R_graphics_exercises.html#load-libraries",
+    "href": "R_graphics_exercises.html#load-libraries",
+    "title": "10  R Graphics Exercise",
+    "section": "10.1 Load Libraries",
+    "text": "10.1 Load Libraries\n\nlibrary(tidyverse)\nlibrary(ggforce)\n# library(tidylog) Set the default font to be a bit larger:\ntheme_set(theme_gray(base_size = 18))"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#exercise-1",
+    "href": "R_graphics_exercises.html#exercise-1",
+    "title": "10  R Graphics Exercise",
+    "section": "10.2 Exercise 1",
+    "text": "10.2 Exercise 1\nRead in and set up the data set b, a cleaned version of our simulated data set:\n\na <- read.csv(\"data/study1.csv\")\na$ind <- seq_along(a$t)\nb <- a[-c(1001:1004), ]\nb$g.f <- factor(b$g)\nb$geno <- paste(b$all1, b$all2, sep = \"/\")\n\nUsing ggplot and data set b, plot ind vs. t, coloring by case-control status (trait). What do you observe about the data?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nggplot(data = b, aes(x = ind, y = t, color = trait)) + geom_point()"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#exercise-2",
+    "href": "R_graphics_exercises.html#exercise-2",
+    "title": "10  R Graphics Exercise",
+    "section": "10.3 Exercise 2",
+    "text": "10.3 Exercise 2\nUsing ggplot, plot ind vs. t, coloring by case-control status (trait) and faceting by geno. What do you observe about the data?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nggplot(data = b, aes(x = ind, y = t, color = trait)) + geom_point() + facet_grid(~geno)"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#always-plot-your-data",
+    "href": "R_graphics_exercises.html#always-plot-your-data",
+    "title": "10  R Graphics Exercise",
+    "section": "10.4 Always plot your data",
+    "text": "10.4 Always plot your data\n\nlibrary(tidyverse)\nd <- read_tsv(\"data/example.tsv\")\n\nNew names:\n* x -> x...1\n* y -> y...2\n* x -> x...3\n* y -> y...4\n* x -> x...5\n* ...\n\n\nRows: 142 Columns: 26\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \"\\t\"\ndbl (26): x...1, y...2, x...3, y...4, x...5, y...6, x...7, y...8, x...9, y.....\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nn1 <- rep(c(\"x\", \"y\"), 13)\nn2 <- c(\"\", \"\", rep(\"_\", 24))\nn3 <- c(\"\", \"\", c(sort(rep(c(1:12), 2))))\nnames(d) <- paste0(n1, n2, n3)\nnames(d)\n\n [1] \"x\"    \"y\"    \"x_1\"  \"y_1\"  \"x_2\"  \"y_2\"  \"x_3\"  \"y_3\"  \"x_4\"  \"y_4\" \n[11] \"x_5\"  \"y_5\"  \"x_6\"  \"y_6\"  \"x_7\"  \"y_7\"  \"x_8\"  \"y_8\"  \"x_9\"  \"y_9\" \n[21] \"x_10\" \"y_10\" \"x_11\" \"y_11\" \"x_12\" \"y_12\""
+  },
+  {
+    "objectID": "R_graphics_exercises.html#similar-regression-lines",
+    "href": "R_graphics_exercises.html#similar-regression-lines",
+    "title": "10  R Graphics Exercise",
+    "section": "10.5 Similar regression lines",
+    "text": "10.5 Similar regression lines\nThese three data sets have very similar regression lines:\n\nsummary(lm(x ~ y, data = d)) %>%\n    coef()\n\n               Estimate Std. Error    t value     Pr(>|t|)\n(Intercept) 56.17563819 2.87986960 19.5063131 9.435087e-42\ny           -0.03991951 0.05250204 -0.7603419 4.483288e-01\n\nsummary(lm(x_1 ~ y_1, data = d)) %>%\n    coef()\n\n               Estimate Std. Error    t value     Pr(>|t|)\n(Intercept) 56.31108156 2.87906158 19.5588319 7.158847e-42\ny_1         -0.04269949 0.05249244 -0.8134407 4.173467e-01\n\nsummary(lm(x_3 ~ y_3, data = d)) %>%\n    coef()\n\n               Estimate Std. Error    t value     Pr(>|t|)\n(Intercept) 56.18271411 2.87924135 19.5130270 9.107718e-42\ny_3         -0.04012859 0.05249468 -0.7644316 4.458966e-01\n\n\n\nggplot(d, aes(x = x, y = y)) + geom_point() + geom_smooth(method = \"lm\") + ggtitle(\"Linear regression of y ~ x\")\n\n\n\n\nNow try this:\nggplot(d,aes(x=x_1,y=y_1)) + geom_point() + \n  geom_smooth(method=\"lm\")\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nggplot(d, aes(x = x_1, y = y_1)) + geom_point() + geom_smooth(method = \"lm\") + ggtitle(\"Linear regression of y_1 ~ x_1\")\n\n`geom_smooth()` using formula 'y ~ x'\n\n\n\n\n\n\n\n\nAnd now try this:\nggplot(d,aes(x=x_3,y=y_3)) + geom_point() + \n  geom_smooth(method=\"lm\")\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n10.5.1 Always plot your data!\n\nggplot(d, aes(x = x_3, y = y_3)) + geom_point() + geom_smooth(method = \"lm\") + ggtitle(\"Linear regression of y_3 ~ x_3\")\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#always-plot-your-data-2",
+    "href": "R_graphics_exercises.html#always-plot-your-data-2",
+    "title": "10  R Graphics Exercise",
+    "section": "10.6 Always plot your data",
+    "text": "10.6 Always plot your data\n\nf <- read_tsv(\"data/BoxPlots.tsv\")\n# Delete the first column\nf <- f[, -1]\nhead(f)\n\n# A tibble: 6 × 5\n   left lines normal right split\n  <dbl> <dbl>  <dbl> <dbl> <dbl>\n1 -9.77 -9.77  -9.76 -9.76 -9.77\n2 -9.76 -9.74  -9.72 -9.05 -9.77\n3 -9.75 -9.77  -9.68 -8.51 -9.77\n4 -9.77 -9.77  -9.64 -8.24 -9.77\n5 -9.76 -9.77  -9.6  -8.82 -9.77\n6 -9.77 -9.76  -9.56 -8.07 -9.76\n\n\nStacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.\n\nhead(stack(f), 2)\n\n     values  ind\n1 -9.769107 left\n2 -9.763145 left\n\n\nNow try this:\nggplot(stack(f), aes(x = ind, y = values)) +\n  geom_boxplot()\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n10.7 Identical box plots\nThese data have essentially identical box plots."
+  },
+  {
+    "objectID": "R_graphics_exercises.html#identical-box-plots",
+    "href": "R_graphics_exercises.html#identical-box-plots",
+    "title": "10  R Graphics Exercise",
+    "section": "10.7 Identical box plots",
+    "text": "10.7 Identical box plots\nThese data have essentially identical box plots."
+  },
+  {
+    "objectID": "R_graphics_exercises.html#boxplots",
+    "href": "R_graphics_exercises.html#boxplots",
+    "title": "10  R Graphics Exercise",
+    "section": "10.8 Boxplots",
+    "text": "10.8 Boxplots\nWhile the box plots are identical, box plots may not tell the whole story.\nLet’s try violin plots instead:\nggplot(stack(f), aes(x = ind, y = values)) +\n  geom_violin()\nA violin plot is a mirrored density plot.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n10.9 Non-identical violin plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#non-identical-violin-plots",
+    "href": "R_graphics_exercises.html#non-identical-violin-plots",
+    "title": "10  R Graphics Exercise",
+    "section": "10.9 Non-identical violin plots",
+    "text": "10.9 Non-identical violin plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#sina-plots",
+    "href": "R_graphics_exercises.html#sina-plots",
+    "title": "10  R Graphics Exercise",
+    "section": "10.10 Sina plots",
+    "text": "10.10 Sina plots\nSidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. https://www.biorxiv.org/content/early/2015/10/02/028191\nlibrary(ggforce)\nggplot(stack(f), aes(x = ind, y = values)) +\n   geom_violin() + geom_sina()\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n10.11 Sina plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#sina-plots-1",
+    "href": "R_graphics_exercises.html#sina-plots-1",
+    "title": "10  R Graphics Exercise",
+    "section": "10.11 Sina plots",
+    "text": "10.11 Sina plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#sina-plots-2",
+    "href": "R_graphics_exercises.html#sina-plots-2",
+    "title": "10  R Graphics Exercise",
+    "section": "10.12 Sina plots",
+    "text": "10.12 Sina plots\nmethod == \"counts\": The borders are defined by the number of samples that occupy the same bin.\nggplot(stack(f), aes(x = ind, y = values)) +\n   geom_violin() + geom_sina(method=\"count\")\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n10.13 Sina plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#sina-plots-3",
+    "href": "R_graphics_exercises.html#sina-plots-3",
+    "title": "10  R Graphics Exercise",
+    "section": "10.13 Sina plots",
+    "text": "10.13 Sina plots"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#source-of-data",
+    "href": "R_graphics_exercises.html#source-of-data",
+    "title": "10  R Graphics Exercise",
+    "section": "10.14 Source of data",
+    "text": "10.14 Source of data\nIllustrative data sets from https://www.autodeskresearch.com/publications/samestats"
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "10  Summary",
+    "title": "11  Summary",
     "section": "",
     "text": "In summary, this book is a work in progress."
   }
