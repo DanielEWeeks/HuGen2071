@@ -4,7 +4,7 @@ project:
 book:
   title: "HuGen2071 book"
   author: "Daniel E. Weeks"
-  date: September 30, 2022
+  date: October 2, 2022
   chapters:
     - index.qmd
     - preparation.qmd

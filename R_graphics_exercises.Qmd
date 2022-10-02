@@ -4,7 +4,7 @@
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
 # Set so that long lines in R will be wrapped:
-opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+# opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
 
@@ -192,7 +192,7 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 ## Sina plots
 
 Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191.
-https://www.biorxiv.org/content/early/2015/10/02/028191
+<https://www.biorxiv.org/content/early/2015/10/02/028191>
 
 ```
 library(ggforce)
@@ -233,6 +233,135 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 ```
 
 :::
+
+## Drawing multiple graphs
+
+Sometimes we'd like to draw multiple plots, looping across variables.  Doing this within an R Markdown or Quarto Markdown document using `ggplot2` is tricky. See <https://dplyr.tidyverse.org/articles/programming.html> and <https://r4ds.hadley.nz/functions.html#plot-functions> for details.
+
+Here's one way to do this - this example code will generate two scatter plots:
+
+```{r}
+x.names <- c("x","x_1")
+y.names <- c("y", "y_1")
+for (i in 1:2) {
+  x.nam <- sym(x.names[i])
+  y.nam <- sym(y.names[i])
+  print(ggplot(data=d, aes(x = {{ x.nam }}, 
+                           y = {{ y.nam }})) + 
+          geom_point())
+}
+```
+
+
+## Writing ggplot functions
+
+See <https://r4ds.hadley.nz/functions.html#plot-functions>
+
+```{r}
+library(palmerpenguins)
+
+PlDensity <- function(fill, ...) {
+  ggplot(penguins %>% filter(!is.na(bill_length_mm)), 
+         aes(bill_length_mm, fill = {{ fill }})) +
+    geom_density(alpha = 0.5) +
+    facet_wrap(vars(...))
+}
+```
+
+Example from: <https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
+
+
+
+```{r}
+PlDensity(species)
+```
+
+
+
+```{r}
+PlDensity(island, sex) %>% print() %>% suppressWarnings()
+```
+
+
+```{r}
+PlDensity(sex, island, year) %>% print() %>% suppressWarnings()
+```
+
+
+
+## Exercise 3
+
+Consider this example code:
+
+```{r}
+histogram <- function(df, var, binwidth) {
+  df |> 
+    ggplot(aes({{ var }})) + 
+    geom_histogram(binwidth = binwidth)
+}
+```
+
+From: <https://twitter.com/hadleywickham/status/1574373127349575680?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
+
+When applied to the quantitative trait `t` from the data frame `b`, this generates this histogram:
+
+```{r}
+histogram(b, t, 0.1)
+```
+
+
+### Exercise 
+
+After reading the example above, extend the `histogram` function to allow facetting and use it to draw a histogram of the quantitative trait `t` facetted by `geno` using the data set `b` that we set up above.
+
+:::{.callout-tip}
+## Hints
+
+* See <https://r4ds.hadley.nz/functions.html#facetting>
+* Use the `vars()` function
+
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+Hadley Wickham states:
+
+You have to use the vars() syntax
+
+```
+foo <- function(x) {
+  ggplot(mtcars) +
+    aes(x = mpg, y = disp) +
+    geom_point() +
+    facet_wrap(vars({{ x }}))
+}
+```
+
+Tweet: <https://twitter.com/hadleywickham/status/1574380137524887554?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
+
+
+```{r}
+histogram <- function(df, var, binwidth, grp) {
+  df |> 
+    ggplot(aes({{ var }})) + 
+    geom_histogram(binwidth = binwidth) +
+    facet_wrap(vars({{ grp }}))
+}
+```
+
+```{r}
+histogram(b, t, 0.1)
+```
+
+```{r}
+histogram(b, t, 0.1, geno)
+```
+
+
+:::
+
 
 
 ## Source of data

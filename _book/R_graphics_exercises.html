@@ -234,7 +234,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"> <span class="header-section-number">10.8</span> Boxplots</a></li>
   <li><a href="#sina-plots" id="toc-sina-plots" class="nav-link" data-scroll-target="#sina-plots"> <span class="header-section-number">10.10</span> Sina plots</a></li>
   <li><a href="#sina-plots-2" id="toc-sina-plots-2" class="nav-link" data-scroll-target="#sina-plots-2"> <span class="header-section-number">10.12</span> Sina plots</a></li>
-  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"> <span class="header-section-number">10.14</span> Source of data</a></li>
+  <li><a href="#drawing-multiple-graphs" id="toc-drawing-multiple-graphs" class="nav-link" data-scroll-target="#drawing-multiple-graphs"> <span class="header-section-number">10.14</span> Drawing multiple graphs</a></li>
+  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions" class="nav-link" data-scroll-target="#writing-ggplot-functions"> <span class="header-section-number">10.15</span> Writing ggplot functions</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"> <span class="header-section-number">10.16</span> Exercise 3</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"> <span class="header-section-number">10.16.1</span> Exercise</a></li>
+  </ul></li>
+  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"> <span class="header-section-number">10.17</span> Source of data</a></li>
   </ul>
 </nav>
     </div>
@@ -265,8 +271,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog) Set the default font to be a bit larger:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the default font to be a bit larger:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-1" class="level2" data-number="10.2">
@@ -275,9 +282,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/study1.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>ind <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(a<span class="sc">$</span>t)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1001</span><span class="sc">:</span><span class="dv">1004</span>), ]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1001</span><span class="sc">:</span><span class="dv">1004</span>),]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>g.f <span class="ot">&lt;-</span> <span class="fu">factor</span>(b<span class="sc">$</span>g)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>geno <span class="ot">&lt;-</span> <span class="fu">paste</span>(b<span class="sc">$</span>all1, b<span class="sc">$</span>all2, <span class="at">sep =</span> <span class="st">"/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>geno <span class="ot">&lt;-</span> <span class="fu">paste</span>(b<span class="sc">$</span>all1,b<span class="sc">$</span>all2,<span class="at">sep=</span><span class="st">"/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using ggplot and data set <code>b</code>, plot <code>ind</code> vs.&nbsp;<code>t</code>, coloring by case-control status (<code>trait</code>). What do you observe about the data?</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -293,7 +300,8 @@ Expand to see solution
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> b, <span class="fu">aes</span>(<span class="at">x =</span> ind, <span class="at">y =</span> t, <span class="at">color =</span> trait)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -318,7 +326,9 @@ Expand to see solution
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> b, <span class="fu">aes</span>(<span class="at">x =</span> ind, <span class="at">y =</span> t, <span class="at">color =</span> trait)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span>geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -350,10 +360,10 @@ dbl (26): x...1, y...2, x...3, y...4, x...5, y...6, x...7, y...8, x...9, y.....
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>), <span class="dv">13</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="fu">rep</span>(<span class="st">"_"</span>, <span class="dv">24</span>))</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>), <span class="dv">13</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">""</span>,<span class="fu">rep</span>(<span class="st">"_"</span>,<span class="dv">24</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="fu">c</span>(<span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), <span class="dv">2</span>))))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(n1, n2, n3)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(n1,n2,n3)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "x"    "y"    "x_1"  "y_1"  "x_2"  "y_2"  "x_3"  "y_3"  "x_4"  "y_4" 
@@ -366,22 +376,19 @@ dbl (26): x...1, y...2, x...3, y...4, x...5, y...6, x...7, y...8, x...9, y.....
 <h2 data-number="10.5" class="anchored" data-anchor-id="similar-regression-lines"><span class="header-section-number">10.5</span> Similar regression lines</h2>
 <p>These three data sets have very similar regression lines:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data =</span> d)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.17563819 2.87986960 19.5063131 9.435087e-42
 y           -0.03991951 0.05250204 -0.7603419 4.483288e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data =</span> d)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.31108156 2.87906158 19.5588319 7.158847e-42
 y_1         -0.04269949 0.05249244 -0.8134407 4.173467e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data =</span> d)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.18271411 2.87924135 19.5130270 9.107718e-42
@@ -389,7 +396,8 @@ y_3         -0.04012859 0.05249468 -0.7644316 4.458966e-01</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y ~ x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y ~ x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -410,7 +418,8 @@ Expand to see solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_1 ~ x_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_1,<span class="at">y=</span>y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_1 ~ x_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
@@ -438,7 +447,8 @@ Expand to see solution
 <section id="always-plot-your-data-1" class="level3 callout-body-container callout-body" data-number="10.5.1">
 <h3 data-number="10.5.1" class="anchored" data-anchor-id="always-plot-your-data-1"><span class="header-section-number">10.5.1</span> Always plot your data!</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> x_3, <span class="at">y =</span> y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_3 ~ x_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_3,<span class="at">y=</span>y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_3 ~ x_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
@@ -455,7 +465,7 @@ Expand to see solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/BoxPlots.tsv"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the first column</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> f[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> f[,<span class="sc">-</span><span class="dv">1</span>]</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
@@ -471,7 +481,7 @@ Expand to see solution
 </div>
 <p>Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     values  ind
 1 -9.769107 left
@@ -535,7 +545,7 @@ Expand to see solution
 </section>
 <section id="sina-plots" class="level2" data-number="10.10">
 <h2 data-number="10.10" class="anchored" data-anchor-id="sina-plots"><span class="header-section-number">10.10</span> Sina plots</h2>
-<p>Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. https://www.biorxiv.org/content/early/2015/10/02/028191</p>
+<p>Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. <a href="https://www.biorxiv.org/content/early/2015/10/02/028191" class="uri">https://www.biorxiv.org/content/early/2015/10/02/028191</a></p>
 <pre><code>library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()</code></pre>
@@ -588,8 +598,146 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="source-of-data" class="level2" data-number="10.14">
-<h2 data-number="10.14" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">10.14</span> Source of data</h2>
+<section id="drawing-multiple-graphs" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="drawing-multiple-graphs"><span class="header-section-number">10.14</span> Drawing multiple graphs</h2>
+<p>Sometimes we’d like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using <code>ggplot2</code> is tricky. See <a href="https://dplyr.tidyverse.org/articles/programming.html" class="uri">https://dplyr.tidyverse.org/articles/programming.html</a> and <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a> for details.</p>
+<p>Here’s one way to do this - this example code will generate two scatter plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"x_1"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>y.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="st">"y_1"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  x.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(x.names[i])</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  y.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(y.names[i])</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x =</span> {{ x.nam }}, </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> {{ y.nam }})) <span class="sc">+</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>())</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-32-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="writing-ggplot-functions" class="level2" data-number="10.15">
+<h2 data-number="10.15" class="anchored" data-anchor-id="writing-ggplot-functions"><span class="header-section-number">10.15</span> Writing ggplot functions</h2>
+<p>See <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>PlDensity <span class="ot">&lt;-</span> <span class="cf">function</span>(fill, ...) {</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)), </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(bill_length_mm, <span class="at">fill =</span> {{ fill }})) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(...))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example from: <a href="https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercise-3" class="level2" data-number="10.16">
+<h2 data-number="10.16" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">10.16</span> Exercise 3</h2>
+<p>Consider this example code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From: <a href="https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<p>When applied to the quantitative trait <code>t</code> from the data frame <code>b</code>, this generates this histogram:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="exercise" class="level3" data-number="10.16.1">
+<h3 data-number="10.16.1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">10.16.1</span> Exercise</h3>
+<p>After reading the example above, extend the <code>histogram</code> function to allow facetting and use it to draw a histogram of the quantitative trait <code>t</code> facetted by <code>geno</code> using the data set <code>b</code> that we set up above.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hints
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>See <a href="https://r4ds.hadley.nz/functions.html#facetting" class="uri">https://r4ds.hadley.nz/functions.html#facetting</a></li>
+<li>Use the <code>vars()</code> function</li>
+</ul>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Hadley Wickham states:</p>
+<p>You have to use the vars() syntax</p>
+<pre><code>foo &lt;- function(x) {
+  ggplot(mtcars) +
+    aes(x = mpg, y = disp) +
+    geom_point() +
+    facet_wrap(vars({{ x }}))
+}</code></pre>
+<p>Tweet: <a href="https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>({{ grp }}))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="source-of-data" class="level2" data-number="10.17">
+<h2 data-number="10.17" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">10.17</span> Source of data</h2>
 <p>Illustrative data sets from <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a></p>
 
 
