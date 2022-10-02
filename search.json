@@ -228,14 +228,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  <date>       <dbl>  <dbl>  <dbl>\n1 2009-01-01  0.252   4.56   1.90 \n2 2009-01-02  1.78    0.686  0.457\n3 2009-01-03  0.613  -0.907 -0.573\n4 2009-01-04  0.0756  1.39  -1.32 \n5 2009-01-05  0.436  -2.43  -8.72 \n6 2009-01-06 -1.83   -1.06  -7.70 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.252 \n2 2009-01-02 X      1.78  \n3 2009-01-03 X      0.613 \n4 2009-01-04 X      0.0756\n5 2009-01-05 X      0.436 \n6 2009-01-06 X     -1.83"
+    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y      Z\n  <date>      <dbl>  <dbl>  <dbl>\n1 2009-01-01 -0.599  1.12   1.63 \n2 2009-01-02  1.13  -2.51  -0.409\n3 2009-01-03  0.683 -3.15   4.99 \n4 2009-01-04  0.506  0.374  1.95 \n5 2009-01-05  0.678  0.513 -6.29 \n6 2009-01-06 -1.27   0.715 -1.26 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.599\n2 2009-01-02 X      1.13 \n3 2009-01-03 X      0.683\n4 2009-01-04 X      0.506\n5 2009-01-05 X      0.678\n6 2009-01-06 X     -1.27"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock price\n  <date>     <chr> <dbl>\n1 2009-01-01 X     0.252\n2 2009-01-01 Y     4.56 \n3 2009-01-01 Z     1.90 \n4 2009-01-02 X     1.78 \n5 2009-01-02 Y     0.686\n6 2009-01-02 Z     0.457"
+    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.599\n2 2009-01-01 Y      1.12 \n3 2009-01-01 Z      1.63 \n4 2009-01-02 X      1.13 \n5 2009-01-02 Y     -2.51 \n6 2009-01-02 Z     -0.409"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -511,11 +511,25 @@
     "text": "10.13 Sina plots"
   },
   {
+    "objectID": "R_graphics_exercises.html#writing-ggplot-functions",
+    "href": "R_graphics_exercises.html#writing-ggplot-functions",
+    "title": "10  R Graphics Exercise",
+    "section": "10.14 Writing ggplot functions",
+    "text": "10.14 Writing ggplot functions\nSee https://r4ds.hadley.nz/functions.html#plot-functions\n\nlibrary(palmerpenguins)\n\nPlDensity <- function(fill, ...) {\n    ggplot(penguins %>%\n        filter(!is.na(bill_length_mm)), aes(bill_length_mm, fill = {\n        {\n            fill\n        }\n    })) + geom_density(alpha = 0.5) + facet_wrap(vars(...))\n}\n\nExample from: https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ\n\nPlDensity(species)\n\n\n\n\n\nPlDensity(island, sex) %>%\n    print() %>%\n    suppressWarnings()\n\n\n\n\n\nPlDensity(sex, island, year) %>%\n    print() %>%\n    suppressWarnings()"
+  },
+  {
+    "objectID": "R_graphics_exercises.html#exercise-3",
+    "href": "R_graphics_exercises.html#exercise-3",
+    "title": "10  R Graphics Exercise",
+    "section": "10.15 Exercise 3",
+    "text": "10.15 Exercise 3\nConsider this example code:\n\nhistogram <- function(df, var, binwidth) {\n    df |>\n        ggplot(aes({\n            {\n                var\n            }\n        })) + geom_histogram(binwidth = binwidth)\n}\n\nFrom: https://twitter.com/hadleywickham/status/1574373127349575680?s=20&t=FLbwErwEKQKWtKIGufDLIQ\nWhen applied to the quantitative trait t from the data frame b, this generates this histogram:\n\nhistogram(b, t, 0.1)\n\n\n\n\n\n10.15.1 Exercise\nAfter reading the example above, extend the histogram function to allow facetting and use it to draw a histogram of the quantitative trait t facetted by geno using the data set b that we set up above.\n\n\n\n\n\n\nHints\n\n\n\n\nSee https://r4ds.hadley.nz/functions.html#facetting\nUse the vars() function\n\n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHadley Wickham states:\nYou have to use the vars() syntax\nfoo <- function(x) {\n  ggplot(mtcars) +\n    aes(x = mpg, y = disp) +\n    geom_point() +\n    facet_wrap(vars({{ x }}))\n}\nTweet: https://twitter.com/hadleywickham/status/1574380137524887554?s=20&t=FLbwErwEKQKWtKIGufDLIQ\n\nhistogram <- function(df, var, binwidth, grp) {\n    df |>\n        ggplot(aes({\n            {\n                var\n            }\n        })) + geom_histogram(binwidth = binwidth) + facet_wrap(vars({\n        {\n            grp\n        }\n    }))\n}\n\n\nhistogram(b, t, 0.1)\n\n\n\n\n\nhistogram(b, t, 0.1, geno)"
+  },
+  {
     "objectID": "R_graphics_exercises.html#source-of-data",
     "href": "R_graphics_exercises.html#source-of-data",
     "title": "10  R Graphics Exercise",
-    "section": "10.14 Source of data",
-    "text": "10.14 Source of data\nIllustrative data sets from https://www.autodeskresearch.com/publications/samestats"
+    "section": "10.16 Source of data",
+    "text": "10.16 Source of data\nIllustrative data sets from https://www.autodeskresearch.com/publications/samestats"
   },
   {
     "objectID": "summary.html",

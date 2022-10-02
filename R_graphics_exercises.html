@@ -234,7 +234,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"> <span class="header-section-number">10.8</span> Boxplots</a></li>
   <li><a href="#sina-plots" id="toc-sina-plots" class="nav-link" data-scroll-target="#sina-plots"> <span class="header-section-number">10.10</span> Sina plots</a></li>
   <li><a href="#sina-plots-2" id="toc-sina-plots-2" class="nav-link" data-scroll-target="#sina-plots-2"> <span class="header-section-number">10.12</span> Sina plots</a></li>
-  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"> <span class="header-section-number">10.14</span> Source of data</a></li>
+  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions" class="nav-link" data-scroll-target="#writing-ggplot-functions"> <span class="header-section-number">10.14</span> Writing ggplot functions</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"> <span class="header-section-number">10.15</span> Exercise 3</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"> <span class="header-section-number">10.15.1</span> Exercise</a></li>
+  </ul></li>
+  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"> <span class="header-section-number">10.16</span> Source of data</a></li>
   </ul>
 </nav>
     </div>
@@ -535,7 +540,7 @@ Expand to see solution
 </section>
 <section id="sina-plots" class="level2" data-number="10.10">
 <h2 data-number="10.10" class="anchored" data-anchor-id="sina-plots"><span class="header-section-number">10.10</span> Sina plots</h2>
-<p>Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. https://www.biorxiv.org/content/early/2015/10/02/028191</p>
+<p>Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. <a href="https://www.biorxiv.org/content/early/2015/10/02/028191" class="uri">https://www.biorxiv.org/content/early/2015/10/02/028191</a></p>
 <pre><code>library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()</code></pre>
@@ -588,8 +593,139 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="source-of-data" class="level2" data-number="10.14">
-<h2 data-number="10.14" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">10.14</span> Source of data</h2>
+<section id="writing-ggplot-functions" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="writing-ggplot-functions"><span class="header-section-number">10.14</span> Writing ggplot functions</h2>
+<p>See https://r4ds.hadley.nz/functions.html#plot-functions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>PlDensity <span class="ot">&lt;-</span> <span class="cf">function</span>(fill, ...) {</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)), <span class="fu">aes</span>(bill_length_mm, <span class="at">fill =</span> {</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>            fill</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    })) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(...))</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example from: <a href="https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercise-3" class="level2" data-number="10.15">
+<h2 data-number="10.15" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">10.15</span> Exercise 3</h2>
+<p>Consider this example code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>({</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                var</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        })) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From: <a href="https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<p>When applied to the quantitative trait <code>t</code> from the data frame <code>b</code>, this generates this histogram:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="exercise" class="level3" data-number="10.15.1">
+<h3 data-number="10.15.1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">10.15.1</span> Exercise</h3>
+<p>After reading the example above, extend the <code>histogram</code> function to allow facetting and use it to draw a histogram of the quantitative trait <code>t</code> facetted by <code>geno</code> using the data set <code>b</code> that we set up above.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hints
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>See <a href="https://r4ds.hadley.nz/functions.html#facetting" class="uri">https://r4ds.hadley.nz/functions.html#facetting</a></li>
+<li>Use the <code>vars()</code> function</li>
+</ul>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Hadley Wickham states:</p>
+<p>You have to use the vars() syntax</p>
+<pre><code>foo &lt;- function(x) {
+  ggplot(mtcars) +
+    aes(x = mpg, y = disp) +
+    geom_point() +
+    facet_wrap(vars({{ x }}))
+}</code></pre>
+<p>Tweet: <a href="https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>({</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                var</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        })) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>({</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>            grp</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="source-of-data" class="level2" data-number="10.16">
+<h2 data-number="10.16" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">10.16</span> Source of data</h2>
 <p>Illustrative data sets from <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a></p>
 
 
