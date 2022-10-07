@@ -17,6 +17,7 @@ book:
     - recoding_reshaping_interactive.Qmd
     - merging_exercise.Qmd
     - R_graphics_exercises.Qmd
+    - reorder_exercise.Qmd
     - summary.qmd
     - references.qmd
 
