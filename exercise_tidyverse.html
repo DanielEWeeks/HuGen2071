@@ -208,7 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -362,24 +367,24 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 4
   time            X      Y      Z
   &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01  0.515 -1.80  -3.34 
-2 2009-01-02  0.550 -2.05   0.892
-3 2009-01-03  1.31   1.82   1.16 
-4 2009-01-04 -0.512  0.828  0.424
-5 2009-01-05  1.49   1.02  -2.44 
-6 2009-01-06 -0.363  2.41   3.21 </code></pre>
+1 2009-01-01 -0.908 -3.12  -0.601
+2 2009-01-02  0.867  0.199 -2.54 
+3 2009-01-03 -0.467  3.60  -2.00 
+4 2009-01-04  0.778 -1.62  -1.24 
+5 2009-01-05  0.620 -2.30  -4.78 
+6 2009-01-06  0.774 -0.721  9.73 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.515
-2 2009-01-02 X      0.550
-3 2009-01-03 X      1.31 
-4 2009-01-04 X     -0.512
-5 2009-01-05 X      1.49 
-6 2009-01-06 X     -0.363</code></pre>
+1 2009-01-01 X     -0.908
+2 2009-01-02 X      0.867
+3 2009-01-03 X     -0.467
+4 2009-01-04 X      0.778
+5 2009-01-05 X      0.620
+6 2009-01-06 X      0.774</code></pre>
 </div>
 </div>
 </section>
@@ -392,12 +397,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.515
-2 2009-01-01 Y     -1.80 
-3 2009-01-01 Z     -3.34 
-4 2009-01-02 X      0.550
-5 2009-01-02 Y     -2.05 
-6 2009-01-02 Z      0.892</code></pre>
+1 2009-01-01 X     -0.908
+2 2009-01-01 Y     -3.12 
+3 2009-01-01 Z     -0.601
+4 2009-01-02 X      0.867
+5 2009-01-02 Y      0.199
+6 2009-01-02 Z     -2.54 </code></pre>
 </div>
 </div>
 </section>
