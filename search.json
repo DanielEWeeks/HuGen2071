@@ -228,14 +228,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y      Z\n  <date>      <dbl>  <dbl>  <dbl>\n1 2009-01-01 -0.420 -1.01  -1.21 \n2 2009-01-02  1.32   0.102  5.41 \n3 2009-01-03 -0.761  3.06  -4.60 \n4 2009-01-04 -0.691 -3.54  -0.751\n5 2009-01-05 -1.12   3.27  -1.24 \n6 2009-01-06  1.92  -0.377 -2.38 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.420\n2 2009-01-02 X      1.32 \n3 2009-01-03 X     -0.761\n4 2009-01-04 X     -0.691\n5 2009-01-05 X     -1.12 \n6 2009-01-06 X      1.92"
+    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  <date>       <dbl>  <dbl>  <dbl>\n1 2009-01-01 -0.608   1.66  -1.34 \n2 2009-01-02  1.52   -0.180 -2.03 \n3 2009-01-03  0.0366  2.02   0.756\n4 2009-01-04  0.698  -2.12  -0.173\n5 2009-01-05  0.151  -3.44  -2.12 \n6 2009-01-06  1.71    3.08   6.49 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X     -0.608 \n2 2009-01-02 X      1.52  \n3 2009-01-03 X      0.0366\n4 2009-01-04 X      0.698 \n5 2009-01-05 X      0.151 \n6 2009-01-06 X      1.71"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.420\n2 2009-01-01 Y     -1.01 \n3 2009-01-01 Z     -1.21 \n4 2009-01-02 X      1.32 \n5 2009-01-02 Y      0.102\n6 2009-01-02 Z      5.41"
+    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -0.608\n2 2009-01-01 Y      1.66 \n3 2009-01-01 Z     -1.34 \n4 2009-01-02 X      1.52 \n5 2009-01-02 Y     -0.180\n6 2009-01-02 Z     -2.03"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
