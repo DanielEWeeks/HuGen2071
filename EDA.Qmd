@@ -1,0 +1,252 @@
+# R Exploratory Data Analysis Exercise
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+require(knitr)
+# Set so that long lines in R will be wrapped:
+opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Load Libraries
+
+```{r load_libraries,message=FALSE}
+library(tidyverse)
+library(tidylog)
+library(DataExplorer)
+library(GGally)
+```
+
+## Explore Project 1 data
+
+Let's explore the Project 1 data set:
+
+```{r}
+load("data/project1.RData", verbose = TRUE)
+```
+
+* ds = data set
+* dd = data dictionary
+
+## Dimensions
+
+* What are the dimensions of our data?
+
+## Dimensions
+
+Task: Examine the dimensions of our data and data dictionary. 
+
+### Data `ds`
+
+```{r}
+dim(ds)
+names(ds)
+```
+
+### Data dictionay `dd`
+
+```{r}
+dim(dd)
+names(dd)
+```
+
+
+## Arrangement
+
+* How are the data arranged?
+     - Is it in tidy format?
+     - Is it one row per sample or per subject?
+     - Were subjects sampled more than once?
+
+### Samples or subjects
+
+Is it one row per sample or per subject?
+
+Question: How would you figure out the answer to this question?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+sum(duplicated(ds$sample_id))
+length(unique(ds$sample_id))
+length(unique(ds$subject_id))
+```
+
+:::
+
+### Unique values
+
+Question: How can we figure out the number of unique values in each column of our `ds` data frame?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+sapply(ds,function(x) {length(unique(x))}) %>% kable()
+```
+
+:::
+
+### Subject-level data set
+
+Task: Construct a subject-level data set
+
+How would you construct a subject-level data set?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+ds.subj <- ds %>% 
+  select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>% 
+  distinct()
+```
+
+```{r}
+sum(duplicated(ds.subj$subject_id))
+ds.subj %>% group_by(subject_id) %>% filter(n() > 1)
+ds.subj <- ds.subj %>% filter(race != "White")
+sum(duplicated(ds.subj$subject_id))
+```
+
+:::
+
+## Coding
+
+* How are the data coded?
+     - Are they coded correctly?
+     - Which are categorical and which are continuous?
+     - Are they coded consistently with the data dictionary?
+     - Is there a data dictionary?
+     - Do we need to skip rows when reading the data in?
+
+### Recode for understandability
+
+Let's recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`. 
+
+```{r}
+dd %>% filter(R21.Variable.Name=="case_control_status") %>% pull(Variable.Coding)
+```
+
+Task: recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`. 
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+ds.subj$PE_status <- factor(ds.subj$case_control_status)
+levels(ds.subj$PE_status)
+levels(ds.subj$PE_status) <- c("control","case")
+xtabs(~ case_control_status + PE_status, data = ds.subj )
+```
+
+:::
+
+
+## Missing data
+
+* What is the pattern of missing data?
+     - How are missing data coded?
+     - Is there a single missing data code?
+
+Here we use some plotting commands from the `DataExplorer` R package.
+
+<https://boxuancui.github.io/DataExplorer/index.html>
+     
+```{r}
+plot_missing(ds.subj)
+```
+
+
+## Distribution
+
+* What is the distribution of each of our phenotypes?
+     - Are data skewed?
+     - What is the range of values?
+     - Is the range of values realistic?
+
+```{r}
+plot_bar(ds.subj)
+```
+
+
+```{r}
+plot_histogram(ds.subj)
+```
+
+```{r}
+plot_qq(ds.subj)
+```
+
+
+
+## Variation
+
+* How do our data vary and co-vary?
+     - Do multiple measures agree with each other?
+     - Are there gender-specific or age-specific differences?
+
+### Bar plots
+
+```{r}
+plot_bar(ds.subj, by="PE_status")
+```
+
+### Box plots
+
+```{r}
+plot_boxplot(ds.subj, by="PE_status")
+```
+
+### QQ plots
+
+```{r}
+plot_qq(ds.subj, by="PE_status")
+```
+
+
+### Correlation
+
+
+```{r}
+plot_correlation(ds.subj)
+```
+
+
+### `ggpairs` from the `GGally` R package.
+
+Use `ggpairs` from the `GGally` R package.
+
+```{r}
+# Pull out numeric columns
+ds1 <- ds.subj[, sapply(ds.subj, is.numeric)] 
+
+```
+
+
+```{r}
+ggpairs(ds1[,c(13:15)])
+```
+
+
+
+ggpairs - color by ggplot2 aes
+
+```{r}
+ggpairs(ds.subj, columns=c(15,17,19), ggplot2::aes(color=PE_status))
+```
+
+```{r}
+ggcorr(ds1[,c(13:15)], label=TRUE)
+```
+
+## `DataExplorer`
+
+We can quickly create a report using the `create_report` function from the `DataExplorer` R package
+
+```
+create_report(ds.subj)
+```
+
+
+

@@ -4,7 +4,8 @@ project:
 book:
   title: "HuGen2071 book"
   author: "Daniel E. Weeks"
-  date: October 2, 2022
+  date: today
+  date-format: long
   chapters:
     - index.qmd
     - preparation.qmd
@@ -18,6 +19,7 @@ book:
     - merging_exercise.Qmd
     - R_graphics_exercises.Qmd
     - reorder_exercise.Qmd
+    - EDA.Qmd
     - summary.qmd
     - references.qmd
 
