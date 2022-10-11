@@ -184,7 +184,7 @@ plot_qq(ds.subj)
 
 * How do our data vary and co-vary?
      - Do multiple measures agree with each other?
-     - Are there gender-specific or age-specific differences?
+     - Are there sex-specific or age-specific differences?
 
 ### Bar plots
 
