@@ -228,14 +228,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X     Y      Z\n  <date>       <dbl> <dbl>  <dbl>\n1 2009-01-01 -2.47   2.05  -4.37 \n2 2009-01-02  1.08   0.853 -6.28 \n3 2009-01-03  0.0594 3.13  -0.661\n4 2009-01-04 -0.151  0.634 -4.11 \n5 2009-01-05 -1.34   0.435 -1.58 \n6 2009-01-06 -1.14   0.585  4.15 \n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X     -2.47  \n2 2009-01-02 X      1.08  \n3 2009-01-03 X      0.0594\n4 2009-01-04 X     -0.151 \n5 2009-01-05 X     -1.34  \n6 2009-01-06 X     -1.14"
+    "text": "7.4 Gather\n\nstocks <- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y     Z\n  <date>       <dbl>  <dbl> <dbl>\n1 2009-01-01  0.0830 -0.637  3.41\n2 2009-01-02  0.526  -0.177 -4.62\n3 2009-01-03 -1.05    0.618  3.61\n4 2009-01-04 -0.602   0.510  5.50\n5 2009-01-05 -3.23   -1.87   1.40\n6 2009-01-06 -1.37    0.131 -1.44\n\nstocks %>% gather(\"stock\", \"price\", -time) %>% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.0830\n2 2009-01-02 X      0.526 \n3 2009-01-03 X     -1.05  \n4 2009-01-04 X     -0.602 \n5 2009-01-05 X     -3.23  \n6 2009-01-06 X     -1.37"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  <date>     <chr>  <dbl>\n1 2009-01-01 X     -2.47 \n2 2009-01-01 Y      2.05 \n3 2009-01-01 Z     -4.37 \n4 2009-01-02 X      1.08 \n5 2009-01-02 Y      0.853\n6 2009-01-02 Z     -6.28"
+    "text": "7.5 Pivot_longer\n\nstocks %>% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %>% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  <date>     <chr>   <dbl>\n1 2009-01-01 X      0.0830\n2 2009-01-01 Y     -0.637 \n3 2009-01-01 Z      3.41  \n4 2009-01-02 X      0.526 \n5 2009-01-02 Y     -0.177 \n6 2009-01-02 Z     -4.62"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -609,74 +609,74 @@
     "text": "11.10 Question: use row names\nQuestion: What about using row names?\n“While a tibble can have row names (e.g., when converting from a regular data frame), they are removed when subsetting with the [ operator. A warning will be raised when attempting to assign non-NULL row names to a tibble. Generally, it is best to avoid row names, because they are basically a character column with different semantics than every other column.”\nFrom: https://tibble.tidyverse.org/reference/rownames.html"
   },
   {
-    "objectID": "EDA.html",
-    "href": "EDA.html",
-    "title": "12  Load Libraries",
-    "section": "",
-    "text": "R Exploratory Data Analysis Exercise”"
+    "objectID": "EDA.html#load-libraries",
+    "href": "EDA.html#load-libraries",
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.1 Load Libraries",
+    "text": "12.1 Load Libraries\n\nlibrary(tidyverse)\nlibrary(tidylog)\nlibrary(DataExplorer)\nlibrary(GGally)"
   },
   {
     "objectID": "EDA.html#explore-project-1-data",
     "href": "EDA.html#explore-project-1-data",
-    "title": "12  Load Libraries",
-    "section": "12.1 Explore Project 1 data",
-    "text": "12.1 Explore Project 1 data\nLet’s explore the Project 1 data set:\n\nload(\"data/project1.RData\", verbose = TRUE)\n\nLoading objects:\n  ds\n  dd\n\n\n\nds = data set\ndd = data dictionary"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.2 Explore Project 1 data",
+    "text": "12.2 Explore Project 1 data\nLet’s explore the Project 1 data set:\n\nload(\"data/project1.RData\", verbose = TRUE)\n\nLoading objects:\n  ds\n  dd\n\n\n\nds = data set\ndd = data dictionary"
   },
   {
     "objectID": "EDA.html#dimensions",
     "href": "EDA.html#dimensions",
-    "title": "12  Load Libraries",
-    "section": "12.2 Dimensions",
-    "text": "12.2 Dimensions\n\nWhat are the dimensions of our data?"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.3 Dimensions",
+    "text": "12.3 Dimensions\n\nWhat are the dimensions of our data?"
   },
   {
     "objectID": "EDA.html#dimensions-1",
     "href": "EDA.html#dimensions-1",
-    "title": "12  Load Libraries",
-    "section": "12.3 Dimensions",
-    "text": "12.3 Dimensions\nTask: Examine the dimensions of our data and data dictionary.\n\n12.3.1 Data ds\n\ndim(ds)\n\n[1] 191  24\n\nnames(ds)\n\n [1] \"sample_id\"                \"Sample_trimester\"        \n [3] \"Gestationalage_sample\"    \"subject_id\"              \n [5] \"strata\"                   \"race\"                    \n [7] \"maternal_age_delivery\"    \"case_control_status\"     \n [9] \"prepregnancy_weight\"      \"height\"                  \n[11] \"prepregnancy_BMI\"         \"gravidity\"               \n[13] \"parity\"                   \"gestationalage_delivery\" \n[15] \"average_SBP_lt20weeks\"    \"average_DBP_lt20weeks\"   \n[17] \"average_SBP_labor\"        \"average_DBP_labor\"       \n[19] \"smoke_lifetime\"           \"baby_birthweight\"        \n[21] \"baby_sex\"                 \"baby_birthweight_centile\"\n[23] \"baby_SGA\"                 \"placental_pathology\"     \n\n\n\n\n12.3.2 Data dictionay dd\n\ndim(dd)\n\n[1] 27  5\n\nnames(dd)\n\n[1] \"Original.Variable.Name\" \"R21.Variable.Name\"      \"Description\"           \n[4] \"Variable.Units\"         \"Variable.Coding\""
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.4 Dimensions",
+    "text": "12.4 Dimensions\nTask: Examine the dimensions of our data and data dictionary.\n\n12.4.1 Data ds\n\ndim(ds)\n\n[1] 191  24\n\nnames(ds)\n\n [1] \"sample_id\"                \"Sample_trimester\"        \n [3] \"Gestationalage_sample\"    \"subject_id\"              \n [5] \"strata\"                   \"race\"                    \n [7] \"maternal_age_delivery\"    \"case_control_status\"     \n [9] \"prepregnancy_weight\"      \"height\"                  \n[11] \"prepregnancy_BMI\"         \"gravidity\"               \n[13] \"parity\"                   \"gestationalage_delivery\" \n[15] \"average_SBP_lt20weeks\"    \"average_DBP_lt20weeks\"   \n[17] \"average_SBP_labor\"        \"average_DBP_labor\"       \n[19] \"smoke_lifetime\"           \"baby_birthweight\"        \n[21] \"baby_sex\"                 \"baby_birthweight_centile\"\n[23] \"baby_SGA\"                 \"placental_pathology\"     \n\n\n\n\n12.4.2 Data dictionay dd\n\ndim(dd)\n\n[1] 27  5\n\nnames(dd)\n\n[1] \"Original.Variable.Name\" \"R21.Variable.Name\"      \"Description\"           \n[4] \"Variable.Units\"         \"Variable.Coding\""
   },
   {
     "objectID": "EDA.html#arrangement",
     "href": "EDA.html#arrangement",
-    "title": "12  Load Libraries",
-    "section": "12.4 Arrangement",
-    "text": "12.4 Arrangement\n\nHow are the data arranged?\n\nIs it in tidy format?\nIs it one row per sample or per subject?\nWere subjects sampled more than once?\n\n\n\n12.4.1 Samples or subjects\nIs it one row per sample or per subject?\nQuestion: How would you figure out the answer to this question?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsum(duplicated(ds$sample_id))\n\n[1] 72\n\nlength(unique(ds$sample_id))\n\n[1] 119\n\nlength(unique(ds$subject_id))\n\n[1] 54\n\n\n\n\n\n\n\n12.4.2 Unique values\nQuestion: How can we figure out the number of unique values in each column of our ds data frame?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsapply(ds, function(x) {\n    length(unique(x))\n}) %>%\n    kable()\n\n\n\n\n\nx\n\n\n\n\nsample_id\n119\n\n\nSample_trimester\n4\n\n\nGestationalage_sample\n189\n\n\nsubject_id\n54\n\n\nstrata\n21\n\n\nrace\n3\n\n\nmaternal_age_delivery\n54\n\n\ncase_control_status\n2\n\n\nprepregnancy_weight\n51\n\n\nheight\n42\n\n\nprepregnancy_BMI\n54\n\n\ngravidity\n5\n\n\nparity\n4\n\n\ngestationalage_delivery\n54\n\n\naverage_SBP_lt20weeks\n19\n\n\naverage_DBP_lt20weeks\n16\n\n\naverage_SBP_labor\n23\n\n\naverage_DBP_labor\n27\n\n\nsmoke_lifetime\n2\n\n\nbaby_birthweight\n30\n\n\nbaby_sex\n2\n\n\nbaby_birthweight_centile\n52\n\n\nbaby_SGA\n1\n\n\nplacental_pathology\n2\n\n\n\n\n\n\n\n\n\n\n12.4.3 Subject-level data set\nTask: Construct a subject-level data set\nHow would you construct a subject-level data set?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds.subj <- ds %>%\n    select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>%\n    distinct()\n\nselect: dropped 3 variables (sample_id, Sample_trimester, Gestationalage_sample)\n\n\ndistinct: removed 136 rows (71%), 55 rows remaining\n\n\n\nsum(duplicated(ds.subj$subject_id))\n\n[1] 1\n\nds.subj %>%\n    group_by(subject_id) %>%\n    filter(n() > 1)\n\ngroup_by: one grouping variable (subject_id)\n\n\nfilter (grouped): removed 53 rows (96%), 2 rows remaining\n\n\n# A tibble: 2 × 21\n# Groups:   subject_id [1]\n  subject_id strata race  maternal_age_deli… case_control_sta… prepregnancy_wei…\n  <chr>       <dbl> <chr>              <dbl>             <dbl>             <dbl>\n1 SUBJ20         35 W                   29.4                 1              244.\n2 SUBJ20         35 White               29.4                 1              244.\n# … with 15 more variables: height <dbl>, prepregnancy_BMI <dbl>,\n#   gravidity <dbl>, parity <dbl>, gestationalage_delivery <dbl>,\n#   average_SBP_lt20weeks <dbl>, average_DBP_lt20weeks <dbl>,\n#   average_SBP_labor <dbl>, average_DBP_labor <dbl>, smoke_lifetime <chr>,\n#   baby_birthweight <dbl>, baby_sex <chr>, baby_birthweight_centile <dbl>,\n#   baby_SGA <chr>, placental_pathology <chr>\n\nds.subj <- ds.subj %>%\n    filter(race != \"White\")\n\nfilter: removed one row (2%), 54 rows remaining\n\nsum(duplicated(ds.subj$subject_id))\n\n[1] 0"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.5 Arrangement",
+    "text": "12.5 Arrangement\n\nHow are the data arranged?\n\nIs it in tidy format?\nIs it one row per sample or per subject?\nWere subjects sampled more than once?\n\n\n\n12.5.1 Samples or subjects\nIs it one row per sample or per subject?\nQuestion: How would you figure out the answer to this question?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsum(duplicated(ds$sample_id))\n\n[1] 72\n\nlength(unique(ds$sample_id))\n\n[1] 119\n\nlength(unique(ds$subject_id))\n\n[1] 54\n\n\n\n\n\n\n\n12.5.2 Unique values\nQuestion: How can we figure out the number of unique values in each column of our ds data frame?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsapply(ds, function(x) {\n    length(unique(x))\n}) %>%\n    kable()\n\n\n\n\n\nx\n\n\n\n\nsample_id\n119\n\n\nSample_trimester\n4\n\n\nGestationalage_sample\n189\n\n\nsubject_id\n54\n\n\nstrata\n21\n\n\nrace\n3\n\n\nmaternal_age_delivery\n54\n\n\ncase_control_status\n2\n\n\nprepregnancy_weight\n51\n\n\nheight\n42\n\n\nprepregnancy_BMI\n54\n\n\ngravidity\n5\n\n\nparity\n4\n\n\ngestationalage_delivery\n54\n\n\naverage_SBP_lt20weeks\n19\n\n\naverage_DBP_lt20weeks\n16\n\n\naverage_SBP_labor\n23\n\n\naverage_DBP_labor\n27\n\n\nsmoke_lifetime\n2\n\n\nbaby_birthweight\n30\n\n\nbaby_sex\n2\n\n\nbaby_birthweight_centile\n52\n\n\nbaby_SGA\n1\n\n\nplacental_pathology\n2\n\n\n\n\n\n\n\n\n\n\n12.5.3 Subject-level data set\nTask: Construct a subject-level data set\nHow would you construct a subject-level data set?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds.subj <- ds %>%\n    select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>%\n    distinct()\n\nselect: dropped 3 variables (sample_id, Sample_trimester, Gestationalage_sample)\n\n\ndistinct: removed 136 rows (71%), 55 rows remaining\n\n\n\nsum(duplicated(ds.subj$subject_id))\n\n[1] 1\n\nds.subj %>%\n    group_by(subject_id) %>%\n    filter(n() > 1)\n\ngroup_by: one grouping variable (subject_id)\n\n\nfilter (grouped): removed 53 rows (96%), 2 rows remaining\n\n\n# A tibble: 2 × 21\n# Groups:   subject_id [1]\n  subject_id strata race  maternal_age_deli… case_control_sta… prepregnancy_wei…\n  <chr>       <dbl> <chr>              <dbl>             <dbl>             <dbl>\n1 SUBJ20         35 W                   29.4                 1              244.\n2 SUBJ20         35 White               29.4                 1              244.\n# … with 15 more variables: height <dbl>, prepregnancy_BMI <dbl>,\n#   gravidity <dbl>, parity <dbl>, gestationalage_delivery <dbl>,\n#   average_SBP_lt20weeks <dbl>, average_DBP_lt20weeks <dbl>,\n#   average_SBP_labor <dbl>, average_DBP_labor <dbl>, smoke_lifetime <chr>,\n#   baby_birthweight <dbl>, baby_sex <chr>, baby_birthweight_centile <dbl>,\n#   baby_SGA <chr>, placental_pathology <chr>\n\nds.subj <- ds.subj %>%\n    filter(race != \"White\")\n\nfilter: removed one row (2%), 54 rows remaining\n\nsum(duplicated(ds.subj$subject_id))\n\n[1] 0"
   },
   {
     "objectID": "EDA.html#coding",
     "href": "EDA.html#coding",
-    "title": "12  Load Libraries",
-    "section": "12.5 Coding",
-    "text": "12.5 Coding\n\nHow are the data coded?\n\nAre they coded correctly?\nWhich are categorical and which are continuous?\nAre they coded consistently with the data dictionary?\nIs there a data dictionary?\nDo we need to skip rows when reading the data in?\n\n\n\n12.5.1 Recode for understandability\nLet’s recode case_control_status from 0 and 1 into a new PE_status variable coded as control and case.\n\ndd %>%\n    filter(R21.Variable.Name == \"case_control_status\") %>%\n    pull(Variable.Coding)\n\nfilter: removed 26 rows (96%), one row remaining\n\n\n[1] \"0: normotensive control; 1: preeclampsia case\"\n\n\nTask: recode case_control_status from 0 and 1 into a new PE_status variable coded as control and case.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds.subj$PE_status <- factor(ds.subj$case_control_status)\nlevels(ds.subj$PE_status)\n\n[1] \"0\" \"1\"\n\nlevels(ds.subj$PE_status) <- c(\"control\", \"case\")\nxtabs(~case_control_status + PE_status, data = ds.subj)\n\n                   PE_status\ncase_control_status control case\n                  0      26    0\n                  1       0   28"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.6 Coding",
+    "text": "12.6 Coding\n\nHow are the data coded?\n\nAre they coded correctly?\nWhich are categorical and which are continuous?\nAre they coded consistently with the data dictionary?\nIs there a data dictionary?\nDo we need to skip rows when reading the data in?\n\n\n\n12.6.1 Recode for understandability\nLet’s recode case_control_status from 0 and 1 into a new PE_status variable coded as control and case.\n\ndd %>%\n    filter(R21.Variable.Name == \"case_control_status\") %>%\n    pull(Variable.Coding)\n\nfilter: removed 26 rows (96%), one row remaining\n\n\n[1] \"0: normotensive control; 1: preeclampsia case\"\n\n\nTask: recode case_control_status from 0 and 1 into a new PE_status variable coded as control and case.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds.subj$PE_status <- factor(ds.subj$case_control_status)\nlevels(ds.subj$PE_status)\n\n[1] \"0\" \"1\"\n\nlevels(ds.subj$PE_status) <- c(\"control\", \"case\")\nxtabs(~case_control_status + PE_status, data = ds.subj)\n\n                   PE_status\ncase_control_status control case\n                  0      26    0\n                  1       0   28"
   },
   {
     "objectID": "EDA.html#missing-data",
     "href": "EDA.html#missing-data",
-    "title": "12  Load Libraries",
-    "section": "12.6 Missing data",
-    "text": "12.6 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we use some plotting commands from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\n\nplot_missing(ds.subj)"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.7 Missing data",
+    "text": "12.7 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we use some plotting commands from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\n\nplot_missing(ds.subj)"
   },
   {
     "objectID": "EDA.html#distribution",
     "href": "EDA.html#distribution",
-    "title": "12  Load Libraries",
-    "section": "12.7 Distribution",
-    "text": "12.7 Distribution\n\nWhat is the distribution of each of our phenotypes?\n\nAre data skewed?\nWhat is the range of values?\nIs the range of values realistic?\n\n\n\nplot_bar(ds.subj)\n\n1 columns ignored with more than 50 categories.\nsubject_id: 54 categories\n\n\n\n\n\n\nplot_histogram(ds.subj)\n\n\n\n\n\nplot_qq(ds.subj)"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.8 Distribution",
+    "text": "12.8 Distribution\n\nWhat is the distribution of each of our phenotypes?\n\nAre data skewed?\nWhat is the range of values?\nIs the range of values realistic?\n\n\n\nplot_bar(ds.subj)\n\n1 columns ignored with more than 50 categories.\nsubject_id: 54 categories\n\n\n\n\n\n\nplot_histogram(ds.subj)\n\n\n\n\n\nplot_qq(ds.subj)"
   },
   {
     "objectID": "EDA.html#variation",
     "href": "EDA.html#variation",
-    "title": "12  Load Libraries",
-    "section": "12.8 Variation",
-    "text": "12.8 Variation\n\nHow do our data vary and co-vary?\n\nDo multiple measures agree with each other?\nAre there gender-specific or age-specific differences?\n\n\n\n12.8.1 Bar plots\n\nplot_bar(ds.subj, by = \"PE_status\")\n\n1 columns ignored with more than 50 categories.\nsubject_id: 54 categories\n\n\n\n\n\n\n\n12.8.2 Box plots\n\nplot_boxplot(ds.subj, by = \"PE_status\")\n\n\n\n\n\n\n\n\n\n12.8.3 QQ plots\n\nplot_qq(ds.subj, by = \"PE_status\")\n\n\n\n\n\n\n\n\n\n12.8.4 Correlation\n\nplot_correlation(ds.subj)\n\n1 features with more than 20 categories ignored!\nsubject_id: 54 categories\n\n\nWarning in cor(x = structure(list(strata = c(29, 39, 29, 36, 40, 39, 40, : the\nstandard deviation is zero\n\n\n\n\n\n\n\n12.8.5 ggpairs from the GGally R package.\nUse ggpairs from the GGally R package.\n\n# Pull out numeric columns\nds1 <- ds.subj[, sapply(ds.subj, is.numeric)]\n\n\nggpairs(ds1[, c(13:15)])\n\n\n\n\nggpairs - color by ggplot2 aes\n\nggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))\n\n\n\n\n\nggcorr(ds1[, c(13:15)], label = TRUE)"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.9 Variation",
+    "text": "12.9 Variation\n\nHow do our data vary and co-vary?\n\nDo multiple measures agree with each other?\nAre there gender-specific or age-specific differences?\n\n\n\n12.9.1 Bar plots\n\nplot_bar(ds.subj, by = \"PE_status\")\n\n1 columns ignored with more than 50 categories.\nsubject_id: 54 categories\n\n\n\n\n\n\n\n12.9.2 Box plots\n\nplot_boxplot(ds.subj, by = \"PE_status\")\n\n\n\n\n\n\n\n\n\n12.9.3 QQ plots\n\nplot_qq(ds.subj, by = \"PE_status\")\n\n\n\n\n\n\n\n\n\n12.9.4 Correlation\n\nplot_correlation(ds.subj)\n\n1 features with more than 20 categories ignored!\nsubject_id: 54 categories\n\n\nWarning in cor(x = structure(list(strata = c(29, 39, 29, 36, 40, 39, 40, : the\nstandard deviation is zero\n\n\n\n\n\n\n\n12.9.5 ggpairs from the GGally R package.\nUse ggpairs from the GGally R package.\n\n# Pull out numeric columns\nds1 <- ds.subj[, sapply(ds.subj, is.numeric)]\n\n\nggpairs(ds1[, c(13:15)])\n\n\n\n\nggpairs - color by ggplot2 aes\n\nggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))\n\n\n\n\n\nggcorr(ds1[, c(13:15)], label = TRUE)"
   },
   {
     "objectID": "EDA.html#dataexplorer",
     "href": "EDA.html#dataexplorer",
-    "title": "12  Load Libraries",
-    "section": "12.9 DataExplorer",
-    "text": "12.9 DataExplorer\nWe can quickly create a report using the create_report function from the DataExplorer R package\ncreate_report(ds.subj)"
+    "title": "12  R Exploratory Data Analysis Exercise",
+    "section": "12.10 DataExplorer",
+    "text": "12.10 DataExplorer\nWe can quickly create a report using the create_report function from the DataExplorer R package\ncreate_report(ds.subj)"
   },
   {
     "objectID": "summary.html",
