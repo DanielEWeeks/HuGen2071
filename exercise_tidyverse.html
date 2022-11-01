@@ -375,26 +375,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time             X       Y      Z
-  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01 -1.13    1.56   -2.05 
-2 2009-01-02  0.0916 -0.989   3.69 
-3 2009-01-03 -1.82   -1.81   11.7  
-4 2009-01-04 -2.27    0.622   0.951
-5 2009-01-05 -1.04   -0.586  -0.887
-6 2009-01-06 -2.57    0.0546 -2.34 </code></pre>
+  time            X      Y       Z
+  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 2009-01-01 -0.272  4.87   -9.80 
+2 2009-01-02 -1.56   2.92  -10.5  
+3 2009-01-03  2.41  -5.04    3.92 
+4 2009-01-04  0.366 -0.577  -1.33 
+5 2009-01-05 -0.130  2.66   -0.408
+6 2009-01-06  0.127  0.617   2.91 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock   price
-  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X     -1.13  
-2 2009-01-02 X      0.0916
-3 2009-01-03 X     -1.82  
-4 2009-01-04 X     -2.27  
-5 2009-01-05 X     -1.04  
-6 2009-01-06 X     -2.57  </code></pre>
+  time       stock  price
+  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
+1 2009-01-01 X     -0.272
+2 2009-01-02 X     -1.56 
+3 2009-01-03 X      2.41 
+4 2009-01-04 X      0.366
+5 2009-01-05 X     -0.130
+6 2009-01-06 X      0.127</code></pre>
 </div>
 </div>
 </section>
@@ -407,12 +407,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock   price
   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X     -1.13  
-2 2009-01-01 Y      1.56  
-3 2009-01-01 Z     -2.05  
-4 2009-01-02 X      0.0916
-5 2009-01-02 Y     -0.989 
-6 2009-01-02 Z      3.69  </code></pre>
+1 2009-01-01 X      -0.272
+2 2009-01-01 Y       4.87 
+3 2009-01-01 Z      -9.80 
+4 2009-01-02 X      -1.56 
+5 2009-01-02 Y       2.92 
+6 2009-01-02 Z     -10.5  </code></pre>
 </div>
 </div>
 </section>
