@@ -1,12 +1,14 @@
 ---
-title: WebR in Quarto HTML Documents
+title: WebR - R in the web browser
 ---
 
-This is a webr-enabled code cell in a Quarto HTML document which works when viewed in a Chrome browser.
+This is a WebR-enabled code cell in a Quarto HTML document which works when viewed in a Chrome browser.
 
 ```{webr-r}
 # Edit/add code here
 fit = lm(mpg ~ am, data = mtcars)
 summary(fit)
 ```
+
+Link: [WebR](https://docs.r-wasm.org/webr/latest/).
 ---

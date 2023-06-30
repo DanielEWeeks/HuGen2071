@@ -14,20 +14,25 @@ This exercise should help answer this question: 'In what type of situations woul
 
 Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
 
-:::{.callout-tip}
+```{webr-r}
+(a <- data.frame(n = 1:4))
+# Edit/add R code here
+```
+
+
+::: callout-tip
 ### Tip
 
 The R command
 
-```
+```         
 a$rowNum1 <- NA
 ```
 
 would insert a new row into the data frame `a` full of `NA` values.
-
 :::
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -38,9 +43,13 @@ a
 
 ## Exercise 2: vector addition
 
-Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows.  Then insert this vector into the data frame `a` into a column named `rowNum6`.
+Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows. Then insert this vector into the data frame `a` into a column named `rowNum6`.
 
-:::{.callout-tip}
+```{webr-r}
+# Edit/add code here
+```
+
+::: callout-tip
 ### Tip
 
 What vector could you add to this vector so the sum is the vector (1, 2, 1, 2)?
@@ -50,7 +59,7 @@ rep(1, 4)
 ```
 :::
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -88,17 +97,19 @@ i <- i.vector[3]
 print(paste("i =",i))
 ```
 
-
 Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in even rows and a 2 in odd rows.
 
-:::{.callout-tip}
+```{webr-r}
+# Edit/add code here
+```
+
+::: callout-tip
 ### Tip
 
 Think about how as `i` increments from 1 to `nrow(a)`, how could we map that sequence (e.g. 1, 2, 3, 4) to the desired sequence of 1, 2, 1, 2.
-
 :::
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -135,7 +146,11 @@ while (i < 4) {
 
 Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
 
-:::{.callout-tip collapse="true"}
+```{webr-r}
+# Edit/add code here
+```
+
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -170,7 +185,11 @@ repeat {
 
 Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in even rows and a 2 in odd rows.
 
-:::{.callout-tip collapse="true"}
+```{webr-r}
+# Edit/add code here
+```
+
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -197,7 +216,11 @@ a
 
 Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in even rows and a 2 in odd rows.
 
-:::{.callout-tip collapse="true"}
+```{webr-r}
+# Edit/add code here
+```
+
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -207,15 +230,17 @@ a
 ```
 :::
 
-
-
 ## Exercise 7
 
 List all even rows of the data frame `a`.
 
 List rows 3 and 4 of the data frame `a`.
 
-:::{.callout-tip collapse="true"}
+```{webr-r}
+# Edit/add code here
+```
+
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
@@ -226,11 +251,9 @@ a[a$rowNum1==1,]
 ```
 :::
 
-
 ## Exercise 8
 
-:::{.callout-note}
-
+::: callout-note
 Learning objective: Learn how to alter the options of an R command to achieve your goals.
 :::
 
@@ -238,7 +261,7 @@ This exercise should help answer this question: "When reading a file, will missi
 
 The tab-delimited file in `testdata.txt` contains the following data:
 
-```
+```         
 1       1       1
 2       2       2
 3       NA      99
@@ -257,20 +280,26 @@ b
 str(b)
 ```
 
-Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`.  This can be done by adjusting the various options of the `read.table` command.
+Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`. This can be done by adjusting the various options of the `read.table` command.
 
-:::{.callout-tip}
+```{webr-r}
+infile <- "https://github.com/DanielEWeeks/HuGen2071/blob/main/data/testdata.txt"
+download.file(infile, "testdata.txt")
+# Adjust the read.table options to read the file correctly as desired.
+b <- read.table("testdata.txt")
+b
+```
+
+::: callout-tip
 ### Tip
 
 Read the help page for the `read.table` command
 :::
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
-To read this in properly, we have to let 'read.table' know
-that there is no header and that which values should be mapped
-to the missing NA value:
+To read this in properly, we have to let 'read.table' know that there is no header and that which values should be mapped to the missing NA value:
 
 ```{r}
 b <- read.table(infile, header = FALSE, na.strings = c("NA","99"))
