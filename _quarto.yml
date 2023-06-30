@@ -20,6 +20,7 @@ book:
     - R_graphics_exercises.Qmd
     - reorder_exercise.Qmd
     - EDA.Qmd
+    - Basic_Unix_commands.Qmd
     - summary.qmd
     - references.qmd
 
