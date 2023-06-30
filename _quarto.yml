@@ -1,5 +1,9 @@
 project:
   type: book
+  resources: 
+    - "webr-serviceworker.js"
+    - "webr-worker.js" 
+    - "coi-serviceworker.js"
 
 book:
   title: "HuGen2071 book"
@@ -22,6 +26,8 @@ book:
     - EDA.Qmd
     - Basic_Unix_commands.Qmd
     - summary.qmd
+    - webR_test.qmd
+    - TechnicalDetails.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -34,3 +40,5 @@ format:
 
 editor: visual
 
+filters:
+    - webr
