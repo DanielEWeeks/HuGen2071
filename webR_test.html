@@ -348,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This is a webr-enabled code cell in a Quarto HTML document.</p>
+<p>This is a webr-enabled code cell in a Quarto HTML document if I can figure out how to get it to work.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
   webR...</button>
 <div id="webr-editor-1"></div>
@@ -368,7 +368,8 @@ ul.task-list li input[type="checkbox"] {
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `fit = lm(mpg ~ am, data = mtcars)
+      value: `# Edit/add code here
+fit = lm(mpg ~ am, data = mtcars)
 summary(fit)`,
       language: 'r',
       theme: 'vs-light',

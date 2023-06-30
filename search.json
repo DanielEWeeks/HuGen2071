@@ -221,14 +221,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  1.24   0.238 -3.84\n2 2009-01-02  1.91  -0.328  7.71\n3 2009-01-03 -0.474 -1.03  -3.01\n4 2009-01-04  1.83  -3.10  -2.73\n5 2009-01-05  0.446 -0.579 -2.27\n6 2009-01-06 -0.349 -1.79  -2.76\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.24 \n2 2009-01-02 X      1.91 \n3 2009-01-03 X     -0.474\n4 2009-01-04 X      1.83 \n5 2009-01-05 X      0.446\n6 2009-01-06 X     -0.349"
+    "text": "7.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X        Y      Z\n  &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  1.76    1.77    -3.88 \n2 2009-01-02  0.527  -5.40    -2.43 \n3 2009-01-03  1.51    2.21     1.16 \n4 2009-01-04 -0.0156  2.71    -6.76 \n5 2009-01-05  1.09    0.00382 -0.967\n6 2009-01-06 -0.329   0.568    1.68 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.76  \n2 2009-01-02 X      0.527 \n3 2009-01-03 X      1.51  \n4 2009-01-04 X     -0.0156\n5 2009-01-05 X      1.09  \n6 2009-01-06 X     -0.329"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.24 \n2 2009-01-01 Y      0.238\n3 2009-01-01 Z     -3.84 \n4 2009-01-02 X      1.91 \n5 2009-01-02 Y     -0.328\n6 2009-01-02 Z      7.71"
+    "text": "7.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.76 \n2 2009-01-01 Y      1.77 \n3 2009-01-01 Z     -3.88 \n4 2009-01-02 X      0.527\n5 2009-01-02 Y     -5.40 \n6 2009-01-02 Z     -2.43"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -719,5 +719,12 @@
     "title": "14  Summary",
     "section": "",
     "text": "In summary, this book is a work in progress."
+  },
+  {
+    "objectID": "webR_test.html",
+    "href": "webR_test.html",
+    "title": "15  WebR in Quarto HTML Documents",
+    "section": "",
+    "text": "This is a webr-enabled code cell in a Quarto HTML document if I can figure out how to get it to work.\nLoading\n  webR..."
   }
 ]
