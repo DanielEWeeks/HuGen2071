@@ -2,19 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book - 10&nbsp; R Graphics Exercise</title>
+<title>HuGen2071 book – 10&nbsp; R Graphics Exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -41,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -115,22 +91,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
+<script src="coi-serviceworker.js"><\script>
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -138,133 +126,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">HuGen2071 book</a> 
+      <a href="/">
+      HuGen2071 book
+      </a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation</span></a>
+  <a href="/preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>Preparation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Logistics</span></a>
+  <a href="/logistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>Logistics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Rbasics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></a>
+  <a href="/Rbasics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>R Basics Group Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Character Exercise</span></a>
+  <a href="/R_char_exer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></a>
+  <a href="/R_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></a>
+  <a href="/exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></a>
+  <a href="/recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></a>
+  <a href="/merging_exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></a>
+  <a href="/R_graphics_exercises.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>R Graphics Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></a>
+  <a href="/reorder_exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./EDA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></a>
+  <a href="/EDA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></a>
+  <a href="/Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>13</span>  <span class='chapter-title'>Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="/webR_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>WebR in Quarto HTML Documents</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"> <span class="header-section-number">10.1</span> Load Libraries</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"> <span class="header-section-number">10.2</span> Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"> <span class="header-section-number">10.3</span> Exercise 2</a></li>
-  <li><a href="#always-plot-your-data" id="toc-always-plot-your-data" class="nav-link" data-scroll-target="#always-plot-your-data"> <span class="header-section-number">10.4</span> Always plot your data</a></li>
-  <li><a href="#similar-regression-lines" id="toc-similar-regression-lines" class="nav-link" data-scroll-target="#similar-regression-lines"> <span class="header-section-number">10.5</span> Similar regression lines</a></li>
-  <li><a href="#always-plot-your-data-2" id="toc-always-plot-your-data-2" class="nav-link" data-scroll-target="#always-plot-your-data-2"> <span class="header-section-number">10.6</span> Always plot your data</a></li>
-  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"> <span class="header-section-number">10.8</span> Boxplots</a></li>
-  <li><a href="#sina-plots" id="toc-sina-plots" class="nav-link" data-scroll-target="#sina-plots"> <span class="header-section-number">10.10</span> Sina plots</a></li>
-  <li><a href="#sina-plots-2" id="toc-sina-plots-2" class="nav-link" data-scroll-target="#sina-plots-2"> <span class="header-section-number">10.12</span> Sina plots</a></li>
-  <li><a href="#drawing-multiple-graphs" id="toc-drawing-multiple-graphs" class="nav-link" data-scroll-target="#drawing-multiple-graphs"> <span class="header-section-number">10.14</span> Drawing multiple graphs</a></li>
-  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions" class="nav-link" data-scroll-target="#writing-ggplot-functions"> <span class="header-section-number">10.15</span> Writing ggplot functions</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"> <span class="header-section-number">10.16</span> Exercise 3</a>
-  <ul class="collapse">
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"> <span class="header-section-number">10.16.1</span> Exercise</a></li>
-  </ul></li>
-  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"> <span class="header-section-number">10.17</span> Source of data</a></li>
-  </ul>
-</nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></h1>
 </div>
 
 
@@ -272,53 +264,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
 </header>
-
-<div class="cell">
-
-</div>
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#load-libraries" id="toc-load-libraries"><span class="header-section-number">10.1</span> Load Libraries</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1"><span class="header-section-number">10.2</span> Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2"><span class="header-section-number">10.3</span> Exercise 2</a></li>
+  <li><a href="#always-plot-your-data" id="toc-always-plot-your-data"><span class="header-section-number">10.4</span> Always plot your data</a></li>
+  <li><a href="#similar-regression-lines" id="toc-similar-regression-lines"><span class="header-section-number">10.5</span> Similar regression lines</a></li>
+  <li><a href="#always-plot-your-data-2" id="toc-always-plot-your-data-2"><span class="header-section-number">10.6</span> Always plot your data</a></li>
+  <li><a href="#boxplots" id="toc-boxplots"><span class="header-section-number">10.8</span> Boxplots</a></li>
+  <li><a href="#sina-plots" id="toc-sina-plots"><span class="header-section-number">10.10</span> Sina plots</a></li>
+  <li><a href="#sina-plots-2" id="toc-sina-plots-2"><span class="header-section-number">10.12</span> Sina plots</a></li>
+  <li><a href="#drawing-multiple-graphs" id="toc-drawing-multiple-graphs"><span class="header-section-number">10.14</span> Drawing multiple graphs</a></li>
+  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions"><span class="header-section-number">10.15</span> Writing ggplot functions</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3"><span class="header-section-number">10.16</span> Exercise 3</a>
+  <ul>
+  <li><a href="#exercise" id="toc-exercise"><span class="header-section-number">10.16.1</span> Exercise</a></li>
+  </ul></li>
+  <li><a href="#source-of-data" id="toc-source-of-data"><span class="header-section-number">10.17</span> Source of data</a></li>
+  </ul>
+</nav>
 <section id="load-libraries" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">10.1</span> Load Libraries</h2>
+<h2 data-number="10.1"><span class="header-section-number">10.1</span> Load Libraries</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the default font to be a bit larger:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">18</span>))</span></code></pre></div>
 </div>
 </section>
 <section id="exercise-1" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">10.2</span> Exercise 1</h2>
+<h2 data-number="10.2"><span class="header-section-number">10.2</span> Exercise 1</h2>
 <p>Read in and set up the data set <code>b</code>, a cleaned version of our simulated data set:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/study1.csv"</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/study1.csv&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>ind <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(a<span class="sc">$</span>t)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1001</span><span class="sc">:</span><span class="dv">1004</span>),]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>g.f <span class="ot">&lt;-</span> <span class="fu">factor</span>(b<span class="sc">$</span>g)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>geno <span class="ot">&lt;-</span> <span class="fu">paste</span>(b<span class="sc">$</span>all1,b<span class="sc">$</span>all2,<span class="at">sep=</span><span class="st">"/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>geno <span class="ot">&lt;-</span> <span class="fu">paste</span>(b<span class="sc">$</span>all1,b<span class="sc">$</span>all2,<span class="at">sep=</span><span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 </div>
-<p>Using ggplot and data set <code>b</code>, plot <code>ind</code> vs.&nbsp;<code>t</code>, coloring by case-control status (<code>trait</code>). What do you observe about the data?</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<p>Using ggplot and data set <code>b</code>, plot <code>ind</code> vs. <code>t</code>, coloring by case-control status (<code>trait</code>). What do you observe about the data?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </div>
@@ -326,26 +337,26 @@ Expand to see solution
 </div>
 </section>
 <section id="exercise-2" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="exercise-2"><span class="header-section-number">10.3</span> Exercise 2</h2>
-<p>Using ggplot, plot <code>ind</code> vs.&nbsp;<code>t</code>, coloring by case-control status (<code>trait</code>) and faceting by <code>geno</code>. What do you observe about the data?</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<h2 data-number="10.3"><span class="header-section-number">10.3</span> Exercise 2</h2>
+<p>Using ggplot, plot <code>ind</code> vs. <code>t</code>, coloring by case-control status (<code>trait</code>) and faceting by <code>geno</code>. What do you observe about the data?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> geno)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </div>
@@ -353,15 +364,15 @@ Expand to see solution
 </div>
 </section>
 <section id="always-plot-your-data" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="always-plot-your-data"><span class="header-section-number">10.4</span> Always plot your data</h2>
+<h2 data-number="10.4"><span class="header-section-number">10.4</span> Always plot your data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/example.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/example.tsv&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 Rows: 142 Columns: 26
 ── Column specification
-──────────────────────────────────────────────────────── Delimiter: "\t" dbl
+──────────────────────────────────────────────────────── Delimiter: &quot;\t&quot; dbl
 (26): x...1, y...2, x...3, y...4, x...5, y...6, x...7, y...8, x...9, y.....
 ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
 Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -392,35 +403,35 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 • `x` -&gt; `x...25`
 • `y` -&gt; `y...26`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>), <span class="dv">13</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">""</span>,<span class="fu">rep</span>(<span class="st">"_"</span>,<span class="dv">24</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="fu">c</span>(<span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), <span class="dv">2</span>))))</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>), <span class="dv">13</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">rep</span>(<span class="st">&quot;_&quot;</span>,<span class="dv">24</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">c</span>(<span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), <span class="dv">2</span>))))</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(n1,n2,n3)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "x"    "y"    "x_1"  "y_1"  "x_2"  "y_2"  "x_3"  "y_3"  "x_4"  "y_4" 
-[11] "x_5"  "y_5"  "x_6"  "y_6"  "x_7"  "y_7"  "x_8"  "y_8"  "x_9"  "y_9" 
-[21] "x_10" "y_10" "x_11" "y_11" "x_12" "y_12"</code></pre>
+<pre><code> [1] &quot;x&quot;    &quot;y&quot;    &quot;x_1&quot;  &quot;y_1&quot;  &quot;x_2&quot;  &quot;y_2&quot;  &quot;x_3&quot;  &quot;y_3&quot;  &quot;x_4&quot;  &quot;y_4&quot; 
+[11] &quot;x_5&quot;  &quot;y_5&quot;  &quot;x_6&quot;  &quot;y_6&quot;  &quot;x_7&quot;  &quot;y_7&quot;  &quot;x_8&quot;  &quot;y_8&quot;  &quot;x_9&quot;  &quot;y_9&quot; 
+[21] &quot;x_10&quot; &quot;y_10&quot; &quot;x_11&quot; &quot;y_11&quot; &quot;x_12&quot; &quot;y_12&quot;</code></pre>
 </div>
 </div>
 </section>
 <section id="similar-regression-lines" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="similar-regression-lines"><span class="header-section-number">10.5</span> Similar regression lines</h2>
+<h2 data-number="10.5"><span class="header-section-number">10.5</span> Similar regression lines</h2>
 <p>These three data sets have very similar regression lines:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.17563819 2.87986960 19.5063131 9.435087e-42
 y           -0.03991951 0.05250204 -0.7603419 4.483288e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.31108156 2.87906158 19.5588319 7.158847e-42
 y_1         -0.04269949 0.05249244 -0.8134407 4.173467e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.18271411 2.87924135 19.5130270 9.107718e-42
@@ -428,35 +439,35 @@ y_3         -0.04012859 0.05249468 -0.7644316 4.458966e-01</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y ~ x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Linear regression of y ~ x&quot;</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <p>Now try this:</p>
 <pre><code>ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
-  geom_smooth(method="lm")</code></pre>
-<div class="callout-tip callout callout-style-default callout-captioned">
+  geom_smooth(method=&quot;lm&quot;)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_1,<span class="at">y=</span>y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_1 ~ x_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_1,<span class="at">y=</span>y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Linear regression of y_1 ~ x_1&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </div>
@@ -464,28 +475,28 @@ Expand to see solution
 </div>
 <p>And now try this:</p>
 <pre><code>ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
-  geom_smooth(method="lm")</code></pre>
-<div class="callout-tip callout callout-style-default callout-captioned">
+  geom_smooth(method=&quot;lm&quot;)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <section id="always-plot-your-data-1" class="level3 callout-body-container callout-body" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="always-plot-your-data-1"><span class="header-section-number">10.5.1</span> Always plot your data!</h3>
+<h3 data-number="10.5.1"><span class="header-section-number">10.5.1</span> Always plot your data!</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_3,<span class="at">y=</span>y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_3 ~ x_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_3,<span class="at">y=</span>y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Linear regression of y_3 ~ x_3&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
@@ -493,12 +504,12 @@ Expand to see solution
 </div>
 </section>
 <section id="always-plot-your-data-2" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="always-plot-your-data-2"><span class="header-section-number">10.6</span> Always plot your data</h2>
+<h2 data-number="10.6"><span class="header-section-number">10.6</span> Always plot your data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/BoxPlots.tsv"</span>)</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/BoxPlots.tsv&quot;</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the first column</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> f[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
    left lines normal right split
@@ -513,7 +524,7 @@ Expand to see solution
 </div>
 <p>Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f),<span class="dv">2</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     values  ind
 1 -9.769107 left
@@ -523,23 +534,23 @@ Expand to see solution
 <p>Now try this:</p>
 <pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
   geom_boxplot()</code></pre>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <section id="identical-box-plots" class="level2 callout-body-container callout-body" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="identical-box-plots"><span class="header-section-number">10.7</span> Identical box plots</h2>
+<h2 data-number="10.7"><span class="header-section-number">10.7</span> Identical box plots</h2>
 <p>These data have essentially identical box plots.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
@@ -547,28 +558,28 @@ Expand to see solution
 </div>
 </section>
 <section id="boxplots" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">10.8</span> Boxplots</h2>
+<h2 data-number="10.8"><span class="header-section-number">10.8</span> Boxplots</h2>
 <p>While the box plots are identical, box plots may not tell the whole story.</p>
 <p>Let’s try violin plots instead:</p>
 <pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
   geom_violin()</code></pre>
 <p>A violin plot is a mirrored density plot.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <section id="non-identical-violin-plots" class="level2 callout-body-container callout-body" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="non-identical-violin-plots"><span class="header-section-number">10.9</span> Non-identical violin plots</h2>
+<h2 data-number="10.9"><span class="header-section-number">10.9</span> Non-identical violin plots</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
@@ -576,27 +587,27 @@ Expand to see solution
 </div>
 </section>
 <section id="sina-plots" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="sina-plots"><span class="header-section-number">10.10</span> Sina plots</h2>
+<h2 data-number="10.10"><span class="header-section-number">10.10</span> Sina plots</h2>
 <p>Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191. <a href="https://www.biorxiv.org/content/early/2015/10/02/028191" class="uri">https://www.biorxiv.org/content/early/2015/10/02/028191</a></p>
 <pre><code>library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()</code></pre>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <section id="sina-plots-1" class="level2 callout-body-container callout-body" data-number="10.11">
-<h2 data-number="10.11" class="anchored" data-anchor-id="sina-plots-1"><span class="header-section-number">10.11</span> Sina plots</h2>
+<h2 data-number="10.11"><span class="header-section-number">10.11</span> Sina plots</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
@@ -604,26 +615,26 @@ Expand to see solution
 </div>
 </section>
 <section id="sina-plots-2" class="level2" data-number="10.12">
-<h2 data-number="10.12" class="anchored" data-anchor-id="sina-plots-2"><span class="header-section-number">10.12</span> Sina plots</h2>
+<h2 data-number="10.12"><span class="header-section-number">10.12</span> Sina plots</h2>
 <p><code>method == "counts"</code>: The borders are defined by the number of samples that occupy the same bin.</p>
 <pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
-   geom_violin() + geom_sina(method="count")</code></pre>
-<div class="callout-tip callout callout-style-default callout-captioned">
+   geom_violin() + geom_sina(method=&quot;count&quot;)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <section id="sina-plots-3" class="level2 callout-body-container callout-body" data-number="10.13">
-<h2 data-number="10.13" class="anchored" data-anchor-id="sina-plots-3"><span class="header-section-number">10.13</span> Sina plots</h2>
+<h2 data-number="10.13"><span class="header-section-number">10.13</span> Sina plots</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
@@ -631,87 +642,87 @@ Expand to see solution
 </div>
 </section>
 <section id="drawing-multiple-graphs" class="level2" data-number="10.14">
-<h2 data-number="10.14" class="anchored" data-anchor-id="drawing-multiple-graphs"><span class="header-section-number">10.14</span> Drawing multiple graphs</h2>
+<h2 data-number="10.14"><span class="header-section-number">10.14</span> Drawing multiple graphs</h2>
 <p>Sometimes we’d like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using <code>ggplot2</code> is tricky. See <a href="https://dplyr.tidyverse.org/articles/programming.html" class="uri">https://dplyr.tidyverse.org/articles/programming.html</a> and <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a> for details.</p>
 <p>Here’s one way to do this - this example code will generate two scatter plots:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"x_1"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>y.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="st">"y_1"</span>)</span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;x_1&quot;</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>y.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;y_1&quot;</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  x.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(x.names[i])</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  y.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(y.names[i])</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x =</span> {{ x.nam }}, </span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> {{ y.nam }})) <span class="sc">+</span> </span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>())</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672" /></p>
 </div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
 <section id="writing-ggplot-functions" class="level2" data-number="10.15">
-<h2 data-number="10.15" class="anchored" data-anchor-id="writing-ggplot-functions"><span class="header-section-number">10.15</span> Writing ggplot functions</h2>
+<h2 data-number="10.15"><span class="header-section-number">10.15</span> Writing ggplot functions</h2>
 <p>See <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>PlDensity <span class="ot">&lt;-</span> <span class="cf">function</span>(fill, ...) {</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)), </span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(bill_length_mm, <span class="at">fill =</span> {{ fill }})) <span class="sc">+</span></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(...))</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p>Example from: <a href="https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
 <section id="exercise-3" class="level2" data-number="10.16">
-<h2 data-number="10.16" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">10.16</span> Exercise 3</h2>
+<h2 data-number="10.16"><span class="header-section-number">10.16</span> Exercise 3</h2>
 <p>Consider this example code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p>From: <a href="https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
 <p>When applied to the quantitative trait <code>t</code> from the data frame <code>b</code>, this generates this histogram:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <section id="exercise" class="level3" data-number="10.16.1">
-<h3 data-number="10.16.1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">10.16.1</span> Exercise</h3>
+<h3 data-number="10.16.1"><span class="header-section-number">10.16.1</span> Exercise</h3>
 <p>After reading the example above, extend the <code>histogram</code> function to allow facetting and use it to draw a histogram of the quantitative trait <code>t</code> facetted by <code>geno</code> using the data set <code>b</code> that we set up above.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hints
 </div>
 </div>
@@ -722,15 +733,15 @@ Hints
 </ul>
 </div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see solution
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class='callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end'><i class='callout-toggle'></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
@@ -744,23 +755,23 @@ Expand to see solution
 }</code></pre>
 <p>Tweet: <a href="https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>({{ grp }}))</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </div>
@@ -769,14 +780,18 @@ Expand to see solution
 </section>
 </section>
 <section id="source-of-data" class="level2" data-number="10.17">
-<h2 data-number="10.17" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">10.17</span> Source of data</h2>
+<h2 data-number="10.17"><span class="header-section-number">10.17</span> Source of data</h2>
 <p>Illustrative data sets from <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a></p>
-
-
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-navbar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">11</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">9</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Preface</span> <span class="hidden" data-render-id="quarto-int-sidebar:/preparation.html"><span class="chapter-number">1</span>  <span class="chapter-title">Preparation</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/intro.html"><span class="chapter-number">2</span>  <span class="chapter-title">Introduction</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/logistics.html"><span class="chapter-number">3</span>  <span class="chapter-title">Logistics</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Rbasics.html"><span class="chapter-number">4</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_char_exer.html"><span class="chapter-number">5</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_Functions.html"><span class="chapter-number">6</span>  <span class="chapter-title">R Functions Excercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/exercise_tidyverse.html"><span class="chapter-number">7</span>  <span class="chapter-title">R Tidyverse Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/recoding_reshaping_interactive.html"><span class="chapter-number">8</span>  <span class="chapter-title">R Recoding Reshaping Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/merging_exercise.html"><span class="chapter-number">9</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_graphics_exercises.html"><span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/reorder_exercise.html"><span class="chapter-number">11</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/EDA.html"><span class="chapter-number">12</span>  <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Basic_Unix_commands.html"><span class="chapter-number">13</span>  <span class="chapter-title">Basic Shell Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/summary.html"><span class="chapter-number">14</span>  <span class="chapter-title">Summary</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/webR_test.html"><span class="chapter-number">15</span>  <span class="chapter-title">WebR in Quarto HTML Documents</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.html">References</span> <span class="hidden" data-render-id="quarto-breadcrumbs-30d93ed7c8f76ac9ea62fe09b6d31416"><span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">HuGen2071 book - <span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">HuGen2071 book - <span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">HuGen2071 book - <span class="chapter-number">10</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-metasitename">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+</div>
 </section>
 
 </main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -803,9 +818,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -817,7 +846,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -845,35 +891,140 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
-<nav class="page-navigation">
+</head><body class="nav-sidebar"><nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./merging_exercise.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span>
@@ -885,7 +1036,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 
