@@ -283,10 +283,12 @@ str(b)
 Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`. This can be done by adjusting the various options of the `read.table` command.
 
 ```{webr-r}
-infile <- "https://github.com/DanielEWeeks/HuGen2071/blob/main/data/testdata.txt"
-download.file(infile, "testdata.txt")
+dir.create("data")
+infile <- "data/testdata.txt"
+srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt"
+download.file(srcfile, infile)
 # Adjust the read.table options to read the file correctly as desired.
-b <- read.table("testdata.txt")
+b <- read.table(infile)
 b
 ```
 
