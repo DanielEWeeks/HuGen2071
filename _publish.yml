@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 51207598-5a52-40d8-a5d8-ebbbadf5e91f
+      url: 'https://hugen2071.netlify.app'

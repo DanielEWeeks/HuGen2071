@@ -47,9 +47,14 @@ Then add it to the list of chapters in the `_quarto.yml` file.
 
 Type `quarto preview` in the Terminal window.
 
-## Deploying the book
+## Deploying the book to GitHub Pages
 
 Type `quarto publish` in the Terminal window.
+
+## Deploying the book to Netlify
+
+Type `quarto publish netlify` in the Terminal window.
+
 
 ## WebR: R in the browser
 
