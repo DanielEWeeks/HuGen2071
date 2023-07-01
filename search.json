@@ -221,14 +221,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "7  R Tidyverse Exercise",
     "section": "7.4 Gather",
-    "text": "7.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.940   0.237  0.761\n2 2009-01-02 -0.0616  5.43  -0.827\n3 2009-01-03 -1.49    3.49   6.56 \n4 2009-01-04  0.0162 -1.68   4.73 \n5 2009-01-05  2.06   -2.64   2.83 \n6 2009-01-06  0.126   1.21   6.94 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.940 \n2 2009-01-02 X     -0.0616\n3 2009-01-03 X     -1.49  \n4 2009-01-04 X      0.0162\n5 2009-01-05 X      2.06  \n6 2009-01-06 X      0.126"
+    "text": "7.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y      Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.443 -3.22  -1.44 \n2 2009-01-02 -0.688 -2.82  -7.89 \n3 2009-01-03 -0.834  1.27  -0.776\n4 2009-01-04 -2.18  -0.789 -3.66 \n5 2009-01-05 -0.367  0.949  1.83 \n6 2009-01-06 -0.896 -0.874  1.04 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.443\n2 2009-01-02 X     -0.688\n3 2009-01-03 X     -0.834\n4 2009-01-04 X     -2.18 \n5 2009-01-05 X     -0.367\n6 2009-01-06 X     -0.896"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "7  R Tidyverse Exercise",
     "section": "7.5 Pivot_longer",
-    "text": "7.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.940 \n2 2009-01-01 Y      0.237 \n3 2009-01-01 Z      0.761 \n4 2009-01-02 X     -0.0616\n5 2009-01-02 Y      5.43  \n6 2009-01-02 Z     -0.827"
+    "text": "7.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.443\n2 2009-01-01 Y     -3.22 \n3 2009-01-01 Z     -1.44 \n4 2009-01-02 X     -0.688\n5 2009-01-02 Y     -2.82 \n6 2009-01-02 Z     -7.89"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -742,17 +742,24 @@
     "text": "16.2 Previewing the book\nType quarto preview in the Terminal window."
   },
   {
-    "objectID": "TechnicalDetails.html#deploying-the-book",
-    "href": "TechnicalDetails.html#deploying-the-book",
+    "objectID": "TechnicalDetails.html#deploying-the-book-to-github-pages",
+    "href": "TechnicalDetails.html#deploying-the-book-to-github-pages",
     "title": "16  Technical Details",
-    "section": "16.3 Deploying the book",
-    "text": "16.3 Deploying the book\nType quarto publish in the Terminal window."
+    "section": "16.3 Deploying the book to GitHub Pages",
+    "text": "16.3 Deploying the book to GitHub Pages\nType quarto publish in the Terminal window."
+  },
+  {
+    "objectID": "TechnicalDetails.html#deploying-the-book-to-netlify",
+    "href": "TechnicalDetails.html#deploying-the-book-to-netlify",
+    "title": "16  Technical Details",
+    "section": "16.4 Deploying the book to Netlify",
+    "text": "16.4 Deploying the book to Netlify\nType quarto publish netlify in the Terminal window."
   },
   {
     "objectID": "TechnicalDetails.html#webr-r-in-the-browser",
     "href": "TechnicalDetails.html#webr-r-in-the-browser",
     "title": "16  Technical Details",
-    "section": "16.4 WebR: R in the browser",
-    "text": "16.4 WebR: R in the browser\nThis Quarto book uses this WebR Quarto extension\nhttps://github.com/coatless/quarto-webr\nWebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in web-r chunks.\nTo get this to work, the _quarto.yml had to be modified.\nWe added a ‘resources’ directive to copy over the java script files, which places them next to the ‘index.html’ file during deployment of the book:\nproject:\n  type: book\n  resources: \n    - \"webr-serviceworker.js\"\n    - \"webr-worker.js\" \nWe also enabled the webr filter:\nfilters:\n    - webr"
+    "section": "16.5 WebR: R in the browser",
+    "text": "16.5 WebR: R in the browser\nThis Quarto book uses this WebR Quarto extension\nhttps://github.com/coatless/quarto-webr\nWebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in web-r chunks.\nTo get this to work, the _quarto.yml had to be modified.\nWe added a ‘resources’ directive to copy over the java script files, which places them next to the ‘index.html’ file during deployment of the book:\nproject:\n  type: book\n  resources: \n    - \"webr-serviceworker.js\"\n    - \"webr-worker.js\" \nWe also enabled the webr filter:\nfilters:\n    - webr"
   }
 ]
