@@ -1,5 +1,9 @@
-# R Character Exercise
+---
+webr:
+  packages: ['stringr','tidyr']
+---
 
+# R Character Exercise
 
 ## Load Libraries
 
@@ -34,14 +38,42 @@ kable(geno)
 
 The clinical group, which measured height, used integer IDs, but the medical group, which measured the blood pressure, decided to prefix the integer IDs with the string 'SG' (so as to distinguish them from other studies that were also using integer IDs). So ID '1' was mapped to ID 'SG0001'.
 
-Discuss how, using R commands, you would reformat the integer IDs to be in the format "SGXXXX". Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
-
 ```{r}
 #| echo: false
 kable(clin, caption = "The `clin` data frame")
 ```
 
+Discuss how, using R commands, you would reformat the integer IDs to be in the format "SGXXXX". Write down your ideas in the next section, and, if you have time, try them out within an R chunk.
+
 Hint: Use the `formatC` function.
+
+#### Interactive WebR chunk
+
+You can interactively run R within this WebR chunk by clicking the `Run code` tab.  Note that this is a limited version of R which runs within your web browser.  
+
+::: callout-note
+This `Run code` WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end. 
+:::
+
+``` {webr-r}
+# Download files within the WebR environment
+dir.create("data")
+infiles <- c("data/clinical_data.txt","data/lab_data.txt","data/genotype_data.txt")
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+for (i in 1:length(infiles)) {
+   download.file(paste0(root_srcfile,infiles[i]), infiles[i])
+}
+# kable is not available in WebR
+kable <- head
+# Read the three files in:
+clin <- read.table(file = "data/clinical_data.txt", header=TRUE)
+kable(clin)
+lab <- read.table(file = "data/lab_data.txt", header = TRUE)
+kable(lab)
+geno <- read.table(file = "data/genotype_data.txt", header = TRUE)
+kable(geno)
+# Edit/add R code here
+```
 
 ### Answer 1
 
@@ -63,7 +95,17 @@ Discuss how, using R commands, you would reformat the "SGXXXX" IDs to be integer
 kable(lab, caption = "The `lab` data frame")
 ```
 
-Hint: Use either the `gsub` command or the `str_replace_all` command.
+Hint: Use either the `gsub` command or the `str_replace_all` command from the `stringr` package.
+
+::: callout-warning
+To read in and load the data within the WebR environment, be sure to run all of the WebR chunks in order.  For example, to usefully run R code in this WebR chunk here, you first need to run the WebR chunk above in Question 1.
+:::
+
+``` {webr-r}
+# str_replace_all is in the stringr R package
+library(stringr)
+# Edit/add code here
+```
 
 ### Answer 2
 
@@ -95,7 +137,13 @@ Note that one of the IDs has a lower case 'g' in it - how would you correct this
 kable(geno, caption="The `geno` data frame")
 ```
 
-Hint: Use either the `str_split_fixed` function or the `separate` function.
+Hint: Use either the `str_split_fixed` function from the `stringr` package or the `separate` function from the `tidyr` package.
+
+``` {webr-r}
+# separate is in the tidyr R package
+library(tidyr)
+# Edit/add code here
+```
 
 ### Answer 3
 
@@ -134,6 +182,19 @@ Discuss how you would use R commands to split the 'joint' data frame into an 'SG
 kable(joint, caption = "The `joint` data frame")
 ```
 
+``` {webr-r}
+# Download files within the WebR environment
+dir.create("data")
+infiles <- c("data/joint_data.txt")
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+for (i in 1:length(infiles)) {
+   download.file(paste0(root_srcfile,infiles[i]), infiles[i])
+}
+joint <- read.table(file = "data/joint_data.txt", header = TRUE)
+kable(joint)
+# Edit/add code here
+```
+
 ### Answer 4
 
 ::: {.callout-tip collapse="true"}
@@ -151,5 +212,3 @@ rownames(joint.RP) <- NULL
 kable(joint.RP)
 ```
 :::
-
-

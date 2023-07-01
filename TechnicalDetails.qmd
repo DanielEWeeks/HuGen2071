@@ -36,10 +36,9 @@ This is an example of a callout with a title.
 This is an example of a 'collapsed' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
 :::
 
-
 ### Adding a chapter
 
-To add a new chapter to the book, make a Quarto file containing the chapter text and code.  It should have only one top-level header at the beginning which will be the title of the chapter.  
+To add a new chapter to the book, make a Quarto file containing the chapter text and code. It should have only one top-level header at the beginning which will be the title of the chapter.
 
 Then add it to the list of chapters in the `_quarto.yml` file.
 
@@ -55,7 +54,6 @@ Type `quarto publish` in the Terminal window.
 
 Type `quarto publish netlify` in the Terminal window.
 
-
 ## WebR: R in the browser
 
 This Quarto book uses this [WebR](https://docs.r-wasm.org/webr/latest/) Quarto extension
@@ -68,7 +66,7 @@ To get this to work, the `_quarto.yml` had to be modified.
 
 We added a 'resources' directive to copy over the java script files, which places them next to the 'index.html' file during deployment of the book:
 
-```
+```         
 project:
   type: book
   resources: 
@@ -78,7 +76,7 @@ project:
 
 We also enabled the `webr` filter:
 
-```
+```         
 filters:
     - webr
-```    
+```
