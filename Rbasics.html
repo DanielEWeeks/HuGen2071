@@ -1945,10 +1945,12 @@ Note
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `infile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt"
-download.file(infile, "testdata.txt")
+      value: `dir.create("data")
+infile <- "data/testdata.txt"
+srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt"
+download.file(srcfile, infile)
 # Adjust the read.table options to read the file correctly as desired.
-b <- read.table("testdata.txt")
+b <- read.table(infile)
 b`,
       language: 'r',
       theme: 'vs-light',
