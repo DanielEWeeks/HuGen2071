@@ -1,44 +1,41 @@
 project:
   type: book
-  resources: 
-    - "webr-serviceworker.js"
-    - "webr-worker.js" 
-    - "coi-serviceworker.js"
-
+  resources:
+  - webr-serviceworker.js
+  - webr-worker.js
+  - coi-serviceworker.js
 book:
-  title: "HuGen2071 book"
-  author: "Daniel E. Weeks"
+  title: HuGen2071 book
+  author: Daniel E. Weeks
   date: today
   date-format: long
   chapters:
-    - index.qmd
-    - preparation.qmd
-    - intro.qmd
-    - logistics.qmd 
-    - Rbasics.qmd
-    - R_char_exer.Qmd
-    - R_Functions.Qmd
-    - exercise_tidyverse.Qmd
-    - recoding_reshaping_interactive.Qmd
-    - merging_exercise.Qmd
-    - R_graphics_exercises.Qmd
-    - reorder_exercise.Qmd
-    - EDA.Qmd
-    - Basic_Unix_commands.Qmd
-    - summary.qmd
-    - webR_test.qmd
-    - TechnicalDetails.qmd
-    - references.qmd
-
+  - index.qmd
+  - preparation.qmd
+  - intro.qmd
+  - logistics.qmd
+  - Rbasics.qmd
+  - R_char_exer.Qmd
+  - R_Functions.Qmd
+  - exercise_tidyverse.Qmd
+  - recoding_reshaping_interactive.Qmd
+  - merging_exercise.Qmd
+  - R_graphics_exercises.Qmd
+  - reorder_exercise.Qmd
+  - EDA.Qmd
+  - Basic_Unix_commands.Qmd
+  - summary.qmd
+  - webR_test.qmd
+  - TechnicalDetails.qmd
+  - references.qmd
 bibliography: references.bib
-
 format:
   html:
     theme: cosmo
+    css: include/webex.css
+    include-after-body: include/webex.js
   pdf:
     documentclass: scrreprt
-
 editor: visual
-
-filters:
-    - webr
+filters: 
+  - webr

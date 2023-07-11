@@ -1,6 +1,6 @@
 # Preparation
 
-The first part of our HuGen 2071 course aims to teach you R in the context of applied data wrangling in a genetic context. In our experience, if you have never programmed before, it moves kind of fast. As such, it would be useful to review these sources below.
+The first part of our HuGen 2071 course aims to teach you R in the context of applied data wrangling in a genetic context. In our experience, if you have never programmed much before, it moves kind of fast. As such, it would be useful to review these sources below.
 
 ## Basic programming ideas
 
@@ -42,7 +42,11 @@ To introduce yourself to GitHub:
 
 To introduce yourself or refresh yourself on R Markdown:
 
-<https://rmarkdown.rstudio.com/> (click on Get Started)
+<https://rmarkdown.rstudio.com/>
+
+Scroll down and click on "Get Started", which will take you to Lesson 1:
+
+<https://rmarkdown.rstudio.com/lesson-1.html>
 
 ## Unix
 
