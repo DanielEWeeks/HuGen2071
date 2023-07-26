@@ -14,6 +14,7 @@ book:
   - preparation.qmd
   - intro.qmd
   - logistics.qmd
+  - Readings.qmd
   - Rbasics.qmd
   - R_char_exer.Qmd
   - R_Functions.Qmd

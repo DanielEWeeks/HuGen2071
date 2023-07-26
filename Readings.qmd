@@ -1,0 +1,405 @@
+# Active Learning and Readings
+
+## Introduction and Overview
+
+### Learning Objectives
+
+-   Review the syllabus
+-   Describe bioinformatics
+-   List various type of data used in genetics
+
+### Readings
+
+Barnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. doi.org/10.1371/journal.pcbi.1005871
+
+Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. doi.org/10.1371/journal.pcbi.1000589
+
+## GitHub
+
+### Learning Objectives
+
+-   To learn how to use GitHub
+-   To learn how to use GitHub Classroom
+-   To learn how to use GitHub within RStudio
+
+### Readings
+
+Happy Git and GitHub for the useR. https://happygitwithr.com/
+
+Perez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. doi.org/10.1371/journal.pcbi.1004947
+
+## R: Basics
+
+### Learning Objectives
+
+-   To become familiar with the R language and concepts
+-   To learn how to read and write data with R
+-   To learn control flow: choices and loops
+
+### Active Learning:
+
+<https://datacarpentry.org/R-genomics/01-intro-to-R.html>
+
+### Readings
+
+Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
+
+Read the first four sections, up to the end of 'Vectors, Vectorization, and Indexing'
+
+https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+
+https://datacarpentry.org/R-genomics/01-intro-to-R.html
+
+Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through PittCat+; link in syllabus)
+
+## R: Factors, Dates, Subscripting
+
+### Learning Objectives
+
+-   To learn how to handle factors and dates with R
+-   To learn how to subset data with R
+-   To learn how to manipulate characters with R
+
+### Active Learning:
+
+<https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html>
+
+Subsetting: <https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html>
+
+### Readings
+
+Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
+
+Read the 'Factors and classes in R' subsection at the end of the 'Vectors, Vectorization, and Indexing' section.
+
+Read the 'Exploring Data Through Slicing and Dicing: Subsetting Dataframes' section.
+
+Read the 'Working with Strings' section.
+
+https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+
+https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html
+
+Supplementary Readings: Spector (2008) Chapters 4, 5, 6
+
+## R: Character Manipulation
+
+### Learning Objectives
+
+-   To learn how to handle character data in R
+-   To learn how to use regular expressions in R
+
+### Readings
+
+Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
+
+Read the 'Working with Strings' section (Oh, you already read this)
+
+https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+
+Read Chapter 14 "Strings" of "R for Data Science": https://r4ds.had.co.nz/strings.html
+
+Supplementary Reading: Spector (2008) Chapter 7
+
+## R: Loops and Flow Control
+
+### Learning Objectives
+
+-   To learn how to implement loops in R
+-   To learn how to control flow in R
+-   To learn how to vectorize operations
+
+### Active Learning:
+
+Flow control and loops: <https://swcarpentry.github.io/r-novice-gapminder/07-control-flow.html>
+
+Vectorization: <https://swcarpentry.github.io/r-novice-gapminder/09-vectorization.html>
+
+## R: Functions and Packages, Debugging R
+
+### Learning Objectives
+
+-   To learn how to write R functions and packages
+-   To learn how to debug R code
+
+### Active Learning:
+
+<https://swcarpentry.github.io/r-novice-gapminder/10-functions.html>
+
+### Readings
+
+Functions Explained: https://swcarpentry.github.io/r-novice-gapminder/10-functions.html
+
+Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
+
+## R: Tidyverse
+
+### Learning Objectives
+
+-   To learn how to use the pipe operator
+-   To learn how to use Tidyverse functions
+
+### Active Learning:
+
+<https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
+
+### Readings
+
+Introduction to the Tidyverse: Manipulating tibbles with dplyr https://uomresearchit.github.io/r-day-workshop/04-dplyr/
+
+Supplementary Reading: Buffalo (2015) Chapter 8: section 'Exploring Dataframes with dplyr'
+
+## R: Recoding and Reshaping Data
+
+### Learning Objectives
+
+-   To learn how to reformat and reshape data in R
+
+### Active Learning:
+
+<https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation.html>
+
+### Readings
+
+Recoding data: Pay particular attention to the 'Recoding values' and 'Creating new variables' sections
+
+https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation/index.html
+
+Reshaping data https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html
+
+Supplementary Reading: Spector (2008) Chapters 8 & 9
+
+## Merging Data
+
+### Learning Objectives
+
+-   To learn how to use the R 'merge' command
+-   To learn how to use the R Tidyverse join commands
+
+### Active Learning:
+
+<https://mikoontz.github.io/data-carpentry-week/lesson_joins.html>
+
+### Readings
+
+https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins
+
+Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Spector (2008) Chapter 9.
+
+## R: Traditional Graphics & Advanced Graphics
+
+### Learning Objectives
+
+-   To learn the basic graphics commands of R
+-   To learn the R graphing package ggplot2
+
+### Active Learning:
+
+<https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
+
+### Readings
+
+Plotting with ggplot2 https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html
+
+Supplementary Reading: Wickham (2009) Chapters 2 & 3
+
+
+## R: Exploratory Data Analysis
+
+### Learning Objectives
+
+-   To learn how to summarize data frames
+-   To learn how to visualize missing data patterns
+-   To learn how to visualize covariation
+
+### Readings
+
+Missing value visualization with tidyverse in R https://towardsdatascience.com/missing-value-visualization-with-tidyverse-in-r-a9b0fefd2246
+
+Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually with ggplot2 I: Scatterplots and Densities Exploring Data Visually with ggplot2 II: Smoothing Binning Data with cut() and Bar Plots with ggplot2 Using ggplot2 Facets.
+
+## R: Interactive and Dynamic Graphics
+
+### Learning Objectives
+
+-   To learn how to use interactive and dynamic graphics to explore your data more thoroughly
+-   To learn to use iPlots and Ggobi
+-   To learn to use plotly
+
+### Readings
+
+Create interactive ggplot2 graphs with plotly https://www.littlemissdata.com/blog/interactiveplots
+
+Suggested Reading: Wickham (2009) Chapters 2 & 3
+
+## Review and Help with Project
+
+## Data Quality Checking and Filters
+
+### Learning Objectives
+
+-   To learn how to check genotype data for quality
+
+### Readings
+
+Anderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564--1573. DOI: https://doi.org/10.1038/nprot.2010.116
+
+Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: https://doi.org/10.1002/gepi.20516
+
+## Unix: Basics, Streams, Redirection, & Pipe
+
+### Learning Objectives
+
+-   To learn basic Unix commands
+-   To learn how streams operate in Unix
+-   To learn out to pass streamed data from program to program in Unix
+
+### Readings
+
+Buffalo (2015) Chapter 3
+
+"Chapter 43: Redirecting Input and Output" in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O'Reilly, Mike Loukides. Published by O'Reilly Media, Inc. https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236
+
+Terminus, a web-based game for learning and practicing basic UNIX commands https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html
+
+## PLINK & PLINK Format
+
+### Learning Objectives
+
+-   Describe PLINK formats
+-   Create PLINK datafiles
+-   Use PLINK to perform genetic association testing
+
+### Readings
+
+Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: https://doi.org/10.1002/mpr.1608
+
+https://github.com/MareesAT/GWA_tutorial/
+
+## PLINK Advanced
+
+### Learning Objectives
+
+-   To learn how to use PLINK to manipulate data files
+
+## PLINK Computer Lab
+
+### Learning Objectives
+
+-   To practice using PLINK to manipulate data files
+
+## Unix: Interacting with Processes, Cluster Jobs, Shell Scripting
+
+### Learning Objectives
+
+-   To learn how to interact with running processes
+-   To learn about the cluster and how to submit jobs there
+-   To learn how to write a script that can run in Unix
+
+### Active Learning:
+
+Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/shell-novice/>
+
+### Readings
+
+Buffalo (2015) Chapter 7 up to the start of "Sorting Plain-Text Data with Sort" section.
+
+Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (https://swcarpentry.github.io/shell-novice/)
+
+## Unix: Data Manipulation
+
+### Learning Objectives
+
+-   To learn Unix tools like sed and awk that can be used to manipulate data
+
+### Readings
+
+Buffalo (2015) Chapter 7 from the "Sorting Plain-Text Data with Sort" section on.
+
+## Unix: Pipes & Parallelization
+
+### Learning Objectives
+
+-   To learn to string programs together to process data
+-   To learn how to parallelize functions in Unix
+
+### Active Learning:
+
+Software Carpentry Unix Shell intro part 4 <https://swcarpentry.github.io/shell-novice/04-pipefilter.html>
+
+### Readings
+
+Buffalo (2015) Chapter 12: "Bioinformatics Shell Scripting, Writing Pipelines, and Parallelizing Tasks"
+
+## Unix: Scripting, Control Structures and Variables
+
+### Learning Objectives
+
+-   To learn how to use control structures in Unix scripting
+-   To learning how to use variables in Unix
+
+### Active Learning:
+
+Software Carpentry Unix Shell intro parts 5-7 <https://swcarpentry.github.io/shell-novice/>
+
+### Readings
+
+Software Carpentry Unix Shell intro parts 5-7 (https://swcarpentry.github.io/shell-novice/)
+
+
+## Genetic Data Structures
+
+### Learning Objectives
+
+-   To learn about what genetic data is stored and principles for storing it
+
+### Readings
+
+Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture's folder)
+
+Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. https://doi.org/10.1007/BF01408073. PMID: 24234481.
+
+Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. https://doi.org/10.1007/s10897-008-9169-9. Epub 2008 Sep 16. PMID: 18792771.
+
+Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. https://doi.org/10.1002/jgc4.1621. Epub ahead of print. PMID: 36106433.
+
+## VCF, bcftools, vcftools
+
+### Learning Objectives
+
+-   To learn about VCF data format
+-   To learn about bcftools and vcftools for manipulating VCF files
+
+## SAM & samtools
+
+### Learning Objectives
+
+-   To learn about SAM data format for sequence data
+-   To learn about samtools to manipulate SAM data files
+
+### Readings
+
+Buffalo Chapter 11 "Working with Alignment Data"
+
+Data Wrangling and Processing for Genomics https://data-lessons.github.io/wrangling-genomics/
+
+Relevant links: The Sequence Alignment/Map Format Specification http://samtools.github.io/hts-specs/
+
+## Genetic Data in R, GDS
+
+### Learning Objectives
+
+-   To learn about data structures in R for storing genetic data
+-   To learn about the GDS format
+
+### Active Learning:
+
+<https://uw-gac.github.io/topmed_workshop_2017/gds-format.html> (Only 2.1 - Exploring a GDS file)
+
+### Readings
+
+Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/
+
+## Help with Final Project
+
+
