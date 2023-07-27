@@ -74,14 +74,14 @@
     "href": "Readings.html#introduction-and-overview",
     "title": "4  Active Learning and Readings",
     "section": "4.1 Introduction and Overview",
-    "text": "4.1 Introduction and Overview\n\n4.1.1 Learning Objectives\n\nReview the syllabus\nDescribe bioinformatics\nList various type of data used in genetics\n\n\n\n4.1.2 Readings\nBarnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. doi.org/10.1371/journal.pcbi.1005871\nDudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. doi.org/10.1371/journal.pcbi.1000589"
+    "text": "4.1 Introduction and Overview\n\n4.1.1 Learning Objectives\n\nReview the syllabus\nDescribe bioinformatics\nList various type of data used in genetics\n\n\n\n4.1.2 Readings\nBarnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. https://doi.org/10.1371/journal.pcbi.1005871\nDudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. https://doi.org/10.1371/journal.pcbi.1000589"
   },
   {
     "objectID": "Readings.html#github",
     "href": "Readings.html#github",
     "title": "4  Active Learning and Readings",
     "section": "4.2 GitHub",
-    "text": "4.2 GitHub\n\n4.2.1 Learning Objectives\n\nTo learn how to use GitHub\nTo learn how to use GitHub Classroom\nTo learn how to use GitHub within RStudio\n\n\n\n4.2.2 Readings\nHappy Git and GitHub for the useR. https://happygitwithr.com/\nPerez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. doi.org/10.1371/journal.pcbi.1004947"
+    "text": "4.2 GitHub\n\n4.2.1 Learning Objectives\n\nTo learn how to use GitHub\nTo learn how to use GitHub Classroom\nTo learn how to use GitHub within RStudio\n\n\n\n4.2.2 Readings\nHappy Git and GitHub for the useR. https://happygitwithr.com/\nPerez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. https://doi.org/10.1371/journal.pcbi.1004947"
   },
   {
     "objectID": "Readings.html#r-basics",
@@ -259,13 +259,6 @@
     "text": "4.27 Genetic Data in R, GDS\n\n4.27.1 Learning Objectives\n\nTo learn about data structures in R for storing genetic data\nTo learn about the GDS format\n\n\n\n4.27.2 Active Learning:\nhttps://uw-gac.github.io/topmed_workshop_2017/gds-format.html (Only 2.1 - Exploring a GDS file)\n\n\n4.27.3 Readings\nZheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/"
   },
   {
-    "objectID": "Readings.html#help-with-final-project",
-    "href": "Readings.html#help-with-final-project",
-    "title": "4  Active Learning and Readings",
-    "section": "4.28 Help with Final Project",
-    "text": "4.28 Help with Final Project"
-  },
-  {
     "objectID": "Rbasics.html#set-up-the-data-frame-a",
     "href": "Rbasics.html#set-up-the-data-frame-a",
     "title": "5  R Basics Group Exercise",
@@ -417,14 +410,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "8  R Tidyverse Exercise",
     "section": "8.4 Gather",
-    "text": "8.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y      Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  1.12   1.89   -0.277\n2 2009-01-02  1.81   1.83    3.98 \n3 2009-01-03 -1.41  -0.576  -0.842\n4 2009-01-04  1.48  -1.39   -8.54 \n5 2009-01-05  1.22   0.0126 -1.15 \n6 2009-01-06  0.118  1.87    0.672\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.12 \n2 2009-01-02 X      1.81 \n3 2009-01-03 X     -1.41 \n4 2009-01-04 X      1.48 \n5 2009-01-05 X      1.22 \n6 2009-01-06 X      0.118"
+    "text": "8.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y      Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.371  5.92   -1.72 \n2 2009-01-02  0.466  0.155   2.56 \n3 2009-01-03 -0.676 -0.761   0.905\n4 2009-01-04  0.198 -0.0338  0.771\n5 2009-01-05 -0.314 -3.19   -2.40 \n6 2009-01-06  1.80   2.14    0.291\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.371\n2 2009-01-02 X      0.466\n3 2009-01-03 X     -0.676\n4 2009-01-04 X      0.198\n5 2009-01-05 X     -0.314\n6 2009-01-06 X      1.80"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "8  R Tidyverse Exercise",
     "section": "8.5 Pivot_longer",
-    "text": "8.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.12 \n2 2009-01-01 Y      1.89 \n3 2009-01-01 Z     -0.277\n4 2009-01-02 X      1.81 \n5 2009-01-02 Y      1.83 \n6 2009-01-02 Z      3.98"
+    "text": "8.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.371\n2 2009-01-01 Y      5.92 \n3 2009-01-01 Z     -1.72 \n4 2009-01-02 X      0.466\n5 2009-01-02 Y      0.155\n6 2009-01-02 Z      2.56"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",

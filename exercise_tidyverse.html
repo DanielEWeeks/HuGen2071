@@ -396,24 +396,24 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 4
   time            X       Y      Z
   &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01  1.12   1.89   -0.277
-2 2009-01-02  1.81   1.83    3.98 
-3 2009-01-03 -1.41  -0.576  -0.842
-4 2009-01-04  1.48  -1.39   -8.54 
-5 2009-01-05  1.22   0.0126 -1.15 
-6 2009-01-06  0.118  1.87    0.672</code></pre>
+1 2009-01-01  0.371  5.92   -1.72 
+2 2009-01-02  0.466  0.155   2.56 
+3 2009-01-03 -0.676 -0.761   0.905
+4 2009-01-04  0.198 -0.0338  0.771
+5 2009-01-05 -0.314 -3.19   -2.40 
+6 2009-01-06  1.80   2.14    0.291</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      1.12 
-2 2009-01-02 X      1.81 
-3 2009-01-03 X     -1.41 
-4 2009-01-04 X      1.48 
-5 2009-01-05 X      1.22 
-6 2009-01-06 X      0.118</code></pre>
+1 2009-01-01 X      0.371
+2 2009-01-02 X      0.466
+3 2009-01-03 X     -0.676
+4 2009-01-04 X      0.198
+5 2009-01-05 X     -0.314
+6 2009-01-06 X      1.80 </code></pre>
 </div>
 </div>
 </section>
@@ -426,12 +426,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      1.12 
-2 2009-01-01 Y      1.89 
-3 2009-01-01 Z     -0.277
-4 2009-01-02 X      1.81 
-5 2009-01-02 Y      1.83 
-6 2009-01-02 Z      3.98 </code></pre>
+1 2009-01-01 X      0.371
+2 2009-01-01 Y      5.92 
+3 2009-01-01 Z     -1.72 
+4 2009-01-02 X      0.466
+5 2009-01-02 Y      0.155
+6 2009-01-02 Z      2.56 </code></pre>
 </div>
 </div>
 </section>
