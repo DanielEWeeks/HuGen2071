@@ -1,12 +1,10 @@
 # R Graphics Exercise
 
-
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
 # Set so that long lines in R will be wrapped:
 # opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
-
 
 ## Load Libraries
 
@@ -30,7 +28,7 @@ b$g.f <- factor(b$g)
 b$geno <- paste(b$all1,b$all2,sep="/")
 ```
 
-Using ggplot and data set `b`, plot `ind` vs. `t`, coloring by case-control status (`trait`).  What do you observe about the data?
+Using ggplot and data set `b`, plot `ind` vs. `t`, coloring by case-control status (`trait`). What do you observe about the data?
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -39,12 +37,11 @@ Using ggplot and data set `b`, plot `ind` vs. `t`, coloring by case-control stat
 ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
    geom_point()
 ```
-
 :::
 
 ## Exercise 2
 
-Using ggplot, plot `ind` vs. `t`, coloring by case-control status (`trait`) and faceting by `geno`.  What do you observe about the data?
+Using ggplot, plot `ind` vs. `t`, coloring by case-control status (`trait`) and faceting by `geno`. What do you observe about the data?
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -54,7 +51,6 @@ ggplot(data=b, aes(x=ind, y=t, color=trait)) +
   geom_point() + 
   facet_grid(~ geno)
 ```
-
 :::
 
 ## Always plot your data
@@ -79,7 +75,6 @@ summary(lm(x_1 ~ y_1, data=d)) %>%  coef()
 summary(lm(x_3 ~ y_3, data=d)) %>%  coef()
 ```
 
-
 ```{r,message=FALSE}
 ggplot(d,aes(x=x,y=y)) + geom_point() +
   geom_smooth(method="lm") + ggtitle("Linear regression of y ~ x")
@@ -87,7 +82,7 @@ ggplot(d,aes(x=x,y=y)) + geom_point() +
 
 Now try this:
 
-```
+```         
 ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
   geom_smooth(method="lm")
 ```
@@ -95,17 +90,15 @@ ggplot(d,aes(x=x_1,y=y_1)) + geom_point() +
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
 ```{r}
 ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
   geom_smooth(method="lm") + ggtitle("Linear regression of y_1 ~ x_1")
 ```
-
 :::
 
 And now try this:
 
-```
+```         
 ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
   geom_smooth(method="lm")
 ```
@@ -115,15 +108,11 @@ ggplot(d,aes(x=x_3,y=y_3)) + geom_point() +
 
 ### Always plot your data!
 
-
 ```{r}
 ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
   geom_smooth(method="lm") + ggtitle("Linear regression of y_3 ~ x_3")
 ```
-
 :::
-
-
 
 ## Always plot your data
 
@@ -134,7 +123,7 @@ f <- f[,-1]
 head(f)
 ```
 
-Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated. 
+Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.
 
 ```{r}
 head(stack(f),2)
@@ -142,25 +131,22 @@ head(stack(f),2)
 
 Now try this:
 
-```
+```         
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_boxplot()
 ```
 
-
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
 ## Identical box plots
 
-These data have essentially identical box plots. 
+These data have essentially identical box plots.
 
 ```{r echo=FALSE}
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_boxplot()
 ```
-
 :::
 
 ## Boxplots
@@ -169,7 +155,7 @@ While the box plots are identical, box plots may not tell the whole story.
 
 Let's try violin plots instead:
 
-```
+```         
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_violin()
 ```
@@ -179,22 +165,20 @@ A violin plot is a mirrored density plot.
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
 ## Non-identical violin plots
 
 ```{r echo=FALSE}
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_violin()
 ```
-
 :::
 
 ## Sina plots
 
-Sidiropoulos, N., Sohi, S.H., Rapin, N., and Bagger, F.O. (2015). SinaPlot: an enhanced chart for simple and truthful representation of single observations over multiple classes. bioRxiv 28191.
-<https://www.biorxiv.org/content/early/2015/10/02/028191>
+Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor & Francis; 2018 Jul 3;27(3):673–676. DOI: <https://doi.org/10.1080/10618600.2017.1366914>
 
-```
+
+```         
 library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()
@@ -210,14 +194,13 @@ library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()
 ```
-
 :::
 
 ## Sina plots
 
 `method == "counts"`: The borders are defined by the number of samples that occupy the same bin.
 
-```
+```         
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina(method="count")
 ```
@@ -231,12 +214,11 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina(method="count")
 ```
-
 :::
 
 ## Drawing multiple graphs
 
-Sometimes we'd like to draw multiple plots, looping across variables.  Doing this within an R Markdown or Quarto Markdown document using `ggplot2` is tricky. See <https://dplyr.tidyverse.org/articles/programming.html> and <https://r4ds.hadley.nz/functions.html#plot-functions> for details.
+Sometimes we'd like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using `ggplot2` is tricky. See <https://dplyr.tidyverse.org/articles/programming.html> and <https://r4ds.hadley.nz/functions.html#plot-functions> for details.
 
 Here's one way to do this - this example code will generate two scatter plots:
 
@@ -251,7 +233,6 @@ for (i in 1:2) {
           geom_point())
 }
 ```
-
 
 ## Writing ggplot functions
 
@@ -270,24 +251,17 @@ PlDensity <- function(fill, ...) {
 
 Example from: <https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
 
-
-
 ```{r}
 PlDensity(species)
 ```
-
-
 
 ```{r}
 PlDensity(island, sex) %>% print() %>% suppressWarnings()
 ```
 
-
 ```{r}
 PlDensity(sex, island, year) %>% print() %>% suppressWarnings()
 ```
-
-
 
 ## Exercise 3
 
@@ -309,19 +283,16 @@ When applied to the quantitative trait `t` from the data frame `b`, this generat
 histogram(b, t, 0.1)
 ```
 
-
-### Exercise 
+### Exercise
 
 After reading the example above, extend the `histogram` function to allow facetting and use it to draw a histogram of the quantitative trait `t` facetted by `geno` using the data set `b` that we set up above.
 
-:::{.callout-tip}
+::: callout-tip
 ## Hints
 
-* See <https://r4ds.hadley.nz/functions.html#facetting>
-* Use the `vars()` function
-
+-   See <https://r4ds.hadley.nz/functions.html#plot-functions>
+-   Use the `{{ var }}` approach
 :::
-
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -330,7 +301,7 @@ Hadley Wickham states:
 
 You have to use the vars() syntax
 
-```
+```         
 foo <- function(x) {
   ggplot(mtcars) +
     aes(x = mpg, y = disp) +
@@ -340,7 +311,6 @@ foo <- function(x) {
 ```
 
 Tweet: <https://twitter.com/hadleywickham/status/1574380137524887554?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
-
 
 ```{r}
 histogram <- function(df, var, binwidth, grp) {
@@ -358,17 +328,8 @@ histogram(b, t, 0.1)
 ```{r}
 histogram(b, t, 0.1, geno)
 ```
-
-
 :::
-
-
 
 ## Source of data
 
-Illustrative data sets from
-<https://www.autodeskresearch.com/publications/samestats>
-
-
-
-
+Illustrative data sets from <https://www.research.autodesk.com/publications/same-stats-different-graphs/>

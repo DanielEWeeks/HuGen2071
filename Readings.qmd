@@ -157,13 +157,11 @@ Supplementary Reading: Buffalo (2015) Chapter 8: section 'Exploring Dataframes w
 
 ### Active Learning:
 
+Recoding data: Pay particular attention to the `Recoding values` and `Creating new variables` sections
+
 <https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation.html>
 
 ### Readings
-
-Recoding data: Pay particular attention to the 'Recoding values' and 'Creating new variables' sections
-
-<https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation/index.html>
 
 Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
 
@@ -182,7 +180,7 @@ Supplementary Reading: Spector (2008) Chapters 8 & 9
 
 ### Readings
 
-<https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins>
+<https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins_using_gapminder>
 
 Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Spector (2008) Chapter 9.
 
