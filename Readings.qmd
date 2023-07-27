@@ -10,9 +10,9 @@
 
 ### Readings
 
-Barnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. doi.org/10.1371/journal.pcbi.1005871
+Barnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. <https://doi.org/10.1371/journal.pcbi.1005871>
 
-Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. doi.org/10.1371/journal.pcbi.1000589
+Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. <https://doi.org/10.1371/journal.pcbi.1000589>
 
 ## GitHub
 
@@ -24,9 +24,9 @@ Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics progr
 
 ### Readings
 
-Happy Git and GitHub for the useR. https://happygitwithr.com/
+Happy Git and GitHub for the useR. <https://happygitwithr.com/>
 
-Perez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. doi.org/10.1371/journal.pcbi.1004947
+Perez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. <https://doi.org/10.1371/journal.pcbi.1004947>
 
 ## R: Basics
 
@@ -46,9 +46,9 @@ Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
 
 Read the first four sections, up to the end of 'Vectors, Vectorization, and Indexing'
 
-https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+<https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510>
 
-https://datacarpentry.org/R-genomics/01-intro-to-R.html
+<https://datacarpentry.org/R-genomics/01-intro-to-R.html>
 
 Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through PittCat+; link in syllabus)
 
@@ -76,9 +76,9 @@ Read the 'Exploring Data Through Slicing and Dicing: Subsetting Dataframes' sect
 
 Read the 'Working with Strings' section.
 
-https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+<https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510>
 
-https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html
+<https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html>
 
 Supplementary Readings: Spector (2008) Chapters 4, 5, 6
 
@@ -95,9 +95,9 @@ Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
 
 Read the 'Working with Strings' section (Oh, you already read this)
 
-https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510
+<https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510>
 
-Read Chapter 14 "Strings" of "R for Data Science": https://r4ds.had.co.nz/strings.html
+Read Chapter 14 "Strings" of "R for Data Science": <https://r4ds.had.co.nz/strings.html>
 
 Supplementary Reading: Spector (2008) Chapter 7
 
@@ -128,7 +128,7 @@ Vectorization: <https://swcarpentry.github.io/r-novice-gapminder/09-vectorizatio
 
 ### Readings
 
-Functions Explained: https://swcarpentry.github.io/r-novice-gapminder/10-functions.html
+Functions Explained: <https://swcarpentry.github.io/r-novice-gapminder/10-functions.html>
 
 Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
 
@@ -145,7 +145,7 @@ Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
 
 ### Readings
 
-Introduction to the Tidyverse: Manipulating tibbles with dplyr https://uomresearchit.github.io/r-day-workshop/04-dplyr/
+Introduction to the Tidyverse: Manipulating tibbles with dplyr <https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
 
 Supplementary Reading: Buffalo (2015) Chapter 8: section 'Exploring Dataframes with dplyr'
 
@@ -163,9 +163,9 @@ Supplementary Reading: Buffalo (2015) Chapter 8: section 'Exploring Dataframes w
 
 Recoding data: Pay particular attention to the 'Recoding values' and 'Creating new variables' sections
 
-https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation/index.html
+<https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation/index.html>
 
-Reshaping data https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html
+Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
 
 Supplementary Reading: Spector (2008) Chapters 8 & 9
 
@@ -182,7 +182,7 @@ Supplementary Reading: Spector (2008) Chapters 8 & 9
 
 ### Readings
 
-https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins
+<https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins>
 
 Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Spector (2008) Chapter 9.
 
@@ -199,7 +199,7 @@ Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Sp
 
 ### Readings
 
-Plotting with ggplot2 https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html
+Plotting with ggplot2 <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
 
 Supplementary Reading: Wickham (2009) Chapters 2 & 3
 
@@ -214,7 +214,7 @@ Supplementary Reading: Wickham (2009) Chapters 2 & 3
 
 ### Readings
 
-Missing value visualization with tidyverse in R https://towardsdatascience.com/missing-value-visualization-with-tidyverse-in-r-a9b0fefd2246
+Missing value visualization with tidyverse in R <https://towardsdatascience.com/missing-value-visualization-with-tidyverse-in-r-a9b0fefd2246>
 
 Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually with ggplot2 I: Scatterplots and Densities Exploring Data Visually with ggplot2 II: Smoothing Binning Data with cut() and Bar Plots with ggplot2 Using ggplot2 Facets.
 
@@ -228,7 +228,7 @@ Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually wi
 
 ### Readings
 
-Create interactive ggplot2 graphs with plotly https://www.littlemissdata.com/blog/interactiveplots
+Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/blog/interactiveplots>
 
 Suggested Reading: Wickham (2009) Chapters 2 & 3
 
@@ -242,9 +242,9 @@ Suggested Reading: Wickham (2009) Chapters 2 & 3
 
 ### Readings
 
-Anderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564--1573. DOI: https://doi.org/10.1038/nprot.2010.116
+Anderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564--1573. DOI: <https://doi.org/10.1038/nprot.2010.116>
 
-Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: https://doi.org/10.1002/gepi.20516
+Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: <https://doi.org/10.1002/gepi.20516>
 
 ## Unix: Basics, Streams, Redirection, & Pipe
 
@@ -258,9 +258,9 @@ Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale 
 
 Buffalo (2015) Chapter 3
 
-"Chapter 43: Redirecting Input and Output" in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O'Reilly, Mike Loukides. Published by O'Reilly Media, Inc. https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236
+"Chapter 43: Redirecting Input and Output" in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O'Reilly, Mike Loukides. Published by O'Reilly Media, Inc. <https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236>
 
-Terminus, a web-based game for learning and practicing basic UNIX commands https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html
+Terminus, a web-based game for learning and practicing basic UNIX commands <https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html>
 
 ## PLINK & PLINK Format
 
@@ -272,9 +272,9 @@ Terminus, a web-based game for learning and practicing basic UNIX commands https
 
 ### Readings
 
-Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: https://doi.org/10.1002/mpr.1608
+Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <https://doi.org/10.1002/mpr.1608>
 
-https://github.com/MareesAT/GWA_tutorial/
+<https://github.com/MareesAT/GWA_tutorial/>
 
 ## PLINK Advanced
 
@@ -304,7 +304,7 @@ Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/she
 
 Buffalo (2015) Chapter 7 up to the start of "Sorting Plain-Text Data with Sort" section.
 
-Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (https://swcarpentry.github.io/shell-novice/)
+Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (<https://swcarpentry.github.io/shell-novice/>)
 
 ## Unix: Data Manipulation
 
@@ -344,7 +344,7 @@ Software Carpentry Unix Shell intro parts 5-7 <https://swcarpentry.github.io/she
 
 ### Readings
 
-Software Carpentry Unix Shell intro parts 5-7 (https://swcarpentry.github.io/shell-novice/)
+Software Carpentry Unix Shell intro parts 5-7 (<https://swcarpentry.github.io/shell-novice/>)
 
 
 ## Genetic Data Structures
@@ -357,11 +357,11 @@ Software Carpentry Unix Shell intro parts 5-7 (https://swcarpentry.github.io/she
 
 Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture's folder)
 
-Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. https://doi.org/10.1007/BF01408073. PMID: 24234481.
+Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <https://doi.org/10.1007/BF01408073>. PMID: 24234481.
 
-Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. https://doi.org/10.1007/s10897-008-9169-9. Epub 2008 Sep 16. PMID: 18792771.
+Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <https://doi.org/10.1007/s10897-008-9169-9>. Epub 2008 Sep 16. PMID: 18792771.
 
-Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. https://doi.org/10.1002/jgc4.1621. Epub ahead of print. PMID: 36106433.
+Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. <https://doi.org/10.1002/jgc4.1621>. Epub ahead of print. PMID: 36106433.
 
 ## VCF, bcftools, vcftools
 
@@ -381,9 +381,9 @@ Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: S
 
 Buffalo Chapter 11 "Working with Alignment Data"
 
-Data Wrangling and Processing for Genomics https://data-lessons.github.io/wrangling-genomics/
+Data Wrangling and Processing for Genomics <https://data-lessons.github.io/wrangling-genomics/>
 
-Relevant links: The Sequence Alignment/Map Format Specification http://samtools.github.io/hts-specs/
+Relevant links: The Sequence Alignment/Map Format Specification <http://samtools.github.io/hts-specs/>
 
 ## Genetic Data in R, GDS
 
@@ -398,8 +398,8 @@ Relevant links: The Sequence Alignment/Map Format Specification http://samtools.
 
 ### Readings
 
-Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/
+Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/>
 
-## Help with Final Project
+
 
 
