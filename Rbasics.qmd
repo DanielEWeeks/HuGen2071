@@ -2,9 +2,7 @@
 
 
 
-## Questions
-
-### Recycling in a dataframe
+## Question: Recycling in a dataframe
 
 Suppose you have a dataframe `df` with three columns, `A`, `B`, and `C`, as follows:
 
@@ -38,27 +36,7 @@ answer = "c(13, 14, 13, 14)",
 
 Please select the correct option.
 
-### Vector addition and recycling
 
-Suppose you have two vectors in R:
-
-Vector A: c(1, 2, 3)      
-Vector B: c(4, 5)
-
-If you perform the operation A + B, what will be the result of vector recycling?
-
-```{r,echo=FALSE}
-library(webexercises)
-choices <- c( 
-"c(5, 7, 3)",
-"c(5, 7, 8)",
-answer = "c(5, 7, 7)",
-"c(5, 5, 3)")
-```
-
-`r longmcq(choices)`
-
-Please select the correct option.
 
 
 ## Exercise 1: recycling
@@ -105,9 +83,33 @@ a
 ```
 :::
 
+
+## Question: Vector addition and recycling
+
+Suppose you have two vectors in R:
+
+Vector A: c(1, 2, 3)      
+Vector B: c(4, 5)
+
+If you perform the operation A + B, what will be the result of vector recycling?
+
+```{r,echo=FALSE}
+library(webexercises)
+choices <- c( 
+"c(5, 7, 3)",
+"c(5, 7, 8)",
+answer = "c(5, 7, 7)",
+"c(5, 5, 3)")
+```
+
+`r longmcq(choices)`
+
+Please select the correct option.
+
+
 ## Exercise 2: vector addition
 
-Use vector addition to construct a vector of length 4 that contains a 1 in even rows and a 2 in odd rows. Then insert this vector into the data frame `a` into a column named `rowNum6`.
+Use vector addition to construct a vector of length 4 that contains a 1 in even positions and a 2 in odd positions. Then insert this vector into the data frame `a` into a column named `rowNum6`.
 
 ``` {webr-r}
 # Edit/add code here
