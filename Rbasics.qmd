@@ -15,7 +15,7 @@ This exercise should help answer this question: 'In what type of situations woul
 Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
 
 ::: callout-warning
-Use a Chrome browser. If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying this line of R code: `(a <- data.frame(n = 1:4))`
+If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying this line of R code: `(a <- data.frame(n = 1:4))`. 
 :::
 
 ``` {webr-r}
