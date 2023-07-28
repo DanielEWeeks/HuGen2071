@@ -369,8 +369,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions"><span class="header-section-number">5.1</span> Questions</a>
   <ul class="collapse">
-  <li><a href="#vector-addition-and-recycling" id="toc-vector-addition-and-recycling" class="nav-link" data-scroll-target="#vector-addition-and-recycling"><span class="header-section-number">5.1.1</span> Vector addition and recycling</a></li>
-  <li><a href="#recycling-in-a-dataframe" id="toc-recycling-in-a-dataframe" class="nav-link" data-scroll-target="#recycling-in-a-dataframe"><span class="header-section-number">5.1.2</span> Recycling in a dataframe</a></li>
+  <li><a href="#recycling-in-a-dataframe" id="toc-recycling-in-a-dataframe" class="nav-link" data-scroll-target="#recycling-in-a-dataframe"><span class="header-section-number">5.1.1</span> Recycling in a dataframe</a></li>
+  <li><a href="#vector-addition-and-recycling" id="toc-vector-addition-and-recycling" class="nav-link" data-scroll-target="#vector-addition-and-recycling"><span class="header-section-number">5.1.2</span> Vector addition and recycling</a></li>
   </ul></li>
   <li><a href="#exercise-1-recycling" id="toc-exercise-1-recycling" class="nav-link" data-scroll-target="#exercise-1-recycling"><span class="header-section-number">5.2</span> Exercise 1: recycling</a></li>
   <li><a href="#exercise-2-vector-addition" id="toc-exercise-2-vector-addition" class="nav-link" data-scroll-target="#exercise-2-vector-addition"><span class="header-section-number">5.3</span> Exercise 2: vector addition</a></li>
@@ -405,19 +405,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="questions" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">5.1</span> Questions</h2>
-<section id="vector-addition-and-recycling" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="vector-addition-and-recycling"><span class="header-section-number">5.1.1</span> Vector addition and recycling</h3>
-<p>Suppose you have two vectors in R:</p>
-<p>Vector A: c(1, 2, 3)<br>
-Vector B: c(4, 5)</p>
-<p>If you perform the operation A + B, what will be the result of vector recycling?</p>
-<div id="radio_FJABHZABSA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FJABHZABSA" value="answer"> <span>c(5, 7, 7)</span></label><label><input type="radio" autocomplete="off" name="radio_FJABHZABSA" value=""> <span>c(5, 7, 3)</span></label><label><input type="radio" autocomplete="off" name="radio_FJABHZABSA" value=""> <span>c(5, 7, 8)</span></label><label><input type="radio" autocomplete="off" name="radio_FJABHZABSA" value=""> <span>c(5, 5, 3)</span></label>
-</div>
-<p>Please select the correct option.</p>
-</section>
-<section id="recycling-in-a-dataframe" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="recycling-in-a-dataframe"><span class="header-section-number">5.1.2</span> Recycling in a dataframe</h3>
+<section id="recycling-in-a-dataframe" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="recycling-in-a-dataframe"><span class="header-section-number">5.1.1</span> Recycling in a dataframe</h3>
 <p>Suppose you have a dataframe <code>df</code> with three columns, <code>A</code>, <code>B</code>, and <code>C</code>, as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -439,8 +428,19 @@ Vector B: c(4, 5)</p>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>D <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What will be the <code>D</code> column of <code>df</code> after the operation?</p>
-<div id="radio_TBEMHTKWJO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TBEMHTKWJO" value=""> <span>c(13, 14, NA, NA)</span></label><label><input type="radio" autocomplete="off" name="radio_TBEMHTKWJO" value=""> <span>c(13, 14, 11, 12)</span></label><label><input type="radio" autocomplete="off" name="radio_TBEMHTKWJO" value="answer"> <span>c(13, 14, 13, 14)</span></label><label><input type="radio" autocomplete="off" name="radio_TBEMHTKWJO" value=""> <span>c(13, 14)</span></label>
+<div id="radio_WKGXQZDYMF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WKGXQZDYMF" value=""> <span>c(13, 14, NA, NA)</span></label><label><input type="radio" autocomplete="off" name="radio_WKGXQZDYMF" value=""> <span>c(13, 14, 11, 12)</span></label><label><input type="radio" autocomplete="off" name="radio_WKGXQZDYMF" value="answer"> <span>c(13, 14, 13, 14)</span></label><label><input type="radio" autocomplete="off" name="radio_WKGXQZDYMF" value=""> <span>c(13, 14)</span></label>
+</div>
+<p>Please select the correct option.</p>
+</section>
+<section id="vector-addition-and-recycling" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="vector-addition-and-recycling"><span class="header-section-number">5.1.2</span> Vector addition and recycling</h3>
+<p>Suppose you have two vectors in R:</p>
+<p>Vector A: c(1, 2, 3)<br>
+Vector B: c(4, 5)</p>
+<p>If you perform the operation A + B, what will be the result of vector recycling?</p>
+<div id="radio_CJPZOFQSXK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CJPZOFQSXK" value=""> <span>c(5, 7, 3)</span></label><label><input type="radio" autocomplete="off" name="radio_CJPZOFQSXK" value=""> <span>c(5, 7, 8)</span></label><label><input type="radio" autocomplete="off" name="radio_CJPZOFQSXK" value="answer"> <span>c(5, 7, 7)</span></label><label><input type="radio" autocomplete="off" name="radio_CJPZOFQSXK" value=""> <span>c(5, 5, 3)</span></label>
 </div>
 <p>Please select the correct option.</p>
 </section>
