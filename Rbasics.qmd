@@ -4,27 +4,6 @@
 
 ## Questions
 
-### Vector addition and recycling
-
-Suppose you have two vectors in R:
-
-Vector A: c(1, 2, 3)      
-Vector B: c(4, 5)
-
-If you perform the operation A + B, what will be the result of vector recycling?
-
-```{r,echo=FALSE}
-library(webexercises)
-choices <- c(answer = "c(5, 7, 7)", 
-"c(5, 7, 3)",
-"c(5, 7, 8)",
-"c(5, 5, 3)")
-```
-
-`r longmcq(choices)`
-
-Please select the correct option.
-
 ### Recycling in a dataframe
 
 Suppose you have a dataframe `df` with three columns, `A`, `B`, and `C`, as follows:
@@ -58,6 +37,29 @@ answer = "c(13, 14, 13, 14)",
 `r longmcq(choices)`
 
 Please select the correct option.
+
+### Vector addition and recycling
+
+Suppose you have two vectors in R:
+
+Vector A: c(1, 2, 3)      
+Vector B: c(4, 5)
+
+If you perform the operation A + B, what will be the result of vector recycling?
+
+```{r,echo=FALSE}
+library(webexercises)
+choices <- c( 
+"c(5, 7, 3)",
+"c(5, 7, 8)",
+answer = "c(5, 7, 7)",
+"c(5, 5, 3)")
+```
+
+`r longmcq(choices)`
+
+Please select the correct option.
+
 
 ## Exercise 1: recycling
 
