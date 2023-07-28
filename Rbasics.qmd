@@ -1,16 +1,75 @@
 # R Basics Group Exercise
 
-## Set up the data frame `a`
+
+
+## Questions
+
+### Vector addition and recycling
+
+Suppose you have two vectors in R:
+
+Vector A: c(1, 2, 3)      
+Vector B: c(4, 5)
+
+If you perform the operation A + B, what will be the result of vector recycling?
+
+```{r,echo=FALSE}
+library(webexercises)
+choices <- c(answer = "c(5, 7, 7)", 
+"c(5, 7, 3)",
+"c(5, 7, 8)",
+"c(5, 5, 3)")
+```
+
+`r longmcq(choices)`
+
+Please select the correct option.
+
+### Recycling in a dataframe
+
+Suppose you have a dataframe `df` with three columns, `A`, `B`, and `C`, as follows:
+
+```{r}
+df <- data.frame(
+A = c(1, 2, 3, 4),
+B = c(5, 6, 7, 8),
+C = c(9, 10, 11, 12)
+)
+df
+```
+
+Now, you want to insert a shorter vector `D` into the `df` dataframe:
+
+```{r}
+df$D <- c(13,14)
+```
+
+What will be the `D` column of `df` after the operation?
+
+```{r, echo=FALSE}
+choices = c(
+"c(13, 14, NA, NA)",
+"c(13, 14, 11, 12)",
+answer = "c(13, 14, 13, 14)",
+"c(13, 14)"
+)
+```
+
+`r longmcq(choices)`
+
+Please select the correct option.
+
+## Exercise 1: recycling
+
+This exercise should help answer this question: 'In what type of situations would "recycling" be useful?'
+
+First, let's set up the data frame `a`
 
 ```{r}
 a <- data.frame(n = 1:4)
 dim(a)
 a
 ```
-
-## Exercise 1: recycling
-
-This exercise should help answer this question: 'In what type of situations would "recycling" be useful?'
 
 Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
 
