@@ -270,7 +270,7 @@
     "href": "Rbasics.html#exercise-1-recycling",
     "title": "5  R Basics Group Exercise",
     "section": "5.2 Exercise 1: recycling",
-    "text": "5.2 Exercise 1: recycling\nThis exercise should help answer this question: ‘In what type of situations would “recycling” be useful?’\nUse recycling to insert into the data frame a a column named rowNum1 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nWarning\n\n\n\nUse a Chrome browser. If the following WebR chunk is working properly, you should see an editor window below the Run code tab displaying this line of R code: (a &lt;- data.frame(n = 1:4))\n\n\nLoading webR...\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe R command\na$rowNum1 &lt;- NA\nwould insert a new row into the data frame a full of NA values.\n\n\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\na$rowNum1 &lt;- c(1,2)\na\n\n  n rowNum1\n1 1       1\n2 2       2\n3 3       1\n4 4       2"
+    "text": "5.2 Exercise 1: recycling\nThis exercise should help answer this question: ‘In what type of situations would “recycling” be useful?’\nUse recycling to insert into the data frame a a column named rowNum1 that contains a 1 in even rows and a 2 in odd rows.\n\n\n\n\n\n\nWarning\n\n\n\nIf the following WebR chunk is working properly, you should see an editor window below the Run code tab displaying this line of R code: (a &lt;- data.frame(n = 1:4)).\n\n\nLoading webR...\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe R command\na$rowNum1 &lt;- NA\nwould insert a new row into the data frame a full of NA values.\n\n\n\n\n\n\n\n\nExpand to see the answer\n\n\n\n\n\n\na$rowNum1 &lt;- c(1,2)\na\n\n  n rowNum1\n1 1       1\n2 2       2\n3 3       1\n4 4       2"
   },
   {
     "objectID": "Rbasics.html#exercise-2-vector-addition",
@@ -410,14 +410,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "8  R Tidyverse Exercise",
     "section": "8.4 Gather",
-    "text": "8.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  0.588 -3.75  -1.09\n2 2009-01-02 -0.663 -0.735  3.28\n3 2009-01-03  0.554  1.71  -4.07\n4 2009-01-04 -0.953  0.359  8.62\n5 2009-01-05 -0.124 -1.05  -1.55\n6 2009-01-06  1.81  -3.09   2.17\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.588\n2 2009-01-02 X     -0.663\n3 2009-01-03 X      0.554\n4 2009-01-04 X     -0.953\n5 2009-01-05 X     -0.124\n6 2009-01-06 X      1.81"
+    "text": "8.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X        Y      Z\n  &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -2.62  -0.00636 -4.25 \n2 2009-01-02 -0.330  0.0860  -0.152\n3 2009-01-03 -0.702 -0.565   -1.35 \n4 2009-01-04 -1.04   0.477    1.30 \n5 2009-01-05  0.484 -3.13    -3.49 \n6 2009-01-06 -0.339 -0.372   -0.952\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -2.62 \n2 2009-01-02 X     -0.330\n3 2009-01-03 X     -0.702\n4 2009-01-04 X     -1.04 \n5 2009-01-05 X      0.484\n6 2009-01-06 X     -0.339"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "8  R Tidyverse Exercise",
     "section": "8.5 Pivot_longer",
-    "text": "8.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.588\n2 2009-01-01 Y     -3.75 \n3 2009-01-01 Z     -1.09 \n4 2009-01-02 X     -0.663\n5 2009-01-02 Y     -0.735\n6 2009-01-02 Z      3.28"
+    "text": "8.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock    price\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;\n1 2009-01-01 X     -2.62   \n2 2009-01-01 Y     -0.00636\n3 2009-01-01 Z     -4.25   \n4 2009-01-02 X     -0.330  \n5 2009-01-02 Y      0.0860 \n6 2009-01-02 Z     -0.152"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -914,7 +914,7 @@
     "href": "webR_test.html",
     "title": "16  WebR - R in the web browser",
     "section": "",
-    "text": "This is a WebR-enabled code cell in a Quarto HTML document which works when viewed in a Chrome browser.\nLoading webR...\n\n\n\n\nLink: WebR."
+    "text": "This is a WebR-enabled code cell in a Quarto HTML document. As the WebR documentation states: “WebR makes it possible to run R code in the browser without the need for an R server to execute the code: the R interpreter runs directly on the user’s machine.”\nLoading webR...\n\n\n\n\nLink: WebR."
   },
   {
     "objectID": "TechnicalDetails.html#quarto",
