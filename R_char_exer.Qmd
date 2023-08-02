@@ -51,6 +51,11 @@ Hint: Use the `formatC` function.
 
 You can interactively run R within this WebR chunk by clicking the `Run code` tab.  Note that this is a limited version of R which runs within your web browser.  
 
+::: callout-warning
+Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet.
+:::
+
+
 ::: callout-note
 This `Run code` WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end. 
 :::

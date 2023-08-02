@@ -5,8 +5,8 @@
 ### Learning Objectives
 
 -   Review the syllabus
--   Describe bioinformatics
--   List various type of data used in genetics
+-   Describe bioinformatics and genetic/genomic data
+-   Describe dbGaP, an important genomic data repository
 
 ### Readings
 
@@ -167,7 +167,7 @@ Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
 
 Supplementary Reading: Spector (2008) Chapters 8 & 9
 
-## Merging Data
+## R: Merging Data
 
 ### Learning Objectives
 
@@ -230,7 +230,7 @@ Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/bl
 
 Suggested Reading: Wickham (2009) Chapters 2 & 3
 
-## Review and Help with Project
+
 
 ## Data Quality Checking and Filters
 
@@ -260,32 +260,6 @@ Buffalo (2015) Chapter 3
 
 Terminus, a web-based game for learning and practicing basic UNIX commands <https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html>
 
-## PLINK & PLINK Format
-
-### Learning Objectives
-
--   Describe PLINK formats
--   Create PLINK datafiles
--   Use PLINK to perform genetic association testing
-
-### Readings
-
-Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <https://doi.org/10.1002/mpr.1608>
-
-<https://github.com/MareesAT/GWA_tutorial/>
-
-## PLINK Advanced
-
-### Learning Objectives
-
--   To learn how to use PLINK to manipulate data files
-
-## PLINK Computer Lab
-
-### Learning Objectives
-
--   To practice using PLINK to manipulate data files
-
 ## Unix: Interacting with Processes, Cluster Jobs, Shell Scripting
 
 ### Learning Objectives
@@ -303,6 +277,50 @@ Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/she
 Buffalo (2015) Chapter 7 up to the start of "Sorting Plain-Text Data with Sort" section.
 
 Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (<https://swcarpentry.github.io/shell-novice/>)
+
+
+## Genetic Data Structures
+
+### Learning Objectives
+
+-   To learn about what genetic data is stored and principles for storing it
+
+### Readings
+
+Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture's folder)
+
+Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <https://doi.org/10.1007/BF01408073>. PMID: 24234481.
+
+Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <https://doi.org/10.1007/s10897-008-9169-9>. Epub 2008 Sep 16. PMID: 18792771.
+
+Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. <https://doi.org/10.1002/jgc4.1621>. Epub ahead of print. PMID: 36106433.
+
+## PLINK I
+
+### Learning Objectives
+
+-   Describe PLINK formats
+-   Create PLINK datafiles
+-   Use PLINK to perform genetic association testing
+
+### Readings
+
+Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <https://doi.org/10.1002/mpr.1608>
+
+<https://github.com/MareesAT/GWA_tutorial/>
+
+## PLINK II
+
+### Learning Objectives
+
+-   To learn how to use PLINK to manipulate data files
+
+## PLINK Computer Lab
+
+### Learning Objectives
+
+-   To practice using PLINK to manipulate data files
+
 
 ## Unix: Data Manipulation
 
@@ -345,21 +363,6 @@ Software Carpentry Unix Shell intro parts 5-7 <https://swcarpentry.github.io/she
 Software Carpentry Unix Shell intro parts 5-7 (<https://swcarpentry.github.io/shell-novice/>)
 
 
-## Genetic Data Structures
-
-### Learning Objectives
-
--   To learn about what genetic data is stored and principles for storing it
-
-### Readings
-
-Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture's folder)
-
-Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <https://doi.org/10.1007/BF01408073>. PMID: 24234481.
-
-Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <https://doi.org/10.1007/s10897-008-9169-9>. Epub 2008 Sep 16. PMID: 18792771.
-
-Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. <https://doi.org/10.1002/jgc4.1621>. Epub ahead of print. PMID: 36106433.
 
 ## VCF, bcftools, vcftools
 
