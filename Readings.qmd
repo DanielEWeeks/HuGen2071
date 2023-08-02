@@ -14,6 +14,7 @@ Barnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists lear
 
 Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. <https://doi.org/10.1371/journal.pcbi.1000589>
 
+
 ## GitHub
 
 ### Learning Objectives
@@ -201,7 +202,6 @@ Plotting with ggplot2 <https://datacarpentry.org/R-ecology-lesson/04-visualizati
 
 Supplementary Reading: Wickham (2009) Chapters 2 & 3
 
-
 ## R: Exploratory Data Analysis
 
 ### Learning Objectives
@@ -229,8 +229,6 @@ Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually wi
 Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/blog/interactiveplots>
 
 Suggested Reading: Wickham (2009) Chapters 2 & 3
-
-
 
 ## Data Quality Checking and Filters
 
@@ -278,7 +276,6 @@ Buffalo (2015) Chapter 7 up to the start of "Sorting Plain-Text Data with Sort" 
 
 Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (<https://swcarpentry.github.io/shell-novice/>)
 
-
 ## Genetic Data Structures
 
 ### Learning Objectives
@@ -321,7 +318,6 @@ Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks E
 
 -   To practice using PLINK to manipulate data files
 
-
 ## Unix: Data Manipulation
 
 ### Learning Objectives
@@ -362,8 +358,6 @@ Software Carpentry Unix Shell intro parts 5-7 <https://swcarpentry.github.io/she
 
 Software Carpentry Unix Shell intro parts 5-7 (<https://swcarpentry.github.io/shell-novice/>)
 
-
-
 ## VCF, bcftools, vcftools
 
 ### Learning Objectives
@@ -400,7 +394,3 @@ Relevant links: The Sequence Alignment/Map Format Specification <http://samtools
 ### Readings
 
 Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/>
-
-
-
-

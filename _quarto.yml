@@ -11,7 +11,7 @@ book:
   date-format: long
   chapters:
   - index.qmd
-  - preparation.qmd
+  - preparation.qmd 
   - intro.qmd
   - logistics.qmd
   - Readings.qmd
