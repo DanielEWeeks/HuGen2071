@@ -95,20 +95,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/editor/editor.main.css">
 <style>
-  .CodeMirror pre {
+  .monaco-editor pre {
     background-color: unset !important;
   }
+
   .btn-webr {
     background-color: #EEEEEE;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/r/r.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/loader.js"></script>
 <script type="module">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs'
+    }
+  });
+
 
   // Start a timer
   const initializeWebRTimerStart = performance.now();
@@ -144,6 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     var startupMessageWebR = document.createElement("p");
     startupMessageWebR.innerText = "🟡 Loading...";
     startupMessageWebR.setAttribute("id", "startup");
+    // Add `aria-live` to auto-announce the startup status to screen readers
+    startupMessageWebR.setAttribute("aria-live", "assertive");
 
     // Put everything together
     secondInnerDivContents.appendChild(startupMessageWebR);
@@ -167,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
   // Retrieve the webr.mjs
   import { WebR } from "https://webr.r-wasm.org/v0.1.1/webr.mjs";
-  
+
   // Populate WebR options with defaults or new values based on 
   // webr meta
   globalThis.webR = new WebR({
@@ -203,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     // If initialized, switch to a green light
     startupMessageWebR.innerText = "🟢 Ready!"
   }
-</script>  
+</script>
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -557,6 +567,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="interactive-webr-chunk" class="level4" data-number="6.4.1.1">
 <h4 data-number="6.4.1.1" class="anchored" data-anchor-id="interactive-webr-chunk"><span class="header-section-number">6.4.1.1</span> Interactive WebR chunk</h4>
 <p>You can interactively run R within this WebR chunk by clicking the <code>Run code</code> tab. Note that this is a limited version of R which runs within your web browser.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -570,20 +593,26 @@ Note
 <p>This <code>Run code</code> WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end.</p>
 </div>
 </div>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading webR...</button>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
+  webR...</button>
 <div id="webr-editor-1"></div>
-<div id="webr-code-output-1"><pre style="visibility: hidden"></pre></div>
+<div id="webr-code-output-1" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
 <script type="module">
+  // Retrieve webR code cell information
   const runButton = document.getElementById("webr-run-button-1");
   const outputDiv = document.getElementById("webr-code-output-1");
   const editorDiv = document.getElementById("webr-editor-1");
 
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: `# Download files within the WebR environment
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# Download files within the WebR environment
 dir.create("data")
 infiles <- c("data/clinical_data.txt","data/lab_data.txt","data/genotype_data.txt")
 root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
@@ -600,73 +629,147 @@ kable(lab)
 geno <- read.table(file = "data/genotype_data.txt", header = TRUE)
 kable(geno)
 # Edit/add R code here`,
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
   });
 
-  runButton.onclick = async () => {
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
     runButton.disabled = true;
+
+    // Create a canvas variable for graphics
     let canvas = undefined;
+
+    // Initialize webR
     await globalThis.webR.init();
+
+    // Setup a webR canvas
     await webR.evalRVoid("canvas(width=504, height=360)");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
       withAutoprint: true,
       captureStreams: true,
       captureConditions: false,
       env: webR.objs.emptyEnv,
     });
+
+    // Start attempting to parse the result data
     try {
+
+      // Stop creating images
       await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
       const out = result.output.filter(
         evt => evt.type == "stdout" || evt.type == "stderr"
       ).map((evt) => evt.data).join("\n");
 
+      // Clean the state
       const msgs = await webR.flush();
+
+      // Output each image stored
       msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
+        if (msg.type === "canvasExec") {
           if (!canvas) {
             canvas = document.createElement("canvas");
             canvas.setAttribute("width", 2 * 504);
             canvas.setAttribute("height", 2 * 360);
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
           }
           Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
         }
       });
 
+      // Nullify the outputDiv of content
       outputDiv.innerHTML = "";
+
+      // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
+        // Display results as text
         const code = document.createElement("code");
         code.innerText = out;
         pre.appendChild(code);
       } else {
+        // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
       outputDiv.appendChild(pre);
 
+      // Place the graphics on the canvas
       if (canvas) {
         const p = document.createElement("p");
         p.appendChild(canvas);
         outputDiv.appendChild(p);
       }
     } finally {
+      // Clean up the remaining code
       webRCodeShelter.purge();
       runButton.disabled = false;
     }
   }
-</script>
 
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
 </section>
 </section>
 <section id="answer-1" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">6.4.2</span> Answer 1</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -675,7 +778,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clin<span class="sc">$</span>SUBJECT_ID <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"SG"</span>, <span class="fu">formatC</span>(clin<span class="sc">$</span>ID, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">flag =</span> <span class="st">"0000"</span>))</span>
@@ -766,88 +869,168 @@ Warning
 <p>To read in and load the data within the WebR environment, be sure to run all of the WebR chunks in order. For example, to usefully run R code in this WebR chunk here, you first need to run the WebR chunk above in Question 1.</p>
 </div>
 </div>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading webR...</button>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
+  webR...</button>
 <div id="webr-editor-2"></div>
-<div id="webr-code-output-2"><pre style="visibility: hidden"></pre></div>
+<div id="webr-code-output-2" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
 <script type="module">
+  // Retrieve webR code cell information
   const runButton = document.getElementById("webr-run-button-2");
   const outputDiv = document.getElementById("webr-code-output-2");
   const editorDiv = document.getElementById("webr-editor-2");
 
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: `# str_replace_all is in the stringr R package
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# str_replace_all is in the stringr R package
 library(stringr)
 # Edit/add code here`,
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
   });
 
-  runButton.onclick = async () => {
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
     runButton.disabled = true;
+
+    // Create a canvas variable for graphics
     let canvas = undefined;
+
+    // Initialize webR
     await globalThis.webR.init();
+
+    // Setup a webR canvas
     await webR.evalRVoid("canvas(width=504, height=360)");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
       withAutoprint: true,
       captureStreams: true,
       captureConditions: false,
       env: webR.objs.emptyEnv,
     });
+
+    // Start attempting to parse the result data
     try {
+
+      // Stop creating images
       await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
       const out = result.output.filter(
         evt => evt.type == "stdout" || evt.type == "stderr"
       ).map((evt) => evt.data).join("\n");
 
+      // Clean the state
       const msgs = await webR.flush();
+
+      // Output each image stored
       msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
+        if (msg.type === "canvasExec") {
           if (!canvas) {
             canvas = document.createElement("canvas");
             canvas.setAttribute("width", 2 * 504);
             canvas.setAttribute("height", 2 * 360);
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
           }
           Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
         }
       });
 
+      // Nullify the outputDiv of content
       outputDiv.innerHTML = "";
+
+      // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
+        // Display results as text
         const code = document.createElement("code");
         code.innerText = out;
         pre.appendChild(code);
       } else {
+        // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
       outputDiv.appendChild(pre);
 
+      // Place the graphics on the canvas
       if (canvas) {
         const p = document.createElement("p");
         p.appendChild(canvas);
         outputDiv.appendChild(p);
       }
     } finally {
+      // Clean up the remaining code
       webRCodeShelter.purge();
       runButton.disabled = false;
     }
   }
-</script>
 
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
 </section>
 <section id="answer-2" class="level3" data-number="6.4.4">
 <h3 data-number="6.4.4" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">6.4.4</span> Answer 2</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -856,7 +1039,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lab<span class="sc">$</span>ID2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"SG"</span>,<span class="st">""</span>,lab<span class="sc">$</span>ID))</span>
@@ -974,88 +1157,168 @@ Expand to see solution
 </div>
 </div>
 <p>Hint: Use either the <code>str_split_fixed</code> function from the <code>stringr</code> package or the <code>separate</code> function from the <code>tidyr</code> package.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading webR...</button>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
+  webR...</button>
 <div id="webr-editor-3"></div>
-<div id="webr-code-output-3"><pre style="visibility: hidden"></pre></div>
+<div id="webr-code-output-3" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
 <script type="module">
+  // Retrieve webR code cell information
   const runButton = document.getElementById("webr-run-button-3");
   const outputDiv = document.getElementById("webr-code-output-3");
   const editorDiv = document.getElementById("webr-editor-3");
 
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: `# separate is in the tidyr R package
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# separate is in the tidyr R package
 library(tidyr)
 # Edit/add code here`,
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
   });
 
-  runButton.onclick = async () => {
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
     runButton.disabled = true;
+
+    // Create a canvas variable for graphics
     let canvas = undefined;
+
+    // Initialize webR
     await globalThis.webR.init();
+
+    // Setup a webR canvas
     await webR.evalRVoid("canvas(width=504, height=360)");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
       withAutoprint: true,
       captureStreams: true,
       captureConditions: false,
       env: webR.objs.emptyEnv,
     });
+
+    // Start attempting to parse the result data
     try {
+
+      // Stop creating images
       await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
       const out = result.output.filter(
         evt => evt.type == "stdout" || evt.type == "stderr"
       ).map((evt) => evt.data).join("\n");
 
+      // Clean the state
       const msgs = await webR.flush();
+
+      // Output each image stored
       msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
+        if (msg.type === "canvasExec") {
           if (!canvas) {
             canvas = document.createElement("canvas");
             canvas.setAttribute("width", 2 * 504);
             canvas.setAttribute("height", 2 * 360);
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
           }
           Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
         }
       });
 
+      // Nullify the outputDiv of content
       outputDiv.innerHTML = "";
+
+      // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
+        // Display results as text
         const code = document.createElement("code");
         code.innerText = out;
         pre.appendChild(code);
       } else {
+        // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
       outputDiv.appendChild(pre);
 
+      // Place the graphics on the canvas
       if (canvas) {
         const p = document.createElement("p");
         p.appendChild(canvas);
         outputDiv.appendChild(p);
       }
     } finally {
+      // Clean up the remaining code
       webRCodeShelter.purge();
       runButton.disabled = false;
     }
   }
-</script>
 
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
 </section>
 <section id="answer-3" class="level3" data-number="6.4.6">
 <h3 data-number="6.4.6" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">6.4.6</span> Answer 3</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1064,7 +1327,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">str_split_fixed</span>(geno<span class="sc">$</span>Sample, <span class="at">pattern =</span> <span class="st">"-"</span>,<span class="at">n=</span><span class="dv">3</span>)</span>
@@ -1229,20 +1492,26 @@ Expand to see solution
 </table>
 </div>
 </div>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading webR...</button>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
+  webR...</button>
 <div id="webr-editor-4"></div>
-<div id="webr-code-output-4"><pre style="visibility: hidden"></pre></div>
+<div id="webr-code-output-4" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
 <script type="module">
+  // Retrieve webR code cell information
   const runButton = document.getElementById("webr-run-button-4");
   const outputDiv = document.getElementById("webr-code-output-4");
   const editorDiv = document.getElementById("webr-editor-4");
 
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: `# Download files within the WebR environment
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# Download files within the WebR environment
 dir.create("data")
 infiles <- c("data/joint_data.txt")
 root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
@@ -1252,72 +1521,146 @@ for (i in 1:length(infiles)) {
 joint <- read.table(file = "data/joint_data.txt", header = TRUE)
 kable(joint)
 # Edit/add code here`,
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
   });
 
-  runButton.onclick = async () => {
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
     runButton.disabled = true;
+
+    // Create a canvas variable for graphics
     let canvas = undefined;
+
+    // Initialize webR
     await globalThis.webR.init();
+
+    // Setup a webR canvas
     await webR.evalRVoid("canvas(width=504, height=360)");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
       withAutoprint: true,
       captureStreams: true,
       captureConditions: false,
       env: webR.objs.emptyEnv,
     });
+
+    // Start attempting to parse the result data
     try {
+
+      // Stop creating images
       await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
       const out = result.output.filter(
         evt => evt.type == "stdout" || evt.type == "stderr"
       ).map((evt) => evt.data).join("\n");
 
+      // Clean the state
       const msgs = await webR.flush();
+
+      // Output each image stored
       msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
+        if (msg.type === "canvasExec") {
           if (!canvas) {
             canvas = document.createElement("canvas");
             canvas.setAttribute("width", 2 * 504);
             canvas.setAttribute("height", 2 * 360);
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
           }
           Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
         }
       });
 
+      // Nullify the outputDiv of content
       outputDiv.innerHTML = "";
+
+      // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
+        // Display results as text
         const code = document.createElement("code");
         code.innerText = out;
         pre.appendChild(code);
       } else {
+        // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
       outputDiv.appendChild(pre);
 
+      // Place the graphics on the canvas
       if (canvas) {
         const p = document.createElement("p");
         p.appendChild(canvas);
         outputDiv.appendChild(p);
       }
     } finally {
+      // Clean up the remaining code
       webRCodeShelter.purge();
       runButton.disabled = false;
     }
   }
-</script>
 
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
 </section>
 <section id="answer-4" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="answer-4"><span class="header-section-number">6.5.2</span> Answer 4</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1326,7 +1669,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
