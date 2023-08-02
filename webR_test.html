@@ -396,7 +396,11 @@ Warning
     editor = monaco.editor.create(editorDiv, {
       value: `# Edit/add code here
 fit = lm(mpg ~ am, data = mtcars)
-summary(fit)`,
+summary(fit)
+library(ggplot2)
+ggplot(mtcars, aes(x=am,y=mpg)) + 
+   geom_point() + 
+   geom_smooth(method="lm")`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
