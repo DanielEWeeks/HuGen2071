@@ -23,11 +23,26 @@ Dudley JT, Butte AJ. A quick guide for developing effective bioinformatics progr
 -   To learn how to use GitHub Classroom
 -   To learn how to use GitHub within RStudio
 
-### Readings
+### Active Learning
+
+Version Control with git and GitHub (Sections 4.1 - 4.4): <https://learning.nceas.ucsb.edu/2020-11-RRCourse/session-4-version-control-with-git-and-github.html>
+
+### Required Readings
+
+*GitHub Classroom Guide for Students*
+
+To set up GitHub Classroom, please follow the steps to set up RStudio, R, and git in this detailed guide: <https://github.com/jfiksel/github-classroom-for-students>
+
+### Suggested Readings
 
 Happy Git and GitHub for the useR. <https://happygitwithr.com/>
 
 Perez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage of Git and GitHub. PLoS Comput Biol. 2016;12(7):e1004947. <https://doi.org/10.1371/journal.pcbi.1004947>
+
+Version Control with Git: <https://swcarpentry.github.io/git-novice/>
+
+Using Git from RStudio: <https://ucsbcarpentry.github.io/2020-08-10-Summer-GitBash/24-supplemental-rstudio/index.html>
+
 
 ## R: Basics
 
@@ -41,7 +56,7 @@ Perez-Riverol Y, Gatto L, Wang R, et al. Ten Simple Rules for Taking Advantage o
 
 <https://datacarpentry.org/R-genomics/01-intro-to-R.html>
 
-### Readings
+### Suggested Readings
 
 Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
 
@@ -67,7 +82,7 @@ Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through P
 
 Subsetting: <https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html>
 
-### Readings
+### Suggested Readings
 
 Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
 
@@ -127,7 +142,7 @@ Vectorization: <https://swcarpentry.github.io/r-novice-gapminder/09-vectorizatio
 
 <https://swcarpentry.github.io/r-novice-gapminder/10-functions.html>
 
-### Readings
+### Suggested Readings
 
 Functions Explained: <https://swcarpentry.github.io/r-novice-gapminder/10-functions.html>
 
@@ -144,7 +159,7 @@ Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
 
 <https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
 
-### Readings
+### Suggested Readings
 
 Introduction to the Tidyverse: Manipulating tibbles with dplyr <https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
 
@@ -162,7 +177,7 @@ Recoding data: Pay particular attention to the `Recoding values` and `Creating n
 
 <https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation.html>
 
-### Readings
+### Suggested Readings
 
 Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
 
@@ -179,7 +194,7 @@ Supplementary Reading: Spector (2008) Chapters 8 & 9
 
 <https://mikoontz.github.io/data-carpentry-week/lesson_joins.html>
 
-### Readings
+### Suggested Readings
 
 <https://mikoontz.github.io/data-carpentry-week/lesson_joins.html#practice_with_joins_using_gapminder>
 
@@ -196,7 +211,7 @@ Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Sp
 
 <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
 
-### Readings
+### Suggested Readings
 
 Plotting with ggplot2 <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
 
