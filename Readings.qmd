@@ -29,7 +29,7 @@ Version Control with git and GitHub (Sections 4.1 - 4.4): <https://learning.ncea
 
 ### Required Readings
 
-*GitHub Classroom Guide for Students*
+**GitHub Classroom Guide for Students**
 
 To set up GitHub Classroom, please follow the steps to set up RStudio, R, and git in this detailed guide: <https://github.com/jfiksel/github-classroom-for-students>
 
