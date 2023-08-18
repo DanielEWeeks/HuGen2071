@@ -33,6 +33,10 @@ Version Control with git and GitHub (Sections 4.1 - 4.4): <https://learning.ncea
 
 To set up GitHub Classroom, please follow the steps to set up RStudio, R, and git in this detailed guide: <https://github.com/jfiksel/github-classroom-for-students>
 
+Choose your GitHub user name carefully, as later in your career you may end up using it in a professional context.
+
+Be sure to generate an SSH key so you don’t need to enter your password every time you interact with GitHub. 
+
 ### Suggested Readings
 
 Happy Git and GitHub for the useR. <https://happygitwithr.com/>
@@ -193,6 +197,10 @@ Supplementary Reading: Spector (2008) Chapters 8 & 9
 ### Active Learning:
 
 <https://mikoontz.github.io/data-carpentry-week/lesson_joins.html>
+
+### Required Reading
+
+Tidy Animated Verbs <https://www.garrickadenbuie.com/project/tidyexplain/>
 
 ### Suggested Readings
 
