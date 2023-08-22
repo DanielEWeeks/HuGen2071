@@ -93,10 +93,14 @@ quarto add jmgirard/embedpdf
 To embed a PDF, use code like this:
 
 ```
-{{< pdf dummy.pdf width=100% height=800 >}}
+{{{< pdf dummy.pdf width=100% height=800 >}}}
 ```
 
 However, the PDF embedding done this way did not work in Chrome.
+
+Example:
+
+{{< pdf pdfs/GitHubIntro.pdf width=100% height=500 >}}
 
 So instead we used an iframe, which works on Chrome, Firefox, and Safari:
 
