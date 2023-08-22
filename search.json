@@ -256,7 +256,7 @@
     "href": "gitIntro.html#github-introduction-lecture",
     "title": "5  GitHub",
     "section": "5.1 GitHub Introduction lecture",
-    "text": "5.1 GitHub Introduction lecture\nHere’s a recording of this lecture (32 minutes 8 seconds):\nRecording\n\n\n\n\n\n\nNote\n\n\n\nNote that the embedding of the video below works within Firefox or Safari browsers, but did not work in Chrome."
+    "text": "5.1 GitHub Introduction lecture\nHere’s a recording of this lecture (32 minutes 8 seconds):\nRecording"
   },
   {
     "objectID": "gitIntro.html#github-introduction-slides",
@@ -494,14 +494,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "10  R Tidyverse Exercise",
     "section": "10.4 Gather",
-    "text": "10.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time              X       Y       Z\n  &lt;date&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01 -0.107   -0.666   2.33  \n2 2009-01-02  0.137   -0.283  -0.0379\n3 2009-01-03  0.00296 -0.938   3.67  \n4 2009-01-04  0.175   -0.685   7.72  \n5 2009-01-05  2.30     0.968  -4.90  \n6 2009-01-06  1.17    -0.0368 -4.55  \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock    price\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;\n1 2009-01-01 X     -0.107  \n2 2009-01-02 X      0.137  \n3 2009-01-03 X      0.00296\n4 2009-01-04 X      0.175  \n5 2009-01-05 X      2.30   \n6 2009-01-06 X      1.17"
+    "text": "10.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.192 -0.579  2.96\n2 2009-01-02  0.300  1.63   4.41\n3 2009-01-03  1.03  -4.82   8.89\n4 2009-01-04 -1.16  -1.83  -5.90\n5 2009-01-05 -0.468  2.62  -3.54\n6 2009-01-06 -0.294 -1.60   2.13\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.192\n2 2009-01-02 X      0.300\n3 2009-01-03 X      1.03 \n4 2009-01-04 X     -1.16 \n5 2009-01-05 X     -0.468\n6 2009-01-06 X     -0.294"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "10  R Tidyverse Exercise",
     "section": "10.5 Pivot_longer",
-    "text": "10.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.107 \n2 2009-01-01 Y     -0.666 \n3 2009-01-01 Z      2.33  \n4 2009-01-02 X      0.137 \n5 2009-01-02 Y     -0.283 \n6 2009-01-02 Z     -0.0379"
+    "text": "10.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.192\n2 2009-01-01 Y     -0.579\n3 2009-01-01 Z      2.96 \n4 2009-01-02 X      0.300\n5 2009-01-02 Y      1.63 \n6 2009-01-02 Z      4.41"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -1040,6 +1040,6 @@
     "href": "TechnicalDetails.html#embedpdf-quarto-extension",
     "title": "19  Technical Details",
     "section": "19.6 embedpdf Quarto extension",
-    "text": "19.6 embedpdf Quarto extension\nThis book uses the embedpdf Quarto extension from https://github.com/jmgirard/embedpdf, which was installed via this command:\nquarto add jmgirard/embedpdf\nTo embed a PDF, use code like this:\n\nHowever, the PDF embedding done this way did not work in Chrome.\nSo instead we used an iframe, which works on Chrome, Firefox, and Safari:\n &lt;iframe width=\"100%\" height=\"800\" src=\"pdfs/GitHubIntro.pdf\"&gt;"
+    "text": "19.6 embedpdf Quarto extension\nThis book uses the embedpdf Quarto extension from https://github.com/jmgirard/embedpdf, which was installed via this command:\nquarto add jmgirard/embedpdf\nTo embed a PDF, use code like this:\n\nHowever, the PDF embedding done this way did not work in Chrome.\nSo instead we used an iframe, which works on Chrome, Firefox, and Safari:\n &lt;iframe width=\"100%\" height=\"800\" src=\"pdfs/GitHubIntro.pdf\"&gt;\nNote that for iframe embedding of Panopto video from the University of Pittsburgh, one needs to use a credentialless iframe."
   }
 ]
