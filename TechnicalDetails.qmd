@@ -80,3 +80,18 @@ We also enabled the `webr` filter:
 filters:
     - webr
 ```
+
+
+## embedpdf Quarto extension
+
+This book uses the `embedpdf` Quarto extension from <https://github.com/jmgirard/embedpdf>, which was installed via this command:
+
+```
+quarto add jmgirard/embedpdf
+```
+
+To embed a PDF, use code like this:
+
+```
+{{< pdf dummy.pdf width=100% height=800 >}}
+```

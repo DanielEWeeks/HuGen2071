@@ -15,6 +15,7 @@ book:
   - intro.qmd
   - logistics.qmd
   - Readings.qmd
+  - gitIntro.qmd
   - Git_commands.Qmd
   - Rbasics.qmd
   - R_char_exer.Qmd
