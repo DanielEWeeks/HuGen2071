@@ -35,7 +35,12 @@ To set up GitHub Classroom, please follow the steps to set up RStudio, R, and gi
 
 Choose your GitHub user name carefully, as later in your career you may end up using it in a professional context.
 
-Be sure to generate an SSH key so you don’t need to enter your password every time you interact with GitHub. 
+Be sure to generate an SSH key so you don’t need to enter your password every time you interact with GitHub.
+
+::: callout-warning
+Do not clone your repository onto a OneDrive or other cloud folder, as git does not work properly on cloud drives.   Cloud drive systems typically maintain their own backup copies and this confuses git.
+:::
+
 
 ### Suggested Readings
 
