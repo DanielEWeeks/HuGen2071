@@ -81,8 +81,8 @@ Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through P
 
 ### Learning Objectives
 
--   To learn how to handle factors and dates with R
 -   To learn how to subset data with R
+-   To learn how to handle factors and dates with R
 -   To learn how to manipulate characters with R
 
 ### Active Learning:
@@ -90,6 +90,8 @@ Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through P
 <https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html>
 
 Subsetting: <https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html>
+
+Factors: <https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html>
 
 ### Suggested Readings
 
