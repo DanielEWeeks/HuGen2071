@@ -91,11 +91,9 @@ Supplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through P
 
 ### Active Learning:
 
-<https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html>
+Subsetting: <https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html>. This uses the gapminder data from [here](https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv).
 
-Subsetting: <https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html>
-
-Factors: <https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html>
+Factors: <https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html>.  This uses data from this [Zip file](https://swcarpentry.github.io/r-novice-inflammation/data/r-novice-inflammation-data.zip).
 
 ### Suggested Readings
 
