@@ -8,7 +8,11 @@
 -   Describe bioinformatics and genetic/genomic data
 -   Describe dbGaP, an important genomic data repository
 
-### Readings
+### Required Reading
+
+Mailman MD, Feolo M, Jin Y, Kimura M, Tryka K, Bagoutdinov R, Hao L, Kiang A, Paschall J, Phan L, Popova N, Pretel S, Ziyabari L, Lee M, Shao Y, Wang ZY, Sirotkin K, Ward M, Kholodov M, Zbicz K, Beck J, Kimelman M, Shevelev S, Preuss D, Yaschenko E, Graeff A, Ostell J, Sherry ST. The NCBI dbGaP database of genotypes and phenotypes. Nat Genet. 2007 Oct;39(10):1181-6. doi: 10.1038/ng1007-1181. PMID: 17898773; PMCID: PMC2031016. <https://pubmed.ncbi.nlm.nih.gov/17898773/>
+
+### Suggested Readings
 
 Barnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. <https://doi.org/10.1371/journal.pcbi.1005871>
 
