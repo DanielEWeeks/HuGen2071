@@ -74,7 +74,7 @@
     "href": "Readings.html#introduction-and-overview",
     "title": "4  Active Learning and Readings",
     "section": "4.1 Introduction and Overview",
-    "text": "4.1 Introduction and Overview\n\n4.1.1 Learning Objectives\n\nReview the syllabus\nDescribe bioinformatics and genetic/genomic data\nDescribe dbGaP, an important genomic data repository\n\n\n\n4.1.2 Readings\nBarnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. https://doi.org/10.1371/journal.pcbi.1005871\nDudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. https://doi.org/10.1371/journal.pcbi.1000589"
+    "text": "4.1 Introduction and Overview\n\n4.1.1 Learning Objectives\n\nReview the syllabus\nDescribe bioinformatics and genetic/genomic data\nDescribe dbGaP, an important genomic data repository\n\n\n\n4.1.2 Required Reading\nMailman MD, Feolo M, Jin Y, Kimura M, Tryka K, Bagoutdinov R, Hao L, Kiang A, Paschall J, Phan L, Popova N, Pretel S, Ziyabari L, Lee M, Shao Y, Wang ZY, Sirotkin K, Ward M, Kholodov M, Zbicz K, Beck J, Kimelman M, Shevelev S, Preuss D, Yaschenko E, Graeff A, Ostell J, Sherry ST. The NCBI dbGaP database of genotypes and phenotypes. Nat Genet. 2007 Oct;39(10):1181-6. doi: 10.1038/ng1007-1181. PMID: 17898773; PMCID: PMC2031016. https://pubmed.ncbi.nlm.nih.gov/17898773/\n\n\n4.1.3 Suggested Readings\nBarnes (2007) Chapter 1 Carey MA, Papin JA. Ten simple rules for biologists learning to program. PLoS Comput Biol. 2018;14(1):e1005871. https://doi.org/10.1371/journal.pcbi.1005871\nDudley JT, Butte AJ. A quick guide for developing effective bioinformatics programming skills. PLoS Comput Biol. 2009;5(12):e1000589. https://doi.org/10.1371/journal.pcbi.1000589"
   },
   {
     "objectID": "Readings.html#github",
@@ -494,14 +494,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "10  R Tidyverse Exercise",
     "section": "10.4 Gather",
-    "text": "10.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y       Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01  0.916  -2.63   -2.69  \n2 2009-01-02  0.473   0.151  -0.752 \n3 2009-01-03 -0.166   2.88   -4.44  \n4 2009-01-04  0.0556  1.76   -0.0306\n5 2009-01-05  0.444  -1.19   -8.70  \n6 2009-01-06 -0.955  -0.0244  3.04  \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.916 \n2 2009-01-02 X      0.473 \n3 2009-01-03 X     -0.166 \n4 2009-01-04 X      0.0556\n5 2009-01-05 X      0.444 \n6 2009-01-06 X     -0.955"
+    "text": "10.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.512   0.0105 -0.515\n2 2009-01-02  0.706  -1.08    2.53 \n3 2009-01-03  1.05   -4.30    0.631\n4 2009-01-04  0.209   1.36    4.67 \n5 2009-01-05 -0.0137  0.722   3.63 \n6 2009-01-06 -0.310  -0.353  -1.55 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.512 \n2 2009-01-02 X      0.706 \n3 2009-01-03 X      1.05  \n4 2009-01-04 X      0.209 \n5 2009-01-05 X     -0.0137\n6 2009-01-06 X     -0.310"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "10  R Tidyverse Exercise",
     "section": "10.5 Pivot_longer",
-    "text": "10.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.916\n2 2009-01-01 Y     -2.63 \n3 2009-01-01 Z     -2.69 \n4 2009-01-02 X      0.473\n5 2009-01-02 Y      0.151\n6 2009-01-02 Z     -0.752"
+    "text": "10.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.512 \n2 2009-01-01 Y      0.0105\n3 2009-01-01 Z     -0.515 \n4 2009-01-02 X      0.706 \n5 2009-01-02 Y     -1.08  \n6 2009-01-02 Z      2.53"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
