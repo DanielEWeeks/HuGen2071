@@ -406,26 +406,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X       Y        Z
-  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1 2009-01-01  0.155  2.20    -3.47  
-2 2009-01-02  0.274 -2.56   -11.0   
-3 2009-01-03  0.873 -0.0471  -0.544 
-4 2009-01-04  0.720 -2.06     0.0607
-5 2009-01-05 -1.07  -4.81    -0.181 
-6 2009-01-06 -0.782 -3.97    -5.08  </code></pre>
+  time             X      Y     Z
+  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 2009-01-01  0.0416  0.591  2.99
+2 2009-01-02  1.04   -1.16  -3.77
+3 2009-01-03  0.817  -3.27   6.16
+4 2009-01-04  0.701   1.32  -3.32
+5 2009-01-05 -1.16   -0.773  9.71
+6 2009-01-06  0.290   3.69   1.02</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.155
-2 2009-01-02 X      0.274
-3 2009-01-03 X      0.873
-4 2009-01-04 X      0.720
-5 2009-01-05 X     -1.07 
-6 2009-01-06 X     -0.782</code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X      0.0416
+2 2009-01-02 X      1.04  
+3 2009-01-03 X      0.817 
+4 2009-01-04 X      0.701 
+5 2009-01-05 X     -1.16  
+6 2009-01-06 X      0.290 </code></pre>
 </div>
 </div>
 </section>
@@ -438,12 +438,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock   price
   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X       0.155
-2 2009-01-01 Y       2.20 
-3 2009-01-01 Z      -3.47 
-4 2009-01-02 X       0.274
-5 2009-01-02 Y      -2.56 
-6 2009-01-02 Z     -11.0  </code></pre>
+1 2009-01-01 X      0.0416
+2 2009-01-01 Y      0.591 
+3 2009-01-01 Z      2.99  
+4 2009-01-02 X      1.04  
+5 2009-01-02 Y     -1.16  
+6 2009-01-02 Z     -3.77  </code></pre>
 </div>
 </div>
 </section>
@@ -1040,7 +1040,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("^(?:http:|https:)\/\/danielweeks\.github\.io\/HuGen2071");
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/danielweeks\.github\.io\/HuGen2071\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

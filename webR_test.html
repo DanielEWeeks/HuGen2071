@@ -992,7 +992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("^(?:http:|https:)\/\/danielweeks\.github\.io\/HuGen2071");
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/danielweeks\.github\.io\/HuGen2071\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
