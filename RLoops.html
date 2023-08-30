@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book – 8&nbsp; Loops in R</title>
+<title>HuGen2071 book – 7&nbsp; Loops in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./R_char_exer.html" rel="next">
-<link href="./Rbasics.html" rel="prev">
+<link href="./Rbasics.html" rel="next">
+<link href="./Git_commands.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RLoops.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Loops in R</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RLoops.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loops in R</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,14 +146,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Rbasics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
+  <a href="./RLoops.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./RLoops.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Loops in R</span></span></a>
+  <a href="./Rbasics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -244,8 +244,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#loops-in-r-lecture" id="toc-loops-in-r-lecture" class="nav-link active" data-scroll-target="#loops-in-r-lecture"><span class="header-section-number">8.1</span> Loops in R lecture</a></li>
-  <li><a href="#loops-in-r-slides" id="toc-loops-in-r-slides" class="nav-link" data-scroll-target="#loops-in-r-slides"><span class="header-section-number">8.2</span> Loops in R slides</a></li>
+  <li><a href="#loops-in-r-lecture" id="toc-loops-in-r-lecture" class="nav-link active" data-scroll-target="#loops-in-r-lecture"><span class="header-section-number">7.1</span> Loops in R lecture</a></li>
+  <li><a href="#loops-in-r-slides" id="toc-loops-in-r-slides" class="nav-link" data-scroll-target="#loops-in-r-slides"><span class="header-section-number">7.2</span> Loops in R slides</a></li>
   </ul>
 </nav>
     </div>
@@ -254,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Loops in R</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Loops in R</span></h1>
 </div>
 
 
@@ -269,23 +269,23 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="loops-in-r-lecture" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="loops-in-r-lecture"><span class="header-section-number">8.1</span> Loops in R lecture</h2>
+<section id="loops-in-r-lecture" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="loops-in-r-lecture"><span class="header-section-number">7.1</span> Loops in R lecture</h2>
 <p>Here’s a recording of this lecture (8 minutes 11 seconds):</p>
 <p><a href="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=650a64e6-e016-4f84-adea-b06e012838b1" class="external" target="_blank">Recording</a></p>
 <iframe credentialless="" src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=650a64e6-e016-4f84-adea-b06e012838b1&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
 </iframe>
 
 </section>
-<section id="loops-in-r-slides" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="loops-in-r-slides"><span class="header-section-number">8.2</span> Loops in R slides</h2>
+<section id="loops-in-r-slides" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="loops-in-r-slides"><span class="header-section-number">7.2</span> Loops in R slides</h2>
 <p><a href="pdfs/GitHubIntro.pdf" target="_blank">PDF slide set</a></p>
 <iframe width="100%" height="800" src="pdfs/R_loops.pdf">
 <div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-navbar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">9</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">7</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Preface</span> <span class="hidden" data-render-id="quarto-int-sidebar:/preparation.html"><span class="chapter-number">1</span>  <span class="chapter-title">Preparation</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/intro.html"><span class="chapter-number">2</span>  <span class="chapter-title">Introduction</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/logistics.html"><span class="chapter-number">3</span>  <span class="chapter-title">Logistics</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Readings.html"><span class="chapter-number">4</span>  <span class="chapter-title">Active Learning and Readings</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/gitIntro.html"><span class="chapter-number">5</span>  <span class="chapter-title">GitHub</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Git_commands.html"><span class="chapter-number">6</span>  <span class="chapter-title">Git Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Rbasics.html"><span class="chapter-number">7</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/RLoops.html"><span class="chapter-number">8</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_char_exer.html"><span class="chapter-number">9</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_Functions.html"><span class="chapter-number">10</span>  <span class="chapter-title">R Functions Excercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/exercise_tidyverse.html"><span class="chapter-number">11</span>  <span class="chapter-title">R Tidyverse Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/recoding_reshaping_interactive.html"><span class="chapter-number">12</span>  <span class="chapter-title">R Recoding Reshaping Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/merging_exercise.html"><span class="chapter-number">13</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_graphics_exercises.html"><span class="chapter-number">14</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/reorder_exercise.html"><span class="chapter-number">15</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/EDA.html"><span class="chapter-number">16</span>  <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Basic_Unix_commands.html"><span class="chapter-number">17</span>  <span class="chapter-title">Basic Shell Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/summary.html"><span class="chapter-number">18</span>  <span class="chapter-title">Summary</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/webR_test.html"><span class="chapter-number">19</span>  <span class="chapter-title">WebR - R in the web browser</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/TechnicalDetails.html"><span class="chapter-number">20</span>  <span class="chapter-title">Technical Details</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.html">References</span> <span class="hidden" data-render-id="quarto-breadcrumbs-6bfd9e1501d65336e3bd9a8a93f8ec70"><span class="chapter-number">8</span>  <span class="chapter-title">Loops in R</span></span></p>
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-navbar-title">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">8</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">6</span>  <span class="chapter-title">Git Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Preface</span> <span class="hidden" data-render-id="quarto-int-sidebar:/preparation.html"><span class="chapter-number">1</span>  <span class="chapter-title">Preparation</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/intro.html"><span class="chapter-number">2</span>  <span class="chapter-title">Introduction</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/logistics.html"><span class="chapter-number">3</span>  <span class="chapter-title">Logistics</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Readings.html"><span class="chapter-number">4</span>  <span class="chapter-title">Active Learning and Readings</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/gitIntro.html"><span class="chapter-number">5</span>  <span class="chapter-title">GitHub</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Git_commands.html"><span class="chapter-number">6</span>  <span class="chapter-title">Git Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/RLoops.html"><span class="chapter-number">7</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Rbasics.html"><span class="chapter-number">8</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_char_exer.html"><span class="chapter-number">9</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_Functions.html"><span class="chapter-number">10</span>  <span class="chapter-title">R Functions Excercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/exercise_tidyverse.html"><span class="chapter-number">11</span>  <span class="chapter-title">R Tidyverse Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/recoding_reshaping_interactive.html"><span class="chapter-number">12</span>  <span class="chapter-title">R Recoding Reshaping Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/merging_exercise.html"><span class="chapter-number">13</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/R_graphics_exercises.html"><span class="chapter-number">14</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/reorder_exercise.html"><span class="chapter-number">15</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/EDA.html"><span class="chapter-number">16</span>  <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/Basic_Unix_commands.html"><span class="chapter-number">17</span>  <span class="chapter-title">Basic Shell Commands</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/summary.html"><span class="chapter-number">18</span>  <span class="chapter-title">Summary</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/webR_test.html"><span class="chapter-number">19</span>  <span class="chapter-title">WebR - R in the web browser</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/TechnicalDetails.html"><span class="chapter-number">20</span>  <span class="chapter-title">Technical Details</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.html">References</span> <span class="hidden" data-render-id="quarto-breadcrumbs-a0691f6b9c75e5f3c9ccaee4e50711c9"><span class="chapter-number">7</span>  <span class="chapter-title">Loops in R</span></span></p>
 </div>
 <div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">HuGen2071 book - <span class="chapter-number">8</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">HuGen2071 book - <span class="chapter-number">8</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">HuGen2071 book - <span class="chapter-number">8</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-metasitename">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+<p><span class="hidden" data-render-id="quarto-metatitle">HuGen2071 book - <span class="chapter-number">7</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">HuGen2071 book - <span class="chapter-number">7</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">HuGen2071 book - <span class="chapter-number">7</span>  <span class="chapter-title">Loops in R</span></span> <span class="hidden" data-render-id="quarto-metasitename">HuGen2071 book</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
 </div>
 </section>
 
@@ -747,13 +747,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a  href="/Rbasics.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics Group Exercise</span></span>
+      <a  href="/Git_commands.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>Git Commands</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a  href="/R_char_exer.html" class="pagination-link">
-        <span class="nav-page-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>R Character Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a  href="/Rbasics.html" class="pagination-link">
+        <span class="nav-page-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>R Basics Group Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
