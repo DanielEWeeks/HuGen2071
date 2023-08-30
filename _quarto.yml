@@ -17,8 +17,8 @@ book:
   - Readings.qmd
   - gitIntro.qmd
   - Git_commands.Qmd
-  - Rbasics.qmd
   - RLoops.qmd
+  - Rbasics.qmd
   - R_char_exer.Qmd
   - R_Functions.Qmd
   - exercise_tidyverse.Qmd
