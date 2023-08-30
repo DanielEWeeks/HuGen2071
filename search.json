@@ -88,7 +88,7 @@
     "href": "Readings.html#r-basics",
     "title": "4  Active Learning and Readings",
     "section": "4.3 R: Basics",
-    "text": "4.3 R: Basics\n\n4.3.1 Learning Objectives\n\nTo become familiar with the R language and concepts\nTo learn how to read and write data with R\nTo learn control flow: choices and loops\n\n\n\n4.3.2 Active Learning:\nhttps://datacarpentry.org/R-genomics/01-intro-to-R.html\n\n\n4.3.3 Suggested Readings\nBuffalo (2015) Chapter 8 ‘R Language Basics’ (Available online through PittCat+)\nRead the first four sections, up to the end of ‘Vectors, Vectorization, and Indexing’\nhttps://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510\nhttps://datacarpentry.org/R-genomics/01-intro-to-R.html\nSupplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through PittCat+; link in syllabus)"
+    "text": "4.3 R: Basics\n\n4.3.1 Learning Objectives\n\nTo become familiar with the R language and concepts\nTo learn how to read and write data with R\nTo learn control flow: choices and loops\n\n\n\n4.3.2 Active Learning:\nhttps://datacarpentry.org/genomics-r-intro/01-r-basics.html\n\n\n4.3.3 Suggested Readings\nBuffalo (2015) Chapter 8 ‘R Language Basics’ (Available online through PittCat+)\nRead the first four sections, up to the end of ‘Vectors, Vectorization, and Indexing’\nhttps://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510\nhttps://datacarpentry.org/R-genomics/01-intro-to-R.html\nSupplementary Reading: Spector (2008) Chapters 1 & 2 (Available online through PittCat+; link in syllabus)"
   },
   {
     "objectID": "Readings.html#r-factors-dates-subscripting",
@@ -508,14 +508,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "11  R Tidyverse Exercise",
     "section": "11.4 Gather",
-    "text": "11.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  0.599  0.694  8.46\n2 2009-01-02 -0.649  0.488  1.67\n3 2009-01-03  0.623 -1.82   1.47\n4 2009-01-04  0.307 -1.65   2.28\n5 2009-01-05  2.00   0.137 -2.78\n6 2009-01-06  1.63  -3.03  -4.40\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.599\n2 2009-01-02 X     -0.649\n3 2009-01-03 X      0.623\n4 2009-01-04 X      0.307\n5 2009-01-05 X      2.00 \n6 2009-01-06 X      1.63"
+    "text": "11.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y     Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  0.0164 -1.77  -9.54\n2 2009-01-02  0.844   1.90   5.59\n3 2009-01-03 -0.436  -0.712  4.52\n4 2009-01-04 -0.333   0.274  2.70\n5 2009-01-05 -0.163  -0.278 -2.58\n6 2009-01-06  0.917   2.89   1.18\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.0164\n2 2009-01-02 X      0.844 \n3 2009-01-03 X     -0.436 \n4 2009-01-04 X     -0.333 \n5 2009-01-05 X     -0.163 \n6 2009-01-06 X      0.917"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "11  R Tidyverse Exercise",
     "section": "11.5 Pivot_longer",
-    "text": "11.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.599\n2 2009-01-01 Y      0.694\n3 2009-01-01 Z      8.46 \n4 2009-01-02 X     -0.649\n5 2009-01-02 Y      0.488\n6 2009-01-02 Z      1.67"
+    "text": "11.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.0164\n2 2009-01-01 Y     -1.77  \n3 2009-01-01 Z     -9.54  \n4 2009-01-02 X      0.844 \n5 2009-01-02 Y      1.90  \n6 2009-01-02 Z      5.59"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
