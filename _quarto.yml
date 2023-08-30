@@ -18,6 +18,7 @@ book:
   - gitIntro.qmd
   - Git_commands.Qmd
   - Rbasics.qmd
+  - RLoops.qmd
   - R_char_exer.Qmd
   - R_Functions.Qmd
   - exercise_tidyverse.Qmd
