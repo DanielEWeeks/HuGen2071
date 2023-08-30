@@ -67,7 +67,7 @@ Using Git from RStudio: <https://ucsbcarpentry.github.io/2020-08-10-Summer-GitBa
 
 ### Active Learning:
 
-<https://datacarpentry.org/R-genomics/01-intro-to-R.html>
+<https://datacarpentry.org/genomics-r-intro/01-r-basics.html>
 
 ### Suggested Readings
 
