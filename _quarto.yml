@@ -17,6 +17,7 @@ book:
   - Readings.qmd
   - gitIntro.qmd
   - Git_commands.Qmd
+  - RBasicsLecture.qmd
   - RLoops.qmd
   - Rbasics.qmd
   - RFactors.qmd
