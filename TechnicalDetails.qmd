@@ -60,7 +60,13 @@ This Quarto book uses this [WebR](https://docs.r-wasm.org/webr/latest/) Quarto e
 
 <https://github.com/coatless/quarto-webr>
 
-WebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in `web-r` chunks.
+WebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in `webr-r` chunks.
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 
 To get this to work, the `_quarto.yml` had to be modified.
 
@@ -81,18 +87,17 @@ filters:
     - webr
 ```
 
-
 ## embedpdf Quarto extension
 
 This book uses the `embedpdf` Quarto extension from <https://github.com/jmgirard/embedpdf>, which was installed via this command:
 
-```
+```         
 quarto add jmgirard/embedpdf
 ```
 
 To embed a PDF, use code like this:
 
-```
+```         
 {{{< pdf dummy.pdf width=100% height=800 >}}}
 ```
 
@@ -104,7 +109,7 @@ Example:
 
 So instead we used an iframe, which works on Chrome, Firefox, and Safari:
 
-```
+```         
  <iframe width="100%" height="800" src="pdfs/GitHubIntro.pdf">
 ```
 
