@@ -17,7 +17,7 @@ library(knitr)
 
 See the "String manipulation with stringr cheatsheet" at
 
-https://www.rstudio.com/resources/cheatsheets/
+<https://rstudio.github.io/cheatsheets/html/strings.html>
 
 ## Scenario 1
 
@@ -49,18 +49,17 @@ Hint: Use the `formatC` function.
 
 #### Interactive WebR chunk
 
-You can interactively run R within this WebR chunk by clicking the `Run code` tab.  Note that this is a limited version of R which runs within your web browser.  
+You can interactively run R within this WebR chunk by clicking the `Run code` tab. Note that this is a limited version of R which runs within your web browser.
 
 ::: callout-warning
 Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet.
 :::
 
-
 ::: callout-note
-This `Run code` WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end. 
+This `Run code` WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end.
 :::
 
-``` {webr-r}
+```{webr-r}
 # Download files within the WebR environment
 dir.create("data")
 infiles <- c("data/clinical_data.txt","data/lab_data.txt","data/genotype_data.txt")
@@ -103,10 +102,10 @@ kable(lab, caption = "The `lab` data frame")
 Hint: Use either the `gsub` command or the `str_replace_all` command from the `stringr` package.
 
 ::: callout-warning
-To read in and load the data within the WebR environment, be sure to run all of the WebR chunks in order.  For example, to usefully run R code in this WebR chunk here, you first need to run the WebR chunk above in Question 1.
+To read in and load the data within the WebR environment, be sure to run all of the WebR chunks in order. For example, to usefully run R code in this WebR chunk here, you first need to run the WebR chunk above in Question 1.
 :::
 
-``` {webr-r}
+```{webr-r}
 # str_replace_all is in the stringr R package
 library(stringr)
 # Edit/add code here
@@ -144,7 +143,7 @@ kable(geno, caption="The `geno` data frame")
 
 Hint: Use either the `str_split_fixed` function from the `stringr` package or the `separate` function from the `tidyr` package.
 
-``` {webr-r}
+```{webr-r}
 # separate is in the tidyr R package
 library(tidyr)
 # Edit/add code here
@@ -187,7 +186,7 @@ Discuss how you would use R commands to split the 'joint' data frame into an 'SG
 kable(joint, caption = "The `joint` data frame")
 ```
 
-``` {webr-r}
+```{webr-r}
 # Download files within the WebR environment
 dir.create("data")
 infiles <- c("data/joint_data.txt")
