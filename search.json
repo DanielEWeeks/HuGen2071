@@ -102,7 +102,7 @@
     "href": "Readings.html#r-character-manipulation",
     "title": "4  Active Learning and Readings",
     "section": "4.5 R: Character Manipulation",
-    "text": "4.5 R: Character Manipulation\n\n4.5.1 Learning Objectives\n\nTo learn how to handle character data in R\nTo learn how to use regular expressions in R\n\n\n\n4.5.2 Readings\nBuffalo (2015) Chapter 8 ‘R Language Basics’ (Available online through PittCat+)\nRead the ‘Working with Strings’ section (Oh, you already read this)\nhttps://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510\nRead Chapter 14 “Strings” of “R for Data Science”: https://r4ds.had.co.nz/strings.html\nSupplementary Reading: Spector (2008) Chapter 7"
+    "text": "4.5 R: Character Manipulation\n\n4.5.1 Learning Objectives\n\nTo learn how to handle character data in R\nTo learn how to use regular expressions in R\n\n\n\n4.5.2 Active Learning\nRegular expressions: https://csiro-data-school.github.io/regex/08-r-regexs/index.html\n\n\n4.5.3 Required Readings\nRead the chapter on “Strings” in “R for Data Science”: https://r4ds.hadley.nz/strings\n\n\n4.5.4 Suggested Readings\nSee the “String manipulation with stringr cheatsheet” at https://rstudio.github.io/cheatsheets/html/strings.html\nBuffalo (2015) Chapter 8 ‘R Language Basics’ (Available online through PittCat+)\nRead the ‘Working with Strings’ section at the end of the “Working with and Visualizing Data in R” section.\nhttps://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510\nRead the chapter on “Strings” in “R for Data Science”: https://r4ds.hadley.nz/strings\nRead the chapter on “Regular expressions” in “R for Data Science”: https://r4ds.hadley.nz/regexps\nSupplementary Reading: Spector (2008) Chapter 7"
   },
   {
     "objectID": "Readings.html#r-loops-and-flow-control",
@@ -459,7 +459,7 @@
     "href": "R_char_exer.html#useful-rstudio-cheatsheet",
     "title": "11  R Character Exercise",
     "section": "11.2 Useful RStudio cheatsheet",
-    "text": "11.2 Useful RStudio cheatsheet\nSee the “String manipulation with stringr cheatsheet” at\nhttps://www.rstudio.com/resources/cheatsheets/"
+    "text": "11.2 Useful RStudio cheatsheet\nSee the “String manipulation with stringr cheatsheet” at\nhttps://rstudio.github.io/cheatsheets/html/strings.html"
   },
   {
     "objectID": "R_char_exer.html#scenario-1",
@@ -585,14 +585,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "14  R Tidyverse Exercise",
     "section": "14.4 Gather",
-    "text": "14.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y       Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01  1.04    0.428  2.30  \n2 2009-01-02 -0.0708 -1.46  -1.60  \n3 2009-01-03 -0.853   0.286  2.83  \n4 2009-01-04 -0.141  -1.98   1.05  \n5 2009-01-05 -0.306   1.77  -0.527 \n6 2009-01-06  2.60    2.73   0.0378\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.04  \n2 2009-01-02 X     -0.0708\n3 2009-01-03 X     -0.853 \n4 2009-01-04 X     -0.141 \n5 2009-01-05 X     -0.306 \n6 2009-01-06 X      2.60"
+    "text": "14.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.887   2.23    4.23 \n2 2009-01-02  0.0714 -1.83   -0.213\n3 2009-01-03  0.813  -0.0626 -5.86 \n4 2009-01-04  1.31    3.89    0.227\n5 2009-01-05  1.73   -0.932   5.47 \n6 2009-01-06 -1.36    0.740   3.62 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.887 \n2 2009-01-02 X      0.0714\n3 2009-01-03 X      0.813 \n4 2009-01-04 X      1.31  \n5 2009-01-05 X      1.73  \n6 2009-01-06 X     -1.36"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "14  R Tidyverse Exercise",
     "section": "14.5 Pivot_longer",
-    "text": "14.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.04  \n2 2009-01-01 Y      0.428 \n3 2009-01-01 Z      2.30  \n4 2009-01-02 X     -0.0708\n5 2009-01-02 Y     -1.46  \n6 2009-01-02 Z     -1.60"
+    "text": "14.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.887 \n2 2009-01-01 Y      2.23  \n3 2009-01-01 Z      4.23  \n4 2009-01-02 X      0.0714\n5 2009-01-02 Y     -1.83  \n6 2009-01-02 Z     -0.213"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
