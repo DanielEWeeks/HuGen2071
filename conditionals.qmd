@@ -20,6 +20,9 @@ The material presented here has been modified from the original source.
 
 Accordingly this chapter is made available under the same license terms.
 
+## Source code 
+
+If you'd like to work within R Studio using the source code of this chapter, you can obtain it from [here](https://github.com/DanielEWeeks/HuGen2071/blob/main/conditionals.qmd).
 
 
 ## Conditionals
