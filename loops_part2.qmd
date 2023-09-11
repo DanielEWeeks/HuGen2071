@@ -69,7 +69,7 @@ masses
 ```
 
 ::: callout-important
-## Do \[Size Estimates By Name Loop\].
+## Do [Size Estimates By Name Loop].
 
 If `dinosaur_lengths.csv` is not already in your working directory download a copy of the [data on dinosaur lengths with species names](data/dinosaur_lengths.csv). Load it into R.
 
@@ -84,6 +84,10 @@ Write a function `mass_from_length()` that uses the equation `mass <- a * length
 
 
 ```{webr-r}
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/dinosaur_lengths.csv"),
+              "dinosaur_lengths.csv")
+list.files(pattern = "dinosaur")
 # Edit/add/try out R code here
 ```
 
