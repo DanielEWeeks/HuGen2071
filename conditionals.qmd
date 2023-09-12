@@ -122,7 +122,7 @@ site[c(TRUE, TRUE, FALSE, FALSE)]
 ### Tasks: Choice Operators
 
 ::: callout-important
-**Do Tasks 1-4 in [Choice Operators]**
+**Do Tasks 1-4 in Choice Operators**
 
 Create the following variables.
 
@@ -202,7 +202,7 @@ mass
 ###  Task 1: Basic If Statements 
 
 ::: callout-important
-**Do Task 1 in [Basic If Statements]**
+**Do Task 1 in Basic If Statements**
 
 
 1\. Complete (i.e., copy into your code and them modify) the following `if`
@@ -256,7 +256,7 @@ mass
 ### Tasks 2-3: Basic If Statements {#sec-Tasks_2-3}
 
 ::: callout-important
-**Do Tasks 2-3 in [Basic If Statements]**
+**Do Tasks 2-3 in Basic If Statements**
 
 2\. Complete the following `if` statement so that if `age_class` is equal to
    "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it
@@ -353,7 +353,7 @@ est_mass(1.6, "tree")
 ### Task: Size Estimates by Name
 
 ::: callout-important
-**Do [Size Estimates by Name]**
+**Do Size Estimates by Name**
 
 #### Part I
 
@@ -486,7 +486,7 @@ est_mass(1.6, "shrub", age = 6)
 ### Task 4: Basic If Statements
 
 ::: callout-important
-**Do Task 4 in [Basic If Statements]**
+**Do Task 4 in Basic If Statements**
 
 4\. Convert your conditional statement from Task 3 in @sec-Tasks_2-3 into a function that takes
    `age_class` as an argument and returns `y`. Call this function 5 times, once

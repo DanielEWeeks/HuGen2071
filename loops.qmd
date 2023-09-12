@@ -70,7 +70,7 @@ print(mass)
 ```
 
 ::: callout-important
-## Do Tasks 1 & 2 in [Basic For Loops]
+## Do Tasks 1 & 2 in Basic For Loops
 
 1\. The code below prints the numbers 1 through 5 one line at a time. Modify it to print each of these numbers multiplied by 3.
 
@@ -162,7 +162,7 @@ masses
 
 
 ::: callout-important
-## Do Tasks 3-4 in [Basic For Loops].
+## Do Tasks 3-4 in Basic For Loops.
 
 3\. Complete the code below so that it prints out the name of each bird one line at a time.
 
@@ -204,7 +204,7 @@ masses
 ```
 
 ::: callout-important
-## Do Task 5 in [Basic For Loops].
+## Do Task 5 in Basic For Loops.
 
 5\. Complete the code below to calculate an area for each pair of `lengths` and `widths`, store the areas in a vector, and after they are all calculated print them out: 
 

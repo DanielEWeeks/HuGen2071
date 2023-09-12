@@ -90,7 +90,25 @@ calc_shrub_vol(0.8, 1.6, 2.0)
 (shrub_vol <- calc_shrub_vol(0.8, 1.6, 2.0))
 ```
 
-> Do [Writing Functions]({{ site.baseurl }}/exercises/Functions-writing-functions-R)
+::: callout-important
+## Do Writing Functions
+
+Edit the following function to replace the `________` with variables names for the input and output.
+
+```{webr-r}
+convert_pounds_to_grams <- function(________) {
+    grams = 453.6 * pounds
+    return(________)
+}
+```
+
+Use the function to calculate how many grams there are in 3.75 pounds.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+:::
 
 * Treat functions like a black box
   * *Draw a box on board showing inputs->function->outputs*
@@ -117,8 +135,51 @@ calc_shrub_vol(0.8, 1.6, 2.0)
         * Very confusing and error prone to use a variable that isn't passed in
           as an argument
 
-> Do [Use and Modify]({{ site.baseurl }}/exercises/Functions-use-and-modify-R).
+::: callout-important
+## Do Use and Modify.
 
+The length of an organism is typically strongly correlated with its body
+mass. This is useful because it allows us to estimate the mass of an organism
+even if we only know its length. This relationship generally takes the form:
+
+> mass = a * length^b
+
+Where the parameters `a` and `b` vary among groups. This allometric approach is
+regularly used to estimate the mass of dinosaurs since we cannot weigh something
+that is only preserved as bones.
+
+The following function estimates the mass of an organism in kg based on its
+length in meters for a particular set of parameter values, those for *Theropoda*
+(where `a` has been estimated as `0.73` and `b` has been estimated as `3.63`;
+[Seebacher 2001](http://www.jstor.org/stable/4524171)).
+
+```{webr-r}
+get_mass_from_length_theropoda <- function(length){
+  mass <- 0.73 * length ^ 3.63
+  return(mass)
+}
+class(get_mass_from_length_theropoda)
+```
+
+1. Use this function to print out the mass of a Spinosaurus that is 16 m long based on its reassembled skeleton.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+2. Create a new version of this function called `get_mass_from_length()` that takes `length`, `a` and `b` as arguments and uses the following code to estimate the mass `mass <- a * length ^ b`.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+Use this function to estimate the mass of a Sauropoda (`a = 214.44`, `b = 1.46`) that is 26 m long.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+:::
 
 ## Default arguments
 
@@ -138,7 +199,36 @@ calc_shrub_vol(0.8, 1.6, 2.0)
 calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
 ```
 
-> Do [Default Arguments]({{ site.baseurl }}/exercises/Functions-default-arguments-R).
+::: callout-important
+## Do Default Arguments.
+
+This is a follow up to the Use and Modify exercise above.
+
+Allowing `a` and `b` to be passed as arguments to `get_mass_from_length()` made the function more flexible, but for some types of dinosaurs we don't have specific values of `a` and `b` and so we have to use general values that can be applied to a number of different species.
+
+Rewrite your `get_mass_from length()` function from Use and Modify so that its arguments have default values of `a = 39.9` and `b = 2.6` (the average values from [Seebacher 2001](http://www.jstor.org/stable/4524171)).
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+1. Use this function to estimate the mass of a Sauropoda (`a = 214.44`, `b = 1.46`) that is 22 m long (by setting `a` and `b` when calling the function).
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+2. Use this function to estimate the mass of a dinosaur from an unknown taxonomic group that is 16m long.
+   Only pass the function `length`, not `a` and `b`, so that the default values are used.
+   
+
+```{webr-r}
+# Edit/add/try out R code here
+```   
+
+:::
 
 > *Discuss why passing `a` and `b` in is more useful than having them fixed*
 
@@ -194,7 +284,26 @@ library(dplyr)
   est_shrub_mass())
 ```
 
-> Do [Combining Functions]({{ site.baseurl }}/exercises/Functions-combining-functions-R).
+::: callout-important
+## Do Combining Functions.
+
+This is a follow up to the Default Argument exercise above.
+
+Measuring things using the metric system is the standard approach for scientists, but when communicating your results more broadly it may be
+useful to use different units (at least in some countries).
+Write a function called `convert_kg_to_pounds` that converts kilograms into pounds (`pounds = 2.205 * kg`).
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+Use that function and your `get_mass_from_length()` function from Default Arguments to estimate the weight, in pounds, of a 12 m long Stegosaurus with `a = 10.95` and `b = 2.64` (The estimated `a` and `b` values for *Stegosauria* from [Seebacher 2001](http://www.jstor.org/stable/4524171)).
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+:::
 
 * We can nest functions
 
@@ -237,6 +346,11 @@ make_plot <- function(df, column, label) {
     xlab(label)
 }
 
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/surveys.csv"),
+              "surveys.csv")
+list.files(pattern = "surveys")
+
 surveys <- read.csv("surveys.csv")
 make_plot(surveys, hindfoot_length, "Hindfoot Length [mm]")
 ```
@@ -265,7 +379,7 @@ make_plot(surveys, weight, "Weight [g]")
 * The functions hold the details
 * The function calls show you the outline of the code execution
 
-```{webr-r}
+```r
 clean_data <- function(data){
   do_stuff(data)
 }

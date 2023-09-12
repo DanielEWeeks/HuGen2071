@@ -69,7 +69,7 @@ masses
 ```
 
 ::: callout-important
-## Do [Size Estimates By Name Loop].
+## Do Size Estimates By Name Loop.
 
 If `dinosaur_lengths.csv` is not already in your working directory download a copy of the [data on dinosaur lengths with species names](data/dinosaur_lengths.csv). Load it into R.
 
@@ -156,7 +156,7 @@ results
 ```
 
 ::: callout-important
-## Do Task 1 of \[Multiple-file Analysis\].
+## Do Task 1 of Multiple-file Analysis.
 
 **Exercise uses different collar data**
 
@@ -219,7 +219,7 @@ results
 ```
 
 ::: callout-important
-## Do Task 2 of \[Multiple-file Analysis\].
+## Do Task 2 of Multiple-file Analysis.
 
 **Exercise uses different collar data**
 
