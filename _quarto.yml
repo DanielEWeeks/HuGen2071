@@ -25,6 +25,7 @@ book:
   - loops.qmd
   - loops_part2.qmd
   - conditionals.qmd
+  - functions.qmd
   - R_Functions.Qmd
   - exercise_tidyverse.Qmd
   - recoding_reshaping_interactive.Qmd
