@@ -70,8 +70,6 @@ Using Git from RStudio: <https://ucsbcarpentry.github.io/2020-08-10-Summer-GitBa
 
 R Basics: <https://danieleweeks.github.io/HuGen2071/RBasicsLecture.html>
 
-Loops in R: <https://danieleweeks.github.io/HuGen2071/RLoops.html>
-
 ### Active Learning:
 
 <https://datacarpentry.org/genomics-r-intro/01-r-basics.html>
@@ -164,9 +162,15 @@ Supplementary Reading: Spector (2008) Chapter 7
 -   To learn how to control flow in R
 -   To learn how to vectorize operations
 
+### Online Lectures
+
+Loops in R: <https://danieleweeks.github.io/HuGen2071/RLoops.html>
+
 ### Active Learning:
 
 Flow control and loops: <https://swcarpentry.github.io/r-novice-gapminder/07-control-flow.html>
+
+Loops in R, Part I: <https://danieleweeks.github.io/HuGen2071/loops.html>
 
 Vectorization: <https://swcarpentry.github.io/r-novice-gapminder/09-vectorization.html>
 
