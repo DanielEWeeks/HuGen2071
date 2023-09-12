@@ -7,20 +7,10 @@
 # library(tidylog)
 ```
 
-## Location
-
-This file `exercise1_solution.Qmd` is in the "`r basename(getwd())`" sub-folder of the "`r basename(dirname(getwd()))`" folder of our Lectures repository.
-
-```{r}
-paste0(basename(dirname(getwd())),"/",basename(getwd()))
-```
-
-
-
 
 ## Data set creation code
 
-```
+```         
 i <- 6
 for (i in 1:10) {
 fl <- data.frame(name=rep(paste0("name",i),26))
@@ -29,18 +19,15 @@ b$name <- paste0(fl$name,"_",letters)
 b$trait <- rnorm(26)
 write_tsv(b,paste0("data/dataset",i,".txt"))
 }
-
 ```
 
-
-
-## Example 
+## Example
 
 Here we have been sent three data sets in the files that contain the trait quantitative values for each person in the data set:
 
 "dataset1.txt" "dataset2.txt" "dataset3.txt"
 
-And we've been asked to make a table that gives, for each dataset, the sample size (N), the mean of the trait, the median, and the variance.  
+And we've been asked to make a table that gives, for each dataset, the sample size (N), the mean of the trait, the median, and the variance.
 
 We could do this by reading in each data set, one by one, as follows:
 
@@ -75,9 +62,9 @@ results$var[3] <- var(fl3$trait)
 results
 ```
 
-Your colleague initially sent you the three data sets above, but now your colleague has sent you three more data sets and asked you to update the 'results' table.  
+Your colleague initially sent you the three data sets above, but now your colleague has sent you three more data sets and asked you to update the 'results' table.
 
-As you can see, the code above is very repetitive.  So let's automate this by writing a function that loops through a list of data set files named "dataset1.txt", "dataset2.txt", "dataset3.txt", etc., building up the results table as above.
+As you can see, the code above is very repetitive. So let's automate this by writing a function that loops through a list of data set files named "dataset1.txt", "dataset2.txt", "dataset3.txt", etc., building up the results table as above.
 
 ### Question: How could we construct a list of file names?
 
@@ -88,14 +75,11 @@ How could we construct a list of file names?
 
 Hint: the `list.files` command provides a handy way to get a list of the input files:
 
-
 ```{r}
 fls <- list.files(path="data",pattern="dataset*")
 fls
 ```
-
 :::
-
 
 ### Question: Outline a possible algorithm
 
@@ -104,14 +88,13 @@ Outline a possible algorithm that loops through a list of input data set files n
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-* Read in the input file names into a list
-* Set up an empty results table
-* For each file in our file name list
-    * Read the file
-    * Compute the statistics
-    * Insert the information into the results table
-    * Return the filled-in results table
-
+-   Read in the input file names into a list
+-   Set up an empty results table
+-   For each file in our file name list
+    -   Read the file
+    -   Compute the statistics
+    -   Insert the information into the results table
+    -   Return the filled-in results table
 :::
 
 ### Question: Construct a more detailed step-by-step algorithm.
@@ -121,23 +104,22 @@ Construct a more detailed step-by-step algorithm.
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-* Input the path to the folder containing the data files
-* Read in the input file names into a list `fls`
-* Count the number of input files `N`
-* Set up an empty results table with `N` rows
-* For each file in our file name list `fls`
-    * Read the file
-    * Compute the statistics
-    * Insert the information into the correct row of the results table
-* Return the filled-in results table
-
+-   Input the path to the folder containing the data files
+-   Read in the input file names into a list `fls`
+-   Count the number of input files `N`
+-   Set up an empty results table with `N` rows
+-   For each file in our file name list `fls`
+    -   Read the file
+    -   Compute the statistics
+    -   Insert the information into the correct row of the results table
+-   Return the filled-in results table
 :::
 
-### Task: Write a `read_data_file` function.  
+### Task: Write a `read_data_file` function.
 
 Write a `read_data_file` function to accomplish the required steps for a single input data file.
 
-1. Make the number in the data file name an argument.
+1.  Make the number in the data file name an argument.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -156,10 +138,9 @@ read_data_file <- function(n=1, results) {
   invisible(results)
 }
 ```
-
 :::
 
-2. Make the path to the input file an argument to your `read_data_file` function.
+2.  Make the path to the input file an argument to your `read_data_file` function.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -177,7 +158,6 @@ read_data_file_v2 <- function(flnm, results) {
   invisible(results)
 }
 ```
-
 :::
 
 ### Question: What does the above code assume?
@@ -187,10 +167,9 @@ What does the above code assume?
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-Assumes a file naming style of 'dataset*.txt' where the asterisk represents 1, 2, 3, ...
+Assumes a file naming style of 'dataset\*.txt' where the asterisk represents 1, 2, 3, ...
 
 Assumes the files are in the "data" folder.
-
 :::
 
 ### Question: Extend your function to process all of the files
@@ -222,14 +201,13 @@ loop_over_dataset(fls = fls)
 
 
 ```
-
 :::
 
 ### Bonus question
 
 Can you find a subtle mistake in the `read_data_file` function?
 
-```
+```         
 results <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
 read_data_file <- function(n=1, results) {
   fl1 <- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
@@ -242,13 +220,12 @@ read_data_file <- function(n=1, results) {
 }
 ```
 
-
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 If `N` varies across the data sets, then this line will not do the right thing:
 
-```
+```         
 results$N <- nrow(fl1)
 ```
 
@@ -264,7 +241,4 @@ read_data_file <- function(n=1, results) {
   invisible(results)
 }
 ```
-
 :::
-
-
