@@ -87,6 +87,17 @@ kable(geno)
 ```{r}
 clin$SUBJECT_ID <- paste0("SG", formatC(clin$ID, width = 4, flag = "0000"))
 kable(clin)
+
+# Or here's an alternative using the 'sub' command:
+sub("00","SG",formatC(clin$ID, flag="0000", width=6)) 
+
+# Or can be done using a `case_when`: 
+case_when(
+  clin$ID < 10 ~ paste0("SG000",clin$ID),
+  clin$ID < 100 ~ paste0("SG00",clin$ID),
+  clin$ID < 1000 ~ paste0("SG0",clin$ID),
+  clin$ID < 10000 ~ paste0("SG",clin$ID)
+)
 ```
 :::
 
