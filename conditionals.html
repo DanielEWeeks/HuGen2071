@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book - 14&nbsp; Conditionals in R</title>
+<title>HuGen2071 book - 13&nbsp; Conditionals in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions.html" rel="next">
-<link href="./loops_part2.html" rel="prev">
+<link href="./loops_part2.html" rel="next">
+<link href="./loops.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conditionals.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conditionals.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -299,14 +299,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -397,26 +397,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">14.1</span> Acknowledgment/License</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">14.2</span> Source code</a></li>
-  <li><a href="#conditionals" id="toc-conditionals" class="nav-link" data-scroll-target="#conditionals"><span class="header-section-number">14.3</span> Conditionals</a>
+  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">13.1</span> Acknowledgment/License</a></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">13.2</span> Source code</a></li>
+  <li><a href="#conditionals" id="toc-conditionals" class="nav-link" data-scroll-target="#conditionals"><span class="header-section-number">13.3</span> Conditionals</a>
   <ul class="collapse">
-  <li><a href="#tasks-choice-operators" id="toc-tasks-choice-operators" class="nav-link" data-scroll-target="#tasks-choice-operators"><span class="header-section-number">14.3.1</span> Tasks: Choice Operators</a></li>
+  <li><a href="#tasks-choice-operators" id="toc-tasks-choice-operators" class="nav-link" data-scroll-target="#tasks-choice-operators"><span class="header-section-number">13.3.1</span> Tasks: Choice Operators</a></li>
   </ul></li>
-  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">14.4</span> <code>if</code> statements</a>
+  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">13.4</span> <code>if</code> statements</a>
   <ul class="collapse">
-  <li><a href="#task-1-basic-if-statements" id="toc-task-1-basic-if-statements" class="nav-link" data-scroll-target="#task-1-basic-if-statements"><span class="header-section-number">14.4.1</span> Task 1: Basic If Statements</a></li>
-  <li><a href="#sec-Tasks_2-3" id="toc-sec-Tasks_2-3" class="nav-link" data-scroll-target="#sec-Tasks_2-3"><span class="header-section-number">14.4.2</span> Tasks 2-3: Basic If Statements</a></li>
+  <li><a href="#task-1-basic-if-statements" id="toc-task-1-basic-if-statements" class="nav-link" data-scroll-target="#task-1-basic-if-statements"><span class="header-section-number">13.4.1</span> Task 1: Basic If Statements</a></li>
+  <li><a href="#sec-Tasks_2-3" id="toc-sec-Tasks_2-3" class="nav-link" data-scroll-target="#sec-Tasks_2-3"><span class="header-section-number">13.4.2</span> Tasks 2-3: Basic If Statements</a></li>
   </ul></li>
-  <li><a href="#multiple-ifs-vs-else-if" id="toc-multiple-ifs-vs-else-if" class="nav-link" data-scroll-target="#multiple-ifs-vs-else-if"><span class="header-section-number">14.5</span> Multiple ifs vs else if</a></li>
-  <li><a href="#using-conditionals-inside-functions" id="toc-using-conditionals-inside-functions" class="nav-link" data-scroll-target="#using-conditionals-inside-functions"><span class="header-section-number">14.6</span> Using Conditionals Inside Functions</a>
+  <li><a href="#multiple-ifs-vs-else-if" id="toc-multiple-ifs-vs-else-if" class="nav-link" data-scroll-target="#multiple-ifs-vs-else-if"><span class="header-section-number">13.5</span> Multiple ifs vs else if</a></li>
+  <li><a href="#using-conditionals-inside-functions" id="toc-using-conditionals-inside-functions" class="nav-link" data-scroll-target="#using-conditionals-inside-functions"><span class="header-section-number">13.6</span> Using Conditionals Inside Functions</a>
   <ul class="collapse">
-  <li><a href="#task-size-estimates-by-name" id="toc-task-size-estimates-by-name" class="nav-link" data-scroll-target="#task-size-estimates-by-name"><span class="header-section-number">14.6.1</span> Task: Size Estimates by Name</a></li>
+  <li><a href="#task-size-estimates-by-name" id="toc-task-size-estimates-by-name" class="nav-link" data-scroll-target="#task-size-estimates-by-name"><span class="header-section-number">13.6.1</span> Task: Size Estimates by Name</a></li>
   </ul></li>
-  <li><a href="#automatically-extracting-functions" id="toc-automatically-extracting-functions" class="nav-link" data-scroll-target="#automatically-extracting-functions"><span class="header-section-number">14.7</span> Automatically extracting functions</a></li>
-  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span class="header-section-number">14.8</span> Nested conditionals</a>
+  <li><a href="#automatically-extracting-functions" id="toc-automatically-extracting-functions" class="nav-link" data-scroll-target="#automatically-extracting-functions"><span class="header-section-number">13.7</span> Automatically extracting functions</a></li>
+  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span class="header-section-number">13.8</span> Nested conditionals</a>
   <ul class="collapse">
-  <li><a href="#task-4-basic-if-statements" id="toc-task-4-basic-if-statements" class="nav-link" data-scroll-target="#task-4-basic-if-statements"><span class="header-section-number">14.8.1</span> Task 4: Basic If Statements</a></li>
+  <li><a href="#task-4-basic-if-statements" id="toc-task-4-basic-if-statements" class="nav-link" data-scroll-target="#task-4-basic-if-statements"><span class="header-section-number">13.8.1</span> Task 4: Basic If Statements</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -426,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></h1>
 </div>
 
 
@@ -441,8 +441,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="acknowledgmentlicense" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">14.1</span> Acknowledgment/License</h2>
+<section id="acknowledgmentlicense" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">13.1</span> Acknowledgment/License</h2>
 <p>The original source for this chapter was from the web site</p>
 <p><a href="https://datacarpentry.org/semester-biology/" class="uri">https://datacarpentry.org/semester-biology/</a></p>
 <p>which was built using this underlying code</p>
@@ -453,12 +453,12 @@ ul.task-list li input[type="checkbox"] {
 <p>The material presented here has been modified from the original source.</p>
 <p>Accordingly this chapter is made available under the same license terms.</p>
 </section>
-<section id="source-code" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">14.2</span> Source code</h2>
+<section id="source-code" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">13.2</span> Source code</h2>
 <p>If you’d like to work within R Studio using the source code of this chapter, you can obtain it from <a href="https://github.com/DanielEWeeks/HuGen2071/blob/main/conditionals.qmd">here</a>.</p>
 </section>
-<section id="conditionals" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">14.3</span> Conditionals</h2>
+<section id="conditionals" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">13.3</span> Conditionals</h2>
 <ul>
 <li>Conditional statements are when we check to see if some condition is true or not</li>
 <li>We used these for filtering data in <code>dplyr</code></li>
@@ -1950,8 +1950,8 @@ is.na(5)
 <li>This keeps the first and second values in <code>site</code> because the values in the vector are <code>TRUE</code></li>
 <li>This is how <code>dplyr::filter()</code> and other methods for subsetting data work</li>
 </ul>
-<section id="tasks-choice-operators" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="tasks-choice-operators"><span class="header-section-number">14.3.1</span> Tasks: Choice Operators</h3>
+<section id="tasks-choice-operators" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="tasks-choice-operators"><span class="header-section-number">13.3.1</span> Tasks: Choice Operators</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2298,8 +2298,8 @@ Important
 </div>
 </section>
 </section>
-<section id="if-statements" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">14.4</span> <code>if</code> statements</h2>
+<section id="if-statements" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">13.4</span> <code>if</code> statements</h2>
 <ul>
 <li>Conditional statements generate logical values to filter inputs.</li>
 <li><code>if</code> statements use conditional statements to control flow of the program.</li>
@@ -2811,8 +2811,8 @@ mass`,
     executeCode(editor.getValue());
   };
 </script>
-<section id="task-1-basic-if-statements" class="level3" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="task-1-basic-if-statements"><span class="header-section-number">14.4.1</span> Task 1: Basic If Statements</h3>
+<section id="task-1-basic-if-statements" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="task-1-basic-if-statements"><span class="header-section-number">13.4.1</span> Task 1: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3335,8 +3335,8 @@ mass`,
   };
 </script>
 </section>
-<section id="sec-Tasks_2-3" class="level3" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="sec-Tasks_2-3"><span class="header-section-number">14.4.2</span> Tasks 2-3: Basic If Statements</h3>
+<section id="sec-Tasks_2-3" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="sec-Tasks_2-3"><span class="header-section-number">13.4.2</span> Tasks 2-3: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3680,8 +3680,8 @@ y`,
 </div>
 </section>
 </section>
-<section id="multiple-ifs-vs-else-if" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="multiple-ifs-vs-else-if"><span class="header-section-number">14.5</span> Multiple ifs vs else if</h2>
+<section id="multiple-ifs-vs-else-if" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="multiple-ifs-vs-else-if"><span class="header-section-number">13.5</span> Multiple ifs vs else if</h2>
 <ul>
 <li>Multiple ifs check each conditional separately</li>
 <li>Executes code of all conditions that are <code>TRUE</code></li>
@@ -4022,8 +4022,8 @@ x`,
   };
 </script>
 </section>
-<section id="using-conditionals-inside-functions" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="using-conditionals-inside-functions"><span class="header-section-number">14.6</span> Using Conditionals Inside Functions</h2>
+<section id="using-conditionals-inside-functions" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="using-conditionals-inside-functions"><span class="header-section-number">13.6</span> Using Conditionals Inside Functions</h2>
 <ul>
 <li>We’ve used a conditional to estimate mass differently for different types of vegetation</li>
 <li>This is the kind of code we are going to want to reuse, so let’s move it into a function</li>
@@ -4371,8 +4371,8 @@ est_mass(1.6, "tree")`,
 <li>It assigns <code>NA</code> to mass</li>
 <li>It then finishes the if/else if/else statement and returns the value for <code>mass</code>, which is <code>NA</code> to the global environment</li>
 </ul>
-<section id="task-size-estimates-by-name" class="level3" data-number="14.6.1">
-<h3 data-number="14.6.1" class="anchored" data-anchor-id="task-size-estimates-by-name"><span class="header-section-number">14.6.1</span> Task: Size Estimates by Name</h3>
+<section id="task-size-estimates-by-name" class="level3" data-number="13.6.1">
+<h3 data-number="13.6.1" class="anchored" data-anchor-id="task-size-estimates-by-name"><span class="header-section-number">13.6.1</span> Task: Size Estimates by Name</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4384,8 +4384,8 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Do Size Estimates by Name</strong></p>
-<section id="part-i" class="level4" data-number="14.6.1.1">
-<h4 data-number="14.6.1.1" class="anchored" data-anchor-id="part-i"><span class="header-section-number">14.6.1.1</span> Part I</h4>
+<section id="part-i" class="level4" data-number="13.6.1.1">
+<h4 data-number="13.6.1.1" class="anchored" data-anchor-id="part-i"><span class="header-section-number">13.6.1.1</span> Part I</h4>
 <p>The length of an organism is typically strongly correlated with its body mass. This is useful because it allows us to estimate the mass of an organism even if we only know its length. This relationship generally takes the form:</p>
 <blockquote class="blockquote">
 <p>mass = a * length^b</p>
@@ -4879,8 +4879,8 @@ Important
   };
 </script>
 </section>
-<section id="part-ii" class="level4" data-number="14.6.1.2">
-<h4 data-number="14.6.1.2" class="anchored" data-anchor-id="part-ii"><span class="header-section-number">14.6.1.2</span> Part II</h4>
+<section id="part-ii" class="level4" data-number="13.6.1.2">
+<h4 data-number="13.6.1.2" class="anchored" data-anchor-id="part-ii"><span class="header-section-number">13.6.1.2</span> Part II</h4>
 <p>To make it even easier to work with your dinosaur size estimation functions you decide to create a function that lets you specify which dinosaur group you need to estimate the size of by name and then have the function automatically choose the right parameters.</p>
 <p>Create a new function <code>get_mass_from_length_by_name()</code> that takes two arguments, the <code>length</code> and the name of the dinosaur group. Inside this function use <code>if</code>/<code>else if</code>/<code>else</code> statements to check to see if the name is one of the following values and if so use the associated <code>a</code> and <code>b</code> values to estimate the species mass.</p>
 <ul>
@@ -5534,8 +5534,8 @@ Important
 </div>
 </section>
 </section>
-<section id="automatically-extracting-functions" class="level2" data-number="14.7">
-<h2 data-number="14.7" class="anchored" data-anchor-id="automatically-extracting-functions"><span class="header-section-number">14.7</span> Automatically extracting functions</h2>
+<section id="automatically-extracting-functions" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="automatically-extracting-functions"><span class="header-section-number">13.7</span> Automatically extracting functions</h2>
 <ul>
 <li>Can pull code out into functions</li>
 <li>Highlight the code</li>
@@ -5543,8 +5543,8 @@ Important
 <li>Provide a name for the function</li>
 </ul>
 </section>
-<section id="nested-conditionals" class="level2" data-number="14.8">
-<h2 data-number="14.8" class="anchored" data-anchor-id="nested-conditionals"><span class="header-section-number">14.8</span> Nested conditionals</h2>
+<section id="nested-conditionals" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="nested-conditionals"><span class="header-section-number">13.8</span> Nested conditionals</h2>
 <ul>
 <li>Sometimes decisions are more complicated</li>
 <li>For example we might have different equations for some vegetation types based on the age of the plant</li>
@@ -5731,8 +5731,8 @@ est_mass(1.6, "shrub", age = 6)`,
 <li>If so does one calculation, if not does another</li>
 <li>But nesting can be difficult to follow so try to minimize it</li>
 </ul>
-<section id="task-4-basic-if-statements" class="level3" data-number="14.8.1">
-<h3 data-number="14.8.1" class="anchored" data-anchor-id="task-4-basic-if-statements"><span class="header-section-number">14.8.1</span> Task 4: Basic If Statements</h3>
+<section id="task-4-basic-if-statements" class="level3" data-number="13.8.1">
+<h3 data-number="13.8.1" class="anchored" data-anchor-id="task-4-basic-if-statements"><span class="header-section-number">13.8.1</span> Task 4: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -5744,7 +5744,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Do Task 4 in Basic If Statements</strong></p>
-<p>4. Convert your conditional statement from Task 3 in <a href="#sec-Tasks_2-3"><span>Section&nbsp;14.4.2</span></a> into a function that takes <code>age_class</code> as an argument and returns <code>y</code>. Call this function 5 times, once with each of the following values for <code>age_class</code>: “sapling”, “seedling”, “adult”, “mature”, “established”.</p>
+<p>4. Convert your conditional statement from Task 3 in <a href="#sec-Tasks_2-3"><span>Section&nbsp;13.4.2</span></a> into a function that takes <code>age_class</code> as an argument and returns <code>y</code>. Call this function 5 times, once with each of the following values for <code>age_class</code>: “sapling”, “seedling”, “adult”, “mature”, “established”.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-32">Loading
   webR...</button>
 <div id="webr-editor-32"></div>
@@ -6369,13 +6369,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./loops_part2.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span>
+      <a href="./loops.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./functions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./loops_part2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book - 13&nbsp; Loops in R, Part II</title>
+<title>HuGen2071 book - 14&nbsp; Loops in R, Part II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conditionals.html" rel="next">
-<link href="./loops.html" rel="prev">
+<link href="./functions.html" rel="next">
+<link href="./conditionals.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_part2.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_part2.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -333,14 +333,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -431,14 +431,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">13.1</span> Acknowledgment/License</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">13.2</span> Source code</a></li>
-  <li><a href="#looping-with-functions" id="toc-looping-with-functions" class="nav-link" data-scroll-target="#looping-with-functions"><span class="header-section-number">13.3</span> Looping with functions</a></li>
-  <li><a href="#looping-over-files" id="toc-looping-over-files" class="nav-link" data-scroll-target="#looping-over-files"><span class="header-section-number">13.4</span> Looping over files</a></li>
-  <li><a href="#storing-loop-results-in-a-data-frame" id="toc-storing-loop-results-in-a-data-frame" class="nav-link" data-scroll-target="#storing-loop-results-in-a-data-frame"><span class="header-section-number">13.5</span> Storing loop results in a data frame</a></li>
-  <li><a href="#subsetting-data" id="toc-subsetting-data" class="nav-link" data-scroll-target="#subsetting-data"><span class="header-section-number">13.6</span> Subsetting Data</a></li>
-  <li><a href="#nested-loops" id="toc-nested-loops" class="nav-link" data-scroll-target="#nested-loops"><span class="header-section-number">13.7</span> Nested Loops</a></li>
-  <li><a href="#sequence-along" id="toc-sequence-along" class="nav-link" data-scroll-target="#sequence-along"><span class="header-section-number">13.8</span> Sequence along</a></li>
+  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">14.1</span> Acknowledgment/License</a></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">14.2</span> Source code</a></li>
+  <li><a href="#looping-with-functions" id="toc-looping-with-functions" class="nav-link" data-scroll-target="#looping-with-functions"><span class="header-section-number">14.3</span> Looping with functions</a></li>
+  <li><a href="#looping-over-files" id="toc-looping-over-files" class="nav-link" data-scroll-target="#looping-over-files"><span class="header-section-number">14.4</span> Looping over files</a></li>
+  <li><a href="#storing-loop-results-in-a-data-frame" id="toc-storing-loop-results-in-a-data-frame" class="nav-link" data-scroll-target="#storing-loop-results-in-a-data-frame"><span class="header-section-number">14.5</span> Storing loop results in a data frame</a></li>
+  <li><a href="#subsetting-data" id="toc-subsetting-data" class="nav-link" data-scroll-target="#subsetting-data"><span class="header-section-number">14.6</span> Subsetting Data</a></li>
+  <li><a href="#nested-loops" id="toc-nested-loops" class="nav-link" data-scroll-target="#nested-loops"><span class="header-section-number">14.7</span> Nested Loops</a></li>
+  <li><a href="#sequence-along" id="toc-sequence-along" class="nav-link" data-scroll-target="#sequence-along"><span class="header-section-number">14.8</span> Sequence along</a></li>
   </ul>
 </nav>
     </div>
@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></h1>
 </div>
 
 
@@ -462,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="acknowledgmentlicense" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">13.1</span> Acknowledgment/License</h2>
+<section id="acknowledgmentlicense" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">14.1</span> Acknowledgment/License</h2>
 <p>The original source for this chapter was from the web site</p>
 <p><a href="https://datacarpentry.org/semester-biology/" class="uri">https://datacarpentry.org/semester-biology/</a></p>
 <p>which was built using this underlying code</p>
@@ -474,12 +474,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The material presented here has been modified from the original source.</p>
 <p>Accordingly this chapter is made available under the same license terms.</p>
 </section>
-<section id="source-code" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">13.2</span> Source code</h2>
+<section id="source-code" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">14.2</span> Source code</h2>
 <p>If you’d like to work within R Studio using the source code of this chapter, you can obtain it from <a href="https://github.com/DanielEWeeks/HuGen2071/blob/main/loops_part2.qmd">here</a>.</p>
 </section>
-<section id="looping-with-functions" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="looping-with-functions"><span class="header-section-number">13.3</span> Looping with functions</h2>
+<section id="looping-with-functions" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="looping-with-functions"><span class="header-section-number">14.3</span> Looping with functions</h2>
 <ul>
 <li>It is common to combine loops with with functions by calling one or more functions as a step in our loop</li>
 <li>For example, let’s take the non-vectorized version of our <code>est_mass</code> function that returns an estimated mass if the <code>volume &gt; 5</code> and <code>NA</code> if it’s not.</li>
@@ -1497,8 +1497,8 @@ list.files(pattern = "dinosaur")
 </div>
 </div>
 </section>
-<section id="looping-over-files" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="looping-over-files"><span class="header-section-number">13.4</span> Looping over files</h2>
+<section id="looping-over-files" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="looping-over-files"><span class="header-section-number">14.4</span> Looping over files</h2>
 <ul>
 <li>Repeat same actions on many similar files</li>
 <li>Let’s download some simulated satellite collar data</li>
@@ -2513,8 +2513,8 @@ list.files()
 </div>
 </div>
 </section>
-<section id="storing-loop-results-in-a-data-frame" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="storing-loop-results-in-a-data-frame"><span class="header-section-number">13.5</span> Storing loop results in a data frame</h2>
+<section id="storing-loop-results-in-a-data-frame" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="storing-loop-results-in-a-data-frame"><span class="header-section-number">14.5</span> Storing loop results in a data frame</h2>
 <ul>
 <li>We often want to calculate multiple pieces of information in a loop making it useful to store results in things other than vectors</li>
 <li>We can store them in a data frame instead by creating an empty data frame and storing the results in the <code>i</code>th row of the appropriate column</li>
@@ -3057,8 +3057,8 @@ Do Task 2 of Multiple-file Analysis.
 </div>
 </div>
 </section>
-<section id="subsetting-data" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="subsetting-data"><span class="header-section-number">13.6</span> Subsetting Data</h2>
+<section id="subsetting-data" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="subsetting-data"><span class="header-section-number">14.6</span> Subsetting Data</h2>
 <ul>
 <li>Loops can subset in ways that are difficult with things like <code>group_by</code></li>
 <li>Look at some data on trees from the National Ecological Observatory Network</li>
@@ -4059,8 +4059,8 @@ ggplot(neon_trees, aes(x = easting, y = northing)) +
   };
 </script>
 </section>
-<section id="nested-loops" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="nested-loops"><span class="header-section-number">13.7</span> Nested Loops</h2>
+<section id="nested-loops" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="nested-loops"><span class="header-section-number">14.7</span> Nested Loops</h2>
 <ul>
 <li><p>Sometimes need to loop over multiple things in a coordinate fashion</p></li>
 <li><p>Pass a window over some spatial data</p></li>
@@ -4733,8 +4733,8 @@ ggplot(neon_trees, aes(x = easting, y = northing)) +
   };
 </script>
 </section>
-<section id="sequence-along" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="sequence-along"><span class="header-section-number">13.8</span> Sequence along</h2>
+<section id="sequence-along" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="sequence-along"><span class="header-section-number">14.8</span> Sequence along</h2>
 <ul>
 <li><code>seq_along()</code> generates a vector of numbers from 1 to <code>length(volumes)</code></li>
 </ul>
@@ -5360,13 +5360,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./loops.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span>
+      <a href="./conditionals.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conditionals.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./functions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

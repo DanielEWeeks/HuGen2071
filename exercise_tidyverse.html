@@ -214,14 +214,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -448,26 +448,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X     Y      Z
-  &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01 -0.165 1.52  -2.84 
-2 2009-01-02 -1.31  0.967  2.82 
-3 2009-01-03 -1.94  0.835 -0.227
-4 2009-01-04 -0.320 2.80   0.988
-5 2009-01-05  1.81  2.77  -0.732
-6 2009-01-06  0.241 1.91   1.85 </code></pre>
+  time            X      Y       Z
+  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 2009-01-01  0.683  1.60  -0.0871
+2 2009-01-02 -0.311  0.180 -6.95  
+3 2009-01-03 -0.358  0.732  2.34  
+4 2009-01-04 -1.72  -4.61  -1.54  
+5 2009-01-05  1.26   0.514  7.58  
+6 2009-01-06  1.03   1.10   1.03  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.165
-2 2009-01-02 X     -1.31 
-3 2009-01-03 X     -1.94 
-4 2009-01-04 X     -0.320
-5 2009-01-05 X      1.81 
-6 2009-01-06 X      0.241</code></pre>
+1 2009-01-01 X      0.683
+2 2009-01-02 X     -0.311
+3 2009-01-03 X     -0.358
+4 2009-01-04 X     -1.72 
+5 2009-01-05 X      1.26 
+6 2009-01-06 X      1.03 </code></pre>
 </div>
 </div>
 </section>
@@ -478,14 +478,14 @@ sp    m     014  30</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.165
-2 2009-01-01 Y      1.52 
-3 2009-01-01 Z     -2.84 
-4 2009-01-02 X     -1.31 
-5 2009-01-02 Y      0.967
-6 2009-01-02 Z      2.82 </code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X      0.683 
+2 2009-01-01 Y      1.60  
+3 2009-01-01 Z     -0.0871
+4 2009-01-02 X     -0.311 
+5 2009-01-02 Y      0.180 
+6 2009-01-02 Z     -6.95  </code></pre>
 </div>
 </div>
 </section>
