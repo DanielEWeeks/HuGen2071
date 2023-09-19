@@ -1,0 +1,375 @@
+---
+title: Tidyverse
+webr:
+  packages: ['tidyverse']
+---
+
+## Acknowledgment/License
+
+The original source for this chapter was from the web site
+
+<https://github.com/UoMResearchIT/r-day-workshop/>
+
+which was used to build this web page:
+
+<https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
+
+and is used under the
+
+Attribution 4.0 International (CC BY 4.0)
+
+license <https://creativecommons.org/licenses/by/4.0/>.
+
+The material presented here has been modified from the original source.
+
+Accordingly this chapter is made available under the same license terms.
+
+## Load gapminder data
+
+
+
+In the previous episode we used the `readr` package to load the gapminder data into a tibble within R. 
+
+```{webr-r}
+library(tidyverse)
+
+# Download files within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/gapminder-FiveYearData.csv"),
+              "gapminder-FiveYearData.csv")
+gapminder <- read_csv("gapminder-FiveYearData.csv")
+dim(gapminder)
+head(gapminder)
+```
+
+In this episode we'll use the `dplyr` package to manipulate the data we loaded, and calculate some summary statistics. We'll also introduce the concept of "pipes".
+
+## Manipulating tibbles
+
+Manipulation of tibbles means many things to many researchers. We often select only certain observations (rows) or variables (columns). We often group the data by a certain variable(s), or calculate summary statistics.
+
+## The `dplyr` package
+
+The [`dplyr`](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf) package is part of the tidyverse. It provides a number of very useful functions for manipulating tibbles (and their base-R cousin, the `data.frame`) in a way that will reduce repetition, reduce the probability of making errors, and probably even save you some typing.
+
+We will cover:
+
+1.  selecting variables with `select()`
+2.  subsetting observations with `filter()`
+3.  grouping observations with `group_by()`
+4.  generating summary statistics using `summarize()`
+5.  generating new variables using `mutate()`
+6.  Sorting tibbles using `arrange()`
+7.  chaining operations together using pipes `%>%`
+
+## Using `select()`
+
+If, for example, we wanted to move forward with only a few of the variables in our tibble we use the `select()` function. This will keep only the variables you select.
+
+```{webr-r}
+year_country_gdp <- select(gapminder,year,country,gdpPercap)
+print(year_country_gdp)
+```
+
+Select will select *columns* of data. What if we want to select rows that meet certain criteria?
+
+## Other ways of selecting
+
+Instead of saying what columns we *do* want, we can tell R which columns we don't want by prefixing the column name with a `-`. For example to select everything except year we would use `select(gapminder, -year)`.
+
+There are also other ways of selecting columns based on parts of their names (such as `starts_with()` and `ends_with()`) - see `?select_helpers` for more information.
+
+
+
+## Using `filter()`
+
+The `filter()` function is used to select rows of data. For example, to select only countries in Europe:
+
+```{webr-r}
+gapminder_Europe <- filter(gapminder, continent=="Europe") 
+print(gapminder_Europe)
+```
+
+Only rows of the data where the condition (i.e. `continent=="Europe"`) is `TRUE` are kept.
+
+## Using pipes and dplyr
+
+We've now seen how to choose certain columns of data (using `select()`) and certain rows of data (using `filter()`). In an analysis we often want to do both of these things (and many other things, like calculating summary statistics, which we'll come to shortly). How do we combine these?
+
+There are several ways of doing this; the method we will learn about today is using *pipes*.
+
+The pipe operator `%>%` lets us pipe the output of one command into the next. This allows us to build up a data-processing pipeline. This approach has several advantages:
+
+-   We can build the pipeline piecemeal - building the pipeline step-by-step is easier than trying to perform a complex series of operations in one go
+-   It is easy to modify and reuse the pipeline
+-   We don't have to make temporary tibbles as the analysis progresses
+
+## Pipelines and the shell
+
+If you're familiar with the Unix shell, you may already have used pipes to pass the output from one command to the next. The concept is the same, except the shell uses the `|` character rather than R's pipe operator `%>%` 
+
+## Keyboard shortcuts and getting help
+
+The pipe operator can be tedious to type. In Rstudio pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd>+<kbd>M</kbd> under Windows / Linux will insert the pipe operator. On the mac, use <kbd>⌘</kbd> + <kbd>Shift</kbd>+<kbd>M</kbd>.
+
+ We can use tab completion to complete variable names when entering commands. This saves typing and reduces the risk of error.
+
+ RStudio includes a helpful "cheat sheet", which summarises the main functionality and syntax of `dplyr`. This can be accessed via the help menu --\> cheatsheets --\> data transformation with dplyr.
+
+ 
+
+Let's rewrite the select command example using the pipe operator:
+
+```{webr-r}
+year_country_gdp <- gapminder %>% select(year,country,gdpPercap)
+print(year_country_gdp)
+```
+
+To help you understand why we wrote that in that way, let's walk through it step by step. First we summon the gapminder tibble and pass it on, using the pipe symbol `%>%`, to the next step, which is the `select()` function. In this case we don't specify which data object we use in the `select()` function since in gets that from the previous pipe.
+
+What if we wanted to combine this with the filter example? I.e. we want to select year, country and GDP per capita, but only for countries in Europe? We can join these two operations using a pipe; feeding the output of one command directly into the next:
+
+```{webr-r}
+year_country_gdp_euro <- gapminder %>%
+    filter(continent == "Europe") %>%
+    select(year,country,gdpPercap)
+print(year_country_gdp_euro)
+```
+
+Note that the order of these operations matters; if we reversed the order of the `select()` and `filter()` functions, the `continent` variable wouldn't exist in the data-set when we came to apply the filter.
+
+What about if we wanted to match more than one item? To do this we use the `%in%` operator:
+
+```{webr-r}
+gapminder_scandinavia <- gapminder %>% 
+  filter(country %in% c("Denmark",
+                        "Norway",
+                        "Sweden"))
+print(gapminder_scandinavia)
+```
+
+## Another way of thinking about pipes
+
+ It might be useful to think of the statement
+
+```r
+  gapminder %%
+     filter(continent=="Europe") %%
+     select(year,country,gdpPercap)
+```
+
+as a sentence, which we can read as "take the gapminder data *and then* `filter` records where continent == Europe *and then* `select` the year, country and gdpPercap
+
+We can think of the `filter()` and `select()` functions as verbs in the sentence; they do things to the data flowing through the pipeline.
+
+ 
+
+## Splitting your commands over multiple lines
+
+It's generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it's important that the `%%` goes at the *end* of the line, as in the example above. If we put it at the beginning of a line, e.g.:
+
+```{webr-r}
+ gapminder_benelux <- gapminder 
+ %>% filter(country %in% c("Belgium", "Netherlands", "France"))
+```
+
+the first line makes a valid R command. R will then treat the next line as a new command, which won't work. 
+
+::: callout-important
+## Challenge 1
+
+Write a single command (which can span multiple lines and includes pipes) that will produce a tibble that has the values of `lifeExp`, `country` and `year`, for the countries in Africa, but not for other Continents. How many rows does your tibble have? (You can use the `nrow()` function to find out how many rows are in a tibble.)
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Solution to Challenge 1
+
+```{webr-r}
+year_country_lifeExp_Africa <- gapminder %>%
+                            filter(continent=="Africa") %>%
+                            select(year,country,lifeExp)
+ nrow(year_country_lifeExp_Africa)
+```
+
+As with last time, first we pass the gapminder tibble to the `filter()` function, then we pass the filtered version of the gapminder tibble to the `select()` function. **Note:** The order of operations is very important in this case. If we used 'select' first, filter would not be able to find the variable continent since we would have removed it in the previous step.  
+
+:::
+
+## Sorting tibbles
+
+The `arrange()` function will sort a tibble by one or more of the variables in it:
+
+```{webr-r}
+gapminder %>%
+  filter(continent == "Europe", year == 2007) %>% 
+  arrange(pop)
+```
+
+We can use the `desc()` function to sort a variable in reverse order:
+
+```{webr-r}
+gapminder %>%
+  filter(continent == "Europe", year == 2007) %>% 
+  arrange(desc(pop))
+```
+
+## Generating new variables
+
+The `mutate()` function lets us add new variables to our tibble. It will often be the case that these are variables we *derive* from existing variables in the data-frame.
+
+As an example, the gapminder data contains the population of each country, and its GDP per capita. We can use this to calculate the total GDP of each country:
+
+```{webr-r}
+gapminder_totalgdp <- gapminder %>% 
+  mutate(gdp = gdpPercap * pop)
+print(gapminder_totalgdp)
+```
+
+We can also use functions within mutate to generate new variables. For example, to take the log of `gdpPercap` we could use:
+
+```{webr-r}
+gapminder %>% 
+  mutate(logGdpPercap = log(gdpPercap))
+```
+
+The dplyr cheat sheet contains many useful functions which can be used with dplyr. This can be found in the help menu of RStudio. You will use one of these functions in the next challenge.
+
+::: callout-important
+## Challenge 2
+
+Create a tibble containing each country in Europe, its life expectancy in 2007 and the rank of the country's life expectancy. (note that ranking the countries *will not* sort the table; the row order will be unchanged. You can use the `arrange()` function to sort the table).
+
+Hint: First `filter()` to get the rows you want, and then use `mutate()` to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).\
+There are several functions for ranking observations, which handle tied values differently. For this exercise it doesn't matter which function you choose.
+
+Can you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Solution to challenge 2
+
+```{webr-r}
+europeLifeExp <- gapminder %>% 
+  filter(continent == "Europe", year == 2007) %>% 
+  select(country, lifeExp) %>% 
+  mutate(rank = min_rank(lifeExp))
+print(europeLifeExp, n=100)
+```
+
+To reverse the order of the ranking, use the `desc` function, i.e. `mutate(rank = min_rank(desc(lifeExp)))`
+
+There are several functions for calculating ranks; you may have used, e.g. `dense_rank()` The functions handle ties differently. The help file for `dplyr`'s ranking functions explains the differences, and can be accessed with `?ranking` 
+:::
+
+## Calculating summary statistics
+
+We often wish to calculate a summary statistic (the mean, standard deviation, etc.) for a variable. We frequently want to calculate a separate summary statistic for several groups of data (e.g. the experiment and control group). We can calculate a summary statistic for the whole data-set using the dplyr's `summarise()` function:
+
+```{webr-r}
+gapminder %>% 
+  filter(year == 2007) %>% 
+  summarise(meanlife = mean(lifeExp))
+```
+
+To generate summary statistics for each value of another variable we use the `group_by()` function:
+
+```{webr-r}
+gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(meanlife = mean(lifeExp))
+```
+
+## Aside
+
+In the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using `weighted.mean(lifeExp, pop)`. For simplicty I've used the regular mean in the above examples.
+
+
+
+## Statistics revision
+
+If you need to revise or learn about statistical concepts, the University Library's "My Learning Essentials" team have produced a site [Start to Finish:Statistics](https://www.escholar.manchester.ac.uk/learning-objects/mle/packages/statistics/) which covers important statistical concepts.
+
+
+
+::: callout-important
+## Challenge 3
+
+For each combination of continent and year, calculate the average life expectancy.
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Solution to Challenge 3
+
+```{webr-r}
+ lifeExp_bycontinentyear <- gapminder %>% 
+    group_by(continent, year) %>% 
+   summarise(mean_lifeExp = mean(lifeExp))
+ print(lifeExp_bycontinentyear)
+```
+
+ 
+
+:::
+
+## `count()` and `n()`
+
+A very common operation is to count the number of observations for each group. The `dplyr` package comes with two related functions that help with this.
+
+If we need to use the number of observations in calculations, the `n()` function is useful. For instance, if we wanted to get the standard error of the life expectancy per continent:
+
+```{webr-r}
+gapminder %>%
+    filter(year == 2002) %>%	
+    group_by(continent) %>%
+    summarize(se_pop = sd(lifeExp)/sqrt(n()))
+```
+
+Although we could use the `group_by()`, `n()` and `summarize()` functions to calculate the number of observations in each group, `dplyr` provides the `count()` function which automatically groups the data, calculates the totals and then ungroups it.
+
+For instance, if we wanted to check the number of countries included in the dataset for the year 2002, we can use:
+
+```{webr-r}
+gapminder %>%
+    filter(year == 2002) %>%
+    count(continent, sort = TRUE)
+```
+
+We can optionally sort the results in descending order by adding `sort=TRUE`:
+
+## Equivalent functions in base R
+
+In this course we've taught the tidyverse. You are likely come across code written others in base R. You can find a guide to some base R functions and their tidyverse equivalents [here](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/), which may be useful when reading their code.
+
+ 
+
+## Other great resources
+
+-   [Data Wrangling tutorial](https://suzan.rbind.io/categories/tutorial/) - an excellent four part tutorial covering selecting data, filtering data, summarising and transforming your data.
+-   [R for Data Science](http://r4ds.had.co.nz/)
+-   [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) - you can also access this from the help menu in RStudio (in newer versions of RStudio it has been replaced with "Data Transformation with dplyr")
+-   [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) - this is the package vignette. It can be viewed within R using `vignette(package="dplyr", "dplyr")`
+-   [Data wrangling with R and RStudio](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) - 55 minute webinar from RStudio

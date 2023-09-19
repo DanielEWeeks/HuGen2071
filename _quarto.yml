@@ -27,6 +27,7 @@ book:
   - loops_part2.qmd
   - functions.qmd
   - R_Functions.Qmd
+  - tidyverse.qmd
   - exercise_tidyverse.Qmd
   - recoding_reshaping_interactive.Qmd
   - merging_exercise.Qmd
