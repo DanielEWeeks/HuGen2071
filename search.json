@@ -907,14 +907,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.480  0.394  4.20\n2 2009-01-02 -0.657  0.888 -6.86\n3 2009-01-03 -0.723  0.641 -7.59\n4 2009-01-04  2.09  -2.74  -2.62\n5 2009-01-05  0.532 -2.73   1.38\n6 2009-01-06  1.65  -3.47   2.57\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.480\n2 2009-01-02 X     -0.657\n3 2009-01-03 X     -0.723\n4 2009-01-04 X      2.09 \n5 2009-01-05 X      0.532\n6 2009-01-06 X      1.65"
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time           X      Y      Z\n  &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 0.701 -2.41   3.86 \n2 2009-01-02 1.44  -0.999  1.53 \n3 2009-01-03 0.422 -2.96   0.846\n4 2009-01-04 1.04   0.460  5.77 \n5 2009-01-05 0.222 -0.180 -5.02 \n6 2009-01-06 0.339 -1.48  -1.78 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock price\n  &lt;date&gt;     &lt;chr&gt; &lt;dbl&gt;\n1 2009-01-01 X     0.701\n2 2009-01-02 X     1.44 \n3 2009-01-03 X     0.422\n4 2009-01-04 X     1.04 \n5 2009-01-05 X     0.222\n6 2009-01-06 X     0.339"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.480\n2 2009-01-01 Y      0.394\n3 2009-01-01 Z      4.20 \n4 2009-01-02 X     -0.657\n5 2009-01-02 Y      0.888\n6 2009-01-02 Z     -6.86"
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.701\n2 2009-01-01 Y     -2.41 \n3 2009-01-01 Z      3.86 \n4 2009-01-02 X      1.44 \n5 2009-01-02 Y     -0.999\n6 2009-01-02 Z      1.53"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -935,7 +935,7 @@
     "href": "exercise_tidyverse.html#acknowledgment",
     "title": "18  R Tidyverse Exercise",
     "section": "18.8 Acknowledgment",
-    "text": "18.8 Acknowledgment\nThis exercise was modeled, in part, on this exercise:\nhttps://people.duke.edu/~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html"
+    "text": "18.8 Acknowledgment\nThis exercise was modeled, in part, on this exercise:\nhttps://people.duke.edu/\\~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html"
   },
   {
     "objectID": "recoding_reshaping_interactive.html#load-libraries",
