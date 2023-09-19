@@ -1,6 +1,5 @@
 # R Tidyverse Exercise
 
-
 ## Load Libraries
 
 Load the `tidyverse` packages
@@ -24,7 +23,7 @@ See the help page for `who` for more information about this data set.
 
 In particular, note this description:
 
-"The data uses the original codes given by the World Health Organization. The column names for columns five through 60 are made by combining new_ to a code for method of diagnosis (rel = relapse, sn = negative pulmonary smear, sp = positive pulmonary smear, ep = extrapulmonary) to a code for gender (f = female, m = male) to a code for age group (014 = 0-14 yrs of age, 1524 = 15-24 years of age, 2534 = 25 to 34 years of age, 3544 = 35 to 44 years of age, 4554 = 45 to 54 years of age, 5564 = 55 to 64 years of age, 65 = 65 years of age or older)."
+"The data uses the original codes given by the World Health Organization. The column names for columns five through 60 are made by combining new\_ to a code for method of diagnosis (rel = relapse, sn = negative pulmonary smear, sp = positive pulmonary smear, ep = extrapulmonary) to a code for gender (f = female, m = male) to a code for age group (014 = 0-14 yrs of age, 1524 = 15-24 years of age, 2534 = 25 to 34 years of age, 3544 = 35 to 44 years of age, 4554 = 45 to 54 years of age, 5564 = 55 to 64 years of age, 65 = 65 years of age or older)."
 
 So `new_sp_m014` represents the counts of new TB cases detected by a positive pulmonary smear in males in the 0-14 age group.
 
@@ -39,19 +38,16 @@ Question: Are these data tidy?
 
 No these data are not tidy because aspects of the data that should be variables are encoded in the name of the variables.
 
-These aspects are 
+These aspects are
 
-1. test type.
-2. sex of the subjects.
-3. age range of the subjects.
-
-
+1.  test type.
+2.  sex of the subjects.
+3.  age range of the subjects.
 :::
-
 
 Question: How would we make these data tidy?
 
-Consider this portion  of the data:
+Consider this portion of the data:
 
 ```{r}
 head(who[,1:5] %>% filter(!is.na(new_sp_m014) & new_sp_m014>0), 1)
@@ -62,13 +58,12 @@ head(who[,1:5] %>% filter(!is.na(new_sp_m014) & new_sp_m014>0), 1)
 
 We would replace the `new_sp_m014` with the following four columns:
 
-```
+```         
 type  sex   age   n
 sp    m     014  30
 ```
 
-This would place each variable in its own column. 
-
+This would place each variable in its own column.
 :::
 
 ## Gather
@@ -86,7 +81,6 @@ head(stocks)
 stocks %>% gather("stock", "price", -time) %>% head()
 ```
 
-
 ## Pivot_longer
 
 ```{r}
@@ -102,7 +96,6 @@ Question: How would we convert this to tidy form?
 head(who[,1:6] %>% filter(!is.na(new_sp_m014)))
 ```
 
-
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -110,9 +103,7 @@ head(who[,1:6] %>% filter(!is.na(new_sp_m014)))
 who.long <- who %>% pivot_longer(starts_with("new"), names_to = "demo", values_to = "n") %>%  filter(!is.na(n))
 head(who.long)
 ```
-
 :::
-
 
 Question: How would we split `demo` into variables?
 
@@ -136,9 +127,7 @@ who.long <- who.long %>%
   mutate(demo = str_replace(demo, "newrel", "new_rel"))
 grep("m014",who.long$demo, value=TRUE) %>%  unique()
 ```
-
 :::
-
 
 Question: After adjusting the `demo` strings, how would we then separate them into the desired variables?
 
@@ -152,7 +141,6 @@ who.long <- who.long %>%
   select(-new)
 head(who.long)
 ```
-
 :::
 
 ## Conclusion
@@ -167,6 +155,4 @@ head(who.long)
 
 This exercise was modeled, in part, on this exercise:
 
-https://people.duke.edu/~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html
-
-
+<https://people.duke.edu/\~ccc14/cfar-data-workshop-2018/CFAR_R_Workshop_2018_Exercisees.html>
