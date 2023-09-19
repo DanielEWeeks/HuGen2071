@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book - 12&nbsp; Loops in R, Part I</title>
+<title>HuGen2071 book - 17&nbsp; Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conditionals.html" rel="next">
-<link href="./RLoops.html" rel="prev">
+<link href="./exercise_tidyverse.html" rel="next">
+<link href="./R_Functions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   const initializeWebRTimerStart = performance.now();
 
   // Determine if we need to install R packages
-  var installRPackagesList = [''];
+  var installRPackagesList = ['tidyverse'];
   // Check to see if we have an empty array, if we do set to skip the installation.
   var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
 
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loops.html" class="sidebar-item-text sidebar-link active">
+  <a href="./loops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
@@ -437,11 +437,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">12.1</span> Acknowledgment/License</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">12.2</span> Source code</a></li>
-  <li><a href="#basic-for-loop" id="toc-basic-for-loop" class="nav-link" data-scroll-target="#basic-for-loop"><span class="header-section-number">12.3</span> Basic <code>for</code> loop</a></li>
-  <li><a href="#looping-with-an-index-storing-results" id="toc-looping-with-an-index-storing-results" class="nav-link" data-scroll-target="#looping-with-an-index-storing-results"><span class="header-section-number">12.4</span> Looping with an index &amp; storing results</a></li>
-  <li><a href="#looping-over-multiple-values" id="toc-looping-over-multiple-values" class="nav-link" data-scroll-target="#looping-over-multiple-values"><span class="header-section-number">12.5</span> Looping over multiple values</a></li>
+  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">17.1</span> Acknowledgment/License</a></li>
+  <li><a href="#load-gapminder-data" id="toc-load-gapminder-data" class="nav-link" data-scroll-target="#load-gapminder-data"><span class="header-section-number">17.2</span> Load gapminder data</a></li>
+  <li><a href="#manipulating-tibbles" id="toc-manipulating-tibbles" class="nav-link" data-scroll-target="#manipulating-tibbles"><span class="header-section-number">17.3</span> Manipulating tibbles</a></li>
+  <li><a href="#the-dplyr-package" id="toc-the-dplyr-package" class="nav-link" data-scroll-target="#the-dplyr-package"><span class="header-section-number">17.4</span> The <code>dplyr</code> package</a></li>
+  <li><a href="#using-select" id="toc-using-select" class="nav-link" data-scroll-target="#using-select"><span class="header-section-number">17.5</span> Using <code>select()</code></a></li>
+  <li><a href="#other-ways-of-selecting" id="toc-other-ways-of-selecting" class="nav-link" data-scroll-target="#other-ways-of-selecting"><span class="header-section-number">17.6</span> Other ways of selecting</a></li>
+  <li><a href="#using-filter" id="toc-using-filter" class="nav-link" data-scroll-target="#using-filter"><span class="header-section-number">17.7</span> Using <code>filter()</code></a></li>
+  <li><a href="#using-pipes-and-dplyr" id="toc-using-pipes-and-dplyr" class="nav-link" data-scroll-target="#using-pipes-and-dplyr"><span class="header-section-number">17.8</span> Using pipes and dplyr</a></li>
+  <li><a href="#pipelines-and-the-shell" id="toc-pipelines-and-the-shell" class="nav-link" data-scroll-target="#pipelines-and-the-shell"><span class="header-section-number">17.9</span> Pipelines and the shell</a></li>
+  <li><a href="#keyboard-shortcuts-and-getting-help" id="toc-keyboard-shortcuts-and-getting-help" class="nav-link" data-scroll-target="#keyboard-shortcuts-and-getting-help"><span class="header-section-number">17.10</span> Keyboard shortcuts and getting help</a></li>
+  <li><a href="#another-way-of-thinking-about-pipes" id="toc-another-way-of-thinking-about-pipes" class="nav-link" data-scroll-target="#another-way-of-thinking-about-pipes"><span class="header-section-number">17.11</span> Another way of thinking about pipes</a></li>
+  <li><a href="#splitting-your-commands-over-multiple-lines" id="toc-splitting-your-commands-over-multiple-lines" class="nav-link" data-scroll-target="#splitting-your-commands-over-multiple-lines"><span class="header-section-number">17.12</span> Splitting your commands over multiple lines</a></li>
+  <li><a href="#sorting-tibbles" id="toc-sorting-tibbles" class="nav-link" data-scroll-target="#sorting-tibbles"><span class="header-section-number">17.13</span> Sorting tibbles</a></li>
+  <li><a href="#generating-new-variables" id="toc-generating-new-variables" class="nav-link" data-scroll-target="#generating-new-variables"><span class="header-section-number">17.14</span> Generating new variables</a></li>
+  <li><a href="#calculating-summary-statistics" id="toc-calculating-summary-statistics" class="nav-link" data-scroll-target="#calculating-summary-statistics"><span class="header-section-number">17.15</span> Calculating summary statistics</a></li>
+  <li><a href="#aside" id="toc-aside" class="nav-link" data-scroll-target="#aside"><span class="header-section-number">17.16</span> Aside</a></li>
+  <li><a href="#statistics-revision" id="toc-statistics-revision" class="nav-link" data-scroll-target="#statistics-revision"><span class="header-section-number">17.17</span> Statistics revision</a></li>
+  <li><a href="#count-and-n" id="toc-count-and-n" class="nav-link" data-scroll-target="#count-and-n"><span class="header-section-number">17.18</span> <code>count()</code> and <code>n()</code></a></li>
+  <li><a href="#equivalent-functions-in-base-r" id="toc-equivalent-functions-in-base-r" class="nav-link" data-scroll-target="#equivalent-functions-in-base-r"><span class="header-section-number">17.19</span> Equivalent functions in base R</a></li>
+  <li><a href="#other-great-resources" id="toc-other-great-resources" class="nav-link" data-scroll-target="#other-great-resources"><span class="header-section-number">17.20</span> Other great resources</a></li>
   </ul>
 </nav>
     </div>
@@ -450,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></h1>
 </div>
 
 
@@ -465,35 +480,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="acknowledgmentlicense" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">12.1</span> Acknowledgment/License</h2>
+<section id="acknowledgmentlicense" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">17.1</span> Acknowledgment/License</h2>
 <p>The original source for this chapter was from the web site</p>
-<p><a href="https://datacarpentry.org/semester-biology/" class="uri">https://datacarpentry.org/semester-biology/</a></p>
-<p>which was built using this underlying code</p>
-<p><a href="https://github.com/datacarpentry/semester-biology" class="uri">https://github.com/datacarpentry/semester-biology</a></p>
+<p><a href="https://github.com/UoMResearchIT/r-day-workshop/" class="uri">https://github.com/UoMResearchIT/r-day-workshop/</a></p>
+<p>which was used to build this web page:</p>
+<p><a href="https://uomresearchit.github.io/r-day-workshop/04-dplyr/" class="uri">https://uomresearchit.github.io/r-day-workshop/04-dplyr/</a></p>
 <p>and is used under the</p>
 <p>Attribution 4.0 International (CC BY 4.0)</p>
 <p>license <a href="https://creativecommons.org/licenses/by/4.0/" class="uri">https://creativecommons.org/licenses/by/4.0/</a>.</p>
 <p>The material presented here has been modified from the original source.</p>
 <p>Accordingly this chapter is made available under the same license terms.</p>
 </section>
-<section id="source-code" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">12.2</span> Source code</h2>
-<p>If you’d like to work within R Studio using the source code of this chapter, you can obtain it from <a href="https://github.com/DanielEWeeks/HuGen2071/blob/main/loops.qmd">here</a>.</p>
-</section>
-<section id="basic-for-loop" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="basic-for-loop"><span class="header-section-number">12.3</span> Basic <code>for</code> loop</h2>
-<ul>
-<li>Loops are the fundamental structure for repetition in programming</li>
-<li><code>for</code> loops perform the same action for each item in a list of things</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (item <span class="cf">in</span> list_of_items) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do_something</span>(item)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>To see an example of this let’s calculate masses from volumes using a loop</li>
-<li>Need <code>print()</code> to display values inside a loop or function</li>
-</ul>
+<section id="load-gapminder-data" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="load-gapminder-data"><span class="header-section-number">17.2</span> Load gapminder data</h2>
+<p>In the previous episode we used the <code>readr</code> package to load the gapminder data into a tibble within R.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
   webR...</button>
 <div id="webr-editor-1"></div>
@@ -513,11 +514,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `volumes = c(1.6, 3, 8)
-for (volume in volumes){
-  mass <- 2.65 * volume ^ 0.9
-  print(mass)
-}`,
+      value: `library(tidyverse)
+
+# Download files within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/gapminder-FiveYearData.csv"),
+              "gapminder-FiveYearData.csv")
+gapminder <- read_csv("gapminder-FiveYearData.csv")
+dim(gapminder)
+head(gapminder)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -657,14 +662,29 @@ for (volume in volumes){
     executeCode(editor.getValue());
   };
 </script>
-<ul>
-<li>Code in the loop will run once for each value in volumes</li>
-<li>Everything between the curly brackets is executed each time through the loop</li>
-<li>Code takes the first value from <code>volumes</code> and assigns it to <code>volume</code> and does the calculation and prints it</li>
-<li>Then it takes the second value from <code>volumes</code> and assigns it to <code>volume</code> and does the calculation and prints it</li>
-<li>And so on</li>
-<li>So, this loop does the same exact thing as</li>
-</ul>
+<p>In this episode we’ll use the <code>dplyr</code> package to manipulate the data we loaded, and calculate some summary statistics. We’ll also introduce the concept of “pipes”.</p>
+</section>
+<section id="manipulating-tibbles" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="manipulating-tibbles"><span class="header-section-number">17.3</span> Manipulating tibbles</h2>
+<p>Manipulation of tibbles means many things to many researchers. We often select only certain observations (rows) or variables (columns). We often group the data by a certain variable(s), or calculate summary statistics.</p>
+</section>
+<section id="the-dplyr-package" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="the-dplyr-package"><span class="header-section-number">17.4</span> The <code>dplyr</code> package</h2>
+<p>The <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf"><code>dplyr</code></a> package is part of the tidyverse. It provides a number of very useful functions for manipulating tibbles (and their base-R cousin, the <code>data.frame</code>) in a way that will reduce repetition, reduce the probability of making errors, and probably even save you some typing.</p>
+<p>We will cover:</p>
+<ol type="1">
+<li>selecting variables with <code>select()</code></li>
+<li>subsetting observations with <code>filter()</code></li>
+<li>grouping observations with <code>group_by()</code></li>
+<li>generating summary statistics using <code>summarize()</code></li>
+<li>generating new variables using <code>mutate()</code></li>
+<li>Sorting tibbles using <code>arrange()</code></li>
+<li>chaining operations together using pipes <code>%&gt;%</code></li>
+</ol>
+</section>
+<section id="using-select" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="using-select"><span class="header-section-number">17.5</span> Using <code>select()</code></h2>
+<p>If, for example, we wanted to move forward with only a few of the variables in our tibble we use the <code>select()</code> function. This will keep only the variables you select.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
   webR...</button>
 <div id="webr-editor-2"></div>
@@ -684,15 +704,8 @@ for (volume in volumes){
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `volume <- volumes[1]
-mass <- 2.65 * volume ^ 0.9
-print(mass)
-volume <- volumes[2]
-mass <- 2.65 * volume ^ 0.9
-print(mass)
-volume <- volumes[3]
-mass <- 2.65 * volume ^ 0.9
-print(mass)`,
+      value: `year_country_gdp <- select(gapminder,year,country,gdpPercap)
+print(year_country_gdp)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -832,17 +845,16 @@ print(mass)`,
     executeCode(editor.getValue());
   };
 </script>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Do Tasks 1 &amp; 2 in Basic For Loops
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>1. The code below prints the numbers 1 through 5 one line at a time. Modify it to print each of these numbers multiplied by 3.</p>
+<p>Select will select <em>columns</em> of data. What if we want to select rows that meet certain criteria?</p>
+</section>
+<section id="other-ways-of-selecting" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="other-ways-of-selecting"><span class="header-section-number">17.6</span> Other ways of selecting</h2>
+<p>Instead of saying what columns we <em>do</em> want, we can tell R which columns we don’t want by prefixing the column name with a <code>-</code>. For example to select everything except year we would use <code>select(gapminder, -year)</code>.</p>
+<p>There are also other ways of selecting columns based on parts of their names (such as <code>starts_with()</code> and <code>ends_with()</code>) - see <code>?select_helpers</code> for more information.</p>
+</section>
+<section id="using-filter" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="using-filter"><span class="header-section-number">17.7</span> Using <code>filter()</code></h2>
+<p>The <code>filter()</code> function is used to select rows of data. For example, to select only countries in Europe:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
   webR...</button>
 <div id="webr-editor-3"></div>
@@ -862,10 +874,8 @@ Do Tasks 1 &amp; 2 in Basic For Loops
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `numbers <- c(1, 2, 3, 4, 5)
-for (number in numbers){
-  print(number)
-}`,
+      value: `gapminder_Europe <- filter(gapminder, continent=="Europe") 
+print(gapminder_Europe)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1005,7 +1015,29 @@ for (number in numbers){
     executeCode(editor.getValue());
   };
 </script>
-<p>2. Write a for loop that loops over the following vector and prints out the mass in kilograms (<code>mass_kg = 2.2 * mass_lb</code>)</p>
+<p>Only rows of the data where the condition (i.e.&nbsp;<code>continent=="Europe"</code>) is <code>TRUE</code> are kept.</p>
+</section>
+<section id="using-pipes-and-dplyr" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="using-pipes-and-dplyr"><span class="header-section-number">17.8</span> Using pipes and dplyr</h2>
+<p>We’ve now seen how to choose certain columns of data (using <code>select()</code>) and certain rows of data (using <code>filter()</code>). In an analysis we often want to do both of these things (and many other things, like calculating summary statistics, which we’ll come to shortly). How do we combine these?</p>
+<p>There are several ways of doing this; the method we will learn about today is using <em>pipes</em>.</p>
+<p>The pipe operator <code>%&gt;%</code> lets us pipe the output of one command into the next. This allows us to build up a data-processing pipeline. This approach has several advantages:</p>
+<ul>
+<li>We can build the pipeline piecemeal - building the pipeline step-by-step is easier than trying to perform a complex series of operations in one go</li>
+<li>It is easy to modify and reuse the pipeline</li>
+<li>We don’t have to make temporary tibbles as the analysis progresses</li>
+</ul>
+</section>
+<section id="pipelines-and-the-shell" class="level2" data-number="17.9">
+<h2 data-number="17.9" class="anchored" data-anchor-id="pipelines-and-the-shell"><span class="header-section-number">17.9</span> Pipelines and the shell</h2>
+<p>If you’re familiar with the Unix shell, you may already have used pipes to pass the output from one command to the next. The concept is the same, except the shell uses the <code>|</code> character rather than R’s pipe operator <code>%&gt;%</code></p>
+</section>
+<section id="keyboard-shortcuts-and-getting-help" class="level2" data-number="17.10">
+<h2 data-number="17.10" class="anchored" data-anchor-id="keyboard-shortcuts-and-getting-help"><span class="header-section-number">17.10</span> Keyboard shortcuts and getting help</h2>
+<p>The pipe operator can be tedious to type. In Rstudio pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd>+<kbd>M</kbd> under Windows / Linux will insert the pipe operator. On the mac, use <kbd>⌘</kbd> + <kbd>Shift</kbd>+<kbd>M</kbd>.</p>
+<p>We can use tab completion to complete variable names when entering commands. This saves typing and reduces the risk of error.</p>
+<p>RStudio includes a helpful “cheat sheet”, which summarises the main functionality and syntax of <code>dplyr</code>. This can be accessed via the help menu –&gt; cheatsheets –&gt; data transformation with dplyr.</p>
+<p>Let’s rewrite the select command example using the pipe operator:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
   webR...</button>
 <div id="webr-editor-4"></div>
@@ -1025,8 +1057,8 @@ for (number in numbers){
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `(mass_lbs <- c(2.2, 3.5, 9.6, 1.2))
-# Edit/add/try out R code here`,
+      value: `year_country_gdp <- gapminder %>% select(year,country,gdpPercap)
+print(year_country_gdp)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1166,38 +1198,8 @@ for (number in numbers){
     executeCode(editor.getValue());
   };
 </script>
-</div>
-</div>
-</section>
-<section id="looping-with-an-index-storing-results" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="looping-with-an-index-storing-results"><span class="header-section-number">12.4</span> Looping with an index &amp; storing results</h2>
-<ul>
-<li>R loops iterate over a series of values in a vector or other list like object</li>
-<li>When we use that value directly this is called looping by value</li>
-<li>But there is another way to loop, which is called looping by index</li>
-<li>Looping by index loops over a list of integer index values, typically starting at 1</li>
-<li>These integers are then used to access values in one or more vectors at the position inicated by the index</li>
-<li>If we modified our previous loop to use an index it would look like this</li>
-<li>We often use <code>i</code> to stand for “index” as the variable we update with each step through the loop</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>volumes <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.6</span>, <span class="dv">3</span>, <span class="dv">8</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>We then create a vector of position values starting at 1 (for the first value) and ending with the length of the object we are looping over</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>volumes <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.6</span>, <span class="dv">3</span>, <span class="dv">8</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>We don’t want to have to know the length of the vector and it might change in the future, so we’ll look it up using the <code>length()</code> function</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>volumes <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.6</span>, <span class="dv">3</span>, <span class="dv">8</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(volumes)){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Then inside the loop instead of doing the calculation on the index (which is just a number between 1 and 3 in our case)</li>
-<li>We use square brackets and the index to get the appropriate value out of our vector</li>
-</ul>
+<p>To help you understand why we wrote that in that way, let’s walk through it step by step. First we summon the gapminder tibble and pass it on, using the pipe symbol <code>%&gt;%</code>, to the next step, which is the <code>select()</code> function. In this case we don’t specify which data object we use in the <code>select()</code> function since in gets that from the previous pipe.</p>
+<p>What if we wanted to combine this with the filter example? I.e. we want to select year, country and GDP per capita, but only for countries in Europe? We can join these two operations using a pipe; feeding the output of one command directly into the next:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
   webR...</button>
 <div id="webr-editor-5"></div>
@@ -1217,11 +1219,10 @@ for (number in numbers){
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `volumes = c(1.6, 3, 8)
-for (i in 1:length(volumes)){
-   mass <- 2.65 * volumes[i] ^ 0.9
-   print(mass)
-}`,
+      value: `year_country_gdp_euro <- gapminder %>%
+    filter(continent == "Europe") %>%
+    select(year,country,gdpPercap)
+print(year_country_gdp_euro)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1361,16 +1362,8 @@ for (i in 1:length(volumes)){
     executeCode(editor.getValue());
   };
 </script>
-<ul>
-<li><p>This gives us the same result, but it’s more complicated to understand</p></li>
-<li><p>So why would we loop by index?</p></li>
-<li><p>The advantage to looping by index is that it lets us do more complicated things</p></li>
-<li><p>One of the most common things we use this for are storing the results we calculated in the loop</p></li>
-<li><p>To do this we start by creating an empty object the same length as the results will be before the loop starts</p></li>
-<li><p>To store results in a vector we use the function <code>vector</code> to create an empty vector of the right length</p></li>
-<li><p><code>mode</code> is the type of data we are going to store</p></li>
-<li><p><code>length</code> is the length of the vector</p></li>
-</ul>
+<p>Note that the order of these operations matters; if we reversed the order of the <code>select()</code> and <code>filter()</code> functions, the <code>continent</code> variable wouldn’t exist in the data-set when we came to apply the filter.</p>
+<p>What about if we wanted to match more than one item? To do this we use the <code>%in%</code> operator:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">Loading
   webR...</button>
 <div id="webr-editor-6"></div>
@@ -1390,8 +1383,11 @@ for (i in 1:length(volumes)){
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `masses <- vector(mode = "numeric", length = length(volumes))
-masses`,
+      value: `gapminder_scandinavia <- gapminder %>% 
+  filter(country %in% c("Denmark",
+                        "Norway",
+                        "Sweden"))
+print(gapminder_scandinavia)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1531,10 +1527,19 @@ masses`,
     executeCode(editor.getValue());
   };
 </script>
-<ul>
-<li>Then add each result in the right position in this vector</li>
-<li>For each trip through the loop put the output into the empty vector at the <code>i</code>th position</li>
-</ul>
+</section>
+<section id="another-way-of-thinking-about-pipes" class="level2" data-number="17.11">
+<h2 data-number="17.11" class="anchored" data-anchor-id="another-way-of-thinking-about-pipes"><span class="header-section-number">17.11</span> Another way of thinking about pipes</h2>
+<p>It might be useful to think of the statement</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  gapminder <span class="sc">%%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(continent<span class="sc">==</span><span class="st">"Europe"</span>) <span class="sc">%%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(year,country,gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>as a sentence, which we can read as “take the gapminder data <em>and then</em> <code>filter</code> records where continent == Europe <em>and then</em> <code>select</code> the year, country and gdpPercap</p>
+<p>We can think of the <code>filter()</code> and <code>select()</code> functions as verbs in the sentence; they do things to the data flowing through the pipeline.</p>
+</section>
+<section id="splitting-your-commands-over-multiple-lines" class="level2" data-number="17.12">
+<h2 data-number="17.12" class="anchored" data-anchor-id="splitting-your-commands-over-multiple-lines"><span class="header-section-number">17.12</span> Splitting your commands over multiple lines</h2>
+<p>It’s generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it’s important that the <code>%%</code> goes at the <em>end</em> of the line, as in the example above. If we put it at the beginning of a line, e.g.:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">Loading
   webR...</button>
 <div id="webr-editor-7"></div>
@@ -1554,11 +1559,8 @@ masses`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `for (i in 1:length(volumes)){
-   mass <- 2.65 * volumes[i] ^ 0.9
-   masses[i] <- mass
-}
-masses`,
+      value: ` gapminder_benelux <- gapminder 
+ %>% filter(country %in% c("Belgium", "Netherlands", "France"))`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1698,17 +1700,18 @@ masses`,
     executeCode(editor.getValue());
   };
 </script>
+<p>the first line makes a valid R command. R will then treat the next line as a new command, which won’t work.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Do Tasks 3-4 in Basic For Loops.
+Challenge 1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>3. Complete the code below so that it prints out the name of each bird one line at a time.</p>
+<p>Write a single command (which can span multiple lines and includes pipes) that will produce a tibble that has the values of <code>lifeExp</code>, <code>country</code> and <code>year</code>, for the countries in Africa, but not for other Continents. How many rows does your tibble have? (You can use the <code>nrow()</code> function to find out how many rows are in a tibble.)</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
   webR...</button>
 <div id="webr-editor-8"></div>
@@ -1728,10 +1731,7 @@ Do Tasks 3-4 in Basic For Loops.
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `birds = c('robin', 'woodpecker', 'blue jay', 'sparrow')
-for (i in 1:length(_________)){
-  print(birds[__])
-}`,
+      value: `# Edit/add/try out R code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1871,7 +1871,20 @@ for (i in 1:length(_________)){
     executeCode(editor.getValue());
   };
 </script>
-<p>4. Complete the code below so that it stores one area for each radius.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Challenge 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">Loading
   webR...</button>
 <div id="webr-editor-9"></div>
@@ -1891,12 +1904,10 @@ for (i in 1:length(_________)){
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `radius <- c(1.3, 2.1, 3.5)
-areas <- vector(_____ = "numeric", length = ______)
-for (__ in 1:length(________)){
-  areas[__] <- pi * radius[i] ^ 2
-}
-areas`,
+      value: `year_country_lifeExp_Africa <- gapminder %>%
+                            filter(continent=="Africa") %>%
+                            select(year,country,lifeExp)
+ nrow(year_country_lifeExp_Africa)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2036,14 +2047,14 @@ areas`,
     executeCode(editor.getValue());
   };
 </script>
+<p>As with last time, first we pass the gapminder tibble to the <code>filter()</code> function, then we pass the filtered version of the gapminder tibble to the <code>select()</code> function. <strong>Note:</strong> The order of operations is very important in this case. If we used ‘select’ first, filter would not be able to find the variable continent since we would have removed it in the previous step.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="looping-over-multiple-values" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="looping-over-multiple-values"><span class="header-section-number">12.5</span> Looping over multiple values</h2>
-<ul>
-<li>Looping with an index also allows us to access values from multiple vectors</li>
-</ul>
+<section id="sorting-tibbles" class="level2" data-number="17.13">
+<h2 data-number="17.13" class="anchored" data-anchor-id="sorting-tibbles"><span class="header-section-number">17.13</span> Sorting tibbles</h2>
+<p>The <code>arrange()</code> function will sort a tibble by one or more of the variables in it:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">Loading
   webR...</button>
 <div id="webr-editor-10"></div>
@@ -2063,15 +2074,9 @@ areas`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `as <- c(2.65, 1.28, 3.29)
-bs <- c(0.9, 1.1, 1.2)
-volumes = c(1.6, 3, 8)
-masses <- vector(mode="numeric", length=length(volumes))
-for (i in 1:length(volumes)){
-   mass <- as[i] * volumes[i] ^ bs[i]
-   masses[i] <- mass
-}
-masses`,
+      value: `gapminder %>%
+  filter(continent == "Europe", year == 2007) %>% 
+  arrange(pop)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2211,17 +2216,7 @@ masses`,
     executeCode(editor.getValue());
   };
 </script>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Do Task 5 in Basic For Loops.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>5. Complete the code below to calculate an area for each pair of <code>lengths</code> and <code>widths</code>, store the areas in a vector, and after they are all calculated print them out:</p>
+<p>We can use the <code>desc()</code> function to sort a variable in reverse order:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
   webR...</button>
 <div id="webr-editor-11"></div>
@@ -2241,13 +2236,510 @@ Do Task 5 in Basic For Loops.
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `lengths = c(1.1, 2.2, 1.6)
-widths = c(3.5, 2.4, 2.8)
-areas <- vector(length = __________)
-for (i in _____) {
-  areas[__] <- lengths[__] * widths[__]
-}
-areas`,
+      value: `gapminder %>%
+  filter(continent == "Europe", year == 2007) %>% 
+  arrange(desc(pop))`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+</section>
+<section id="generating-new-variables" class="level2" data-number="17.14">
+<h2 data-number="17.14" class="anchored" data-anchor-id="generating-new-variables"><span class="header-section-number">17.14</span> Generating new variables</h2>
+<p>The <code>mutate()</code> function lets us add new variables to our tibble. It will often be the case that these are variables we <em>derive</em> from existing variables in the data-frame.</p>
+<p>As an example, the gapminder data contains the population of each country, and its GDP per capita. We can use this to calculate the total GDP of each country:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
+  webR...</button>
+<div id="webr-editor-12"></div>
+<div id="webr-code-output-12" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-12");
+  const outputDiv = document.getElementById("webr-code-output-12");
+  const editorDiv = document.getElementById("webr-editor-12");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder_totalgdp <- gapminder %>% 
+  mutate(gdp = gdpPercap * pop)
+print(gapminder_totalgdp)`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>We can also use functions within mutate to generate new variables. For example, to take the log of <code>gdpPercap</code> we could use:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
+  webR...</button>
+<div id="webr-editor-13"></div>
+<div id="webr-code-output-13" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-13");
+  const outputDiv = document.getElementById("webr-code-output-13");
+  const editorDiv = document.getElementById("webr-editor-13");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder %>% 
+  mutate(logGdpPercap = log(gdpPercap))`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>The dplyr cheat sheet contains many useful functions which can be used with dplyr. This can be found in the help menu of RStudio. You will use one of these functions in the next challenge.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a tibble containing each country in Europe, its life expectancy in 2007 and the rank of the country’s life expectancy. (note that ranking the countries <em>will not</em> sort the table; the row order will be unchanged. You can use the <code>arrange()</code> function to sort the table).</p>
+<p>Hint: First <code>filter()</code> to get the rows you want, and then use <code>mutate()</code> to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).<br>
+There are several functions for ranking observations, which handle tied values differently. For this exercise it doesn’t matter which function you choose.</p>
+<p>Can you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
+  webR...</button>
+<div id="webr-editor-14"></div>
+<div id="webr-code-output-14" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-14");
+  const outputDiv = document.getElementById("webr-code-output-14");
+  const editorDiv = document.getElementById("webr-editor-14");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# Edit/add/try out R code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2389,6 +2881,1216 @@ areas`,
 </script>
 </div>
 </div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to challenge 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">Loading
+  webR...</button>
+<div id="webr-editor-15"></div>
+<div id="webr-code-output-15" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-15");
+  const outputDiv = document.getElementById("webr-code-output-15");
+  const editorDiv = document.getElementById("webr-editor-15");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `europeLifeExp <- gapminder %>% 
+  filter(continent == "Europe", year == 2007) %>% 
+  select(country, lifeExp) %>% 
+  mutate(rank = min_rank(lifeExp))
+print(europeLifeExp, n=100)`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>To reverse the order of the ranking, use the <code>desc</code> function, i.e.&nbsp;<code>mutate(rank = min_rank(desc(lifeExp)))</code></p>
+<p>There are several functions for calculating ranks; you may have used, e.g.&nbsp;<code>dense_rank()</code> The functions handle ties differently. The help file for <code>dplyr</code>’s ranking functions explains the differences, and can be accessed with <code>?ranking</code></p>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-summary-statistics" class="level2" data-number="17.15">
+<h2 data-number="17.15" class="anchored" data-anchor-id="calculating-summary-statistics"><span class="header-section-number">17.15</span> Calculating summary statistics</h2>
+<p>We often wish to calculate a summary statistic (the mean, standard deviation, etc.) for a variable. We frequently want to calculate a separate summary statistic for several groups of data (e.g.&nbsp;the experiment and control group). We can calculate a summary statistic for the whole data-set using the dplyr’s <code>summarise()</code> function:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">Loading
+  webR...</button>
+<div id="webr-editor-16"></div>
+<div id="webr-code-output-16" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-16");
+  const outputDiv = document.getElementById("webr-code-output-16");
+  const editorDiv = document.getElementById("webr-editor-16");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder %>% 
+  filter(year == 2007) %>% 
+  summarise(meanlife = mean(lifeExp))`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>To generate summary statistics for each value of another variable we use the <code>group_by()</code> function:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">Loading
+  webR...</button>
+<div id="webr-editor-17"></div>
+<div id="webr-code-output-17" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-17");
+  const outputDiv = document.getElementById("webr-code-output-17");
+  const editorDiv = document.getElementById("webr-editor-17");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(meanlife = mean(lifeExp))`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+</section>
+<section id="aside" class="level2" data-number="17.16">
+<h2 data-number="17.16" class="anchored" data-anchor-id="aside"><span class="header-section-number">17.16</span> Aside</h2>
+<p>In the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using <code>weighted.mean(lifeExp, pop)</code>. For simplicty I’ve used the regular mean in the above examples.</p>
+</section>
+<section id="statistics-revision" class="level2" data-number="17.17">
+<h2 data-number="17.17" class="anchored" data-anchor-id="statistics-revision"><span class="header-section-number">17.17</span> Statistics revision</h2>
+<p>If you need to revise or learn about statistical concepts, the University Library’s “My Learning Essentials” team have produced a site <a href="https://www.escholar.manchester.ac.uk/learning-objects/mle/packages/statistics/">Start to Finish:Statistics</a> which covers important statistical concepts.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For each combination of continent and year, calculate the average life expectancy.</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-18">Loading
+  webR...</button>
+<div id="webr-editor-18"></div>
+<div id="webr-code-output-18" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-18");
+  const outputDiv = document.getElementById("webr-code-output-18");
+  const editorDiv = document.getElementById("webr-editor-18");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `# Edit/add/try out R code here`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Challenge 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-19">Loading
+  webR...</button>
+<div id="webr-editor-19"></div>
+<div id="webr-code-output-19" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-19");
+  const outputDiv = document.getElementById("webr-code-output-19");
+  const editorDiv = document.getElementById("webr-editor-19");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: ` lifeExp_bycontinentyear <- gapminder %>% 
+    group_by(continent, year) %>% 
+   summarise(mean_lifeExp = mean(lifeExp))
+ print(lifeExp_bycontinentyear)`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="count-and-n" class="level2" data-number="17.18">
+<h2 data-number="17.18" class="anchored" data-anchor-id="count-and-n"><span class="header-section-number">17.18</span> <code>count()</code> and <code>n()</code></h2>
+<p>A very common operation is to count the number of observations for each group. The <code>dplyr</code> package comes with two related functions that help with this.</p>
+<p>If we need to use the number of observations in calculations, the <code>n()</code> function is useful. For instance, if we wanted to get the standard error of the life expectancy per continent:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-20">Loading
+  webR...</button>
+<div id="webr-editor-20"></div>
+<div id="webr-code-output-20" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-20");
+  const outputDiv = document.getElementById("webr-code-output-20");
+  const editorDiv = document.getElementById("webr-editor-20");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder %>%
+    filter(year == 2002) %>%    
+    group_by(continent) %>%
+    summarize(se_pop = sd(lifeExp)/sqrt(n()))`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>Although we could use the <code>group_by()</code>, <code>n()</code> and <code>summarize()</code> functions to calculate the number of observations in each group, <code>dplyr</code> provides the <code>count()</code> function which automatically groups the data, calculates the totals and then ungroups it.</p>
+<p>For instance, if we wanted to check the number of countries included in the dataset for the year 2002, we can use:</p>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-21">Loading
+  webR...</button>
+<div id="webr-editor-21"></div>
+<div id="webr-code-output-21" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-21");
+  const outputDiv = document.getElementById("webr-code-output-21");
+  const editorDiv = document.getElementById("webr-editor-21");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `gapminder %>%
+    filter(year == 2002) %>%
+    count(continent, sort = TRUE)`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Add a keydown event listener for Shift+Enter using the addCommand method
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
+      // Code to run when Shift+Enter is pressed
+      executeCode(editor.getValue());
+    });
+
+    // Add a keydown event listener for Ctrl+Enter to run selected code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+      // Get the selected text from the editor
+      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+      // Code to run when Ctrl+Enter is pressed (run selected code)
+      executeCode(selectedText);
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<p>We can optionally sort the results in descending order by adding <code>sort=TRUE</code>:</p>
+</section>
+<section id="equivalent-functions-in-base-r" class="level2" data-number="17.19">
+<h2 data-number="17.19" class="anchored" data-anchor-id="equivalent-functions-in-base-r"><span class="header-section-number">17.19</span> Equivalent functions in base R</h2>
+<p>In this course we’ve taught the tidyverse. You are likely come across code written others in base R. You can find a guide to some base R functions and their tidyverse equivalents <a href="http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/">here</a>, which may be useful when reading their code.</p>
+</section>
+<section id="other-great-resources" class="level2" data-number="17.20">
+<h2 data-number="17.20" class="anchored" data-anchor-id="other-great-resources"><span class="header-section-number">17.20</span> Other great resources</h2>
+<ul>
+<li><a href="https://suzan.rbind.io/categories/tutorial/">Data Wrangling tutorial</a> - an excellent four part tutorial covering selecting data, filtering data, summarising and transforming your data.</li>
+<li><a href="http://r4ds.had.co.nz/">R for Data Science</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling Cheat sheet</a> - you can also access this from the help menu in RStudio (in newer versions of RStudio it has been replaced with “Data Transformation with dplyr”)</li>
+<li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">Introduction to dplyr</a> - this is the package vignette. It can be viewed within R using <code>vignette(package="dplyr", "dplyr")</code></li>
+<li><a href="https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/">Data wrangling with R and RStudio</a> - 55 minute webinar from RStudio</li>
+</ul>
 
 
 </section>
@@ -2851,13 +4553,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./RLoops.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span>
+      <a href="./R_Functions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conditionals.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exercise_tidyverse.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
