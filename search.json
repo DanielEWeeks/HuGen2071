@@ -123,7 +123,7 @@
     "href": "Readings.html#r-tidyverse",
     "title": "4  Active Learning and Readings",
     "section": "4.8 R: Tidyverse",
-    "text": "4.8 R: Tidyverse\n\n4.8.1 Learning Objectives\n\nTo learn how to use the pipe operator\nTo learn how to use Tidyverse functions\n\n\n\n4.8.2 Active Learning:\nhttps://uomresearchit.github.io/r-day-workshop/04-dplyr/\n\n\n4.8.3 Suggested Readings\nIntroduction to the Tidyverse: Manipulating tibbles with dplyr https://uomresearchit.github.io/r-day-workshop/04-dplyr/\nSupplementary Reading: Buffalo (2015) Chapter 8: section ‘Exploring Dataframes with dplyr’"
+    "text": "4.8 R: Tidyverse\n\n4.8.1 Learning Objectives\n\nTo learn how to use the pipe operator\nTo learn how to use Tidyverse functions\n\n\n\n4.8.2 Active Learning:\nhttps://datacarpentry.org/genomics-r-intro/05-dplyr.html\n\n\n4.8.3 Suggested Readings\nIntroduction to the Tidyverse: Manipulating tibbles with dplyr https://uomresearchit.github.io/r-day-workshop/04-dplyr/\nSupplementary Reading: Buffalo (2015) Chapter 8: section ‘Exploring Dataframes with dplyr’"
   },
   {
     "objectID": "Readings.html#r-recoding-and-reshaping-data",
@@ -795,7 +795,7 @@
     "href": "tidyverse.html#using-pipes-and-dplyr",
     "title": "17  Tidyverse",
     "section": "17.8 Using pipes and dplyr",
-    "text": "17.8 Using pipes and dplyr\nWe’ve now seen how to choose certain columns of data (using select()) and certain rows of data (using filter()). In an analysis we often want to do both of these things (and many other things, like calculating summary statistics, which we’ll come to shortly). How do we combine these?\nThere are several ways of doing this; the method we will learn about today is using pipes.\nThe pipe operator %&gt;% lets us pipe the output of one command into the next. This allows us to build up a data-processing pipeline. This approach has several advantages:\n\nWe can build the pipeline piecemeal - building the pipeline step-by-step is easier than trying to perform a complex series of operations in one go\nIt is easy to modify and reuse the pipeline\nWe don’t have to make temporary tibbles as the analysis progresses"
+    "text": "17.8 Using pipes and dplyr\nWe’ve now seen how to choose certain columns of data (using select()) and certain rows of data (using filter()). In an analysis we often want to do both of these things (and many other things, like calculating summary statistics, which we’ll come to shortly). How do we combine these?\nThere are several ways of doing this; the method we will learn about today is using pipes.\nThe pipe operator %&gt;% lets us pipe the output of one command into the next. This allows us to build up a data-processing pipeline. This approach has several advantages:\n\nWe can build the pipeline piecemeal - building the pipeline step-by-step is easier than trying to perform a complex series of operations in one go\nIt is easy to modify and reuse the pipeline\nWe don’t have to make temporary tibbles as the analysis progresses\n\n\n\n\n\n\n\nNote\n\n\n\nNote that R now has a native pipe operator |&gt; which is very similar (but not identical) to the pipe operator %&gt;% used here. The pipe operator %&gt;% is defined by the magrittr R package, which is loaded when we load dplyr or tidyverse."
   },
   {
     "objectID": "tidyverse.html#pipelines-and-the-shell",
@@ -907,14 +907,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y        Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 2009-01-01 -0.997   2.20   4.50   \n2 2009-01-02  0.717  -1.89  -0.00197\n3 2009-01-03 -0.362   0.613  3.86   \n4 2009-01-04  0.961  -1.80  -0.586  \n5 2009-01-05 -0.0584 -0.633  6.57   \n6 2009-01-06  0.202  -1.69  -6.10   \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.997 \n2 2009-01-02 X      0.717 \n3 2009-01-03 X     -0.362 \n4 2009-01-04 X      0.961 \n5 2009-01-05 X     -0.0584\n6 2009-01-06 X      0.202"
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.480  0.394  4.20\n2 2009-01-02 -0.657  0.888 -6.86\n3 2009-01-03 -0.723  0.641 -7.59\n4 2009-01-04  2.09  -2.74  -2.62\n5 2009-01-05  0.532 -2.73   1.38\n6 2009-01-06  1.65  -3.47   2.57\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.480\n2 2009-01-02 X     -0.657\n3 2009-01-03 X     -0.723\n4 2009-01-04 X      2.09 \n5 2009-01-05 X      0.532\n6 2009-01-06 X      1.65"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock    price\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;\n1 2009-01-01 X     -0.997  \n2 2009-01-01 Y      2.20   \n3 2009-01-01 Z      4.50   \n4 2009-01-02 X      0.717  \n5 2009-01-02 Y     -1.89   \n6 2009-01-02 Z     -0.00197"
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.480\n2 2009-01-01 Y      0.394\n3 2009-01-01 Z      4.20 \n4 2009-01-02 X     -0.657\n5 2009-01-02 Y      0.888\n6 2009-01-02 Z     -6.86"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
