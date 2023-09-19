@@ -200,7 +200,7 @@ Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
 
 ### Active Learning:
 
-<https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
+<https://datacarpentry.org/genomics-r-intro/05-dplyr.html>
 
 ### Suggested Readings
 
