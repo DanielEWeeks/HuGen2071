@@ -202,6 +202,8 @@ Buffalo (2015) Chapter 8: Read the section 'Digression: Debugging R Code'
 
 <https://datacarpentry.org/genomics-r-intro/05-dplyr.html>
 
+The data file used in this is the `combined_tidy_vcf.csv` file that can be downloaded from [here](https://figshare.com/articles/dataset/Data_Carpentry_Genomics_beta_2_0/7726454?file=14632895).
+
 ### Suggested Readings
 
 Introduction to the Tidyverse: Manipulating tibbles with dplyr <https://uomresearchit.github.io/r-day-workshop/04-dplyr/>
