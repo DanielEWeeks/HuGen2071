@@ -379,7 +379,7 @@ get_mass_from_length_theropoda <- function(length){
 }
 ```
 
-1. Use this function to print out the mass of a Theropodus that is 16 m long based on its reassembled skeleton.
+1. Use this function to print out the mass of a Theropoda that is 16 m long based on its reassembled skeleton.
 
 ```{webr-r}
 # Edit/add/try out R code here
