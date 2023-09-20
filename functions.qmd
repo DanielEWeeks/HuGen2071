@@ -116,6 +116,10 @@ Use the function to calculate how many grams there are in 3.75 pounds.
   * The only thing the program knows about the function is the output it
     produces
 
+
+::: callout-important
+## Do Function Execution
+
 * Walk through function execution (using debugger)
     * Call function
 	* Assign 0.8 to length, 1.6 to width, and 2.0 to height inside function
@@ -123,11 +127,32 @@ Use the function to calculate how many grams there are in 3.75 pounds.
 	* Calculate volume and assign it to `volume`
 	* Send `volume` back as output
 	* Store it in `shrub_vol`
+	
+
+```{webr-r}
+# Edit/add/try out R code here
+```	
+	
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+shrubVol <- function(length=0.8, width=1.6, height=2.0) {
+  area <- length * width
+  volume <- area * height
+  return(volume)
+}
+shrubVol()
+```
+
+:::	
+
+:::
 
 * Treat functions like a black box.
     * Can't access a variable that was created in a function
         * `> volume`
-        * `Error: object 'width' not found`
+        * `Error: object 'volume' not found`
     * Or an argument by name
         * `> width`
         * `Error: object 'width' not found`
