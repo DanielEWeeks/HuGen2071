@@ -1,0 +1,12 @@
+# Linux terminal
+
+## Interactive Linux terminal
+
+Here is an interactive Linux terminal created by the [webLinux](https://codecast.wp.imt.fr/weblinux-2/) project.
+
+For simplicity, switch the left panel to 'File Browser' mode.
+
+```{=html}
+<iframe width="1000" height="500" src="https://remisharrock.github.io/sysbuild/" allowfullscreen scrolling="yes" class="iframe-class" frameborder="0"></iframe>
+```
+

@@ -37,6 +37,7 @@ book:
   - Basic_Unix_commands.Qmd
   - summary.qmd
   - webR_test.qmd
+  - webLinux.qmd
   - TechnicalDetails.qmd
   - references.qmd
 bibliography: references.bib
