@@ -37,7 +37,7 @@ book:
   - Basic_Unix_commands.Qmd
   - summary.qmd
   - references.qmd
-appendices:
+  appendices:
   - TechnicalDetails.qmd
   - webR_test.qmd
   - Linux_copy_sh.qmd
