@@ -334,7 +334,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="interactive-linux-terminal" class="level2" data-number="C.1">
 <h2 data-number="C.1" class="anchored" data-anchor-id="interactive-linux-terminal"><span class="header-section-number">C.1</span> Interactive Linux terminal</h2>
 <p>Here is an interactive Linux terminal (x86 Alpine Linux 3.12.0) created by the <a href="http://copy.sh/v86/">copy.sh</a> project.</p>
-<p>You can upload files to it by clicking the arrow at the bottom.</p>
+<p>You can upload files to it by clicking the arrow below the terminal window.</p>
+<p>This virtual Unix machine has a throttled very slow connection to the internet, so to install files and programs, it is better to download them to your computer outside of the browser, and then use the upload button to upload them onto this virtual machine.</p>
+<p>For example, the 32-bit version of PLINK2 can be installed in this manner:</p>
+<ol type="1">
+<li>Download the Linux 32-bit PLINK2 zip file from <a href="https://www.cog-genomics.org/plink/2.0/" class="uri">https://www.cog-genomics.org/plink/2.0/</a></li>
+<li>Unzip the downloaded file.</li>
+<li>Use the upload arrow here below the terminal window to upload the <code>plink2</code> binary.</li>
+<li>Make the <code>plink2</code> binary executable via this Unix command: <code>chmod +x plink2</code></li>
+<li>Run PLINK2 via this Unix command: <code>./plink2</code></li>
+</ol>
 <iframe width="100%" height="800" src="https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&amp;mem=192" allowfullscreen="" scrolling="yes" class="iframe-class" frameborder="0"></iframe>
 
 
