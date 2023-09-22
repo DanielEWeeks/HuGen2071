@@ -3,7 +3,7 @@ editor:
   mode: source
 ---
 
-# Linux terminal
+# JSLinux terminal
 
 ## Interactive Linux terminal
 
