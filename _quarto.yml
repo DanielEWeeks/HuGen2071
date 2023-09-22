@@ -40,7 +40,7 @@ book:
   appendices:
   - TechnicalDetails.qmd
   - webR_test.qmd
-  - Linux_copy_sh.qmd
+  - JSLinux.qmd
   - webLinux.qmd
 bibliography: references.bib
 format:
