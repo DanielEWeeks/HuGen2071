@@ -1,5 +1,7 @@
 ---
 title: Loops in R, Part I
+editor: 
+  mode: source
 ---
 
 

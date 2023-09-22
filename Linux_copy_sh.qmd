@@ -1,12 +1,16 @@
+---
+editor: 
+  mode: source
+---
+
 # Linux terminal
 
 ## Interactive Linux terminal
 
-Here is an interactive Linux terminal (x86 Alpine Linux 3.12.0) created by the [copy.sh](http://copy.sh/v86/) project. 
+Here is an interactive Linux terminal (x86 Alpine Linux 3.12.0) created by the [copy.sh](http://copy.sh/v86/) project.
 
 You can upload files to it by clicking the arrow at the bottom.
 
 ```{=html}
 <iframe width="100%" height="800" src="https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&mem=192" allowfullscreen scrolling="yes" class="iframe-class" frameborder="0"></iframe>
 ```
-

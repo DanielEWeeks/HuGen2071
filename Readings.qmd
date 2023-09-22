@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source
+---  
+
 # Active Learning and Readings
 
 ## Introduction and Overview

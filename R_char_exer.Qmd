@@ -1,6 +1,8 @@
 ---
 webr:
   packages: ['stringr','tidyr']
+editor: 
+  mode: source  
 ---
 
 # R Character Exercise

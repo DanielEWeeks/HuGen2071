@@ -1,14 +1,19 @@
+---
+editor: 
+  mode: source
+---
+
 # Git Commands
 
 ## git - best practices
 
-pull - work - commit - pull - push 
+pull - work - commit - pull - push
 
-* `git pull`
-* Make changes
-* `git commit` your changes to your local repository
-* `git pull` the latest remote changes to your local repository
-* `git push` your changes. 
+-   `git pull`
+-   Make changes
+-   `git commit` your changes to your local repository
+-   `git pull` the latest remote changes to your local repository
+-   `git push` your changes.
 
 Pay attention to any error messages.
 

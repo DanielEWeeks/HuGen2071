@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source
+---
+
 # webLinux terminal
 
 ## Interactive Linux terminal

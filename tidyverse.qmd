@@ -2,6 +2,8 @@
 title: Tidyverse
 webr:
   packages: ['tidyverse']
+editor: 
+  mode: source  
 ---
 
 ## Acknowledgment/License

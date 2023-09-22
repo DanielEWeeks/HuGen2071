@@ -2,6 +2,8 @@
 title: Loops in R, Part II
 webr:
   packages: ['ggplot2','dplyr']
+editor: 
+  mode: source
 ---
 
 ## Acknowledgment/License
