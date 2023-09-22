@@ -1,4 +1,4 @@
-# Linux terminal
+# webLinux terminal
 
 ## Interactive Linux terminal
 
