@@ -36,11 +36,12 @@ book:
   - EDA.Qmd
   - Basic_Unix_commands.Qmd
   - summary.qmd
+  - references.qmd
+appendices:
+  - TechnicalDetails.qmd
   - webR_test.qmd
   - Linux_copy_sh.qmd
   - webLinux.qmd
-  - TechnicalDetails.qmd
-  - references.qmd
 bibliography: references.bib
 format:
   html:
