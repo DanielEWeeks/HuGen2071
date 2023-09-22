@@ -6,10 +6,6 @@ webr:
 
 This is a WebR-enabled code cell in a Quarto HTML document. As the WebR documentation states: "WebR makes it possible to run R code in the browser without the need for an R server to execute the code: the R interpreter runs directly on the user’s machine."
 
-::: callout-warning
-Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet. If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying two lines of R code. 
-:::
-
 ```{webr-r}
 # Edit/add code here
 fit = lm(mpg ~ am, data = mtcars)
@@ -20,5 +16,5 @@ ggplot(mtcars, aes(x=am,y=mpg)) +
    geom_smooth(method="lm")
 ```
 
-Link: [WebR](https://docs.r-wasm.org/webr/latest/).
+Link: [WebR](https://docs.r-wasm.org/webr/latest/) and [`quarto-webr`](http://quarto-webr.thecoatlessprofessor.com/).
 ---
