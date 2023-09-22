@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HuGen2071 book - 27&nbsp; Linux terminal</title>
+<title>HuGen2071 book - 28&nbsp; webLinux terminal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./TechnicalDetails.html" rel="next">
-<link href="./webR_test.html" rel="prev">
+<link href="./Linux_copy_sh.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./webLinux.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Linux terminal</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./webLinux.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">webLinux terminal</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -264,14 +264,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webLinux.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Linux_copy_sh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Linux terminal</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./webLinux.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">webLinux terminal</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./TechnicalDetails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Technical Details</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Technical Details</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -290,13 +296,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interactive-linux-terminal" id="toc-interactive-linux-terminal" class="nav-link active" data-scroll-target="#interactive-linux-terminal"><span class="header-section-number">27.1</span> Interactive Linux terminal</a></li>
-  <li><a href="#weblinux-license" id="toc-weblinux-license" class="nav-link" data-scroll-target="#weblinux-license"><span class="header-section-number">27.2</span> webLinux License</a>
+  <li><a href="#interactive-linux-terminal" id="toc-interactive-linux-terminal" class="nav-link active" data-scroll-target="#interactive-linux-terminal"><span class="header-section-number">28.1</span> Interactive Linux terminal</a></li>
+  <li><a href="#weblinux-license" id="toc-weblinux-license" class="nav-link" data-scroll-target="#weblinux-license"><span class="header-section-number">28.2</span> webLinux License</a>
   <ul class="collapse">
-  <li><a href="#acknowledgement" id="toc-acknowledgement" class="nav-link" data-scroll-target="#acknowledgement"><span class="header-section-number">27.2.1</span> Acknowledgement</a></li>
-  <li><a href="#copyrights-and-licenses-for-third-party-software" id="toc-copyrights-and-licenses-for-third-party-software" class="nav-link" data-scroll-target="#copyrights-and-licenses-for-third-party-software"><span class="header-section-number">27.2.2</span> Copyrights and Licenses for Third Party Software</a></li>
-  <li><a href="#copyrights-and-licenses-for-third-party-content-and-creative-works" id="toc-copyrights-and-licenses-for-third-party-content-and-creative-works" class="nav-link" data-scroll-target="#copyrights-and-licenses-for-third-party-content-and-creative-works"><span class="header-section-number">27.2.3</span> Copyrights and Licenses for Third Party Content and Creative Works</a></li>
-  <li><a href="#the-university-of-illinoisncsa-open-source-license-is-reproduced-below" id="toc-the-university-of-illinoisncsa-open-source-license-is-reproduced-below" class="nav-link" data-scroll-target="#the-university-of-illinoisncsa-open-source-license-is-reproduced-below"><span class="header-section-number">27.2.4</span> The University of Illinois/NCSA Open Source License is reproduced below</a></li>
+  <li><a href="#acknowledgement" id="toc-acknowledgement" class="nav-link" data-scroll-target="#acknowledgement"><span class="header-section-number">28.2.1</span> Acknowledgement</a></li>
+  <li><a href="#copyrights-and-licenses-for-third-party-software" id="toc-copyrights-and-licenses-for-third-party-software" class="nav-link" data-scroll-target="#copyrights-and-licenses-for-third-party-software"><span class="header-section-number">28.2.2</span> Copyrights and Licenses for Third Party Software</a></li>
+  <li><a href="#copyrights-and-licenses-for-third-party-content-and-creative-works" id="toc-copyrights-and-licenses-for-third-party-content-and-creative-works" class="nav-link" data-scroll-target="#copyrights-and-licenses-for-third-party-content-and-creative-works"><span class="header-section-number">28.2.3</span> Copyrights and Licenses for Third Party Content and Creative Works</a></li>
+  <li><a href="#the-university-of-illinoisncsa-open-source-license-is-reproduced-below" id="toc-the-university-of-illinoisncsa-open-source-license-is-reproduced-below" class="nav-link" data-scroll-target="#the-university-of-illinoisncsa-open-source-license-is-reproduced-below"><span class="header-section-number">28.2.4</span> The University of Illinois/NCSA Open Source License is reproduced below</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -306,7 +312,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Linux terminal</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">webLinux terminal</span></h1>
 </div>
 
 
@@ -321,8 +327,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="interactive-linux-terminal" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="interactive-linux-terminal"><span class="header-section-number">27.1</span> Interactive Linux terminal</h2>
+<section id="interactive-linux-terminal" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="interactive-linux-terminal"><span class="header-section-number">28.1</span> Interactive Linux terminal</h2>
 <p>Here is an interactive Linux terminal created by the <a href="https://codecast.wp.imt.fr/weblinux-2/">webLinux</a> project. The source code for this project can be found at <a href="https://github.com/remisharrock/sysbuild" class="uri">https://github.com/remisharrock/sysbuild</a>.</p>
 <p>For simplicity, switch the left panel to ‘File Browser’ mode.</p>
 <p>Click on the “&lt;” icon in the upper right hand corner of the terminal window for a simpler interface.</p>
@@ -331,26 +337,26 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://remisharrock.github.io/sysbuild/">Link to full screen version</a></p>
 <iframe width="100%" height="500" src="https://remisharrock.github.io/sysbuild/" allowfullscreen="" scrolling="yes" class="iframe-class" frameborder="0"></iframe>
 </section>
-<section id="weblinux-license" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="weblinux-license"><span class="header-section-number">27.2</span> webLinux License</h2>
+<section id="weblinux-license" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="weblinux-license"><span class="header-section-number">28.2</span> webLinux License</h2>
 <p>The webLinux object <a href="https://remisharrock.github.io/sysbuild/" class="uri">https://remisharrock.github.io/sysbuild/</a> used here was released under the following license terms:</p>
 <p>Copyright © 2016-2019 R√©mi SHARROCK - Telecom ParisTech - IMT France</p>
 <p>Version 0.0.1</p>
 <p>All Rights Reserved.</p>
 <p>This project’s original source code (“CODE”) is provided and licensed under the “Angrave Open Relicense (Illinois-Version)” license: The CODE is licensed under the <a href="http://opensource.org/licenses/NCSA">University of Illinois/NCSA Open Source License</a>. The CODE may be re-licensed under an open source license that is approved and recognized by the <a href="http://opensource.org/">Open Source Initiative</a>.</p>
 <p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE SOFTWARE.</p>
-<section id="acknowledgement" class="level3" data-number="27.2.1">
-<h3 data-number="27.2.1" class="anchored" data-anchor-id="acknowledgement"><span class="header-section-number">27.2.1</span> Acknowledgement</h3>
+<section id="acknowledgement" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="acknowledgement"><span class="header-section-number">28.2.1</span> Acknowledgement</h3>
 <p>Lawrence Angrave, University of Illinois and UIUC students with their <a href="https://github.com/cs-education/sysbuild/">original project</a>.</p>
 </section>
-<section id="copyrights-and-licenses-for-third-party-software" class="level3" data-number="27.2.2">
-<h3 data-number="27.2.2" class="anchored" data-anchor-id="copyrights-and-licenses-for-third-party-software"><span class="header-section-number">27.2.2</span> Copyrights and Licenses for Third Party Software</h3>
+<section id="copyrights-and-licenses-for-third-party-software" class="level3" data-number="28.2.2">
+<h3 data-number="28.2.2" class="anchored" data-anchor-id="copyrights-and-licenses-for-third-party-software"><span class="header-section-number">28.2.2</span> Copyrights and Licenses for Third Party Software</h3>
 <p>This project contains code written by third parties. Such software will have its own individual <code>LICENSE.TXT</code> or <code>LICENSE</code> file in the directory in which it appears. This file will describe the copyrights, license, and restrictions which apply to that code.</p>
 <p>The disclaimer of warranty in the University of Illinois Open Source License applies to all code in this project, and nothing in any of the other licenses gives permission to use the names of the development team or the University of Illinois to endorse or promote products derived from this Software.</p>
 <p>The following pieces of software have additional or alternate copyrights, licenses, and/or restrictions: * The jor1k virtual machine is distributed under the terms of the <a href="https://github.com/cs-education/jor1k/blob/master/LICENSE.md">Simplified BSD License</a> and is Copyright (c) 2014, Sebastian Macke. * Bootstrap is released under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE">MIT license</a> and is Copyright (c) 2011-2015 Twitter, Inc. * Ace (Ajax.org Cloud9 Editor) is <a href="https://github.com/ajaxorg/ace-builds/blob/master/LICENSE">BSD licenced</a> and is Copyright (c) 2010, Ajax.org B.V.</p>
 </section>
-<section id="copyrights-and-licenses-for-third-party-content-and-creative-works" class="level3" data-number="27.2.3">
-<h3 data-number="27.2.3" class="anchored" data-anchor-id="copyrights-and-licenses-for-third-party-content-and-creative-works"><span class="header-section-number">27.2.3</span> Copyrights and Licenses for Third Party Content and Creative Works</h3>
+<section id="copyrights-and-licenses-for-third-party-content-and-creative-works" class="level3" data-number="28.2.3">
+<h3 data-number="28.2.3" class="anchored" data-anchor-id="copyrights-and-licenses-for-third-party-content-and-creative-works"><span class="header-section-number">28.2.3</span> Copyrights and Licenses for Third Party Content and Creative Works</h3>
 <ul>
 <li>The “Linux in a browser” logo, used as the website favicon (<a href="webapp/src/favicon.ico">favicon.ico</a>) is Copyright (c) 2014 Neelabh Gupta, and is based on the following works:
 <ul>
@@ -359,8 +365,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="the-university-of-illinoisncsa-open-source-license-is-reproduced-below" class="level3" data-number="27.2.4">
-<h3 data-number="27.2.4" class="anchored" data-anchor-id="the-university-of-illinoisncsa-open-source-license-is-reproduced-below"><span class="header-section-number">27.2.4</span> The University of Illinois/NCSA Open Source License is reproduced below</h3>
+<section id="the-university-of-illinoisncsa-open-source-license-is-reproduced-below" class="level3" data-number="28.2.4">
+<h3 data-number="28.2.4" class="anchored" data-anchor-id="the-university-of-illinoisncsa-open-source-license-is-reproduced-below"><span class="header-section-number">28.2.4</span> The University of Illinois/NCSA Open Source License is reproduced below</h3>
 <blockquote class="blockquote">
 <p>All rights reserved.</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal with the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
@@ -834,13 +840,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./webR_test.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">WebR - R in the web browser</span></span>
+      <a href="./Linux_copy_sh.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Linux terminal</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./TechnicalDetails.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Technical Details</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Technical Details</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

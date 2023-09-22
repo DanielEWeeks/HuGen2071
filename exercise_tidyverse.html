@@ -298,14 +298,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webLinux.html" class="sidebar-item-text sidebar-link">
+  <a href="./Linux_copy_sh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Linux terminal</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./webLinux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">webLinux terminal</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./TechnicalDetails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Technical Details</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Technical Details</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -460,26 +466,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X      Y     Z
-  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 2009-01-01 -0.550  0.477 -2.28
-2 2009-01-02 -0.860  3.05  -2.44
-3 2009-01-03 -0.885  0.833 -1.38
-4 2009-01-04 -3.43   0.245 -1.71
-5 2009-01-05  0.832 -0.148 -3.69
-6 2009-01-06 -1.11  -1.67  -1.43</code></pre>
+  time           X      Y      Z
+  &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01 1.96   4.58  -1.44 
+2 2009-01-02 2.55   1.69   0.205
+3 2009-01-03 1.06  -0.909  4.11 
+4 2009-01-04 0.572  0.401 -0.836
+5 2009-01-05 1.23  -0.688 -0.757
+6 2009-01-06 0.448  4.24  -2.60 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.550
-2 2009-01-02 X     -0.860
-3 2009-01-03 X     -0.885
-4 2009-01-04 X     -3.43 
-5 2009-01-05 X      0.832
-6 2009-01-06 X     -1.11 </code></pre>
+  time       stock price
+  &lt;date&gt;     &lt;chr&gt; &lt;dbl&gt;
+1 2009-01-01 X     1.96 
+2 2009-01-02 X     2.55 
+3 2009-01-03 X     1.06 
+4 2009-01-04 X     0.572
+5 2009-01-05 X     1.23 
+6 2009-01-06 X     0.448</code></pre>
 </div>
 </div>
 </section>
@@ -492,12 +498,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.550
-2 2009-01-01 Y      0.477
-3 2009-01-01 Z     -2.28 
-4 2009-01-02 X     -0.860
-5 2009-01-02 Y      3.05 
-6 2009-01-02 Z     -2.44 </code></pre>
+1 2009-01-01 X      1.96 
+2 2009-01-01 Y      4.58 
+3 2009-01-01 Z     -1.44 
+4 2009-01-02 X      2.55 
+5 2009-01-02 Y      1.69 
+6 2009-01-02 Z      0.205</code></pre>
 </div>
 </div>
 </section>
