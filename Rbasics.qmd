@@ -1,6 +1,9 @@
+---
+editor: 
+  mode: source  
+---  
+
 # R Basics Group Exercise
-
-
 
 ## Question: Recycling in a dataframe
 
@@ -36,9 +39,6 @@ answer = "c(13, 14, 13, 14)",
 
 Please select the correct option.
 
-
-
-
 ## Exercise 1: recycling
 
 This exercise should help answer this question: 'In what type of situations would "recycling" be useful?'
@@ -54,10 +54,10 @@ a
 Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
 
 ::: callout-warning
-Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet. If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying this line of R code: `(a <- data.frame(n = 1:4))`. 
+If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying this line of R code: `(a <- data.frame(n = 1:4))`.
 :::
 
-``` {webr-r}
+```{webr-r}
 (a <- data.frame(n = 1:4))
 # Edit/add R code here
 ```
@@ -83,12 +83,11 @@ a
 ```
 :::
 
-
 ## Question: Vector addition and recycling
 
 Suppose you have two vectors in R:
 
-Vector A: c(1, 2, 3)      
+Vector A: c(1, 2, 3)\
 Vector B: c(4, 5)
 
 If you perform the operation A + B, what will be the result of vector recycling?
@@ -106,12 +105,11 @@ answer = "c(5, 7, 7)",
 
 Please select the correct option.
 
-
 ## Exercise 2: vector addition
 
 Use vector addition to construct a vector of length 4 that contains a 1 in even positions and a 2 in odd positions. Then insert this vector into the data frame `a` into a column named `rowNum6`.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -165,7 +163,7 @@ print(paste("i =",i))
 
 Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in even rows and a 2 in odd rows.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -212,7 +210,7 @@ while (i < 4) {
 
 Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -251,7 +249,7 @@ repeat {
 
 Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in even rows and a 2 in odd rows.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -282,7 +280,7 @@ a
 
 Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in even rows and a 2 in odd rows.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -302,7 +300,7 @@ List all even rows of the data frame `a`.
 
 List rows 3 and 4 of the data frame `a`.
 
-``` {webr-r}
+```{webr-r}
 # Edit/add code here
 ```
 
@@ -348,7 +346,7 @@ str(b)
 
 Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`. This can be done by adjusting the various options of the `read.table` command.
 
-``` {webr-r}
+```{webr-r}
 dir.create("data")
 infile <- "data/testdata.txt"
 srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt"
