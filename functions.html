@@ -95,7 +95,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/editor/editor.main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
+
 <style>
   .monaco-editor pre {
     background-color: unset !important;
@@ -104,19 +105,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   .btn-webr {
     background-color: #EEEEEE;
     border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0; /* Extra styling for consistency */
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    -webkit-text-decoration: none;
+    -moz-text-decoration: none;
+    -ms-text-decoration: none;
+    -o-text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    border-color: #dee2e6;
+    border: 1px solid rgba(0,0,0,0);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .btn-webr:hover {
+    color: #000;
+    background-color: #e3e6ea;
+    border-color: #e1e5e9;
+  }
+
+  .btn-webr:disabled,.btn-webr.disabled,fieldset:disabled .btn-webr {
+    pointer-events: none;
+    opacity: .65
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/loader.js"></script>
+
 <script type="module">
-
-  // Configure the Monaco Editor's loader
-  require.config({
-    paths: {
-      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs'
-    }
-  });
-
 
   // Start a timer
   const initializeWebRTimerStart = performance.now();
@@ -171,19 +193,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     quartoTitleMeta.appendChild(firstInnerDiv);
 
     // Add new element as last child in header element
-    var header = document.getElementsByTagName("header")[0];
-    header.appendChild(quartoTitleMeta);
+    var header = document.getElementById("title-block-header");
+
+    // Check if the header option is present or missing
+    if(header) {
+      // If present, directly append the child element.
+      header.appendChild(quartoTitleMeta);
+    } else {
+      // Attempt to place the new element inside a header _after_ the Monaco initialization
+      var monacoScript = document.getElementById("webr-monaco-editor-init");
+      var header = document.createElement("header");
+      header.setAttribute("id", "title-block-header");
+      // Now attempt to add the webR area to the title
+      header.appendChild(quartoTitleMeta);
+      // Include the header after the script tag
+      monacoScript.after(header);
+    }
   }
 
   // Retrieve the webr.mjs
-  import { WebR } from "https://webr.r-wasm.org/v0.2.0/webr.mjs";
+  import { WebR, ChannelType } from "https://webr.r-wasm.org/v0.2.1/webr.mjs";
 
   // Populate WebR options with defaults or new values based on 
   // webr meta
   globalThis.webR = new WebR({
     "baseURL": "",
     "serviceWorkerUrl": "",
-    "homedir": "/home/web_user"
+    "homedir": "/home/web_user", 
+    "channelType": ChannelType.Automatic
   });
 
   // Initialization WebR
@@ -478,6 +515,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/loader.js"></script>
+<script type="module" id="webr-monaco-editor-init">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
+    }
+  });
+</script>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -581,20 +628,6 @@ a + b}`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -611,6 +644,32 @@ a + b}`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -751,20 +810,6 @@ class(calc_shrub_vol)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -781,6 +826,32 @@ class(calc_shrub_vol)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -914,20 +985,6 @@ class(calc_shrub_vol)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -944,6 +1001,32 @@ class(calc_shrub_vol)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1076,20 +1159,6 @@ class(calc_shrub_vol)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -1106,6 +1175,32 @@ class(calc_shrub_vol)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1249,20 +1344,6 @@ Do Writing Functions
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -1279,6 +1360,32 @@ Do Writing Functions
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1409,20 +1516,6 @@ Do Writing Functions
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -1439,6 +1532,32 @@ Do Writing Functions
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1599,20 +1718,6 @@ Do Function Execution
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -1629,6 +1734,32 @@ Do Function Execution
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1775,20 +1906,6 @@ shrubVol()`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -1805,6 +1922,32 @@ shrubVol()`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -1978,20 +2121,6 @@ class(get_mass_from_length_theropoda)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2008,6 +2137,32 @@ class(get_mass_from_length_theropoda)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2140,20 +2295,6 @@ class(get_mass_from_length_theropoda)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2170,6 +2311,32 @@ class(get_mass_from_length_theropoda)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2302,20 +2469,6 @@ class(get_mass_from_length_theropoda)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2332,6 +2485,32 @@ class(get_mass_from_length_theropoda)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2462,20 +2641,6 @@ class(get_mass_from_length_theropoda)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2492,6 +2657,32 @@ class(get_mass_from_length_theropoda)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2639,20 +2830,6 @@ calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2669,6 +2846,32 @@ calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2811,20 +3014,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -2841,6 +3030,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -2973,20 +3188,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3003,6 +3204,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3135,20 +3362,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3165,6 +3378,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3305,20 +3544,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3335,6 +3560,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3465,20 +3716,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3495,6 +3732,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3640,20 +3903,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3670,6 +3919,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3812,20 +4087,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -3842,6 +4103,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -3977,20 +4264,6 @@ Do Default Arguments.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4007,6 +4280,32 @@ Do Default Arguments.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -4148,20 +4447,6 @@ Do Combining Functions.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4178,6 +4463,32 @@ Do Combining Functions.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -4308,20 +4619,6 @@ Do Combining Functions.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4338,6 +4635,32 @@ Do Combining Functions.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -4472,20 +4795,6 @@ Do Combining Functions.
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4502,6 +4811,32 @@ Do Combining Functions.
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -4643,20 +4978,6 @@ est_shrub_mass_dim(0.8, 1.6, 2.0)`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4673,6 +4994,32 @@ est_shrub_mass_dim(0.8, 1.6, 2.0)`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -4829,20 +5176,6 @@ make_plot(surveys, hindfoot_length, "Hindfoot Length [mm]")`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -4859,6 +5192,32 @@ make_plot(surveys, hindfoot_length, "Hindfoot Length [mm]")`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
@@ -5002,20 +5361,6 @@ make_plot(surveys, weight, "Weight [g]")`,
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
 
-    // Add a keydown event listener for Shift+Enter using the addCommand method
-    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, function () {
-      // Code to run when Shift+Enter is pressed
-      executeCode(editor.getValue());
-    });
-
-    // Add a keydown event listener for Ctrl+Enter to run selected code
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
-      // Get the selected text from the editor
-      const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-      // Code to run when Ctrl+Enter is pressed (run selected code)
-      executeCode(selectedText);
-    });
-
     // Dynamically modify the height of the editor window if new lines are added.
     let ignoreEvent = false;
     const updateHeight = () => {
@@ -5032,6 +5377,32 @@ make_plot(surveys, weight, "Weight [g]")`,
         ignoreEvent = false;
       }
     };
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Code to run when Ctrl+Enter is pressed (run selected code)
+        executeCode(selectedText);
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
 
     // Register an on change event for when new code is added to the editor window
     editor.onDidContentSizeChange(updateHeight);
