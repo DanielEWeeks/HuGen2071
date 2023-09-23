@@ -697,19 +697,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="interactive-webr-chunk" class="level4" data-number="10.4.1.1">
 <h4 data-number="10.4.1.1" class="anchored" data-anchor-id="interactive-webr-chunk"><span class="header-section-number">10.4.1.1</span> Interactive WebR chunk</h4>
 <p>You can interactively run R within this WebR chunk by clicking the <code>Run code</code> tab. Note that this is a limited version of R which runs within your web browser.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use a Chrome or Firefox browser - WebR does not work with the Safari browser yet.</p>
-</div>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -915,7 +902,7 @@ kable(geno)
 <section id="answer-1" class="level3" data-number="10.4.2">
 <h3 data-number="10.4.2" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">10.4.2</span> Answer 1</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -924,7 +911,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clin<span class="sc">$</span>SUBJECT_ID <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"SG"</span>, <span class="fu">formatC</span>(clin<span class="sc">$</span>ID, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">flag =</span> <span class="st">"0000"</span>))</span>
@@ -1207,7 +1194,7 @@ library(stringr)
 <section id="answer-2" class="level3" data-number="10.4.4">
 <h3 data-number="10.4.4" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">10.4.4</span> Answer 2</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1216,7 +1203,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lab<span class="sc">$</span>ID2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"SG"</span>,<span class="st">""</span>,lab<span class="sc">$</span>ID))</span>
@@ -1511,7 +1498,7 @@ library(tidyr)
 <section id="answer-3" class="level3" data-number="10.4.6">
 <h3 data-number="10.4.6" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">10.4.6</span> Answer 3</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1520,7 +1507,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">str_split_fixed</span>(geno<span class="sc">$</span>Sample, <span class="at">pattern =</span> <span class="st">"-"</span>,<span class="at">n=</span><span class="dv">3</span>)</span>
@@ -1869,7 +1856,7 @@ kable(joint)
 <section id="answer-4" class="level3" data-number="10.5.2">
 <h3 data-number="10.5.2" class="anchored" data-anchor-id="answer-4"><span class="header-section-number">10.5.2</span> Answer 4</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1878,7 +1865,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
