@@ -1,3 +1,10 @@
+---
+webr:
+  packages: ['tidyverse']
+editor: 
+  mode: source    
+---  
+
 # R Recoding Reshaping Exercise
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
@@ -8,11 +15,10 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 
 ## Load Libraries
 
-```{r load_libraries,message=FALSE}
+```{webr-r}
 library(tidyverse)
 # library(tidylog)
 ```
-
 
 ## Project 1 Data
 
@@ -20,36 +26,41 @@ In the `ds` data frame we have the synthetic yet realistic data we will be using
 
 In the `dd` data frame we have the corresponding data dictionary.
 
-```{r}
-load("data/exercise.RData", verbose = TRUE)
+```{webr-r}
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/exercise.RData"),
+              "exercise.RData")
+load("exercise.RData", verbose = TRUE)
 dim(ds)
 names(ds)
 dim(dd)
 names(dd)
 ```
 
-
-## Exercise 1
+## Exercise 1: duplicated values
 
 **Skill**: Checking for duplicated IDs
 
-```{r}
+```{webr-r}
 ds %>% select(subject_id, sample_id, height) %>% head(n=10) 
 ```
 
+Check if there are any duplicated `sample_id`'s using the `duplicated` command.  If so, count how many duplicated `sample_id`'s there are. 
 
-Check if there are any duplicated `sample_id`'s using the `duplicated` command.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 sum(duplicated(ds$sample_id))
 ```
-
-
-
 :::
 
 Construct a table of the number of times each `sample_id` is duplicated:
@@ -57,41 +68,51 @@ Construct a table of the number of times each `sample_id` is duplicated:
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 table(table(ds$sample_id))
-# But?
+# But why do we get differing numbers here?
 sum(duplicated(ds$sample_id))
 35+13*2+2*3+1*4
 sum(duplicated(ds$sample_id, incomparables = NA))
 ```
 
-```{r}
-table(table(ds$sample_id, useNA="always"))
-36+13*2+2*3+1*4
+How many `sample_id`'s are `NA`'s?
+
+```{webr-r}
+sum(is.na(ds$sample_id))
 ```
 
 
+```{webr-r}
+table(table(ds$sample_id, useNA="always"))
+36+13*2+2*3+1*4
+```
 :::
 
-
 Check if there are any duplicated `subject_id`s
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 sum(duplicated(ds$subject_id))
 ```
-
 :::
 
 ## Checking for duplicates
 
 How do we return every row that contains a duplicate?
 
-```{r}
+This approach only does not return every row that contains a duplicated `ID`:
+
+```{webr-r}
 f <- data.frame(ID=c(1,1,2),c2=c(1,2,3))
 f
 f[duplicated(f$ID),]
@@ -99,18 +120,26 @@ f[duplicated(f$ID),]
 
 ## Counting the number of occurences of the ID
 
-```{r}
+```{webr-r}
 f %>% group_by(ID) %>% summarise(n=n())
+f %>% group_by(ID) %>% count()
 ```
 
 ## Count `sample_id` duplicates
 
 Using Tidyverse commands, count how many times each `sample_id` occcurs in the `ds` data frame, reporting the counts in descending order, from highest to lowest.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ds  %>% group_by(sample_id) %>% 
   summarise(n=n()) %>%  
   filter(n>1) %>% 
@@ -118,35 +147,38 @@ ds  %>% group_by(sample_id) %>%
   head()
 ```
 
-```{r}
+```{webr-r}
 ds  %>% group_by(sample_id) %>% 
   summarise(n = n()) %>%  filter(n > 1) %>% 
   arrange(desc(n)) %>% pull(n) %>% table()
 ```
-
 :::
 
-## Checking for duplicates 
+## Checking for duplicates
 
-Here we list all of the rows containing a duplicated 'ID'
-value using functions from the 'tidyverse' package:
+Here we list all of the rows containing a duplicated 'ID' value using functions from the 'tidyverse' package:
 
-```{r 2e}
+```{webr-r}
 f %>% group_by(ID) %>% filter(n()>1)
 ```
 
-
-
 ### How to list all duplicates
 
-Use Tidyverse commands to list all duplicates for `sample_id` and for `subject_id`.  Sort the results by the ID. 
+Use Tidyverse commands to list all duplicates for `sample_id` and for `subject_id`. Sort the results by the ID.
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ### Sample ID
 
-```{r}
+```{webr-r}
 ds  %>% group_by(sample_id) %>% 
         filter(n() > 1) %>% 
         select(sample_id, subject_id, Sample_trimester, Gestationalage_sample) %>% 
@@ -156,111 +188,139 @@ ds  %>% group_by(sample_id) %>%
 
 ### Subject ID
 
-```{r}
-ds  %>% group_by(subject_id) %>% filter(n() > 1) %>% select(subject_id,
-                                                            sample_id,
-                                                            Sample_trimester,
-                                                            Gestationalage_sample) %>% 
+```{webr-r}
+ds  %>% 
+  group_by(subject_id) %>% 
+  filter(n() > 1) %>% 
+  select(subject_id,sample_id, Sample_trimester, Gestationalage_sample) %>% 
   arrange(subject_id,
           sample_id,
           Sample_trimester,
-          Gestationalage_sample) %>% head(10)
+          Gestationalage_sample) %>% 
+  head(10)
 ```
-
 :::
 
-
-
-## Exercise 2
+## Exercise 2: Reshaping data
 
 **Skill**: Reshaping data
 
-Select only three columns "sample_id", "Sample_trimester", "Gestationalage_sample", and then reshape from 'long' format to 'wide' format using `pivot_wider`, taking time as the "Sample_trimester".  
+Select only three columns "sample_id", "Sample_trimester", "Gestationalage_sample", and then reshape from 'long' format to 'wide' format using `pivot_wider`, taking time as the "Sample_trimester".
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 b <- ds %>% select(sample_id, Sample_trimester, Gestationalage_sample)
 
 b2 <- b %>% pivot_wider(id_cols = sample_id, names_from = Sample_trimester, values_from = Gestationalage_sample)
 head(b2)
+
+# Trimester 1 Gestationalage_sample values for SAMP149
+glimpse(b2[1,"1"])
 ```
-
-
 
 ### Comment
 
-View `b2` via the `View(b2)` command in RStudio - it nicely put all the different gestational age observations into one list for each `sample_id` x `Sample_trimester` combination.  
-
+View `b2` via the `View(b2)` command in RStudio - it nicely put all the different gestational age observations into one list for each `sample_id` x `Sample_trimester` combination.
 :::
 
-## Exercise 3
+## Exercise 3: Aggregating data
 
 **Skill**: Aggregating data
 
 Make a table showing the proportion of blacks and whites that are controls and cases.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
-prop.table(table(ds$case_control_status,ds$race), margin = 2)
+```{webr-r}
+prop.table(table(ds$case_control_status,ds$race), 
+           margin = 2)
 ```
 
 ### Comment:
 
-The `margin` parameter of the `prop.table` command has to be specified in order to get the desired answer: "1 indicates rows, 2 indicates columns.  
+The `margin` parameter of the `prop.table` command has to be specified in order to get the desired answer: "1 indicates rows, 2 indicates columns.
 
-```{r}
-prop.table(table(ds$case_control_status,ds$race), margin = 1)
+```{webr-r}
+prop.table(table(ds$case_control_status,ds$race), 
+           margin = 1)
 ```
 
-```{r}
+```{webr-r}
 prop.table(table(ds$case_control_status,ds$race))
 ```
-
 :::
 
 Construct more readable tables with labels using `xtabs`
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ### `xtabs` table with labels
 
-
-
-```{r}
-prop.table(xtabs( ~ case_control_status + race, data = ds), margin = 1)
+```{webr-r}
+prop.table(xtabs( ~ case_control_status + race, data = ds), 
+           margin = 1)
 ```
-
-
 :::
 
 Create a count cross table using Tidyverse commands
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ds %>%
 group_by(case_control_status, race)%>%
 summarize(n=n())%>%
 spread(race, n)
 addmargins(xtabs( ~ case_control_status + race, data = ds))
 ```
-
-::: 
+:::
 
 Create a proportion cross table using Tidyverse commands
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ds %>%
 group_by(case_control_status, race)%>%
 summarize(n=n())%>%
@@ -269,22 +329,25 @@ select(-n) %>%
 spread(race, prop)
 
 ```
+:::
 
-::: 
-
-
-
-## Exercise 4
+## Exercise 4: Summarizing within groups
 
 **Skill**: Summarizing within groups
 
 Apply the `summary` command to the "Gestationalage_sample" within each "Sample_trimester" group.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 f <- split(ds[,"Gestationalage_sample"], ds$Sample_trimester)
 sapply(f, summary)
 
@@ -293,99 +356,114 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)
 ```
 
 Note: With `split(x, f)`, any missing values in `f` are dropped together with the corresponding values of `x`.
-
 :::
 
 ## Exercise 5: Recoding data
 
 **Approach 1**
 
-* Implement our dictionaries using look-up tables
-    - Use a named vector.
+-   Implement our dictionaries using look-up tables
+    -   Use a named vector.
 
 **Skill:**: Recoding IDs using a dictionary
 
 Create a new subject ID column named "subjectID" where you have used the `DictPer` named vector to recode the original "subject_id" IDs into integer IDs.
 
-```{r}
+```{webr-r}
 head(DictPer)
 ```
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-
-```{r}
+```{webr-r}
 a5 <- ds
 a5$ID <- DictPer[a5$subject_id]
 a5 %>% select(subject_id, ID) %>%  head
 head(DictPer)
 ```
-
 :::
-
 
 ## Recoding data
 
 **Approach 2**
 
-* Implement our dictionaries using left joins 
+-   Implement our dictionaries using left joins
 
 ### Comment
 
-I usually prefer to use a merge command like `left_join` to merge in the new IDs into my data frame.  
+I usually prefer to use a merge command like `left_join` to merge in the new IDs into my data frame.
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 key <- data.frame(SubjID=names(DictPer),ID=DictPer)
 head(key)
 b5 <- left_join(ds, key, by=c("subject_id" = "SubjID"))
 b5 %>% select(subject_id,ID) %>%  head()
 ```
-
 :::
 
-## Exercise 6
+## Exercise 6: Filtering rows
 
 **Skill**: Filtering rows.
 
 Create a data frame `tri1` containing the records for Trimester 1, and a second data frame `tri2` containing the records for Trimester 2.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 tri1 <- ds %>% filter(Sample_trimester==1)
 tri1 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()
 tri2 <- ds %>% filter(Sample_trimester==2)
 tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()
 ```
-
 :::
 
 ## Exercise 7
 
 **Skill**: Selecting columns
 
-Update `tri1` and `tri2` to only contain the three columns "sample_id", "Sample_trimester", "Gestationalage_sample" 
+Update `tri1` and `tri2` to only contain the three columns "sample_id", "Sample_trimester", "Gestationalage_sample"
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 tri1 <- tri1 %>% select(sample_id, Sample_trimester, Gestationalage_sample)
 head(tri1)
 tri2 <- tri2 %>% select(sample_id, Sample_trimester, Gestationalage_sample)
 head(tri2)
 ```
-
 :::
-
-
-
-
-
-

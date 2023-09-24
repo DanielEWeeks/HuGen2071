@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source  
+---
+
 # R Reordering Exercise
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
@@ -5,7 +10,6 @@ require(knitr)
 # Set so that long lines in R will be wrapped:
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
-
 
 ## Load Libraries
 
@@ -16,7 +20,7 @@ library(tidylog)
 
 ## Create some example data
 
-Here we set up a data dictionary `dd` and some corresponding data `ds`.  However, it is better if the order of the rows in the data dictionary `dd`  match the order of the columns in the data `ds`.
+Here we set up a data dictionary `dd` and some corresponding data `ds`. However, it is better if the order of the rows in the data dictionary `dd` match the order of the columns in the data `ds`.
 
 ```{r}
 set.seed(1562345)
@@ -43,16 +47,16 @@ head(ds[1:3])
 names(ds)
 ```
 
-## Task: Reorder rows in `dd` in the order of `ds`'s columns  
+## Task: Reorder rows in `dd` in the order of `ds`'s columns
 
 ```{r}
 colnames(ds)
 dd$VARNAME
 ```
 
-This assumes that every row of `dd` is in `colnames(ds)` and every `colnames(ds)` value is represented in `dd`.  Perhaps that should be checked first. 
+This assumes that every row of `dd` is in `colnames(ds)` and every `colnames(ds)` value is represented in `dd`. Perhaps that should be checked first.
 
-## Assumption Check Question 
+## Assumption Check Question
 
 How would you check that every variable listed in the data dictionary `dd` is named in `colnames(ds)` and every `colnames(ds)` value is represented in the data dictionary `dd`?
 
@@ -70,19 +74,16 @@ Note that we should also check to see if the `VARNAME`'s are unique and the `col
 sum(duplicated(dd$VARNAME))
 sum(duplicated(colnames(ds)))
 ```
-
-
 :::
 
-## Task: Reorder rows in  `dd` to match the order of the columns in `ds`
+## Task: Reorder rows in `dd` to match the order of the columns in `ds`
 
 Task: Reorder rows in the data dictionary `dd` to match the order of the columns in the data `ds`
 
-* What are various ways you could rearrange the rows of a data frame?
+-   What are various ways you could rearrange the rows of a data frame?
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
-
 
 ```{r}
 # Assign VARNAME to be the rownames of dd
@@ -101,12 +102,11 @@ dd3 <- dd[match(colnames(ds), dd$VARNAME),]
 # Check if this worked:
 all.equal(dd3$VARNAME, colnames(ds))
 ```
-
 :::
 
 ## Question: use `arrange`?
 
-Question:  Is there a way to do this using `arrange`?
+Question: Is there a way to do this using `arrange`?
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see the first attempt
@@ -118,12 +118,11 @@ dd4 <- dd %>% arrange(colnames(ds))
 # Check if this worked:
 all.equal(dd4$VARNAME, colnames(ds))
 ```
-
 :::
 
-## Question:  use `arrange`?
+## Question: use `arrange`?
 
-Question:  Is there a way to do this using `arrange`?
+Question: Is there a way to do this using `arrange`?
 
 `arrange()` orders the rows of a data frame by the values of selected columns.
 
@@ -137,7 +136,6 @@ dd4 <- dd %>%
   select(-neworder)
 all.equal(dd4$VARNAME, colnames(ds))
 ```
-
 :::
 
 ## Question: use `slice`
@@ -172,15 +170,12 @@ dd5 <- dd %>% t()  %>%
   rename("VARNAME"="V1","TYPE" = "V2")
 all.equal(dd5$VARNAME, colnames(ds))
 ```
-
 :::
 
 ## Question: use row names
 
 Question: What about using row names?
 
-"While a tibble can have row names (e.g., when converting from a regular data frame), they are removed when subsetting with the [ operator. A warning will be raised when attempting to assign non-NULL row names to a tibble. Generally, it is best to avoid row names, because they are basically a character column with different semantics than every other column."
+"While a tibble can have row names (e.g., when converting from a regular data frame), they are removed when subsetting with the \[ operator. A warning will be raised when attempting to assign non-NULL row names to a tibble. Generally, it is best to avoid row names, because they are basically a character column with different semantics than every other column."
 
 From: https://tibble.tidyverse.org/reference/rownames.html
-
-

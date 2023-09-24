@@ -1,5 +1,9 @@
-# R Merging Exercise
+---
+editor: 
+  mode: source  
+---
 
+# R Merging Exercise
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
@@ -7,14 +11,12 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
-
 ## Load Libraries
 
 ```{r load_libraries,message=FALSE}
 library(tidyverse)
 library(tidylog)
 ```
-
 
 ## Input data
 
@@ -26,9 +28,8 @@ load("data/project1.RData", verbose = TRUE)
 
 ## Select a subset of subject-level fields
 
-Set up a data frame 'a' that has these subject-level fields:
-"subject_id" "maternal_age_delivery"    "case_control_status"     
- "prepregnancy_BMI" 
+Set up a data frame 'a' that has these subject-level fields: "subject_id" "maternal_age_delivery" "case_control_status"\
+"prepregnancy_BMI"
 
 ```{r}
 a <- ds %>% select("subject_id", "maternal_age_delivery",    "case_control_status",     
@@ -38,10 +39,9 @@ head(a,10)
 tail(a)
 ```
 
-
 ## Unique records
 
-The data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.  
+The data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.
 
 From your data frame 'a' select only the unique records, creating data frame `b`.
 
@@ -74,10 +74,9 @@ unique(ex1)
 
 ex1 %>% distinct()
 ```
-
 :::
 
-## Check that the `subject_id`'s are now not duplicated 
+## Check that the `subject_id`'s are now not duplicated
 
 Are the `subject_id`'s unique?
 
@@ -88,12 +87,11 @@ Are the `subject_id`'s unique?
 sum(duplicated(b$subject_id))
 b %>%  group_by(subject_id) %>% filter(n()>1)
 ```
-
 :::
 
 ## Create random integer IDs
 
-Create a new column `ID` containing randomly chosen integer IDs; this is necessary to de-identify the data.  To do this, use the `sample` command, sampling integers from 1 to the number of rows in data frame `b`.  
+Create a new column `ID` containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the `sample` command, sampling integers from 1 to the number of rows in data frame `b`.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -104,12 +102,11 @@ b$ID <- sample(c(1:nrow(b)), replace = FALSE)
 head(b %>% select(subject_id, ID))
 sum(duplicated(b$ID))
 ```
-
 :::
 
 ## Merge in new phenotype information
 
-The PI has sent you new trait data for your subjects.  
+The PI has sent you new trait data for your subjects.
 
 ```{r}
 new <- read_tsv("data/newtrait.tsv")
@@ -124,14 +121,14 @@ If you notice any problems with this merge, prepare a report for the PI detailin
 
 ## Always be careful when merging.
 
-* *Always check for duplicated IDs* before doing the merge.
-* Always check that your ID columns do not contain any missing values.
-* Check that the values in the ID columns (e.g., the keys) match.
-   - Can use an ’anti_join’ to check this.
-   - Inconsistencies in the values of the keys can be hard to fix.
-* *Always check the dimensions* to make sure the merged object has the expected number of rows and columns.
-* Always explicitly name the keys you are merging on.
-    - If you don't name them, then the join command will use all variables in common across `x` and `y`.
+-   *Always check for duplicated IDs* before doing the merge.
+-   Always check that your ID columns do not contain any missing values.
+-   Check that the values in the ID columns (e.g., the keys) match.
+    -   Can use an 'anti_join' to check this.
+    -   Inconsistencies in the values of the keys can be hard to fix.
+-   *Always check the dimensions* to make sure the merged object has the expected number of rows and columns.
+-   Always explicitly name the keys you are merging on.
+    -   If you don't name them, then the join command will use all variables in common across `x` and `y`.
 
 ## Merge in new phenotype information
 
@@ -170,7 +167,4 @@ anti_join() return all rows from x without a match in y.
 anti_join(b, new, by="subject_id")
 anti_join(new, b, by="subject_id")
 ```
-
 :::
-
-

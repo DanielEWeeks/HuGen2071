@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source  
+---  
+
 # Lecture: R: factors, subscripting
 
 ## R: factors, subscripting lecture
