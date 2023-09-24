@@ -1,5 +1,6 @@
 .Rproj.user
 HuGen2071_book.Rproj
 .Rhistory
-
+_book/*
 /.quarto/
+*_files
