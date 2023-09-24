@@ -851,14 +851,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.434  0.720 -2.55\n2 2009-01-02 -0.553  3.20   4.38\n3 2009-01-03 -0.733  0.852  1.14\n4 2009-01-04  0.131 -2.29   1.10\n5 2009-01-05  1.03   2.89  -7.78\n6 2009-01-06 -0.640 -2.33  -6.74\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.434\n2 2009-01-02 X     -0.553\n3 2009-01-03 X     -0.733\n4 2009-01-04 X      0.131\n5 2009-01-05 X      1.03 \n6 2009-01-06 X     -0.640"
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y      Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.412 -1.81   -0.145\n2 2009-01-02 -1.63   3.33   -2.44 \n3 2009-01-03 -1.05   2.98    1.62 \n4 2009-01-04 -0.239 -0.0744 -4.04 \n5 2009-01-05  1.41   0.353   6.49 \n6 2009-01-06 -0.871 -1.31    1.17 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.412\n2 2009-01-02 X     -1.63 \n3 2009-01-03 X     -1.05 \n4 2009-01-04 X     -0.239\n5 2009-01-05 X      1.41 \n6 2009-01-06 X     -0.871"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.434\n2 2009-01-01 Y      0.720\n3 2009-01-01 Z     -2.55 \n4 2009-01-02 X     -0.553\n5 2009-01-02 Y      3.20 \n6 2009-01-02 Z      4.38"
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.412\n2 2009-01-01 Y     -1.81 \n3 2009-01-01 Z     -0.145\n4 2009-01-02 X     -1.63 \n5 2009-01-02 Y      3.33 \n6 2009-01-02 Z     -2.44"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -886,161 +886,168 @@
     "href": "recoding_reshaping_interactive.html#load-libraries",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.1 Load Libraries",
-    "text": "19.1 Load Libraries\n\nlibrary(tidyverse)\n# library(tidylog)"
+    "text": "19.1 Load Libraries\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#project-1-data",
     "href": "recoding_reshaping_interactive.html#project-1-data",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.2 Project 1 Data",
-    "text": "19.2 Project 1 Data\nIn the ds data frame we have the synthetic yet realistic data we will be using in Project 1.\nIn the dd data frame we have the corresponding data dictionary.\n\nload(\"data/exercise.RData\", verbose = TRUE)\n\nLoading objects:\n  ds\n  dd\n  DictPer\n\ndim(ds)\n\n[1] 191  24\n\nnames(ds)\n\n [1] \"sample_id\"                \"Sample_trimester\"        \n [3] \"Gestationalage_sample\"    \"subject_id\"              \n [5] \"strata\"                   \"race\"                    \n [7] \"maternal_age_delivery\"    \"case_control_status\"     \n [9] \"prepregnancy_weight\"      \"height\"                  \n[11] \"prepregnancy_BMI\"         \"gravidity\"               \n[13] \"parity\"                   \"gestationalage_delivery\" \n[15] \"average_SBP_lt20weeks\"    \"average_DBP_lt20weeks\"   \n[17] \"average_SBP_labor\"        \"average_DBP_labor\"       \n[19] \"smoke_lifetime\"           \"baby_birthweight\"        \n[21] \"baby_sex\"                 \"baby_birthweight_centile\"\n[23] \"baby_SGA\"                 \"placental_pathology\"     \n\ndim(dd)\n\n[1] 27  5\n\nnames(dd)\n\n[1] \"Original.Variable.Name\" \"R21.Variable.Name\"      \"Description\"           \n[4] \"Variable.Units\"         \"Variable.Coding\""
+    "text": "19.2 Project 1 Data\nIn the ds data frame we have the synthetic yet realistic data we will be using in Project 1.\nIn the dd data frame we have the corresponding data dictionary.\nLoading\n  webR..."
   },
   {
-    "objectID": "recoding_reshaping_interactive.html#exercise-1",
-    "href": "recoding_reshaping_interactive.html#exercise-1",
+    "objectID": "recoding_reshaping_interactive.html#exercise-1-duplicated-values",
+    "href": "recoding_reshaping_interactive.html#exercise-1-duplicated-values",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.3 Exercise 1",
-    "text": "19.3 Exercise 1\nSkill: Checking for duplicated IDs\n\nds %&gt;%\n    select(subject_id, sample_id, height) %&gt;%\n    head(n = 10)\n\n   subject_id sample_id height\n1      SUBJ48   SAMP149   64.6\n2      SUBJ46   SAMP037   65.7\n3      SUBJ28   SAMP120   63.3\n4      SUBJ26   SAMP187   61.1\n5      SUBJ49   SAMP082   67.6\n6      SUBJ48   SAMP149   64.6\n7      SUBJ19   SAMP074   66.1\n8      SUBJ07   SAMP063   64.4\n9      SUBJ28   SAMP053   63.3\n10     SUBJ43   SAMP085   65.7\n\n\nCheck if there are any duplicated sample_id’s using the duplicated command.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsum(duplicated(ds$sample_id))\n\n[1] 72\n\n\n\n\n\nConstruct a table of the number of times each sample_id is duplicated:\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\ntable(table(ds$sample_id))\n\n\n 1  2  3  4  5 \n67 35 13  2  1 \n\n# But?\nsum(duplicated(ds$sample_id))\n\n[1] 72\n\n35 + 13 * 2 + 2 * 3 + 1 * 4\n\n[1] 71\n\nsum(duplicated(ds$sample_id, incomparables = NA))\n\n[1] 71\n\n\n\ntable(table(ds$sample_id, useNA = \"always\"))\n\n\n 1  2  3  4  5 \n67 36 13  2  1 \n\n36 + 13 * 2 + 2 * 3 + 1 * 4\n\n[1] 72\n\n\n\n\n\nCheck if there are any duplicated subject_ids\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsum(duplicated(ds$subject_id))\n\n[1] 137"
+    "section": "19.3 Exercise 1: duplicated values",
+    "text": "19.3 Exercise 1: duplicated values\nSkill: Checking for duplicated IDs\nLoading\n  webR...\n\n\n  \n\n\nCheck if there are any duplicated sample_id’s using the duplicated command. If so, count how many duplicated sample_id’s there are.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\n\n\n\nConstruct a table of the number of times each sample_id is duplicated:\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\nHow many sample_id’s are NA’s?\nLoading\n  webR...\n\n\n  \n\n\nLoading\n  webR...\n\n\n  \n\n\n\n\n\nCheck if there are any duplicated subject_ids\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#checking-for-duplicates",
     "href": "recoding_reshaping_interactive.html#checking-for-duplicates",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.4 Checking for duplicates",
-    "text": "19.4 Checking for duplicates\nHow do we return every row that contains a duplicate?\n\nf &lt;- data.frame(ID = c(1, 1, 2), c2 = c(1, 2, 3))\nf\n\n  ID c2\n1  1  1\n2  1  2\n3  2  3\n\nf[duplicated(f$ID), ]\n\n  ID c2\n2  1  2"
+    "text": "19.4 Checking for duplicates\nHow do we return every row that contains a duplicate?\nThis approach only does not return every row that contains a duplicated ID:\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#counting-the-number-of-occurences-of-the-id",
     "href": "recoding_reshaping_interactive.html#counting-the-number-of-occurences-of-the-id",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.5 Counting the number of occurences of the ID",
-    "text": "19.5 Counting the number of occurences of the ID\n\nf %&gt;%\n    group_by(ID) %&gt;%\n    summarise(n = n())\n\n# A tibble: 2 × 2\n     ID     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1     2\n2     2     1"
+    "text": "19.5 Counting the number of occurences of the ID\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#count-sample_id-duplicates",
     "href": "recoding_reshaping_interactive.html#count-sample_id-duplicates",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.6 Count sample_id duplicates",
-    "text": "19.6 Count sample_id duplicates\nUsing Tidyverse commands, count how many times each sample_id occcurs in the ds data frame, reporting the counts in descending order, from highest to lowest.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds %&gt;%\n    group_by(sample_id) %&gt;%\n    summarise(n = n()) %&gt;%\n    filter(n &gt; 1) %&gt;%\n    arrange(desc(n)) %&gt;%\n    head()\n\n# A tibble: 6 × 2\n  sample_id     n\n  &lt;chr&gt;     &lt;int&gt;\n1 SAMP100       5\n2 SAMP125       4\n3 SAMP155       4\n4 SAMP017       3\n5 SAMP048       3\n6 SAMP058       3\n\n\n\nds %&gt;%\n    group_by(sample_id) %&gt;%\n    summarise(n = n()) %&gt;%\n    filter(n &gt; 1) %&gt;%\n    arrange(desc(n)) %&gt;%\n    pull(n) %&gt;%\n    table()\n\n.\n 2  3  4  5 \n36 13  2  1"
+    "text": "19.6 Count sample_id duplicates\nUsing Tidyverse commands, count how many times each sample_id occcurs in the ds data frame, reporting the counts in descending order, from highest to lowest.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#checking-for-duplicates-1",
     "href": "recoding_reshaping_interactive.html#checking-for-duplicates-1",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.7 Checking for duplicates",
-    "text": "19.7 Checking for duplicates\nHere we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:\n\nf %&gt;%\n    group_by(ID) %&gt;%\n    filter(n() &gt; 1)\n\n# A tibble: 2 × 2\n# Groups:   ID [1]\n     ID    c2\n  &lt;dbl&gt; &lt;dbl&gt;\n1     1     1\n2     1     2\n\n\n\n19.7.1 How to list all duplicates\nUse Tidyverse commands to list all duplicates for sample_id and for subject_id. Sort the results by the ID.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n19.7.2 Sample ID\n\nds %&gt;%\n    group_by(sample_id) %&gt;%\n    filter(n() &gt; 1) %&gt;%\n    select(sample_id, subject_id, Sample_trimester, Gestationalage_sample) %&gt;%\n    arrange(sample_id, Sample_trimester, Gestationalage_sample) %&gt;%\n    head()\n\n# A tibble: 6 × 4\n# Groups:   sample_id [3]\n  sample_id subject_id Sample_trimester Gestationalage_sample\n  &lt;chr&gt;     &lt;chr&gt;                 &lt;dbl&gt;                 &lt;dbl&gt;\n1 SAMP002   SUBJ20                    2                 19.3 \n2 SAMP002   SUBJ20                    2                 19.7 \n3 SAMP003   SUBJ12                    1                  8.25\n4 SAMP003   SUBJ12                    1                  8.35\n5 SAMP004   SUBJ35                    2                 20.4 \n6 SAMP004   SUBJ35                    2                 20.9 \n\n\n\n\n19.7.3 Subject ID\n\nds %&gt;%\n    group_by(subject_id) %&gt;%\n    filter(n() &gt; 1) %&gt;%\n    select(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %&gt;%\n    arrange(subject_id, sample_id, Sample_trimester, Gestationalage_sample) %&gt;%\n    head(10)\n\n# A tibble: 10 × 4\n# Groups:   subject_id [2]\n   subject_id sample_id Sample_trimester Gestationalage_sample\n   &lt;chr&gt;      &lt;chr&gt;                &lt;dbl&gt;                 &lt;dbl&gt;\n 1 SUBJ01     SAMP011                  1                  9.00\n 2 SUBJ01     SAMP034                  3                 39.8 \n 3 SUBJ01     SAMP034                  3                 42.1 \n 4 SUBJ01     SAMP103                  2                 19.9 \n 5 SUBJ01     SAMP103                  2                 20.0 \n 6 SUBJ01     SAMP155                  3                 40.0 \n 7 SUBJ01     SAMP155                  3                 40.5 \n 8 SUBJ01     SAMP155                  3                 40.7 \n 9 SUBJ01     SAMP155                  3                 41.6 \n10 SUBJ02     SAMP113                  3                 38.6"
+    "text": "19.7 Checking for duplicates\nHere we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:\nLoading\n  webR...\n\n\n  \n\n\n\n19.7.1 How to list all duplicates\nUse Tidyverse commands to list all duplicates for sample_id and for subject_id. Sort the results by the ID.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n19.7.2 Sample ID\nLoading\n  webR...\n\n\n  \n\n\n\n\n19.7.3 Subject ID\nLoading\n  webR..."
   },
   {
-    "objectID": "recoding_reshaping_interactive.html#exercise-2",
-    "href": "recoding_reshaping_interactive.html#exercise-2",
+    "objectID": "recoding_reshaping_interactive.html#exercise-2-reshaping-data",
+    "href": "recoding_reshaping_interactive.html#exercise-2-reshaping-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.8 Exercise 2",
-    "text": "19.8 Exercise 2\nSkill: Reshaping data\nSelect only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”, and then reshape from ‘long’ format to ‘wide’ format using pivot_wider, taking time as the “Sample_trimester”.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nb &lt;- ds %&gt;%\n    select(sample_id, Sample_trimester, Gestationalage_sample)\n\nb2 &lt;- b %&gt;%\n    pivot_wider(id_cols = sample_id, names_from = Sample_trimester, values_from = Gestationalage_sample)\n\nWarning: Values from `Gestationalage_sample` are not uniquely identified; output will\ncontain list-cols.\n• Use `values_fn = list` to suppress this warning.\n• Use `values_fn = {summary_fun}` to summarise duplicates.\n• Use the following dplyr code to identify duplicates.\n  {data} %&gt;%\n  dplyr::group_by(sample_id, Sample_trimester) %&gt;%\n  dplyr::summarise(n = dplyr::n(), .groups = \"drop\") %&gt;%\n  dplyr::filter(n &gt; 1L)\n\nhead(b2)\n\n# A tibble: 6 × 5\n  sample_id `1`       `3`       `2`       `NA`  \n  &lt;chr&gt;     &lt;list&gt;    &lt;list&gt;    &lt;list&gt;    &lt;list&gt;\n1 SAMP149   &lt;dbl [3]&gt; &lt;NULL&gt;    &lt;NULL&gt;    &lt;NULL&gt;\n2 SAMP037   &lt;dbl [2]&gt; &lt;NULL&gt;    &lt;NULL&gt;    &lt;NULL&gt;\n3 SAMP120   &lt;dbl [3]&gt; &lt;NULL&gt;    &lt;NULL&gt;    &lt;NULL&gt;\n4 SAMP187   &lt;NULL&gt;    &lt;dbl [1]&gt; &lt;NULL&gt;    &lt;NULL&gt;\n5 SAMP082   &lt;NULL&gt;    &lt;NULL&gt;    &lt;dbl [1]&gt; &lt;NULL&gt;\n6 SAMP074   &lt;NULL&gt;    &lt;NULL&gt;    &lt;dbl [3]&gt; &lt;NULL&gt;\n\n\n\n19.8.1 Comment\nView b2 via the View(b2) command in RStudio - it nicely put all the different gestational age observations into one list for each sample_id x Sample_trimester combination."
+    "section": "19.8 Exercise 2: Reshaping data",
+    "text": "19.8 Exercise 2: Reshaping data\nSkill: Reshaping data\nSelect only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”, and then reshape from ‘long’ format to ‘wide’ format using pivot_wider, taking time as the “Sample_trimester”.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\n\n19.8.1 Comment\nView b2 via the View(b2) command in RStudio - it nicely put all the different gestational age observations into one list for each sample_id x Sample_trimester combination."
   },
   {
-    "objectID": "recoding_reshaping_interactive.html#exercise-3",
-    "href": "recoding_reshaping_interactive.html#exercise-3",
+    "objectID": "recoding_reshaping_interactive.html#exercise-3-aggregating-data",
+    "href": "recoding_reshaping_interactive.html#exercise-3-aggregating-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.9 Exercise 3",
-    "text": "19.9 Exercise 3\nSkill: Aggregating data\nMake a table showing the proportion of blacks and whites that are controls and cases.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nprop.table(table(ds$case_control_status, ds$race), margin = 2)\n\n   \n            B         W     White\n  0 0.5396825 0.5156250 0.0000000\n  1 0.4603175 0.4843750 1.0000000\n\n\n\n19.9.1 Comment:\nThe margin parameter of the prop.table command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.\n\nprop.table(table(ds$case_control_status, ds$race), margin = 1)\n\n   \n             B          W      White\n  0 0.67326733 0.32673267 0.00000000\n  1 0.64444444 0.34444444 0.01111111\n\n\n\nprop.table(table(ds$case_control_status, ds$race))\n\n   \n              B           W       White\n  0 0.356020942 0.172774869 0.000000000\n  1 0.303664921 0.162303665 0.005235602\n\n\n\n\n\n\nConstruct more readable tables with labels using xtabs\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n19.9.2 xtabs table with labels\n\nprop.table(xtabs(~case_control_status + race, data = ds), margin = 1)\n\n                   race\ncase_control_status          B          W      White\n                  0 0.67326733 0.32673267 0.00000000\n                  1 0.64444444 0.34444444 0.01111111\n\n\n\n\n\nCreate a count cross table using Tidyverse commands\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds %&gt;%\n    group_by(case_control_status, race) %&gt;%\n    summarize(n = n()) %&gt;%\n    spread(race, n)\n\n`summarise()` has grouped output by 'case_control_status'. You can override\nusing the `.groups` argument.\n\n\n# A tibble: 2 × 4\n# Groups:   case_control_status [2]\n  case_control_status     B     W White\n                &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;\n1                   0    68    33    NA\n2                   1    58    31     1\n\naddmargins(xtabs(~case_control_status + race, data = ds))\n\n                   race\ncase_control_status   B   W White Sum\n                0    68  33     0 101\n                1    58  31     1  90\n                Sum 126  64     1 191\n\n\n\n\n\nCreate a proportion cross table using Tidyverse commands\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nds %&gt;%\n    group_by(case_control_status, race) %&gt;%\n    summarize(n = n()) %&gt;%\n    mutate(prop = n/sum(n)) %&gt;%\n    select(-n) %&gt;%\n    spread(race, prop)\n\n`summarise()` has grouped output by 'case_control_status'. You can override\nusing the `.groups` argument.\n\n\n# A tibble: 2 × 4\n# Groups:   case_control_status [2]\n  case_control_status     B     W   White\n                &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1                   0 0.673 0.327 NA     \n2                   1 0.644 0.344  0.0111"
+    "section": "19.9 Exercise 3: Aggregating data",
+    "text": "19.9 Exercise 3: Aggregating data\nSkill: Aggregating data\nMake a table showing the proportion of blacks and whites that are controls and cases.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\n\n19.9.1 Comment:\nThe margin parameter of the prop.table command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.\nLoading\n  webR...\n\n\n  \n\n\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\nConstruct more readable tables with labels using xtabs\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n19.9.2 xtabs table with labels\nLoading\n  webR...\n\n\n  \n\n\n\n\n\nCreate a count cross table using Tidyverse commands\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\n\n\n\nCreate a proportion cross table using Tidyverse commands\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
-    "objectID": "recoding_reshaping_interactive.html#exercise-4",
-    "href": "recoding_reshaping_interactive.html#exercise-4",
+    "objectID": "recoding_reshaping_interactive.html#exercise-4-summarizing-within-groups",
+    "href": "recoding_reshaping_interactive.html#exercise-4-summarizing-within-groups",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.10 Exercise 4",
-    "text": "19.10 Exercise 4\nSkill: Summarizing within groups\nApply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nf &lt;- split(ds[, \"Gestationalage_sample\"], ds$Sample_trimester)\nsapply(f, summary)\n\n                1        2        3\nMin.     4.934325 16.53800 31.44880\n1st Qu.  7.838825 18.45761 35.16305\nMedian   8.565282 19.72388 37.71093\nMean     8.616799 19.83310 37.37827\n3rd Qu.  9.193104 20.69576 39.11360\nMax.    13.026958 24.60659 42.09340\n\n# Or 'tapply' can be used:\ntapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)\n\n$`1`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  4.934   7.839   8.565   8.617   9.193  13.027 \n\n$`2`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  16.54   18.46   19.72   19.83   20.70   24.61 \n\n$`3`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  31.45   35.16   37.71   37.38   39.11   42.09 \n\n\nNote: With split(x, f), any missing values in f are dropped together with the corresponding values of x."
+    "section": "19.10 Exercise 4: Summarizing within groups",
+    "text": "19.10 Exercise 4: Summarizing within groups\nSkill: Summarizing within groups\nApply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\nNote: With split(x, f), any missing values in f are dropped together with the corresponding values of x."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#exercise-5-recoding-data",
     "href": "recoding_reshaping_interactive.html#exercise-5-recoding-data",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.11 Exercise 5: Recoding data",
-    "text": "19.11 Exercise 5: Recoding data\nApproach 1\n\nImplement our dictionaries using look-up tables\n\nUse a named vector.\n\n\nSkill:: Recoding IDs using a dictionary\nCreate a new subject ID column named “subjectID” where you have used the DictPer named vector to recode the original “subject_id” IDs into integer IDs.\n\nhead(DictPer)\n\nSUBJ48 SUBJ46 SUBJ28 SUBJ26 SUBJ49 SUBJ19 \n    40      2     23     38     10     27 \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\na5 &lt;- ds\na5$ID &lt;- DictPer[a5$subject_id]\na5 %&gt;%\n    select(subject_id, ID) %&gt;%\n    head\n\n  subject_id ID\n1     SUBJ48 40\n2     SUBJ46  2\n3     SUBJ28 23\n4     SUBJ26 38\n5     SUBJ49 10\n6     SUBJ48 40\n\nhead(DictPer)\n\nSUBJ48 SUBJ46 SUBJ28 SUBJ26 SUBJ49 SUBJ19 \n    40      2     23     38     10     27"
+    "text": "19.11 Exercise 5: Recoding data\nApproach 1\n\nImplement our dictionaries using look-up tables\n\nUse a named vector.\n\n\nSkill:: Recoding IDs using a dictionary\nCreate a new subject ID column named “subjectID” where you have used the DictPer named vector to recode the original “subject_id” IDs into integer IDs.\nLoading\n  webR...\n\n\n  \n\n\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#recoding-data",
     "href": "recoding_reshaping_interactive.html#recoding-data",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.12 Recoding data",
-    "text": "19.12 Recoding data\nApproach 2\n\nImplement our dictionaries using left joins\n\n\n19.12.1 Comment\nI usually prefer to use a merge command like left_join to merge in the new IDs into my data frame.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nkey &lt;- data.frame(SubjID = names(DictPer), ID = DictPer)\nhead(key)\n\n       SubjID ID\nSUBJ48 SUBJ48 40\nSUBJ46 SUBJ46  2\nSUBJ28 SUBJ28 23\nSUBJ26 SUBJ26 38\nSUBJ49 SUBJ49 10\nSUBJ19 SUBJ19 27\n\nb5 &lt;- left_join(ds, key, by = c(subject_id = \"SubjID\"))\nb5 %&gt;%\n    select(subject_id, ID) %&gt;%\n    head()\n\n  subject_id ID\n1     SUBJ48 40\n2     SUBJ46  2\n3     SUBJ28 23\n4     SUBJ26 38\n5     SUBJ49 10\n6     SUBJ48 40"
+    "text": "19.12 Recoding data\nApproach 2\n\nImplement our dictionaries using left joins\n\n\n19.12.1 Comment\nI usually prefer to use a merge command like left_join to merge in the new IDs into my data frame.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
-    "objectID": "recoding_reshaping_interactive.html#exercise-6",
-    "href": "recoding_reshaping_interactive.html#exercise-6",
+    "objectID": "recoding_reshaping_interactive.html#exercise-6-filtering-rows",
+    "href": "recoding_reshaping_interactive.html#exercise-6-filtering-rows",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.13 Exercise 6",
-    "text": "19.13 Exercise 6\nSkill: Filtering rows.\nCreate a data frame tri1 containing the records for Trimester 1, and a second data frame tri2 containing the records for Trimester 2.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\ntri1 &lt;- ds %&gt;%\n    filter(Sample_trimester == 1)\ntri1 %&gt;%\n    select(subject_id, sample_id, Sample_trimester) %&gt;%\n    head()\n\n  subject_id sample_id Sample_trimester\n1     SUBJ48   SAMP149                1\n2     SUBJ46   SAMP037                1\n3     SUBJ28   SAMP120                1\n4     SUBJ48   SAMP149                1\n5     SUBJ07   SAMP063                1\n6     SUBJ28   SAMP053                1\n\ntri2 &lt;- ds %&gt;%\n    filter(Sample_trimester == 2)\ntri2 %&gt;%\n    select(subject_id, sample_id, Sample_trimester) %&gt;%\n    head()\n\n  subject_id sample_id Sample_trimester\n1     SUBJ49   SAMP082                2\n2     SUBJ19   SAMP074                2\n3     SUBJ10   SAMP121                2\n4     SUBJ22   SAMP184                2\n5     SUBJ29   SAMP100                2\n6     SUBJ19   SAMP074                2"
+    "section": "19.13 Exercise 6: Filtering rows",
+    "text": "19.13 Exercise 6: Filtering rows\nSkill: Filtering rows.\nCreate a data frame tri1 containing the records for Trimester 1, and a second data frame tri2 containing the records for Trimester 2.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "recoding_reshaping_interactive.html#exercise-7",
     "href": "recoding_reshaping_interactive.html#exercise-7",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.14 Exercise 7",
-    "text": "19.14 Exercise 7\nSkill: Selecting columns\nUpdate tri1 and tri2 to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\ntri1 &lt;- tri1 %&gt;%\n    select(sample_id, Sample_trimester, Gestationalage_sample)\nhead(tri1)\n\n  sample_id Sample_trimester Gestationalage_sample\n1   SAMP149                1              8.094299\n2   SAMP037                1              7.146034\n3   SAMP120                1              7.122495\n4   SAMP149                1              8.473876\n5   SAMP063                1              7.510132\n6   SAMP053                1              7.446434\n\ntri2 &lt;- tri2 %&gt;%\n    select(sample_id, Sample_trimester, Gestationalage_sample)\nhead(tri2)\n\n  sample_id Sample_trimester Gestationalage_sample\n1   SAMP082                2              21.89337\n2   SAMP074                2              21.26259\n3   SAMP121                2              18.29106\n4   SAMP184                2              18.76825\n5   SAMP100                2              24.48074\n6   SAMP074                2              21.24652"
+    "text": "19.14 Exercise 7\nSkill: Selecting columns\nUpdate tri1 and tri2 to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#load-libraries",
     "href": "merging_exercise.html#load-libraries",
     "title": "20  R Merging Exercise",
     "section": "20.1 Load Libraries",
-    "text": "20.1 Load Libraries\n\nlibrary(tidyverse)\nlibrary(tidylog)"
+    "text": "20.1 Load Libraries\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#input-data",
     "href": "merging_exercise.html#input-data",
     "title": "20  R Merging Exercise",
     "section": "20.2 Input data",
-    "text": "20.2 Input data\nLet’s load the synthetic simulated Project 1 data and associated data dictionary:\n\nload(\"data/project1.RData\", verbose = TRUE)\n\nLoading objects:\n  ds\n  dd"
+    "text": "20.2 Input data\nLet’s load the synthetic simulated Project 1 data and associated data dictionary:\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#select-a-subset-of-subject-level-fields",
     "href": "merging_exercise.html#select-a-subset-of-subject-level-fields",
     "title": "20  R Merging Exercise",
     "section": "20.3 Select a subset of subject-level fields",
-    "text": "20.3 Select a subset of subject-level fields\nSet up a data frame ‘a’ that has these subject-level fields: “subject_id” “maternal_age_delivery” “case_control_status”\n“prepregnancy_BMI”\n\na &lt;- ds %&gt;%\n    select(\"subject_id\", \"maternal_age_delivery\", \"case_control_status\", \"prepregnancy_BMI\") %&gt;%\n    arrange(subject_id)\n\nselect: dropped 20 variables (sample_id, Sample_trimester, Gestationalage_sample, strata, race, …)\n\nhead(a, 10)\n\n   subject_id maternal_age_delivery case_control_status prepregnancy_BMI\n1      SUBJ01              20.01345                   0         45.29379\n2      SUBJ01              20.01345                   0         45.29379\n3      SUBJ01              20.01345                   0         45.29379\n4      SUBJ01              20.01345                   0         45.29379\n5      SUBJ01              20.01345                   0         45.29379\n6      SUBJ01              20.01345                   0         45.29379\n7      SUBJ01              20.01345                   0         45.29379\n8      SUBJ01              20.01345                   0         45.29379\n9      SUBJ01              20.01345                   0         45.29379\n10     SUBJ02              22.22541                   1         41.63679\n\ntail(a)\n\n    subject_id maternal_age_delivery case_control_status prepregnancy_BMI\n186     SUBJ55              23.79660                   0         30.73757\n187     SUBJ56              20.77767                   1         32.30103\n188     SUBJ56              20.77767                   1         32.30103\n189     SUBJ56              20.77767                   1         32.30103\n190     SUBJ56              20.77767                   1         32.30103\n191     SUBJ56              20.77767                   1         32.30103"
+    "text": "20.3 Select a subset of subject-level fields\nSet up a data frame ‘a’ that has these subject-level fields: “subject_id” “maternal_age_delivery” “case_control_status” “prepregnancy_BMI”\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#unique-records",
     "href": "merging_exercise.html#unique-records",
     "title": "20  R Merging Exercise",
     "section": "20.4 Unique records",
-    "text": "20.4 Unique records\nThe data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.\nFrom your data frame ‘a’ select only the unique records, creating data frame b.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nb &lt;- unique(a)\nhead(b)\n\n   subject_id maternal_age_delivery case_control_status prepregnancy_BMI\n1      SUBJ01              20.01345                   0         45.29379\n10     SUBJ02              22.22541                   1         41.63679\n13     SUBJ03              20.80036                   1         32.55473\n15     SUBJ04              21.94422                   0         35.09978\n19     SUBJ05              20.18760                   0         41.85877\n22     SUBJ06              25.70581                   0         38.02936\n\nb1 &lt;- a %&gt;%\n    distinct()\n\ndistinct: removed 137 rows (72%), 54 rows remaining\n\nall.equal(b, b1)\n\n[1] \"Attributes: &lt; Component \\\"row.names\\\": Mean relative difference: 0.7157633 &gt;\"\n\nall.equal(b, b1, check.attributes = FALSE)\n\n[1] TRUE\n\nhead(rownames(b))\n\n[1] \"1\"  \"10\" \"13\" \"15\" \"19\" \"22\"\n\nhead(rownames(b1))\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\"\n\n# Reset row names\nrownames(b) &lt;- NULL\nrownames(b1) &lt;- NULL\nall.equal(b, b1)\n\n[1] TRUE\n\n\n\n20.4.1 Comment\nIt is better to apply unique to the whole data frame, not just to the subject_id column, as that ensures that you are selecting whole records that are unique across all of their columns.\n\n(ex1 &lt;- data.frame(ID = c(1, 1, 1, 2), trait = c(10, 9, 9, 11)))\n\n  ID trait\n1  1    10\n2  1     9\n3  1     9\n4  2    11\n\nunique(ex1)\n\n  ID trait\n1  1    10\n2  1     9\n4  2    11\n\nex1 %&gt;%\n    distinct()\n\ndistinct: removed one row (25%), 3 rows remaining\n\n\n  ID trait\n1  1    10\n2  1     9\n3  2    11"
+    "text": "20.4 Unique records\nThe data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.\nFrom your data frame ‘a’ select only the unique records, creating data frame b.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR...\n\n\n  \n\n\n\n20.4.1 Comment\nIt is better to apply unique to the whole data frame, not just to the subject_id column, as that ensures that you are selecting whole records that are unique across all of their columns.\nNote that the dplyr R package provides the distinct command, which keeps only unique/distinct rows from a data frame. It is faster than the unique command.\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#check-that-the-subject_ids-are-now-not-duplicated",
     "href": "merging_exercise.html#check-that-the-subject_ids-are-now-not-duplicated",
     "title": "20  R Merging Exercise",
     "section": "20.5 Check that the subject_id’s are now not duplicated",
-    "text": "20.5 Check that the subject_id’s are now not duplicated\nAre the subject_id’s unique?\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nsum(duplicated(b$subject_id))\n\n[1] 0\n\nb %&gt;%\n    group_by(subject_id) %&gt;%\n    filter(n() &gt; 1)\n\ngroup_by: one grouping variable (subject_id)\n\n\nfilter (grouped): removed all rows (100%)\n\n\n# A tibble: 0 × 4\n# Groups:   subject_id [0]\n# ℹ 4 variables: subject_id &lt;chr&gt;, maternal_age_delivery &lt;dbl&gt;,\n#   case_control_status &lt;dbl&gt;, prepregnancy_BMI &lt;dbl&gt;"
+    "text": "20.5 Check that the subject_id’s are now not duplicated\nAre the subject_id’s unique?\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#create-random-integer-ids",
     "href": "merging_exercise.html#create-random-integer-ids",
     "title": "20  R Merging Exercise",
     "section": "20.6 Create random integer IDs",
-    "text": "20.6 Create random integer IDs\nCreate a new column ID containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the sample command, sampling integers from 1 to the number of rows in data frame b.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nset.seed(10234)\nb$ID &lt;- sample(c(1:nrow(b)), replace = FALSE)\nhead(b %&gt;%\n    select(subject_id, ID))\n\nselect: dropped 3 variables (maternal_age_delivery, case_control_status, prepregnancy_BMI)\n\n\n  subject_id ID\n1     SUBJ01  6\n2     SUBJ02  4\n3     SUBJ03 41\n4     SUBJ04 14\n5     SUBJ05 51\n6     SUBJ06 37\n\nsum(duplicated(b$ID))\n\n[1] 0"
+    "text": "20.6 Create random integer IDs\nCreate a new column ID containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the sample command, sampling integers from 1 to the number of rows in data frame b.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
   },
   {
     "objectID": "merging_exercise.html#merge-in-new-phenotype-information",
     "href": "merging_exercise.html#merge-in-new-phenotype-information",
     "title": "20  R Merging Exercise",
     "section": "20.7 Merge in new phenotype information",
-    "text": "20.7 Merge in new phenotype information\nThe PI has sent you new trait data for your subjects.\n\nnew &lt;- read_tsv(\"data/newtrait.tsv\")\n\nRows: 54 Columns: 2\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \"\\t\"\nchr (1): subject_id\ndbl (1): trait\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nhead(new)\n\n# A tibble: 6 × 2\n  subject_id trait\n  &lt;chr&gt;      &lt;dbl&gt;\n1 SUBJ48      130.\n2 SUBJ46      104.\n3 SUBJ28      125.\n4 SUBJ26      108.\n5 SUBJ49      129.\n6 SUBJ19      117.\n\ndim(new)\n\n[1] 54  2\n\ndim(b)\n\n[1] 54  5\n\n\nCarefully merge this in using tidyverse commands.\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about."
+    "text": "20.7 Merge in new phenotype information\nThe PI has sent you new trait data for your subjects.\nLoading\n  webR...\n\n\n  \n\n\nCarefully merge this in using tidyverse commands.\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about."
   },
   {
     "objectID": "merging_exercise.html#always-be-careful-when-merging.",
     "href": "merging_exercise.html#always-be-careful-when-merging.",
     "title": "20  R Merging Exercise",
     "section": "20.8 Always be careful when merging.",
-    "text": "20.8 Always be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an ’anti_join’ to check this.\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions to make sure the merged object has the expected number of rows and columns.\nAlways explicitly name the keys you are merging on.\n\nIf you don’t name them, then the join command will use all variables in common across x and y."
+    "text": "20.8 Always be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an ‘anti_join’ to check this.\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions to make sure the merged object has the expected number of rows and columns.\nAlways explicitly name the keys you are merging on.\n\nIf you don’t name them, then the join command will use all variables in common across x and y."
   },
   {
     "objectID": "merging_exercise.html#merge-in-new-phenotype-information-1",
     "href": "merging_exercise.html#merge-in-new-phenotype-information-1",
     "title": "20  R Merging Exercise",
     "section": "20.9 Merge in new phenotype information",
-    "text": "20.9 Merge in new phenotype information\nCarefully merge in the new data in using tidyverse commands.\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\n\n[1] 0\n\nsum(duplicated(new$subject_id))\n\n[1] 1\n\n# Which one is duplicated\nnew %&gt;%\n    group_by(subject_id) %&gt;%\n    mutate(n = n()) %&gt;%\n    filter(n &gt; 1)\n\ngroup_by: one grouping variable (subject_id)\n\n\nmutate (grouped): new variable 'n' (integer) with 2 unique values and 0% NA\n\n\nfilter (grouped): removed 52 rows (96%), 2 rows remaining\n\n\n# A tibble: 2 × 3\n# Groups:   subject_id [1]\n  subject_id trait     n\n  &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;\n1 SUBJ09      115.     2\n2 SUBJ09      115.     2\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\n\n[1] 0\n\nsum(is.na(new$subject_id))\n\n[1] 0\n\n# Check the dimensions\ndim(b)\n\n[1] 54  5\n\ndim(new)\n\n[1] 54  2\n\nb2 &lt;- left_join(b, new, by = \"subject_id\")\n\nleft_join: added one column (trait)\n\n\n           &gt; rows only in x    2\n\n\n           &gt; rows only in y  ( 1)\n\n\n           &gt; matched rows     53    (includes duplicates)\n\n\n           &gt;                 ====\n\n\n           &gt; rows total       55\n\nhead(b2)\n\n  subject_id maternal_age_delivery case_control_status prepregnancy_BMI ID\n1     SUBJ01              20.01345                   0         45.29379  6\n2     SUBJ02              22.22541                   1         41.63679  4\n3     SUBJ03              20.80036                   1         32.55473 41\n4     SUBJ04              21.94422                   0         35.09978 14\n5     SUBJ05              20.18760                   0         41.85877 51\n6     SUBJ06              25.70581                   0         38.02936 37\n     trait\n1 138.1346\n2 113.3822\n3 116.0071\n4 127.5887\n5 113.8754\n6 110.7376\n\ndim(b2)\n\n[1] 55  6\n\nb3 &lt;- full_join(b, new, by = \"subject_id\")\n\nfull_join: added one column (trait)\n\n\n           &gt; rows only in x    2\n\n\n           &gt; rows only in y    1\n\n\n           &gt; matched rows     53    (includes duplicates)\n\n\n           &gt;                 ====\n\n\n           &gt; rows total       56\n\ndim(b3)\n\n[1] 56  6\n\n\nanti_join() return all rows from x without a match in y.\n\nanti_join(b, new, by = \"subject_id\")\n\nanti_join: added no columns\n\n\n           &gt; rows only in x    2\n\n\n           &gt; rows only in y  ( 1)\n\n\n           &gt; matched rows    (52)\n\n\n           &gt;                 ====\n\n\n           &gt; rows total        2\n\n\n  subject_id maternal_age_delivery case_control_status prepregnancy_BMI ID\n1     SUBJ18              27.54075                   1         44.14983 18\n2     SUBJ24              21.93645                   0         31.73762  9\n\nanti_join(new, b, by = \"subject_id\")\n\nanti_join: added no columns\n\n\n           &gt; rows only in x    1\n\n\n           &gt; rows only in y  ( 2)\n\n\n           &gt; matched rows    (53)\n\n\n           &gt;                 ====\n\n\n           &gt; rows total        1\n\n\n# A tibble: 1 × 2\n  subject_id trait\n  &lt;chr&gt;      &lt;dbl&gt;\n1 SUBJ00      127."
+    "text": "20.9 Merge in new phenotype information\nCarefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame b which was created above when from your data frame ‘a’ you selected only the unique records.\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nLoading\n  webR..."
+  },
+  {
+    "objectID": "merging_exercise.html#further-checks",
+    "href": "merging_exercise.html#further-checks",
+    "title": "20  R Merging Exercise",
+    "section": "20.10 Further checks",
+    "text": "20.10 Further checks\nWhen merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.\nCheck if the set of subject_id IDs in your dataframe b fully overlaps the set of subject_id IDs in the new data set. If there is not full overlap, document which IDs do not overlap.\nHint: Use an anti_join.\nLoading\n  webR...\n\n\n  \n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nanti_join() return all rows from x without a match in y.\nLoading\n  webR..."
   },
   {
     "objectID": "R_graphics_exercises.html#load-libraries",
@@ -1393,11 +1400,11 @@
     "text": "A.6 embedpdf Quarto extension\nThis book uses the embedpdf Quarto extension from https://github.com/jmgirard/embedpdf, which was installed via this command:\nquarto add jmgirard/embedpdf\nTo embed a PDF, use code like this:\n{{&lt; pdf dummy.pdf width=100% height=800 &gt;}}\nHowever, the PDF embedding done this way did not work in Chrome.\nExample:\nUnable to display PDF file. Download instead.\nSo instead we used an iframe, which works on Chrome, Firefox, and Safari:\n &lt;iframe width=\"100%\" height=\"800\" src=\"pdfs/GitHubIntro.pdf\"&gt;\nNote that for iframe embedding of Panopto video from the University of Pittsburgh, one needs to use a credentialless iframe."
   },
   {
-    "objectID": "webR_test.html",
-    "href": "webR_test.html",
+    "objectID": "webR_test.html#link-webr-and-quarto-webr.",
+    "href": "webR_test.html#link-webr-and-quarto-webr.",
     "title": "Appendix B — WebR - R in the web browser",
-    "section": "",
-    "text": "This is a WebR-enabled code cell in a Quarto HTML document. As the WebR documentation states: “WebR makes it possible to run R code in the browser without the need for an R server to execute the code: the R interpreter runs directly on the user’s machine.”\nLoading\n  webR...\n\n\n  \n\n\nLink: WebR and quarto-webr."
+    "section": "B.1 Link: WebR and quarto-webr.",
+    "text": "B.1 Link: WebR and quarto-webr."
   },
   {
     "objectID": "JSLinux.html#interactive-linux-terminal",
