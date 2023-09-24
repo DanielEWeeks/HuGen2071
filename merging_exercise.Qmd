@@ -1,4 +1,6 @@
 ---
+webr:
+  packages: ['tidyverse']
 editor: 
   mode: source  
 ---
@@ -13,28 +15,37 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 
 ## Load Libraries
 
-```{r load_libraries,message=FALSE}
+```{webr-r}
 library(tidyverse)
-library(tidylog)
+# library(tidylog)
 ```
 
 ## Input data
 
 Let's load the synthetic simulated Project 1 data and associated data dictionary:
 
-```{r}
-load("data/project1.RData", verbose = TRUE)
+```{webr-r}
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/project1.RData"),
+              "project1.RData")
+load("project1.RData", verbose = TRUE)
+dim(ds)
+dim(dd)
 ```
 
 ## Select a subset of subject-level fields
 
-Set up a data frame 'a' that has these subject-level fields: "subject_id" "maternal_age_delivery" "case_control_status"\
-"prepregnancy_BMI"
+Set up a data frame 'a' that has these subject-level fields: "subject_id" "maternal_age_delivery" "case_control_status" "prepregnancy_BMI"
 
-```{r}
-a <- ds %>% select("subject_id", "maternal_age_delivery",    "case_control_status",     
- "prepregnancy_BMI") %>% 
+```{webr-r}
+a <- ds %>% 
+  select("subject_id", 
+         "maternal_age_delivery", 
+         "case_control_status", 
+         "prepregnancy_BMI") %>% 
   arrange(subject_id)
+dim(a)
 head(a,10)
 tail(a)
 ```
@@ -45,14 +56,24 @@ The data were given to us in a way that repeated subject-level information, once
 
 From your data frame 'a' select only the unique records, creating data frame `b`.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
+dim(a)
 b <- unique(a)
+dim(b)
 head(b)
 
 b1 <- a %>% distinct()
+dim(b1)
 
 all.equal(b,b1)
 all.equal(b,b1, check.attributes=FALSE)
@@ -68,7 +89,9 @@ all.equal(b,b1)
 
 It is better to apply `unique` to the whole data frame, not just to the `subject_id` column, as that ensures that you are selecting whole records that are unique across all of their columns.
 
-```{r}
+Note that the `dplyr` R package provides the `distinct` command, which keeps only unique/distinct rows from a data frame.  It is faster than the `unique` command.
+
+```{webr-r}
 (ex1 <- data.frame(ID=c(1,1,1,2),trait=c(10, 9, 9, 11)))
 unique(ex1)
 
@@ -80,12 +103,21 @@ ex1 %>% distinct()
 
 Are the `subject_id`'s unique?
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 sum(duplicated(b$subject_id))
-b %>%  group_by(subject_id) %>% filter(n()>1)
+b %>% 
+  group_by(subject_id) %>% 
+  filter(n()>1)
 ```
 :::
 
@@ -93,10 +125,17 @@ b %>%  group_by(subject_id) %>% filter(n()>1)
 
 Create a new column `ID` containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the `sample` command, sampling integers from 1 to the number of rows in data frame `b`.
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 set.seed(10234)
 b$ID <- sample(c(1:nrow(b)), replace = FALSE)
 head(b %>% select(subject_id, ID))
@@ -108,8 +147,12 @@ sum(duplicated(b$ID))
 
 The PI has sent you new trait data for your subjects.
 
-```{r}
-new <- read_tsv("data/newtrait.tsv")
+```{webr-r}
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/newtrait.tsv"),
+              "newtrait.tsv")
+new <- read_tsv("newtrait.tsv")
 head(new)
 dim(new)
 dim(b)
@@ -132,20 +175,30 @@ If you notice any problems with this merge, prepare a report for the PI detailin
 
 ## Merge in new phenotype information
 
-Carefully merge in the new data in using tidyverse commands.
+Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame `b` which was created above when from your data frame 'a' you selected only the unique records.
 
 If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you'd like to ask the PI about.
+
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # Check for duplicated IDs
 sum(duplicated(b$subject_id))
 sum(duplicated(new$subject_id))
 
 # Which one is duplicated
-new %>% group_by(subject_id) %>% mutate(n=n()) %>% filter(n>1)
+new %>% 
+  group_by(subject_id) %>% 
+  mutate(n=n()) %>% 
+  filter(n>1)
 
 # Check for missing IDs
 sum(is.na(b$subject_id))
@@ -161,9 +214,36 @@ b3 <- full_join(b, new, by="subject_id")
 dim(b3)
 ```
 
-anti_join() return all rows from x without a match in y.
+:::
 
-```{r}
+## Further checks
+
+When merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.
+
+Check if the set of `subject_id` IDs in your dataframe `b` fully overlaps the set of `subject_id` IDs in the `new` data set.  If there is not full overlap, document which IDs do not overlap. 
+
+Hint: Use an `anti_join`.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+`anti_join()` return all rows from x without a match in y.
+
+```{webr-r}
+# Tally how many of b's subject_id's are in new
+table(b$subject_id %in% new$subject_id)
+# Tally how many of new's subject_id's are in b
+table(new$subject_id %in% b$subject_id)
+# List the b's subject_id's that are not in new
+b$subject_id[!(b$subject_id %in% new$subject_id)]
+# List the new's subject_id's that are not in b
+new$subject_id[!(new$subject_id %in% b$subject_id)]
+
+# Simpler to do this with anti_join's
 anti_join(b, new, by="subject_id")
 anti_join(new, b, by="subject_id")
 ```
