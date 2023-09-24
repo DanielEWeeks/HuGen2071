@@ -65,6 +65,12 @@ sum(duplicated(ds$sample_id))
 
 Construct a table of the number of times each `sample_id` is duplicated:
 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
