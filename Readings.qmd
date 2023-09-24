@@ -223,13 +223,14 @@ Supplementary Reading: Buffalo (2015) Chapter 8: section 'Exploring Dataframes w
 
 ### Active Learning:
 
+Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
+
 Recoding data: Pay particular attention to the `Recoding values` and `Creating new variables` sections
 
 <https://librarycarpentry.org/lc-r/03-data-cleaning-and-transformation.html>
 
 ### Suggested Readings
 
-Reshaping data <https://sscc.wisc.edu/sscc/pubs/dwr/reshape-tidy.html>
 
 Supplementary Reading: Spector (2008) Chapters 8 & 9
 
