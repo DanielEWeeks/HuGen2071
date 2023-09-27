@@ -743,7 +743,16 @@ Warning
 </section>
 <section id="active-learning-9" class="level3" data-number="4.11.2">
 <h3 data-number="4.11.2" class="anchored" data-anchor-id="active-learning-9"><span class="header-section-number">4.11.2</span> Active Learning:</h3>
-<p><a href="https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html" class="uri">https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html</a></p>
+<p>Data visualization with ggplot2: <a href="https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html" class="uri">https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html</a></p>
+<p>To create the required data for this “Data visualization with ggplot2” exercise, run this code:</p>
+<pre><code>library(tidyverse)
+download.file(url = "https://ndownloader.figshare.com/files/2292169",
+              destfile = "portal_data_joined.csv")
+surveys &lt;- read_csv("portal_data_joined.csv")              
+surveys_complete &lt;- surveys %&gt;%
+  filter(!is.na(weight),           # remove missing weight
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         !is.na(sex))</code></pre>
 </section>
 <section id="suggested-readings-9" class="level3" data-number="4.11.3">
 <h3 data-number="4.11.3" class="anchored" data-anchor-id="suggested-readings-9"><span class="header-section-number">4.11.3</span> Suggested Readings</h3>
