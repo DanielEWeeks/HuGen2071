@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -402,14 +436,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -471,8 +511,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#previewing-the-book" id="toc-previewing-the-book" class="nav-link" data-scroll-target="#previewing-the-book"><span class="header-section-number">A.2</span> Previewing the book</a></li>
   <li><a href="#deploying-the-book-to-github-pages" id="toc-deploying-the-book-to-github-pages" class="nav-link" data-scroll-target="#deploying-the-book-to-github-pages"><span class="header-section-number">A.3</span> Deploying the book to GitHub Pages</a></li>
   <li><a href="#deploying-the-book-to-netlify" id="toc-deploying-the-book-to-netlify" class="nav-link" data-scroll-target="#deploying-the-book-to-netlify"><span class="header-section-number">A.4</span> Deploying the book to Netlify</a></li>
-  <li><a href="#webr-r-in-the-browser" id="toc-webr-r-in-the-browser" class="nav-link" data-scroll-target="#webr-r-in-the-browser"><span class="header-section-number">A.5</span> WebR: R in the browser</a></li>
-  <li><a href="#embedpdf-quarto-extension" id="toc-embedpdf-quarto-extension" class="nav-link" data-scroll-target="#embedpdf-quarto-extension"><span class="header-section-number">A.6</span> embedpdf Quarto extension</a></li>
+  <li><a href="#multiple-choice-questions" id="toc-multiple-choice-questions" class="nav-link" data-scroll-target="#multiple-choice-questions"><span class="header-section-number">A.5</span> Multiple choice questions</a></li>
+  <li><a href="#webr-r-in-the-browser" id="toc-webr-r-in-the-browser" class="nav-link" data-scroll-target="#webr-r-in-the-browser"><span class="header-section-number">A.6</span> WebR: R in the browser</a></li>
+  <li><a href="#embedpdf-quarto-extension" id="toc-embedpdf-quarto-extension" class="nav-link" data-scroll-target="#embedpdf-quarto-extension"><span class="header-section-number">A.7</span> embedpdf Quarto extension</a></li>
   </ul>
 </nav>
     </div>
@@ -600,8 +641,25 @@ Expand To Learn About Collapse
 <h2 data-number="A.4" class="anchored" data-anchor-id="deploying-the-book-to-netlify"><span class="header-section-number">A.4</span> Deploying the book to Netlify</h2>
 <p>Type <code>quarto publish netlify</code> in the Terminal window.</p>
 </section>
-<section id="webr-r-in-the-browser" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="webr-r-in-the-browser"><span class="header-section-number">A.5</span> WebR: R in the browser</h2>
+<section id="multiple-choice-questions" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="multiple-choice-questions"><span class="header-section-number">A.5</span> Multiple choice questions</h2>
+<p>To create multiple choice questions, use functions from the <code>webexercises</code> R package.</p>
+<p>The multiple choice question below is created by the inline R code</p>
+<pre><code>r longmcq(opts_ci)</code></pre>
+<p><strong>What is true about a 95% confidence interval of the mean?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>opts_ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">answer =</span> <span class="st">"If you repeated the process many times, 95% of intervals calculated in this way contain the true mean"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"There is a 95% probability that the true mean lies within this range"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Approximately 95% of the data fall within this range"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="radio_DRUFBPOPAD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DRUFBPOPAD" value="answer"> <span>If you repeated the process many times, 95% of intervals calculated in this way contain the true mean</span></label><label><input type="radio" autocomplete="off" name="radio_DRUFBPOPAD" value=""> <span>There is a 95% probability that the true mean lies within this range</span></label><label><input type="radio" autocomplete="off" name="radio_DRUFBPOPAD" value=""> <span>Approximately 95% of the data fall within this range</span></label>
+</div>
+</section>
+<section id="webr-r-in-the-browser" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="webr-r-in-the-browser"><span class="header-section-number">A.6</span> WebR: R in the browser</h2>
 <p>This Quarto book uses this <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> Quarto extension</p>
 <p><a href="https://github.com/coatless/quarto-webr" class="uri">https://github.com/coatless/quarto-webr</a></p>
 <p>WebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in <code>webr-r</code> chunks.</p>
@@ -787,8 +845,8 @@ Expand To Learn About Collapse
 <pre><code>filters:
     - webr</code></pre>
 </section>
-<section id="embedpdf-quarto-extension" class="level2" data-number="A.6">
-<h2 data-number="A.6" class="anchored" data-anchor-id="embedpdf-quarto-extension"><span class="header-section-number">A.6</span> embedpdf Quarto extension</h2>
+<section id="embedpdf-quarto-extension" class="level2" data-number="A.7">
+<h2 data-number="A.7" class="anchored" data-anchor-id="embedpdf-quarto-extension"><span class="header-section-number">A.7</span> embedpdf Quarto extension</h2>
 <p>This book uses the <code>embedpdf</code> Quarto extension from <a href="https://github.com/jmgirard/embedpdf" class="uri">https://github.com/jmgirard/embedpdf</a>, which was installed via this command:</p>
 <pre><code>quarto add jmgirard/embedpdf</code></pre>
 <p>To embed a PDF, use code like this:</p>

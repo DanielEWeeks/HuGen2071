@@ -402,14 +402,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -463,26 +469,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">19.1</span> Load Libraries</a></li>
-  <li><a href="#project-1-data" id="toc-project-1-data" class="nav-link" data-scroll-target="#project-1-data"><span class="header-section-number">19.2</span> Project 1 Data</a></li>
-  <li><a href="#exercise-1-duplicated-values" id="toc-exercise-1-duplicated-values" class="nav-link" data-scroll-target="#exercise-1-duplicated-values"><span class="header-section-number">19.3</span> Exercise 1: duplicated values</a></li>
-  <li><a href="#checking-for-duplicates" id="toc-checking-for-duplicates" class="nav-link" data-scroll-target="#checking-for-duplicates"><span class="header-section-number">19.4</span> Checking for duplicates</a></li>
-  <li><a href="#counting-the-number-of-occurences-of-the-id" id="toc-counting-the-number-of-occurences-of-the-id" class="nav-link" data-scroll-target="#counting-the-number-of-occurences-of-the-id"><span class="header-section-number">19.5</span> Counting the number of occurences of the ID</a></li>
-  <li><a href="#count-sample_id-duplicates" id="toc-count-sample_id-duplicates" class="nav-link" data-scroll-target="#count-sample_id-duplicates"><span class="header-section-number">19.6</span> Count <code>sample_id</code> duplicates</a></li>
-  <li><a href="#checking-for-duplicates-1" id="toc-checking-for-duplicates-1" class="nav-link" data-scroll-target="#checking-for-duplicates-1"><span class="header-section-number">19.7</span> Checking for duplicates</a>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link active" data-scroll-target="#key-points"><span class="header-section-number">19.1</span> Key points</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">19.2</span> Load Libraries</a></li>
+  <li><a href="#project-1-data" id="toc-project-1-data" class="nav-link" data-scroll-target="#project-1-data"><span class="header-section-number">19.3</span> Project 1 Data</a></li>
+  <li><a href="#exercise-1-duplicated-values" id="toc-exercise-1-duplicated-values" class="nav-link" data-scroll-target="#exercise-1-duplicated-values"><span class="header-section-number">19.4</span> Exercise 1: duplicated values</a></li>
+  <li><a href="#checking-for-duplicates" id="toc-checking-for-duplicates" class="nav-link" data-scroll-target="#checking-for-duplicates"><span class="header-section-number">19.5</span> Checking for duplicates</a></li>
+  <li><a href="#counting-the-number-of-occurences-of-the-id" id="toc-counting-the-number-of-occurences-of-the-id" class="nav-link" data-scroll-target="#counting-the-number-of-occurences-of-the-id"><span class="header-section-number">19.6</span> Counting the number of occurences of the ID</a></li>
+  <li><a href="#count-sample_id-duplicates" id="toc-count-sample_id-duplicates" class="nav-link" data-scroll-target="#count-sample_id-duplicates"><span class="header-section-number">19.7</span> Count <code>sample_id</code> duplicates</a></li>
+  <li><a href="#checking-for-duplicates-1" id="toc-checking-for-duplicates-1" class="nav-link" data-scroll-target="#checking-for-duplicates-1"><span class="header-section-number">19.8</span> Checking for duplicates</a>
   <ul class="collapse">
-  <li><a href="#how-to-list-all-duplicates" id="toc-how-to-list-all-duplicates" class="nav-link" data-scroll-target="#how-to-list-all-duplicates"><span class="header-section-number">19.7.1</span> How to list all duplicates</a></li>
+  <li><a href="#how-to-list-all-duplicates" id="toc-how-to-list-all-duplicates" class="nav-link" data-scroll-target="#how-to-list-all-duplicates"><span class="header-section-number">19.8.1</span> How to list all duplicates</a></li>
   </ul></li>
-  <li><a href="#exercise-2-reshaping-data" id="toc-exercise-2-reshaping-data" class="nav-link" data-scroll-target="#exercise-2-reshaping-data"><span class="header-section-number">19.8</span> Exercise 2: Reshaping data</a></li>
-  <li><a href="#exercise-3-aggregating-data" id="toc-exercise-3-aggregating-data" class="nav-link" data-scroll-target="#exercise-3-aggregating-data"><span class="header-section-number">19.9</span> Exercise 3: Aggregating data</a></li>
-  <li><a href="#exercise-4-summarizing-within-groups" id="toc-exercise-4-summarizing-within-groups" class="nav-link" data-scroll-target="#exercise-4-summarizing-within-groups"><span class="header-section-number">19.10</span> Exercise 4: Summarizing within groups</a></li>
-  <li><a href="#exercise-5-recoding-data" id="toc-exercise-5-recoding-data" class="nav-link" data-scroll-target="#exercise-5-recoding-data"><span class="header-section-number">19.11</span> Exercise 5: Recoding data</a></li>
-  <li><a href="#recoding-data" id="toc-recoding-data" class="nav-link" data-scroll-target="#recoding-data"><span class="header-section-number">19.12</span> Recoding data</a>
+  <li><a href="#exercise-2-reshaping-data" id="toc-exercise-2-reshaping-data" class="nav-link" data-scroll-target="#exercise-2-reshaping-data"><span class="header-section-number">19.9</span> Exercise 2: Reshaping data</a></li>
+  <li><a href="#exercise-3-aggregating-data" id="toc-exercise-3-aggregating-data" class="nav-link" data-scroll-target="#exercise-3-aggregating-data"><span class="header-section-number">19.10</span> Exercise 3: Aggregating data</a></li>
+  <li><a href="#exercise-4-summarizing-within-groups" id="toc-exercise-4-summarizing-within-groups" class="nav-link" data-scroll-target="#exercise-4-summarizing-within-groups"><span class="header-section-number">19.11</span> Exercise 4: Summarizing within groups</a></li>
+  <li><a href="#exercise-5-recoding-data" id="toc-exercise-5-recoding-data" class="nav-link" data-scroll-target="#exercise-5-recoding-data"><span class="header-section-number">19.12</span> Exercise 5: Recoding data</a></li>
+  <li><a href="#recoding-data" id="toc-recoding-data" class="nav-link" data-scroll-target="#recoding-data"><span class="header-section-number">19.13</span> Recoding data</a>
   <ul class="collapse">
-  <li><a href="#comment-2" id="toc-comment-2" class="nav-link" data-scroll-target="#comment-2"><span class="header-section-number">19.12.1</span> Comment</a></li>
+  <li><a href="#comment-2" id="toc-comment-2" class="nav-link" data-scroll-target="#comment-2"><span class="header-section-number">19.13.1</span> Comment</a></li>
   </ul></li>
-  <li><a href="#exercise-6-filtering-rows" id="toc-exercise-6-filtering-rows" class="nav-link" data-scroll-target="#exercise-6-filtering-rows"><span class="header-section-number">19.13</span> Exercise 6: Filtering rows</a></li>
-  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7"><span class="header-section-number">19.14</span> Exercise 7</a></li>
+  <li><a href="#exercise-6-filtering-rows" id="toc-exercise-6-filtering-rows" class="nav-link" data-scroll-target="#exercise-6-filtering-rows"><span class="header-section-number">19.14</span> Exercise 6: Filtering rows</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7"><span class="header-section-number">19.15</span> Exercise 7</a></li>
   </ul>
 </nav>
     </div>
@@ -516,8 +523,37 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="load-libraries" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">19.1</span> Load Libraries</h2>
+<section id="key-points" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="key-points"><span class="header-section-number">19.1</span> Key points</h2>
+<p>Here are some key points regarding recoding and reshaping data in R:</p>
+<ul>
+<li>Count the number of times <code>ID2</code> is duplicated
+<ul>
+<li><code>sum(duplicated(b$ID2))</code></li>
+</ul></li>
+<li>List all rows with a duplicated <code>c1</code> value
+<ul>
+<li><code>f %&gt;% group_by(c1) %&gt;% filter(n()&gt;1)</code></li>
+</ul></li>
+<li>Recode data using <code>left_join</code></li>
+<li>Pivot data from long to wide
+<ul>
+<li><code>pivot_wider</code></li>
+</ul></li>
+<li>Pivot data from wide to long
+<ul>
+<li><code>pivot_longer</code></li>
+</ul></li>
+<li>Useful table commands
+<ul>
+<li><code>table()</code></li>
+<li><code>addmargins(table())</code></li>
+<li><code>prop.table(table(), margin)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="load-libraries" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">19.2</span> Load Libraries</h2>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
   webR...</button>
 <div id="webr-editor-1"></div>
@@ -691,8 +727,8 @@ ul.task-list li input[type="checkbox"] {
   };
 </script>
 </section>
-<section id="project-1-data" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="project-1-data"><span class="header-section-number">19.2</span> Project 1 Data</h2>
+<section id="project-1-data" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="project-1-data"><span class="header-section-number">19.3</span> Project 1 Data</h2>
 <p>In the <code>ds</code> data frame we have the synthetic yet realistic data we will be using in Project 1.</p>
 <p>In the <code>dd</code> data frame we have the corresponding data dictionary.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
@@ -875,8 +911,8 @@ names(dd)`,
   };
 </script>
 </section>
-<section id="exercise-1-duplicated-values" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="exercise-1-duplicated-values"><span class="header-section-number">19.3</span> Exercise 1: duplicated values</h2>
+<section id="exercise-1-duplicated-values" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="exercise-1-duplicated-values"><span class="header-section-number">19.4</span> Exercise 1: duplicated values</h2>
 <p><strong>Skill</strong>: Checking for duplicated IDs</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
   webR...</button>
@@ -1591,6 +1627,7 @@ Expand to see solution
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Note that it is important to be aware of missing IDs. So when constructing tables of counts using the <code>table</code> command, the <code>useNA</code> argument controls if the table includes counts of <code>NA</code> values.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">Loading
   webR...</button>
 <div id="webr-editor-7"></div>
@@ -1610,7 +1647,14 @@ Expand to see solution
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `table(table(ds$sample_id))
+      value: `# Count how many times each sample_id occurs
+# ignoring NA's
+tail(table(ds$sample_id))
+# Count how many times each sample_id occurs
+# including NA's
+tail(table(ds$sample_id, useNA="always"))
+# Table of the different number of times sample_id's are repeated
+table(table(ds$sample_id))
 # But why do we get differing numbers here?
 sum(duplicated(ds$sample_id))
 35+13*2+2*3+1*4
@@ -2297,6 +2341,7 @@ Expand to see solution
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>We can check if there are any duplicated <code>subject_id</code>’s by counting how many duplicates there are.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
   webR...</button>
 <div id="webr-editor-11"></div>
@@ -2472,8 +2517,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="checking-for-duplicates" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="checking-for-duplicates"><span class="header-section-number">19.4</span> Checking for duplicates</h2>
+<section id="checking-for-duplicates" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="checking-for-duplicates"><span class="header-section-number">19.5</span> Checking for duplicates</h2>
 <p>How do we return every row that contains a duplicate?</p>
 <p>This approach only does not return every row that contains a duplicated <code>ID</code>:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
@@ -2650,8 +2695,8 @@ f[duplicated(f$ID),]`,
   };
 </script>
 </section>
-<section id="counting-the-number-of-occurences-of-the-id" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="counting-the-number-of-occurences-of-the-id"><span class="header-section-number">19.5</span> Counting the number of occurences of the ID</h2>
+<section id="counting-the-number-of-occurences-of-the-id" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="counting-the-number-of-occurences-of-the-id"><span class="header-section-number">19.6</span> Counting the number of occurences of the ID</h2>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
   webR...</button>
 <div id="webr-editor-13"></div>
@@ -2825,8 +2870,8 @@ f %>% group_by(ID) %>% count()`,
   };
 </script>
 </section>
-<section id="count-sample_id-duplicates" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="count-sample_id-duplicates"><span class="header-section-number">19.6</span> Count <code>sample_id</code> duplicates</h2>
+<section id="count-sample_id-duplicates" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="count-sample_id-duplicates"><span class="header-section-number">19.7</span> Count <code>sample_id</code> duplicates</h2>
 <p>Using Tidyverse commands, count how many times each <code>sample_id</code> occcurs in the <code>ds</code> data frame, reporting the counts in descending order, from highest to lowest.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
   webR...</button>
@@ -3363,8 +3408,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="checking-for-duplicates-1" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="checking-for-duplicates-1"><span class="header-section-number">19.7</span> Checking for duplicates</h2>
+<section id="checking-for-duplicates-1" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="checking-for-duplicates-1"><span class="header-section-number">19.8</span> Checking for duplicates</h2>
 <p>Here we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">Loading
   webR...</button>
@@ -3537,9 +3582,9 @@ Expand to see solution
     executeCode(editor.getValue());
   };
 </script>
-<section id="how-to-list-all-duplicates" class="level3" data-number="19.7.1">
-<h3 data-number="19.7.1" class="anchored" data-anchor-id="how-to-list-all-duplicates"><span class="header-section-number">19.7.1</span> How to list all duplicates</h3>
-<p>Use Tidyverse commands to list all duplicates for <code>sample_id</code> and for <code>subject_id</code>. Sort the results by the ID.</p>
+<section id="how-to-list-all-duplicates" class="level3" data-number="19.8.1">
+<h3 data-number="19.8.1" class="anchored" data-anchor-id="how-to-list-all-duplicates"><span class="header-section-number">19.8.1</span> How to list all duplicates</h3>
+<p>Use Tidyverse commands to list (1) all duplicates for <code>sample_id</code> and (2) all duplicates for <code>subject_id</code>. Sort the results by the ID.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-18">Loading
   webR...</button>
 <div id="webr-editor-18"></div>
@@ -3723,8 +3768,8 @@ Expand to see solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<section id="sample-id" class="level3" data-number="19.7.2">
-<h3 data-number="19.7.2" class="anchored" data-anchor-id="sample-id"><span class="header-section-number">19.7.2</span> Sample ID</h3>
+<section id="sample-id" class="level3" data-number="19.8.2">
+<h3 data-number="19.8.2" class="anchored" data-anchor-id="sample-id"><span class="header-section-number">19.8.2</span> Sample ID</h3>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-19">Loading
   webR...</button>
 <div id="webr-editor-19"></div>
@@ -3901,8 +3946,8 @@ Expand to see solution
   };
 </script>
 </section>
-<section id="subject-id" class="level3" data-number="19.7.3">
-<h3 data-number="19.7.3" class="anchored" data-anchor-id="subject-id"><span class="header-section-number">19.7.3</span> Subject ID</h3>
+<section id="subject-id" class="level3" data-number="19.8.3">
+<h3 data-number="19.8.3" class="anchored" data-anchor-id="subject-id"><span class="header-section-number">19.8.3</span> Subject ID</h3>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-20">Loading
   webR...</button>
 <div id="webr-editor-20"></div>
@@ -4088,8 +4133,8 @@ Expand to see solution
 </div>
 </section>
 </section>
-<section id="exercise-2-reshaping-data" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="exercise-2-reshaping-data"><span class="header-section-number">19.8</span> Exercise 2: Reshaping data</h2>
+<section id="exercise-2-reshaping-data" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="exercise-2-reshaping-data"><span class="header-section-number">19.9</span> Exercise 2: Reshaping data</h2>
 <p><strong>Skill</strong>: Reshaping data</p>
 <p>Select only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”, and then reshape from ‘long’ format to ‘wide’ format using <code>pivot_wider</code>, taking time as the “Sample_trimester”.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-21">Loading
@@ -4452,16 +4497,16 @@ glimpse(b2[1,"1"])`,
     executeCode(editor.getValue());
   };
 </script>
-<section id="comment" class="level3" data-number="19.8.1">
-<h3 data-number="19.8.1" class="anchored" data-anchor-id="comment"><span class="header-section-number">19.8.1</span> Comment</h3>
+<section id="comment" class="level3" data-number="19.9.1">
+<h3 data-number="19.9.1" class="anchored" data-anchor-id="comment"><span class="header-section-number">19.9.1</span> Comment</h3>
 <p>View <code>b2</code> via the <code>View(b2)</code> command in RStudio - it nicely put all the different gestational age observations into one list for each <code>sample_id</code> x <code>Sample_trimester</code> combination.</p>
 </section>
 </div>
 </div>
 </div>
 </section>
-<section id="exercise-3-aggregating-data" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="exercise-3-aggregating-data"><span class="header-section-number">19.9</span> Exercise 3: Aggregating data</h2>
+<section id="exercise-3-aggregating-data" class="level2" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="exercise-3-aggregating-data"><span class="header-section-number">19.10</span> Exercise 3: Aggregating data</h2>
 <p><strong>Skill</strong>: Aggregating data</p>
 <p>Make a table showing the proportion of blacks and whites that are controls and cases.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-23">Loading
@@ -4819,8 +4864,8 @@ Expand to see solution
     executeCode(editor.getValue());
   };
 </script>
-<section id="comment-1" class="level3" data-number="19.9.1">
-<h3 data-number="19.9.1" class="anchored" data-anchor-id="comment-1"><span class="header-section-number">19.9.1</span> Comment:</h3>
+<section id="comment-1" class="level3" data-number="19.10.1">
+<h3 data-number="19.10.1" class="anchored" data-anchor-id="comment-1"><span class="header-section-number">19.10.1</span> Comment:</h3>
 <p>The <code>margin</code> parameter of the <code>prop.table</code> command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-25">Loading
   webR...</button>
@@ -5352,8 +5397,8 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<section id="xtabs-table-with-labels" class="level3 callout-body-container callout-body" data-number="19.9.2">
-<h3 data-number="19.9.2" class="anchored" data-anchor-id="xtabs-table-with-labels"><span class="header-section-number">19.9.2</span> <code>xtabs</code> table with labels</h3>
+<section id="xtabs-table-with-labels" class="level3 callout-body-container callout-body" data-number="19.10.2">
+<h3 data-number="19.10.2" class="anchored" data-anchor-id="xtabs-table-with-labels"><span class="header-section-number">19.10.2</span> <code>xtabs</code> table with labels</h3>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-28">Loading
   webR...</button>
 <div id="webr-editor-28"></div>
@@ -6255,8 +6300,8 @@ spread(race, prop)`,
 </div>
 </div>
 </section>
-<section id="exercise-4-summarizing-within-groups" class="level2" data-number="19.10">
-<h2 data-number="19.10" class="anchored" data-anchor-id="exercise-4-summarizing-within-groups"><span class="header-section-number">19.10</span> Exercise 4: Summarizing within groups</h2>
+<section id="exercise-4-summarizing-within-groups" class="level2" data-number="19.11">
+<h2 data-number="19.11" class="anchored" data-anchor-id="exercise-4-summarizing-within-groups"><span class="header-section-number">19.11</span> Exercise 4: Summarizing within groups</h2>
 <p><strong>Skill</strong>: Summarizing within groups</p>
 <p>Apply the <code>summary</code> command to the “Gestationalage_sample” within each “Sample_trimester” group.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-33">Loading
@@ -6622,8 +6667,8 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 </div>
 </div>
 </section>
-<section id="exercise-5-recoding-data" class="level2" data-number="19.11">
-<h2 data-number="19.11" class="anchored" data-anchor-id="exercise-5-recoding-data"><span class="header-section-number">19.11</span> Exercise 5: Recoding data</h2>
+<section id="exercise-5-recoding-data" class="level2" data-number="19.12">
+<h2 data-number="19.12" class="anchored" data-anchor-id="exercise-5-recoding-data"><span class="header-section-number">19.12</span> Exercise 5: Recoding data</h2>
 <p><strong>Approach 1</strong></p>
 <ul>
 <li>Implement our dictionaries using look-up tables
@@ -7165,14 +7210,14 @@ head(DictPer)`,
 </div>
 </div>
 </section>
-<section id="recoding-data" class="level2" data-number="19.12">
-<h2 data-number="19.12" class="anchored" data-anchor-id="recoding-data"><span class="header-section-number">19.12</span> Recoding data</h2>
+<section id="recoding-data" class="level2" data-number="19.13">
+<h2 data-number="19.13" class="anchored" data-anchor-id="recoding-data"><span class="header-section-number">19.13</span> Recoding data</h2>
 <p><strong>Approach 2</strong></p>
 <ul>
 <li>Implement our dictionaries using left joins</li>
 </ul>
-<section id="comment-2" class="level3" data-number="19.12.1">
-<h3 data-number="19.12.1" class="anchored" data-anchor-id="comment-2"><span class="header-section-number">19.12.1</span> Comment</h3>
+<section id="comment-2" class="level3" data-number="19.13.1">
+<h3 data-number="19.13.1" class="anchored" data-anchor-id="comment-2"><span class="header-section-number">19.13.1</span> Comment</h3>
 <p>I usually prefer to use a merge command like <code>left_join</code> to merge in the new IDs into my data frame.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-38">Loading
   webR...</button>
@@ -7536,8 +7581,8 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 </div>
 </section>
 </section>
-<section id="exercise-6-filtering-rows" class="level2" data-number="19.13">
-<h2 data-number="19.13" class="anchored" data-anchor-id="exercise-6-filtering-rows"><span class="header-section-number">19.13</span> Exercise 6: Filtering rows</h2>
+<section id="exercise-6-filtering-rows" class="level2" data-number="19.14">
+<h2 data-number="19.14" class="anchored" data-anchor-id="exercise-6-filtering-rows"><span class="header-section-number">19.14</span> Exercise 6: Filtering rows</h2>
 <p><strong>Skill</strong>: Filtering rows.</p>
 <p>Create a data frame <code>tri1</code> containing the records for Trimester 1, and a second data frame <code>tri2</code> containing the records for Trimester 2.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-40">Loading
@@ -7901,8 +7946,8 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 </div>
 </div>
 </section>
-<section id="exercise-7" class="level2" data-number="19.14">
-<h2 data-number="19.14" class="anchored" data-anchor-id="exercise-7"><span class="header-section-number">19.14</span> Exercise 7</h2>
+<section id="exercise-7" class="level2" data-number="19.15">
+<h2 data-number="19.15" class="anchored" data-anchor-id="exercise-7"><span class="header-section-number">19.15</span> Exercise 7</h2>
 <p><strong>Skill</strong>: Selecting columns</p>
 <p>Update <code>tri1</code> and <code>tri2</code> to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-42">Loading
