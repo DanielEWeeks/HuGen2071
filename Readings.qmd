@@ -266,7 +266,21 @@ Supplementary Reading: Buffalo (2015) Chapter 8 'Merging and Combining Data'. Sp
 
 ### Active Learning:
 
-<https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
+Data visualization with ggplot2: <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
+
+To create the required data for this "Data visualization with ggplot2" exercise, run this code:
+
+```
+library(tidyverse)
+download.file(url = "https://ndownloader.figshare.com/files/2292169",
+              destfile = "portal_data_joined.csv")
+surveys <- read_csv("portal_data_joined.csv")              
+surveys_complete <- surveys %>%
+  filter(!is.na(weight),           # remove missing weight
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         !is.na(sex))
+```
+
 
 ### Suggested Readings
 
