@@ -245,6 +245,8 @@ Supplementary Reading: Spector (2008) Chapters 8 & 9
 
 <https://mikoontz.github.io/data-carpentry-week/lesson_joins.html>
 
+`continents.RDA` data set used near the end of this Active Learning exercise: <https://mikoontz.github.io/data-carpentry-week/data/continents.RDA>
+
 ### Required Reading
 
 Tidy Animated Verbs <https://www.garrickadenbuie.com/project/tidyexplain/>
