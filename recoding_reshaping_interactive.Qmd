@@ -74,7 +74,16 @@ Construct a table of the number of times each `sample_id` is duplicated:
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
+Note that it is important to be aware of missing IDs.  So when constructing tables of counts using the `table` command, the `useNA` argument controls if the table includes counts of `NA` values.
+
 ```{webr-r}
+# Count how many times each sample_id occurs
+# ignoring NA's
+tail(table(ds$sample_id))
+# Count how many times each sample_id occurs
+# including NA's
+tail(table(ds$sample_id, useNA="always"))
+# Table of the different number of times sample_id's are repeated
 table(table(ds$sample_id))
 # But why do we get differing numbers here?
 sum(duplicated(ds$sample_id))
@@ -106,6 +115,8 @@ Check if there are any duplicated `subject_id`s
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
+
+We can check if there are any duplicated `subject_id`'s by counting how many duplicates there are.  
 
 ```{webr-r}
 sum(duplicated(ds$subject_id))
@@ -170,7 +181,7 @@ f %>% group_by(ID) %>% filter(n()>1)
 
 ### How to list all duplicates
 
-Use Tidyverse commands to list all duplicates for `sample_id` and for `subject_id`. Sort the results by the ID.
+Use Tidyverse commands to list (1) all duplicates for `sample_id` and (2) all duplicates for `subject_id`. Sort the results by the ID.
 
 
 ```{webr-r}
