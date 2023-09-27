@@ -54,6 +54,28 @@ Type `quarto publish` in the Terminal window.
 
 Type `quarto publish netlify` in the Terminal window.
 
+## Multiple choice questions
+
+To create multiple choice questions, use functions from the `webexercises` R package.
+
+The multiple choice question below is created by the inline R code
+
+```
+r longmcq(opts_ci)
+```
+
+**What is true about a 95% confidence interval of the mean?**
+
+```{r}
+opts_ci <- c(
+  answer = "If you repeated the process many times, 95% of intervals calculated in this way contain the true mean",
+  "There is a 95% probability that the true mean lies within this range",
+  "Approximately 95% of the data fall within this range"
+)
+```
+
+`r longmcq(opts_ci)`
+
 ## WebR: R in the browser
 
 This Quarto book uses this [WebR](https://docs.r-wasm.org/webr/latest/) Quarto extension
@@ -62,11 +84,9 @@ This Quarto book uses this [WebR](https://docs.r-wasm.org/webr/latest/) Quarto e
 
 WebR makes installs a version of R that runs within the browser, and the Quarto extension makes it interactively available in `webr-r` chunks.
 
-
 ```{webr-r}
 # Edit/add/try out R code here
 ```
-
 
 To get this to work, the `_quarto.yml` had to be modified.
 

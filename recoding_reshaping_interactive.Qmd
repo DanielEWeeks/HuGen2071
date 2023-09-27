@@ -13,12 +13,32 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
+
+## Key points
+
+Here are some key points regarding recoding and reshaping data in R:
+
+* Count the number of times `ID2` is duplicated
+    - `sum(duplicated(b$ID2))`
+* List all rows with a duplicated `c1` value
+    - `f %>% group_by(c1) %>% filter(n()>1)`
+* Recode data using `left_join`
+* Pivot data from long to wide
+    - `pivot_wider`
+* Pivot data from wide to long
+    - `pivot_longer`
+* Useful table commands
+    - `table()`
+    - `addmargins(table())`
+    - `prop.table(table(), margin)`
+
 ## Load Libraries
 
 ```{webr-r}
 library(tidyverse)
 # library(tidylog)
 ```
+
 
 ## Project 1 Data
 

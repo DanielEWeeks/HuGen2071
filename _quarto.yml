@@ -34,6 +34,7 @@ book:
   - R_graphics_exercises.Qmd
   - reorder_exercise.Qmd
   - EDA.Qmd
+  - R_questions.qmd
   - Basic_Unix_commands.Qmd
   - summary.qmd
   - references.qmd

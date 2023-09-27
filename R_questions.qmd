@@ -1,0 +1,19 @@
+# Questions about R
+
+## Adding a new column to a data frame
+
+Which of these is an **incorrect** way to add a new column to a data frame in R?**
+
+```{r, echo=FALSE}
+library(webexercises)
+opts_ci <- c(
+  "df <- cbind(df, new_column3 = c(1, 2, 3, 4))",
+  answer = "new_column(df) <- c(1, 2, 3, 4)",
+  "df$new_column <- c(1, 2, 3, 4)",
+  "df[, 'new_column'] <- c(1, 2, 3, 4)"
+)
+```
+
+`r longmcq(opts_ci)`
+
+
