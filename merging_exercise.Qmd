@@ -13,6 +13,19 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
+## Merging Best Practice
+
+- *Always* be careful when merging.              
+- **Always check for duplicated IDs** before doing the merge.     
+- Always check that your ID columns do not contain any missing values. 
+- Check that the values in the ID columns (e.g., the keys) match.      
+    - Can use an `anti_join` to check this.                               
+- Inconsistencies in the values of the keys can be hard to fix.        
+- **Always check the dimensions**, before and after the merge, to make sure the 
+merged object has the expected number of rows and columns.             
+- Always explicitly name the keys you are merging on.                  
+
+
 ## Load Libraries
 
 ```{webr-r}
