@@ -11,6 +11,15 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
+# Exploratory Data Analysis
+
+* Goal: Understand your data
+* Ask questions
+    - Understand each phenotype
+    - Understand how each phenotype varies
+    - Understand how the phenotypes are related to each other
+    - Understand how the data are organized
+
 ## Load Libraries
 
 ```{r load_libraries,message=FALSE}
@@ -97,11 +106,15 @@ How would you construct a subject-level data set?
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
+We need to drop the sample-specific measures, retaining only subject-level measures, and then select unique records:
+
 ```{r}
 ds.subj <- ds %>% 
   select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>% 
   distinct()
 ```
+
+But there is a duplicated record where `race` differs but all other attributes are identical, so we filter one of those two records out:
 
 ```{r}
 sum(duplicated(ds.subj$subject_id))
@@ -124,23 +137,40 @@ sum(duplicated(ds.subj$subject_id))
 
 Using the subject-level data set `ds.subj`, let's recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
 
-First, look up the coding used for the `case_control_status` variable in the Data Dictionary:
+First, look up the coding used for the `case_control_status` variable in the Data Dictionary `dd`:
 
 ```{r}
 dd %>% filter(R21.Variable.Name=="case_control_status") %>% pull(Variable.Coding)
 ```
 
-Task: recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
+Task: Using the subject-level data set `ds.subj`, recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
+
+So the data dictionary gives the meaning of the `0` and `1` codes:
+
+"0: normotensive control; 1: preeclampsia case"
 
 ```{r}
 ds.subj$PE_status <- factor(ds.subj$case_control_status)
 levels(ds.subj$PE_status)
 levels(ds.subj$PE_status) <- c("control","case")
+
+# Check that the recoding was correct:
 xtabs(~ case_control_status + PE_status, data = ds.subj )
 ```
+
+Recoding could also be done using Tidyverse function:
+
+```{r}
+ds.subj <- ds.subj %>% mutate(PE_status = 
+                                case_when(case_control_status == 0 ~ "control",
+                                         case_control_status == 1 ~ "case"))
+xtabs(~ case_control_status + PE_status, data = ds.subj )
+```
+
+
 :::
 
 ## Missing data
@@ -149,13 +179,27 @@ xtabs(~ case_control_status + PE_status, data = ds.subj )
     -   How are missing data coded?
     -   Is there a single missing data code?
 
-Here we use some plotting commands from the `DataExplorer` R package.
+Here we could use `plot_missing` from the `DataExplorer` R package.
 
 <https://boxuancui.github.io/DataExplorer/index.html>
+
+
+Try out `plot_missing` on the subject-level data set `ds.subj`.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ```{r}
 plot_missing(ds.subj)
 ```
+
+It is kind of unusual to have no missing data in a real data set.
+
+When there is some missing data, in addition to applying `plot_missing`, you could also apply functions from the 'VIM' R package, which has a number of commands that are useful for visualizing missing data patterns.
+
+<https://cran.r-project.org/web/packages/VIM/vignettes/VIM.html>
+
+:::
 
 ## Distribution
 
@@ -163,6 +207,18 @@ plot_missing(ds.subj)
     -   Are data skewed?
     -   What is the range of values?
     -   Is the range of values realistic?
+
+Potentially useful `DataExplorer` commands to use in this context include:
+
+```
+plot_bar	Plot bar chart
+plot_density	Plot density estimates
+plot_histogram	Plot histogram
+plot_qq	Plot QQ plot
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ```{r}
 plot_bar(ds.subj)
@@ -173,14 +229,29 @@ plot_histogram(ds.subj)
 ```
 
 ```{r}
+plot_density(ds.subj)
+```
+
+
+```{r}
 plot_qq(ds.subj)
 ```
+
+:::
 
 ## Variation
 
 -   How do our data vary and co-vary?
     -   Do multiple measures agree with each other?
     -   Are there sex-specific or age-specific differences?
+
+
+As it is of interest to examine how our traits vary by pre-eclampsia case/control status, we can explore this by using the `by="PE_status"` argument within the `DataExplorer` commands to break down the plots drawn in the previous section by `PE_status`.
+
+Also try creating boxplots using the `plot_boxplot` command. 
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ### Bar plots
 
@@ -200,11 +271,23 @@ plot_boxplot(ds.subj, by="PE_status")
 plot_qq(ds.subj, by="PE_status")
 ```
 
+:::
+
 ### Correlation
 
+For plotting correlation matrices, `DataExplorer` provides the `plot_correlation` command.
+
+Try it out, on the subset of numeric columns.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
 ```{r}
-plot_correlation(ds.subj)
+plot_correlation(ds.subj %>% select(where(is.numeric)))
 ```
+
+:::
 
 ### `ggpairs` from the `GGally` R package.
 
@@ -237,3 +320,32 @@ We can quickly create a report using the `create_report` function from the `Data
 ```         
 create_report(ds.subj)
 ```
+
+See
+
+<https://boxuancui.github.io/DataExplorer/>
+
+## `dataMaid`
+
+The `dataMaid` R package can also be used to create an exporatory data analysis report.
+
+```
+library(dataMaid)
+makeDataReport(ds.subj, output="html")
+```
+
+See
+
+<https://www.jstatsoft.org/article/view/v090i06>
+
+## `SmartEDA`
+
+The `SmartEDA` R package also has a command to create an exploratory data analysis report - this command is `ExpReport`.
+
+```
+library(SmartEDA)
+ExpReport(ds.subj, op_file="SmartEDAReport.html")
+ExpReport(ds.subj, Target="PE_status", Rc="control", op_file="SmartEDAReportII.html")
+```
+
+For more information, see <https://cran.r-project.org/web/packages/SmartEDA/vignettes/SmartEDA.html>
