@@ -286,14 +286,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -351,19 +357,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">21.2</span> Load Libraries</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">21.3</span> Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">21.4</span> Exercise 2</a></li>
-  <li><a href="#always-plot-your-data" id="toc-always-plot-your-data" class="nav-link" data-scroll-target="#always-plot-your-data"><span class="header-section-number">21.5</span> Always plot your data</a></li>
-  <li><a href="#similar-regression-lines" id="toc-similar-regression-lines" class="nav-link" data-scroll-target="#similar-regression-lines"><span class="header-section-number">21.6</span> Similar regression lines</a></li>
-  <li><a href="#always-plot-your-data-2" id="toc-always-plot-your-data-2" class="nav-link" data-scroll-target="#always-plot-your-data-2"><span class="header-section-number">21.7</span> Always plot your data</a></li>
-  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">21.9</span> Boxplots</a></li>
-  <li><a href="#sina-plots" id="toc-sina-plots" class="nav-link" data-scroll-target="#sina-plots"><span class="header-section-number">21.11</span> Sina plots</a></li>
-  <li><a href="#sina-plots-2" id="toc-sina-plots-2" class="nav-link" data-scroll-target="#sina-plots-2"><span class="header-section-number">21.13</span> Sina plots</a></li>
-  <li><a href="#drawing-multiple-graphs" id="toc-drawing-multiple-graphs" class="nav-link" data-scroll-target="#drawing-multiple-graphs"><span class="header-section-number">21.15</span> Drawing multiple graphs</a></li>
-  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions" class="nav-link" data-scroll-target="#writing-ggplot-functions"><span class="header-section-number">21.16</span> Writing ggplot functions</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">21.17</span> Exercise 3</a>
+  <li><a href="#facetting" id="toc-facetting" class="nav-link" data-scroll-target="#facetting"><span class="header-section-number">21.5</span> Facetting</a></li>
+  <li><a href="#always-plot-your-data" id="toc-always-plot-your-data" class="nav-link" data-scroll-target="#always-plot-your-data"><span class="header-section-number">21.6</span> Always plot your data</a></li>
+  <li><a href="#similar-regression-lines" id="toc-similar-regression-lines" class="nav-link" data-scroll-target="#similar-regression-lines"><span class="header-section-number">21.7</span> Similar regression lines</a></li>
+  <li><a href="#always-plot-your-data-2" id="toc-always-plot-your-data-2" class="nav-link" data-scroll-target="#always-plot-your-data-2"><span class="header-section-number">21.8</span> Always plot your data</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">21.10</span> Boxplots</a></li>
+  <li><a href="#sina-plots" id="toc-sina-plots" class="nav-link" data-scroll-target="#sina-plots"><span class="header-section-number">21.12</span> Sina plots</a></li>
+  <li><a href="#sina-plots-2" id="toc-sina-plots-2" class="nav-link" data-scroll-target="#sina-plots-2"><span class="header-section-number">21.14</span> Sina plots</a></li>
+  <li><a href="#raincloud-plots" id="toc-raincloud-plots" class="nav-link" data-scroll-target="#raincloud-plots"><span class="header-section-number">21.16</span> Raincloud plots</a></li>
+  <li><a href="#drawing-multiple-graphs" id="toc-drawing-multiple-graphs" class="nav-link" data-scroll-target="#drawing-multiple-graphs"><span class="header-section-number">21.17</span> Drawing multiple graphs</a></li>
+  <li><a href="#writing-ggplot-functions" id="toc-writing-ggplot-functions" class="nav-link" data-scroll-target="#writing-ggplot-functions"><span class="header-section-number">21.18</span> Writing ggplot functions</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">21.19</span> Exercise 3</a>
   <ul class="collapse">
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">21.17.1</span> Exercise</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">21.19.1</span> Exercise</a></li>
   </ul></li>
-  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"><span class="header-section-number">21.18</span> Source of data</a></li>
+  <li><a href="#source-of-data" id="toc-source-of-data" class="nav-link" data-scroll-target="#source-of-data"><span class="header-section-number">21.20</span> Source of data</a></li>
   </ul>
 </nav>
     </div>
@@ -465,11 +473,70 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="always-plot-your-data" class="level2" data-number="21.5">
-<h2 data-number="21.5" class="anchored" data-anchor-id="always-plot-your-data"><span class="header-section-number">21.5</span> Always plot your data</h2>
+<section id="facetting" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="facetting"><span class="header-section-number">21.5</span> Facetting</h2>
+<p>Facetting can be done using the classic interface, where formula notation is used to indicate rows (before the <code>~</code>) and columns (after the <code>~</code>). According to the <code>facet_grid</code> documentation</p>
+<blockquote class="blockquote">
+<p>“the dot in the formula is used to indicate there should be no faceting on this dimension (either row or column)”</p>
+</blockquote>
+<p>So this will facet in columns by <code>geno</code>:</p>
+<pre><code>facet_grid(~ geno)</code></pre>
+<p>This will facet in rows by <code>geno</code>:</p>
+<pre><code>facet_grid(geno ~ .)</code></pre>
+<p>The current recommended notation for facetting instead clearly names the rows and columns that you’d like to facet on.</p>
+<p>This will facet in columns by <code>geno</code>:</p>
+<pre><code>facet_grid(cols = vars(geno))</code></pre>
+<p>This will facet in rows by <code>geno</code>:</p>
+<pre><code>facet_grid(rows = vars(geno))</code></pre>
+<p>Try these various ways of facetting out.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/example.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>b, <span class="fu">aes</span>(<span class="at">x=</span>ind, <span class="at">y=</span>t, <span class="at">color=</span>trait)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(geno <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(geno))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(geno))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="always-plot-your-data" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="always-plot-your-data"><span class="header-section-number">21.6</span> Always plot your data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/example.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 Rows: 142 Columns: 26
@@ -505,11 +572,11 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 • `x` -&gt; `x...25`
 • `y` -&gt; `y...26`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>), <span class="dv">13</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">""</span>,<span class="fu">rep</span>(<span class="st">"_"</span>,<span class="dv">24</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="fu">c</span>(<span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), <span class="dv">2</span>))))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(n1,n2,n3)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>), <span class="dv">13</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">""</span>,<span class="fu">rep</span>(<span class="st">"_"</span>,<span class="dv">24</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="fu">c</span>(<span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), <span class="dv">2</span>))))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(n1,n2,n3)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "x"    "y"    "x_1"  "y_1"  "x_2"  "y_2"  "x_3"  "y_3"  "x_4"  "y_4" 
 [11] "x_5"  "y_5"  "x_6"  "y_6"  "x_7"  "y_7"  "x_8"  "y_8"  "x_9"  "y_9" 
@@ -517,23 +584,23 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </div>
 </div>
 </section>
-<section id="similar-regression-lines" class="level2" data-number="21.6">
-<h2 data-number="21.6" class="anchored" data-anchor-id="similar-regression-lines"><span class="header-section-number">21.6</span> Similar regression lines</h2>
+<section id="similar-regression-lines" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="similar-regression-lines"><span class="header-section-number">21.7</span> Similar regression lines</h2>
 <p>These three data sets have very similar regression lines:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x <span class="sc">~</span> y, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.17563819 2.87986960 19.5063131 9.435087e-42
 y           -0.03991951 0.05250204 -0.7603419 4.483288e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_1 <span class="sc">~</span> y_1, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.31108156 2.87906158 19.5588319 7.158847e-42
 y_1         -0.04269949 0.05249244 -0.8134407 4.173467e-01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(x_3 <span class="sc">~</span> y_3, <span class="at">data=</span>d)) <span class="sc">%&gt;%</span>  <span class="fu">coef</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate Std. Error    t value     Pr(&gt;|t|)
 (Intercept) 56.18271411 2.87924135 19.5130270 9.107718e-42
@@ -541,42 +608,14 @@ y_3         -0.04012859 0.05249468 -0.7644316 4.458966e-01</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y ~ x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y ~ x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Now try this:</p>
 <pre><code>ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
-  geom_smooth(method="lm")</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_1,<span class="at">y=</span>y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_1 ~ x_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>And now try this:</p>
-<pre><code>ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
   geom_smooth(method="lm")</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -589,29 +628,57 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<section id="always-plot-your-data-1" class="level3 callout-body-container callout-body" data-number="21.6.1">
-<h3 data-number="21.6.1" class="anchored" data-anchor-id="always-plot-your-data-1"><span class="header-section-number">21.6.1</span> Always plot your data!</h3>
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_3,<span class="at">y=</span>y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_3 ~ x_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_1,<span class="at">y=</span>y_1)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_1 ~ x_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
 </div>
 </div>
-</section>
-<section id="always-plot-your-data-2" class="level2" data-number="21.7">
-<h2 data-number="21.7" class="anchored" data-anchor-id="always-plot-your-data-2"><span class="header-section-number">21.7</span> Always plot your data</h2>
+</div>
+<p>And now try this:</p>
+<pre><code>ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
+  geom_smooth(method="lm")</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<section id="always-plot-your-data-1" class="level3 callout-body-container callout-body" data-number="21.7.1">
+<h3 data-number="21.7.1" class="anchored" data-anchor-id="always-plot-your-data-1"><span class="header-section-number">21.7.1</span> Always plot your data!</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/BoxPlots.tsv"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the first column</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> f[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(<span class="at">x=</span>x_3,<span class="at">y=</span>y_3)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Linear regression of y_3 ~ x_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
+<section id="always-plot-your-data-2" class="level2" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="always-plot-your-data-2"><span class="header-section-number">21.8</span> Always plot your data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/BoxPlots.tsv"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the first column</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> f[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
    left lines normal right split
@@ -626,7 +693,7 @@ Expand to see solution
 </div>
 <p>Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">stack</span>(f),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     values  ind
 1 -9.769107 left
@@ -636,36 +703,6 @@ Expand to see solution
 <p>Now try this:</p>
 <pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
   geom_boxplot()</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<section id="identical-box-plots" class="level2 callout-body-container callout-body" data-number="21.8">
-<h2 data-number="21.8" class="anchored" data-anchor-id="identical-box-plots"><span class="header-section-number">21.8</span> Identical box plots</h2>
-<p>These data have essentially identical box plots.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-</div>
-</div>
-</section>
-<section id="boxplots" class="level2" data-number="21.9">
-<h2 data-number="21.9" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">21.9</span> Boxplots</h2>
-<p>While the box plots are identical, box plots may not tell the whole story.</p>
-<p>Let’s try violin plots instead:</p>
-<pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
-  geom_violin()</code></pre>
-<p>A violin plot is a mirrored density plot.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -677,23 +714,25 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<section id="non-identical-violin-plots" class="level2 callout-body-container callout-body" data-number="21.10">
-<h2 data-number="21.10" class="anchored" data-anchor-id="non-identical-violin-plots"><span class="header-section-number">21.10</span> Non-identical violin plots</h2>
+<section id="identical-box-plots" class="level2 callout-body-container callout-body" data-number="21.9">
+<h2 data-number="21.9" class="anchored" data-anchor-id="identical-box-plots"><span class="header-section-number">21.9</span> Identical box plots</h2>
+<p>These data have essentially identical box plots.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </div>
 </div>
 </section>
-<section id="sina-plots" class="level2" data-number="21.11">
-<h2 data-number="21.11" class="anchored" data-anchor-id="sina-plots"><span class="header-section-number">21.11</span> Sina plots</h2>
-<p>Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor &amp; Francis; 2018 Jul 3;27(3):673–676. DOI: <a href="https://doi.org/10.1080/10618600.2017.1366914" class="uri">https://doi.org/10.1080/10618600.2017.1366914</a></p>
-<pre><code>library(ggforce)
-ggplot(stack(f), aes(x = ind, y = values)) +
-   geom_violin() + geom_sina()</code></pre>
+<section id="boxplots" class="level2" data-number="21.10">
+<h2 data-number="21.10" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">21.10</span> Boxplots</h2>
+<p>While the box plots are identical, box plots may not tell the whole story.</p>
+<p>Let’s try violin plots instead:</p>
+<pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
+  geom_violin()</code></pre>
+<p>A violin plot is a mirrored density plot.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -705,22 +744,23 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<section id="sina-plots-1" class="level2 callout-body-container callout-body" data-number="21.12">
-<h2 data-number="21.12" class="anchored" data-anchor-id="sina-plots-1"><span class="header-section-number">21.12</span> Sina plots</h2>
+<section id="non-identical-violin-plots" class="level2 callout-body-container callout-body" data-number="21.11">
+<h2 data-number="21.11" class="anchored" data-anchor-id="non-identical-violin-plots"><span class="header-section-number">21.11</span> Non-identical violin plots</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </div>
 </div>
 </section>
-<section id="sina-plots-2" class="level2" data-number="21.13">
-<h2 data-number="21.13" class="anchored" data-anchor-id="sina-plots-2"><span class="header-section-number">21.13</span> Sina plots</h2>
-<p><code>method == "counts"</code>: The borders are defined by the number of samples that occupy the same bin.</p>
-<pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
-   geom_violin() + geom_sina(method="count")</code></pre>
+<section id="sina-plots" class="level2" data-number="21.12">
+<h2 data-number="21.12" class="anchored" data-anchor-id="sina-plots"><span class="header-section-number">21.12</span> Sina plots</h2>
+<p>Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor &amp; Francis; 2018 Jul 3;27(3):673–676. DOI: <a href="https://doi.org/10.1080/10618600.2017.1366914" class="uri">https://doi.org/10.1080/10618600.2017.1366914</a></p>
+<pre><code>library(ggforce)
+ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina()</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -732,92 +772,151 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<section id="sina-plots-3" class="level2 callout-body-container callout-body" data-number="21.14">
-<h2 data-number="21.14" class="anchored" data-anchor-id="sina-plots-3"><span class="header-section-number">21.14</span> Sina plots</h2>
+<section id="sina-plots-1" class="level2 callout-body-container callout-body" data-number="21.13">
+<h2 data-number="21.13" class="anchored" data-anchor-id="sina-plots-1"><span class="header-section-number">21.13</span> Sina plots</h2>
 <div class="cell">
-<div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-</div>
-</div>
-</section>
-<section id="drawing-multiple-graphs" class="level2" data-number="21.15">
-<h2 data-number="21.15" class="anchored" data-anchor-id="drawing-multiple-graphs"><span class="header-section-number">21.15</span> Drawing multiple graphs</h2>
-<p>Sometimes we’d like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using <code>ggplot2</code> is tricky. See <a href="https://dplyr.tidyverse.org/articles/programming.html" class="uri">https://dplyr.tidyverse.org/articles/programming.html</a> and <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a> for details.</p>
-<p>Here’s one way to do this - this example code will generate two scatter plots:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"x_1"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>y.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="st">"y_1"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  x.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(x.names[i])</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  y.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(y.names[i])</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x =</span> {{ x.nam }}, </span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> {{ y.nam }})) <span class="sc">+</span> </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>())</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="writing-ggplot-functions" class="level2" data-number="21.16">
-<h2 data-number="21.16" class="anchored" data-anchor-id="writing-ggplot-functions"><span class="header-section-number">21.16</span> Writing ggplot functions</h2>
-<p>See <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>PlDensity <span class="ot">&lt;-</span> <span class="cf">function</span>(fill, ...) {</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)), </span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(bill_length_mm, <span class="at">fill =</span> {{ fill }})) <span class="sc">+</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(...))</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Example from: <a href="https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+</div>
+</div>
+</section>
+<section id="sina-plots-2" class="level2" data-number="21.14">
+<h2 data-number="21.14" class="anchored" data-anchor-id="sina-plots-2"><span class="header-section-number">21.14</span> Sina plots</h2>
+<p><code>method == "counts"</code>: The borders are defined by the number of samples that occupy the same bin.</p>
+<pre><code>ggplot(stack(f), aes(x = ind, y = values)) +
+   geom_violin() + geom_sina(method="count")</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<section id="sina-plots-3" class="level2 callout-body-container callout-body" data-number="21.15">
+<h2 data-number="21.15" class="anchored" data-anchor-id="sina-plots-3"><span class="header-section-number">21.15</span> Sina plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+</div>
+</div>
+</section>
+<section id="raincloud-plots" class="level2" data-number="21.16">
+<h2 data-number="21.16" class="anchored" data-anchor-id="raincloud-plots"><span class="header-section-number">21.16</span> Raincloud plots</h2>
+<p>Raincloud plots can be created by using the <code>geom_rain</code> geometry from the <code>ggrain</code> R package.</p>
+<blockquote class="blockquote">
+<p>“These”raincloud plots” can visualize raw data, probability density, and key summary statistics such as median, mean, and relevant confidence intervals in an appealing and flexible format with minimal redundancy.”</p>
+</blockquote>
+<p>Allen M, Poggiali D, Whitaker K, Marshall TR, Van Langen J, Kievit RA. Raincloud plots: a multi-platform tool for robust data visualization. Wellcome Open Res. 2021 Jan 21;4:63. PMID: 31069261 PMCID: PMC6480976 DOI: <a href="https://doi.org/10.12688/wellcomeopenres.15191.2" class="uri">https://doi.org/10.12688/wellcomeopenres.15191.2</a></p>
+<p><a href="https://github.com/RainCloudPlots/RainCloudPlots" class="uri">https://github.com/RainCloudPlots/RainCloudPlots</a></p>
+<p>Try it out.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrain)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">stack</span>(f), <span class="fu">aes</span>(<span class="at">x =</span> ind, <span class="at">y =</span> values)) <span class="sc">+</span> <span class="fu">geom_rain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="exercise-3" class="level2" data-number="21.17">
-<h2 data-number="21.17" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">21.17</span> Exercise 3</h2>
+<section id="drawing-multiple-graphs" class="level2" data-number="21.17">
+<h2 data-number="21.17" class="anchored" data-anchor-id="drawing-multiple-graphs"><span class="header-section-number">21.17</span> Drawing multiple graphs</h2>
+<p>Sometimes we’d like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using <code>ggplot2</code> is tricky. See <a href="https://dplyr.tidyverse.org/articles/programming.html" class="uri">https://dplyr.tidyverse.org/articles/programming.html</a> and <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a> for details.</p>
+<p>Here’s one way to do this - this example code will generate two scatter plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"x_1"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="st">"y_1"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  x.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(x.names[i])</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  y.nam <span class="ot">&lt;-</span> <span class="fu">sym</span>(y.names[i])</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x =</span> {{ x.nam }}, </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> {{ y.nam }})) <span class="sc">+</span> </span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>())</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="writing-ggplot-functions" class="level2" data-number="21.18">
+<h2 data-number="21.18" class="anchored" data-anchor-id="writing-ggplot-functions"><span class="header-section-number">21.18</span> Writing ggplot functions</h2>
+<p>See <a href="https://r4ds.hadley.nz/functions.html#plot-functions" class="uri">https://r4ds.hadley.nz/functions.html#plot-functions</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>PlDensity <span class="ot">&lt;-</span> <span class="cf">function</span>(fill, ...) {</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)), </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(bill_length_mm, <span class="at">fill =</span> {{ fill }})) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(...))</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example from: <a href="https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(island, sex) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PlDensity</span>(sex, island, year) <span class="sc">%&gt;%</span> <span class="fu">print</span>() <span class="sc">%&gt;%</span> <span class="fu">suppressWarnings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercise-3" class="level2" data-number="21.19">
+<h2 data-number="21.19" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">21.19</span> Exercise 3</h2>
 <p>Consider this example code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth) {</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From: <a href="https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574373127349575680?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
 <p>When applied to the quantitative trait <code>t</code> from the data frame <code>b</code>, this generates this histogram:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="exercise" class="level3" data-number="21.17.1">
-<h3 data-number="21.17.1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">21.17.1</span> Exercise</h3>
+<section id="exercise" class="level3" data-number="21.19.1">
+<h3 data-number="21.19.1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">21.19.1</span> Exercise</h3>
 <p>After reading the example above, extend the <code>histogram</code> function to allow facetting and use it to draw a histogram of the quantitative trait <code>t</code> facetted by <code>geno</code> using the data set <code>b</code> that we set up above.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -836,7 +935,7 @@ Hints
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -845,7 +944,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Hadley Wickham states:</p>
 <p>You have to use the vars() syntax</p>
@@ -857,23 +956,23 @@ Expand to see solution
 }</code></pre>
 <p>Tweet: <a href="https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ" class="uri">https://twitter.com/hadleywickham/status/1574380137524887554?s=20&amp;t=FLbwErwEKQKWtKIGufDLIQ</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>({{ grp }}))</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, binwidth, grp) {</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>({{ var }})) <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>({{ grp }}))</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(b, t, <span class="fl">0.1</span>, geno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="R_graphics_exercises_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -881,8 +980,8 @@ Expand to see solution
 </div>
 </section>
 </section>
-<section id="source-of-data" class="level2" data-number="21.18">
-<h2 data-number="21.18" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">21.18</span> Source of data</h2>
+<section id="source-of-data" class="level2" data-number="21.20">
+<h2 data-number="21.20" class="anchored" data-anchor-id="source-of-data"><span class="header-section-number">21.20</span> Source of data</h2>
 <p>Illustrative data sets from <a href="https://www.research.autodesk.com/publications/same-stats-different-graphs/" class="uri">https://www.research.autodesk.com/publications/same-stats-different-graphs/</a></p>
 
 
