@@ -1,4 +1,21 @@
+---
+editor: 
+  mode: source
+---
+
+
 # R Graphics Exercise
+
+## The Grammer of Graphics 
+
+This slide set by Garrick Aden-Buie provides a nice introduction to plotting with ggplot2:
+
+**A Gentle Guide to the Grammer of Graphics with ggplot2** 
+
+Slides: <https://gadenbuie.github.io/gentle-ggplot2>
+
+Source: <https://github.com/gadenbuie/gentle-ggplot2>
+
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
@@ -51,6 +68,64 @@ ggplot(data=b, aes(x=ind, y=t, color=trait)) +
   geom_point() + 
   facet_grid(~ geno)
 ```
+:::
+
+## Facetting
+
+Facetting can be done using the classic interface, where formula notation is used to indicate rows (before the `~`) and columns (after the `~`).  According to the `facet_grid` documentation
+
+> "the dot in the formula is used to indicate there should be no faceting on this dimension (either row or column)"
+
+So this will facet in columns by `geno`:
+
+```
+facet_grid(~ geno)
+```
+
+This will facet in rows by `geno`:
+
+```
+facet_grid(geno ~ .)
+```
+
+The current recommended notation for facetting instead clearly names the rows and columns that you'd like to facet on.
+
+This will facet in columns by `geno`:
+
+```
+facet_grid(cols = vars(geno))
+```
+
+This will facet in rows by `geno`:
+
+```
+facet_grid(rows = vars(geno))
+```
+
+Try these various ways of facetting out.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+g <- ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
+  geom_point() 
+g  + 
+  facet_grid(. ~ geno)
+```
+
+```{r}
+g + facet_grid(geno ~ .)
+```
+
+```{r}
+g + facet_grid(cols = vars(geno))
+```
+
+```{r}
+g + facet_grid(rows = vars(geno))
+```
+
 :::
 
 ## Always plot your data
@@ -175,8 +250,7 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 
 ## Sina plots
 
-Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor & Francis; 2018 Jul 3;27(3):673–676. DOI: <https://doi.org/10.1080/10618600.2017.1366914>
-
+Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor & Francis; 2018 Jul 3;27(3):673--676. DOI: <https://doi.org/10.1080/10618600.2017.1366914>
 
 ```         
 library(ggforce)
@@ -213,6 +287,27 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 ```{r echo=FALSE}
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina(method="count")
+```
+:::
+
+## Raincloud plots
+
+Raincloud plots can be created by using the `geom_rain` geometry from the `ggrain` R package.  
+
+> "These “raincloud plots” can visualize raw data, probability density, and key summary statistics such as median, mean, and relevant confidence intervals in an appealing and flexible format with minimal redundancy."
+
+Allen M, Poggiali D, Whitaker K, Marshall TR, Van Langen J, Kievit RA. Raincloud plots: a multi-platform tool for robust data visualization. Wellcome Open Res. 2021 Jan 21;4:63. PMID: 31069261 PMCID: PMC6480976 DOI: <https://doi.org/10.12688/wellcomeopenres.15191.2>
+
+<https://github.com/RainCloudPlots/RainCloudPlots>
+
+Try it out.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+library(ggrain)
+ggplot(stack(f), aes(x = ind, y = values)) + geom_rain()
 ```
 :::
 
