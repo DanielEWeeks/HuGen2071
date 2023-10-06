@@ -1,5 +1,9 @@
-# R Exploratory Data Analysis Exercise
+---
+editor: 
+  mode: source
+---  
 
+# R Exploratory Data Analysis Exercise
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
@@ -24,16 +28,16 @@ Let's explore the Project 1 data set:
 load("data/project1.RData", verbose = TRUE)
 ```
 
-* ds = data set
-* dd = data dictionary
+-   ds = data set
+-   dd = data dictionary
 
 ## Dimensions
 
-* What are the dimensions of our data?
+-   What are the dimensions of our data?
 
 ## Dimensions
 
-Task: Examine the dimensions of our data and data dictionary. 
+Task: Examine the dimensions of our data and data dictionary.
 
 ### Data `ds`
 
@@ -49,13 +53,12 @@ dim(dd)
 names(dd)
 ```
 
-
 ## Arrangement
 
-* How are the data arranged?
-     - Is it in tidy format?
-     - Is it one row per sample or per subject?
-     - Were subjects sampled more than once?
+-   How are the data arranged?
+    -   Is it in tidy format?
+    -   Is it one row per sample or per subject?
+    -   Were subjects sampled more than once?
 
 ### Samples or subjects
 
@@ -71,7 +74,6 @@ sum(duplicated(ds$sample_id))
 length(unique(ds$sample_id))
 length(unique(ds$subject_id))
 ```
-
 :::
 
 ### Unique values
@@ -84,12 +86,11 @@ Question: How can we figure out the number of unique values in each column of ou
 ```{r}
 sapply(ds,function(x) {length(unique(x))}) %>% kable()
 ```
-
 :::
 
 ### Subject-level data set
 
-Task: Construct a subject-level data set
+Task: Construct a subject-level data set `ds.subj`
 
 How would you construct a subject-level data set?
 
@@ -108,27 +109,28 @@ ds.subj %>% group_by(subject_id) %>% filter(n() > 1)
 ds.subj <- ds.subj %>% filter(race != "White")
 sum(duplicated(ds.subj$subject_id))
 ```
-
 :::
 
 ## Coding
 
-* How are the data coded?
-     - Are they coded correctly?
-     - Which are categorical and which are continuous?
-     - Are they coded consistently with the data dictionary?
-     - Is there a data dictionary?
-     - Do we need to skip rows when reading the data in?
+-   How are the data coded?
+    -   Are they coded correctly?
+    -   Which are categorical and which are continuous?
+    -   Are they coded consistently with the data dictionary?
+    -   Is there a data dictionary?
+    -   Do we need to skip rows when reading the data in?
 
 ### Recode for understandability
 
-Let's recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`. 
+Using the subject-level data set `ds.subj`, let's recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
+
+First, look up the coding used for the `case_control_status` variable in the Data Dictionary:
 
 ```{r}
 dd %>% filter(R21.Variable.Name=="case_control_status") %>% pull(Variable.Coding)
 ```
 
-Task: recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`. 
+Task: recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -139,36 +141,32 @@ levels(ds.subj$PE_status)
 levels(ds.subj$PE_status) <- c("control","case")
 xtabs(~ case_control_status + PE_status, data = ds.subj )
 ```
-
 :::
-
 
 ## Missing data
 
-* What is the pattern of missing data?
-     - How are missing data coded?
-     - Is there a single missing data code?
+-   What is the pattern of missing data?
+    -   How are missing data coded?
+    -   Is there a single missing data code?
 
 Here we use some plotting commands from the `DataExplorer` R package.
 
 <https://boxuancui.github.io/DataExplorer/index.html>
-     
+
 ```{r}
 plot_missing(ds.subj)
 ```
 
-
 ## Distribution
 
-* What is the distribution of each of our phenotypes?
-     - Are data skewed?
-     - What is the range of values?
-     - Is the range of values realistic?
+-   What is the distribution of each of our phenotypes?
+    -   Are data skewed?
+    -   What is the range of values?
+    -   Is the range of values realistic?
 
 ```{r}
 plot_bar(ds.subj)
 ```
-
 
 ```{r}
 plot_histogram(ds.subj)
@@ -178,13 +176,11 @@ plot_histogram(ds.subj)
 plot_qq(ds.subj)
 ```
 
-
-
 ## Variation
 
-* How do our data vary and co-vary?
-     - Do multiple measures agree with each other?
-     - Are there sex-specific or age-specific differences?
+-   How do our data vary and co-vary?
+    -   Do multiple measures agree with each other?
+    -   Are there sex-specific or age-specific differences?
 
 ### Bar plots
 
@@ -204,14 +200,11 @@ plot_boxplot(ds.subj, by="PE_status")
 plot_qq(ds.subj, by="PE_status")
 ```
 
-
 ### Correlation
-
 
 ```{r}
 plot_correlation(ds.subj)
 ```
-
 
 ### `ggpairs` from the `GGally` R package.
 
@@ -223,12 +216,9 @@ ds1 <- ds.subj[, sapply(ds.subj, is.numeric)]
 
 ```
 
-
 ```{r}
 ggpairs(ds1[,c(13:15)])
 ```
-
-
 
 ggpairs - color by ggplot2 aes
 
@@ -244,9 +234,6 @@ ggcorr(ds1[,c(13:15)], label=TRUE)
 
 We can quickly create a report using the `create_report` function from the `DataExplorer` R package
 
-```
+```         
 create_report(ds.subj)
 ```
-
-
-
