@@ -3,19 +3,17 @@ editor:
   mode: source
 ---
 
-
 # R Graphics Exercise
 
-## The Grammer of Graphics 
+## The Grammer of Graphics
 
 This slide set by Garrick Aden-Buie provides a nice introduction to plotting with ggplot2:
 
-**A Gentle Guide to the Grammer of Graphics with ggplot2** 
+**A Gentle Guide to the Grammer of Graphics with ggplot2**
 
 Slides: <https://gadenbuie.github.io/gentle-ggplot2>
 
 Source: <https://github.com/gadenbuie/gentle-ggplot2>
-
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 require(knitr)
@@ -72,19 +70,19 @@ ggplot(data=b, aes(x=ind, y=t, color=trait)) +
 
 ## Facetting
 
-Facetting can be done using the classic interface, where formula notation is used to indicate rows (before the `~`) and columns (after the `~`).  According to the `facet_grid` documentation
+Facetting can be done using the classic interface, where formula notation is used to indicate rows (before the `~`) and columns (after the `~`). According to the `facet_grid` documentation
 
 > "the dot in the formula is used to indicate there should be no faceting on this dimension (either row or column)"
 
 So this will facet in columns by `geno`:
 
-```
+```         
 facet_grid(~ geno)
 ```
 
 This will facet in rows by `geno`:
 
-```
+```         
 facet_grid(geno ~ .)
 ```
 
@@ -92,13 +90,13 @@ The current recommended notation for facetting instead clearly names the rows an
 
 This will facet in columns by `geno`:
 
-```
+```         
 facet_grid(cols = vars(geno))
 ```
 
 This will facet in rows by `geno`:
 
-```
+```         
 facet_grid(rows = vars(geno))
 ```
 
@@ -125,7 +123,6 @@ g + facet_grid(cols = vars(geno))
 ```{r}
 g + facet_grid(rows = vars(geno))
 ```
-
 :::
 
 ## Always plot your data
@@ -292,9 +289,9 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 
 ## Raincloud plots
 
-Raincloud plots can be created by using the `geom_rain` geometry from the `ggrain` R package.  
+Raincloud plots can be created by using the `geom_rain` geometry from the `ggrain` R package.
 
-> "These “raincloud plots” can visualize raw data, probability density, and key summary statistics such as median, mean, and relevant confidence intervals in an appealing and flexible format with minimal redundancy."
+> "These"raincloud plots" can visualize raw data, probability density, and key summary statistics such as median, mean, and relevant confidence intervals in an appealing and flexible format with minimal redundancy."
 
 Allen M, Poggiali D, Whitaker K, Marshall TR, Van Langen J, Kievit RA. Raincloud plots: a multi-platform tool for robust data visualization. Wellcome Open Res. 2021 Jan 21;4:63. PMID: 31069261 PMCID: PMC6480976 DOI: <https://doi.org/10.12688/wellcomeopenres.15191.2>
 

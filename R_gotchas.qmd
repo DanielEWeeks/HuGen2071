@@ -1,0 +1,190 @@
+---
+editor: 
+  mode: source
+---  
+
+# R gotchas
+
+## Mis-counting
+
+This example is modeled on this Mastodon post:
+
+<https://fediscience.org/@thadryanjs/111188342897535820>
+
+```{r}
+(df <- data.frame(a=c(1,1,1,2), b=c(1,1,NA,2)))
+
+# How many times is 1 in column a
+nrow(df[df$a == 1,])
+
+# How many times is 1 in column b
+nrow(df[df$b == 1,])
+```
+
+As there are only two `1`'s in column `b`, this answer of `3` is incorrect.
+
+What's going on here?  
+
+What's a correct way to count the number 1's in each of these two columns?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+This doesn't work because of the `NA` causes this to return three rows:
+
+```{r}
+df[df$b == 1,]
+```
+
+
+Using a `data.table` instead of a `data.frame` would work:
+
+```{r}
+library(data.table)
+(dt <- data.table(a=c(1,1,1,2), b=c(1,1,NA,2)))
+
+# How many times is 1 in column a
+nrow(dt[df$a == 1,])
+
+# How many times is 1 in column b
+nrow(dt[df$b == 1,])
+```
+
+Counting it more directly is another possibility:
+
+```{r}
+sum(df$b==1, na.rm = TRUE)
+```
+
+Tidyverse commands also gives the correct answer:
+
+```{r}
+suppressMessages(library(tidyverse))
+df %>% filter(b == 1) %>% nrow()
+```
+
+
+:::
+
+
+## Are there any `r`'s in the vector `LETTERS`?
+
+I used 'which' to determine there were zero copies of the target in the vector of interest, but then testing whether the answer returned by 'which' is zero is tricky.
+
+See discussion on Mastodon here:
+
+<https://fediscience.org/@StatGenDan/111052432535136731>
+
+```{r}
+# LETTERS contains the uppercase letters
+LETTERS
+
+# This returns a vector of length zero:
+which(LETTERS == "r")
+
+# Testing if it is equal to the integer zero does not work
+0 == which(LETTERS == "r")
+
+# Testing if it is equal to the integer one does not work
+1 == which(LETTERS == "r")
+```
+
+So what is more correct way to test if there are any `r` is present in the `LETTERS` vector?
+
+Thomas Lumley commented:
+
+> "In general, there are functions in R that return a length-1 answer (any, length, sum, min,...) and there are functions that return a variable-length answer (==, which, +, -,...). You have a length-1 question: are there any 'r's? You need a function with a fixed length-1 return value."
+
+<https://fediscience.org/@tslumley/111053882380113100>
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+# Number of r's in LETTERS
+length(which(LETTERS == "r"))
+
+# Number of r's in LETTERS
+sum(LETTERS=='r')
+
+# Is r present in LETTERS?
+any(LETTERS=='r')
+```
+
+
+:::
+
+
+## Strange R behavior
+
+June Choe shared this on Mastodon
+
+<https://fosstodon.org/@yjunechoe/111026163637396686>
+
+A student in my intro #rstats class taught me something new today (by way of a cryptic "bug").
+
+Suppose you're asked why this {purrr} code that should return the mean of each list element is not working as expected.
+
+```
+map(list(x=1:3, y=4:6), mean)
+#> $x
+#> [1] 1
+#> 
+#> $y
+#> [1] 4
+```
+
+What do you think is the simplest explanation for this behavior (in terms of the mistake that the student could've made)? It's not so obvious - there are multiple R "quirks" cascading!
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+library(purrr)
+set.seed(123)
+mean <- mean(sample(2, 10, replace=TRUE))
+mean
+
+# These means are correct
+mean(1:3)
+mean(4:6)
+
+# These means are correct:
+lapply(list(x=1:3, y=4:6), mean)
+
+# But these means are incorrect:
+map(list(x=1:3, y=4:6), mean)
+```
+
+Why are the means computed using the `map` function from the `purrr` package incorrect?
+
+It is not applying the `mean` function, but rather it is applying the `mean` variable, which has a value of `1.4`.  
+
+As the `map` documentation states, while the `map` command is typically used to apply a function in its `.f` argument, the `.f` argument can also accept an integer - when it does so, it is interpreted as follows:
+
+> A string, integer, or list, e.g. `"idx"`, `1`, or `list("idx", 1)` which are shorthand for  `pluck(x, "idx")`⁠, ⁠ `pluck(x, 1)`⁠, and `pluck(x, "idx", 1)`⁠ respectively.
+
+So when we `map` using the `mean` variable, it is used as an index to pluck elements out of the list - during the double to integer conversion, it is rounded down to `1`, so it plucks the first element of each list.
+
+
+```{r}
+map(list(x=1:3, y=4:6), 1.4)
+
+map(list(x=1:3, y=4:6), 1)
+```
+
+
+Moral: Be careful to avoid using existing R function names, like `mean`, as the names of your variables. 
+
+Relevant discussion can be found in 
+
+<https://adv-r.hadley.nz/functions.html#functions-versus-variables>
+
+where it is stated:
+
+> "For the record, using the same name for different things is confusing and best avoided!"
+
+
+
+:::
