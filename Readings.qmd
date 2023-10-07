@@ -296,6 +296,11 @@ Supplementary Reading: Wickham (2009) Chapters 2 & 3
 -   To learn how to visualize missing data patterns
 -   To learn how to visualize covariation
 
+### Active Learning
+
+Exploratory analysis of RNAseq count data
+<https://tavareshugo.github.io/data-carpentry-rnaseq/02_rnaseq_exploratory.html>
+
 ### Readings
 
 Missing value visualization with tidyverse in R <https://towardsdatascience.com/missing-value-visualization-with-tidyverse-in-r-a9b0fefd2246>

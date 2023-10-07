@@ -19,6 +19,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
     - Understand how each phenotype varies
     - Understand how the phenotypes are related to each other
     - Understand how the data are organized
+* Plot often, plot everything!
 
 ## Load Libraries
 
@@ -40,6 +41,12 @@ load("data/project1.RData", verbose = TRUE)
 -   ds = data set
 -   dd = data dictionary
 
+**Project 1 Questions**
+
+* Which of the measurements are sample-specific?
+* Which are subject-specific?
+* How to structure the data for sharing via dbGaP?
+
 ## Dimensions
 
 -   What are the dimensions of our data?
@@ -47,6 +54,9 @@ load("data/project1.RData", verbose = TRUE)
 ## Dimensions
 
 Task: Examine the dimensions of our data and data dictionary.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ### Data `ds`
 
@@ -61,6 +71,8 @@ names(ds)
 dim(dd)
 names(dd)
 ```
+
+:::
 
 ## Arrangement
 
@@ -184,7 +196,7 @@ Here we could use `plot_missing` from the `DataExplorer` R package.
 <https://boxuancui.github.io/DataExplorer/index.html>
 
 
-Try out `plot_missing` on the subject-level data set `ds.subj`.
+Task: Try out `plot_missing` on the subject-level data set `ds.subj`.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -195,7 +207,32 @@ plot_missing(ds.subj)
 
 It is kind of unusual to have no missing data in a real data set.
 
-When there is some missing data, in addition to applying `plot_missing`, you could also apply functions from the 'VIM' R package, which has a number of commands that are useful for visualizing missing data patterns.
+To see what the output might look like when there is some missing data, let's introduce some using the `createNAs` function from this StackOverflow entry:
+
+<https://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame>
+
+```{r}
+createNAs <- function (x, pctNA = 0.1) {
+  n <- nrow(x)
+  p <- ncol(x)
+  NAloc <- rep(FALSE, n * p)
+  NAloc[sample.int(n * p, floor(n * p * pctNA))] <- TRUE
+  x[matrix(NAloc, nrow = n, ncol = p)] <- NA
+  return(x)
+}
+
+df <- ds.subj
+df <- createNAs(df)
+df <- data.frame(df)
+plot_missing(df)
+```
+
+```{r}
+profile_missing(df)
+```
+
+
+When there is some missing data, in addition to applying `plot_missing` and `profile_missing`, you could also apply functions from the 'VIM' R package, which has a number of commands that are useful for visualizing missing data patterns.
 
 <https://cran.r-project.org/web/packages/VIM/vignettes/VIM.html>
 
@@ -216,6 +253,8 @@ plot_density	Plot density estimates
 plot_histogram	Plot histogram
 plot_qq	Plot QQ plot
 ```
+
+Task: Try out these commands. 
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -246,7 +285,7 @@ plot_qq(ds.subj)
     -   Are there sex-specific or age-specific differences?
 
 
-As it is of interest to examine how our traits vary by pre-eclampsia case/control status, we can explore this by using the `by="PE_status"` argument within the `DataExplorer` commands to break down the plots drawn in the previous section by `PE_status`.
+Task: As it is of interest to examine how our traits vary by pre-eclampsia case/control status, we can explore this by using the `by="PE_status"` argument within the `DataExplorer` commands to break down the plots drawn in the previous section by `PE_status`.
 
 Also try creating boxplots using the `plot_boxplot` command. 
 
@@ -277,7 +316,7 @@ plot_qq(ds.subj, by="PE_status")
 
 For plotting correlation matrices, `DataExplorer` provides the `plot_correlation` command.
 
-Try it out, on the subset of numeric columns.
+Task: Try `plot_correlation` out, on the subset of numeric columns.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -289,29 +328,62 @@ plot_correlation(ds.subj %>% select(where(is.numeric)))
 
 :::
 
-### `ggpairs` from the `GGally` R package.
+### `ggpairs` 
 
 Use `ggpairs` from the `GGally` R package.
 
 ```{r}
-# Pull out numeric columns
-ds1 <- ds.subj[, sapply(ds.subj, is.numeric)] 
-
+# To illustrate, let's just use three of the numeric traits:
+ds1 <- ds.subj[ , c(15,17,19)]
+names(ds1)
 ```
+
+Task: Try it out - apply `ggpairs` to `ds1`. 
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ```{r}
-ggpairs(ds1[,c(13:15)])
+ggpairs(ds1)
 ```
 
-ggpairs - color by ggplot2 aes
+:::
+
+Task: Redraw the `ggpairs` plot, using the `mapping` argument to color by `PE_status`.
+
+To figure out how do this, look at the examples in the `?ggpairs` function documentation.
+
+::: callout-tip
+## Hint
+
+This cannot be done using the `ds1` object because that does not contain any `PE_status` information.
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
 
 ```{r}
-ggpairs(ds.subj, columns=c(15,17,19), ggplot2::aes(color=PE_status))
+ggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))
 ```
 
+:::
+
+
+### `ggcorr`
+
+::: callout-tip
+## Note
+
+The `ggcorr` function from the `GGally` R package can also be used to make a correlation matrix plot.
+
+
+
 ```{r}
-ggcorr(ds1[,c(13:15)], label=TRUE)
+ggcorr(ds1, label=TRUE)
 ```
+
+:::
 
 ## `DataExplorer`
 
