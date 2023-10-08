@@ -1,0 +1,511 @@
+---
+editor: 
+  mode: source
+---  
+
+
+# GRanges
+
+In an example genome-wide association scan, we had several hits:
+
+```{r GWAS_plot,message=FALSE,warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(pander)
+ASSOC.file <- "data/trait.qassoc.gz"
+b <- read_table(ASSOC.file)
+qplot(BP,-1.0*log10(P),main="Association p-values for the quantitative trait",data=b) + facet_wrap(~ CHR)+
+  geom_hline(yintercept=5,col='red') +    
+  geom_hline(yintercept=4,col='green')
+```
+
+Here are our top hits:
+
+```{r}
+top.hits <- b[order(b$P),c("CHR","BP","SNP","P")]
+row.names(top.hits) <- NULL
+pander(head(top.hits),caption="Top hits from our genome-wide association scan")
+```
+
+## Relevant readings
+
+In "Bioinformatics Data Skills", see Chapter 9 "Working with Range Data"
+
+Bioinformatics Data Skills     
+Editor:  Vince Buffalo     
+Publisher: O’Reilly     
+Web access: <https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510>   
+
+Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.  
+<https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf>
+
+## Install the needed Bioconductor libraries (one time only)
+
+First, we need to figure out which genomic build was used in our data set.  I usually do this by looking up the base pair positions of a couple of SNPs by hand in the 'SNP' data base.  So if we go there and search for `rs3800143`, we end up on this web page:
+
+<https://www.ncbi.nlm.nih.gov/snp/rs3800143#variant_details>
+
+which shows a Build GRCh37.p13 position of 1942538 on chromosome 6.  So it looks like Build GRCh37.p13 was used, which is also known as Build hg19.   
+
+To double check, we can check that the given position for rs10836914 matches the Build GRCh37.p13 position.
+
+So to determine the gene boundaries in Build hg19, we need to download and install the `TxDb.Hsapiens.UCSC.hg19.knownGene` library from BioConductor.
+
+So we search for it on BioConductor and that it can be installed by issuing these commands at the R prompt:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+```
+
+You will also need to install another library, `org.Hs.eg.db`:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("org.Hs.eg.db")
+```
+
+
+## Construct the gene list
+
+Using the annotation embedded in `TxDb.Hsapiens.UCSC.hg19.knownGene`, construct a `GRangesList` object that contains a list of all the genes.
+
+Hint: Use `transcriptsBy`.
+
+```{r message=FALSE, warning=FALSE}
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+class(txdb)
+```
+
+The `transcripts(txdb)` is a `GenomicRanges` object:
+
+```{r}
+transcripts(txdb)
+```
+
+We now group the transcripts by gene, and so create a `GRangesList` object:
+
+```{r}
+tx.by.gene <- transcriptsBy(txdb, "gene")
+tx.by.gene
+```
+
+The names of the list elements are Entrez gene IDs. 
+
+## Construct a GRange containing our top SNP
+
+Construct a GRange containing the top SNP.  Note that the chromosome name needs to be in the same style as is seen in `tx.by.gene`.  That is, the chromosome name needs to be "chr6" instead of '6'.
+
+
+```{r}
+top.snp <- with(top.hits[1,], GRanges(seqnames=paste0("chr",CHR), 
+                   IRanges(start=BP, width=1), 
+                   rsid=SNP, P=P)) 
+top.snp
+```
+
+
+## Search for match 
+
+Now use `findOverlaps` and `subsetByOverlaps` to find any genes that overlap our top SNP.
+
+
+```{r}
+top.snp.overlaps <- findOverlaps(tx.by.gene,top.snp)
+top.snp.overlaps
+hits <- subsetByOverlaps(tx.by.gene,top.snp)
+hits
+```
+
+So our top SNP `r top.hits[1,]$SNP` overlaps two transcripts in a single gene with the same start position of `r start(hits)[[1]][1]`.
+
+However, the transcript name is not very human-readable, as it uses an Entrez Gene ID `r names(hits)`.
+
+
+
+## Convert Entrez Gene IDs to Gene Names
+
+Convert the integer Entrez Gene ID `r names(hits)` to a human-readable Gene Name.
+
+This can be done using the `org.Hs.eg.db` R library.
+
+To convert Entrez Gene IDs to Gene Names, we can use another R database:
+
+```{r message=FALSE}
+library(org.Hs.eg.db)
+columns(org.Hs.eg.db)
+```
+
+```{r}
+names(hits)
+gene.name <- select(org.Hs.eg.db, keys=names(hits), columns=c("ENTREZID", "SYMBOL", "GENENAME"), keytype="ENTREZID")
+gene.name
+```
+
+So our top SNP `r top.hits[1,]$SNP` overlaps the gene with the Entrez Gene ID `r names(hits)`, which is also known as `r gene.name$SYMBOL` (`r gene.name$GENENAME`).
+
+
+
+## Question 1
+
+Read in the data:
+
+```{r}
+ASSOC.file <- "data/trait.qassoc.gz"
+b <- read_table(ASSOC.file)
+head(b)
+```
+
+Task: Using GRanges and associated Bioconductor tools, figure out if our top SNP, as ranked by the P-value (column `P`) from data frame `b` lies within an intron or exon.
+
+For this, the functions `exonsBy` and `intronsByTranscript` might be useful.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+## Answer 1
+
+The top SNP rs3800143 lies in an intron of GMDS (GDP-mannose 4,6-dehydratase), Gene ID: 2762. 
+
+Build hg19 (Human Feb. 2009 (GRCh37/hg19)) gene boundaries from UCSC Genes:
+
+GMDS (uc003mtq.3) - chr6:1624035-2245868 - Homo sapiens GDP-mannose 4,6-dehydratase (GMDS), transcript variant 1, mRNA.
+
+![The top SNP rs3800143 lies in an intron of GMDS](images/SNP_rs3800143_view.png)
+Does our top SNP overlap any exons?
+
+```{r}
+top.snp <- with(top.hits[1,], GRanges(seqnames=paste0("chr",CHR), 
+                   IRanges(start=BP, width=1), 
+                   rsid=SNP, P=P)) 
+top.snp
+
+exons.by.gene <- exonsBy(txdb, "gene")
+exons.by.gene
+
+top.snp.overlaps <- findOverlaps(exons.by.gene,top.snp)
+top.snp.overlaps
+hits <- subsetByOverlaps(exons.by.gene,top.snp)
+hits
+```
+
+From the output above, we find that our top SNP overlaps `r length(hits)` sets of exons grouped by transcripts.
+
+Does our top SNP overlap any introns?
+
+```{r}
+introns.by.transcript <- intronsByTranscript(txdb)
+
+
+top.snp.overlaps <- findOverlaps(introns.by.transcript,top.snp)
+top.snp.overlaps
+hits <- subsetByOverlaps(introns.by.transcript,top.snp)
+hits
+```
+
+From the output above, we find that our top SNP overlaps `r length(hits)` sets of introns grouped by transcripts.
+
+:::
+
+## Question 2
+
+While we have figure out above which gene our top SNP is in, what we worked out above involves very specific code.  Now let's try to generalize what we did above:
+
+Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and any gene that they might be in, including the SNP position and the gene boundaries.
+
+```
+# snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.table <- function(snp.list, N=15) {
+  
+}
+```
+
+Apply your `snp.table` function to the top 15 SNPs in our example data set.
+
+::: callout-tip
+## Hint
+
+Use the `subsetByOverlaps` followed by the `select(org.Hs.eg.db, ...` approach described above in the `Search for match` and `Convert Entrez Gene IDs to Gene Names` sections above. 
+
+:::
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+## Answer 2
+
+It is important to understand what the output of the `findOverlaps` function means.
+
+```
+top.snp.gene <- findOverlaps(gene.bounds, top.snp)
+top.snp.gene
+```
+
+returns:
+
+```
+Hits object with 10 hits and 0 metadata columns:
+       queryHits subjectHits
+       <integer>   <integer>
+   [1]      3269          13
+   [2]      8841           5
+   [3]      8841          11
+   [4]      8841           7
+   [5]      8841           6
+   [6]      8841           4
+   [7]      8841           1
+   [8]      8841           8
+   [9]     17049          14
+  [10]     18258           9
+  -------
+  queryLength: 23459 / subjectLength: 15
+```
+
+Here, the 'subjectHits' is an index into `top.snp` and the `queryHits` is an index into `gene.bounds`.
+
+So the first line indicates that the 13th SNP in `top.snp` overlaps the gene that is in the 3,269 slot of the `gene.bounds` object.
+
+```{r}
+# snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.table <- function(snp.list, N=15) {
+  require(org.Hs.eg.db)
+  require(TxDb.Hsapiens.UCSC.hg19.knownGene)
+  txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+  tx.by.gene <- transcriptsBy(txdb, "gene")
+  # Find the gene boundaries
+  gene.bounds <- reduce(tx.by.gene)
+  # Set up a GRange with the first N top SNPs
+  top.snp <- with(snp.list[1:N, ], GRanges(seqnames = paste0("chr", CHR),
+                                          IRanges(start = BP, width = 1),
+                                          SNP = SNP, P = P))
+  # Find overlaps and hits
+  top.snp.gene <- findOverlaps(gene.bounds, top.snp)
+  hits <- subsetByOverlaps(gene.bounds, top.snp)
+  # The SNP hits
+  snp.info <- data.frame(SNP.ID = subjectHits(top.snp.gene),
+                         SNP.chr = seqnames(top.snp[subjectHits(top.snp.gene)]),
+                         ranges(top.snp[subjectHits(top.snp.gene)]),
+                         mcols(top.snp[subjectHits(top.snp.gene)]))
+  # The Gene hits
+  gene.info <- data.frame(gene.ID = queryHits(top.snp.gene),
+                          seqnames(gene.bounds[queryHits(top.snp.gene)]),
+                          ranges(gene.bounds[queryHits(top.snp.gene)]))
+  # Reduce gene.info to distinct entries
+  gene.info <- gene.info %>% dplyr::select(-group, -group.1) %>% distinct()
+  # Construct a key linking SNPs to Genes
+  key <- data.frame(gene.ID = queryHits(top.snp.gene),
+                    SNP.ID = subjectHits(top.snp.gene))
+  snp.gene <- key %>% left_join(gene.info, by = "gene.ID") %>%
+    left_join(snp.info, by = "SNP.ID")
+  gene.name <- select(org.Hs.eg.db, keys = names(hits),
+      columns = c("ENTREZID", "SYMBOL", "GENENAME"), keytype = "ENTREZID")
+  snp.gene <- snp.gene %>% dplyr::rename(ENTREZID = group_name) %>%
+    left_join(gene.name, by = "ENTREZID")
+  snp.gene <- snp.gene %>% arrange(P)
+  snp.gene <- left_join(snp.list[1:N, ], snp.gene, by = c("SNP"))
+  snp.gene <- snp.gene %>%
+    dplyr::select(CHR, BP, SNP, P.x, SYMBOL, GENENAME, start.x, end.x, width.x)
+  snp.gene <- snp.gene %>%
+    dplyr::rename(P = P.x, start = start.x, end = end.x, width = width.x)
+  return(snp.gene)
+}
+```
+
+
+```{r}
+(t <- snp.table(top.hits, 15)) %>% kable(digits=15)
+dim(t)
+```
+
+Here's an alternate way to construct the SNP table which is an incomplete example because it doesn't include the gene boundaries. However, it is simpler than the function above because it avoids the construction of a key and the left_joins used above by looping through each SNP, one by one:
+
+```{r}
+snp.table2 <- function(snp.list, N=15) {
+  require(TxDb.Hsapiens.UCSC.hg19.knownGene)
+  require(org.Hs.eg.db)
+  
+  txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+  tx.by.gene <- transcriptsBy(txdb, "gene")
+  gene.name <- data.frame()
+  
+  for (i in 1:N) {
+    gene.name[i, 1] <- snp.list[i,]$CHR
+    gene.name[i, 2] <- snp.list[i,]$BP
+    gene.name[i, 3] <- snp.list[i,]$SNP
+    gene.name[i, 4] <- snp.list[i,]$P
+    top.snp <- with(snp.list[i,], GRanges(seqnames=paste0("chr", CHR), 
+                                      IRanges(start=BP, width=1), 
+                                      rsid=SNP, P=P))
+    hits <- subsetByOverlaps(tx.by.gene, top.snp)
+    genename <- select(org.Hs.eg.db, keys=names(hits), columns=c("SYMBOL", "GENENAME"), keytype="ENTREZID")
+    gene.name[i, 5] <- ifelse(nrow(genename) == 0, NA, genename[[2]])
+    gene.name[i, 6] <- ifelse(nrow(genename) == 0, NA, genename[[3]])
+  }
+  colnames(gene.name) <- c("CHR", "BP", "SNP", "P", "Symbol", "Gene name")
+  return(gene.name)
+}
+
+(t <- snp.table2(top.hits, 15)) %>% kable(digits=15)
+dim(t)
+```
+
+:::
+
+## Question 3
+
+Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and the **closest flanking genes** on both sides, including the SNP position and the gene boundaries.
+
+
+```
+# snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.flank <- function(snp.list, N=15) {
+ 
+}
+```
+
+Apply your `snp.flank` function to the top 15 SNPs in our example data set.
+
+Note that the purpose here is to think more about how to creatively use GRanges than to search for nice annotation packages.
+
+One possible way to use a GRange-based approach might be to:
+
+1. Find all SNPs that lie within a gene using the approaches used above.
+2. For the remaining SNPs, extend their GRange width by, say, 10 kb, and then ask if that enlarged GRange overlaps any genes.
+3. For any SNPs whose enlarged GRange doesn't overlap a gene, incrementally enlarge the GRange and loop back to Step 2.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
+## Answer 3
+
+Note that we need to set up the `txdb` object within the function itself to avoid creating a dependence on the global `txdb` object.  Although, it might be more efficient to create the `txdb` object once and pass it in via a function parameter instead of recreating it each time the function is called.
+
+Here we use `require` statements to indicate dependence on certain libraries having been loaded, but if this were part of an R package, we'd take care of library dependencies at the package level instead of inside of specific functions.  Usually when writing functions, we assume that all of the required packages have been loaded, so we tend not to use the `library` or the `require` command within functions.
+
+
+
+```{r}
+# snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.flank <- function(snp.list, N=15) {
+  require(org.Hs.eg.db)
+  require(TxDb.Hsapiens.UCSC.hg19.knownGene)
+  txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+  tx.by.gene <- transcriptsBy(txdb, "gene")
+  # Find the gene boundaries
+  gene.bounds <- reduce(tx.by.gene)
+  # Set up a GRange with the first N top SNPs
+  top.snp <- with(snp.list[1:N, ], GRanges(seqnames = paste0("chr", CHR),
+                                           IRanges(start = BP, width = 1),
+                                           SNP = SNP, P = P))
+  # Find overlaps and hits
+  top.snp.gene <- findOverlaps(gene.bounds, top.snp)
+  hits <- subsetByOverlaps(gene.bounds, top.snp)
+  # The SNP hits
+  snp.info <- data.frame(SNP.ID = subjectHits(top.snp.gene),
+                         SNP.chr = seqnames(top.snp[subjectHits(top.snp.gene)]),
+                         ranges(top.snp[subjectHits(top.snp.gene)]),
+                         mcols(top.snp[subjectHits(top.snp.gene)]))
+  # The Gene hits
+  gene.info <- data.frame(gene.ID = queryHits(top.snp.gene),
+                          seqnames(gene.bounds[queryHits(top.snp.gene)]),
+                          ranges(gene.bounds[queryHits(top.snp.gene)]))
+  # Reduce gene.info to distinct entries
+  gene.info <- gene.info %>% dplyr::select(-group, -group.1) %>% distinct()
+  # Construct a key linking SNPs to Genes
+  key <- data.frame(gene.ID = queryHits(top.snp.gene),
+                    SNP.ID = subjectHits(top.snp.gene))
+  snp.gene <- key %>% left_join(gene.info, by = "gene.ID") %>%
+    left_join(snp.info, by = "SNP.ID")
+  gene.name <- select(org.Hs.eg.db, keys = names(hits),
+        columns = c("ENTREZID", "SYMBOL", "GENENAME"), keytype = "ENTREZID")
+  snp.gene <- snp.gene %>% dplyr::rename(ENTREZID = group_name) %>%
+    left_join(gene.name, by = "ENTREZID")
+  snp.gene <- snp.gene %>% arrange(P)
+  snp.gene <- left_join(snp.list[1:N, ], snp.gene, by = c("SNP"))
+  snp.gene <- snp.gene %>%
+    dplyr::select(CHR, BP, SNP, P.x, SYMBOL, GENENAME, start.x, end.x, width.x)
+  snp.gene <- snp.gene %>%
+    dplyr::rename(P = P.x, start = start.x, end = end.x, width = width.x)
+  # Now find the nearest genes
+  genes <- genes(txdb, columns = "gene_id")
+  # Find the Nearest gene
+  nearest_gene_index <- nearest(top.snp, genes)
+  EntrezID <- unlist(genes[nearest_gene_index]$gene_id)
+  lookup <- select(org.Hs.eg.db, keys = EntrezID, keytype = "ENTREZID",
+                   columns = c("SYMBOL", "GENENAME"))
+  symbol <- lookup$SYMBOL
+  genename <- lookup$GENENAME
+  nearest <- bind_cols(SNP = mcols(top.snp)$SNP, EntrezID = EntrezID,
+                       symbol = symbol, genename = genename,
+                       start = unlist(start(gene.bounds[EntrezID, ])),
+                       end = unlist(end(gene.bounds[EntrezID, ])))
+  if (all.equal(mcols(top.snp)$SNP, nearest$SNP)) {
+    snp.gene$Nearest <- nearest$symbol
+    snp.gene$N.GENENAME <- nearest$genename
+    snp.gene$N.start <- nearest$start
+    snp.gene$N.end <- nearest$end
+  }
+  # Find the preceding genes
+  precede_gene_index <- precede(top.snp, genes)
+  EntrezID <- unlist(genes[precede_gene_index]$gene_id)
+  lookup <- select(org.Hs.eg.db, keys = EntrezID, keytype = "ENTREZID",
+                   columns = c("SYMBOL", "GENENAME"))
+  symbol <- lookup$SYMBOL
+  genename <- lookup$GENENAME
+  precede <- bind_cols(SNP = mcols(top.snp)$SNP, EntrezID = EntrezID,
+                       symbol = symbol, genename = genename,
+                       start = unlist(start(gene.bounds[EntrezID, ])),
+                       end = unlist(end(gene.bounds[EntrezID, ])))
+  if (all.equal(mcols(top.snp)$SNP, precede$SNP)) {
+    snp.gene$Precede <- precede$symbol
+    snp.gene$P.GENENAME <- precede$genename
+    snp.gene$P.start <- precede$start
+    snp.gene$P.end <- precede$end
+  }
+  # Find the following genes
+  follow_gene_index <- follow(top.snp, genes)
+  EntrezID <- unlist(genes[follow_gene_index]$gene_id)
+  lookup <- select(org.Hs.eg.db, keys = EntrezID, keytype = "ENTREZID",
+                   columns = c("SYMBOL", "GENENAME"))
+  symbol <- lookup$SYMBOL
+  genename <- lookup$GENENAME
+  follow <- bind_cols(SNP = mcols(top.snp)$SNP, EntrezID = EntrezID,
+                       symbol = symbol, genename = genename,
+                       start = unlist(start(gene.bounds[EntrezID, ])),
+                       end = unlist(end(gene.bounds[EntrezID, ])))
+  if (all.equal(mcols(top.snp)$SNP, follow$SNP)) {
+    snp.gene$Follow <- follow$symbol
+    snp.gene$F.GENENAME <- follow$genename
+    snp.gene$F.start <- follow$start
+    snp.gene$F.end <- follow$end
+  }
+  return(snp.gene)
+}
+```
+
+
+```{r}
+(t <- snp.flank(top.hits, 15)) %>% kable(digits=15)
+dim(t)
+```
+
+
+Note that if we want to augment this column with the genes that precede and follow each top SNP, we could use functions like this:
+
+
+```
+precede(top.snp, genes)
+follow(top.snp, genes)
+```
+
+:::
