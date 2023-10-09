@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>HuGen2071 book - 24&nbsp; GRanges Exercise</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./R_questions.html" rel="next">
+<link href="./EDA.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="include/webex.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GRanges.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HuGen2071 book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Logistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gitIntro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">GitHub</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Git_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git Commands</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RBasicsLecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture: R Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rbasics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RFactors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./EDA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GRanges.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TechnicalDetails.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Technical Details</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webR_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">WebR - R in the web browser</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./JSLinux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">JSLinux terminal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webLinux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">webLinux terminal</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introductory-background" id="toc-introductory-background" class="nav-link active" data-scroll-target="#introductory-background"><span class="header-section-number">24.1</span> Introductory Background</a></li>
+  <li><a href="#active-learning" id="toc-active-learning" class="nav-link" data-scroll-target="#active-learning"><span class="header-section-number">24.2</span> Active Learning</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">24.3</span> Suggested readings</a></li>
+  <li><a href="#install-the-needed-bioconductor-libraries-one-time-only" id="toc-install-the-needed-bioconductor-libraries-one-time-only" class="nav-link" data-scroll-target="#install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">24.4</span> Install the needed Bioconductor libraries (one time only)</a></li>
+  <li><a href="#construct-the-gene-list" id="toc-construct-the-gene-list" class="nav-link" data-scroll-target="#construct-the-gene-list"><span class="header-section-number">24.5</span> Construct the gene list</a></li>
+  <li><a href="#construct-a-grange-containing-our-top-snp" id="toc-construct-a-grange-containing-our-top-snp" class="nav-link" data-scroll-target="#construct-a-grange-containing-our-top-snp"><span class="header-section-number">24.6</span> Construct a GRange containing our top SNP</a></li>
+  <li><a href="#search-for-match" id="toc-search-for-match" class="nav-link" data-scroll-target="#search-for-match"><span class="header-section-number">24.7</span> Search for match</a></li>
+  <li><a href="#convert-entrez-gene-ids-to-gene-names" id="toc-convert-entrez-gene-ids-to-gene-names" class="nav-link" data-scroll-target="#convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">24.8</span> Convert Entrez Gene IDs to Gene Names</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">24.9</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">24.11</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">24.13</span> Question 3</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In an example genome-wide association scan, we had several hits:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ASSOC.file <span class="ot">&lt;-</span> <span class="st">"data/trait.qassoc.gz"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">read_table</span>(ASSOC.file)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(BP,<span class="sc">-</span><span class="fl">1.0</span><span class="sc">*</span><span class="fu">log10</span>(P),<span class="at">main=</span><span class="st">"Association p-values for the quantitative trait"</span>,<span class="at">data=</span>b) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> CHR)<span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">5</span>,<span class="at">col=</span><span class="st">'red'</span>) <span class="sc">+</span>    </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">'green'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="GRanges_files/figure-html/GWAS_plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here are our top hits:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>top.hits <span class="ot">&lt;-</span> b[<span class="fu">order</span>(b<span class="sc">$</span>P),<span class="fu">c</span>(<span class="st">"CHR"</span>,<span class="st">"BP"</span>,<span class="st">"SNP"</span>,<span class="st">"P"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(top.hits) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">head</span>(top.hits),<span class="at">caption=</span><span class="st">"Top hits from our genome-wide association scan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Top hits from our genome-wide association scan</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">CHR</th>
+<th style="text-align: center;">BP</th>
+<th style="text-align: center;">SNP</th>
+<th style="text-align: center;">P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">1942538</td>
+<td style="text-align: center;">rs3800143</td>
+<td style="text-align: center;">4.608e-11</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">4913057</td>
+<td style="text-align: center;">rs10836914</td>
+<td style="text-align: center;">1.295e-07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">4913314</td>
+<td style="text-align: center;">rs12577475</td>
+<td style="text-align: center;">1.587e-07</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">1926650</td>
+<td style="text-align: center;">rs11242725</td>
+<td style="text-align: center;">3.785e-07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">1880964</td>
+<td style="text-align: center;">rs3800116</td>
+<td style="text-align: center;">1.475e-06</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">1915129</td>
+<td style="text-align: center;">rs3778552</td>
+<td style="text-align: center;">1.646e-06</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Now we’d like to annotate each of these SNPs in terms of nearby or overlapping genes.</p>
+<p>While we could do this using online databases like UCSC Genome Browser (<a href="http://genome.ucsc.edu/cgi-bin/hgGateway" class="uri">http://genome.ucsc.edu/cgi-bin/hgGateway</a>), we could also use BioConductor R packages to write our own functions to retrieve this information into a nice tabular format, for each SNP, listing any gene that they might be in, including the SNP’s position and the gene boundaries.</p>
+<section id="introductory-background" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="introductory-background"><span class="header-section-number">24.1</span> Introductory Background</h2>
+<p>An Introduction to Bioconductor’s Packages for Working with Range Data</p>
+<p><a href="https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md" class="uri">https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md</a></p>
+</section>
+<section id="active-learning" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="active-learning"><span class="header-section-number">24.2</span> Active Learning</h2>
+<p>Working with genomics ranges</p>
+<p><a href="https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html" class="uri">https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html</a></p>
+</section>
+<section id="suggested-readings" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="suggested-readings"><span class="header-section-number">24.3</span> Suggested readings</h2>
+<p>In “Bioinformatics Data Skills”, see Chapter 9 “Working with Range Data”</p>
+<p>Bioinformatics Data Skills<br>
+Editor: Vince Buffalo<br>
+Publisher: O’Reilly<br>
+Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510">link</a></p>
+<p>Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.<br>
+<a href="https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf">link</a></p>
+</section>
+<section id="install-the-needed-bioconductor-libraries-one-time-only" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">24.4</span> Install the needed Bioconductor libraries (one time only)</h2>
+<p>First, we need to figure out which genomic build was used in our data set. I usually do this by looking up the base pair positions of a couple of SNPs by hand in the ‘SNP’ data base. So if we go there and search for <code>rs3800143</code>, we end up on this web page:</p>
+<p><a href="https://www.ncbi.nlm.nih.gov/snp/rs3800143#variant_details" class="uri">https://www.ncbi.nlm.nih.gov/snp/rs3800143#variant_details</a></p>
+<p>which shows a Build GRCh37.p13 position of 1942538 on chromosome 6. So it looks like Build GRCh37.p13 was used, which is also known as Build hg19.</p>
+<p>To double check, we can check that the given position for rs10836914 matches the Build GRCh37.p13 position.</p>
+<p>So to determine the gene boundaries in Build hg19, we need to download and install the <code>TxDb.Hsapiens.UCSC.hg19.knownGene</code> library from BioConductor.</p>
+<p>So we search for it on BioConductor and that it can be installed by issuing these commands at the R prompt:</p>
+<pre><code>if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")</code></pre>
+<p>You will also need to install another library, <code>org.Hs.eg.db</code>:</p>
+<pre><code>if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("org.Hs.eg.db")</code></pre>
+</section>
+<section id="construct-the-gene-list" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="construct-the-gene-list"><span class="header-section-number">24.5</span> Construct the gene list</h2>
+<p>Using the annotation embedded in <code>TxDb.Hsapiens.UCSC.hg19.knownGene</code>, construct a <code>GRangesList</code> object that contains a list of all the genes.</p>
+<p>Hint: Use <code>transcriptsBy</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TxDb.Hsapiens.UCSC.hg19.knownGene)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(txdb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "TxDb"
+attr(,"package")
+[1] "GenomicFeatures"</code></pre>
+</div>
+</div>
+<p>The <code>transcripts(txdb)</code> is a <code>GenomicRanges</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transcripts</span>(txdb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRanges object with 82960 ranges and 2 metadata columns:
+                seqnames        ranges strand |     tx_id     tx_name
+                   &lt;Rle&gt;     &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+      [1]           chr1   11874-14409      + |         1  uc001aaa.3
+      [2]           chr1   11874-14409      + |         2  uc010nxq.1
+      [3]           chr1   11874-14409      + |         3  uc010nxr.1
+      [4]           chr1   69091-70008      + |         4  uc001aal.1
+      [5]           chr1 321084-321115      + |         5  uc001aaq.2
+      ...            ...           ...    ... .       ...         ...
+  [82956] chrUn_gl000237        1-2686      - |     82956  uc011mgu.1
+  [82957] chrUn_gl000241   20433-36875      - |     82957  uc011mgv.2
+  [82958] chrUn_gl000243   11501-11530      + |     82958  uc011mgw.1
+  [82959] chrUn_gl000243   13608-13637      + |     82959  uc022brq.1
+  [82960] chrUn_gl000247     5787-5816      - |     82960  uc022brr.1
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome</code></pre>
+</div>
+</div>
+<p>We now group the transcripts by gene, and so create a <code>GRangesList</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tx.by.gene <span class="ot">&lt;-</span> <span class="fu">transcriptsBy</span>(txdb, <span class="st">"gene"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tx.by.gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRangesList object of length 23459:
+$`1`
+GRanges object with 2 ranges and 2 metadata columns:
+      seqnames            ranges strand |     tx_id     tx_name
+         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+  [1]    chr19 58858172-58864865      - |     70455  uc002qsd.4
+  [2]    chr19 58859832-58874214      - |     70456  uc002qsf.2
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+$`10`
+GRanges object with 1 range and 2 metadata columns:
+      seqnames            ranges strand |     tx_id     tx_name
+         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+  [1]     chr8 18248755-18258723      + |     31944  uc003wyw.1
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+$`100`
+GRanges object with 1 range and 2 metadata columns:
+      seqnames            ranges strand |     tx_id     tx_name
+         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+  [1]    chr20 43248163-43280376      - |     72132  uc002xmj.3
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+...
+&lt;23456 more elements&gt;</code></pre>
+</div>
+</div>
+<p>The names of the list elements are Entrez gene IDs.</p>
+</section>
+<section id="construct-a-grange-containing-our-top-snp" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="construct-a-grange-containing-our-top-snp"><span class="header-section-number">24.6</span> Construct a GRange containing our top SNP</h2>
+<p>Construct a GRange containing the top SNP. Note that the chromosome name needs to be in the same style as is seen in <code>tx.by.gene</code>. That is, the chromosome name needs to be “chr6” instead of ‘6’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(top.hits[<span class="dv">1</span>,], <span class="fu">GRanges</span>(<span class="at">seqnames=</span><span class="fu">paste0</span>(<span class="st">"chr"</span>,CHR), </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">IRanges</span>(<span class="at">start=</span>BP, <span class="at">width=</span><span class="dv">1</span>), </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">rsid=</span>SNP, <span class="at">P=</span>P)) </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>top.snp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRanges object with 1 range and 2 metadata columns:
+      seqnames    ranges strand |        rsid         P
+         &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;numeric&gt;
+  [1]     chr6   1942538      * |   rs3800143 4.608e-11
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
+</div>
+</div>
+</section>
+<section id="search-for-match" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="search-for-match"><span class="header-section-number">24.7</span> Search for match</h2>
+<p>Now use <code>findOverlaps</code> and <code>subsetByOverlaps</code> to find any genes that overlap our top SNP.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(tx.by.gene,top.snp)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hits object with 1 hit and 0 metadata columns:
+      queryHits subjectHits
+      &lt;integer&gt;   &lt;integer&gt;
+  [1]      8841           1
+  -------
+  queryLength: 23459 / subjectLength: 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(tx.by.gene,top.snp)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>hits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRangesList object of length 1:
+$`2762`
+GRanges object with 2 ranges and 2 metadata columns:
+      seqnames          ranges strand |     tx_id     tx_name
+         &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+  [1]     chr6 1624035-2176225      - |     25755  uc021ykn.1
+  [2]     chr6 1624035-2245868      - |     25756  uc003mtq.3
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome</code></pre>
+</div>
+</div>
+<p>So our top SNP rs3800143 overlaps two transcripts in a single gene with the same start position of 1624035.</p>
+<p>However, the transcript name is not very human-readable, as it uses an Entrez Gene ID 2762.</p>
+</section>
+<section id="convert-entrez-gene-ids-to-gene-names" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">24.8</span> Convert Entrez Gene IDs to Gene Names</h2>
+<p>Convert the integer Entrez Gene ID 2762 to a human-readable Gene Name.</p>
+<p>This can be done using the <code>org.Hs.eg.db</code> R library.</p>
+<p>To convert Entrez Gene IDs to Gene Names, we can use another R database:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">columns</span>(org.Hs.eg.db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ACCNUM"       "ALIAS"        "ENSEMBL"      "ENSEMBLPROT"  "ENSEMBLTRANS"
+ [6] "ENTREZID"     "ENZYME"       "EVIDENCE"     "EVIDENCEALL"  "GENENAME"    
+[11] "GENETYPE"     "GO"           "GOALL"        "IPI"          "MAP"         
+[16] "OMIM"         "ONTOLOGY"     "ONTOLOGYALL"  "PATH"         "PFAM"        
+[21] "PMID"         "PROSITE"      "REFSEQ"       "SYMBOL"       "UCSCKG"      
+[26] "UNIPROT"     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2762"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gene.name <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys=</span><span class="fu">names</span>(hits), <span class="at">columns=</span><span class="fu">c</span>(<span class="st">"ENTREZID"</span>, <span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>), <span class="at">keytype=</span><span class="st">"ENTREZID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:1 mapping between keys and columns</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gene.name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ENTREZID SYMBOL                    GENENAME
+1     2762   GMDS GDP-mannose 4,6-dehydratase</code></pre>
+</div>
+</div>
+<p>So our top SNP rs3800143 overlaps the gene with the Entrez Gene ID 2762, which is also known as GMDS (GDP-mannose 4,6-dehydratase).</p>
+</section>
+<section id="question-1" class="level2" data-number="24.9">
+<h2 data-number="24.9" class="anchored" data-anchor-id="question-1"><span class="header-section-number">24.9</span> Question 1</h2>
+<p>Read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ASSOC.file <span class="ot">&lt;-</span> <span class="st">"data/trait.qassoc.gz"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">read_table</span>(ASSOC.file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing column names filled in: 'X10' [10]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  CHR = col_double(),
+  SNP = col_character(),
+  BP = col_double(),
+  NMISS = col_double(),
+  BETA = col_double(),
+  SE = col_double(),
+  R2 = col_double(),
+  T = col_double(),
+  P = col_double(),
+  X10 = col_logical()
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+    CHR SNP           BP NMISS     BETA     SE         R2      T     P X10  
+  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;
+1     6 rs9392298 203878  1573  0.110   0.0984 0.000801    1.12  0.262 NA   
+2     6 rs9405486 204072  1569  0.118   0.0982 0.000913    1.20  0.232 NA   
+3     6 rs7762550 204909  1574  0.0384  0.0685 0.000199    0.560 0.576 NA   
+4     6 rs1418706 205878  1575 -0.00783 0.0717 0.00000757 -0.109 0.913 NA   
+5     6 rs6920539 206528  1574  0.119   0.0955 0.000984    1.24  0.214 NA   
+6     6 rs9502959 206599  1575 -0.0317  0.0538 0.000220   -0.589 0.556 NA   </code></pre>
+</div>
+</div>
+<p>Task: Using GRanges and associated Bioconductor tools, figure out if our top SNP, as ranked by the P-value (column <code>P</code>) from data frame <code>b</code> lies within an intron or exon.</p>
+<p>For this, the functions <code>exonsBy</code> and <code>intronsByTranscript</code> might be useful.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<section id="answer-1" class="level2 callout-body-container callout-body" data-number="24.10">
+<h2 data-number="24.10" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">24.10</span> Answer 1</h2>
+<p>The top SNP rs3800143 lies in an intron of GMDS (GDP-mannose 4,6-dehydratase), Gene ID: 2762.</p>
+<p>Build hg19 (Human Feb.&nbsp;2009 (GRCh37/hg19)) gene boundaries from UCSC Genes:</p>
+<p>GMDS (uc003mtq.3) - chr6:1624035-2245868 - Homo sapiens GDP-mannose 4,6-dehydratase (GMDS), transcript variant 1, mRNA.</p>
+<p><img src="images/SNP_rs3800143_view.png" class="img-fluid" alt="The top SNP rs3800143 lies in an intron of GMDS"> Does our top SNP overlap any exons?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(top.hits[<span class="dv">1</span>,], <span class="fu">GRanges</span>(<span class="at">seqnames=</span><span class="fu">paste0</span>(<span class="st">"chr"</span>,CHR), </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">IRanges</span>(<span class="at">start=</span>BP, <span class="at">width=</span><span class="dv">1</span>), </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">rsid=</span>SNP, <span class="at">P=</span>P)) </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>top.snp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRanges object with 1 range and 2 metadata columns:
+      seqnames    ranges strand |        rsid         P
+         &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;numeric&gt;
+  [1]     chr6   1942538      * |   rs3800143 4.608e-11
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>exons.by.gene <span class="ot">&lt;-</span> <span class="fu">exonsBy</span>(txdb, <span class="st">"gene"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>exons.by.gene</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRangesList object of length 23459:
+$`1`
+GRanges object with 15 ranges and 2 metadata columns:
+       seqnames            ranges strand |   exon_id   exon_name
+          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+   [1]    chr19 58858172-58858395      - |    250809        &lt;NA&gt;
+   [2]    chr19 58858719-58859006      - |    250810        &lt;NA&gt;
+   [3]    chr19 58859832-58860494      - |    250811        &lt;NA&gt;
+   [4]    chr19 58860934-58862017      - |    250812        &lt;NA&gt;
+   [5]    chr19 58861736-58862017      - |    250813        &lt;NA&gt;
+   ...      ...               ...    ... .       ...         ...
+  [11]    chr19 58868951-58869015      - |    250821        &lt;NA&gt;
+  [12]    chr19 58869318-58869652      - |    250822        &lt;NA&gt;
+  [13]    chr19 58869855-58869951      - |    250823        &lt;NA&gt;
+  [14]    chr19 58870563-58870689      - |    250824        &lt;NA&gt;
+  [15]    chr19 58874043-58874214      - |    250825        &lt;NA&gt;
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+$`10`
+GRanges object with 2 ranges and 2 metadata columns:
+      seqnames            ranges strand |   exon_id   exon_name
+         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+  [1]     chr8 18248755-18248855      + |    113603        &lt;NA&gt;
+  [2]     chr8 18257508-18258723      + |    113604        &lt;NA&gt;
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+...
+&lt;23457 more elements&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(exons.by.gene,top.snp)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hits object with 0 hits and 0 metadata columns:
+   queryHits subjectHits
+   &lt;integer&gt;   &lt;integer&gt;
+  -------
+  queryLength: 23459 / subjectLength: 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(exons.by.gene,top.snp)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>hits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRangesList object of length 0:
+&lt;0 elements&gt;</code></pre>
+</div>
+</div>
+<p>From the output above, we find that our top SNP overlaps 0 sets of exons grouped by transcripts.</p>
+<p>Does our top SNP overlap any introns?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>introns.by.transcript <span class="ot">&lt;-</span> <span class="fu">intronsByTranscript</span>(txdb)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(introns.by.transcript,top.snp)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hits object with 2 hits and 0 metadata columns:
+      queryHits subjectHits
+      &lt;integer&gt;   &lt;integer&gt;
+  [1]     25755           1
+  [2]     25756           1
+  -------
+  queryLength: 82960 / subjectLength: 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(introns.by.transcript,top.snp)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>hits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GRangesList object of length 2:
+$`25755`
+GRanges object with 10 ranges and 0 metadata columns:
+       seqnames          ranges strand
+          &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt;
+   [1]     chr6 1624467-1624706      -
+   [2]     chr6 1624776-1726649      -
+   [3]     chr6 1726747-1742701      -
+   [4]     chr6 1742821-1930336      -
+   [5]     chr6 1930465-1960100      -
+   [6]     chr6 1960206-1961007      -
+   [7]     chr6 1961201-2116004      -
+   [8]     chr6 2116115-2117702      -
+   [9]     chr6 2117791-2124920      -
+  [10]     chr6 2124966-2176165      -
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome
+
+$`25756`
+GRanges object with 10 ranges and 0 metadata columns:
+       seqnames          ranges strand
+          &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt;
+   [1]     chr6 1624467-1624706      -
+   [2]     chr6 1624776-1726649      -
+   [3]     chr6 1726747-1742701      -
+   [4]     chr6 1742821-1930336      -
+   [5]     chr6 1930465-1960100      -
+   [6]     chr6 1960206-1961007      -
+   [7]     chr6 1961201-2116004      -
+   [8]     chr6 2116115-2117702      -
+   [9]     chr6 2117791-2124920      -
+  [10]     chr6 2124966-2245554      -
+  -------
+  seqinfo: 93 sequences (1 circular) from hg19 genome</code></pre>
+</div>
+</div>
+<p>From the output above, we find that our top SNP overlaps 2 sets of introns grouped by transcripts.</p>
+</section>
+</div>
+</div>
+</section>
+<section id="question-2" class="level2" data-number="24.11">
+<h2 data-number="24.11" class="anchored" data-anchor-id="question-2"><span class="header-section-number">24.11</span> Question 2</h2>
+<p>While we have figure out above which gene our top SNP is in, what we worked out above involves very specific code. Now let’s try to generalize what we did above:</p>
+<p>Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and any gene that they might be in, including the SNP position and the gene boundaries.</p>
+<pre><code># snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.table &lt;- function(snp.list, N=15) {
+  
+}</code></pre>
+<p>Apply your <code>snp.table</code> function to the top 15 SNPs in our example data set.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the <code>subsetByOverlaps</code> followed by the <code>select(org.Hs.eg.db, ...</code> approach described above in the <code>Search for match</code> and <code>Convert Entrez Gene IDs to Gene Names</code> sections above.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<section id="answer-2" class="level2 callout-body-container callout-body" data-number="24.12">
+<h2 data-number="24.12" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">24.12</span> Answer 2</h2>
+<p>It is important to understand what the output of the <code>findOverlaps</code> function means.</p>
+<pre><code>top.snp.gene &lt;- findOverlaps(gene.bounds, top.snp)
+top.snp.gene</code></pre>
+<p>returns:</p>
+<pre><code>Hits object with 10 hits and 0 metadata columns:
+       queryHits subjectHits
+       &lt;integer&gt;   &lt;integer&gt;
+   [1]      3269          13
+   [2]      8841           5
+   [3]      8841          11
+   [4]      8841           7
+   [5]      8841           6
+   [6]      8841           4
+   [7]      8841           1
+   [8]      8841           8
+   [9]     17049          14
+  [10]     18258           9
+  -------
+  queryLength: 23459 / subjectLength: 15</code></pre>
+<p>Here, the ‘subjectHits’ is an index into <code>top.snp</code> and the <code>queryHits</code> is an index into <code>gene.bounds</code>.</p>
+<p>So the first line indicates that the 13th SNP in <code>top.snp</code> overlaps the gene that is in the 3,269 slot of the <code>gene.bounds</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># snp.list = the ranked list of the top SNPs</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># N = the number of top SNPs to annotate</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>snp.table <span class="ot">&lt;-</span> <span class="cf">function</span>(snp.list, <span class="at">N=</span><span class="dv">15</span>) {</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(org.Hs.eg.db)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(TxDb.Hsapiens.UCSC.hg19.knownGene)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  tx.by.gene <span class="ot">&lt;-</span> <span class="fu">transcriptsBy</span>(txdb, <span class="st">"gene"</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the gene boundaries</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  gene.bounds <span class="ot">&lt;-</span> <span class="fu">reduce</span>(tx.by.gene)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set up a GRange with the first N top SNPs</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(snp.list[<span class="dv">1</span><span class="sc">:</span>N, ], <span class="fu">GRanges</span>(<span class="at">seqnames =</span> <span class="fu">paste0</span>(<span class="st">"chr"</span>, CHR),</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">IRanges</span>(<span class="at">start =</span> BP, <span class="at">width =</span> <span class="dv">1</span>),</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">SNP =</span> SNP, <span class="at">P =</span> P))</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find overlaps and hits</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>  top.snp.gene <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(gene.bounds, top.snp)</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>  hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(gene.bounds, top.snp)</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The SNP hits</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>  snp.info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SNP.ID =</span> <span class="fu">subjectHits</span>(top.snp.gene),</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">SNP.chr =</span> <span class="fu">seqnames</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]),</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ranges</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]),</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">mcols</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]))</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The Gene hits</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>  gene.info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene.ID =</span> <span class="fu">queryHits</span>(top.snp.gene),</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">seqnames</span>(gene.bounds[<span class="fu">queryHits</span>(top.snp.gene)]),</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ranges</span>(gene.bounds[<span class="fu">queryHits</span>(top.snp.gene)]))</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Reduce gene.info to distinct entries</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>  gene.info <span class="ot">&lt;-</span> gene.info <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>group, <span class="sc">-</span>group<span class="fl">.1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct a key linking SNPs to Genes</span></span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>  key <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene.ID =</span> <span class="fu">queryHits</span>(top.snp.gene),</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SNP.ID =</span> <span class="fu">subjectHits</span>(top.snp.gene))</span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> key <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(gene.info, <span class="at">by =</span> <span class="st">"gene.ID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(snp.info, <span class="at">by =</span> <span class="st">"SNP.ID"</span>)</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>  gene.name <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys =</span> <span class="fu">names</span>(hits),</span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"ENTREZID"</span>, <span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>), <span class="at">keytype =</span> <span class="st">"ENTREZID"</span>)</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">ENTREZID =</span> group_name) <span class="sc">%&gt;%</span></span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(gene.name, <span class="at">by =</span> <span class="st">"ENTREZID"</span>)</span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(P)</span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> <span class="fu">left_join</span>(snp.list[<span class="dv">1</span><span class="sc">:</span>N, ], snp.gene, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"SNP"</span>))</span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span></span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(CHR, BP, SNP, P.x, SYMBOL, GENENAME, start.x, end.x, width.x)</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span></span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">P =</span> P.x, <span class="at">start =</span> start.x, <span class="at">end =</span> end.x, <span class="at">width =</span> width.x)</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(snp.gene)</span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(t <span class="ot">&lt;-</span> <span class="fu">snp.table</span>(top.hits, <span class="dv">15</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .local(x, row.names, optional, ...): 'optional' argument was ignored</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:1 mapping between keys and columns</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 33%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">CHR</th>
+<th style="text-align: right;">BP</th>
+<th style="text-align: left;">SNP</th>
+<th style="text-align: right;">P</th>
+<th style="text-align: left;">SYMBOL</th>
+<th style="text-align: left;">GENENAME</th>
+<th style="text-align: right;">start</th>
+<th style="text-align: right;">end</th>
+<th style="text-align: right;">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1942538</td>
+<td style="text-align: left;">rs3800143</td>
+<td style="text-align: right;">4.608e-11</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913057</td>
+<td style="text-align: left;">rs10836914</td>
+<td style="text-align: right;">1.295e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913314</td>
+<td style="text-align: left;">rs12577475</td>
+<td style="text-align: right;">1.587e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1926650</td>
+<td style="text-align: left;">rs11242725</td>
+<td style="text-align: right;">3.785e-07</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1880964</td>
+<td style="text-align: left;">rs3800116</td>
+<td style="text-align: right;">1.475e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1915129</td>
+<td style="text-align: left;">rs3778552</td>
+<td style="text-align: right;">1.646e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1908210</td>
+<td style="text-align: left;">rs2875711</td>
+<td style="text-align: right;">2.550e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1955398</td>
+<td style="text-align: left;">rs9378664</td>
+<td style="text-align: right;">2.809e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">143144885</td>
+<td style="text-align: left;">rs926372</td>
+<td style="text-align: right;">5.704e-06</td>
+<td style="text-align: left;">HIVEP2</td>
+<td style="text-align: left;">HIVEP zinc finger 2</td>
+<td style="text-align: right;">143072604</td>
+<td style="text-align: right;">143266338</td>
+<td style="text-align: right;">193735</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4912192</td>
+<td style="text-align: left;">rs10836912</td>
+<td style="text-align: right;">8.977e-06</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1899671</td>
+<td style="text-align: left;">rs3800122</td>
+<td style="text-align: right;">1.022e-05</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4910224</td>
+<td style="text-align: left;">rs2570591</td>
+<td style="text-align: right;">1.656e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">6340706</td>
+<td style="text-align: left;">rs1051992</td>
+<td style="text-align: right;">2.356e-05</td>
+<td style="text-align: left;">CAVIN3</td>
+<td style="text-align: left;">caveolae associated protein 3</td>
+<td style="text-align: right;">6340176</td>
+<td style="text-align: right;">6341740</td>
+<td style="text-align: right;">1565</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3317016</td>
+<td style="text-align: left;">rs4959804</td>
+<td style="text-align: right;">2.821e-05</td>
+<td style="text-align: left;">SLC22A23</td>
+<td style="text-align: left;">solute carrier family 22 member 23</td>
+<td style="text-align: right;">3269207</td>
+<td style="text-align: right;">3456793</td>
+<td style="text-align: right;">187587</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4915072</td>
+<td style="text-align: left;">rs1816448</td>
+<td style="text-align: right;">2.834e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15  9</code></pre>
+</div>
+</div>
+<p>Here’s an alternate way to construct the SNP table which is an incomplete example because it doesn’t include the gene boundaries. However, it is simpler than the function above because it avoids the construction of a key and the left_joins used above by looping through each SNP, one by one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>snp.table2 <span class="ot">&lt;-</span> <span class="cf">function</span>(snp.list, <span class="at">N=</span><span class="dv">15</span>) {</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(TxDb.Hsapiens.UCSC.hg19.knownGene)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(org.Hs.eg.db)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  tx.by.gene <span class="ot">&lt;-</span> <span class="fu">transcriptsBy</span>(txdb, <span class="st">"gene"</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  gene.name <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> snp.list[i,]<span class="sc">$</span>CHR</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> snp.list[i,]<span class="sc">$</span>BP</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> snp.list[i,]<span class="sc">$</span>SNP</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> snp.list[i,]<span class="sc">$</span>P</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(snp.list[i,], <span class="fu">GRanges</span>(<span class="at">seqnames=</span><span class="fu">paste0</span>(<span class="st">"chr"</span>, CHR), </span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">IRanges</span>(<span class="at">start=</span>BP, <span class="at">width=</span><span class="dv">1</span>), </span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">rsid=</span>SNP, <span class="at">P=</span>P))</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(tx.by.gene, top.snp)</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    genename <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys=</span><span class="fu">names</span>(hits), <span class="at">columns=</span><span class="fu">c</span>(<span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>), <span class="at">keytype=</span><span class="st">"ENTREZID"</span>)</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">nrow</span>(genename) <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, genename[[<span class="dv">2</span>]])</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    gene.name[i, <span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">nrow</span>(genename) <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, genename[[<span class="dv">3</span>]])</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(gene.name) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CHR"</span>, <span class="st">"BP"</span>, <span class="st">"SNP"</span>, <span class="st">"P"</span>, <span class="st">"Symbol"</span>, <span class="st">"Gene name"</span>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gene.name)</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>(t <span class="ot">&lt;-</span> <span class="fu">snp.table2</span>(top.hits, <span class="dv">15</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">CHR</th>
+<th style="text-align: right;">BP</th>
+<th style="text-align: left;">SNP</th>
+<th style="text-align: right;">P</th>
+<th style="text-align: left;">Symbol</th>
+<th style="text-align: left;">Gene name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1942538</td>
+<td style="text-align: left;">rs3800143</td>
+<td style="text-align: right;">4.608e-11</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913057</td>
+<td style="text-align: left;">rs10836914</td>
+<td style="text-align: right;">1.295e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913314</td>
+<td style="text-align: left;">rs12577475</td>
+<td style="text-align: right;">1.587e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1926650</td>
+<td style="text-align: left;">rs11242725</td>
+<td style="text-align: right;">3.785e-07</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1880964</td>
+<td style="text-align: left;">rs3800116</td>
+<td style="text-align: right;">1.475e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1915129</td>
+<td style="text-align: left;">rs3778552</td>
+<td style="text-align: right;">1.646e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1908210</td>
+<td style="text-align: left;">rs2875711</td>
+<td style="text-align: right;">2.550e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1955398</td>
+<td style="text-align: left;">rs9378664</td>
+<td style="text-align: right;">2.809e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">143144885</td>
+<td style="text-align: left;">rs926372</td>
+<td style="text-align: right;">5.704e-06</td>
+<td style="text-align: left;">HIVEP2</td>
+<td style="text-align: left;">HIVEP zinc finger 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4912192</td>
+<td style="text-align: left;">rs10836912</td>
+<td style="text-align: right;">8.977e-06</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1899671</td>
+<td style="text-align: left;">rs3800122</td>
+<td style="text-align: right;">1.022e-05</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4910224</td>
+<td style="text-align: left;">rs2570591</td>
+<td style="text-align: right;">1.656e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">6340706</td>
+<td style="text-align: left;">rs1051992</td>
+<td style="text-align: right;">2.356e-05</td>
+<td style="text-align: left;">CAVIN3</td>
+<td style="text-align: left;">caveolae associated protein 3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3317016</td>
+<td style="text-align: left;">rs4959804</td>
+<td style="text-align: right;">2.821e-05</td>
+<td style="text-align: left;">SLC22A23</td>
+<td style="text-align: left;">solute carrier family 22 member 23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4915072</td>
+<td style="text-align: left;">rs1816448</td>
+<td style="text-align: right;">2.834e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15  6</code></pre>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
+<section id="question-3" class="level2" data-number="24.13">
+<h2 data-number="24.13" class="anchored" data-anchor-id="question-3"><span class="header-section-number">24.13</span> Question 3</h2>
+<p>Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and the <strong>closest flanking genes</strong> on both sides, including the SNP position and the gene boundaries.</p>
+<pre><code># snp.list = the ranked list of the top SNPs
+# N = the number of top SNPs to annotate
+snp.flank &lt;- function(snp.list, N=15) {
+ 
+}</code></pre>
+<p>Apply your <code>snp.flank</code> function to the top 15 SNPs in our example data set.</p>
+<p>Note that the purpose here is to think more about how to creatively use GRanges than to search for nice annotation packages.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>GenomicRanges</code> package has a useful function <code>nearest</code> that can be used to find the nearest gene.</p>
+<p>Note that if we want to augment information about the nearest gene with the genes that precede and follow each top SNP, we could use functions like this:</p>
+<pre><code>precede(top.snp, genes)
+follow(top.snp, genes)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<section id="answer-3" class="level2 callout-body-container callout-body" data-number="24.14">
+<h2 data-number="24.14" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">24.14</span> Answer 3</h2>
+<p>Note that we need to set up the <code>txdb</code> object within the function itself to avoid creating a dependence on the global <code>txdb</code> object. Although, it might be more efficient to create the <code>txdb</code> object once and pass it in via a function parameter instead of recreating it each time the function is called.</p>
+<p>Here we use <code>require</code> statements to indicate dependence on certain libraries having been loaded, but if this were part of an R package, we’d take care of library dependencies at the package level instead of inside of specific functions. Usually when writing functions, we assume that all of the required packages have been loaded, so we tend not to use the <code>library</code> or the <code>require</code> command within functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># snp.list = the ranked list of the top SNPs</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># N = the number of top SNPs to annotate</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>snp.flank <span class="ot">&lt;-</span> <span class="cf">function</span>(snp.list, <span class="at">N=</span><span class="dv">15</span>) {</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(org.Hs.eg.db)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(TxDb.Hsapiens.UCSC.hg19.knownGene)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  txdb <span class="ot">&lt;-</span> TxDb.Hsapiens.UCSC.hg19.knownGene</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  tx.by.gene <span class="ot">&lt;-</span> <span class="fu">transcriptsBy</span>(txdb, <span class="st">"gene"</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the gene boundaries</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  gene.bounds <span class="ot">&lt;-</span> <span class="fu">reduce</span>(tx.by.gene)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set up a GRange with the first N top SNPs</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(snp.list[<span class="dv">1</span><span class="sc">:</span>N, ], <span class="fu">GRanges</span>(<span class="at">seqnames =</span> <span class="fu">paste0</span>(<span class="st">"chr"</span>, CHR),</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">IRanges</span>(<span class="at">start =</span> BP, <span class="at">width =</span> <span class="dv">1</span>),</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">SNP =</span> SNP, <span class="at">P =</span> P))</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find overlaps and hits</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>  top.snp.gene <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(gene.bounds, top.snp)</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  hits <span class="ot">&lt;-</span> <span class="fu">subsetByOverlaps</span>(gene.bounds, top.snp)</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The SNP hits</span></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  snp.info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SNP.ID =</span> <span class="fu">subjectHits</span>(top.snp.gene),</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">SNP.chr =</span> <span class="fu">seqnames</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]),</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ranges</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]),</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">mcols</span>(top.snp[<span class="fu">subjectHits</span>(top.snp.gene)]))</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The Gene hits</span></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>  gene.info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene.ID =</span> <span class="fu">queryHits</span>(top.snp.gene),</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">seqnames</span>(gene.bounds[<span class="fu">queryHits</span>(top.snp.gene)]),</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ranges</span>(gene.bounds[<span class="fu">queryHits</span>(top.snp.gene)]))</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Reduce gene.info to distinct entries</span></span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>  gene.info <span class="ot">&lt;-</span> gene.info <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>group, <span class="sc">-</span>group<span class="fl">.1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct a key linking SNPs to Genes</span></span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>  key <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene.ID =</span> <span class="fu">queryHits</span>(top.snp.gene),</span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SNP.ID =</span> <span class="fu">subjectHits</span>(top.snp.gene))</span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> key <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(gene.info, <span class="at">by =</span> <span class="st">"gene.ID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(snp.info, <span class="at">by =</span> <span class="st">"SNP.ID"</span>)</span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>  gene.name <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys =</span> <span class="fu">names</span>(hits),</span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"ENTREZID"</span>, <span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>), <span class="at">keytype =</span> <span class="st">"ENTREZID"</span>)</span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">ENTREZID =</span> group_name) <span class="sc">%&gt;%</span></span>
+<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(gene.name, <span class="at">by =</span> <span class="st">"ENTREZID"</span>)</span>
+<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(P)</span>
+<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> <span class="fu">left_join</span>(snp.list[<span class="dv">1</span><span class="sc">:</span>N, ], snp.gene, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"SNP"</span>))</span>
+<span id="cb57-39"><a href="#cb57-39" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span></span>
+<span id="cb57-40"><a href="#cb57-40" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(CHR, BP, SNP, P.x, SYMBOL, GENENAME, start.x, end.x, width.x)</span>
+<span id="cb57-41"><a href="#cb57-41" aria-hidden="true" tabindex="-1"></a>  snp.gene <span class="ot">&lt;-</span> snp.gene <span class="sc">%&gt;%</span></span>
+<span id="cb57-42"><a href="#cb57-42" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">P =</span> P.x, <span class="at">start =</span> start.x, <span class="at">end =</span> end.x, <span class="at">width =</span> width.x)</span>
+<span id="cb57-43"><a href="#cb57-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now find the nearest genes</span></span>
+<span id="cb57-44"><a href="#cb57-44" aria-hidden="true" tabindex="-1"></a>  genes <span class="ot">&lt;-</span> <span class="fu">genes</span>(txdb, <span class="at">columns =</span> <span class="st">"gene_id"</span>)</span>
+<span id="cb57-45"><a href="#cb57-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the Nearest gene</span></span>
+<span id="cb57-46"><a href="#cb57-46" aria-hidden="true" tabindex="-1"></a>  nearest_gene_index <span class="ot">&lt;-</span> <span class="fu">nearest</span>(top.snp, genes)</span>
+<span id="cb57-47"><a href="#cb57-47" aria-hidden="true" tabindex="-1"></a>  EntrezID <span class="ot">&lt;-</span> <span class="fu">unlist</span>(genes[nearest_gene_index]<span class="sc">$</span>gene_id)</span>
+<span id="cb57-48"><a href="#cb57-48" aria-hidden="true" tabindex="-1"></a>  lookup <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys =</span> EntrezID, <span class="at">keytype =</span> <span class="st">"ENTREZID"</span>,</span>
+<span id="cb57-49"><a href="#cb57-49" aria-hidden="true" tabindex="-1"></a>                   <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>))</span>
+<span id="cb57-50"><a href="#cb57-50" aria-hidden="true" tabindex="-1"></a>  symbol <span class="ot">&lt;-</span> lookup<span class="sc">$</span>SYMBOL</span>
+<span id="cb57-51"><a href="#cb57-51" aria-hidden="true" tabindex="-1"></a>  genename <span class="ot">&lt;-</span> lookup<span class="sc">$</span>GENENAME</span>
+<span id="cb57-52"><a href="#cb57-52" aria-hidden="true" tabindex="-1"></a>  nearest <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">SNP =</span> <span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, <span class="at">EntrezID =</span> EntrezID,</span>
+<span id="cb57-53"><a href="#cb57-53" aria-hidden="true" tabindex="-1"></a>                       <span class="at">symbol =</span> symbol, <span class="at">genename =</span> genename,</span>
+<span id="cb57-54"><a href="#cb57-54" aria-hidden="true" tabindex="-1"></a>                       <span class="at">start =</span> <span class="fu">unlist</span>(<span class="fu">start</span>(gene.bounds[EntrezID, ])),</span>
+<span id="cb57-55"><a href="#cb57-55" aria-hidden="true" tabindex="-1"></a>                       <span class="at">end =</span> <span class="fu">unlist</span>(<span class="fu">end</span>(gene.bounds[EntrezID, ])))</span>
+<span id="cb57-56"><a href="#cb57-56" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all.equal</span>(<span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, nearest<span class="sc">$</span>SNP)) {</span>
+<span id="cb57-57"><a href="#cb57-57" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>Nearest <span class="ot">&lt;-</span> nearest<span class="sc">$</span>symbol</span>
+<span id="cb57-58"><a href="#cb57-58" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>N.GENENAME <span class="ot">&lt;-</span> nearest<span class="sc">$</span>genename</span>
+<span id="cb57-59"><a href="#cb57-59" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>N.start <span class="ot">&lt;-</span> nearest<span class="sc">$</span>start</span>
+<span id="cb57-60"><a href="#cb57-60" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>N.end <span class="ot">&lt;-</span> nearest<span class="sc">$</span>end</span>
+<span id="cb57-61"><a href="#cb57-61" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-62"><a href="#cb57-62" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the preceding genes</span></span>
+<span id="cb57-63"><a href="#cb57-63" aria-hidden="true" tabindex="-1"></a>  precede_gene_index <span class="ot">&lt;-</span> <span class="fu">precede</span>(top.snp, genes)</span>
+<span id="cb57-64"><a href="#cb57-64" aria-hidden="true" tabindex="-1"></a>  EntrezID <span class="ot">&lt;-</span> <span class="fu">unlist</span>(genes[precede_gene_index]<span class="sc">$</span>gene_id)</span>
+<span id="cb57-65"><a href="#cb57-65" aria-hidden="true" tabindex="-1"></a>  lookup <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys =</span> EntrezID, <span class="at">keytype =</span> <span class="st">"ENTREZID"</span>,</span>
+<span id="cb57-66"><a href="#cb57-66" aria-hidden="true" tabindex="-1"></a>                   <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>))</span>
+<span id="cb57-67"><a href="#cb57-67" aria-hidden="true" tabindex="-1"></a>  symbol <span class="ot">&lt;-</span> lookup<span class="sc">$</span>SYMBOL</span>
+<span id="cb57-68"><a href="#cb57-68" aria-hidden="true" tabindex="-1"></a>  genename <span class="ot">&lt;-</span> lookup<span class="sc">$</span>GENENAME</span>
+<span id="cb57-69"><a href="#cb57-69" aria-hidden="true" tabindex="-1"></a>  precede <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">SNP =</span> <span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, <span class="at">EntrezID =</span> EntrezID,</span>
+<span id="cb57-70"><a href="#cb57-70" aria-hidden="true" tabindex="-1"></a>                       <span class="at">symbol =</span> symbol, <span class="at">genename =</span> genename,</span>
+<span id="cb57-71"><a href="#cb57-71" aria-hidden="true" tabindex="-1"></a>                       <span class="at">start =</span> <span class="fu">unlist</span>(<span class="fu">start</span>(gene.bounds[EntrezID, ])),</span>
+<span id="cb57-72"><a href="#cb57-72" aria-hidden="true" tabindex="-1"></a>                       <span class="at">end =</span> <span class="fu">unlist</span>(<span class="fu">end</span>(gene.bounds[EntrezID, ])))</span>
+<span id="cb57-73"><a href="#cb57-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all.equal</span>(<span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, precede<span class="sc">$</span>SNP)) {</span>
+<span id="cb57-74"><a href="#cb57-74" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>Precede <span class="ot">&lt;-</span> precede<span class="sc">$</span>symbol</span>
+<span id="cb57-75"><a href="#cb57-75" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>P.GENENAME <span class="ot">&lt;-</span> precede<span class="sc">$</span>genename</span>
+<span id="cb57-76"><a href="#cb57-76" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>P.start <span class="ot">&lt;-</span> precede<span class="sc">$</span>start</span>
+<span id="cb57-77"><a href="#cb57-77" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>P.end <span class="ot">&lt;-</span> precede<span class="sc">$</span>end</span>
+<span id="cb57-78"><a href="#cb57-78" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-79"><a href="#cb57-79" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the following genes</span></span>
+<span id="cb57-80"><a href="#cb57-80" aria-hidden="true" tabindex="-1"></a>  follow_gene_index <span class="ot">&lt;-</span> <span class="fu">follow</span>(top.snp, genes)</span>
+<span id="cb57-81"><a href="#cb57-81" aria-hidden="true" tabindex="-1"></a>  EntrezID <span class="ot">&lt;-</span> <span class="fu">unlist</span>(genes[follow_gene_index]<span class="sc">$</span>gene_id)</span>
+<span id="cb57-82"><a href="#cb57-82" aria-hidden="true" tabindex="-1"></a>  lookup <span class="ot">&lt;-</span> <span class="fu">select</span>(org.Hs.eg.db, <span class="at">keys =</span> EntrezID, <span class="at">keytype =</span> <span class="st">"ENTREZID"</span>,</span>
+<span id="cb57-83"><a href="#cb57-83" aria-hidden="true" tabindex="-1"></a>                   <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"SYMBOL"</span>, <span class="st">"GENENAME"</span>))</span>
+<span id="cb57-84"><a href="#cb57-84" aria-hidden="true" tabindex="-1"></a>  symbol <span class="ot">&lt;-</span> lookup<span class="sc">$</span>SYMBOL</span>
+<span id="cb57-85"><a href="#cb57-85" aria-hidden="true" tabindex="-1"></a>  genename <span class="ot">&lt;-</span> lookup<span class="sc">$</span>GENENAME</span>
+<span id="cb57-86"><a href="#cb57-86" aria-hidden="true" tabindex="-1"></a>  follow <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">SNP =</span> <span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, <span class="at">EntrezID =</span> EntrezID,</span>
+<span id="cb57-87"><a href="#cb57-87" aria-hidden="true" tabindex="-1"></a>                       <span class="at">symbol =</span> symbol, <span class="at">genename =</span> genename,</span>
+<span id="cb57-88"><a href="#cb57-88" aria-hidden="true" tabindex="-1"></a>                       <span class="at">start =</span> <span class="fu">unlist</span>(<span class="fu">start</span>(gene.bounds[EntrezID, ])),</span>
+<span id="cb57-89"><a href="#cb57-89" aria-hidden="true" tabindex="-1"></a>                       <span class="at">end =</span> <span class="fu">unlist</span>(<span class="fu">end</span>(gene.bounds[EntrezID, ])))</span>
+<span id="cb57-90"><a href="#cb57-90" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all.equal</span>(<span class="fu">mcols</span>(top.snp)<span class="sc">$</span>SNP, follow<span class="sc">$</span>SNP)) {</span>
+<span id="cb57-91"><a href="#cb57-91" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>Follow <span class="ot">&lt;-</span> follow<span class="sc">$</span>symbol</span>
+<span id="cb57-92"><a href="#cb57-92" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>F.GENENAME <span class="ot">&lt;-</span> follow<span class="sc">$</span>genename</span>
+<span id="cb57-93"><a href="#cb57-93" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>F.start <span class="ot">&lt;-</span> follow<span class="sc">$</span>start</span>
+<span id="cb57-94"><a href="#cb57-94" aria-hidden="true" tabindex="-1"></a>    snp.gene<span class="sc">$</span>F.end <span class="ot">&lt;-</span> follow<span class="sc">$</span>end</span>
+<span id="cb57-95"><a href="#cb57-95" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-96"><a href="#cb57-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(snp.gene)</span>
+<span id="cb57-97"><a href="#cb57-97" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>(t <span class="ot">&lt;-</span> <span class="fu">snp.flank</span>(top.hits, <span class="dv">15</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .local(x, row.names, optional, ...): 'optional' argument was ignored</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:1 mapping between keys and columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  403 genes were dropped because they have exons located on both strands
+  of the same reference sequence or on more than one reference sequence,
+  so cannot be represented by a single genomic range.
+  Use 'single.strand.genes.only=FALSE' to get all the genes in a
+  GRangesList object, or use suppressMessages() to suppress this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned many:1 mapping between keys and columns
+'select()' returned many:1 mapping between keys and columns
+'select()' returned many:1 mapping between keys and columns</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 10%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 14%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 14%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 14%">
+<col style="width: 2%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">CHR</th>
+<th style="text-align: right;">BP</th>
+<th style="text-align: left;">SNP</th>
+<th style="text-align: right;">P</th>
+<th style="text-align: left;">SYMBOL</th>
+<th style="text-align: left;">GENENAME</th>
+<th style="text-align: right;">start</th>
+<th style="text-align: right;">end</th>
+<th style="text-align: right;">width</th>
+<th style="text-align: left;">Nearest</th>
+<th style="text-align: left;">N.GENENAME</th>
+<th style="text-align: right;">N.start</th>
+<th style="text-align: right;">N.end</th>
+<th style="text-align: left;">Precede</th>
+<th style="text-align: left;">P.GENENAME</th>
+<th style="text-align: right;">P.start</th>
+<th style="text-align: right;">P.end</th>
+<th style="text-align: left;">Follow</th>
+<th style="text-align: left;">F.GENENAME</th>
+<th style="text-align: right;">F.start</th>
+<th style="text-align: right;">F.end</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1942538</td>
+<td style="text-align: left;">rs3800143</td>
+<td style="text-align: right;">4.608e-11</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913057</td>
+<td style="text-align: left;">rs10836914</td>
+<td style="text-align: right;">1.295e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+<td style="text-align: left;">OR51A7</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily A member 7</td>
+<td style="text-align: right;">4928600</td>
+<td style="text-align: right;">4929538</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4913314</td>
+<td style="text-align: left;">rs12577475</td>
+<td style="text-align: right;">1.587e-07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+<td style="text-align: left;">OR51A7</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily A member 7</td>
+<td style="text-align: right;">4928600</td>
+<td style="text-align: right;">4929538</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1926650</td>
+<td style="text-align: left;">rs11242725</td>
+<td style="text-align: right;">3.785e-07</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1880964</td>
+<td style="text-align: left;">rs3800116</td>
+<td style="text-align: right;">1.475e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1915129</td>
+<td style="text-align: left;">rs3778552</td>
+<td style="text-align: right;">1.646e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1908210</td>
+<td style="text-align: left;">rs2875711</td>
+<td style="text-align: right;">2.550e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1955398</td>
+<td style="text-align: left;">rs9378664</td>
+<td style="text-align: right;">2.809e-06</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">143144885</td>
+<td style="text-align: left;">rs926372</td>
+<td style="text-align: right;">5.704e-06</td>
+<td style="text-align: left;">HIVEP2</td>
+<td style="text-align: left;">HIVEP zinc finger 2</td>
+<td style="text-align: right;">143072604</td>
+<td style="text-align: right;">143266338</td>
+<td style="text-align: right;">193735</td>
+<td style="text-align: left;">HIVEP2</td>
+<td style="text-align: left;">HIVEP zinc finger 2</td>
+<td style="text-align: right;">143072604</td>
+<td style="text-align: right;">143266338</td>
+<td style="text-align: left;">LOC153910</td>
+<td style="text-align: left;">uncharacterized LOC153910</td>
+<td style="text-align: right;">142847592</td>
+<td style="text-align: right;">142959026</td>
+<td style="text-align: left;">LINC01277</td>
+<td style="text-align: left;">long intergenic non-protein coding RNA 1277</td>
+<td style="text-align: right;">143287559</td>
+<td style="text-align: right;">143358719</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4912192</td>
+<td style="text-align: left;">rs10836912</td>
+<td style="text-align: right;">8.977e-06</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+<td style="text-align: left;">OR51A7</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily A member 7</td>
+<td style="text-align: right;">4928600</td>
+<td style="text-align: right;">4929538</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1899671</td>
+<td style="text-align: left;">rs3800122</td>
+<td style="text-align: right;">1.022e-05</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: right;">621834</td>
+<td style="text-align: left;">GMDS</td>
+<td style="text-align: left;">GDP-mannose 4,6-dehydratase</td>
+<td style="text-align: right;">1624035</td>
+<td style="text-align: right;">2245868</td>
+<td style="text-align: left;">GMDS-DT</td>
+<td style="text-align: left;">GMDS divergent transcript</td>
+<td style="text-align: right;">2245987</td>
+<td style="text-align: right;">2481403</td>
+<td style="text-align: left;">FOXC1</td>
+<td style="text-align: left;">forkhead box C1</td>
+<td style="text-align: right;">1610681</td>
+<td style="text-align: right;">1614129</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4910224</td>
+<td style="text-align: left;">rs2570591</td>
+<td style="text-align: right;">1.656e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+<td style="text-align: left;">OR51A7</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily A member 7</td>
+<td style="text-align: right;">4928600</td>
+<td style="text-align: right;">4929538</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">6340706</td>
+<td style="text-align: left;">rs1051992</td>
+<td style="text-align: right;">2.356e-05</td>
+<td style="text-align: left;">CAVIN3</td>
+<td style="text-align: left;">caveolae associated protein 3</td>
+<td style="text-align: right;">6340176</td>
+<td style="text-align: right;">6341740</td>
+<td style="text-align: right;">1565</td>
+<td style="text-align: left;">CAVIN3</td>
+<td style="text-align: left;">caveolae associated protein 3</td>
+<td style="text-align: right;">6340176</td>
+<td style="text-align: right;">6341740</td>
+<td style="text-align: left;">SMPD1</td>
+<td style="text-align: left;">sphingomyelin phosphodiesterase 1</td>
+<td style="text-align: right;">6411644</td>
+<td style="text-align: right;">6416228</td>
+<td style="text-align: left;">CCKBR</td>
+<td style="text-align: left;">cholecystokinin B receptor</td>
+<td style="text-align: right;">6280904</td>
+<td style="text-align: right;">6293357</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3317016</td>
+<td style="text-align: left;">rs4959804</td>
+<td style="text-align: right;">2.821e-05</td>
+<td style="text-align: left;">SLC22A23</td>
+<td style="text-align: left;">solute carrier family 22 member 23</td>
+<td style="text-align: right;">3269207</td>
+<td style="text-align: right;">3456793</td>
+<td style="text-align: right;">187587</td>
+<td style="text-align: left;">SLC22A23</td>
+<td style="text-align: left;">solute carrier family 22 member 23</td>
+<td style="text-align: right;">3269207</td>
+<td style="text-align: right;">3456793</td>
+<td style="text-align: left;">TUBB2B</td>
+<td style="text-align: left;">tubulin beta 2B class IIb</td>
+<td style="text-align: right;">3224495</td>
+<td style="text-align: right;">3227968</td>
+<td style="text-align: left;">PSMG4</td>
+<td style="text-align: left;">proteasome assembly chaperone 4</td>
+<td style="text-align: right;">3259162</td>
+<td style="text-align: right;">3268300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4915072</td>
+<td style="text-align: left;">rs1816448</td>
+<td style="text-align: right;">2.834e-05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+<td style="text-align: left;">OR51A7</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily A member 7</td>
+<td style="text-align: right;">4928600</td>
+<td style="text-align: right;">4929538</td>
+<td style="text-align: left;">OR51T1</td>
+<td style="text-align: left;">olfactory receptor family 51 subfamily T member 1</td>
+<td style="text-align: right;">4903049</td>
+<td style="text-align: right;">4904113</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15 21</code></pre>
+</div>
+</div>
+</section>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/danieleweeks\.github\.io\/HuGen2071");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./EDA.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./R_questions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Questions about R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
