@@ -1373,7 +1373,8 @@ Hint
 <div class="callout-body-container callout-body">
 <p>The <code>GenomicRanges</code> package has a useful function <code>nearest</code> that can be used to find the nearest gene.</p>
 <p>Note that if we want to augment information about the nearest gene with the genes that precede and follow each top SNP, we could use functions like this:</p>
-<pre><code>precede(top.snp, genes)
+<pre><code>genes &lt;- genes(txdb, columns = "gene_id")
+precede(top.snp, genes)
 follow(top.snp, genes)</code></pre>
 </div>
 </div>
