@@ -4,7 +4,7 @@ editor:
 ---  
 
 
-# GRanges
+# GRanges Exercise
 
 In an example genome-wide association scan, we had several hits:
 
@@ -27,17 +27,36 @@ row.names(top.hits) <- NULL
 pander(head(top.hits),caption="Top hits from our genome-wide association scan")
 ```
 
-## Relevant readings
+Now we'd like to annotate each of these SNPs in terms of nearby or overlapping genes.   
+
+While we could do this using online databases like UCSC Genome Browser (<http://genome.ucsc.edu/cgi-bin/hgGateway>), we could also use BioConductor R packages to write our own functions to retrieve this information into a nice tabular format, for each SNP, listing any gene that they might be in, including the SNP's position and the gene boundaries.
+
+## Introductory Background
+
+An Introduction to Bioconductor's Packages for Working with Range Data
+
+<https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md>
+
+
+## Active Learning
+
+Working with genomics ranges
+
+<https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html>
+
+
+
+## Suggested readings
 
 In "Bioinformatics Data Skills", see Chapter 9 "Working with Range Data"
 
 Bioinformatics Data Skills     
 Editor:  Vince Buffalo     
 Publisher: O’Reilly     
-Web access: <https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510>   
+Web access: [link](https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510)   
 
 Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.  
-<https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf>
+[link](https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf)
 
 ## Install the needed Bioconductor libraries (one time only)
 
@@ -375,11 +394,20 @@ Apply your `snp.flank` function to the top 15 SNPs in our example data set.
 
 Note that the purpose here is to think more about how to creatively use GRanges than to search for nice annotation packages.
 
-One possible way to use a GRange-based approach might be to:
+::: callout-tip
+## Hint
 
-1. Find all SNPs that lie within a gene using the approaches used above.
-2. For the remaining SNPs, extend their GRange width by, say, 10 kb, and then ask if that enlarged GRange overlaps any genes.
-3. For any SNPs whose enlarged GRange doesn't overlap a gene, incrementally enlarge the GRange and loop back to Step 2.
+The `GenomicRanges` package has a useful function `nearest` that can be used to find the nearest gene. 
+
+Note that if we want to augment information about the nearest gene with the genes that precede and follow each top SNP, we could use functions like this:
+
+
+```
+precede(top.snp, genes)
+follow(top.snp, genes)
+```
+
+:::
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -500,12 +528,5 @@ dim(t)
 ```
 
 
-Note that if we want to augment this column with the genes that precede and follow each top SNP, we could use functions like this:
-
-
-```
-precede(top.snp, genes)
-follow(top.snp, genes)
-```
 
 :::
