@@ -403,6 +403,7 @@ Note that if we want to augment information about the nearest gene with the gene
 
 
 ```
+genes <- genes(txdb, columns = "gene_id")
 precede(top.snp, genes)
 follow(top.snp, genes)
 ```
