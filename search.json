@@ -158,98 +158,105 @@
     "href": "Readings.html#r-genomic-ranges-interactive-graphics",
     "title": "4  Active Learning and Readings",
     "section": "4.13 R: Genomic Ranges; Interactive Graphics",
-    "text": "4.13 R: Genomic Ranges; Interactive Graphics\n\n4.13.1 Learning Objectives - Genomic Ranges\n\nTo learn about Genomic Ranges\nTo learn to use Genomic Ranges to annotate SNPs of interest\n\n\n\n4.13.2 Preparation - Genomic Ranges\nBefore class, install these BioConductor packages: (1) TxDb.Hsapiens.UCSC.hg19.knownGene, and (2) org.Hs.eg.db\nTo install these, use these commands:\nif (!requireNamespace(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\n\nBiocManager::install(\"TxDb.Hsapiens.UCSC.hg19.knownGene\")\n\nBiocManager::install(\"org.Hs.eg.db\")\n\n\n4.13.3 Required Reading - Genomic Ranges\nAn Introduction to Bioconductor’s Packages for Working with Range Data\nhttps://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md\n\n\n4.13.4 Active Learning - Genomic Ranges\nWorking with genomics ranges\nhttps://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html\n\n\n4.13.5 Suggested Readings - Genomic Ranges\nIn “Bioinformatics Data Skills”, see Chapter 9 “Working with Range Data”\nBioinformatics Data Skills\nEditor: Vince Buffalo\nPublisher: O’Reilly\nWeb access: link\nHello Ranges: An Introduction to Analyzing Genomic Ranges in R.\nlink\n\n\n4.13.6 Learning Objectives - Interactive Graphics\n\nTo learn how to use interactive and dynamic graphics to explore your data more thoroughly\nTo learn to use plotly\n\n\n\n4.13.7 Required Readings - Interactive Graphics\nCreate interactive ggplot2 graphs with plotly https://www.littlemissdata.com/blog/interactiveplots\nSuggested Reading: Wickham (2009) Chapters 2 & 3"
+    "text": "4.13 R: Genomic Ranges; Interactive Graphics\n\n4.13.1 Learning Objectives - Genomic Ranges\n\nTo learn about Genomic Ranges\nTo learn to use Genomic Ranges to annotate SNPs of interest\n\n\n\n4.13.2 Preparation - Genomic Ranges\nBefore class, install these BioConductor packages: (1) TxDb.Hsapiens.UCSC.hg19.knownGene, and (2) org.Hs.eg.db\nTo install these, use these commands:\nif (!requireNamespace(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\n\nBiocManager::install(\"TxDb.Hsapiens.UCSC.hg19.knownGene\")\n\nBiocManager::install(\"org.Hs.eg.db\")\n\n\n4.13.3 Required Reading - Genomic Ranges\nAn Introduction to Bioconductor’s Packages for Working with Range Data\nhttps://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md\n\n\n4.13.4 Active Learning - Genomic Ranges\nWorking with genomics ranges\nhttps://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html\n\n\n4.13.5 Suggested Readings - Genomic Ranges\nIn “Bioinformatics Data Skills”, see Chapter 9 “Working with Range Data”\nBioinformatics Data Skills\nEditor: Vince Buffalo\nPublisher: O’Reilly\nWeb access: link\nHello Ranges: An Introduction to Analyzing Genomic Ranges in R.\nlink\n\n\n4.13.6 Learning Objectives - Interactive Graphics\n\nTo learn how to use interactive and dynamic graphics to explore your data more thoroughly\nTo learn to use plotly\n\n\n\n4.13.7 Required Reading - Interactive Graphics\nCreate interactive ggplot2 graphs with plotly https://www.littlemissdata.com/blog/interactiveplots"
+  },
+  {
+    "objectID": "Readings.html#suggested-reading---interactive-graphics",
+    "href": "Readings.html#suggested-reading---interactive-graphics",
+    "title": "4  Active Learning and Readings",
+    "section": "4.14 Suggested Reading - Interactive Graphics",
+    "text": "4.14 Suggested Reading - Interactive Graphics\nWickham (2009) Chapters 2 & 3"
   },
   {
     "objectID": "Readings.html#data-quality-checking-and-filters",
     "href": "Readings.html#data-quality-checking-and-filters",
     "title": "4  Active Learning and Readings",
-    "section": "4.14 Data Quality Checking and Filters",
-    "text": "4.14 Data Quality Checking and Filters\n\n4.14.1 Learning Objectives\n\nTo learn how to check genotype data for quality\n\n\n\n4.14.2 Readings\nAnderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564–1573. DOI: https://doi.org/10.1038/nprot.2010.116\nSuggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591–602. PMID: 20718045 DOI: https://doi.org/10.1002/gepi.20516"
+    "section": "4.15 Data Quality Checking and Filters",
+    "text": "4.15 Data Quality Checking and Filters\n\n4.15.1 Learning Objectives\n\nTo learn how to check genotype data for quality\n\n\n\n4.15.2 Readings\nAnderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564–1573. DOI: https://doi.org/10.1038/nprot.2010.116\nSuggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591–602. PMID: 20718045 DOI: https://doi.org/10.1002/gepi.20516"
   },
   {
     "objectID": "Readings.html#unix-basics-streams-redirection-pipe",
     "href": "Readings.html#unix-basics-streams-redirection-pipe",
     "title": "4  Active Learning and Readings",
-    "section": "4.15 Unix: Basics, Streams, Redirection, & Pipe",
-    "text": "4.15 Unix: Basics, Streams, Redirection, & Pipe\n\n4.15.1 Learning Objectives\n\nTo learn basic Unix commands\nTo learn how streams operate in Unix\nTo learn out to pass streamed data from program to program in Unix\n\n\n\n4.15.2 Readings\nBuffalo (2015) Chapter 3\n“Chapter 43: Redirecting Input and Output” in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O’Reilly, Mike Loukides. Published by O’Reilly Media, Inc. https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236\nTerminus, a web-based game for learning and practicing basic UNIX commands https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html"
+    "section": "4.16 Unix: Basics, Streams, Redirection, & Pipe",
+    "text": "4.16 Unix: Basics, Streams, Redirection, & Pipe\n\n4.16.1 Learning Objectives\n\nTo learn basic Unix commands\nTo learn how streams operate in Unix\nTo learn out to pass streamed data from program to program in Unix\n\n\n\n4.16.2 Readings\nBuffalo (2015) Chapter 3\n“Chapter 43: Redirecting Input and Output” in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O’Reilly, Mike Loukides. Published by O’Reilly Media, Inc. https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236\nTerminus, a web-based game for learning and practicing basic UNIX commands https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html"
   },
   {
     "objectID": "Readings.html#unix-interacting-with-processes-cluster-jobs-shell-scripting",
     "href": "Readings.html#unix-interacting-with-processes-cluster-jobs-shell-scripting",
     "title": "4  Active Learning and Readings",
-    "section": "4.16 Unix: Interacting with Processes, Cluster Jobs, Shell Scripting",
-    "text": "4.16 Unix: Interacting with Processes, Cluster Jobs, Shell Scripting\n\n4.16.1 Learning Objectives\n\nTo learn how to interact with running processes\nTo learn about the cluster and how to submit jobs there\nTo learn how to write a script that can run in Unix\n\n\n\n4.16.2 Active Learning:\nSoftware Carpentry Unix Shell intro parts 1-3 https://swcarpentry.github.io/shell-novice/\n\n\n4.16.3 Readings\nBuffalo (2015) Chapter 7 up to the start of “Sorting Plain-Text Data with Sort” section.\nSuggested Reading: Software Carpentry Unix Shell intro parts 1-3 (https://swcarpentry.github.io/shell-novice/)"
+    "section": "4.17 Unix: Interacting with Processes, Cluster Jobs, Shell Scripting",
+    "text": "4.17 Unix: Interacting with Processes, Cluster Jobs, Shell Scripting\n\n4.17.1 Learning Objectives\n\nTo learn how to interact with running processes\nTo learn about the cluster and how to submit jobs there\nTo learn how to write a script that can run in Unix\n\n\n\n4.17.2 Active Learning:\nSoftware Carpentry Unix Shell intro parts 1-3 https://swcarpentry.github.io/shell-novice/\n\n\n4.17.3 Readings\nBuffalo (2015) Chapter 7 up to the start of “Sorting Plain-Text Data with Sort” section.\nSuggested Reading: Software Carpentry Unix Shell intro parts 1-3 (https://swcarpentry.github.io/shell-novice/)"
   },
   {
     "objectID": "Readings.html#genetic-data-structures",
     "href": "Readings.html#genetic-data-structures",
     "title": "4  Active Learning and Readings",
-    "section": "4.17 Genetic Data Structures",
-    "text": "4.17 Genetic Data Structures\n\n4.17.1 Learning Objectives\n\nTo learn about what genetic data is stored and principles for storing it\n\n\n\n4.17.2 Readings\nIntroduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture’s folder)\nBennett RL, Steinhaus KA, Uhrich SB, O’Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. https://doi.org/10.1007/BF01408073. PMID: 24234481.\nBennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. https://doi.org/10.1007/s10897-008-9169-9. Epub 2008 Sep 16. PMID: 18792771.\nBennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. https://doi.org/10.1002/jgc4.1621. Epub ahead of print. PMID: 36106433."
+    "section": "4.18 Genetic Data Structures",
+    "text": "4.18 Genetic Data Structures\n\n4.18.1 Learning Objectives\n\nTo learn about what genetic data is stored and principles for storing it\n\n\n\n4.18.2 Readings\nIntroduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture’s folder)\nBennett RL, Steinhaus KA, Uhrich SB, O’Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. https://doi.org/10.1007/BF01408073. PMID: 24234481.\nBennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. https://doi.org/10.1007/s10897-008-9169-9. Epub 2008 Sep 16. PMID: 18792771.\nBennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. https://doi.org/10.1002/jgc4.1621. Epub ahead of print. PMID: 36106433."
   },
   {
     "objectID": "Readings.html#plink-i",
     "href": "Readings.html#plink-i",
     "title": "4  Active Learning and Readings",
-    "section": "4.18 PLINK I",
-    "text": "4.18 PLINK I\n\n4.18.1 Learning Objectives\n\nDescribe PLINK formats\nCreate PLINK datafiles\nUse PLINK to perform genetic association testing\n\n\n\n4.18.2 Readings\nMarees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: https://doi.org/10.1002/mpr.1608\nhttps://github.com/MareesAT/GWA_tutorial/"
+    "section": "4.19 PLINK I",
+    "text": "4.19 PLINK I\n\n4.19.1 Learning Objectives\n\nDescribe PLINK formats\nCreate PLINK datafiles\nUse PLINK to perform genetic association testing\n\n\n\n4.19.2 Readings\nMarees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: https://doi.org/10.1002/mpr.1608\nhttps://github.com/MareesAT/GWA_tutorial/"
   },
   {
     "objectID": "Readings.html#plink-ii",
     "href": "Readings.html#plink-ii",
     "title": "4  Active Learning and Readings",
-    "section": "4.19 PLINK II",
-    "text": "4.19 PLINK II\n\n4.19.1 Learning Objectives\n\nTo learn how to use PLINK to manipulate data files"
+    "section": "4.20 PLINK II",
+    "text": "4.20 PLINK II\n\n4.20.1 Learning Objectives\n\nTo learn how to use PLINK to manipulate data files"
   },
   {
     "objectID": "Readings.html#plink-computer-lab",
     "href": "Readings.html#plink-computer-lab",
     "title": "4  Active Learning and Readings",
-    "section": "4.20 PLINK Computer Lab",
-    "text": "4.20 PLINK Computer Lab\n\n4.20.1 Learning Objectives\n\nTo practice using PLINK to manipulate data files"
+    "section": "4.21 PLINK Computer Lab",
+    "text": "4.21 PLINK Computer Lab\n\n4.21.1 Learning Objectives\n\nTo practice using PLINK to manipulate data files"
   },
   {
     "objectID": "Readings.html#unix-data-manipulation",
     "href": "Readings.html#unix-data-manipulation",
     "title": "4  Active Learning and Readings",
-    "section": "4.21 Unix: Data Manipulation",
-    "text": "4.21 Unix: Data Manipulation\n\n4.21.1 Learning Objectives\n\nTo learn Unix tools like sed and awk that can be used to manipulate data\n\n\n\n4.21.2 Readings\nBuffalo (2015) Chapter 7 from the “Sorting Plain-Text Data with Sort” section on."
+    "section": "4.22 Unix: Data Manipulation",
+    "text": "4.22 Unix: Data Manipulation\n\n4.22.1 Learning Objectives\n\nTo learn Unix tools like sed and awk that can be used to manipulate data\n\n\n\n4.22.2 Readings\nBuffalo (2015) Chapter 7 from the “Sorting Plain-Text Data with Sort” section on."
   },
   {
     "objectID": "Readings.html#unix-pipes-parallelization",
     "href": "Readings.html#unix-pipes-parallelization",
     "title": "4  Active Learning and Readings",
-    "section": "4.22 Unix: Pipes & Parallelization",
-    "text": "4.22 Unix: Pipes & Parallelization\n\n4.22.1 Learning Objectives\n\nTo learn to string programs together to process data\nTo learn how to parallelize functions in Unix\n\n\n\n4.22.2 Active Learning:\nSoftware Carpentry Unix Shell intro part 4 https://swcarpentry.github.io/shell-novice/04-pipefilter.html\n\n\n4.22.3 Readings\nBuffalo (2015) Chapter 12: “Bioinformatics Shell Scripting, Writing Pipelines, and Parallelizing Tasks”"
+    "section": "4.23 Unix: Pipes & Parallelization",
+    "text": "4.23 Unix: Pipes & Parallelization\n\n4.23.1 Learning Objectives\n\nTo learn to string programs together to process data\nTo learn how to parallelize functions in Unix\n\n\n\n4.23.2 Active Learning:\nSoftware Carpentry Unix Shell intro part 4 https://swcarpentry.github.io/shell-novice/04-pipefilter.html\n\n\n4.23.3 Readings\nBuffalo (2015) Chapter 12: “Bioinformatics Shell Scripting, Writing Pipelines, and Parallelizing Tasks”"
   },
   {
     "objectID": "Readings.html#unix-scripting-control-structures-and-variables",
     "href": "Readings.html#unix-scripting-control-structures-and-variables",
     "title": "4  Active Learning and Readings",
-    "section": "4.23 Unix: Scripting, Control Structures and Variables",
-    "text": "4.23 Unix: Scripting, Control Structures and Variables\n\n4.23.1 Learning Objectives\n\nTo learn how to use control structures in Unix scripting\nTo learning how to use variables in Unix\n\n\n\n4.23.2 Active Learning:\nSoftware Carpentry Unix Shell intro parts 5-7 https://swcarpentry.github.io/shell-novice/\n\n\n4.23.3 Readings\nSoftware Carpentry Unix Shell intro parts 5-7 (https://swcarpentry.github.io/shell-novice/)"
+    "section": "4.24 Unix: Scripting, Control Structures and Variables",
+    "text": "4.24 Unix: Scripting, Control Structures and Variables\n\n4.24.1 Learning Objectives\n\nTo learn how to use control structures in Unix scripting\nTo learning how to use variables in Unix\n\n\n\n4.24.2 Active Learning:\nSoftware Carpentry Unix Shell intro parts 5-7 https://swcarpentry.github.io/shell-novice/\n\n\n4.24.3 Readings\nSoftware Carpentry Unix Shell intro parts 5-7 (https://swcarpentry.github.io/shell-novice/)"
   },
   {
     "objectID": "Readings.html#vcf-bcftools-vcftools",
     "href": "Readings.html#vcf-bcftools-vcftools",
     "title": "4  Active Learning and Readings",
-    "section": "4.24 VCF, bcftools, vcftools",
-    "text": "4.24 VCF, bcftools, vcftools\n\n4.24.1 Learning Objectives\n\nTo learn about VCF data format\nTo learn about bcftools and vcftools for manipulating VCF files"
+    "section": "4.25 VCF, bcftools, vcftools",
+    "text": "4.25 VCF, bcftools, vcftools\n\n4.25.1 Learning Objectives\n\nTo learn about VCF data format\nTo learn about bcftools and vcftools for manipulating VCF files"
   },
   {
     "objectID": "Readings.html#sam-samtools",
     "href": "Readings.html#sam-samtools",
     "title": "4  Active Learning and Readings",
-    "section": "4.25 SAM & samtools",
-    "text": "4.25 SAM & samtools\n\n4.25.1 Learning Objectives\n\nTo learn about SAM data format for sequence data\nTo learn about samtools to manipulate SAM data files\n\n\n\n4.25.2 Readings\nBuffalo Chapter 11 “Working with Alignment Data”\nData Wrangling and Processing for Genomics https://data-lessons.github.io/wrangling-genomics/\nRelevant links: The Sequence Alignment/Map Format Specification http://samtools.github.io/hts-specs/"
+    "section": "4.26 SAM & samtools",
+    "text": "4.26 SAM & samtools\n\n4.26.1 Learning Objectives\n\nTo learn about SAM data format for sequence data\nTo learn about samtools to manipulate SAM data files\n\n\n\n4.26.2 Readings\nBuffalo Chapter 11 “Working with Alignment Data”\nData Wrangling and Processing for Genomics https://data-lessons.github.io/wrangling-genomics/\nRelevant links: The Sequence Alignment/Map Format Specification http://samtools.github.io/hts-specs/"
   },
   {
     "objectID": "Readings.html#genetic-data-in-r-gds",
     "href": "Readings.html#genetic-data-in-r-gds",
     "title": "4  Active Learning and Readings",
-    "section": "4.26 Genetic Data in R, GDS",
-    "text": "4.26 Genetic Data in R, GDS\n\n4.26.1 Learning Objectives\n\nTo learn about data structures in R for storing genetic data\nTo learn about the GDS format\n\n\n\n4.26.2 Active Learning:\nhttps://uw-gac.github.io/topmed_workshop_2017/gds-format.html (Only 2.1 - Exploring a GDS file)\n\n\n4.26.3 Readings\nZheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/"
+    "section": "4.27 Genetic Data in R, GDS",
+    "text": "4.27 Genetic Data in R, GDS\n\n4.27.1 Learning Objectives\n\nTo learn about data structures in R for storing genetic data\nTo learn about the GDS format\n\n\n\n4.27.2 Active Learning:\nhttps://uw-gac.github.io/topmed_workshop_2017/gds-format.html (Only 2.1 - Exploring a GDS file)\n\n\n4.27.3 Readings\nZheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/"
   },
   {
     "objectID": "gitIntro.html#github-introduction-lecture",
@@ -851,14 +858,14 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.252  2.32   6.00\n2 2009-01-02 -0.284  2.00   7.91\n3 2009-01-03  0.624 -0.480  3.58\n4 2009-01-04 -0.748 -0.895 -3.47\n5 2009-01-05  1.74   0.232  9.14\n6 2009-01-06 -1.47  -6.08   2.09\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.252\n2 2009-01-02 X     -0.284\n3 2009-01-03 X      0.624\n4 2009-01-04 X     -0.748\n5 2009-01-05 X      1.74 \n6 2009-01-06 X     -1.47"
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y     Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -1.23    1.76   -3.74\n2 2009-01-02 -1.09   -0.877   1.11\n3 2009-01-03 -2.83    1.57   -4.55\n4 2009-01-04  0.0617  0.0478  1.96\n5 2009-01-05  0.103   1.65    4.68\n6 2009-01-06  1.47    1.42    2.50\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -1.23  \n2 2009-01-02 X     -1.09  \n3 2009-01-03 X     -2.83  \n4 2009-01-04 X      0.0617\n5 2009-01-05 X      0.103 \n6 2009-01-06 X      1.47"
   },
   {
     "objectID": "exercise_tidyverse.html#pivot_longer",
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.252\n2 2009-01-01 Y      2.32 \n3 2009-01-01 Z      6.00 \n4 2009-01-02 X     -0.284\n5 2009-01-02 Y      2.00 \n6 2009-01-02 Z      7.91"
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -1.23 \n2 2009-01-01 Y      1.76 \n3 2009-01-01 Z     -3.74 \n4 2009-01-02 X     -1.09 \n5 2009-01-02 Y     -0.877\n6 2009-01-02 Z      1.11"
   },
   {
     "objectID": "exercise_tidyverse.html#who-tb-data",
@@ -1327,7 +1334,7 @@
     "href": "EDA.html#missing-data",
     "title": "23  R Exploratory Data Analysis Exercise",
     "section": "24.7 Missing data",
-    "text": "24.7 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we could use plot_missing from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\nTask: Try out plot_missing on the subject-level data set ds.subj.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nplot_missing(ds.subj)\n\n\n\n\nIt is kind of unusual to have no missing data in a real data set.\nTo see what the output might look like when there is some missing data, let’s introduce some using the createNAs function from this StackOverflow entry:\nhttps://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame\n\ncreateNAs &lt;- function(x, pctNA = 0.1) {\n    n &lt;- nrow(x)\n    p &lt;- ncol(x)\n    NAloc &lt;- rep(FALSE, n * p)\n    NAloc[sample.int(n * p, floor(n * p * pctNA))] &lt;- TRUE\n    x[matrix(NAloc, nrow = n, ncol = p)] &lt;- NA\n    return(x)\n}\n\ndf &lt;- ds.subj\ndf &lt;- createNAs(df)\ndf &lt;- data.frame(df)\nplot_missing(df)\n\n\n\n\n\nprofile_missing(df)\n\n                    feature num_missing pct_missing\n1                subject_id           9  0.16666667\n2                    strata           7  0.12962963\n3                      race           6  0.11111111\n4     maternal_age_delivery           5  0.09259259\n5       case_control_status           5  0.09259259\n6       prepregnancy_weight           4  0.07407407\n7                    height           8  0.14814815\n8          prepregnancy_BMI           5  0.09259259\n9                 gravidity           4  0.07407407\n10                   parity           1  0.01851852\n11  gestationalage_delivery           6  0.11111111\n12    average_SBP_lt20weeks           2  0.03703704\n13    average_DBP_lt20weeks           2  0.03703704\n14        average_SBP_labor           7  0.12962963\n15        average_DBP_labor           4  0.07407407\n16           smoke_lifetime           5  0.09259259\n17         baby_birthweight           4  0.07407407\n18                 baby_sex          11  0.20370370\n19 baby_birthweight_centile           9  0.16666667\n20                 baby_SGA           5  0.09259259\n21      placental_pathology           7  0.12962963\n22                PE_status           2  0.03703704\n\n\nWhen there is some missing data, in addition to applying plot_missing and profile_missing, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.\nhttps://cran.r-project.org/web/packages/VIM/vignettes/VIM.html"
+    "text": "24.7 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we could use plot_missing from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\nTask: Try out plot_missing on the subject-level data set ds.subj.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nplot_missing(ds.subj)\n\n\n\n\nIt is kind of unusual to have no missing data in a real data set.\nTo see what the output might look like when there is some missing data, let’s introduce some using the createNAs function from this StackOverflow entry:\nhttps://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame\n\ncreateNAs &lt;- function(x, pctNA = 0.1) {\n    n &lt;- nrow(x)\n    p &lt;- ncol(x)\n    NAloc &lt;- rep(FALSE, n * p)\n    NAloc[sample.int(n * p, floor(n * p * pctNA))] &lt;- TRUE\n    x[matrix(NAloc, nrow = n, ncol = p)] &lt;- NA\n    return(x)\n}\n\ndf &lt;- ds.subj\ndf &lt;- createNAs(df)\ndf &lt;- data.frame(df)\nplot_missing(df)\n\n\n\n\n\nprofile_missing(df)\n\n                    feature num_missing pct_missing\n1                subject_id           2  0.03703704\n2                    strata           2  0.03703704\n3                      race           7  0.12962963\n4     maternal_age_delivery           6  0.11111111\n5       case_control_status           3  0.05555556\n6       prepregnancy_weight           5  0.09259259\n7                    height           5  0.09259259\n8          prepregnancy_BMI           4  0.07407407\n9                 gravidity           5  0.09259259\n10                   parity           5  0.09259259\n11  gestationalage_delivery           7  0.12962963\n12    average_SBP_lt20weeks           7  0.12962963\n13    average_DBP_lt20weeks          11  0.20370370\n14        average_SBP_labor           6  0.11111111\n15        average_DBP_labor           5  0.09259259\n16           smoke_lifetime           6  0.11111111\n17         baby_birthweight           6  0.11111111\n18                 baby_sex           4  0.07407407\n19 baby_birthweight_centile           8  0.14814815\n20                 baby_SGA           6  0.11111111\n21      placental_pathology           2  0.03703704\n22                PE_status           6  0.11111111\n\n\nWhen there is some missing data, in addition to applying plot_missing and profile_missing, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.\nhttps://cran.r-project.org/web/packages/VIM/vignettes/VIM.html"
   },
   {
     "objectID": "EDA.html#distribution",
