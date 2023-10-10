@@ -307,7 +307,7 @@ Missing value visualization with tidyverse in R <https://towardsdatascience.com/
 
 Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually with ggplot2 I: Scatterplots and Densities Exploring Data Visually with ggplot2 II: Smoothing Binning Data with cut() and Bar Plots with ggplot2 Using ggplot2 Facets.
 
-## Genomic Ranges; R: Interactive Graphics
+## R: Genomic Ranges; Interactive Graphics
 
 ### Learning Objectives - Genomic Ranges 
 
