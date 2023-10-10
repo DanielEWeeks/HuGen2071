@@ -361,11 +361,13 @@ Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.
 -   To learn how to use interactive and dynamic graphics to explore your data more thoroughly
 -   To learn to use plotly
 
-### Required Readings - Interactive Graphics
+### Required Reading - Interactive Graphics
 
 Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/blog/interactiveplots>
 
-Suggested Reading: Wickham (2009) Chapters 2 & 3
+## Suggested Reading - Interactive Graphics
+
+Wickham (2009) Chapters 2 & 3
 
 
 
