@@ -307,19 +307,68 @@ Missing value visualization with tidyverse in R <https://towardsdatascience.com/
 
 Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually with ggplot2 I: Scatterplots and Densities Exploring Data Visually with ggplot2 II: Smoothing Binning Data with cut() and Bar Plots with ggplot2 Using ggplot2 Facets.
 
-## R: Interactive and Dynamic Graphics
+## Genomic Ranges; R: Interactive Graphics
 
-### Learning Objectives
+### Learning Objectives - Genomic Ranges 
+
+- To learn about Genomic Ranges
+- To learn to use Genomic Ranges to annotate SNPs of interest
+
+### Preparation - Genomic Ranges
+
+Before class, install these BioConductor packages: (1) `TxDb.Hsapiens.UCSC.hg19.knownGene`, and (2) `org.Hs.eg.db` 
+
+To install these, use these commands:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+
+BiocManager::install("org.Hs.eg.db")
+```
+
+
+### Required Reading - Genomic Ranges
+
+An Introduction to Bioconductor's Packages for Working with Range Data
+
+<https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md>
+
+
+### Active Learning - Genomic Ranges
+
+Working with genomics ranges
+
+<https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html>
+
+
+### Suggested Readings - Genomic Ranges
+
+In "Bioinformatics Data Skills", see Chapter 9 "Working with Range Data"
+
+Bioinformatics Data Skills     
+Editor:  Vince Buffalo     
+Publisher: O’Reilly     
+Web access: [link](https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510)   
+
+Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.  
+[link](https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf)
+
+### Learning Objectives - Interactive Graphics 
 
 -   To learn how to use interactive and dynamic graphics to explore your data more thoroughly
--   To learn to use iPlots and Ggobi
 -   To learn to use plotly
 
-### Readings
+### Required Readings - Interactive Graphics
 
 Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/blog/interactiveplots>
 
 Suggested Reading: Wickham (2009) Chapters 2 & 3
+
+
+
 
 ## Data Quality Checking and Filters
 
