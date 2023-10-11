@@ -6,6 +6,10 @@ Book web site: <https://danieleweeks.github.io/HuGen2071/>
 
 Book source code: <https://github.com/DanielEWeeks/HuGen2071>
 
-Created by Daniel E. Weeks
+Created by Daniel E. Weeks and Jonathan Chernus
 
-Website: <https://www.sph.pitt.edu/directory/daniel-weeks>
+Websites: 
+
+<https://www.sph.pitt.edu/directory/daniel-weeks>
+
+<https://www.sph.pitt.edu/directory/jonathan-chernus>
