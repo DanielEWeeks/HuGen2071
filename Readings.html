@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -419,66 +419,80 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#learning-objectives-12" id="toc-learning-objectives-12" class="nav-link" data-scroll-target="#learning-objectives-12"><span class="header-section-number">4.15.1</span> Learning Objectives</a></li>
   <li><a href="#readings-1" id="toc-readings-1" class="nav-link" data-scroll-target="#readings-1"><span class="header-section-number">4.15.2</span> Readings</a></li>
   </ul></li>
-  <li><a href="#unix-basics-streams-redirection-pipe" id="toc-unix-basics-streams-redirection-pipe" class="nav-link" data-scroll-target="#unix-basics-streams-redirection-pipe"><span class="header-section-number">4.16</span> Unix: Basics, Streams, Redirection, &amp; Pipe</a>
+  <li><a href="#unix-basics" id="toc-unix-basics" class="nav-link" data-scroll-target="#unix-basics"><span class="header-section-number">4.16</span> Unix: Basics</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-13" id="toc-learning-objectives-13" class="nav-link" data-scroll-target="#learning-objectives-13"><span class="header-section-number">4.16.1</span> Learning Objectives</a></li>
-  <li><a href="#readings-2" id="toc-readings-2" class="nav-link" data-scroll-target="#readings-2"><span class="header-section-number">4.16.2</span> Readings</a></li>
+  <li><a href="#learning-objectives---unix-basics" id="toc-learning-objectives---unix-basics" class="nav-link" data-scroll-target="#learning-objectives---unix-basics"><span class="header-section-number">4.16.1</span> Learning Objectives - Unix: Basics</a></li>
+  <li><a href="#preparation---unix-basics" id="toc-preparation---unix-basics" class="nav-link" data-scroll-target="#preparation---unix-basics"><span class="header-section-number">4.16.2</span> Preparation - Unix: Basics</a></li>
+  <li><a href="#active-learning---unix-basics" id="toc-active-learning---unix-basics" class="nav-link" data-scroll-target="#active-learning---unix-basics"><span class="header-section-number">4.16.3</span> Active Learning - Unix: Basics</a></li>
+  <li><a href="#required-reading---unix-basics" id="toc-required-reading---unix-basics" class="nav-link" data-scroll-target="#required-reading---unix-basics"><span class="header-section-number">4.16.4</span> Required Reading - Unix: Basics</a></li>
+  <li><a href="#suggested-reading---unix-basics" id="toc-suggested-reading---unix-basics" class="nav-link" data-scroll-target="#suggested-reading---unix-basics"><span class="header-section-number">4.16.5</span> Suggested Reading - Unix: Basics</a></li>
   </ul></li>
-  <li><a href="#unix-interacting-with-processes-cluster-jobs-shell-scripting" id="toc-unix-interacting-with-processes-cluster-jobs-shell-scripting" class="nav-link" data-scroll-target="#unix-interacting-with-processes-cluster-jobs-shell-scripting"><span class="header-section-number">4.17</span> Unix: Interacting with Processes, Cluster Jobs, Shell Scripting</a>
+  <li><a href="#unix-streams-pipes-scripts" id="toc-unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#unix-streams-pipes-scripts"><span class="header-section-number">4.17</span> Unix: Streams, Pipes, Scripts</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-14" id="toc-learning-objectives-14" class="nav-link" data-scroll-target="#learning-objectives-14"><span class="header-section-number">4.17.1</span> Learning Objectives</a></li>
-  <li><a href="#active-learning-11" id="toc-active-learning-11" class="nav-link" data-scroll-target="#active-learning-11"><span class="header-section-number">4.17.2</span> Active Learning:</a></li>
-  <li><a href="#readings-3" id="toc-readings-3" class="nav-link" data-scroll-target="#readings-3"><span class="header-section-number">4.17.3</span> Readings</a></li>
+  <li><a href="#learning-objectives---unix-streams-pipes-scripts" id="toc-learning-objectives---unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#learning-objectives---unix-streams-pipes-scripts"><span class="header-section-number">4.17.1</span> Learning Objectives - Unix: Streams, Pipes, Scripts</a></li>
+  <li><a href="#preparation---unix-streams-pipes-scripts" id="toc-preparation---unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#preparation---unix-streams-pipes-scripts"><span class="header-section-number">4.17.2</span> Preparation - Unix: Streams, Pipes, Scripts</a></li>
+  <li><a href="#active-learning---unix-streams-pipes-scripts" id="toc-active-learning---unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#active-learning---unix-streams-pipes-scripts"><span class="header-section-number">4.17.3</span> Active Learning - Unix: Streams, Pipes, Scripts</a></li>
+  <li><a href="#required-reading---unix-streams-pipes-scripts" id="toc-required-reading---unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#required-reading---unix-streams-pipes-scripts"><span class="header-section-number">4.17.4</span> Required Reading - Unix: Streams, Pipes, Scripts</a></li>
+  <li><a href="#suggested-reading---unix-streams-pipes-scripts" id="toc-suggested-reading---unix-streams-pipes-scripts" class="nav-link" data-scroll-target="#suggested-reading---unix-streams-pipes-scripts"><span class="header-section-number">4.17.5</span> Suggested Reading - Unix: Streams, Pipes, Scripts</a></li>
   </ul></li>
   <li><a href="#genetic-data-structures" id="toc-genetic-data-structures" class="nav-link" data-scroll-target="#genetic-data-structures"><span class="header-section-number">4.18</span> Genetic Data Structures</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-15" id="toc-learning-objectives-15" class="nav-link" data-scroll-target="#learning-objectives-15"><span class="header-section-number">4.18.1</span> Learning Objectives</a></li>
-  <li><a href="#readings-4" id="toc-readings-4" class="nav-link" data-scroll-target="#readings-4"><span class="header-section-number">4.18.2</span> Readings</a></li>
+  <li><a href="#learning-objectives-13" id="toc-learning-objectives-13" class="nav-link" data-scroll-target="#learning-objectives-13"><span class="header-section-number">4.18.1</span> Learning Objectives</a></li>
+  <li><a href="#readings-2" id="toc-readings-2" class="nav-link" data-scroll-target="#readings-2"><span class="header-section-number">4.18.2</span> Readings</a></li>
   </ul></li>
   <li><a href="#plink-i" id="toc-plink-i" class="nav-link" data-scroll-target="#plink-i"><span class="header-section-number">4.19</span> PLINK I</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-16" id="toc-learning-objectives-16" class="nav-link" data-scroll-target="#learning-objectives-16"><span class="header-section-number">4.19.1</span> Learning Objectives</a></li>
-  <li><a href="#readings-5" id="toc-readings-5" class="nav-link" data-scroll-target="#readings-5"><span class="header-section-number">4.19.2</span> Readings</a></li>
+  <li><a href="#learning-objectives-14" id="toc-learning-objectives-14" class="nav-link" data-scroll-target="#learning-objectives-14"><span class="header-section-number">4.19.1</span> Learning Objectives</a></li>
+  <li><a href="#readings-3" id="toc-readings-3" class="nav-link" data-scroll-target="#readings-3"><span class="header-section-number">4.19.2</span> Readings</a></li>
   </ul></li>
   <li><a href="#plink-ii" id="toc-plink-ii" class="nav-link" data-scroll-target="#plink-ii"><span class="header-section-number">4.20</span> PLINK II</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-17" id="toc-learning-objectives-17" class="nav-link" data-scroll-target="#learning-objectives-17"><span class="header-section-number">4.20.1</span> Learning Objectives</a></li>
+  <li><a href="#learning-objectives-15" id="toc-learning-objectives-15" class="nav-link" data-scroll-target="#learning-objectives-15"><span class="header-section-number">4.20.1</span> Learning Objectives</a></li>
   </ul></li>
   <li><a href="#plink-computer-lab" id="toc-plink-computer-lab" class="nav-link" data-scroll-target="#plink-computer-lab"><span class="header-section-number">4.21</span> PLINK Computer Lab</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-18" id="toc-learning-objectives-18" class="nav-link" data-scroll-target="#learning-objectives-18"><span class="header-section-number">4.21.1</span> Learning Objectives</a></li>
+  <li><a href="#learning-objectives-16" id="toc-learning-objectives-16" class="nav-link" data-scroll-target="#learning-objectives-16"><span class="header-section-number">4.21.1</span> Learning Objectives</a></li>
   </ul></li>
   <li><a href="#unix-data-manipulation" id="toc-unix-data-manipulation" class="nav-link" data-scroll-target="#unix-data-manipulation"><span class="header-section-number">4.22</span> Unix: Data Manipulation</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-19" id="toc-learning-objectives-19" class="nav-link" data-scroll-target="#learning-objectives-19"><span class="header-section-number">4.22.1</span> Learning Objectives</a></li>
-  <li><a href="#readings-6" id="toc-readings-6" class="nav-link" data-scroll-target="#readings-6"><span class="header-section-number">4.22.2</span> Readings</a></li>
+  <li><a href="#learning-objectives---unix-data-manipulation" id="toc-learning-objectives---unix-data-manipulation" class="nav-link" data-scroll-target="#learning-objectives---unix-data-manipulation"><span class="header-section-number">4.22.1</span> Learning Objectives - Unix: Data Manipulation</a></li>
+  <li><a href="#preparation---unix-data-manipulation" id="toc-preparation---unix-data-manipulation" class="nav-link" data-scroll-target="#preparation---unix-data-manipulation"><span class="header-section-number">4.22.2</span> Preparation - Unix: Data Manipulation</a></li>
+  <li><a href="#active-learning---unix-data-manipulation" id="toc-active-learning---unix-data-manipulation" class="nav-link" data-scroll-target="#active-learning---unix-data-manipulation"><span class="header-section-number">4.22.3</span> Active Learning - Unix: Data Manipulation</a></li>
+  <li><a href="#required-reading---unix-data-manipulation" id="toc-required-reading---unix-data-manipulation" class="nav-link" data-scroll-target="#required-reading---unix-data-manipulation"><span class="header-section-number">4.22.4</span> Required Reading - Unix: Data Manipulation</a></li>
+  <li><a href="#suggested-reading---unix-data-manipulation" id="toc-suggested-reading---unix-data-manipulation" class="nav-link" data-scroll-target="#suggested-reading---unix-data-manipulation"><span class="header-section-number">4.22.5</span> Suggested Reading - Unix: Data Manipulation</a></li>
   </ul></li>
-  <li><a href="#unix-pipes-parallelization" id="toc-unix-pipes-parallelization" class="nav-link" data-scroll-target="#unix-pipes-parallelization"><span class="header-section-number">4.23</span> Unix: Pipes &amp; Parallelization</a>
+  <li><a href="#unix-miscellaneous" id="toc-unix-miscellaneous" class="nav-link" data-scroll-target="#unix-miscellaneous"><span class="header-section-number">4.23</span> Unix: Miscellaneous</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-20" id="toc-learning-objectives-20" class="nav-link" data-scroll-target="#learning-objectives-20"><span class="header-section-number">4.23.1</span> Learning Objectives</a></li>
-  <li><a href="#active-learning-12" id="toc-active-learning-12" class="nav-link" data-scroll-target="#active-learning-12"><span class="header-section-number">4.23.2</span> Active Learning:</a></li>
-  <li><a href="#readings-7" id="toc-readings-7" class="nav-link" data-scroll-target="#readings-7"><span class="header-section-number">4.23.3</span> Readings</a></li>
+  <li><a href="#learning-objectives---unix-miscellaneous" id="toc-learning-objectives---unix-miscellaneous" class="nav-link" data-scroll-target="#learning-objectives---unix-miscellaneous"><span class="header-section-number">4.23.1</span> Learning Objectives - Unix: Miscellaneous</a></li>
+  <li><a href="#preparation---unix-miscellaneous" id="toc-preparation---unix-miscellaneous" class="nav-link" data-scroll-target="#preparation---unix-miscellaneous"><span class="header-section-number">4.23.2</span> Preparation - Unix: Miscellaneous</a></li>
+  <li><a href="#active-learning---unix-miscellaneous" id="toc-active-learning---unix-miscellaneous" class="nav-link" data-scroll-target="#active-learning---unix-miscellaneous"><span class="header-section-number">4.23.3</span> Active Learning - Unix: Miscellaneous</a></li>
+  <li><a href="#required-reading---unix-miscellaneous" id="toc-required-reading---unix-miscellaneous" class="nav-link" data-scroll-target="#required-reading---unix-miscellaneous"><span class="header-section-number">4.23.4</span> Required Reading - Unix: Miscellaneous</a></li>
+  <li><a href="#suggested-reading---unix-miscellaneous" id="toc-suggested-reading---unix-miscellaneous" class="nav-link" data-scroll-target="#suggested-reading---unix-miscellaneous"><span class="header-section-number">4.23.5</span> Suggested Reading - Unix: Miscellaneous</a></li>
   </ul></li>
-  <li><a href="#unix-scripting-control-structures-and-variables" id="toc-unix-scripting-control-structures-and-variables" class="nav-link" data-scroll-target="#unix-scripting-control-structures-and-variables"><span class="header-section-number">4.24</span> Unix: Scripting, Control Structures and Variables</a>
+  <li><a href="#unix-scripting" id="toc-unix-scripting" class="nav-link" data-scroll-target="#unix-scripting"><span class="header-section-number">4.24</span> Unix: Scripting</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-21" id="toc-learning-objectives-21" class="nav-link" data-scroll-target="#learning-objectives-21"><span class="header-section-number">4.24.1</span> Learning Objectives</a></li>
-  <li><a href="#active-learning-13" id="toc-active-learning-13" class="nav-link" data-scroll-target="#active-learning-13"><span class="header-section-number">4.24.2</span> Active Learning:</a></li>
-  <li><a href="#readings-8" id="toc-readings-8" class="nav-link" data-scroll-target="#readings-8"><span class="header-section-number">4.24.3</span> Readings</a></li>
+  <li><a href="#learning-objectives---unix-scripting" id="toc-learning-objectives---unix-scripting" class="nav-link" data-scroll-target="#learning-objectives---unix-scripting"><span class="header-section-number">4.24.1</span> Learning Objectives - Unix: Scripting</a></li>
+  <li><a href="#preparation---unix-scripting" id="toc-preparation---unix-scripting" class="nav-link" data-scroll-target="#preparation---unix-scripting"><span class="header-section-number">4.24.2</span> Preparation - Unix: Scripting</a></li>
+  <li><a href="#active-learning---unix-scripting" id="toc-active-learning---unix-scripting" class="nav-link" data-scroll-target="#active-learning---unix-scripting"><span class="header-section-number">4.24.3</span> Active Learning - Unix: Scripting</a></li>
+  <li><a href="#required-reading---unix-scripting" id="toc-required-reading---unix-scripting" class="nav-link" data-scroll-target="#required-reading---unix-scripting"><span class="header-section-number">4.24.4</span> Required Reading - Unix: Scripting</a></li>
+  <li><a href="#suggested-reading---unix-scripting" id="toc-suggested-reading---unix-scripting" class="nav-link" data-scroll-target="#suggested-reading---unix-scripting"><span class="header-section-number">4.24.5</span> Suggested Reading - Unix: Scripting</a></li>
   </ul></li>
   <li><a href="#vcf-bcftools-vcftools" id="toc-vcf-bcftools-vcftools" class="nav-link" data-scroll-target="#vcf-bcftools-vcftools"><span class="header-section-number">4.25</span> VCF, bcftools, vcftools</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-22" id="toc-learning-objectives-22" class="nav-link" data-scroll-target="#learning-objectives-22"><span class="header-section-number">4.25.1</span> Learning Objectives</a></li>
+  <li><a href="#learning-objectives-17" id="toc-learning-objectives-17" class="nav-link" data-scroll-target="#learning-objectives-17"><span class="header-section-number">4.25.1</span> Learning Objectives</a></li>
   </ul></li>
   <li><a href="#sam-samtools" id="toc-sam-samtools" class="nav-link" data-scroll-target="#sam-samtools"><span class="header-section-number">4.26</span> SAM &amp; samtools</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-23" id="toc-learning-objectives-23" class="nav-link" data-scroll-target="#learning-objectives-23"><span class="header-section-number">4.26.1</span> Learning Objectives</a></li>
-  <li><a href="#readings-9" id="toc-readings-9" class="nav-link" data-scroll-target="#readings-9"><span class="header-section-number">4.26.2</span> Readings</a></li>
+  <li><a href="#learning-objectives-18" id="toc-learning-objectives-18" class="nav-link" data-scroll-target="#learning-objectives-18"><span class="header-section-number">4.26.1</span> Learning Objectives</a></li>
+  <li><a href="#readings-4" id="toc-readings-4" class="nav-link" data-scroll-target="#readings-4"><span class="header-section-number">4.26.2</span> Readings</a></li>
   </ul></li>
   <li><a href="#genetic-data-in-r-gds" id="toc-genetic-data-in-r-gds" class="nav-link" data-scroll-target="#genetic-data-in-r-gds"><span class="header-section-number">4.27</span> Genetic Data in R, GDS</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives-24" id="toc-learning-objectives-24" class="nav-link" data-scroll-target="#learning-objectives-24"><span class="header-section-number">4.27.1</span> Learning Objectives</a></li>
-  <li><a href="#active-learning-14" id="toc-active-learning-14" class="nav-link" data-scroll-target="#active-learning-14"><span class="header-section-number">4.27.2</span> Active Learning:</a></li>
-  <li><a href="#readings-10" id="toc-readings-10" class="nav-link" data-scroll-target="#readings-10"><span class="header-section-number">4.27.3</span> Readings</a></li>
+  <li><a href="#learning-objectives---genetic-data-in-r-gds" id="toc-learning-objectives---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#learning-objectives---genetic-data-in-r-gds"><span class="header-section-number">4.27.1</span> Learning Objectives - Genetic Data in R, GDS</a></li>
+  <li><a href="#preparation---genetic-data-in-r-gds" id="toc-preparation---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#preparation---genetic-data-in-r-gds"><span class="header-section-number">4.27.2</span> Preparation - Genetic Data in R, GDS</a></li>
+  <li><a href="#active-learning---genetic-data-in-r-gds" id="toc-active-learning---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#active-learning---genetic-data-in-r-gds"><span class="header-section-number">4.27.3</span> Active Learning - Genetic Data in R, GDS</a></li>
+  <li><a href="#required-reading---genetic-data-in-r-gds" id="toc-required-reading---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#required-reading---genetic-data-in-r-gds"><span class="header-section-number">4.27.4</span> Required Reading - Genetic Data in R, GDS</a></li>
+  <li><a href="#suggested-reading---genetic-data-in-r-gds" id="toc-suggested-reading---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#suggested-reading---genetic-data-in-r-gds"><span class="header-section-number">4.27.5</span> Suggested Reading - Genetic Data in R, GDS</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -875,53 +889,78 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <p>Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591–602. PMID: 20718045 DOI: <a href="https://doi.org/10.1002/gepi.20516" class="uri">https://doi.org/10.1002/gepi.20516</a></p>
 </section>
 </section>
-<section id="unix-basics-streams-redirection-pipe" class="level2" data-number="4.16">
-<h2 data-number="4.16" class="anchored" data-anchor-id="unix-basics-streams-redirection-pipe"><span class="header-section-number">4.16</span> Unix: Basics, Streams, Redirection, &amp; Pipe</h2>
-<section id="learning-objectives-13" class="level3" data-number="4.16.1">
-<h3 data-number="4.16.1" class="anchored" data-anchor-id="learning-objectives-13"><span class="header-section-number">4.16.1</span> Learning Objectives</h3>
+<section id="unix-basics" class="level2" data-number="4.16">
+<h2 data-number="4.16" class="anchored" data-anchor-id="unix-basics"><span class="header-section-number">4.16</span> Unix: Basics</h2>
+<section id="learning-objectives---unix-basics" class="level3" data-number="4.16.1">
+<h3 data-number="4.16.1" class="anchored" data-anchor-id="learning-objectives---unix-basics"><span class="header-section-number">4.16.1</span> Learning Objectives - Unix: Basics</h3>
 <ul>
 <li>To learn basic Unix commands</li>
-<li>To learn how streams operate in Unix</li>
-<li>To learn out to pass streamed data from program to program in Unix</li>
 </ul>
 </section>
-<section id="readings-2" class="level3" data-number="4.16.2">
-<h3 data-number="4.16.2" class="anchored" data-anchor-id="readings-2"><span class="header-section-number">4.16.2</span> Readings</h3>
-<p>Buffalo (2015) Chapter 3</p>
-<p>“Chapter 43: Redirecting Input and Output” in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O’Reilly, Mike Loukides. Published by O’Reilly Media, Inc.&nbsp;<a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236" class="uri">https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236</a></p>
-<p>Terminus, a web-based game for learning and practicing basic UNIX commands <a href="https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html" class="uri">https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html</a></p>
-</section>
-</section>
-<section id="unix-interacting-with-processes-cluster-jobs-shell-scripting" class="level2" data-number="4.17">
-<h2 data-number="4.17" class="anchored" data-anchor-id="unix-interacting-with-processes-cluster-jobs-shell-scripting"><span class="header-section-number">4.17</span> Unix: Interacting with Processes, Cluster Jobs, Shell Scripting</h2>
-<section id="learning-objectives-14" class="level3" data-number="4.17.1">
-<h3 data-number="4.17.1" class="anchored" data-anchor-id="learning-objectives-14"><span class="header-section-number">4.17.1</span> Learning Objectives</h3>
+<section id="preparation---unix-basics" class="level3" data-number="4.16.2">
+<h3 data-number="4.16.2" class="anchored" data-anchor-id="preparation---unix-basics"><span class="header-section-number">4.16.2</span> Preparation - Unix: Basics</h3>
 <ul>
-<li>To learn how to interact with running processes</li>
-<li>To learn about the cluster and how to submit jobs there</li>
-<li>To learn how to write a script that can run in Unix</li>
+<li><p>Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises</p></li>
+<li><p>Make sure you’ve done the Unix setup homework assignment; for the in-class exercises you will need to connect to htc and use git there</p></li>
 </ul>
 </section>
-<section id="active-learning-11" class="level3" data-number="4.17.2">
-<h3 data-number="4.17.2" class="anchored" data-anchor-id="active-learning-11"><span class="header-section-number">4.17.2</span> Active Learning:</h3>
+<section id="active-learning---unix-basics" class="level3" data-number="4.16.3">
+<h3 data-number="4.16.3" class="anchored" data-anchor-id="active-learning---unix-basics"><span class="header-section-number">4.16.3</span> Active Learning - Unix: Basics</h3>
 <p>Software Carpentry Unix Shell intro parts 1-3 <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></p>
 </section>
-<section id="readings-3" class="level3" data-number="4.17.3">
-<h3 data-number="4.17.3" class="anchored" data-anchor-id="readings-3"><span class="header-section-number">4.17.3</span> Readings</h3>
-<p>Buffalo (2015) Chapter 7 up to the start of “Sorting Plain-Text Data with Sort” section.</p>
-<p>Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (<a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a>)</p>
+<section id="required-reading---unix-basics" class="level3" data-number="4.16.4">
+<h3 data-number="4.16.4" class="anchored" data-anchor-id="required-reading---unix-basics"><span class="header-section-number">4.16.4</span> Required Reading - Unix: Basics</h3>
+<p>See Active Learning.</p>
+</section>
+<section id="suggested-reading---unix-basics" class="level3" data-number="4.16.5">
+<h3 data-number="4.16.5" class="anchored" data-anchor-id="suggested-reading---unix-basics"><span class="header-section-number">4.16.5</span> Suggested Reading - Unix: Basics</h3>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a> Chapter 2. Setting up and managing a bioinformatics project.</p>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 3. Remedial Unix Shell (beginning of chapter up to and not including “working with streams and redirection”)</p>
+<p>Terminus, a web-based game for learning and practicing basic Unix commands <a href="https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html" class="uri">https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html</a></p>
+<p>“Chapter 43: Redirecting Input and Output” in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O’Reilly, Mike Loukides. Published by O’Reilly Media, Inc.&nbsp;<a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236" class="uri">https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236</a></p>
+</section>
+</section>
+<section id="unix-streams-pipes-scripts" class="level2" data-number="4.17">
+<h2 data-number="4.17" class="anchored" data-anchor-id="unix-streams-pipes-scripts"><span class="header-section-number">4.17</span> Unix: Streams, Pipes, Scripts</h2>
+<section id="learning-objectives---unix-streams-pipes-scripts" class="level3" data-number="4.17.1">
+<h3 data-number="4.17.1" class="anchored" data-anchor-id="learning-objectives---unix-streams-pipes-scripts"><span class="header-section-number">4.17.1</span> Learning Objectives - Unix: Streams, Pipes, Scripts</h3>
+<ul>
+<li>To learn how streams operate in Unix</li>
+<li>To learn out to pass streamed data from program to program in Unix</li>
+<li>To learn how to interact with running processes</li>
+<li>To learn how to write a script that can run in Unix</li>
+<li>To learn about the cluster and how to submit jobs there</li>
+</ul>
+</section>
+<section id="preparation---unix-streams-pipes-scripts" class="level3" data-number="4.17.2">
+<h3 data-number="4.17.2" class="anchored" data-anchor-id="preparation---unix-streams-pipes-scripts"><span class="header-section-number">4.17.2</span> Preparation - Unix: Streams, Pipes, Scripts</h3>
+<ul>
+<li>Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises</li>
+</ul>
+</section>
+<section id="active-learning---unix-streams-pipes-scripts" class="level3" data-number="4.17.3">
+<h3 data-number="4.17.3" class="anchored" data-anchor-id="active-learning---unix-streams-pipes-scripts"><span class="header-section-number">4.17.3</span> Active Learning - Unix: Streams, Pipes, Scripts</h3>
+<p>Software Carpentry Unix Shell intro parts 4 and 6 <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></p>
+</section>
+<section id="required-reading---unix-streams-pipes-scripts" class="level3" data-number="4.17.4">
+<h3 data-number="4.17.4" class="anchored" data-anchor-id="required-reading---unix-streams-pipes-scripts"><span class="header-section-number">4.17.4</span> Required Reading - Unix: Streams, Pipes, Scripts</h3>
+<p>See Active Learning.</p>
+</section>
+<section id="suggested-reading---unix-streams-pipes-scripts" class="level3" data-number="4.17.5">
+<h3 data-number="4.17.5" class="anchored" data-anchor-id="suggested-reading---unix-streams-pipes-scripts"><span class="header-section-number">4.17.5</span> Suggested Reading - Unix: Streams, Pipes, Scripts</h3>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 3. Remedial Unix Shell (from “working with streams and redirection” to and not including “command substitution”)</p>
 </section>
 </section>
 <section id="genetic-data-structures" class="level2" data-number="4.18">
 <h2 data-number="4.18" class="anchored" data-anchor-id="genetic-data-structures"><span class="header-section-number">4.18</span> Genetic Data Structures</h2>
-<section id="learning-objectives-15" class="level3" data-number="4.18.1">
-<h3 data-number="4.18.1" class="anchored" data-anchor-id="learning-objectives-15"><span class="header-section-number">4.18.1</span> Learning Objectives</h3>
+<section id="learning-objectives-13" class="level3" data-number="4.18.1">
+<h3 data-number="4.18.1" class="anchored" data-anchor-id="learning-objectives-13"><span class="header-section-number">4.18.1</span> Learning Objectives</h3>
 <ul>
 <li>To learn about what genetic data is stored and principles for storing it</li>
 </ul>
 </section>
-<section id="readings-4" class="level3" data-number="4.18.2">
-<h3 data-number="4.18.2" class="anchored" data-anchor-id="readings-4"><span class="header-section-number">4.18.2</span> Readings</h3>
+<section id="readings-2" class="level3" data-number="4.18.2">
+<h3 data-number="4.18.2" class="anchored" data-anchor-id="readings-2"><span class="header-section-number">4.18.2</span> Readings</h3>
 <p>Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture’s folder)</p>
 <p>Bennett RL, Steinhaus KA, Uhrich SB, O’Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <a href="https://doi.org/10.1007/BF01408073" class="uri">https://doi.org/10.1007/BF01408073</a>. PMID: 24234481.</p>
 <p>Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <a href="https://doi.org/10.1007/s10897-008-9169-9" class="uri">https://doi.org/10.1007/s10897-008-9169-9</a>. Epub 2008 Sep 16. PMID: 18792771.</p>
@@ -930,24 +969,24 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 </section>
 <section id="plink-i" class="level2" data-number="4.19">
 <h2 data-number="4.19" class="anchored" data-anchor-id="plink-i"><span class="header-section-number">4.19</span> PLINK I</h2>
-<section id="learning-objectives-16" class="level3" data-number="4.19.1">
-<h3 data-number="4.19.1" class="anchored" data-anchor-id="learning-objectives-16"><span class="header-section-number">4.19.1</span> Learning Objectives</h3>
+<section id="learning-objectives-14" class="level3" data-number="4.19.1">
+<h3 data-number="4.19.1" class="anchored" data-anchor-id="learning-objectives-14"><span class="header-section-number">4.19.1</span> Learning Objectives</h3>
 <ul>
 <li>Describe PLINK formats</li>
 <li>Create PLINK datafiles</li>
 <li>Use PLINK to perform genetic association testing</li>
 </ul>
 </section>
-<section id="readings-5" class="level3" data-number="4.19.2">
-<h3 data-number="4.19.2" class="anchored" data-anchor-id="readings-5"><span class="header-section-number">4.19.2</span> Readings</h3>
+<section id="readings-3" class="level3" data-number="4.19.2">
+<h3 data-number="4.19.2" class="anchored" data-anchor-id="readings-3"><span class="header-section-number">4.19.2</span> Readings</h3>
 <p>Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <a href="https://doi.org/10.1002/mpr.1608" class="uri">https://doi.org/10.1002/mpr.1608</a></p>
 <p><a href="https://github.com/MareesAT/GWA_tutorial/" class="uri">https://github.com/MareesAT/GWA_tutorial/</a></p>
 </section>
 </section>
 <section id="plink-ii" class="level2" data-number="4.20">
 <h2 data-number="4.20" class="anchored" data-anchor-id="plink-ii"><span class="header-section-number">4.20</span> PLINK II</h2>
-<section id="learning-objectives-17" class="level3" data-number="4.20.1">
-<h3 data-number="4.20.1" class="anchored" data-anchor-id="learning-objectives-17"><span class="header-section-number">4.20.1</span> Learning Objectives</h3>
+<section id="learning-objectives-15" class="level3" data-number="4.20.1">
+<h3 data-number="4.20.1" class="anchored" data-anchor-id="learning-objectives-15"><span class="header-section-number">4.20.1</span> Learning Objectives</h3>
 <ul>
 <li>To learn how to use PLINK to manipulate data files</li>
 </ul>
@@ -955,8 +994,8 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 </section>
 <section id="plink-computer-lab" class="level2" data-number="4.21">
 <h2 data-number="4.21" class="anchored" data-anchor-id="plink-computer-lab"><span class="header-section-number">4.21</span> PLINK Computer Lab</h2>
-<section id="learning-objectives-18" class="level3" data-number="4.21.1">
-<h3 data-number="4.21.1" class="anchored" data-anchor-id="learning-objectives-18"><span class="header-section-number">4.21.1</span> Learning Objectives</h3>
+<section id="learning-objectives-16" class="level3" data-number="4.21.1">
+<h3 data-number="4.21.1" class="anchored" data-anchor-id="learning-objectives-16"><span class="header-section-number">4.21.1</span> Learning Objectives</h3>
 <ul>
 <li>To practice using PLINK to manipulate data files</li>
 </ul>
@@ -964,57 +1003,88 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 </section>
 <section id="unix-data-manipulation" class="level2" data-number="4.22">
 <h2 data-number="4.22" class="anchored" data-anchor-id="unix-data-manipulation"><span class="header-section-number">4.22</span> Unix: Data Manipulation</h2>
-<section id="learning-objectives-19" class="level3" data-number="4.22.1">
-<h3 data-number="4.22.1" class="anchored" data-anchor-id="learning-objectives-19"><span class="header-section-number">4.22.1</span> Learning Objectives</h3>
+<section id="learning-objectives---unix-data-manipulation" class="level3" data-number="4.22.1">
+<h3 data-number="4.22.1" class="anchored" data-anchor-id="learning-objectives---unix-data-manipulation"><span class="header-section-number">4.22.1</span> Learning Objectives - Unix: Data Manipulation</h3>
 <ul>
 <li>To learn Unix tools like sed and awk that can be used to manipulate data</li>
 </ul>
 </section>
-<section id="readings-6" class="level3" data-number="4.22.2">
-<h3 data-number="4.22.2" class="anchored" data-anchor-id="readings-6"><span class="header-section-number">4.22.2</span> Readings</h3>
-<p>Buffalo (2015) Chapter 7 from the “Sorting Plain-Text Data with Sort” section on.</p>
+<section id="preparation---unix-data-manipulation" class="level3" data-number="4.22.2">
+<h3 data-number="4.22.2" class="anchored" data-anchor-id="preparation---unix-data-manipulation"><span class="header-section-number">4.22.2</span> Preparation - Unix: Data Manipulation</h3>
+<p>See Required Reading.</p>
+</section>
+<section id="active-learning---unix-data-manipulation" class="level3" data-number="4.22.3">
+<h3 data-number="4.22.3" class="anchored" data-anchor-id="active-learning---unix-data-manipulation"><span class="header-section-number">4.22.3</span> Active Learning - Unix: Data Manipulation</h3>
+<p>See Required Reading.</p>
+</section>
+<section id="required-reading---unix-data-manipulation" class="level3" data-number="4.22.4">
+<h3 data-number="4.22.4" class="anchored" data-anchor-id="required-reading---unix-data-manipulation"><span class="header-section-number">4.22.4</span> Required Reading - Unix: Data Manipulation</h3>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 7. Unix Data Tools (Beginning of chapter up to and including “Finding Unique values in Uniq”)</p>
+</section>
+<section id="suggested-reading---unix-data-manipulation" class="level3" data-number="4.22.5">
+<h3 data-number="4.22.5" class="anchored" data-anchor-id="suggested-reading---unix-data-manipulation"><span class="header-section-number">4.22.5</span> Suggested Reading - Unix: Data Manipulation</h3>
+<p>None.</p>
 </section>
 </section>
-<section id="unix-pipes-parallelization" class="level2" data-number="4.23">
-<h2 data-number="4.23" class="anchored" data-anchor-id="unix-pipes-parallelization"><span class="header-section-number">4.23</span> Unix: Pipes &amp; Parallelization</h2>
-<section id="learning-objectives-20" class="level3" data-number="4.23.1">
-<h3 data-number="4.23.1" class="anchored" data-anchor-id="learning-objectives-20"><span class="header-section-number">4.23.1</span> Learning Objectives</h3>
+<section id="unix-miscellaneous" class="level2" data-number="4.23">
+<h2 data-number="4.23" class="anchored" data-anchor-id="unix-miscellaneous"><span class="header-section-number">4.23</span> Unix: Miscellaneous</h2>
+<section id="learning-objectives---unix-miscellaneous" class="level3" data-number="4.23.1">
+<h3 data-number="4.23.1" class="anchored" data-anchor-id="learning-objectives---unix-miscellaneous"><span class="header-section-number">4.23.1</span> Learning Objectives - Unix: Miscellaneous</h3>
 <ul>
 <li>To learn to string programs together to process data</li>
 <li>To learn how to parallelize functions in Unix</li>
 </ul>
 </section>
-<section id="active-learning-12" class="level3" data-number="4.23.2">
-<h3 data-number="4.23.2" class="anchored" data-anchor-id="active-learning-12"><span class="header-section-number">4.23.2</span> Active Learning:</h3>
-<p>Software Carpentry Unix Shell intro part 4 <a href="https://swcarpentry.github.io/shell-novice/04-pipefilter.html" class="uri">https://swcarpentry.github.io/shell-novice/04-pipefilter.html</a></p>
+<section id="preparation---unix-miscellaneous" class="level3" data-number="4.23.2">
+<h3 data-number="4.23.2" class="anchored" data-anchor-id="preparation---unix-miscellaneous"><span class="header-section-number">4.23.2</span> Preparation - Unix: Miscellaneous</h3>
+<p>See Required Reading.</p>
 </section>
-<section id="readings-7" class="level3" data-number="4.23.3">
-<h3 data-number="4.23.3" class="anchored" data-anchor-id="readings-7"><span class="header-section-number">4.23.3</span> Readings</h3>
-<p>Buffalo (2015) Chapter 12: “Bioinformatics Shell Scripting, Writing Pipelines, and Parallelizing Tasks”</p>
+<section id="active-learning---unix-miscellaneous" class="level3" data-number="4.23.3">
+<h3 data-number="4.23.3" class="anchored" data-anchor-id="active-learning---unix-miscellaneous"><span class="header-section-number">4.23.3</span> Active Learning - Unix: Miscellaneous</h3>
+<p>See Required Reading.</p>
+</section>
+<section id="required-reading---unix-miscellaneous" class="level3" data-number="4.23.4">
+<h3 data-number="4.23.4" class="anchored" data-anchor-id="required-reading---unix-miscellaneous"><span class="header-section-number">4.23.4</span> Required Reading - Unix: Miscellaneous</h3>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 7. Unix Data Tools (“Join” through the end of the chapter)</p>
+</section>
+<section id="suggested-reading---unix-miscellaneous" class="level3" data-number="4.23.5">
+<h3 data-number="4.23.5" class="anchored" data-anchor-id="suggested-reading---unix-miscellaneous"><span class="header-section-number">4.23.5</span> Suggested Reading - Unix: Miscellaneous</h3>
+<p>None.</p>
 </section>
 </section>
-<section id="unix-scripting-control-structures-and-variables" class="level2" data-number="4.24">
-<h2 data-number="4.24" class="anchored" data-anchor-id="unix-scripting-control-structures-and-variables"><span class="header-section-number">4.24</span> Unix: Scripting, Control Structures and Variables</h2>
-<section id="learning-objectives-21" class="level3" data-number="4.24.1">
-<h3 data-number="4.24.1" class="anchored" data-anchor-id="learning-objectives-21"><span class="header-section-number">4.24.1</span> Learning Objectives</h3>
+<section id="unix-scripting" class="level2" data-number="4.24">
+<h2 data-number="4.24" class="anchored" data-anchor-id="unix-scripting"><span class="header-section-number">4.24</span> Unix: Scripting</h2>
+<section id="learning-objectives---unix-scripting" class="level3" data-number="4.24.1">
+<h3 data-number="4.24.1" class="anchored" data-anchor-id="learning-objectives---unix-scripting"><span class="header-section-number">4.24.1</span> Learning Objectives - Unix: Scripting</h3>
 <ul>
 <li>To learn how to use control structures in Unix scripting</li>
 <li>To learning how to use variables in Unix</li>
 </ul>
 </section>
-<section id="active-learning-13" class="level3" data-number="4.24.2">
-<h3 data-number="4.24.2" class="anchored" data-anchor-id="active-learning-13"><span class="header-section-number">4.24.2</span> Active Learning:</h3>
-<p>Software Carpentry Unix Shell intro parts 5-7 <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></p>
+<section id="preparation---unix-scripting" class="level3" data-number="4.24.2">
+<h3 data-number="4.24.2" class="anchored" data-anchor-id="preparation---unix-scripting"><span class="header-section-number">4.24.2</span> Preparation - Unix: Scripting</h3>
+<ul>
+<li>Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises</li>
+</ul>
 </section>
-<section id="readings-8" class="level3" data-number="4.24.3">
-<h3 data-number="4.24.3" class="anchored" data-anchor-id="readings-8"><span class="header-section-number">4.24.3</span> Readings</h3>
-<p>Software Carpentry Unix Shell intro parts 5-7 (<a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a>)</p>
+<section id="active-learning---unix-scripting" class="level3" data-number="4.24.3">
+<h3 data-number="4.24.3" class="anchored" data-anchor-id="active-learning---unix-scripting"><span class="header-section-number">4.24.3</span> Active Learning - Unix: Scripting</h3>
+<p>Software Carpentry Unix Shell intro parts 5 and 7 <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></p>
+</section>
+<section id="required-reading---unix-scripting" class="level3" data-number="4.24.4">
+<h3 data-number="4.24.4" class="anchored" data-anchor-id="required-reading---unix-scripting"><span class="header-section-number">4.24.4</span> Required Reading - Unix: Scripting</h3>
+<p>See Active Learning.</p>
+</section>
+<section id="suggested-reading---unix-scripting" class="level3" data-number="4.24.5">
+<h3 data-number="4.24.5" class="anchored" data-anchor-id="suggested-reading---unix-scripting"><span class="header-section-number">4.24.5</span> Suggested Reading - Unix: Scripting</h3>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 3. Remedial Unix Shell (“command substitution” through the end of the chapter.)</p>
+<p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 12. Bioinformatics Shell Scripting (entire chapter)</p>
 </section>
 </section>
 <section id="vcf-bcftools-vcftools" class="level2" data-number="4.25">
 <h2 data-number="4.25" class="anchored" data-anchor-id="vcf-bcftools-vcftools"><span class="header-section-number">4.25</span> VCF, bcftools, vcftools</h2>
-<section id="learning-objectives-22" class="level3" data-number="4.25.1">
-<h3 data-number="4.25.1" class="anchored" data-anchor-id="learning-objectives-22"><span class="header-section-number">4.25.1</span> Learning Objectives</h3>
+<section id="learning-objectives-17" class="level3" data-number="4.25.1">
+<h3 data-number="4.25.1" class="anchored" data-anchor-id="learning-objectives-17"><span class="header-section-number">4.25.1</span> Learning Objectives</h3>
 <ul>
 <li>To learn about VCF data format</li>
 <li>To learn about bcftools and vcftools for manipulating VCF files</li>
@@ -1023,15 +1093,15 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 </section>
 <section id="sam-samtools" class="level2" data-number="4.26">
 <h2 data-number="4.26" class="anchored" data-anchor-id="sam-samtools"><span class="header-section-number">4.26</span> SAM &amp; samtools</h2>
-<section id="learning-objectives-23" class="level3" data-number="4.26.1">
-<h3 data-number="4.26.1" class="anchored" data-anchor-id="learning-objectives-23"><span class="header-section-number">4.26.1</span> Learning Objectives</h3>
+<section id="learning-objectives-18" class="level3" data-number="4.26.1">
+<h3 data-number="4.26.1" class="anchored" data-anchor-id="learning-objectives-18"><span class="header-section-number">4.26.1</span> Learning Objectives</h3>
 <ul>
 <li>To learn about SAM data format for sequence data</li>
 <li>To learn about samtools to manipulate SAM data files</li>
 </ul>
 </section>
-<section id="readings-9" class="level3" data-number="4.26.2">
-<h3 data-number="4.26.2" class="anchored" data-anchor-id="readings-9"><span class="header-section-number">4.26.2</span> Readings</h3>
+<section id="readings-4" class="level3" data-number="4.26.2">
+<h3 data-number="4.26.2" class="anchored" data-anchor-id="readings-4"><span class="header-section-number">4.26.2</span> Readings</h3>
 <p>Buffalo Chapter 11 “Working with Alignment Data”</p>
 <p>Data Wrangling and Processing for Genomics <a href="https://data-lessons.github.io/wrangling-genomics/" class="uri">https://data-lessons.github.io/wrangling-genomics/</a></p>
 <p>Relevant links: The Sequence Alignment/Map Format Specification <a href="http://samtools.github.io/hts-specs/" class="uri">http://samtools.github.io/hts-specs/</a></p>
@@ -1039,20 +1109,28 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 </section>
 <section id="genetic-data-in-r-gds" class="level2" data-number="4.27">
 <h2 data-number="4.27" class="anchored" data-anchor-id="genetic-data-in-r-gds"><span class="header-section-number">4.27</span> Genetic Data in R, GDS</h2>
-<section id="learning-objectives-24" class="level3" data-number="4.27.1">
-<h3 data-number="4.27.1" class="anchored" data-anchor-id="learning-objectives-24"><span class="header-section-number">4.27.1</span> Learning Objectives</h3>
+<section id="learning-objectives---genetic-data-in-r-gds" class="level3" data-number="4.27.1">
+<h3 data-number="4.27.1" class="anchored" data-anchor-id="learning-objectives---genetic-data-in-r-gds"><span class="header-section-number">4.27.1</span> Learning Objectives - Genetic Data in R, GDS</h3>
 <ul>
 <li>To learn about data structures in R for storing genetic data</li>
 <li>To learn about the GDS format</li>
 </ul>
 </section>
-<section id="active-learning-14" class="level3" data-number="4.27.2">
-<h3 data-number="4.27.2" class="anchored" data-anchor-id="active-learning-14"><span class="header-section-number">4.27.2</span> Active Learning:</h3>
-<p><a href="https://uw-gac.github.io/topmed_workshop_2017/gds-format.html" class="uri">https://uw-gac.github.io/topmed_workshop_2017/gds-format.html</a> (Only 2.1 - Exploring a GDS file)</p>
+<section id="preparation---genetic-data-in-r-gds" class="level3" data-number="4.27.2">
+<h3 data-number="4.27.2" class="anchored" data-anchor-id="preparation---genetic-data-in-r-gds"><span class="header-section-number">4.27.2</span> Preparation - Genetic Data in R, GDS</h3>
+<p>See Required Reading.</p>
 </section>
-<section id="readings-10" class="level3" data-number="4.27.3">
-<h3 data-number="4.27.3" class="anchored" data-anchor-id="readings-10"><span class="header-section-number">4.27.3</span> Readings</h3>
+<section id="active-learning---genetic-data-in-r-gds" class="level3" data-number="4.27.3">
+<h3 data-number="4.27.3" class="anchored" data-anchor-id="active-learning---genetic-data-in-r-gds"><span class="header-section-number">4.27.3</span> Active Learning - Genetic Data in R, GDS</h3>
+<p>None. See Required Reading.</p>
+</section>
+<section id="required-reading---genetic-data-in-r-gds" class="level3" data-number="4.27.4">
+<h3 data-number="4.27.4" class="anchored" data-anchor-id="required-reading---genetic-data-in-r-gds"><span class="header-section-number">4.27.4</span> Required Reading - Genetic Data in R, GDS</h3>
 <p>Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/</a></p>
+</section>
+<section id="suggested-reading---genetic-data-in-r-gds" class="level3" data-number="4.27.5">
+<h3 data-number="4.27.5" class="anchored" data-anchor-id="suggested-reading---genetic-data-in-r-gds"><span class="header-section-number">4.27.5</span> Suggested Reading - Genetic Data in R, GDS</h3>
+<p>None</p>
 
 
 </section>

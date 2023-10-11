@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -740,17 +740,17 @@ Expand to see solution
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 21
 # Groups:   subject_id [1]
-  subject_id strata race  maternal_age_delivery case_control_status
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;               &lt;dbl&gt;
-1 SUBJ20         35 W                      29.4                   1
-2 SUBJ20         35 White                  29.4                   1
-# ℹ 16 more variables: prepregnancy_weight &lt;dbl&gt;, height &lt;dbl&gt;,
-#   prepregnancy_BMI &lt;dbl&gt;, gravidity &lt;dbl&gt;, parity &lt;dbl&gt;,
-#   gestationalage_delivery &lt;dbl&gt;, average_SBP_lt20weeks &lt;dbl&gt;,
-#   average_DBP_lt20weeks &lt;dbl&gt;, average_SBP_labor &lt;dbl&gt;,
-#   average_DBP_labor &lt;dbl&gt;, smoke_lifetime &lt;chr&gt;, baby_birthweight &lt;dbl&gt;,
-#   baby_sex &lt;chr&gt;, baby_birthweight_centile &lt;dbl&gt;, baby_SGA &lt;chr&gt;,
-#   placental_pathology &lt;chr&gt;</code></pre>
+  subject_id strata race  matern…¹ case_…² prepr…³ height prepr…⁴ gravi…⁵ parity
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 SUBJ20         35 W         29.4       1    244.   63.1    44.0       1      0
+2 SUBJ20         35 White     29.4       1    244.   63.1    44.0       1      0
+# … with 11 more variables: gestationalage_delivery &lt;dbl&gt;,
+#   average_SBP_lt20weeks &lt;dbl&gt;, average_DBP_lt20weeks &lt;dbl&gt;,
+#   average_SBP_labor &lt;dbl&gt;, average_DBP_labor &lt;dbl&gt;, smoke_lifetime &lt;chr&gt;,
+#   baby_birthweight &lt;dbl&gt;, baby_sex &lt;chr&gt;, baby_birthweight_centile &lt;dbl&gt;,
+#   baby_SGA &lt;chr&gt;, placental_pathology &lt;chr&gt;, and abbreviated variable names
+#   ¹​maternal_age_delivery, ²​case_control_status, ³​prepregnancy_weight,
+#   ⁴​prepregnancy_BMI, ⁵​gravidity</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ds.subj <span class="ot">&lt;-</span> ds.subj <span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(race <span class="sc">!=</span> <span class="st">"White"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -902,28 +902,28 @@ Expand to see solution
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profile_missing</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    feature num_missing pct_missing
-1                subject_id           2  0.03703704
-2                    strata           2  0.03703704
-3                      race           7  0.12962963
-4     maternal_age_delivery           6  0.11111111
-5       case_control_status           3  0.05555556
-6       prepregnancy_weight           5  0.09259259
-7                    height           5  0.09259259
-8          prepregnancy_BMI           4  0.07407407
-9                 gravidity           5  0.09259259
+1                subject_id           6  0.11111111
+2                    strata           5  0.09259259
+3                      race           2  0.03703704
+4     maternal_age_delivery           7  0.12962963
+5       case_control_status           5  0.09259259
+6       prepregnancy_weight           6  0.11111111
+7                    height           6  0.11111111
+8          prepregnancy_BMI           5  0.09259259
+9                 gravidity           7  0.12962963
 10                   parity           5  0.09259259
-11  gestationalage_delivery           7  0.12962963
-12    average_SBP_lt20weeks           7  0.12962963
-13    average_DBP_lt20weeks          11  0.20370370
-14        average_SBP_labor           6  0.11111111
-15        average_DBP_labor           5  0.09259259
-16           smoke_lifetime           6  0.11111111
-17         baby_birthweight           6  0.11111111
-18                 baby_sex           4  0.07407407
-19 baby_birthweight_centile           8  0.14814815
-20                 baby_SGA           6  0.11111111
-21      placental_pathology           2  0.03703704
-22                PE_status           6  0.11111111</code></pre>
+11  gestationalage_delivery           3  0.05555556
+12    average_SBP_lt20weeks           4  0.07407407
+13    average_DBP_lt20weeks           6  0.11111111
+14        average_SBP_labor           7  0.12962963
+15        average_DBP_labor           3  0.05555556
+16           smoke_lifetime           4  0.07407407
+17         baby_birthweight           8  0.14814815
+18                 baby_sex           6  0.11111111
+19 baby_birthweight_centile           5  0.09259259
+20                 baby_SGA           5  0.09259259
+21      placental_pathology           9  0.16666667
+22                PE_status           4  0.07407407</code></pre>
 </div>
 </div>
 <p>When there is some missing data, in addition to applying <code>plot_missing</code> and <code>profile_missing</code>, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.</p>
