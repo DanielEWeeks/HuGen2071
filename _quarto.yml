@@ -6,7 +6,7 @@ project:
   - coi-serviceworker.js
 book:
   title: HuGen2071 book
-  author: Daniel E. Weeks
+  author: Daniel E. Weeks and Jonathan Chernus
   date: today
   date-format: long
   chapters:
