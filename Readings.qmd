@@ -1,7 +1,7 @@
 ---
 editor: 
   mode: source
----  
+---
 
 # Active Learning and Readings
 
@@ -142,9 +142,7 @@ Read the chapter on "Strings" in "R for Data Science": <https://r4ds.hadley.nz/s
 
 ### Suggested Readings
 
-See the "String manipulation with stringr cheatsheet" at
-<https://rstudio.github.io/cheatsheets/html/strings.html>
-
+See the "String manipulation with stringr cheatsheet" at <https://rstudio.github.io/cheatsheets/html/strings.html>
 
 Buffalo (2015) Chapter 8 'R Language Basics' (Available online through PittCat+)
 
@@ -154,8 +152,7 @@ Read the 'Working with Strings' section at the end of the "Working with and Visu
 
 Read the chapter on "Strings" in "R for Data Science": <https://r4ds.hadley.nz/strings>
 
-Read the chapter on "Regular expressions" in "R for Data Science":
-<https://r4ds.hadley.nz/regexps>
+Read the chapter on "Regular expressions" in "R for Data Science": <https://r4ds.hadley.nz/regexps>
 
 Supplementary Reading: Spector (2008) Chapter 7
 
@@ -231,7 +228,6 @@ Recoding data: Pay particular attention to the `Recoding values` and `Creating n
 
 ### Suggested Readings
 
-
 Supplementary Reading: Spector (2008) Chapters 8 & 9
 
 ## R: Merging Data
@@ -270,17 +266,14 @@ Data visualization with ggplot2: <https://datacarpentry.org/R-ecology-lesson/04-
 
 To create the required data for this "Data visualization with ggplot2" exercise, run this code:
 
-```
-library(tidyverse)
-download.file(url = "https://ndownloader.figshare.com/files/2292169",
-              destfile = "portal_data_joined.csv")
-surveys <- read_csv("portal_data_joined.csv")              
-surveys_complete <- surveys %>%
-  filter(!is.na(weight),           # remove missing weight
-         !is.na(hindfoot_length),  # remove missing hindfoot_length
-         !is.na(sex))
-```
-
+    library(tidyverse)
+    download.file(url = "https://ndownloader.figshare.com/files/2292169",
+                  destfile = "portal_data_joined.csv")
+    surveys <- read_csv("portal_data_joined.csv")              
+    surveys_complete <- surveys %>%
+      filter(!is.na(weight),           # remove missing weight
+             !is.na(hindfoot_length),  # remove missing hindfoot_length
+             !is.na(sex))
 
 ### Suggested Readings
 
@@ -298,8 +291,7 @@ Supplementary Reading: Wickham (2009) Chapters 2 & 3
 
 ### Active Learning
 
-Exploratory analysis of RNAseq count data
-<https://tavareshugo.github.io/data-carpentry-rnaseq/02_rnaseq_exploratory.html>
+Exploratory analysis of RNAseq count data <https://tavareshugo.github.io/data-carpentry-rnaseq/02_rnaseq_exploratory.html>
 
 ### Readings
 
@@ -309,26 +301,23 @@ Suggested Reading: Buffalo (2015) Chapter 8 Sections: Exploring Data Visually wi
 
 ## R: Genomic Ranges; Interactive Graphics
 
-### Learning Objectives - Genomic Ranges 
+### Learning Objectives - Genomic Ranges
 
-- To learn about Genomic Ranges
-- To learn to use Genomic Ranges to annotate SNPs of interest
+-   To learn about Genomic Ranges
+-   To learn to use Genomic Ranges to annotate SNPs of interest
 
 ### Preparation - Genomic Ranges
 
-Before class, install these BioConductor packages: (1) `TxDb.Hsapiens.UCSC.hg19.knownGene`, and (2) `org.Hs.eg.db` 
+Before class, install these BioConductor packages: (1) `TxDb.Hsapiens.UCSC.hg19.knownGene`, and (2) `org.Hs.eg.db`
 
 To install these, use these commands:
 
-```
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+    if (!requireNamespace("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
 
-BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+    BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
 
-BiocManager::install("org.Hs.eg.db")
-```
-
+    BiocManager::install("org.Hs.eg.db")
 
 ### Required Reading - Genomic Ranges
 
@@ -336,27 +325,25 @@ An Introduction to Bioconductor's Packages for Working with Range Data
 
 <https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md>
 
-
 ### Active Learning - Genomic Ranges
 
 Working with genomics ranges
 
 <https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html>
 
-
 ### Suggested Readings - Genomic Ranges
 
 In "Bioinformatics Data Skills", see Chapter 9 "Working with Range Data"
 
-Bioinformatics Data Skills     
-Editor:  Vince Buffalo     
-Publisher: O’Reilly     
-Web access: [link](https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510)   
+Bioinformatics Data Skills\
+Editor: Vince Buffalo\
+Publisher: O'Reilly\
+Web access: [link](https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/i25aoe/cdi_askewsholts_vlebooks_9781449367510)
 
-Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.  
+Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.\
 [link](https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf)
 
-### Learning Objectives - Interactive Graphics 
+### Learning Objectives - Interactive Graphics
 
 -   To learn how to use interactive and dynamic graphics to explore your data more thoroughly
 -   To learn to use plotly
@@ -368,9 +355,6 @@ Create interactive ggplot2 graphs with plotly <https://www.littlemissdata.com/bl
 ## Suggested Reading - Interactive Graphics
 
 Wickham (2009) Chapters 2 & 3
-
-
-
 
 ## Data Quality Checking and Filters
 
@@ -384,39 +368,61 @@ Anderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data 
 
 Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: <https://doi.org/10.1002/gepi.20516>
 
-## Unix: Basics, Streams, Redirection, & Pipe
+## Unix: Basics
 
-### Learning Objectives
+### Learning Objectives - Unix: Basics
 
 -   To learn basic Unix commands
--   To learn how streams operate in Unix
--   To learn out to pass streamed data from program to program in Unix
 
-### Readings
+### Preparation - Unix: Basics
 
-Buffalo (2015) Chapter 3
+-   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
+ 
+-   Make sure you've done the Unix setup homework assignment; for the in-class exercises you will need to connect to htc and use git there
 
-"Chapter 43: Redirecting Input and Output" in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O'Reilly, Mike Loukides. Published by O'Reilly Media, Inc. <https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236>
-
-Terminus, a web-based game for learning and practicing basic UNIX commands <https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html>
-
-## Unix: Interacting with Processes, Cluster Jobs, Shell Scripting
-
-### Learning Objectives
-
--   To learn how to interact with running processes
--   To learn about the cluster and how to submit jobs there
--   To learn how to write a script that can run in Unix
-
-### Active Learning:
+### Active Learning - Unix: Basics
 
 Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/shell-novice/>
 
-### Readings
+### Required Reading - Unix: Basics
 
-Buffalo (2015) Chapter 7 up to the start of "Sorting Plain-Text Data with Sort" section.
+See Active Learning.
 
-Suggested Reading: Software Carpentry Unix Shell intro parts 1-3 (<https://swcarpentry.github.io/shell-novice/>)
+### Suggested Reading - Unix: Basics
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/) Chapter 2. Setting up and managing a bioinformatics project.
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 3. Remedial Unix Shell (beginning of chapter up to and not including "working with streams and redirection")
+
+Terminus, a web-based game for learning and practicing basic Unix commands <https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html>
+
+"Chapter 43: Redirecting Input and Output" in Unix Power Tools, 3rd Edition by Jerry Peek, Shelley Powers, Tim O'Reilly, Mike Loukides. Published by O'Reilly Media, Inc. <https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/e8h8hp/alma9998520758606236>
+
+## Unix: Streams, Pipes, Scripts
+
+### Learning Objectives - Unix: Streams, Pipes, Scripts
+
+-   To learn how streams operate in Unix
+-   To learn out to pass streamed data from program to program in Unix
+-   To learn how to interact with running processes
+-   To learn how to write a script that can run in Unix
+-   To learn about the cluster and how to submit jobs there
+
+### Preparation - Unix: Streams, Pipes, Scripts
+
+-   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
+
+### Active Learning - Unix: Streams, Pipes, Scripts
+
+Software Carpentry Unix Shell intro parts 4 and 6 <https://swcarpentry.github.io/shell-novice/>
+
+### Required Reading - Unix: Streams, Pipes, Scripts
+
+See Active Learning.
+
+### Suggested Reading - Unix: Streams, Pipes, Scripts
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 3. Remedial Unix Shell (from "working with streams and redirection" to and not including "command substitution")
 
 ## Genetic Data Structures
 
@@ -462,43 +468,74 @@ Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks E
 
 ## Unix: Data Manipulation
 
-### Learning Objectives
+### Learning Objectives - Unix: Data Manipulation
 
 -   To learn Unix tools like sed and awk that can be used to manipulate data
 
-### Readings
+### Preparation - Unix: Data Manipulation
 
-Buffalo (2015) Chapter 7 from the "Sorting Plain-Text Data with Sort" section on.
+See Required Reading.
 
-## Unix: Pipes & Parallelization
+### Active Learning - Unix: Data Manipulation
 
-### Learning Objectives
+See Required Reading.
+
+### Required Reading - Unix: Data Manipulation
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 7. Unix Data Tools (Beginning of chapter up to and including "Finding Unique values in Uniq")
+
+### Suggested Reading - Unix: Data Manipulation
+
+None.
+
+
+## Unix: Miscellaneous
+
+### Learning Objectives - Unix: Miscellaneous
 
 -   To learn to string programs together to process data
 -   To learn how to parallelize functions in Unix
 
-### Active Learning:
+### Preparation - Unix: Miscellaneous
 
-Software Carpentry Unix Shell intro part 4 <https://swcarpentry.github.io/shell-novice/04-pipefilter.html>
+See Required Reading.
 
-### Readings
+### Active Learning - Unix: Miscellaneous
 
-Buffalo (2015) Chapter 12: "Bioinformatics Shell Scripting, Writing Pipelines, and Parallelizing Tasks"
+See Required Reading.
 
-## Unix: Scripting, Control Structures and Variables
+### Required Reading - Unix: Miscellaneous
 
-### Learning Objectives
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 7. Unix Data Tools ("Join" through the end of the chapter)
+
+### Suggested Reading - Unix: Miscellaneous
+
+None.
+
+## Unix: Scripting
+
+### Learning Objectives - Unix: Scripting
 
 -   To learn how to use control structures in Unix scripting
 -   To learning how to use variables in Unix
 
-### Active Learning:
+### Preparation - Unix: Scripting
 
-Software Carpentry Unix Shell intro parts 5-7 <https://swcarpentry.github.io/shell-novice/>
+-   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
 
-### Readings
+### Active Learning - Unix: Scripting
 
-Software Carpentry Unix Shell intro parts 5-7 (<https://swcarpentry.github.io/shell-novice/>)
+Software Carpentry Unix Shell intro parts 5 and 7 <https://swcarpentry.github.io/shell-novice/>
+
+### Required Reading - Unix: Scripting
+
+See Active Learning.
+
+### Suggested Reading - Unix: Scripting
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 3. Remedial Unix Shell ("command substitution" through the end of the chapter.)
+
+[Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 12. Bioinformatics Shell Scripting (entire chapter)
 
 ## VCF, bcftools, vcftools
 
@@ -524,15 +561,23 @@ Relevant links: The Sequence Alignment/Map Format Specification <http://samtools
 
 ## Genetic Data in R, GDS
 
-### Learning Objectives
+### Learning Objectives - Genetic Data in R, GDS
 
 -   To learn about data structures in R for storing genetic data
 -   To learn about the GDS format
 
-### Active Learning:
+### Preparation - Genetic Data in R, GDS
 
-<https://uw-gac.github.io/topmed_workshop_2017/gds-format.html> (Only 2.1 - Exploring a GDS file)
+See Required Reading.
 
-### Readings
+### Active Learning - Genetic Data in R, GDS
+
+None. See Required Reading.
+
+### Required Reading - Genetic Data in R, GDS
 
 Zheng X, Gogarten SM, Lawrence M, Stilp A, Conomos MP, Weir BS, Laurie C, Levine D. SeqArray-a storage-efficient high-performance data format for WGS variant calls. Bioinformatics. 2017 Aug 1;33(15):2251-2257. doi: 10.1093/bioinformatics/btx145. PMID: 28334390; PMCID: PMC5860110. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860110/>
+
+### Suggested Reading - Genetic Data in R, GDS
+
+None
