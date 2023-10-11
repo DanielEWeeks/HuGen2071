@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -62,10 +62,18 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
   .monaco-editor pre {
     background-color: unset !important;
+  }
+
+  .qwebr-icon-status-spinner {
+    color: #7894c4;
+  }
+
+  .qwebr-icon-run-code {
+    color: #0d9c29
   }
 
   .btn-webr {
@@ -197,17 +205,24 @@ ul.task-list li input[type="checkbox"] {
 
   // Installing Packages
   if (showStartupMessage && setupRPackages) {
-    // If initialized, but we have packages to install switch status
-    startupMessageWebR.innerText = "🟡 Installing package dependencies..."
-    // Install packages
-    await globalThis.webR.installPackages(installRPackagesList)
-  }
 
-  // Switch to allowing code to be executed
-  document.querySelectorAll(".btn-webr").forEach((btn) => {
-    btn.innerText = "Run code";
-    btn.disabled = false;
-  });
+    // Determine number of packages to install
+    const nInstallPackages = installRPackagesList.length
+
+    // Iterate through list of packages
+    for (let i = 0; i < nInstallPackages; i++) {
+
+      // Retrieve the package
+      const activePackage = installRPackagesList[i];
+
+      // Update status of package installs
+      startupMessageWebR.innerHTML = `<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Installing ${i + 1} of ${nInstallPackages} packages: ${activePackage}</span>`;
+
+      // Install the package
+      await globalThis.webR.installPackages(activePackage)
+    }
+
+  }
 
   // Stop timer
   const initializeWebRTimerEnd = performance.now();
@@ -216,6 +231,13 @@ ul.task-list li input[type="checkbox"] {
     // If initialized, switch to a green light
     startupMessageWebR.innerText = "🟢 Ready!"
   }
+  
+  // Switch to allowing code to be executed
+  document.querySelectorAll(".btn-webr").forEach((btn) => {
+    btn.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
+    btn.disabled = false;
+  });
+
 </script>
 
 
@@ -566,7 +588,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="load-libraries" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">19.2</span> Load Libraries</h2>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">🟡 Loading
   webR...</button>
 <div id="webr-editor-1"></div>
 <div id="webr-code-output-1" aria-live="assertive">
@@ -616,6 +638,11 @@ ul.task-list li input[type="checkbox"] {
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -628,10 +655,38 @@ ul.task-list li input[type="checkbox"] {
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -651,8 +706,14 @@ ul.task-list li input[type="checkbox"] {
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -729,8 +790,15 @@ ul.task-list li input[type="checkbox"] {
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -743,7 +811,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="19.3" class="anchored" data-anchor-id="project-1-data"><span class="header-section-number">19.3</span> Project 1 Data</h2>
 <p>In the <code>ds</code> data frame we have the synthetic yet realistic data we will be using in Project 1.</p>
 <p>In the <code>dd</code> data frame we have the corresponding data dictionary.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">🟡 Loading
   webR...</button>
 <div id="webr-editor-2"></div>
 <div id="webr-code-output-2" aria-live="assertive">
@@ -800,6 +868,11 @@ names(dd)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -812,10 +885,38 @@ names(dd)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -835,8 +936,14 @@ names(dd)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -913,8 +1020,15 @@ names(dd)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -926,7 +1040,7 @@ names(dd)`,
 <section id="exercise-1-duplicated-values" class="level2" data-number="19.4">
 <h2 data-number="19.4" class="anchored" data-anchor-id="exercise-1-duplicated-values"><span class="header-section-number">19.4</span> Exercise 1: duplicated values</h2>
 <p><strong>Skill</strong>: Checking for duplicated IDs</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">🟡 Loading
   webR...</button>
 <div id="webr-editor-3"></div>
 <div id="webr-code-output-3" aria-live="assertive">
@@ -975,6 +1089,11 @@ names(dd)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -987,10 +1106,38 @@ names(dd)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1010,8 +1157,14 @@ names(dd)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1088,8 +1241,15 @@ names(dd)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1098,7 +1258,7 @@ names(dd)`,
   };
 </script>
 <p>Check if there are any duplicated <code>sample_id</code>’s using the <code>duplicated</code> command. If so, count how many duplicated <code>sample_id</code>’s there are.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">🟡 Loading
   webR...</button>
 <div id="webr-editor-4"></div>
 <div id="webr-code-output-4" aria-live="assertive">
@@ -1147,6 +1307,11 @@ names(dd)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -1159,10 +1324,38 @@ names(dd)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1182,8 +1375,14 @@ names(dd)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1260,8 +1459,15 @@ names(dd)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1281,7 +1487,7 @@ Expand to see solution
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">🟡 Loading
   webR...</button>
 <div id="webr-editor-5"></div>
 <div id="webr-code-output-5" aria-live="assertive">
@@ -1330,6 +1536,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -1342,10 +1553,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1365,8 +1604,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1443,8 +1688,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1456,7 +1708,7 @@ Expand to see solution
 </div>
 </div>
 <p>Construct a table of the number of times each <code>sample_id</code> is duplicated:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">🟡 Loading
   webR...</button>
 <div id="webr-editor-6"></div>
 <div id="webr-code-output-6" aria-live="assertive">
@@ -1505,6 +1757,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -1517,10 +1774,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1540,8 +1825,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1618,8 +1909,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1640,7 +1938,7 @@ Expand to see solution
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Note that it is important to be aware of missing IDs. So when constructing tables of counts using the <code>table</code> command, the <code>useNA</code> argument controls if the table includes counts of <code>NA</code> values.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">🟡 Loading
   webR...</button>
 <div id="webr-editor-7"></div>
 <div id="webr-code-output-7" aria-live="assertive">
@@ -1700,6 +1998,11 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -1712,10 +2015,38 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1735,8 +2066,14 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1813,8 +2150,15 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1823,7 +2167,7 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
   };
 </script>
 <p>How many <code>sample_id</code>’s are <code>NA</code>’s?</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">🟡 Loading
   webR...</button>
 <div id="webr-editor-8"></div>
 <div id="webr-code-output-8" aria-live="assertive">
@@ -1872,6 +2216,11 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -1884,10 +2233,38 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -1907,8 +2284,14 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -1985,8 +2368,15 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -1994,7 +2384,7 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
     executeCode(editor.getValue());
   };
 </script>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">🟡 Loading
   webR...</button>
 <div id="webr-editor-9"></div>
 <div id="webr-code-output-9" aria-live="assertive">
@@ -2044,6 +2434,11 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2056,10 +2451,38 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2079,8 +2502,14 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -2157,8 +2586,15 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -2170,7 +2606,7 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 </div>
 </div>
 <p>Check if there are any duplicated <code>subject_id</code>s</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">🟡 Loading
   webR...</button>
 <div id="webr-editor-10"></div>
 <div id="webr-code-output-10" aria-live="assertive">
@@ -2219,6 +2655,11 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2231,10 +2672,38 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2254,8 +2723,14 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -2332,8 +2807,15 @@ sum(duplicated(ds$sample_id, incomparables = NA))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -2354,7 +2836,7 @@ Expand to see solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We can check if there are any duplicated <code>subject_id</code>’s by counting how many duplicates there are.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">🟡 Loading
   webR...</button>
 <div id="webr-editor-11"></div>
 <div id="webr-code-output-11" aria-live="assertive">
@@ -2403,6 +2885,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2415,10 +2902,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2438,8 +2953,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -2516,8 +3037,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -2533,7 +3061,7 @@ Expand to see solution
 <h2 data-number="19.5" class="anchored" data-anchor-id="checking-for-duplicates"><span class="header-section-number">19.5</span> Checking for duplicates</h2>
 <p>How do we return every row that contains a duplicate?</p>
 <p>This approach only does not return every row that contains a duplicated <code>ID</code>:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">🟡 Loading
   webR...</button>
 <div id="webr-editor-12"></div>
 <div id="webr-code-output-12" aria-live="assertive">
@@ -2584,6 +3112,11 @@ f[duplicated(f$ID),]`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2596,10 +3129,38 @@ f[duplicated(f$ID),]`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2619,8 +3180,14 @@ f[duplicated(f$ID),]`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -2697,8 +3264,15 @@ f[duplicated(f$ID),]`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -2709,7 +3283,7 @@ f[duplicated(f$ID),]`,
 </section>
 <section id="counting-the-number-of-occurences-of-the-id" class="level2" data-number="19.6">
 <h2 data-number="19.6" class="anchored" data-anchor-id="counting-the-number-of-occurences-of-the-id"><span class="header-section-number">19.6</span> Counting the number of occurences of the ID</h2>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">🟡 Loading
   webR...</button>
 <div id="webr-editor-13"></div>
 <div id="webr-code-output-13" aria-live="assertive">
@@ -2759,6 +3333,11 @@ f %>% group_by(ID) %>% count()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2771,10 +3350,38 @@ f %>% group_by(ID) %>% count()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2794,8 +3401,14 @@ f %>% group_by(ID) %>% count()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -2872,8 +3485,15 @@ f %>% group_by(ID) %>% count()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -2885,7 +3505,7 @@ f %>% group_by(ID) %>% count()`,
 <section id="count-sample_id-duplicates" class="level2" data-number="19.7">
 <h2 data-number="19.7" class="anchored" data-anchor-id="count-sample_id-duplicates"><span class="header-section-number">19.7</span> Count <code>sample_id</code> duplicates</h2>
 <p>Using Tidyverse commands, count how many times each <code>sample_id</code> occcurs in the <code>ds</code> data frame, reporting the counts in descending order, from highest to lowest.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">🟡 Loading
   webR...</button>
 <div id="webr-editor-14"></div>
 <div id="webr-code-output-14" aria-live="assertive">
@@ -2934,6 +3554,11 @@ f %>% group_by(ID) %>% count()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -2946,10 +3571,38 @@ f %>% group_by(ID) %>% count()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -2969,8 +3622,14 @@ f %>% group_by(ID) %>% count()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3047,8 +3706,15 @@ f %>% group_by(ID) %>% count()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3068,7 +3734,7 @@ Expand to see solution
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">🟡 Loading
   webR...</button>
 <div id="webr-editor-15"></div>
 <div id="webr-code-output-15" aria-live="assertive">
@@ -3121,6 +3787,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -3133,10 +3804,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -3156,8 +3855,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3234,8 +3939,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3243,7 +3955,7 @@ Expand to see solution
     executeCode(editor.getValue());
   };
 </script>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">🟡 Loading
   webR...</button>
 <div id="webr-editor-16"></div>
 <div id="webr-code-output-16" aria-live="assertive">
@@ -3294,6 +4006,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -3306,10 +4023,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -3329,8 +4074,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3407,8 +4158,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3423,7 +4181,7 @@ Expand to see solution
 <section id="checking-for-duplicates-1" class="level2" data-number="19.8">
 <h2 data-number="19.8" class="anchored" data-anchor-id="checking-for-duplicates-1"><span class="header-section-number">19.8</span> Checking for duplicates</h2>
 <p>Here we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">🟡 Loading
   webR...</button>
 <div id="webr-editor-17"></div>
 <div id="webr-code-output-17" aria-live="assertive">
@@ -3472,6 +4230,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -3484,10 +4247,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -3507,8 +4298,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3585,8 +4382,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3597,7 +4401,7 @@ Expand to see solution
 <section id="how-to-list-all-duplicates" class="level3" data-number="19.8.1">
 <h3 data-number="19.8.1" class="anchored" data-anchor-id="how-to-list-all-duplicates"><span class="header-section-number">19.8.1</span> How to list all duplicates</h3>
 <p>Use Tidyverse commands to list (1) all duplicates for <code>sample_id</code> and (2) all duplicates for <code>subject_id</code>. Sort the results by the ID.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-18">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-18">🟡 Loading
   webR...</button>
 <div id="webr-editor-18"></div>
 <div id="webr-code-output-18" aria-live="assertive">
@@ -3646,6 +4450,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -3658,10 +4467,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -3681,8 +4518,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3759,8 +4602,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3782,7 +4632,7 @@ Expand to see solution
 <div class="callout-body-container callout-body">
 <section id="sample-id" class="level3" data-number="19.8.2">
 <h3 data-number="19.8.2" class="anchored" data-anchor-id="sample-id"><span class="header-section-number">19.8.2</span> Sample ID</h3>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-19">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-19">🟡 Loading
   webR...</button>
 <div id="webr-editor-19"></div>
 <div id="webr-code-output-19" aria-live="assertive">
@@ -3835,6 +4685,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -3847,10 +4702,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -3870,8 +4753,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -3948,8 +4837,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -3960,7 +4856,7 @@ Expand to see solution
 </section>
 <section id="subject-id" class="level3" data-number="19.8.3">
 <h3 data-number="19.8.3" class="anchored" data-anchor-id="subject-id"><span class="header-section-number">19.8.3</span> Subject ID</h3>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-20">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-20">🟡 Loading
   webR...</button>
 <div id="webr-editor-20"></div>
 <div id="webr-code-output-20" aria-live="assertive">
@@ -4017,6 +4913,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4029,10 +4930,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4052,8 +4981,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -4130,8 +5065,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -4149,7 +5091,7 @@ Expand to see solution
 <h2 data-number="19.9" class="anchored" data-anchor-id="exercise-2-reshaping-data"><span class="header-section-number">19.9</span> Exercise 2: Reshaping data</h2>
 <p><strong>Skill</strong>: Reshaping data</p>
 <p>Select only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”, and then reshape from ‘long’ format to ‘wide’ format using <code>pivot_wider</code>, taking time as the “Sample_trimester”.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-21">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-21">🟡 Loading
   webR...</button>
 <div id="webr-editor-21"></div>
 <div id="webr-code-output-21" aria-live="assertive">
@@ -4198,6 +5140,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4210,10 +5157,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4233,8 +5208,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -4311,8 +5292,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -4332,7 +5320,7 @@ Expand to see solution
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-22">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-22">🟡 Loading
   webR...</button>
 <div id="webr-editor-22"></div>
 <div id="webr-code-output-22" aria-live="assertive">
@@ -4387,6 +5375,11 @@ glimpse(b2[1,"1"])`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4399,10 +5392,38 @@ glimpse(b2[1,"1"])`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4422,8 +5443,14 @@ glimpse(b2[1,"1"])`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -4500,8 +5527,15 @@ glimpse(b2[1,"1"])`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -4521,7 +5555,7 @@ glimpse(b2[1,"1"])`,
 <h2 data-number="19.10" class="anchored" data-anchor-id="exercise-3-aggregating-data"><span class="header-section-number">19.10</span> Exercise 3: Aggregating data</h2>
 <p><strong>Skill</strong>: Aggregating data</p>
 <p>Make a table showing the proportion of blacks and whites that are controls and cases.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-23">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-23">🟡 Loading
   webR...</button>
 <div id="webr-editor-23"></div>
 <div id="webr-code-output-23" aria-live="assertive">
@@ -4570,6 +5604,11 @@ glimpse(b2[1,"1"])`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4582,10 +5621,38 @@ glimpse(b2[1,"1"])`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4605,8 +5672,14 @@ glimpse(b2[1,"1"])`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -4683,8 +5756,15 @@ glimpse(b2[1,"1"])`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -4704,7 +5784,7 @@ Expand to see solution
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-24">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-24">🟡 Loading
   webR...</button>
 <div id="webr-editor-24"></div>
 <div id="webr-code-output-24" aria-live="assertive">
@@ -4754,6 +5834,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4766,10 +5851,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4789,8 +5902,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -4867,8 +5986,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -4879,7 +6005,7 @@ Expand to see solution
 <section id="comment-1" class="level3" data-number="19.10.1">
 <h3 data-number="19.10.1" class="anchored" data-anchor-id="comment-1"><span class="header-section-number">19.10.1</span> Comment:</h3>
 <p>The <code>margin</code> parameter of the <code>prop.table</code> command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-25">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-25">🟡 Loading
   webR...</button>
 <div id="webr-editor-25"></div>
 <div id="webr-code-output-25" aria-live="assertive">
@@ -4929,6 +6055,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -4941,10 +6072,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -4964,8 +6123,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5042,8 +6207,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5051,7 +6223,7 @@ Expand to see solution
     executeCode(editor.getValue());
   };
 </script>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-26">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-26">🟡 Loading
   webR...</button>
 <div id="webr-editor-26"></div>
 <div id="webr-code-output-26" aria-live="assertive">
@@ -5100,6 +6272,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -5112,10 +6289,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -5135,8 +6340,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5213,8 +6424,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5227,7 +6445,7 @@ Expand to see solution
 </div>
 </div>
 <p>Construct more readable tables with labels using <code>xtabs</code></p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-27">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-27">🟡 Loading
   webR...</button>
 <div id="webr-editor-27"></div>
 <div id="webr-code-output-27" aria-live="assertive">
@@ -5276,6 +6494,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -5288,10 +6511,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -5311,8 +6562,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5389,8 +6646,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5411,7 +6675,7 @@ Expand to see solution
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <section id="xtabs-table-with-labels" class="level3 callout-body-container callout-body" data-number="19.10.2">
 <h3 data-number="19.10.2" class="anchored" data-anchor-id="xtabs-table-with-labels"><span class="header-section-number">19.10.2</span> <code>xtabs</code> table with labels</h3>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-28">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-28">🟡 Loading
   webR...</button>
 <div id="webr-editor-28"></div>
 <div id="webr-code-output-28" aria-live="assertive">
@@ -5461,6 +6725,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -5473,10 +6742,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -5496,8 +6793,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5574,8 +6877,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5587,7 +6897,7 @@ Expand to see solution
 </div>
 </div>
 <p>Create a count cross table using Tidyverse commands</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-29">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-29">🟡 Loading
   webR...</button>
 <div id="webr-editor-29"></div>
 <div id="webr-code-output-29" aria-live="assertive">
@@ -5636,6 +6946,11 @@ Expand to see solution
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -5648,10 +6963,38 @@ Expand to see solution
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -5671,8 +7014,14 @@ Expand to see solution
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5749,8 +7098,15 @@ Expand to see solution
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5770,7 +7126,7 @@ Expand to see solution
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-30">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-30">🟡 Loading
   webR...</button>
 <div id="webr-editor-30"></div>
 <div id="webr-code-output-30" aria-live="assertive">
@@ -5823,6 +7179,11 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -5835,10 +7196,38 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -5858,8 +7247,14 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -5936,8 +7331,15 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -5949,7 +7351,7 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
 </div>
 </div>
 <p>Create a proportion cross table using Tidyverse commands</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-31">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-31">🟡 Loading
   webR...</button>
 <div id="webr-editor-31"></div>
 <div id="webr-code-output-31" aria-live="assertive">
@@ -5998,6 +7400,11 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6010,10 +7417,38 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6033,8 +7468,14 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -6111,8 +7552,15 @@ addmargins(xtabs( ~ case_control_status + race, data = ds))`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -6132,7 +7580,7 @@ Expand to see solution
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-32">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-32">🟡 Loading
   webR...</button>
 <div id="webr-editor-32"></div>
 <div id="webr-code-output-32" aria-live="assertive">
@@ -6186,6 +7634,11 @@ spread(race, prop)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6198,10 +7651,38 @@ spread(race, prop)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6221,8 +7702,14 @@ spread(race, prop)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -6299,8 +7786,15 @@ spread(race, prop)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -6316,7 +7810,7 @@ spread(race, prop)`,
 <h2 data-number="19.11" class="anchored" data-anchor-id="exercise-4-summarizing-within-groups"><span class="header-section-number">19.11</span> Exercise 4: Summarizing within groups</h2>
 <p><strong>Skill</strong>: Summarizing within groups</p>
 <p>Apply the <code>summary</code> command to the “Gestationalage_sample” within each “Sample_trimester” group.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-33">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-33">🟡 Loading
   webR...</button>
 <div id="webr-editor-33"></div>
 <div id="webr-code-output-33" aria-live="assertive">
@@ -6365,6 +7859,11 @@ spread(race, prop)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6377,10 +7876,38 @@ spread(race, prop)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6400,8 +7927,14 @@ spread(race, prop)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -6478,8 +8011,15 @@ spread(race, prop)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -6499,7 +8039,7 @@ Expand to see solution
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-34">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-34">🟡 Loading
   webR...</button>
 <div id="webr-editor-34"></div>
 <div id="webr-code-output-34" aria-live="assertive">
@@ -6552,6 +8092,11 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6564,10 +8109,38 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6587,8 +8160,14 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -6665,8 +8244,15 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -6690,7 +8276,7 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 </ul>
 <p><strong>Skill:</strong>: Recoding IDs using a dictionary</p>
 <p>Create a new subject ID column named “subjectID” where you have used the <code>DictPer</code> named vector to recode the original “subject_id” IDs into integer IDs.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-35">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-35">🟡 Loading
   webR...</button>
 <div id="webr-editor-35"></div>
 <div id="webr-code-output-35" aria-live="assertive">
@@ -6739,6 +8325,11 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6751,10 +8342,38 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6774,8 +8393,14 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -6852,8 +8477,15 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -6861,7 +8493,7 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
     executeCode(editor.getValue());
   };
 </script>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-36">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-36">🟡 Loading
   webR...</button>
 <div id="webr-editor-36"></div>
 <div id="webr-code-output-36" aria-live="assertive">
@@ -6910,6 +8542,11 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -6922,10 +8559,38 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -6945,8 +8610,14 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7023,8 +8694,15 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7044,7 +8722,7 @@ Expand to see solution
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-37">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-37">🟡 Loading
   webR...</button>
 <div id="webr-editor-37"></div>
 <div id="webr-code-output-37" aria-live="assertive">
@@ -7096,6 +8774,11 @@ head(DictPer)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -7108,10 +8791,38 @@ head(DictPer)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -7131,8 +8842,14 @@ head(DictPer)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7209,8 +8926,15 @@ head(DictPer)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7231,7 +8955,7 @@ head(DictPer)`,
 <section id="comment-2" class="level3" data-number="19.13.1">
 <h3 data-number="19.13.1" class="anchored" data-anchor-id="comment-2"><span class="header-section-number">19.13.1</span> Comment</h3>
 <p>I usually prefer to use a merge command like <code>left_join</code> to merge in the new IDs into my data frame.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-38">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-38">🟡 Loading
   webR...</button>
 <div id="webr-editor-38"></div>
 <div id="webr-code-output-38" aria-live="assertive">
@@ -7280,6 +9004,11 @@ head(DictPer)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -7292,10 +9021,38 @@ head(DictPer)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -7315,8 +9072,14 @@ head(DictPer)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7393,8 +9156,15 @@ head(DictPer)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7414,7 +9184,7 @@ Expand to see solution
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-39">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-39">🟡 Loading
   webR...</button>
 <div id="webr-editor-39"></div>
 <div id="webr-code-output-39" aria-live="assertive">
@@ -7466,6 +9236,11 @@ b5 %>% select(subject_id,ID) %>%  head()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -7478,10 +9253,38 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -7501,8 +9304,14 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7579,8 +9388,15 @@ b5 %>% select(subject_id,ID) %>%  head()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7597,7 +9413,7 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 <h2 data-number="19.14" class="anchored" data-anchor-id="exercise-6-filtering-rows"><span class="header-section-number">19.14</span> Exercise 6: Filtering rows</h2>
 <p><strong>Skill</strong>: Filtering rows.</p>
 <p>Create a data frame <code>tri1</code> containing the records for Trimester 1, and a second data frame <code>tri2</code> containing the records for Trimester 2.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-40">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-40">🟡 Loading
   webR...</button>
 <div id="webr-editor-40"></div>
 <div id="webr-code-output-40" aria-live="assertive">
@@ -7646,6 +9462,11 @@ b5 %>% select(subject_id,ID) %>%  head()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -7658,10 +9479,38 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -7681,8 +9530,14 @@ b5 %>% select(subject_id,ID) %>%  head()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7759,8 +9614,15 @@ b5 %>% select(subject_id,ID) %>%  head()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7780,7 +9642,7 @@ Expand to see solution
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-41">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-41">🟡 Loading
   webR...</button>
 <div id="webr-editor-41"></div>
 <div id="webr-code-output-41" aria-live="assertive">
@@ -7832,6 +9694,11 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -7844,10 +9711,38 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -7867,8 +9762,14 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -7945,8 +9846,15 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -7962,7 +9870,7 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 <h2 data-number="19.15" class="anchored" data-anchor-id="exercise-7"><span class="header-section-number">19.15</span> Exercise 7</h2>
 <p><strong>Skill</strong>: Selecting columns</p>
 <p>Update <code>tri1</code> and <code>tri2</code> to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-42">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-42">🟡 Loading
   webR...</button>
 <div id="webr-editor-42"></div>
 <div id="webr-code-output-42" aria-live="assertive">
@@ -8011,6 +9919,11 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -8023,10 +9936,38 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -8046,8 +9987,14 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -8124,8 +10071,15 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
@@ -8145,7 +10099,7 @@ Expand to see solution
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-43">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-43">🟡 Loading
   webR...</button>
 <div id="webr-editor-43"></div>
 <div id="webr-code-output-43" aria-live="assertive">
@@ -8197,6 +10151,11 @@ head(tri2)`,
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -8209,10 +10168,38 @@ head(tri2)`,
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -8232,8 +10219,14 @@ head(tri2)`,
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -8310,8 +10303,15 @@ head(tri2)`,
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button

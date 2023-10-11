@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -62,10 +62,18 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
   .monaco-editor pre {
     background-color: unset !important;
+  }
+
+  .qwebr-icon-status-spinner {
+    color: #7894c4;
+  }
+
+  .qwebr-icon-run-code {
+    color: #0d9c29
   }
 
   .btn-webr {
@@ -197,17 +205,24 @@ ul.task-list li input[type="checkbox"] {
 
   // Installing Packages
   if (showStartupMessage && setupRPackages) {
-    // If initialized, but we have packages to install switch status
-    startupMessageWebR.innerText = "🟡 Installing package dependencies..."
-    // Install packages
-    await globalThis.webR.installPackages(installRPackagesList)
-  }
 
-  // Switch to allowing code to be executed
-  document.querySelectorAll(".btn-webr").forEach((btn) => {
-    btn.innerText = "Run code";
-    btn.disabled = false;
-  });
+    // Determine number of packages to install
+    const nInstallPackages = installRPackagesList.length
+
+    // Iterate through list of packages
+    for (let i = 0; i < nInstallPackages; i++) {
+
+      // Retrieve the package
+      const activePackage = installRPackagesList[i];
+
+      // Update status of package installs
+      startupMessageWebR.innerHTML = `<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Installing ${i + 1} of ${nInstallPackages} packages: ${activePackage}</span>`;
+
+      // Install the package
+      await globalThis.webR.installPackages(activePackage)
+    }
+
+  }
 
   // Stop timer
   const initializeWebRTimerEnd = performance.now();
@@ -216,6 +231,13 @@ ul.task-list li input[type="checkbox"] {
     // If initialized, switch to a green light
     startupMessageWebR.innerText = "🟢 Ready!"
   }
+  
+  // Switch to allowing code to be executed
+  document.querySelectorAll(".btn-webr").forEach((btn) => {
+    btn.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
+    btn.disabled = false;
+  });
+
 </script>
 
 
@@ -516,7 +538,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>This is a WebR-enabled code cell in a Quarto HTML document. As the WebR documentation states: “WebR makes it possible to run R code in the browser without the need for an R server to execute the code: the R interpreter runs directly on the user’s machine.”</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">🟡 Loading
   webR...</button>
 <div id="webr-editor-1"></div>
 <div id="webr-code-output-1" aria-live="assertive">
@@ -571,6 +593,11 @@ ggplot(mtcars, aes(x=am,y=mpg)) +
       }
     };
 
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
     // Registry of keyboard shortcuts that should be re-added to each editor window
     // when focus changes.
     const addWebRKeyboardShortCutCommands = () => {
@@ -583,10 +610,38 @@ ggplot(mtcars, aes(x=am,y=mpg)) +
 
       // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
         // Get the selected text from the editor
         const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Code to run when Ctrl+Enter is pressed (run selected code)
-        executeCode(selectedText);
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
       });
     }
 
@@ -606,8 +661,14 @@ ggplot(mtcars, aes(x=am,y=mpg)) +
 
   // Function to execute the code (accepts code as an argument)
   async function executeCode(codeToRun) {
-    // Disable run button for code cell active
-    runButton.disabled = true;
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    // Emphasize the active code cell
+    runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
 
     // Create a canvas variable for graphics
     let canvas = undefined;
@@ -684,8 +745,15 @@ ggplot(mtcars, aes(x=am,y=mpg)) +
     } finally {
       // Clean up the remaining code
       webRCodeShelter.purge();
-      runButton.disabled = false;
     }
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".btn-webr").forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    // Revert to the initial code cell state
+    runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
   }
 
   // Add a click event listener to the run button
