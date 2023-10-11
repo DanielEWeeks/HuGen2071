@@ -99,14 +99,64 @@ length(unique(ds$subject_id))
 
 ### Unique values
 
+To figure out which phenotypes vary within subjects, it would be helpful to answer this question:
+
 Question: How can we figure out the number of unique values in each column of our `ds` data frame?
+
+A similar related question is: How would you count the number of subjects who have more than one distinct measure at each of the phenotypes?
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ```{r}
-sapply(ds,function(x) {length(unique(x))}) %>% kable()
+sapply(ds,function(x) {length(unique(x))}) %>%
+  sort(decreasing=TRUE) %>% kable()
 ```
+
+This can also be generated using the `map` function from the `purrr` R package.
+
+```{r}
+ds %>% map(\(x) length(unique(x))) %>%
+  unlist() %>% 
+  sort(decreasing = TRUE) %>% 
+  kable()
+```
+
+Suppose we wanted to directly count the number of subjects who have more than one distinct measure at each of the phenotypes.  
+
+One approach for doing this would be to take the phenotype and group by `subject_id` and count distinct values within those subject-specific groups, and then add up the total number of subjects who have more than one distinct value.
+
+```{r}
+subject.N <- function(df.col, subj.ID) {
+  # Count distinct entries when grouped by subj.ID
+  # Input:
+  #   df.col = a phenotype vector
+  #   subj.ID = a vector of corresponding subject IDs
+  #
+  # Construct a dataframe containing the phenotype and subject IDS
+  df <- bind_cols(df.col = df.col, subj.ID = subj.ID)
+  # 
+  suppressMessages(
+    df.n <- df %>%
+      group_by(subj.ID) %>%
+      distinct() %>%
+      mutate(n = n()) %>%
+      select(subj.ID, n) %>%
+      distinct()
+  )
+  # Count how many subj.ID's have more than one distinct value
+  sum(df.n$n > 1)
+}
+
+subj.ID <- ds$subject_id
+# Apply our function using 'map'
+ds %>% map(\(x) subject.N(x, subj.ID)) %>% 
+  unlist() %>% 
+  sort(decreasing = TRUE)
+```
+
+The variables with a count of zero here are those where no more than 1 distinct value was observed for each subject.  These are likely subject-level variables. Indeed, for the majority of these, the variable names are consistent with them being subject-level variables instead of variables that are measured every time a sample was taken.   
+
 :::
 
 ### Subject-level data set
