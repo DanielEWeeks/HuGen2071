@@ -262,3 +262,14 @@ for (value in na.omit(non.NA.missing.codes)) {
 ```
 
 :::
+
+## References and Resources
+
+1.  Heinsberg LW, Weeks DE. dbGaPCheckup: pre-submission checks of dbGaP-formatted subject phenotype files. BMC Bioinformatics. 2023 Mar 3;24(1):77. PMID: 36869285 PMCID: PMC9985192 DOI: <https://doi.org/10.1186/s12859-023-05200-8>
+
+2.  Tryka KA, Hao L, Sturcke A, Jin Y, Wang ZY, Ziyabari L, Lee M, Popova N, Sharopova N, Kimura M, Feolo M. NCBI’s Database of Genotypes and Phenotypes: dbGaP. Nucleic Acids Research. 2014 Jan 1;42(D1):D975–D979. PMID: 24297256 PMCID: PMC3965052 DOI: <https://doi.org/10.1093/nar/gkt1211>
+
+
+**dbGaPCheckup:**  <https://lwheinsberg.github.io/dbGaPCheckup/index.html>
+
+**NCBI's GaPTools:**  <https://github.com/ncbi/gaptools>
