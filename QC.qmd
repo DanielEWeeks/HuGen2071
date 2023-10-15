@@ -3,7 +3,7 @@ editor:
   mode: source
 ---  
 
-# Data Quality Checking
+# Data Cleaning Exercise
 
 ## Data cleaning principles
 
@@ -161,6 +161,16 @@ vals.OutOfRange %>%
 ```
 
 But what would the above code return if both MIN and MAX were `NA`?
+
+If we look at the `minmax_check` code by typing `minmax_check` at the R prompt, we see that it uses a `which` when it tries to find the out-of-range values:
+
+```
+flagged <- dataset_na[which(dataset_na[, ind] < 
+   range_dictionary[1] | dataset_na[, ind] > 
+   range_dictionary[2]), , drop = FALSE]
+```
+
+Why is this robust to either one or both of MIN and MAX being missing?
 
 :::
 
