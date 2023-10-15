@@ -286,26 +286,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./QC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Quality Checking</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -495,26 +501,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X      Y     Z
-  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 2009-01-01  0.964 -0.657  3.81
-2 2009-01-02  1.23  -2.10  -2.07
-3 2009-01-03 -0.388 -1.65  -4.47
-4 2009-01-04  1.26  -1.30  -6.35
-5 2009-01-05  0.534 -0.283  5.67
-6 2009-01-06  0.145 -1.18  -5.77</code></pre>
+  time             X        Y     Z
+  &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+1 2009-01-01  2.98    0.248   0.622
+2 2009-01-02  1.18   -0.269   0.887
+3 2009-01-03  1.63   -4.59    4.83 
+4 2009-01-04 -0.0160 -0.952   0.787
+5 2009-01-05  0.225  -2.07    0.478
+6 2009-01-06  0.331   0.00342 6.61 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.964
-2 2009-01-02 X      1.23 
-3 2009-01-03 X     -0.388
-4 2009-01-04 X      1.26 
-5 2009-01-05 X      0.534
-6 2009-01-06 X      0.145</code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X      2.98  
+2 2009-01-02 X      1.18  
+3 2009-01-03 X      1.63  
+4 2009-01-04 X     -0.0160
+5 2009-01-05 X      0.225 
+6 2009-01-06 X      0.331 </code></pre>
 </div>
 </div>
 </section>
@@ -527,12 +533,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.964
-2 2009-01-01 Y     -0.657
-3 2009-01-01 Z      3.81 
-4 2009-01-02 X      1.23 
-5 2009-01-02 Y     -2.10 
-6 2009-01-02 Z     -2.07 </code></pre>
+1 2009-01-01 X      2.98 
+2 2009-01-01 Y      0.248
+3 2009-01-01 Z      0.622
+4 2009-01-02 X      1.18 
+5 2009-01-02 Y     -0.269
+6 2009-01-02 Z      0.887</code></pre>
 </div>
 </div>
 </section>
