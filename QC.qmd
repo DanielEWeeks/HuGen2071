@@ -65,7 +65,7 @@ DD.dict.I %>%
 ::: callout-tip
 ## Hint
 
-First try to write out an algorithm for this Minimum and Maximum Values Check in pseuo-code, outlining each step.
+First try to write out an algorithm for this Minimum and Maximum Values Check in pseudo-code, outlining each step.
 :::
 
 ::: {.callout-tip collapse="true"}
