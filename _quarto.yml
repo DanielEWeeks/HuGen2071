@@ -35,6 +35,7 @@ book:
   - reorder_exercise.Qmd
   - EDA.Qmd
   - GRanges.qmd
+  - QC.qmd
   - R_questions.qmd
   - R_gotchas.qmd
   - Basic_Unix_commands.Qmd

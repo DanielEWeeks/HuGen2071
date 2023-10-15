@@ -1,0 +1,254 @@
+---
+editor: 
+  mode: source
+---  
+
+# Data Quality Checking
+
+## Data cleaning principles
+
+Data cleaning principles from Karl Broman's slide set:
+
+<https://kbroman.org/Talk_DataCleaning/data_cleaning.pdf>
+
+![](images/DataCleaningPrinciples.png)
+
+
+## dbGaP quality control
+
+As described in:
+
+Tryka KA, Hao L, Sturcke A, Jin Y, Wang ZY, Ziyabari L, Lee M, Popova N, Sharopova N, Kimura M, Feolo M. NCBI’s Database of Genotypes and Phenotypes: dbGaP. Nucleic Acids Research. 2014 Jan 1;42(D1):D975–D979. PMID: 24297256 PMCID: PMC3965052 DOI: https://doi.org/10.1093/nar/gkt1211
+
+> "The Database of Genotypes and Phenotypes (dbGap, <http://www.ncbi.nlm.nih.gov/gap>) is a National Institutes of Health-sponsored repository charged to archive, curate and distribute information produced by studies investigating the interaction of genotype and phenotype."
+
+Under NIH data sharing guidelines, all properly consented large-scale genetic or 'omics studies must deposit their data in dbGaP.  To so, one must closely follow the formatting requirements as described in the dbGaP Submission Guide:
+
+<https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/>
+
+This involves setting up a data dictionary that follows dbGaP specifications:
+
+![](images/dbGaPDataDictionarySpecs.png)
+
+## Minimum and Maximum Values Check
+
+### MIN, MAX check
+
+In the data dictionary, for some variables, `MIN` and `MAX` values may be specified.  For example, for age, it has a natural minimum of zero. 
+
+```
+MIN 	The logical minimum value of the variable. If a separate code such as -1 is used for a missing field, this should not be considered as the MIN value.
+MAX 	The logical maximum value for the variable. If a separate code such as 9999 is used for a missing field, this should not be considered as the MAX value.
+```
+
+**Task:** Design and implement a check that the specified `MIN` and `MAX` values observed in the data are consistent with the values as specified in the data dictionary.
+
+
+
+```{r}
+suppressMessages(library(tidyverse))
+library(dbGaPCheckup)
+## Load DD.dict.I and DS.data.I
+data(ExampleI)
+```
+
+Using `DD.dict.I` and `DS.data.I`, check the `PERCEIVED_CONFLICT` variable to see if all the values fall within the stated `MIN` and `MAX` values.  
+
+```{r}
+DD.dict.I %>% 
+  filter(VARNAME=="PERCEIVED_CONFLICT") %>% 
+  select(VARNAME,MIN,MAX)
+```
+
+### Pseudo-code
+
+::: callout-tip
+## Hint
+
+First try to write out an algorithm for this Minimum and Maximum Values Check in pseuo-code, outlining each step.
+:::
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+**Possible steps:**
+
+1. Read the vector of `PERCEIVED_CONFLICT` from `DS.data.I`
+2. Read the `MIN` and `MAX` values for `PERCEIVED_CONFLICT` from `DD.dict.I`
+3. Count and list any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].
+
+:::
+
+
+### Implement MIN, MAX check in R
+
+Implement your algorithm in code.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+# Read the vector of `PERCEIVED_CONFLICT` from `DS.data.I`
+trait <- DS.data.I$PERCEIVED_CONFLICT
+# Read the `MIN` and `MAX` values for `PERCEIVED_CONFLICT` from `DD.dict.I`
+min.val <- DD.dict.I %>% 
+  filter(VARNAME=="PERCEIVED_CONFLICT") %>% 
+  pull(MIN)
+max.val <- DD.dict.I %>% 
+  filter(VARNAME=="PERCEIVED_CONFLICT") %>%
+  pull(MAX)
+# List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].
+trait[trait < min.val | trait > max.val] %>%
+  unique() %>%
+  sort()
+# Count any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].
+trait[trait < min.val | trait > max.val] %>%
+  length()
+```
+
+These results are consistent with those returned by the `minmax_check` function from the `dbGaPCheckup` R package:
+
+```{r}
+details <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information
+details[[1]]$OutOfRangeValues[[1]] %>% 
+  sort()
+```
+
+:::
+
+### Make your check more robust
+
+After implementing your algorithm in R code, think about it a bit further - is it robust to the situation where only one of the MIN and MAX values is specified and the other is missing?  Is it robust to the situation where both MIN and MAX are missing?
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+# List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].
+trait[trait < min.val | trait > max.val] %>% 
+  unique() %>% 
+  sort()
+```
+
+The code proposed here is not robust to MIN or MAX being `NA` because, for example, if MIN is `NA` and MAX is `15`, in some situations the logical indexing into the `trait` vector used of `trait < min.val | trait > max.val` would return `NA` instead of `TRUE` or `FALSE` as intended.
+
+```{r}
+# MIN=NA, MAX=15
+16 < NA | 16 > 15
+# MIN=1, MAX=NA
+16 < 1 | 16 > NA
+# MIN=NA, MAX=NA
+16 < NA | 16 > NA
+```
+
+This are possible steps toward writing a more robust check:
+
+```{r}
+vals.low <- NA
+vals.high <- NA
+if (!is.na(min.val)) {
+  vals.low <- trait[trait < min.val]
+}
+if (!is.na(max.val)) {
+  vals.high <- trait[trait > max.val]
+}
+
+vals.OutOfRange <- c(vals.low,vals.high)
+vals.OutOfRange %>% 
+  na.omit() %>% 
+  unique() %>% 
+  sort()
+```
+
+But what would the above code return if both MIN and MAX were `NA`?
+
+:::
+
+### Check the `PREGNANT` variable
+
+Now apply your MIN and MAX checking algorithm to the `PREGNANT` variable.
+
+```{r}
+DD.dict.I %>% 
+  filter(VARNAME=="PREGNANT") %>%
+  select(VARNAME,MIN,MAX)
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{r}
+# Read the vector of `PREGNANT` from `DS.data.I`
+trait <- DS.data.I$PREGNANT
+# Read the `MIN` and `MAX` values for `PREGNANT` from `DD.dict.I`
+min.val <- DD.dict.I %>% 
+  filter(VARNAME=="PREGNANT") %>% 
+  pull(MIN)
+max.val <- DD.dict.I %>% 
+  filter(VARNAME=="PREGNANT") %>%
+  pull(MAX)
+# List any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].
+trait[trait < min.val | trait > max.val] %>%
+  unique() %>%
+  sort()
+# Count any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].
+trait[trait < min.val | trait > max.val] %>%
+  length()
+```
+
+These out-of-range values of `-9999` and `-4444` look kind of strange and are unexpected given the first two entries of the `VALUES` column of the data dictionary for this variable:
+
+```{r}
+DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,17,18)]
+```
+
+Based on this, we'd expect to see only `0` and `1` values in the `PREGNANT` variable.  
+
+What's going on?
+
+::::
+
+### Handle missing values
+
+If we further check the data dictionary for the `PREGNANT` variable, we see that the out-of-range values we observed in our check above are actually missing value codes and so should not be flagged as being out of range.
+
+```{r}
+DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,19,20)]
+```
+
+Extend your algorithm to handle missing value codes.  To do this first outline your approach in pseudo-code.
+
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+**Possible steps:**
+
+1. Read the vector of `PREGNANT` from `DS.data.I`
+2. Read the `MIN` and `MAX` values for `PREGNANT` from `DD.dict.I`
+3. Have the user provide a list of missing value codes
+4. Recode any `PREGNANT` value that matches one of the missing value codes to the standard `NA` R missing value code.
+3. Count and list any non-missing `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].
+
+This is essentially the approach used in the `minmax_check` function of the `dbGaPCheckup` R package.
+
+```{r}
+# Without missing value codes specified
+details <- minmax_check(DD.dict.I, DS.data.I)$Information
+details[[1]]$OutOfRangeValues
+
+# With missing value codes specified
+# PREGNANT is no longer flagged as having out of range values.
+details <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information
+```
+
+If we examine the `minmax_check` code by typing `minmax_check` without parentheses at the R prompt, we see that this is how the missing value recoding step is done:
+
+```
+for (value in na.omit(non.NA.missing.codes)) {
+    dataset_na <- dataset_na %>% mutate(across(everything(), 
+        ~na_if(.x, value)))
+}
+```
+
+:::
