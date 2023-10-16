@@ -360,13 +360,30 @@ Wickham (2009) Chapters 2 & 3
 
 ### Learning Objectives
 
+-   To learn the principles of data cleaning
+-   To practice applying data cleaning principles
 -   To learn how to check genotype data for quality
 
-### Readings
+### Active Learning
+
+To see an example of quality control for SNP genotyping using Illumina genotyping microarrays, please read through this example report:
+
+<https://khp-informatics.github.io/COPILOT/README_summary_report.html>
+
+For more details, see this Current Protocols paper, which is long and detailed, but you can get most of the main points by concentrating on the Figures:
+
+Patel H, Lee S-H, Breen G, Menzel S, Ojewunmi O, Dobson RJB. The COPILOT Raw Illumina Genotyping QC Protocol. Current Protocols. 2022;2(4):e373. PMID: 35452565 DOI: <https://doi.org/10.1002/cpz1.373>
+
+
+### Suggested Readings
+
+Kässens JC, Wienbrandt L, Ellinghaus D. BIGwas: Single-command quality control and association testing for multi-cohort and biobank-scale GWAS/PheWAS data. GigaScience. 2021 Jun 1;10(6):giab047. PMID: 34184051 PMCID: PMC8239664 DOI: <https://doi.org/10.1093/gigascience/giab047>
+
+Brandenburg J-T, Clark L, Botha G, Panji S, Baichoo S, Fields C, Hazelhurst S. H3AGWAS: a portable workflow for genome wide association studies. BMC Bioinformatics. 2022 Nov 19;23(1):498. PMID: 36402955 PMCID: PMC9675212 DOI: <https://doi.org/10.1186/s12859-022-05034-w>
 
 Anderson CA, Pettersson FH, Clarke GM, Cardon LR, Morris AP, Zondervan KT. Data quality control in genetic case-control association studies. Nat Protoc. 2010 Sep;5(9):1564--1573. DOI: <https://doi.org/10.1038/nprot.2010.116>
 
-Suggested Reading: Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: <https://doi.org/10.1002/gepi.20516>
+Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporaso NE, Cornelis MC, Edenberg HJ, Gabriel SB, Harris EL, Hu FB, Jacobs KB, Kraft P, Landi MT, Lumley T, Manolio TA, McHugh C, Painter I, Paschall J, Rice JP, Rice KM, Zheng X, Weir BS, GENEVA Investigators. Quality control and quality assurance in genotypic data for genome-wide association studies. Genetic epidemiology. 2010 Sep;34(6):591--602. PMID: 20718045 DOI: <https://doi.org/10.1002/gepi.20516>
 
 ## Unix: Basics
 
