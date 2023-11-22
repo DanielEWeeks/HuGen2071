@@ -110,7 +110,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     color: #0d9c29
   }
 
-  .btn-webr {
+  .qwebr-output-code-stdout {
+    color: #111;
+  }
+
+  .qwebr-output-code-stderr {
+    color: #db4133;
+  }
+
+  .qwebr-editor {
+    border: 1px solid #EEEEEE;
+  }
+
+  .qwebr-button-run {
     background-color: #EEEEEE;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; /* Extra styling for consistency */
@@ -124,25 +136,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     -moz-text-decoration: none;
     -ms-text-decoration: none;
     -o-text-decoration: none;
-    vertical-align: middle;
+    /* vertical-align: middle; */ /* Prevents a space from appearing between the code cell and button */
     -webkit-user-select: none;
     border-color: #dee2e6;
     border: 1px solid rgba(0,0,0,0);
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
-    border-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
-  .btn-webr:hover {
+  .qwebr-button-run:hover {
     color: #000;
     background-color: #e3e6ea;
     border-color: #e1e5e9;
   }
 
-  .btn-webr:disabled,.btn-webr.disabled,fieldset:disabled .btn-webr {
+  .qwebr-button-run:disabled,.qwebr-button-run.disabled,fieldset:disabled .qwebr-button-run {
     pointer-events: none;
     opacity: .65
+  }
+
+  /* Custom styling for RevealJS Presentations*/
+
+  /* Reset the style of the interactive area */
+  .reveal div.qwebr-interactive-area {
+    display: block;
+    box-shadow: none;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+  } 
+
+  /* Provide space to entries */
+  .reveal div.qwebr-output-code-area pre div {
+    margin: 1px 2px 1px 10px;
+  }
+
+  /* Collapse the inside code tags to avoid extra space between line outputs */
+  .reveal pre div code.qwebr-output-code-stdout, .reveal pre div code.qwebr-output-code-stderr {
+    padding: 0;
+    display: contents;
+  }
+
+  .reveal pre div code.qwebr-output-code-stdout {
+    color: #111;
+  }
+
+  .reveal pre div code.qwebr-output-code-stderr {
+    color: #db4133;
+  }
+
+
+  /* Create a border around console and output (does not effect graphs) */
+  .reveal div.qwebr-console-area {
+    border: 1px solid #EEEEEE;
+    box-shadow: 2px 2px 10px #EEEEEE;
+  }
+
+  /* Cap output height and allow text to scroll */
+  /* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+  .reveal div.qwebr-output-code-area pre {
+    max-height: 400px;
+    overflow: scroll;
   }
 </style>
 
@@ -155,27 +213,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   var installRPackagesList = ['tidyverse'];
   // Check to see if we have an empty array, if we do set to skip the installation.
   var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
+  var autoloadRPackages = true;
 
   // Display a startup message?
   var showStartupMessage = true;
   var showHeaderMessage = false;
   if (showStartupMessage) {
 
-    // Create the outermost div element
-    var quartoTitleMeta = document.createElement("div");
+    // Get references to header elements
+    const headerHTML = document.getElementById("title-block-header");
+    const headerRevealJS = document.getElementById("title-slide");
+
+    // Create the outermost div element for metadata
+    const quartoTitleMeta = document.createElement("div");
     quartoTitleMeta.classList.add("quarto-title-meta");
 
     // Create the first inner div element
-    var firstInnerDiv = document.createElement("div");
+    const firstInnerDiv = document.createElement("div");
 
-    // Create the second inner div element with "WebR Status" heading 
-    // and contents
-    var secondInnerDiv = document.createElement("div");
+    // Create the second inner div element for "WebR Status" heading and contents
+    const secondInnerDiv = document.createElement("div");
     secondInnerDiv.classList.add("quarto-title-meta-heading");
     secondInnerDiv.innerText = "WebR Status";
 
-    // Add another inner div
-    var secondInnerDivContents = document.createElement("div");
+    // Create another inner div for contents
+    const secondInnerDivContents = document.createElement("div");
     secondInnerDivContents.classList.add("quarto-title-meta-contents");
 
     // Describe the WebR state
@@ -185,47 +247,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     // Add `aria-live` to auto-announce the startup status to screen readers
     startupMessageWebR.setAttribute("aria-live", "assertive");
 
-    // Put everything together
+    // Append the startup message to the contents
     secondInnerDivContents.appendChild(startupMessageWebR);
 
-    // Add a status indicator for COOP and COEP Headers
+    // Add a status indicator for COOP and COEP Headers if needed
     if (showHeaderMessage) {
-      var crossOriginMessage = document.createElement("p");
+      const crossOriginMessage = document.createElement("p");
       crossOriginMessage.innerText = `${crossOriginIsolated ? '🟢' : '🟡'} COOP & COEP Headers`;
       crossOriginMessage.setAttribute("id", "coop-coep-header");
       secondInnerDivContents.appendChild(crossOriginMessage);
     }
 
+    // Combine the inner divs and contents
     firstInnerDiv.appendChild(secondInnerDiv);
     firstInnerDiv.appendChild(secondInnerDivContents);
     quartoTitleMeta.appendChild(firstInnerDiv);
 
-    // Add new element as last child in header element
-    var header = document.getElementById("title-block-header");
-
-    // Check if the header option is present or missing
-    if(header) {
-      // If present, directly append the child element.
-      header.appendChild(quartoTitleMeta);
+    // Determine where to insert the quartoTitleMeta element
+    if (headerHTML) {
+      // Append to the existing "title-block-header" element
+      headerHTML.appendChild(quartoTitleMeta);
+    } else if (headerRevealJS) {
+      // If using RevealJS, add to the "title-slide" div
+      headerRevealJS.appendChild(firstInnerDiv);
     } else {
-      // Attempt to place the new element inside a header _after_ the Monaco initialization
-      var monacoScript = document.getElementById("webr-monaco-editor-init");
-      var header = document.createElement("header");
+      // If neither headerHTML nor headerRevealJS is found, insert after "webr-monaco-editor-init" script
+      const monacoScript = document.getElementById("webr-monaco-editor-init");
+      const header = document.createElement("header");
       header.setAttribute("id", "title-block-header");
-      // Now attempt to add the webR area to the title
       header.appendChild(quartoTitleMeta);
-      // Include the header after the script tag
       monacoScript.after(header);
     }
   }
 
   // Retrieve the webr.mjs
-  import { WebR, ChannelType } from "https://webr.r-wasm.org/v0.2.1/webr.mjs";
+  import { WebR, ChannelType } from "https://webr.r-wasm.org/v0.2.2/webr.mjs";
 
   // Populate WebR options with defaults or new values based on 
   // webr meta
   globalThis.webR = new WebR({
-    "baseURL": "https://webr.r-wasm.org/v0.2.1/",
+    "baseURL": "https://webr.r-wasm.org/v0.2.2/",
     "serviceWorkerUrl": "",
     "homedir": "/home/web_user", 
     "channelType": ChannelType.Automatic
@@ -237,31 +298,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   // Setup a shelter
   globalThis.webRCodeShelter = await new globalThis.webR.Shelter();
 
-  // Package install 
-  async function installRPackagesWithStatus(packages, status = true) {
+  // Setup a pager to allow processing help documentation 
+  await globalThis.webR.evalRVoid('webr::pager_install()'); 
 
-    // Update reason for code cells not being executable
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
-      btn.innerText = "🟡 Installing packages ...";
+  // Function to set the button text
+  function qwebrSetInteractiveButtonState(buttonText, enableCodeButton = true) {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
+      btn.innerHTML = buttonText;
+      btn.disabled = !enableCodeButton;
     });
+  }
 
-    // Iterate through package list
+  // Function to update the status message
+  function qwebrUpdateStatusHeader(message) {
+    startupMessageWebR.innerHTML = `
+      <i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i>
+      <span>${message}</span>`;
+  }
+
+  // Function to install a single package
+  async function qwebrInstallRPackage(packageName) {
+    await globalThis.webR.installPackages([packageName]);
+  }
+
+  // Function to load a single package
+  async function qwebrLoadRPackage(packageName) {
+    await globalThis.webR.evalRVoid(`library(${packageName});`);
+  }
+
+  // Generic function to process R packages
+  async function qwebrProcessRPackagesWithStatus(packages, processType, displayStatusMessageUpdate = true) {
+    // Switch between contexts
+    const messagePrefix = processType === 'install' ? 'Installing' : 'Loading';
+
+    // Modify button state
+    qwebrSetInteractiveButtonState(`🟡 ${messagePrefix} package ...`, false);
+
+    // Iterate over packages
     for (let i = 0; i < packages.length; i++) {
-
-      // Obtain one package
       const activePackage = packages[i];
-
-      // Update status of package install with progress
-      if (status) {
-        startupMessageWebR.innerHTML = 
-           `<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> 
-            <span>Installing package ${i + 1} out of ${packages.length}: ${activePackage}</span>`;
+      const formattedMessage = `${messagePrefix} package ${i + 1} out of ${packages.length}: ${activePackage}`;
+      
+      // Display the update
+      if (displayStatusMessageUpdate) {
+        qwebrUpdateStatusHeader(formattedMessage);
       }
 
-      // Install the selected package
-      await globalThis.webR.installPackages([activePackage]);
+      // Run package installation
+      if (processType === 'install') {
+        await qwebrInstallRPackage(activePackage);
+      } else {
+        await qwebrLoadRPackage(activePackage);
+      }
+    }
+
+    // Clean slate
+    if (processType === 'load') {
+      await globalThis.webR.flush();
     }
   }
+
 
   // Check to see if any packages need to be installed
   if (setupRPackages) {
@@ -269,7 +365,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     const uniqueRPackageList = Array.from(new Set(installRPackagesList));
 
     // Install R packages one at a time (either silently or with a status update)
-    await installRPackagesWithStatus(uniqueRPackageList, showStartupMessage);
+    await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', showStartupMessage);
+
+    if(autoloadRPackages) {
+      // Load R packages one at a time (either silently or with a status update)
+      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', showStartupMessage);
+    }
   }
 
   // Stop timer
@@ -280,11 +381,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     startupMessageWebR.innerText = "🟢 Ready!"
   }
   
-  // Switch to allowing code to be executed
-  document.querySelectorAll(".btn-webr").forEach((btn) => {
-    btn.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
-    btn.disabled = false;
-  });
+  qwebrSetInteractiveButtonState(
+    `<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>`, 
+    true
+  );
 
 </script>
 
@@ -625,20 +725,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load-gapminder-data" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="load-gapminder-data"><span class="header-section-number">17.2</span> Load gapminder data</h2>
 <p>In the previous episode we used the <code>readr</code> package to load the gapminder data into a tibble within R.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">🟡 Loading
-  webR...</button>
-<div id="webr-editor-1"></div>
-<div id="webr-code-output-1" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-1" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-1">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-1" class="qwebr-console-area">
+    <div id="qwebr-editor-1" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-1" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-1" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-1");
-  const outputDiv = document.getElementById("webr-code-output-1");
-  const editorDiv = document.getElementById("webr-editor-1");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-1");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-1");
+  const editorDiv = document.getElementById("qwebr-editor-1");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-1");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -660,7 +764,7 @@ head(gapminder)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -752,7 +856,7 @@ head(gapminder)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -762,8 +866,40 @@ head(gapminder)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -783,15 +919,20 @@ head(gapminder)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-1-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -806,30 +947,50 @@ head(gapminder)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-1-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -837,7 +998,7 @@ head(gapminder)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -873,20 +1034,24 @@ head(gapminder)`,
 <section id="using-select" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="using-select"><span class="header-section-number">17.5</span> Using <code>select()</code></h2>
 <p>If, for example, we wanted to move forward with only a few of the variables in our tibble we use the <code>select()</code> function. This will keep only the variables you select.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">🟡 Loading
-  webR...</button>
-<div id="webr-editor-2"></div>
-<div id="webr-code-output-2" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-2" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-2">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-2" class="qwebr-console-area">
+    <div id="qwebr-editor-2" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-2" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-2" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-2");
-  const outputDiv = document.getElementById("webr-code-output-2");
-  const editorDiv = document.getElementById("webr-editor-2");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-2");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-2");
+  const editorDiv = document.getElementById("qwebr-editor-2");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-2");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -901,7 +1066,7 @@ print(year_country_gdp)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -993,7 +1158,7 @@ print(year_country_gdp)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1003,8 +1168,40 @@ print(year_country_gdp)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1024,15 +1221,20 @@ print(year_country_gdp)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-2-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1047,30 +1249,50 @@ print(year_country_gdp)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-2-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -1078,7 +1300,7 @@ print(year_country_gdp)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -1101,20 +1323,24 @@ print(year_country_gdp)`,
 <section id="using-filter" class="level2" data-number="17.7">
 <h2 data-number="17.7" class="anchored" data-anchor-id="using-filter"><span class="header-section-number">17.7</span> Using <code>filter()</code></h2>
 <p>The <code>filter()</code> function is used to select rows of data. For example, to select only countries in Europe:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">🟡 Loading
-  webR...</button>
-<div id="webr-editor-3"></div>
-<div id="webr-code-output-3" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-3" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-3">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-3" class="qwebr-console-area">
+    <div id="qwebr-editor-3" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-3" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-3" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-3");
-  const outputDiv = document.getElementById("webr-code-output-3");
-  const editorDiv = document.getElementById("webr-editor-3");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-3");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-3");
+  const editorDiv = document.getElementById("qwebr-editor-3");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-3");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -1129,7 +1355,7 @@ print(gapminder_Europe)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -1221,7 +1447,7 @@ print(gapminder_Europe)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1231,8 +1457,40 @@ print(gapminder_Europe)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1252,15 +1510,20 @@ print(gapminder_Europe)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-3-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1275,30 +1538,50 @@ print(gapminder_Europe)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-3-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -1306,7 +1589,7 @@ print(gapminder_Europe)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -1355,20 +1638,24 @@ Note
 <p>We can use tab completion to complete variable names when entering commands. This saves typing and reduces the risk of error.</p>
 <p>RStudio includes a helpful “cheat sheet”, which summarises the main functionality and syntax of <code>dplyr</code>. This can be accessed via the help menu –&gt; cheatsheets –&gt; data transformation with dplyr.</p>
 <p>Let’s rewrite the select command example using the pipe operator:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">🟡 Loading
-  webR...</button>
-<div id="webr-editor-4"></div>
-<div id="webr-code-output-4" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-4" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-4">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-4" class="qwebr-console-area">
+    <div id="qwebr-editor-4" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-4" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-4" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-4");
-  const outputDiv = document.getElementById("webr-code-output-4");
-  const editorDiv = document.getElementById("webr-editor-4");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-4");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-4");
+  const editorDiv = document.getElementById("qwebr-editor-4");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-4");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -1383,7 +1670,7 @@ print(year_country_gdp)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -1475,7 +1762,7 @@ print(year_country_gdp)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1485,8 +1772,40 @@ print(year_country_gdp)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1506,15 +1825,20 @@ print(year_country_gdp)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-4-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1529,30 +1853,50 @@ print(year_country_gdp)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-4-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -1560,7 +1904,7 @@ print(year_country_gdp)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -1575,20 +1919,24 @@ print(year_country_gdp)`,
 </script>
 <p>To help you understand why we wrote that in that way, let’s walk through it step by step. First we summon the gapminder tibble and pass it on, using the pipe symbol <code>%&gt;%</code>, to the next step, which is the <code>select()</code> function. In this case we don’t specify which data object we use in the <code>select()</code> function since in gets that from the previous pipe.</p>
 <p>What if we wanted to combine this with the filter example? I.e. we want to select year, country and GDP per capita, but only for countries in Europe? We can join these two operations using a pipe; feeding the output of one command directly into the next:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">🟡 Loading
-  webR...</button>
-<div id="webr-editor-5"></div>
-<div id="webr-code-output-5" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-5" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-5">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-5" class="qwebr-console-area">
+    <div id="qwebr-editor-5" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-5" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-5" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-5");
-  const outputDiv = document.getElementById("webr-code-output-5");
-  const editorDiv = document.getElementById("webr-editor-5");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-5");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-5");
+  const editorDiv = document.getElementById("qwebr-editor-5");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-5");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -1605,7 +1953,7 @@ print(year_country_gdp_euro)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -1697,7 +2045,7 @@ print(year_country_gdp_euro)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1707,8 +2055,40 @@ print(year_country_gdp_euro)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1728,15 +2108,20 @@ print(year_country_gdp_euro)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-5-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1751,30 +2136,50 @@ print(year_country_gdp_euro)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-5-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -1782,7 +2187,7 @@ print(year_country_gdp_euro)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -1797,20 +2202,24 @@ print(year_country_gdp_euro)`,
 </script>
 <p>Note that the order of these operations matters; if we reversed the order of the <code>select()</code> and <code>filter()</code> functions, the <code>continent</code> variable wouldn’t exist in the data-set when we came to apply the filter.</p>
 <p>What about if we wanted to match more than one item? To do this we use the <code>%in%</code> operator:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">🟡 Loading
-  webR...</button>
-<div id="webr-editor-6"></div>
-<div id="webr-code-output-6" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-6" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-6">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-6" class="qwebr-console-area">
+    <div id="qwebr-editor-6" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-6" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-6" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-6");
-  const outputDiv = document.getElementById("webr-code-output-6");
-  const editorDiv = document.getElementById("webr-editor-6");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-6");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-6");
+  const editorDiv = document.getElementById("qwebr-editor-6");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-6");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -1828,7 +2237,7 @@ print(gapminder_scandinavia)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -1920,7 +2329,7 @@ print(gapminder_scandinavia)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1930,8 +2339,40 @@ print(gapminder_scandinavia)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1951,15 +2392,20 @@ print(gapminder_scandinavia)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-6-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1974,30 +2420,50 @@ print(gapminder_scandinavia)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-6-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -2005,7 +2471,7 @@ print(gapminder_scandinavia)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -2031,20 +2497,24 @@ print(gapminder_scandinavia)`,
 <section id="splitting-your-commands-over-multiple-lines" class="level2" data-number="17.12">
 <h2 data-number="17.12" class="anchored" data-anchor-id="splitting-your-commands-over-multiple-lines"><span class="header-section-number">17.12</span> Splitting your commands over multiple lines</h2>
 <p>It’s generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it’s important that the <code>%%</code> goes at the <em>end</em> of the line, as in the example above. If we put it at the beginning of a line, e.g.:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">🟡 Loading
-  webR...</button>
-<div id="webr-editor-7"></div>
-<div id="webr-code-output-7" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-7" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-7">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-7" class="qwebr-console-area">
+    <div id="qwebr-editor-7" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-7" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-7" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-7");
-  const outputDiv = document.getElementById("webr-code-output-7");
-  const editorDiv = document.getElementById("webr-editor-7");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-7");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-7");
+  const editorDiv = document.getElementById("qwebr-editor-7");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-7");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -2059,7 +2529,7 @@ print(gapminder_scandinavia)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -2151,7 +2621,7 @@ print(gapminder_scandinavia)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -2161,8 +2631,40 @@ print(gapminder_scandinavia)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -2182,15 +2684,20 @@ print(gapminder_scandinavia)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-7-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -2205,30 +2712,50 @@ print(gapminder_scandinavia)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-7-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -2236,7 +2763,7 @@ print(gapminder_scandinavia)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -2261,20 +2788,24 @@ Challenge 1
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a single command (which can span multiple lines and includes pipes) that will produce a tibble that has the values of <code>lifeExp</code>, <code>country</code> and <code>year</code>, for the countries in Africa, but not for other Continents. How many rows does your tibble have? (You can use the <code>nrow()</code> function to find out how many rows are in a tibble.)</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">🟡 Loading
-  webR...</button>
-<div id="webr-editor-8"></div>
-<div id="webr-code-output-8" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-8" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-8">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-8" class="qwebr-console-area">
+    <div id="qwebr-editor-8" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-8" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-8" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-8");
-  const outputDiv = document.getElementById("webr-code-output-8");
-  const editorDiv = document.getElementById("webr-editor-8");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-8");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-8");
+  const editorDiv = document.getElementById("qwebr-editor-8");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-8");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -2288,7 +2819,7 @@ Challenge 1
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -2380,7 +2911,7 @@ Challenge 1
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -2390,8 +2921,40 @@ Challenge 1
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -2411,15 +2974,20 @@ Challenge 1
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-8-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -2434,30 +3002,50 @@ Challenge 1
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-8-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -2465,7 +3053,7 @@ Challenge 1
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -2492,20 +3080,24 @@ Solution to Challenge 1
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">🟡 Loading
-  webR...</button>
-<div id="webr-editor-9"></div>
-<div id="webr-code-output-9" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-9" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-9">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-9" class="qwebr-console-area">
+    <div id="qwebr-editor-9" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-9" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-9" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-9");
-  const outputDiv = document.getElementById("webr-code-output-9");
-  const editorDiv = document.getElementById("webr-editor-9");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-9");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-9");
+  const editorDiv = document.getElementById("qwebr-editor-9");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-9");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -2522,7 +3114,7 @@ Solution to Challenge 1
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -2614,7 +3206,7 @@ Solution to Challenge 1
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -2624,8 +3216,40 @@ Solution to Challenge 1
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -2645,15 +3269,20 @@ Solution to Challenge 1
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-9-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -2668,30 +3297,50 @@ Solution to Challenge 1
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-9-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -2699,7 +3348,7 @@ Solution to Challenge 1
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -2720,20 +3369,24 @@ Solution to Challenge 1
 <section id="sorting-tibbles" class="level2" data-number="17.13">
 <h2 data-number="17.13" class="anchored" data-anchor-id="sorting-tibbles"><span class="header-section-number">17.13</span> Sorting tibbles</h2>
 <p>The <code>arrange()</code> function will sort a tibble by one or more of the variables in it:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">🟡 Loading
-  webR...</button>
-<div id="webr-editor-10"></div>
-<div id="webr-code-output-10" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-10" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-10">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-10" class="qwebr-console-area">
+    <div id="qwebr-editor-10" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-10" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-10" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-10");
-  const outputDiv = document.getElementById("webr-code-output-10");
-  const editorDiv = document.getElementById("webr-editor-10");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-10");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-10");
+  const editorDiv = document.getElementById("qwebr-editor-10");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-10");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -2749,7 +3402,7 @@ Solution to Challenge 1
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -2841,7 +3494,7 @@ Solution to Challenge 1
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -2851,8 +3504,40 @@ Solution to Challenge 1
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -2872,15 +3557,20 @@ Solution to Challenge 1
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-10-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -2895,30 +3585,50 @@ Solution to Challenge 1
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-10-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -2926,7 +3636,7 @@ Solution to Challenge 1
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -2940,20 +3650,24 @@ Solution to Challenge 1
   };
 </script>
 <p>We can use the <code>desc()</code> function to sort a variable in reverse order:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">🟡 Loading
-  webR...</button>
-<div id="webr-editor-11"></div>
-<div id="webr-code-output-11" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-11" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-11">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-11" class="qwebr-console-area">
+    <div id="qwebr-editor-11" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-11" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-11" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-11");
-  const outputDiv = document.getElementById("webr-code-output-11");
-  const editorDiv = document.getElementById("webr-editor-11");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-11");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-11");
+  const editorDiv = document.getElementById("qwebr-editor-11");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-11");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -2969,7 +3683,7 @@ Solution to Challenge 1
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -3061,7 +3775,7 @@ Solution to Challenge 1
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -3071,8 +3785,40 @@ Solution to Challenge 1
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -3092,15 +3838,20 @@ Solution to Challenge 1
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-11-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -3115,30 +3866,50 @@ Solution to Challenge 1
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-11-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -3146,7 +3917,7 @@ Solution to Challenge 1
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -3164,20 +3935,24 @@ Solution to Challenge 1
 <h2 data-number="17.14" class="anchored" data-anchor-id="generating-new-variables"><span class="header-section-number">17.14</span> Generating new variables</h2>
 <p>The <code>mutate()</code> function lets us add new variables to our tibble. It will often be the case that these are variables we <em>derive</em> from existing variables in the data-frame.</p>
 <p>As an example, the gapminder data contains the population of each country, and its GDP per capita. We can use this to calculate the total GDP of each country:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">🟡 Loading
-  webR...</button>
-<div id="webr-editor-12"></div>
-<div id="webr-code-output-12" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-12" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-12">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-12" class="qwebr-console-area">
+    <div id="qwebr-editor-12" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-12" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-12" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-12");
-  const outputDiv = document.getElementById("webr-code-output-12");
-  const editorDiv = document.getElementById("webr-editor-12");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-12");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-12");
+  const editorDiv = document.getElementById("qwebr-editor-12");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-12");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -3193,7 +3968,7 @@ print(gapminder_totalgdp)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -3285,7 +4060,7 @@ print(gapminder_totalgdp)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -3295,8 +4070,40 @@ print(gapminder_totalgdp)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -3316,15 +4123,20 @@ print(gapminder_totalgdp)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-12-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -3339,30 +4151,50 @@ print(gapminder_totalgdp)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-12-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -3370,7 +4202,7 @@ print(gapminder_totalgdp)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -3384,20 +4216,24 @@ print(gapminder_totalgdp)`,
   };
 </script>
 <p>We can also use functions within mutate to generate new variables. For example, to take the log of <code>gdpPercap</code> we could use:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">🟡 Loading
-  webR...</button>
-<div id="webr-editor-13"></div>
-<div id="webr-code-output-13" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-13" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-13">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-13" class="qwebr-console-area">
+    <div id="qwebr-editor-13" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-13" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-13" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-13");
-  const outputDiv = document.getElementById("webr-code-output-13");
-  const editorDiv = document.getElementById("webr-editor-13");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-13");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-13");
+  const editorDiv = document.getElementById("qwebr-editor-13");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-13");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -3412,7 +4248,7 @@ print(gapminder_totalgdp)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -3504,7 +4340,7 @@ print(gapminder_totalgdp)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -3514,8 +4350,40 @@ print(gapminder_totalgdp)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -3535,15 +4403,20 @@ print(gapminder_totalgdp)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-13-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -3558,30 +4431,50 @@ print(gapminder_totalgdp)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-13-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -3589,7 +4482,7 @@ print(gapminder_totalgdp)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -3617,20 +4510,24 @@ Challenge 2
 <p>Hint: First <code>filter()</code> to get the rows you want, and then use <code>mutate()</code> to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).<br>
 There are several functions for ranking observations, which handle tied values differently. For this exercise it doesn’t matter which function you choose.</p>
 <p>Can you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">🟡 Loading
-  webR...</button>
-<div id="webr-editor-14"></div>
-<div id="webr-code-output-14" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-14" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-14">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-14" class="qwebr-console-area">
+    <div id="qwebr-editor-14" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-14" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-14" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-14");
-  const outputDiv = document.getElementById("webr-code-output-14");
-  const editorDiv = document.getElementById("webr-editor-14");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-14");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-14");
+  const editorDiv = document.getElementById("qwebr-editor-14");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-14");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -3644,7 +4541,7 @@ There are several functions for ranking observations, which handle tied values d
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -3736,7 +4633,7 @@ There are several functions for ranking observations, which handle tied values d
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -3746,8 +4643,40 @@ There are several functions for ranking observations, which handle tied values d
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -3767,15 +4696,20 @@ There are several functions for ranking observations, which handle tied values d
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-14-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -3790,30 +4724,50 @@ There are several functions for ranking observations, which handle tied values d
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-14-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -3821,7 +4775,7 @@ There are several functions for ranking observations, which handle tied values d
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -3848,20 +4802,24 @@ Solution to challenge 2
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">🟡 Loading
-  webR...</button>
-<div id="webr-editor-15"></div>
-<div id="webr-code-output-15" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-15" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-15">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-15" class="qwebr-console-area">
+    <div id="qwebr-editor-15" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-15" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-15" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-15");
-  const outputDiv = document.getElementById("webr-code-output-15");
-  const editorDiv = document.getElementById("webr-editor-15");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-15");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-15");
+  const editorDiv = document.getElementById("qwebr-editor-15");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-15");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -3879,7 +4837,7 @@ print(europeLifeExp, n=100)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -3971,7 +4929,7 @@ print(europeLifeExp, n=100)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -3981,8 +4939,40 @@ print(europeLifeExp, n=100)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -4002,15 +4992,20 @@ print(europeLifeExp, n=100)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-15-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -4025,30 +5020,50 @@ print(europeLifeExp, n=100)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-15-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -4056,7 +5071,7 @@ print(europeLifeExp, n=100)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -4078,20 +5093,24 @@ print(europeLifeExp, n=100)`,
 <section id="calculating-summary-statistics" class="level2" data-number="17.15">
 <h2 data-number="17.15" class="anchored" data-anchor-id="calculating-summary-statistics"><span class="header-section-number">17.15</span> Calculating summary statistics</h2>
 <p>We often wish to calculate a summary statistic (the mean, standard deviation, etc.) for a variable. We frequently want to calculate a separate summary statistic for several groups of data (e.g.&nbsp;the experiment and control group). We can calculate a summary statistic for the whole data-set using the dplyr’s <code>summarise()</code> function:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">🟡 Loading
-  webR...</button>
-<div id="webr-editor-16"></div>
-<div id="webr-code-output-16" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-16" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-16">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-16" class="qwebr-console-area">
+    <div id="qwebr-editor-16" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-16" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-16" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-16");
-  const outputDiv = document.getElementById("webr-code-output-16");
-  const editorDiv = document.getElementById("webr-editor-16");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-16");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-16");
+  const editorDiv = document.getElementById("qwebr-editor-16");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-16");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -4107,7 +5126,7 @@ print(europeLifeExp, n=100)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -4199,7 +5218,7 @@ print(europeLifeExp, n=100)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -4209,8 +5228,40 @@ print(europeLifeExp, n=100)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -4230,15 +5281,20 @@ print(europeLifeExp, n=100)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-16-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -4253,30 +5309,50 @@ print(europeLifeExp, n=100)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-16-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -4284,7 +5360,7 @@ print(europeLifeExp, n=100)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -4298,20 +5374,24 @@ print(europeLifeExp, n=100)`,
   };
 </script>
 <p>To generate summary statistics for each value of another variable we use the <code>group_by()</code> function:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">🟡 Loading
-  webR...</button>
-<div id="webr-editor-17"></div>
-<div id="webr-code-output-17" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-17" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-17">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-17" class="qwebr-console-area">
+    <div id="qwebr-editor-17" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-17" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-17" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-17");
-  const outputDiv = document.getElementById("webr-code-output-17");
-  const editorDiv = document.getElementById("webr-editor-17");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-17");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-17");
+  const editorDiv = document.getElementById("qwebr-editor-17");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-17");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -4328,7 +5408,7 @@ print(europeLifeExp, n=100)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -4420,7 +5500,7 @@ print(europeLifeExp, n=100)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -4430,8 +5510,40 @@ print(europeLifeExp, n=100)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -4451,15 +5563,20 @@ print(europeLifeExp, n=100)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-17-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -4474,30 +5591,50 @@ print(europeLifeExp, n=100)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-17-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -4505,7 +5642,7 @@ print(europeLifeExp, n=100)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -4537,20 +5674,24 @@ Challenge 3
 </div>
 <div class="callout-body-container callout-body">
 <p>For each combination of continent and year, calculate the average life expectancy.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-18">🟡 Loading
-  webR...</button>
-<div id="webr-editor-18"></div>
-<div id="webr-code-output-18" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-18" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-18">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-18" class="qwebr-console-area">
+    <div id="qwebr-editor-18" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-18" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-18" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-18");
-  const outputDiv = document.getElementById("webr-code-output-18");
-  const editorDiv = document.getElementById("webr-editor-18");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-18");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-18");
+  const editorDiv = document.getElementById("qwebr-editor-18");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-18");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -4564,7 +5705,7 @@ Challenge 3
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -4656,7 +5797,7 @@ Challenge 3
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -4666,8 +5807,40 @@ Challenge 3
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -4687,15 +5860,20 @@ Challenge 3
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-18-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -4710,30 +5888,50 @@ Challenge 3
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-18-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -4741,7 +5939,7 @@ Challenge 3
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -4768,20 +5966,24 @@ Solution to Challenge 3
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-19">🟡 Loading
-  webR...</button>
-<div id="webr-editor-19"></div>
-<div id="webr-code-output-19" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-19" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-19">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-19" class="qwebr-console-area">
+    <div id="qwebr-editor-19" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-19" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-19" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-19");
-  const outputDiv = document.getElementById("webr-code-output-19");
-  const editorDiv = document.getElementById("webr-editor-19");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-19");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-19");
+  const editorDiv = document.getElementById("qwebr-editor-19");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-19");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -4798,7 +6000,7 @@ Solution to Challenge 3
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -4890,7 +6092,7 @@ Solution to Challenge 3
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -4900,8 +6102,40 @@ Solution to Challenge 3
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -4921,15 +6155,20 @@ Solution to Challenge 3
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-19-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -4944,30 +6183,50 @@ Solution to Challenge 3
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-19-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -4975,7 +6234,7 @@ Solution to Challenge 3
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -4996,20 +6255,24 @@ Solution to Challenge 3
 <h2 data-number="17.18" class="anchored" data-anchor-id="count-and-n"><span class="header-section-number">17.18</span> <code>count()</code> and <code>n()</code></h2>
 <p>A very common operation is to count the number of observations for each group. The <code>dplyr</code> package comes with two related functions that help with this.</p>
 <p>If we need to use the number of observations in calculations, the <code>n()</code> function is useful. For instance, if we wanted to get the standard error of the life expectancy per continent:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-20">🟡 Loading
-  webR...</button>
-<div id="webr-editor-20"></div>
-<div id="webr-code-output-20" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-20" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-20">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-20" class="qwebr-console-area">
+    <div id="qwebr-editor-20" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-20" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-20" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-20");
-  const outputDiv = document.getElementById("webr-code-output-20");
-  const editorDiv = document.getElementById("webr-editor-20");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-20");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-20");
+  const editorDiv = document.getElementById("qwebr-editor-20");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-20");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -5026,7 +6289,7 @@ Solution to Challenge 3
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -5118,7 +6381,7 @@ Solution to Challenge 3
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -5128,8 +6391,40 @@ Solution to Challenge 3
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -5149,15 +6444,20 @@ Solution to Challenge 3
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-20-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -5172,30 +6472,50 @@ Solution to Challenge 3
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-20-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -5203,7 +6523,7 @@ Solution to Challenge 3
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -5218,20 +6538,24 @@ Solution to Challenge 3
 </script>
 <p>Although we could use the <code>group_by()</code>, <code>n()</code> and <code>summarize()</code> functions to calculate the number of observations in each group, <code>dplyr</code> provides the <code>count()</code> function which automatically groups the data, calculates the totals and then ungroups it.</p>
 <p>For instance, if we wanted to check the number of countries included in the dataset for the year 2002, we can use:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-21">🟡 Loading
-  webR...</button>
-<div id="webr-editor-21"></div>
-<div id="webr-code-output-21" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-21" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-21">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-21" class="qwebr-console-area">
+    <div id="qwebr-editor-21" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-21" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-21" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-21");
-  const outputDiv = document.getElementById("webr-code-output-21");
-  const editorDiv = document.getElementById("webr-editor-21");
-
-  // Add a light grey outline around the code editor
-  editorDiv.style.border = "1px solid #eee";
+  const runButton = document.getElementById("qwebr-button-run-21");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-21");
+  const editorDiv = document.getElementById("qwebr-editor-21");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-21");
 
   // Load the Monaco Editor and create an instance
   let editor;
@@ -5247,7 +6571,7 @@ Solution to Challenge 3
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -5339,7 +6663,7 @@ Solution to Challenge 3
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -5349,8 +6673,40 @@ Solution to Challenge 3
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -5370,15 +6726,20 @@ Solution to Challenge 3
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-21-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -5393,30 +6754,50 @@ Solution to Challenge 3
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-21-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -5424,7 +6805,7 @@ Solution to Challenge 3
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
