@@ -530,14 +530,27 @@ Expand to see solution
 
 $Information
 # A tibble: 1 × 5
-  Trait              Check ListedMin ListedMax OutOfRangeValues
-  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;          
-1 PERCEIVED_CONFLICT FALSE         1        15 &lt;int [11]&gt;      </code></pre>
+  Trait              Check ListedMin ListedMax OutOfRangeValues 
+  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;           
+1 PERCEIVED_CONFLICT FALSE         1        15 &lt;tibble [11 × 1]&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>details[[<span class="dv">1</span>]]<span class="sc">$</span>OutOfRangeValues[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.tmp <span class="ot">&lt;-</span> details[[<span class="dv">1</span>]]<span class="sc">$</span>OutOfRangeValues[[<span class="dv">1</span>]] </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df.tmp[<span class="fu">order</span>(df.tmp<span class="sc">$</span>PERCEIVED_CONFLICT),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 16 17 19 20 21 24 25 26 28 29 30</code></pre>
+<pre><code># A tibble: 11 × 1
+   PERCEIVED_CONFLICT
+                &lt;int&gt;
+ 1                 16
+ 2                 17
+ 3                 19
+ 4                 20
+ 5                 21
+ 6                 24
+ 7                 25
+ 8                 26
+ 9                 28
+10                 29
+11                 30</code></pre>
 </div>
 </div>
 </div>
@@ -747,9 +760,9 @@ $Information
 
 $Information
 # A tibble: 1 × 5
-  Trait              Check ListedMin ListedMax OutOfRangeValues
-  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;          
-1 PERCEIVED_CONFLICT FALSE         1        15 &lt;int [11]&gt;      </code></pre>
+  Trait              Check ListedMin ListedMax OutOfRangeValues 
+  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;           
+1 PERCEIVED_CONFLICT FALSE         1        15 &lt;tibble [11 × 1]&gt;</code></pre>
 </div>
 </div>
 <p>If we examine the <code>minmax_check</code> code by typing <code>minmax_check</code> without parentheses at the R prompt, we see that this is how the missing value recoding step is done:</p>
