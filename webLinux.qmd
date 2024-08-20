@@ -28,7 +28,7 @@ To copy text into a text file in the Terminal window, open it in the File Browse
 
 The webLinux object <https://remisharrock.github.io/sysbuild/> used here was released under the following license terms:
 
-Copyright &copy; 2016-2019 R√©mi SHARROCK - Telecom ParisTech - IMT France
+Copyright &copy; 2016-2019 Rémi SHARROCK - Telecom ParisTech - IMT France
 
 Version 0.0.1 
 

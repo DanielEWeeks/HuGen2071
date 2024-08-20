@@ -77,3 +77,21 @@ answer = "Pull, work, commit, pull, push",
 `r longmcq(choices)`
 
 
+### Question 4
+
+What typically causes a Git conflict?
+
+Please select the correct option.  
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+answer="When two people make different changes to the same line in a file",
+"When you forget to commit your changes before pushing to a remote repository",
+"When you accidentally delete a file from your local repository",
+"When you try to merge two completely unrelated projects"
+)
+```
+
+`r longmcq(choices)`
+

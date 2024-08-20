@@ -163,7 +163,7 @@ It is not applying the `mean` function, but rather it is applying the `mean` var
 
 As the `map` documentation states, while the `map` command is typically used to apply a function in its `.f` argument, the `.f` argument can also accept an integer - when it does so, it is interpreted as follows:
 
-> A string, integer, or list, e.g. `"idx"`, `1`, or `list("idx", 1)` which are shorthand for  `pluck(x, "idx")`⁠, ⁠ `pluck(x, 1)`⁠, and `pluck(x, "idx", 1)`⁠ respectively.
+> A string, integer, or list, e.g. `"idx"`, `1`, or `list("idx", 1)` which are shorthand for  `pluck(x, "idx")`, `pluck(x, 1)`, and `pluck(x, "idx", 1)` respectively.
 
 So when we `map` using the `mean` variable, it is used as an index to pluck elements out of the list - during the double to integer conversion, it is rounded down to `1`, so it plucks the first element of each list.
 
