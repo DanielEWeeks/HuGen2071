@@ -27,6 +27,7 @@ df$D <- c(13,14)
 What will be the `D` column of `df` after the operation?
 
 ```{r, echo=FALSE}
+library(webexercises)
 choices = c(
 "c(13, 14, NA, NA)",
 "c(13, 14, 11, 12)",

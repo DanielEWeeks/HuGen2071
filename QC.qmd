@@ -110,8 +110,8 @@ These results are consistent with those returned by the `minmax_check` function 
 
 ```{r}
 details <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information
-details[[1]]$OutOfRangeValues[[1]] %>% 
-  sort()
+df.tmp <- details[[1]]$OutOfRangeValues[[1]] 
+df.tmp[order(df.tmp$PERCEIVED_CONFLICT),]
 ```
 
 :::
