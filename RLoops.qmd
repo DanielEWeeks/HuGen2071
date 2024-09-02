@@ -10,9 +10,32 @@ Here's a recording of this lecture (8 minutes 11 seconds):
 
 </iframe>
 
-
 ## Loops in R slides
 
 [PDF slide set](pdfs/R_loops.pdf){target="_blank"}
 
 <iframe width="100%" height="800" src="pdfs/R_loops.pdf">
+
+</iframe>
+
+
+## Questions
+
+### Question 1
+
+Which of the following is NOT a common technique for improving the efficiency of loops in R?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+"Using vectorized operations instead of loops whenever possible.",
+"Pre-allocating memory for the result of a loop to avoid repeated memory allocations.",
+answer = "Using a for loop instead of a while loop for most iterative tasks.",
+"Avoiding unnecessary calculations within the loop."
+)
+```
+
+`r longmcq(choices)`
+
+
+
