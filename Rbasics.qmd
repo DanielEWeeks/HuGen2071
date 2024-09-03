@@ -52,7 +52,12 @@ dim(a)
 a
 ```
 
-Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in even rows and a 2 in odd rows.
+::: {.callout-note icon=false}
+
+### Task
+Use recycling to insert into the data frame `a` a column named `rowNum1` that contains a 1 in odd rows and a 2 in even rows.
+
+:::
 
 ::: callout-warning
 If the following WebR chunk is working properly, you should see an editor window below the `Run code` tab displaying this line of R code: `(a <- data.frame(n = 1:4))`.
@@ -108,7 +113,12 @@ Please select the correct option.
 
 ## Exercise 2: vector addition
 
-Use vector addition to construct a vector of length 4 that contains a 1 in even positions and a 2 in odd positions. Then insert this vector into the data frame `a` into a column named `rowNum6`.
+::: {.callout-note icon=false}
+
+### Task
+Use vector addition to construct a vector of length 4 that contains a 1 in odd positions and a 2 in even positions. Then insert this vector into the data frame `a` into a column named `rowNum6`.
+
+:::
 
 ```{webr-r}
 # Edit/add code here
@@ -162,7 +172,12 @@ i <- i.vector[3]
 print(paste("i =",i))
 ```
 
-Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in even rows and a 2 in odd rows.
+::: {.callout-note icon=false}
+
+### Task
+Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that contains a 1 in odd rows and a 2 in even rows.
+
+:::
 
 ```{webr-r}
 # Edit/add code here
@@ -211,7 +226,12 @@ while (i < 4) {
 }
 ```
 
-Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
+::: {.callout-note icon=false}
+
+### Task
+Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in odd rows and a 2 in even rows.
+
+:::
 
 
 
@@ -271,7 +291,12 @@ repeat {
 }
 ```
 
-Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in even rows and a 2 in odd rows.
+::: {.callout-note icon=false}
+
+### Task
+Use a `repeat` loop to insert into the data frame `a` a column named `rowNum4` that contains a 1 in odd rows and a 2 in even rows.
+
+:::
 
 ```{webr-r}
 # Edit/add code here
@@ -302,7 +327,12 @@ a
 
 ## Exercise 6: using the `rep` function
 
-Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in even rows and a 2 in odd rows.
+::: {.callout-note icon=false}
+
+### Task
+Use the `rep` command to insert into the data frame `a` a column named `rowNum5` that contains a 1 in odd rows and a 2 in even rows.
+
+:::
 
 ```{webr-r}
 # Edit/add code here
@@ -320,9 +350,14 @@ a
 
 ## Exercise 7
 
-List all even rows of the data frame `a`.
+::: {.callout-note icon=false}
 
-List rows 3 and 4 of the data frame `a`.
+### Tasks
+**Task 1:** List all even rows of the data frame `a`.
+
+**Task 2:** List rows 3 and 4 of the data frame `a`.
+
+:::
 
 ```{webr-r}
 # Edit/add code here
@@ -370,7 +405,12 @@ b
 str(b)
 ```
 
-Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`. This can be done by adjusting the various options of the `read.table` command.
+::: {.callout-note icon=false}
+
+### Task
+Use the `read.table` command to read this file in while automatically setting both the 'NA" and the `99` to `NA`. This should be done by adjusting the various options of the `read.table` command.
+
+:::
 
 ```{webr-r}
 dir.create("data")
