@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Lecture: R: factors, subscripting – HuGen2071 book</title>
+<title>9&nbsp; Lecture: R: factors, subscripting – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./R_char_exer.html" rel="next">
-<link href="./RFactorsSubsetting.html" rel="prev">
+<link href="./Rbasics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RFactors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RFactors.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,134 +165,128 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./RFactorsSubsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./RFactors.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -346,8 +340,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-factors-subscripting-lecture" id="toc-r-factors-subscripting-lecture" class="nav-link active" data-scroll-target="#r-factors-subscripting-lecture"><span class="header-section-number">10.1</span> R: factors, subscripting lecture</a></li>
-  <li><a href="#r-factors-subscripting-slides" id="toc-r-factors-subscripting-slides" class="nav-link" data-scroll-target="#r-factors-subscripting-slides"><span class="header-section-number">10.2</span> R: factors, subscripting slides</a></li>
+  <li><a href="#r-factors-subscripting-lecture" id="toc-r-factors-subscripting-lecture" class="nav-link active" data-scroll-target="#r-factors-subscripting-lecture"><span class="header-section-number">9.1</span> R: factors, subscripting lecture</a></li>
+  <li><a href="#r-factors-subscripting-slides" id="toc-r-factors-subscripting-slides" class="nav-link" data-scroll-target="#r-factors-subscripting-slides"><span class="header-section-number">9.2</span> R: factors, subscripting slides</a></li>
   </ul>
 </nav>
     </div>
@@ -356,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></h1>
 </div>
 
 
@@ -373,22 +367,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="r-factors-subscripting-lecture" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="r-factors-subscripting-lecture"><span class="header-section-number">10.1</span> R: factors, subscripting lecture</h2>
+<section id="r-factors-subscripting-lecture" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="r-factors-subscripting-lecture"><span class="header-section-number">9.1</span> R: factors, subscripting lecture</h2>
 <p>Here’s a recording of this lecture (43 minutes 25 seconds):</p>
 <p><a href="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=850e5bbc-cbad-4d5d-967e-b06f00fa2c54" class="external" target="_blank">Recording</a></p>
 <iframe credentialless="" src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=850e5bbc-cbad-4d5d-967e-b06f00fa2c54&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
 </iframe>
 </section>
-<section id="r-factors-subscripting-slides" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="r-factors-subscripting-slides"><span class="header-section-number">10.2</span> R: factors, subscripting slides</h2>
+<section id="r-factors-subscripting-slides" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="r-factors-subscripting-slides"><span class="header-section-number">9.2</span> R: factors, subscripting slides</h2>
 <p><a href="pdfs/R_factors_dates.pdf" target="_blank">PDF slide set</a></p>
 <iframe width="100%" height="800" src="pdfs/R_factors_dates.pdf">
 <div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar-title">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-navbar-title">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-next"><span class="chapter-number">11</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-prev"><span class="chapter-number">9</span>  <span class="chapter-title">R: factors, subsetting</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/index.htmlPreface">Preface</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/preparation.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Preparation&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">Preparation</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/intro.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Introduction&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">Introduction</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/logistics.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Logistics&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">Logistics</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Readings.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Active-Learning-and-Readings&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">Active Learning and Readings</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/gitIntro.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;GitHub&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">GitHub</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Git_commands.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Git-Commands&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">Git Commands</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RBasicsLecture.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R-Basics&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">Lecture: R Basics</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Rbasics.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Basics-Group-Exercise&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RFactorsSubsetting.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R:-factors,-subsetting&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">R: factors, subsetting</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RFactors.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R:-factors,-subscripting&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_char_exer.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Character-Exercise&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RLoops.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-Loops-in-R&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">Lecture: Loops in R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/loops.html&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Loops-in-R,-Part-I&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">Loops in R, Part I</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/conditionals.html&lt;span-class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Conditionals-in-R&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">Conditionals in R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/loops_part2.html&lt;span-class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Loops-in-R,-Part-II&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">Loops in R, Part II</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/functions.html&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Functions&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">Functions</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_Functions.html&lt;span-class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Functions-Excercise&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">R Functions Excercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/tidyverse.html&lt;span-class=&#39;chapter-number&#39;&gt;18&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Tidyverse&lt;/span&gt;"><span class="chapter-number">18</span>  <span class="chapter-title">Tidyverse</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/exercise_tidyverse.html&lt;span-class=&#39;chapter-number&#39;&gt;19&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Tidyverse-Exercise&lt;/span&gt;"><span class="chapter-number">19</span>  <span class="chapter-title">R Tidyverse Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/recoding_reshaping_interactive.html&lt;span-class=&#39;chapter-number&#39;&gt;20&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Recoding-Reshaping-Exercise&lt;/span&gt;"><span class="chapter-number">20</span>  <span class="chapter-title">R Recoding Reshaping Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/merging_exercise.html&lt;span-class=&#39;chapter-number&#39;&gt;21&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Merging-Exercise&lt;/span&gt;"><span class="chapter-number">21</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_graphics_exercises.html&lt;span-class=&#39;chapter-number&#39;&gt;22&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Graphics-Exercise&lt;/span&gt;"><span class="chapter-number">22</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/reorder_exercise.html&lt;span-class=&#39;chapter-number&#39;&gt;23&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Reordering-Exercise&lt;/span&gt;"><span class="chapter-number">23</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/EDA.html&lt;span-class=&#39;chapter-number&#39;&gt;24&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Exploratory-Data-Analysis-Exercise&lt;/span&gt;"><span class="chapter-number">24</span>  <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/GRanges.html&lt;span-class=&#39;chapter-number&#39;&gt;25&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;GRanges-Exercise&lt;/span&gt;"><span class="chapter-number">25</span>  <span class="chapter-title">GRanges Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/QC.html&lt;span-class=&#39;chapter-number&#39;&gt;26&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Data-Cleaning-Exercise&lt;/span&gt;"><span class="chapter-number">26</span>  <span class="chapter-title">Data Cleaning Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_questions.html&lt;span-class=&#39;chapter-number&#39;&gt;27&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Questions-about-R&lt;/span&gt;"><span class="chapter-number">27</span>  <span class="chapter-title">Questions about R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_gotchas.html&lt;span-class=&#39;chapter-number&#39;&gt;28&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-gotchas&lt;/span&gt;"><span class="chapter-number">28</span>  <span class="chapter-title">R gotchas</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Basic_Unix_commands.html&lt;span-class=&#39;chapter-number&#39;&gt;29&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Basic-Shell-Commands&lt;/span&gt;"><span class="chapter-number">29</span>  <span class="chapter-title">Basic Shell Commands</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/summary.html&lt;span-class=&#39;chapter-number&#39;&gt;30&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Summary&lt;/span&gt;"><span class="chapter-number">30</span>  <span class="chapter-title">Summary</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/references.htmlReferences">References</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">Appendices</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/TechnicalDetails.html&lt;span-class=&#39;chapter-number&#39;&gt;A&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Technical-Details&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">Technical Details</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/webR_test.html&lt;span-class=&#39;chapter-number&#39;&gt;B&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;WebR---R-in-the-web-browser&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">WebR - R in the web browser</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/JSLinux.html&lt;span-class=&#39;chapter-number&#39;&gt;C&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;JSLinux-terminal&lt;/span&gt;"><span class="chapter-number">C</span>  <span class="chapter-title">JSLinux terminal</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/webLinux.html&lt;span-class=&#39;chapter-number&#39;&gt;D&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;webLinux-terminal&lt;/span&gt;"><span class="chapter-number">D</span>  <span class="chapter-title">webLinux terminal</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R:-factors,-subscripting&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span></span></p>
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar-title">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-navbar-title">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-next"><span class="chapter-number">10</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-prev"><span class="chapter-number">8</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/index.htmlPreface">Preface</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/preparation.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Preparation&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">Preparation</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/intro.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Introduction&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">Introduction</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/logistics.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Logistics&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">Logistics</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Readings.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Active-Learning-and-Readings&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">Active Learning and Readings</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/gitIntro.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;GitHub&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">GitHub</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Git_commands.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Git-Commands&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">Git Commands</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RBasicsLecture.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R-Basics&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">Lecture: R Basics</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Rbasics.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Basics-Group-Exercise&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">R Basics Group Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RFactors.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R:-factors,-subscripting&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_char_exer.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Character-Exercise&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">R Character Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/RLoops.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-Loops-in-R&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">Lecture: Loops in R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/loops.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Loops-in-R,-Part-I&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">Loops in R, Part I</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/conditionals.html&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Conditionals-in-R&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">Conditionals in R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/loops_part2.html&lt;span-class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Loops-in-R,-Part-II&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">Loops in R, Part II</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/functions.html&lt;span-class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Functions&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">Functions</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_Functions.html&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Functions-Excercise&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">R Functions Excercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/tidyverse.html&lt;span-class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Tidyverse&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">Tidyverse</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/exercise_tidyverse.html&lt;span-class=&#39;chapter-number&#39;&gt;18&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Tidyverse-Exercise&lt;/span&gt;"><span class="chapter-number">18</span>  <span class="chapter-title">R Tidyverse Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/recoding_reshaping_interactive.html&lt;span-class=&#39;chapter-number&#39;&gt;19&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Recoding-Reshaping-Exercise&lt;/span&gt;"><span class="chapter-number">19</span>  <span class="chapter-title">R Recoding Reshaping Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/merging_exercise.html&lt;span-class=&#39;chapter-number&#39;&gt;20&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Merging-Exercise&lt;/span&gt;"><span class="chapter-number">20</span>  <span class="chapter-title">R Merging Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_graphics_exercises.html&lt;span-class=&#39;chapter-number&#39;&gt;21&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Graphics-Exercise&lt;/span&gt;"><span class="chapter-number">21</span>  <span class="chapter-title">R Graphics Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/reorder_exercise.html&lt;span-class=&#39;chapter-number&#39;&gt;22&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Reordering-Exercise&lt;/span&gt;"><span class="chapter-number">22</span>  <span class="chapter-title">R Reordering Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/EDA.html&lt;span-class=&#39;chapter-number&#39;&gt;23&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-Exploratory-Data-Analysis-Exercise&lt;/span&gt;"><span class="chapter-number">23</span>  <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/GRanges.html&lt;span-class=&#39;chapter-number&#39;&gt;24&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;GRanges-Exercise&lt;/span&gt;"><span class="chapter-number">24</span>  <span class="chapter-title">GRanges Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/QC.html&lt;span-class=&#39;chapter-number&#39;&gt;25&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Data-Cleaning-Exercise&lt;/span&gt;"><span class="chapter-number">25</span>  <span class="chapter-title">Data Cleaning Exercise</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_questions.html&lt;span-class=&#39;chapter-number&#39;&gt;26&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Questions-about-R&lt;/span&gt;"><span class="chapter-number">26</span>  <span class="chapter-title">Questions about R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/R_gotchas.html&lt;span-class=&#39;chapter-number&#39;&gt;27&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-gotchas&lt;/span&gt;"><span class="chapter-number">27</span>  <span class="chapter-title">R gotchas</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/Basic_Unix_commands.html&lt;span-class=&#39;chapter-number&#39;&gt;28&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Basic-Shell-Commands&lt;/span&gt;"><span class="chapter-number">28</span>  <span class="chapter-title">Basic Shell Commands</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/summary.html&lt;span-class=&#39;chapter-number&#39;&gt;29&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Summary&lt;/span&gt;"><span class="chapter-number">29</span>  <span class="chapter-title">Summary</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/references.htmlReferences">References</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">Appendices</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/TechnicalDetails.html&lt;span-class=&#39;chapter-number&#39;&gt;A&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Technical-Details&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">Technical Details</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/webR_test.html&lt;span-class=&#39;chapter-number&#39;&gt;B&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;WebR---R-in-the-web-browser&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">WebR - R in the web browser</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/JSLinux.html&lt;span-class=&#39;chapter-number&#39;&gt;C&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;JSLinux-terminal&lt;/span&gt;"><span class="chapter-number">C</span>  <span class="chapter-title">JSLinux terminal</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/webLinux.html&lt;span-class=&#39;chapter-number&#39;&gt;D&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;webLinux-terminal&lt;/span&gt;"><span class="chapter-number">D</span>  <span class="chapter-title">webLinux terminal</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;Lecture:-R:-factors,-subscripting&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span></span></p>
 </div>
 <div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metatitle"><span class="chapter-number">10</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercardtitle"><span class="chapter-number">10</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardtitle"><span class="chapter-number">10</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metasitename">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercarddesc"></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardddesc"></span></p>
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metatitle"><span class="chapter-number">9</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercardtitle"><span class="chapter-number">9</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardtitle"><span class="chapter-number">9</span>  <span class="chapter-title">Lecture: R: factors, subscripting</span> – HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metasitename">HuGen2071 book</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercarddesc"></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardddesc"></span></p>
 </div>
 </section>
 
@@ -1028,13 +1022,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a  href="/RFactorsSubsetting.html" class="pagination-link" aria-label="R: factors, subsetting">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>R: factors, subsetting</span></span>
+      <a  href="/Rbasics.html" class="pagination-link" aria-label="R Basics Group Exercise">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>R Basics Group Exercise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a  href="/R_char_exer.html" class="pagination-link" aria-label="R Character Exercise">
-        <span class="nav-page-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>R Character Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>R Character Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
