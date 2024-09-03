@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./RFactors.html" rel="next">
+<link href="./RFactorsSubsetting.html" rel="next">
 <link href="./RBasicsLecture.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"(a <- data.frame(n = 1:4))\n# Edit/add R code here","id":1,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-1","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":2,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-2","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":3,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-3","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":4,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-4","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":5,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-5","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":6,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-6","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"# Edit/add code here","id":7,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-7","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}},{"code":"dir.create(\"data\")\ninfile <- \"data/testdata.txt\"\nsrcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt\"\ndownload.file(srcfile, infile)\n# Adjust the read.table options to read the file correctly as desired.\nb <- read.table(infile)\nb","id":8,"options":{"editor-quick-suggestions":"false","results":"markup","classes":"","read-only":"false","fig-cap":"","editor-max-height":"","output":"true","warning":"true","message":"true","out-height":"","autorun":"false","out-width":"700px","label":"unnamed-chunk-8","fig-width":7,"context":"interactive","fig-height":5,"editor-word-wrap":"true","dpi":72,"editor-font-scale":"1","comment":""}}];
+globalThis.qwebrCellDetails = [{"code":"(a <- data.frame(n = 1:4))\n# Edit/add R code here","id":1,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-1","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":2,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-2","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":3,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-3","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":4,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-4","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":5,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-5","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":6,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-6","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"# Edit/add code here","id":7,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-7","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}},{"code":"dir.create(\"data\")\ninfile <- \"data/testdata.txt\"\nsrcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/data/testdata.txt\"\ndownload.file(srcfile, infile)\n# Adjust the read.table options to read the file correctly as desired.\nb <- read.table(infile)\nb","id":8,"options":{"editor-max-height":"","results":"markup","label":"unnamed-chunk-8","output":"true","editor-font-scale":"1","dpi":72,"editor-word-wrap":"true","fig-height":5,"read-only":"false","classes":"","out-height":"","warning":"true","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","autorun":"false","fig-width":7,"message":"true","fig-cap":""}}];
 
 </script>
 <script type="module">
@@ -1684,128 +1684,134 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./RFactorsSubsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./RFactors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2201,8 +2207,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>D <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What will be the <code>D</code> column of <code>df</code> after the operation?</p>
-<div id="radio_QJPPNEUEUS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QJPPNEUEUS" value=""> <span>c(13, 14, NA, NA)</span></label><label><input type="radio" autocomplete="off" name="radio_QJPPNEUEUS" value=""> <span>c(13, 14, 11, 12)</span></label><label><input type="radio" autocomplete="off" name="radio_QJPPNEUEUS" value="answer"> <span>c(13, 14, 13, 14)</span></label><label><input type="radio" autocomplete="off" name="radio_QJPPNEUEUS" value=""> <span>c(13, 14)</span></label>
+<div id="radio_NQQGITMXCY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NQQGITMXCY" value=""> <span>c(13, 14, NA, NA)</span></label><label><input type="radio" autocomplete="off" name="radio_NQQGITMXCY" value=""> <span>c(13, 14, 11, 12)</span></label><label><input type="radio" autocomplete="off" name="radio_NQQGITMXCY" value="answer"> <span>c(13, 14, 13, 14)</span></label><label><input type="radio" autocomplete="off" name="radio_NQQGITMXCY" value=""> <span>c(13, 14)</span></label>
 </div>
 <p>Please select the correct option.</p>
 </section>
@@ -2301,8 +2307,8 @@ Expand to see the answer
 <p>Vector A: c(1, 2, 3)<br>
 Vector B: c(4, 5)</p>
 <p>If you perform the operation A + B, what will be the result of vector recycling?</p>
-<div id="radio_GLNSVABMDF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GLNSVABMDF" value=""> <span>c(5, 7, 3)</span></label><label><input type="radio" autocomplete="off" name="radio_GLNSVABMDF" value=""> <span>c(5, 7, 8)</span></label><label><input type="radio" autocomplete="off" name="radio_GLNSVABMDF" value="answer"> <span>c(5, 7, 7)</span></label><label><input type="radio" autocomplete="off" name="radio_GLNSVABMDF" value=""> <span>c(5, 5, 3)</span></label>
+<div id="radio_LQLLYFTZSK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LQLLYFTZSK" value=""> <span>c(5, 7, 3)</span></label><label><input type="radio" autocomplete="off" name="radio_LQLLYFTZSK" value=""> <span>c(5, 7, 8)</span></label><label><input type="radio" autocomplete="off" name="radio_LQLLYFTZSK" value="answer"> <span>c(5, 7, 7)</span></label><label><input type="radio" autocomplete="off" name="radio_LQLLYFTZSK" value=""> <span>c(5, 5, 3)</span></label>
 </div>
 <p>Please select the correct option.</p>
 </section>
@@ -3519,8 +3525,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./RFactors.html" class="pagination-link" aria-label="Lecture: R: factors, subscripting">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./RFactorsSubsetting.html" class="pagination-link" aria-label="R: factors, subsetting">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Daniel E. Weeks and Jonathan Chernus">
-<meta name="dcterms.date" content="2024-09-03">
 
-<title>HuGen2071 book</title>
+<title>9&nbsp; R: factors, subsetting – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./preparation.html" rel="next">
+<link href="./RFactors.html" rel="next">
+<link href="./Rbasics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RFactorsSubsetting.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -164,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./RFactorsSubsetting.html" class="sidebar-item-text sidebar-link">
+  <a href="./RFactorsSubsetting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></span></a>
   </div>
 </li>
@@ -345,7 +344,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#r-factors-and-subsetting-lecture" id="toc-r-factors-and-subsetting-lecture" class="nav-link active" data-scroll-target="#r-factors-and-subsetting-lecture"><span class="header-section-number">9.1</span> R factors and subsetting lecture</a></li>
+  <li><a href="#r-factors-subsetting-slides" id="toc-r-factors-subsetting-slides" class="nav-link" data-scroll-target="#r-factors-subsetting-slides"><span class="header-section-number">9.2</span> R factors, subsetting slides</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.3</span> Questions</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">9.3.1</span> Question 1</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -354,26 +358,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HuGen2071 book</h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R: factors, subsetting</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Daniel E. Weeks and Jonathan Chernus </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -383,18 +375,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book created from markdown and executable code using Quarto within RStudio.</p>
-<p>Book web site: <a href="https://danieleweeks.github.io/HuGen2071/" class="uri">https://danieleweeks.github.io/HuGen2071/</a></p>
-<p>Book source code: <a href="https://github.com/DanielEWeeks/HuGen2071" class="uri">https://github.com/DanielEWeeks/HuGen2071</a></p>
-<p>Created by Daniel E. Weeks and Jonathan Chernus</p>
-<p>Websites:</p>
-<p><a href="https://www.sph.pitt.edu/directory/daniel-weeks" class="uri">https://www.sph.pitt.edu/directory/daniel-weeks</a></p>
-<p><a href="https://www.sph.pitt.edu/directory/jonathan-chernus" class="uri">https://www.sph.pitt.edu/directory/jonathan-chernus</a></p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books/" class="uri">https://quarto.org/docs/books/</a>.</p>
+<section id="r-factors-and-subsetting-lecture" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="r-factors-and-subsetting-lecture"><span class="header-section-number">9.1</span> R factors and subsetting lecture</h2>
+<p>Here’s a recording of this lecture (39 minutes 28 seconds):</p>
+<p><a href="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a76700f7-2635-4cc4-89e4-b1e00171b89c" class="external" target="_blank">Recording</a></p>
+<iframe src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a76700f7-2635-4cc4-89e4-b1e00171b89c&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="R: factors, subsetting lecture">
+</iframe>
+
+</section>
+<section id="r-factors-subsetting-slides" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="r-factors-subsetting-slides"><span class="header-section-number">9.2</span> R factors, subsetting slides</h2>
+<p><a href="pdfs/R_factors_dates.pdf" target="_blank">PDF slide set</a></p>
+<iframe width="100%" height="800" src="pdfs/R_factors_dates.pdf">
+</iframe>
+</section>
+<section id="questions" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.3</span> Questions</h2>
+<section id="question-1" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">9.3.1</span> Question 1</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1033,10 +1034,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./Rbasics.html" class="pagination-link" aria-label="R Basics Group Exercise">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./preparation.html" class="pagination-link" aria-label="Preparation">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./RFactors.html" class="pagination-link" aria-label="Lecture: R: factors, subscripting">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
