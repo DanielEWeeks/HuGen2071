@@ -172,6 +172,8 @@ Use a `for` loop to insert into the data frame `a` a column named `rowNum2` that
 ### Tip
 
 Think about how as `i` increments from 1 to `nrow(a)`, how could we map that sequence (e.g. 1, 2, 3, 4) to the desired sequence of 1, 2, 1, 2.
+
+An `if` statement might be useful here.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -211,15 +213,23 @@ while (i < 4) {
 
 Use a `while` loop to insert into the data frame `a` a column named `rowNum3` that contains a 1 in even rows and a 2 in odd rows.
 
+
+
 ```{webr-r}
 # Edit/add code here
 ```
+
+::: callout-tip
+### Tip
+
+The modulo operator `%%` might be helpful here. 
+:::
 
 ::: {.callout-tip collapse="true"}
 ### Expand to see the answer
 
 ```{r}
-a$rowNum3 = NA
+a$rowNum3 <- NA
 i <- 1 #set index
 while(i <= nrow(a)){ #set conditions for while loop
 
@@ -233,6 +243,19 @@ while(i <= nrow(a)){ #set conditions for while loop
 } 
 a
 ```
+
+Or we can do this more concisely using an `ifelse` statement:
+
+```{r}
+a$rowNum3 <- NA
+i <- 1 #set index
+while(i <= nrow(a)){ #set conditions for while loop
+  a$rowNum3[i] <- ifelse(i %% 2, 1, 2)
+  i <- i + 1 #counter for "i", increments by 1 with each loop iteration
+} 
+a
+```
+
 :::
 
 ## Exercise 5: `repeat` loops
@@ -313,6 +336,8 @@ List rows 3 and 4 of the data frame `a`.
 a[a$rowNum1==2,]
 # All odd rows
 a[a$rowNum1==1,]
+# List rows 3 and 4
+a[c(3,4),]
 ```
 :::
 
