@@ -172,6 +172,12 @@ i <- i.vector[3]
 print(paste("i =",i))
 ```
 
+::: {.callout-note}
+
+If you know in advance how many loops you’ll need, use a `for` loop.
+
+:::
+
 ::: {.callout-note icon=false}
 
 ### Task
@@ -225,6 +231,15 @@ while (i < 4) {
   i <- i + 1
 }
 ```
+
+::: {.callout-note}
+
+If you know the loop exit criterion but not how many loops, use a `while` loop or a `repeat` loop.
+
+`while`: tests the condition at the start of the loop
+
+:::
+
 
 ::: {.callout-note icon=false}
 
@@ -290,6 +305,16 @@ repeat {
   if (i > 3) break
 }
 ```
+
+::: {.callout-note}
+
+If you know the loop exit criterion but not how many loops, use a `while` loop or a `repeat` loop.
+
+`repeat`: tests the condition at the end of the loop
+
+:::
+
+
 
 ::: {.callout-note icon=false}
 
