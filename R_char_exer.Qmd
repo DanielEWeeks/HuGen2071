@@ -175,6 +175,14 @@ The `separate` function from the `tidyr` package is also useful:
 ```{r}
 geno %>% separate(Sample, into=c("Tech","ID","Suffix"), sep="-")
 ```
+
+The `separate` function is being superseded in favor of `separate_wider_delim` and `separate_wider_position`.  In this case, `separate_wider_delim` is applicable.
+
+```{r}
+geno %>% separate_wider_delim(cols=Sample, delim = "-", names=c("Tech","ID","Suffix"))
+```
+
+
 :::
 
 ## Scenario 2
