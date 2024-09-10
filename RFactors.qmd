@@ -48,7 +48,7 @@ Which of the following R code snippets correctly demonstrates valid methods for 
 ```{r, echo=FALSE}
 choices = c(
 answer='x[2], x["name"], x[x > 5]',
-'x[2], x["name"], x[grep("pattern", x)]',
+answer='x[2], x["name"], x[grep("pattern", x)]',
 answer = 'x[2], x["name"], x[!is.na(x)]',
 'x["name"], x[TRUE], x[order(x)]'
 )
