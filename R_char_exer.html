@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here","options":{"fig-height":5,"comment":"","classes":"","output":"true","out-height":"","editor-max-height":"","autorun":"false","editor-font-scale":"1","fig-width":7,"editor-word-wrap":"true","context":"interactive","label":"unnamed-chunk-1","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","results":"markup","dpi":72,"fig-cap":"","out-width":"700px"},"id":1},{"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here","options":{"fig-height":5,"comment":"","classes":"","output":"true","out-height":"","editor-max-height":"","autorun":"false","editor-font-scale":"1","fig-width":7,"editor-word-wrap":"true","context":"interactive","label":"unnamed-chunk-2","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","results":"markup","dpi":72,"fig-cap":"","out-width":"700px"},"id":2},{"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here","options":{"fig-height":5,"comment":"","classes":"","output":"true","out-height":"","editor-max-height":"","autorun":"false","editor-font-scale":"1","fig-width":7,"editor-word-wrap":"true","context":"interactive","label":"unnamed-chunk-3","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","results":"markup","dpi":72,"fig-cap":"","out-width":"700px"},"id":3},{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here","options":{"fig-height":5,"comment":"","classes":"","output":"true","out-height":"","editor-max-height":"","autorun":"false","editor-font-scale":"1","fig-width":7,"editor-word-wrap":"true","context":"interactive","label":"unnamed-chunk-4","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","results":"markup","dpi":72,"fig-cap":"","out-width":"700px"},"id":4}];
+globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here","id":1,"options":{"warning":"true","output":"true","editor-word-wrap":"true","editor-max-height":"","dpi":72,"editor-font-scale":"1","fig-width":7,"message":"true","editor-quick-suggestions":"false","read-only":"false","comment":"","out-width":"700px","out-height":"","classes":"","label":"unnamed-chunk-1","autorun":"false","fig-height":5,"context":"interactive","results":"markup","fig-cap":""}},{"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here","id":2,"options":{"warning":"true","output":"true","editor-word-wrap":"true","editor-max-height":"","dpi":72,"editor-font-scale":"1","fig-width":7,"message":"true","editor-quick-suggestions":"false","read-only":"false","comment":"","out-width":"700px","out-height":"","classes":"","label":"unnamed-chunk-2","autorun":"false","fig-height":5,"context":"interactive","results":"markup","fig-cap":""}},{"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here","id":3,"options":{"warning":"true","output":"true","editor-word-wrap":"true","editor-max-height":"","dpi":72,"editor-font-scale":"1","fig-width":7,"message":"true","editor-quick-suggestions":"false","read-only":"false","comment":"","out-width":"700px","out-height":"","classes":"","label":"unnamed-chunk-3","autorun":"false","fig-height":5,"context":"interactive","results":"markup","fig-cap":""}},{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here","id":4,"options":{"warning":"true","output":"true","editor-word-wrap":"true","editor-max-height":"","dpi":72,"editor-font-scale":"1","fig-width":7,"message":"true","editor-quick-suggestions":"false","read-only":"false","comment":"","out-width":"700px","out-height":"","classes":"","label":"unnamed-chunk-4","autorun":"false","fig-height":5,"context":"interactive","results":"markup","fig-cap":""}}];
 
 </script>
 <script type="module">
@@ -2668,13 +2668,30 @@ Expand to see solution
 </div>
 <p>The <code>separate</code> function from the <code>tidyr</code> package is also useful:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>geno <span class="sc">%&gt;%</span> <span class="fu">separate</span>(Sample, <span class="at">into=</span><span class="fu">c</span>(<span class="st">"Tech"</span>,<span class="st">"ID"</span>,<span class="st">"Suffix"</span>), <span class="at">sep=</span><span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>geno <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Sample, <span class="at">into=</span><span class="fu">c</span>(<span class="st">"Tech"</span>,<span class="st">"ID2"</span>,<span class="st">"Suffix"</span>), <span class="at">sep=</span><span class="st">"-"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID2=</span><span class="fu">toupper</span>(ID2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Tech     ID Suffix rs1212
-1 TaqMan SG0001 190601    G/C
-2 TaqMan SG0104 190602    G/G
-3 TaqMan SG2112 190603    C/C
-4 TaqMan Sg2543 190603    C/G</code></pre>
+<pre><code>    Tech    ID2 Suffix rs1212     ID
+1 TaqMan SG0001 190601    G/C SG0001
+2 TaqMan SG0104 190602    G/G SG0104
+3 TaqMan SG2112 190603    C/C SG2112
+4 TaqMan SG2543 190603    C/G SG2543</code></pre>
+</div>
+</div>
+<p>The <code>separate</code> function is being superseded in favor of <code>separate_wider_delim</code> and <code>separate_wider_position</code>. In this case, <code>separate_wider_delim</code> is applicable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>geno <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols=</span>Sample, <span class="at">delim =</span> <span class="st">"-"</span>, <span class="at">names=</span><span class="fu">c</span>(<span class="st">"Tech"</span>,<span class="st">"ID2"</span>,<span class="st">"Suffix"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID2=</span><span class="fu">toupper</span>(ID2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  Tech   ID2    Suffix rs1212 ID    
+  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+1 TaqMan SG0001 190601 G/C    SG0001
+2 TaqMan SG0104 190602 G/G    SG0104
+3 TaqMan SG2112 190603 C/C    SG2112
+4 TaqMan SG2543 190603 C/G    SG2543</code></pre>
 </div>
 </div>
 </div>
@@ -2686,8 +2703,8 @@ Expand to see solution
 <h2 data-number="10.5" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">10.5</span> Scenario 2</h2>
 <p>A replication sample has been measured, and that is using IDs in the style “RP5XXX”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>joint <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"data/joint_data.txt"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>joint <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"data/joint_data.txt"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -2801,17 +2818,17 @@ Expand to see solution
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"RP"</span>, joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"RP"</span>, joint<span class="sc">$</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 6 7 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>joint.SG <span class="ot">&lt;-</span> joint[<span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID), ]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>joint.RP <span class="ot">&lt;-</span> joint[<span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"RP"</span>, joint<span class="sc">$</span>ID), ]</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.SG)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>joint.SG <span class="ot">&lt;-</span> joint[<span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"SG"</span>,joint<span class="sc">$</span>ID), ]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>joint.RP <span class="ot">&lt;-</span> joint[<span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"RP"</span>, joint<span class="sc">$</span>ID), ]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.SG)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -2840,7 +2857,7 @@ Expand to see solution
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.RP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.RP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -2874,9 +2891,9 @@ Expand to see solution
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset row names</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(joint.RP) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.RP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset row names</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(joint.RP) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(joint.RP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
