@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"label":"unnamed-chunk-1","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","read-only":"false","out-height":"","dpi":72,"context":"interactive","results":"markup","editor-font-scale":"1","comment":"","fig-cap":"","fig-height":5,"warning":"true","message":"true","output":"true","classes":"","autorun":"false","editor-word-wrap":"true","editor-max-height":""},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- paste0(\"data/dataset\",c(1:6),\".txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}","id":1},{"options":{"label":"unnamed-chunk-2","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","read-only":"false","out-height":"","dpi":72,"context":"interactive","results":"markup","editor-font-scale":"1","comment":"","fig-cap":"","fig-height":5,"warning":"true","message":"true","output":"true","classes":"","autorun":"false","editor-word-wrap":"true","editor-max-height":""},"code":"# Edit/add R code here","id":2},{"options":{"label":"unnamed-chunk-3","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","read-only":"false","out-height":"","dpi":72,"context":"interactive","results":"markup","editor-font-scale":"1","comment":"","fig-cap":"","fig-height":5,"warning":"true","message":"true","output":"true","classes":"","autorun":"false","editor-word-wrap":"true","editor-max-height":""},"code":"# Edit/add R code here","id":3},{"options":{"label":"unnamed-chunk-4","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","read-only":"false","out-height":"","dpi":72,"context":"interactive","results":"markup","editor-font-scale":"1","comment":"","fig-cap":"","fig-height":5,"warning":"true","message":"true","output":"true","classes":"","autorun":"false","editor-word-wrap":"true","editor-max-height":""},"code":"# Edit/add R code here","id":4},{"options":{"label":"unnamed-chunk-5","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","read-only":"false","out-height":"","dpi":72,"context":"interactive","results":"markup","editor-font-scale":"1","comment":"","fig-cap":"","fig-height":5,"warning":"true","message":"true","output":"true","classes":"","autorun":"false","editor-word-wrap":"true","editor-max-height":""},"code":"# Edit/add R code here","id":5}];
+globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- paste0(\"data/dataset\",c(1:6),\".txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-1","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":1},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-2","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":2},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-3","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":3},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-4","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":4},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-5","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":5}];
 
 </script>
 <script type="module">
@@ -1869,7 +1869,7 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#task-write-a-read_data_file-function." id="toc-task-write-a-read_data_file-function." class="nav-link" data-scroll-target="#task-write-a-read_data_file-function."><span class="header-section-number">16.3.4</span> Task: Write a <code>read_data_file</code> function.</a></li>
   <li><a href="#question-what-does-the-above-code-assume" id="toc-question-what-does-the-above-code-assume" class="nav-link" data-scroll-target="#question-what-does-the-above-code-assume"><span class="header-section-number">16.3.5</span> Question: What does the above code assume?</a></li>
   <li><a href="#question-extend-your-function-to-process-all-of-the-files" id="toc-question-extend-your-function-to-process-all-of-the-files" class="nav-link" data-scroll-target="#question-extend-your-function-to-process-all-of-the-files"><span class="header-section-number">16.3.6</span> Question: Extend your function to process all of the files</a></li>
-  <li><a href="#bonus-question" id="toc-bonus-question" class="nav-link" data-scroll-target="#bonus-question"><span class="header-section-number">16.3.7</span> Bonus question</a></li>
+  <li><a href="#bonus-questions" id="toc-bonus-questions" class="nav-link" data-scroll-target="#bonus-questions"><span class="header-section-number">16.3.7</span> Bonus questions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2539,9 +2539,11 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="bonus-question" class="level3" data-number="16.3.7">
-<h3 data-number="16.3.7" class="anchored" data-anchor-id="bonus-question"><span class="header-section-number">16.3.7</span> Bonus question</h3>
-<p>Can you find a subtle mistake in the <code>read_data_file</code> function?</p>
+<section id="bonus-questions" class="level3" data-number="16.3.7">
+<h3 data-number="16.3.7" class="anchored" data-anchor-id="bonus-questions"><span class="header-section-number">16.3.7</span> Bonus questions</h3>
+<ol type="1">
+<li>Can you find a subtle mistake in the <code>read_data_file</code> function?</li>
+</ol>
 <pre><code>results &lt;- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
 read_data_file &lt;- function(n=1, results) {
   fl1 &lt;- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
@@ -2580,6 +2582,48 @@ Expand to see solution
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(results)</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Why does this end in an error?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_data_file_v2</span>(<span class="st">"dataset1.txt"</span>,results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in file(file, "rt"): invalid 'description' argument</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The <code>read_data_file_v2</code> function’s arguments are <code>n</code>, <code>flnm</code>, and <code>results</code>.</p>
+<p>When we call it in this manner:</p>
+<pre><code>read_data_file_v2("dataset1.txt",results)</code></pre>
+<p>we are calling it using unamed arguments, so they are interpreted by position. That means it is assigning the string “dataset1.txt” to the <code>n</code> argument, and the <code>results</code> R object to the <code>flnm</code> argument, but this is not what was intended.</p>
+<p>If we use named arguments, then this runs without any errors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_data_file_v2</span>(<span class="at">flnm =</span> <span class="st">"dataset1.txt"</span>,<span class="at">results =</span> results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       dataset  N       mean    median       var
+1 dataset1.txt 26 0.09762111 0.2198957 0.5974116
+2         &lt;NA&gt; 26         NA        NA        NA
+3         &lt;NA&gt; 26         NA        NA        NA
+4         &lt;NA&gt; 26         NA        NA        NA
+5         &lt;NA&gt; 26         NA        NA        NA
+6         &lt;NA&gt; 26         NA        NA        NA</code></pre>
+</div>
+</div>
+<p>In this case, note that <code>n</code> took on the default value of <code>1</code>.</p>
 </div>
 </div>
 </div>
