@@ -73,7 +73,29 @@ As you can see, the code above is very repetitive. So let's automate this by wri
 
 ### Question: How could we construct a list of file names?
 
-How could we construct a list of file names?
+::: callout-note
+This `Run code` WebR chunk needs to be run first, before the later ones, as it downloads and reads in the required data files. The WebR chunks should be run in order, as you encounter them, from beginning to end.
+:::
+
+```{webr-r}
+# Download files within the WebR environment
+dir.create("data")
+infiles <- paste0("data/dataset",c(1:6),".txt")
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+for (i in 1:length(infiles)) {
+   download.file(paste0(root_srcfile,infiles[i]), infiles[i])
+}
+```
+
+We now have the files "dataset1.txt", "dataset2.txt", "dataset3.txt", ..., "dataset6.txt" in the 'data' directory. 
+
+**Question:** How could we construct a list of file names?
+
+Hint: Use the `list.files` command
+
+```{webr-r}
+# Edit/add R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -126,6 +148,10 @@ Write a `read_data_file` function to accomplish the required steps for a single 
 
 1.  Make the number in the data file name an argument.
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -140,12 +166,18 @@ read_data_file <- function(n=1, results) {
   results$mean[n] <- mean(fl1$trait)
   results$median[n] <- median(fl1$trait)
   results$var[n] <- var(fl1$trait)
-  invisible(results)
+  results
 }
+(results <- read_data_file(n=1, results))
+(results <- read_data_file(n=2, results))
 ```
 :::
 
 2.  Make the path to the input file an argument to your `read_data_file` function.
+
+```{webr-r}
+# Edit/add R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -153,15 +185,17 @@ read_data_file <- function(n=1, results) {
 Here we make the path to the input file an argument.
 
 ```{r}
-read_data_file_v2 <- function(flnm, results) {
+read_data_file_v2 <- function(n=1, flnm="dataset1.txt", results) {
   fl1 <- read.table(paste0("data/",flnm),sep="\t",header=TRUE)
   results$dataset[n] <- flnm
   results$N <- nrow(fl1)
   results$mean[n] <- mean(fl1$trait)
   results$median[n] <- median(fl1$trait)
   results$var[n] <- var(fl1$trait)
-  invisible(results)
+  results
 }
+(results <- read_data_file_v2(n=1, flnm = "dataset1.txt", results))
+(results <- read_data_file_v2(n=2, flnm = "dataset2.txt", results))
 ```
 :::
 
@@ -181,6 +215,10 @@ Assumes the files are in the "data" folder.
 
 The above function `read_data_file` processes one file at a time. How would you write a function to loop this over to process all of our files?
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -199,18 +237,15 @@ loop_over_dataset <- function(fls) {
   }
   return(results)
 }
-```
 
-```{r}
 loop_over_dataset(fls = fls)
-
-
 ```
+
 :::
 
-### Bonus question
+### Bonus questions
 
-Can you find a subtle mistake in the `read_data_file` function?
+1. Can you find a subtle mistake in the `read_data_file` function?
 
 ```         
 results <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
@@ -234,6 +269,13 @@ If `N` varies across the data sets, then this line will not do the right thing:
 results$N <- nrow(fl1)
 ```
 
+Instead this line should be
+
+```
+results$N[n] <- nrow(fl1)
+```
+
+
 ```{r}
 results <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
 read_data_file <- function(n=1, results) {
@@ -247,3 +289,32 @@ read_data_file <- function(n=1, results) {
 }
 ```
 :::
+
+2. Why does this end in an error?
+
+```{r,error=TRUE}
+read_data_file_v2("dataset1.txt",results)
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+The `read_data_file_v2` function's arguments are `n`, `flnm`, and `results`.
+
+When we call it in this manner:
+
+```
+read_data_file_v2("dataset1.txt",results)
+```
+
+we are calling it using unamed arguments, so they are interpreted by position.  That means it is assigning the string "dataset1.txt" to the `n` argument, and the `results` R object to the `flnm` argument, but this is not what was intended. 
+
+If we use named arguments, then this runs without any errors:
+
+```{r}
+read_data_file_v2(flnm = "dataset1.txt",results = results)
+```
+
+In this case, note that `n` took on the default value of `1`.  
+:::
+
