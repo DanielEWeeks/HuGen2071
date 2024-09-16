@@ -1085,28 +1085,28 @@ Expand to see solution
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profile_missing</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    feature num_missing pct_missing
-1                subject_id           5  0.09259259
+1                subject_id           7  0.12962963
 2                    strata           5  0.09259259
-3                      race           5  0.09259259
-4     maternal_age_delivery           9  0.16666667
-5       case_control_status           7  0.12962963
-6       prepregnancy_weight           4  0.07407407
-7                    height           2  0.03703704
-8          prepregnancy_BMI           2  0.03703704
-9                 gravidity           2  0.03703704
-10                   parity           9  0.16666667
+3                      race           7  0.12962963
+4     maternal_age_delivery           6  0.11111111
+5       case_control_status           3  0.05555556
+6       prepregnancy_weight           7  0.12962963
+7                    height           4  0.07407407
+8          prepregnancy_BMI           3  0.05555556
+9                 gravidity           3  0.05555556
+10                   parity           6  0.11111111
 11  gestationalage_delivery           5  0.09259259
 12    average_SBP_lt20weeks           6  0.11111111
-13    average_DBP_lt20weeks           4  0.07407407
-14        average_SBP_labor           9  0.16666667
-15        average_DBP_labor           5  0.09259259
-16           smoke_lifetime           4  0.07407407
-17         baby_birthweight           7  0.12962963
+13    average_DBP_lt20weeks           8  0.14814815
+14        average_SBP_labor           2  0.03703704
+15        average_DBP_labor          11  0.20370370
+16           smoke_lifetime           6  0.11111111
+17         baby_birthweight           4  0.07407407
 18                 baby_sex           7  0.12962963
-19 baby_birthweight_centile           7  0.12962963
-20                 baby_SGA           1  0.01851852
-21      placental_pathology           4  0.07407407
-22                PE_status           9  0.16666667</code></pre>
+19 baby_birthweight_centile           3  0.05555556
+20                 baby_SGA           4  0.07407407
+21      placental_pathology           7  0.12962963
+22                PE_status           4  0.07407407</code></pre>
 </div>
 </div>
 <p>When there is some missing data, in addition to applying <code>plot_missing</code> and <code>profile_missing</code>, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.</p>
