@@ -243,9 +243,7 @@ loop_over_dataset(fls = fls)
 
 :::
 
-### Bonus questions
-
-1. Can you find a subtle mistake in the `read_data_file` function?
+### Bonus question: Can you find a subtle mistake in the `read_data_file` function?
 
 ```         
 results <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
@@ -290,7 +288,7 @@ read_data_file <- function(n=1, results) {
 ```
 :::
 
-2. Why does this end in an error?
+### Bonus question: Why does this end in an error?
 
 ```{r,error=TRUE}
 read_data_file_v2("dataset1.txt",results)
@@ -318,3 +316,28 @@ read_data_file_v2(flnm = "dataset1.txt",results = results)
 In this case, note that `n` took on the default value of `1`.  
 :::
 
+## Bonus question: Write a more concise function
+
+Instead of inserting item by item, write a more concise function by putting all the data in a one-row data frame, and then insert the one-row data frame into the appropriate row of the pre-allocated `results` data frame.
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+Here we set up a data frame containing a new row of data.
+
+```{r}
+read_data_file_v3 <- function(n=1, results) {
+  fl1 <- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
+  NewRow <- data.frame(dataset = paste0("dataset",n,".txt"),
+  N = nrow(fl1),
+  mean = mean(fl1$trait),
+  median = median(fl1$trait),
+  var = var(fl1$trait)
+  )
+  results[n,] <- NewRow
+  results
+}
+read_data_file_v3(1, results)
+```
+
+:::
