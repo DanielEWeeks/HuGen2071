@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- paste0(\"data/dataset\",c(1:6),\".txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-1","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":1},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-2","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":2},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-3","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":3},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-4","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":4},{"code":"# Edit/add R code here","options":{"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"label":"unnamed-chunk-5","editor-quick-suggestions":"false","editor-font-scale":"1","message":"true","out-width":"700px","classes":"","fig-cap":"","read-only":"false","dpi":72,"autorun":"false","editor-max-height":"","fig-width":7,"results":"markup","out-height":"","comment":"","context":"interactive"},"id":5}];
+globalThis.qwebrCellDetails = [{"options":{"read-only":"false","context":"interactive","editor-word-wrap":"true","classes":"","out-height":"","fig-height":5,"editor-font-scale":"1","label":"unnamed-chunk-1","output":"true","results":"markup","editor-quick-suggestions":"false","fig-width":7,"editor-max-height":"","comment":"","dpi":72,"fig-cap":"","message":"true","warning":"true","out-width":"700px","autorun":"false"},"id":1,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- paste0(\"data/dataset\",c(1:6),\".txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}"},{"options":{"read-only":"false","context":"interactive","editor-word-wrap":"true","classes":"","out-height":"","fig-height":5,"editor-font-scale":"1","label":"unnamed-chunk-2","output":"true","results":"markup","editor-quick-suggestions":"false","fig-width":7,"editor-max-height":"","comment":"","dpi":72,"fig-cap":"","message":"true","warning":"true","out-width":"700px","autorun":"false"},"id":2,"code":"# Edit/add R code here"},{"options":{"read-only":"false","context":"interactive","editor-word-wrap":"true","classes":"","out-height":"","fig-height":5,"editor-font-scale":"1","label":"unnamed-chunk-3","output":"true","results":"markup","editor-quick-suggestions":"false","fig-width":7,"editor-max-height":"","comment":"","dpi":72,"fig-cap":"","message":"true","warning":"true","out-width":"700px","autorun":"false"},"id":3,"code":"# Edit/add R code here"},{"options":{"read-only":"false","context":"interactive","editor-word-wrap":"true","classes":"","out-height":"","fig-height":5,"editor-font-scale":"1","label":"unnamed-chunk-4","output":"true","results":"markup","editor-quick-suggestions":"false","fig-width":7,"editor-max-height":"","comment":"","dpi":72,"fig-cap":"","message":"true","warning":"true","out-width":"700px","autorun":"false"},"id":4,"code":"# Edit/add R code here"},{"options":{"read-only":"false","context":"interactive","editor-word-wrap":"true","classes":"","out-height":"","fig-height":5,"editor-font-scale":"1","label":"unnamed-chunk-5","output":"true","results":"markup","editor-quick-suggestions":"false","fig-width":7,"editor-max-height":"","comment":"","dpi":72,"fig-cap":"","message":"true","warning":"true","out-width":"700px","autorun":"false"},"id":5,"code":"# Edit/add R code here"}];
 
 </script>
 <script type="module">
@@ -1869,8 +1869,10 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#task-write-a-read_data_file-function." id="toc-task-write-a-read_data_file-function." class="nav-link" data-scroll-target="#task-write-a-read_data_file-function."><span class="header-section-number">16.3.4</span> Task: Write a <code>read_data_file</code> function.</a></li>
   <li><a href="#question-what-does-the-above-code-assume" id="toc-question-what-does-the-above-code-assume" class="nav-link" data-scroll-target="#question-what-does-the-above-code-assume"><span class="header-section-number">16.3.5</span> Question: What does the above code assume?</a></li>
   <li><a href="#question-extend-your-function-to-process-all-of-the-files" id="toc-question-extend-your-function-to-process-all-of-the-files" class="nav-link" data-scroll-target="#question-extend-your-function-to-process-all-of-the-files"><span class="header-section-number">16.3.6</span> Question: Extend your function to process all of the files</a></li>
-  <li><a href="#bonus-questions" id="toc-bonus-questions" class="nav-link" data-scroll-target="#bonus-questions"><span class="header-section-number">16.3.7</span> Bonus questions</a></li>
+  <li><a href="#bonus-question-can-you-find-a-subtle-mistake-in-the-read_data_file-function" id="toc-bonus-question-can-you-find-a-subtle-mistake-in-the-read_data_file-function" class="nav-link" data-scroll-target="#bonus-question-can-you-find-a-subtle-mistake-in-the-read_data_file-function"><span class="header-section-number">16.3.7</span> Bonus question: Can you find a subtle mistake in the <code>read_data_file</code> function?</a></li>
+  <li><a href="#bonus-question-why-does-this-end-in-an-error" id="toc-bonus-question-why-does-this-end-in-an-error" class="nav-link" data-scroll-target="#bonus-question-why-does-this-end-in-an-error"><span class="header-section-number">16.3.8</span> Bonus question: Why does this end in an error?</a></li>
   </ul></li>
+  <li><a href="#bonus-question-write-a-more-concise-function" id="toc-bonus-question-write-a-more-concise-function" class="nav-link" data-scroll-target="#bonus-question-write-a-more-concise-function"><span class="header-section-number">16.4</span> Bonus question: Write a more concise function</a></li>
   </ul>
 </nav>
     </div>
@@ -2539,11 +2541,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="bonus-questions" class="level3" data-number="16.3.7">
-<h3 data-number="16.3.7" class="anchored" data-anchor-id="bonus-questions"><span class="header-section-number">16.3.7</span> Bonus questions</h3>
-<ol type="1">
-<li>Can you find a subtle mistake in the <code>read_data_file</code> function?</li>
-</ol>
+<section id="bonus-question-can-you-find-a-subtle-mistake-in-the-read_data_file-function" class="level3" data-number="16.3.7">
+<h3 data-number="16.3.7" class="anchored" data-anchor-id="bonus-question-can-you-find-a-subtle-mistake-in-the-read_data_file-function"><span class="header-section-number">16.3.7</span> Bonus question: Can you find a subtle mistake in the <code>read_data_file</code> function?</h3>
 <pre><code>results &lt;- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
 read_data_file &lt;- function(n=1, results) {
   fl1 &lt;- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
@@ -2585,9 +2584,9 @@ Expand to see solution
 </div>
 </div>
 </div>
-<ol start="2" type="1">
-<li>Why does this end in an error?</li>
-</ol>
+</section>
+<section id="bonus-question-why-does-this-end-in-an-error" class="level3" data-number="16.3.8">
+<h3 data-number="16.3.8" class="anchored" data-anchor-id="bonus-question-why-does-this-end-in-an-error"><span class="header-section-number">16.3.8</span> Bonus question: Why does this end in an error?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_data_file_v2</span>(<span class="st">"dataset1.txt"</span>,results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -2627,9 +2626,52 @@ Expand to see solution
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="bonus-question-write-a-more-concise-function" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="bonus-question-write-a-more-concise-function"><span class="header-section-number">16.4</span> Bonus question: Write a more concise function</h2>
+<p>Instead of inserting item by item, write a more concise function by putting all the data in a one-row data frame, and then insert the one-row data frame into the appropriate row of the pre-allocated <code>results</code> data frame.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here we set up a data frame containing a new row of data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>read_data_file_v3 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n=</span><span class="dv">1</span>, results) {</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  fl1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(<span class="st">"data/dataset"</span>,n,<span class="st">".txt"</span>),<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,<span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  NewRow <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dataset =</span> <span class="fu">paste0</span>(<span class="st">"dataset"</span>,n,<span class="st">".txt"</span>),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(fl1),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(fl1<span class="sc">$</span>trait),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">median =</span> <span class="fu">median</span>(fl1<span class="sc">$</span>trait),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> <span class="fu">var</span>(fl1<span class="sc">$</span>trait)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  results[n,] <span class="ot">&lt;-</span> NewRow</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  results</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">read_data_file_v3</span>(<span class="dv">1</span>, results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       dataset  N       mean    median       var
+1 dataset1.txt 26 0.09762111 0.2198957 0.5974116
+2         &lt;NA&gt; NA         NA        NA        NA
+3         &lt;NA&gt; NA         NA        NA        NA
+4         &lt;NA&gt; NA         NA        NA        NA
+5         &lt;NA&gt; NA         NA        NA        NA
+6         &lt;NA&gt; NA         NA        NA        NA</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
