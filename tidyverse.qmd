@@ -70,7 +70,7 @@ If, for example, we wanted to move forward with only a few of the variables in o
 
 ```{webr-r}
 year_country_gdp <- select(gapminder,year,country,gdpPercap)
-print(year_country_gdp)
+year_country_gdp
 ```
 
 Select will select *columns* of data. What if we want to select rows that meet certain criteria?
@@ -89,7 +89,7 @@ The `filter()` function is used to select rows of data. For example, to select o
 
 ```{webr-r}
 gapminder_Europe <- filter(gapminder, continent=="Europe") 
-print(gapminder_Europe)
+gapminder_Europe
 ```
 
 Only rows of the data where the condition (i.e. `continent=="Europe"`) is `TRUE` are kept.
@@ -129,7 +129,7 @@ Let's rewrite the select command example using the pipe operator:
 
 ```{webr-r}
 year_country_gdp <- gapminder %>% select(year,country,gdpPercap)
-print(year_country_gdp)
+year_country_gdp
 ```
 
 To help you understand why we wrote that in that way, let's walk through it step by step. First we summon the gapminder tibble and pass it on, using the pipe symbol `%>%`, to the next step, which is the `select()` function. In this case we don't specify which data object we use in the `select()` function since in gets that from the previous pipe.
@@ -140,7 +140,7 @@ What if we wanted to combine this with the filter example? I.e. we want to selec
 year_country_gdp_euro <- gapminder %>%
     filter(continent == "Europe") %>%
     select(year,country,gdpPercap)
-print(year_country_gdp_euro)
+year_country_gdp_euro
 ```
 
 Note that the order of these operations matters; if we reversed the order of the `select()` and `filter()` functions, the `continent` variable wouldn't exist in the data-set when we came to apply the filter.
@@ -152,7 +152,7 @@ gapminder_scandinavia <- gapminder %>%
   filter(country %in% c("Denmark",
                         "Norway",
                         "Sweden"))
-print(gapminder_scandinavia)
+gapminder_scandinavia
 ```
 
 ## Another way of thinking about pipes
@@ -237,7 +237,7 @@ As an example, the gapminder data contains the population of each country, and i
 ```{webr-r}
 gapminder_totalgdp <- gapminder %>% 
   mutate(gdp = gdpPercap * pop)
-print(gapminder_totalgdp)
+gapminder_totalgdp
 ```
 
 We can also use functions within mutate to generate new variables. For example, to take the log of `gdpPercap` we could use:
@@ -276,7 +276,7 @@ europeLifeExp <- gapminder %>%
   filter(continent == "Europe", year == 2007) %>% 
   select(country, lifeExp) %>% 
   mutate(rank = min_rank(lifeExp))
-print(europeLifeExp, n=100)
+europeLifeExp, n=100
 ```
 
 To reverse the order of the ranking, use the `desc` function, i.e. `mutate(rank = min_rank(desc(lifeExp)))`
@@ -328,7 +328,7 @@ For each combination of continent and year, calculate the average life expectanc
  lifeExp_bycontinentyear <- gapminder %>% 
     group_by(continent, year) %>% 
    summarise(mean_lifeExp = mean(lifeExp))
- print(lifeExp_bycontinentyear)
+ lifeExp_bycontinentyear
 ```
 
  
