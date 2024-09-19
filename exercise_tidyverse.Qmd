@@ -1,4 +1,6 @@
 ---
+webr:
+  packages: ['tidyverse']
 editor: 
   mode: source
 ---  
@@ -101,6 +103,12 @@ Question: How would we convert this to tidy form?
 head(who[,1:6] %>% filter(!is.na(new_sp_m014)))
 ```
 
+```{webr-r}
+library(tidyverse)
+who <- tidyr::who
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -124,6 +132,10 @@ names(who) %>% grep("m014",., value=TRUE)
 
 Question: How should we adjust the `demo` strings so as to be able to easily split all of them into the desired variables?
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -136,16 +148,34 @@ grep("m014",who.long$demo, value=TRUE) %>%  unique()
 
 Question: After adjusting the `demo` strings, how would we then separate them into the desired variables?
 
+Hint: Use `separate_wider_position()` and `separate_wider_delim()`.
+
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ```{r}
-who.long <- who.long %>% 
+who.long.v1 <- who.long %>% 
   separate(demo, into = c("new", "type", "sexagerange"), sep="_") %>% 
   separate(sexagerange, into=c("sex","age_range"), sep=1) %>%
   select(-new)
-head(who.long)
+head(who.long.v1)
 ```
+
+Note that `separate()` has been superseded in favour of `separate_wider_position()` and `separate_wider_delim()`.  So here we use those two functions instead of `separate()`: 
+
+```{r}
+who.long.v2 <- who.long %>% 
+  separate_wider_delim(demo, names = c("new", "type", "sexagerange"), delim="_") %>% 
+  separate_wider_position(sexagerange, widths=c("sex"=1,"age_range"=4), too_few="align_start" ) %>%
+  select(-new)
+head(who.long.v2)
+```
+
+
 :::
 
 ## Conclusion

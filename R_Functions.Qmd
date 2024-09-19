@@ -258,6 +258,10 @@ read_data_file <- function(n=1, results) {
 }
 ```
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -294,6 +298,10 @@ read_data_file <- function(n=1, results) {
 read_data_file_v2("dataset1.txt",results)
 ```
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -316,9 +324,13 @@ read_data_file_v2(flnm = "dataset1.txt",results = results)
 In this case, note that `n` took on the default value of `1`.  
 :::
 
-## Bonus question: Write a more concise function
+### Bonus question: Write a more concise function
 
 Instead of inserting item by item, write a more concise function by putting all the data in a one-row data frame, and then insert the one-row data frame into the appropriate row of the pre-allocated `results` data frame.
+
+```{webr-r}
+# Edit/add R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution

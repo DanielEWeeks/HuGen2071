@@ -30,7 +30,7 @@ Accordingly this chapter is made available under the same license terms.
 
 
 
-In the previous episode we used the `readr` package to load the gapminder data into a tibble within R. 
+Let's use the `read_csv()` command from the `tidyverse` package to load  gapminder data into a tibble within R. 
 
 ```{webr-r}
 library(tidyverse)
@@ -160,8 +160,8 @@ print(gapminder_scandinavia)
  It might be useful to think of the statement
 
 ```r
-  gapminder %%
-     filter(continent=="Europe") %%
+  gapminder %>%
+     filter(continent=="Europe") %>%
      select(year,country,gdpPercap)
 ```
 
@@ -173,7 +173,7 @@ We can think of the `filter()` and `select()` functions as verbs in the sentence
 
 ## Splitting your commands over multiple lines
 
-It's generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it's important that the `%%` goes at the *end* of the line, as in the example above. If we put it at the beginning of a line, e.g.:
+It's generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it's important that the `%>%` goes at the *end* of the line, as in the example above. If we put it at the beginning of a line, e.g.:
 
 ```{webr-r}
  gapminder_benelux <- gapminder 
@@ -255,7 +255,7 @@ The dplyr cheat sheet contains many useful functions which can be used with dply
 Create a tibble containing each country in Europe, its life expectancy in 2007 and the rank of the country's life expectancy. (note that ranking the countries *will not* sort the table; the row order will be unchanged. You can use the `arrange()` function to sort the table).
 
 Hint: First `filter()` to get the rows you want, and then use `mutate()` to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).\
-There are several functions for ranking observations, which handle tied values differently. For this exercise it doesn't matter which function you choose.
+There are several functions for ranking observations, which handle tied values differently (including `rank`, `min_rank`, and `dense_rank`). For this exercise it doesn't matter which function you choose.
 
 Can you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order
 
@@ -281,7 +281,7 @@ print(europeLifeExp, n=100)
 
 To reverse the order of the ranking, use the `desc` function, i.e. `mutate(rank = min_rank(desc(lifeExp)))`
 
-There are several functions for calculating ranks; you may have used, e.g. `dense_rank()` The functions handle ties differently. The help file for `dplyr`'s ranking functions explains the differences, and can be accessed with `?ranking` 
+There are several functions for calculating ranks; you may have used, e.g. `dense_rank()` The `min_rank` and `dense_rank` functions handle ties differently. The help file for `dplyr`'s ranking functions explains the differences, and can be accessed with `?dense_rank` or `?min_rank`. 
 :::
 
 ## Calculating summary statistics
@@ -305,14 +305,7 @@ gapminder %>%
 
 ## Aside
 
-In the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using `weighted.mean(lifeExp, pop)`. For simplicty I've used the regular mean in the above examples.
-
-
-
-## Statistics revision
-
-If you need to revise or learn about statistical concepts, the University Library's "My Learning Essentials" team have produced a site [Start to Finish:Statistics](https://www.escholar.manchester.ac.uk/learning-objects/mle/packages/statistics/) which covers important statistical concepts.
-
+In the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using `weighted.mean(lifeExp, pop)`. For simplicty we've used the regular mean in the above examples.
 
 
 ::: callout-important
@@ -369,14 +362,13 @@ We can optionally sort the results in descending order by adding `sort=TRUE`:
 
 ## Equivalent functions in base R
 
-In this course we've taught the tidyverse. You are likely come across code written others in base R. You can find a guide to some base R functions and their tidyverse equivalents [here](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/), which may be useful when reading their code.
+In this chapter we've taught the tidyverse. You are likely come across code written others in base R. 
 
- 
 
 ## Other great resources
 
 -   [Data Wrangling tutorial](https://suzan.rbind.io/categories/tutorial/) - an excellent four part tutorial covering selecting data, filtering data, summarising and transforming your data.
 -   [R for Data Science](http://r4ds.had.co.nz/)
--   [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) - you can also access this from the help menu in RStudio (in newer versions of RStudio it has been replaced with "Data Transformation with dplyr")
+-   "Data Transformation with dplyr" cheatset available in RStudio via Help -> Cheat Sheets
 -   [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) - this is the package vignette. It can be viewed within R using `vignette(package="dplyr", "dplyr")`
--   [Data wrangling with R and RStudio](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) - 55 minute webinar from RStudio
+
