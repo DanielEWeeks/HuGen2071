@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"context":"interactive","out-height":"","fig-height":5,"dpi":72,"read-only":"false","results":"markup","fig-cap":"","label":"unnamed-chunk-1","editor-quick-suggestions":"false","classes":"","warning":"true","fig-width":7,"comment":"","autorun":"false","editor-font-scale":"1","out-width":"700px","output":"true","editor-max-height":"","message":"true","editor-word-wrap":"true"},"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"options":{"context":"interactive","out-height":"","fig-height":5,"dpi":72,"read-only":"false","results":"markup","fig-cap":"","label":"unnamed-chunk-2","editor-quick-suggestions":"false","classes":"","warning":"true","fig-width":7,"comment":"","autorun":"false","editor-font-scale":"1","out-width":"700px","output":"true","editor-max-height":"","message":"true","editor-word-wrap":"true"},"id":2,"code":"# Edit/add R code here"},{"options":{"context":"interactive","out-height":"","fig-height":5,"dpi":72,"read-only":"false","results":"markup","fig-cap":"","label":"unnamed-chunk-3","editor-quick-suggestions":"false","classes":"","warning":"true","fig-width":7,"comment":"","autorun":"false","editor-font-scale":"1","out-width":"700px","output":"true","editor-max-height":"","message":"true","editor-word-wrap":"true"},"id":3,"code":"# Edit/add R code here"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"context":"interactive","classes":"","read-only":"false","results":"markup","message":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-1","out-width":"700px","autorun":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"comment":"","fig-height":5,"warning":"true","output":"true","editor-max-height":""}},{"id":2,"code":"# Edit/add R code here","options":{"context":"interactive","classes":"","read-only":"false","results":"markup","message":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-2","out-width":"700px","autorun":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"comment":"","fig-height":5,"warning":"true","output":"true","editor-max-height":""}},{"id":3,"code":"# Edit/add R code here","options":{"context":"interactive","classes":"","read-only":"false","results":"markup","message":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-3","out-width":"700px","autorun":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"comment":"","fig-height":5,"warning":"true","output":"true","editor-max-height":""}}];
 
 </script>
 <script type="module">
@@ -2281,26 +2281,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X       Y       Z
-  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 2009-01-01 -0.874 -0.626   -1.29 
-2 2009-01-02  0.949 -2.46    -4.77 
-3 2009-01-03  0.266 -3.45    -0.659
-4 2009-01-04  1.16  -0.0284   3.43 
-5 2009-01-05 -0.689  0.286  -10.1  
-6 2009-01-06 -1.15   1.60     1.10 </code></pre>
+  time            X      Y      Z
+  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01 -0.547 -0.203  2.37 
+2 2009-01-02  0.165 -0.515  5.46 
+3 2009-01-03 -1.00   1.49  -0.857
+4 2009-01-04 -0.171 -3.81  -4.50 
+5 2009-01-05 -0.185 -2.42   2.41 
+6 2009-01-06  0.134  0.369 -1.25 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.874
-2 2009-01-02 X      0.949
-3 2009-01-03 X      0.266
-4 2009-01-04 X      1.16 
-5 2009-01-05 X     -0.689
-6 2009-01-06 X     -1.15 </code></pre>
+1 2009-01-01 X     -0.547
+2 2009-01-02 X      0.165
+3 2009-01-03 X     -1.00 
+4 2009-01-04 X     -0.171
+5 2009-01-05 X     -0.185
+6 2009-01-06 X      0.134</code></pre>
 </div>
 </div>
 </section>
@@ -2313,12 +2313,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.874
-2 2009-01-01 Y     -0.626
-3 2009-01-01 Z     -1.29 
-4 2009-01-02 X      0.949
-5 2009-01-02 Y     -2.46 
-6 2009-01-02 Z     -4.77 </code></pre>
+1 2009-01-01 X     -0.547
+2 2009-01-01 Y     -0.203
+3 2009-01-01 Z      2.37 
+4 2009-01-02 X      0.165
+5 2009-01-02 Y     -0.515
+6 2009-01-02 Z      5.46 </code></pre>
 </div>
 </div>
 </section>
