@@ -67,9 +67,6 @@ key
 - Permits checking
 - Have to convey results back to your collaborators using their ID system
 
-    
-## Recoding data
-
 Suppose we have been given these data:
 
 ```
@@ -87,7 +84,7 @@ Suppose we have been given these data:
     E853    Aff-S-1032132   A       A
 ```
 
-## Recoding data
+
 
 The clinicians used an integer for the Person IDs:
 ```
@@ -106,7 +103,7 @@ The serum assay laboratory used a different set of Person IDs starting with the 
     E853    M       5.35786611210859
 ```
 
-## Recoding data
+
 
 While the genotyping lab also used ’E’ Person IDs, they did not use ’rs’ SNP IDs:
 
@@ -117,7 +114,7 @@ While the genotyping lab also used ’E’ Person IDs, they did not use ’rs’
     E853    Aff-S-1032132   A       A
 ```
 
-## Recoding data: keys
+: keys
 
 * To use these data together, we need to translate Person IDs and SNP IDs so that all of our files are using the same IDs (e.g. so they all speak the same language).
 * To do this, we need translation keys:
@@ -595,7 +592,7 @@ head(DictPer)
 ```
 :::
 
-## Recoding data
+
 
 **Approach 2**
 
