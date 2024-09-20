@@ -204,7 +204,7 @@ f %>% group_by(c1) %>% filter(n()>1)
 
 ## Key points: Duplicates
 
-Here are some key points regarding detecting duplicate IDs:
+Here are some key points regarding detecting duplicates:
 
 * Count the number of times `ID2` is duplicated
     - `sum(duplicated(b$ID2))`
