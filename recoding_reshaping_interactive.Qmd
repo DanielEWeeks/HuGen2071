@@ -114,7 +114,7 @@ While the genotyping lab also used ’E’ Person IDs, they did not use ’rs’
     E853    Aff-S-1032132   A       A
 ```
 
-: keys
+**Keys**
 
 * To use these data together, we need to translate Person IDs and SNP IDs so that all of our files are using the same IDs (e.g. so they all speak the same language).
 * To do this, we need translation keys:
@@ -144,7 +144,7 @@ download.file(paste0(root_srcfile,"data/study2_key1.txt"),
 
 Note above that we said that the keys must be unique.
 
-Question: How would you check in R that the keys are unique? For example,
+**Question:** How would you check in R that the keys are unique? For example,
 how would you check for duplicates in the ID2 column of 'study2\_key1.txt'?
 
 ```{webr-r}
@@ -153,7 +153,7 @@ head(b)
 ```
 
 
-Answer: In R, the duplicated function can be used to check for duplicates
+**Answer:** In R, the duplicated function can be used to check for duplicates
 
 ```{webr-r}
 table(duplicated(b$ID2))
@@ -201,6 +201,15 @@ Yet another way to list all of the rows containing a duplicated 'c1' value using
 ```{webr-r}
 f %>% group_by(c1) %>% filter(n()>1)
 ```
+
+## Key points: Duplicates
+
+Here are some key points regarding detecting duplicate IDs:
+
+* Count the number of times `ID2` is duplicated
+    - `sum(duplicated(b$ID2))`
+* List all rows with a duplicated `c1` value
+    - `f %>% group_by(c1) %>% filter(n()>1)`
 
 ## Project 1 Data
 
