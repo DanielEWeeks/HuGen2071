@@ -40,6 +40,171 @@ library(tidyverse)
 ```
 
 
+
+## Recoding data  
+
+- Different parts of the data may have different ID systems
+
+
+- Clinical ID
+- Laboratory ID
+- Genotyping service ID
+- Need a *dictionary* or key to translate one type of key into another
+key
+
+##  A dictionary
+
+* A dictionary defines a one-to-one correspondence between keys and values
+    - keys must be unique
+
+
+## Recoding data
+
+
+- Good practice to output old IDs as well as new IDs into the output files
+
+
+- Permits checking
+- Have to convey results back to your collaborators using their ID system
+
+    
+## Recoding data
+
+Suppose we have been given these data:
+
+```
+    ==> study2_ped.txt <== 
+    ID1     sex     aff2
+    1       M       1
+    2       M       2
+    ==> study2_pheno.txt <==
+    ID2     sex     t
+    E544    M       3.34263153909733
+    E853    M       5.35786611210859
+    ==> study2_snp.txt <==
+    ID2     SNPID2          all1    all2
+    E544    Aff-S-3212091   A       T
+    E853    Aff-S-1032132   A       A
+```
+
+## Recoding data
+
+The clinicians used an integer for the Person IDs:
+```
+    ==> study2_ped.txt <== 
+    ID1     sex     aff2
+    1       M       1
+    2       M       2
+```
+
+The serum assay laboratory used a different set of Person IDs starting with the letter ’E’:
+
+```
+    ==> study2_pheno.txt <==
+    ID2     sex     t
+    E544    M       3.34263153909733
+    E853    M       5.35786611210859
+```
+
+## Recoding data
+
+While the genotyping lab also used ’E’ Person IDs, they did not use ’rs’ SNP IDs:
+
+```
+    ==> study2_snp.txt <==
+    ID2     SNPID2          all1    all2
+    E544    Aff-S-3212091   A       T
+    E853    Aff-S-1032132   A       A
+```
+
+## Recoding data: keys
+
+* To use these data together, we need to translate Person IDs and SNP IDs so that all of our files are using the same IDs (e.g. so they all speak the same language).
+* To do this, we need translation keys:
+
+```
+==> study2_key1.txt <==
+ID1     ID2
+1       E544
+2       E853
+
+==> study2_key2.txt <==
+rsID    SNPID2
+rs35814900      Aff-S-3212091
+rs28370510      Aff-S-1032132
+```
+
+## Download example data
+
+```{webr-r}
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/study2_key1.txt"),
+              "study2_key1.txt")
+```
+
+## Duplicates
+
+Note above that we said that the keys must be unique.
+
+Question: How would you check in R that the keys are unique? For example,
+how would you check for duplicates in the ID2 column of 'study2\_key1.txt'?
+
+```{webr-r}
+b <- read.table("study2_key1.txt",header=T)
+head(b)
+```
+
+
+Answer: In R, the duplicated function can be used to check for duplicates
+
+```{webr-r}
+table(duplicated(b$ID2))
+```
+
+
+## Counting duplicates
+
+To count the number of duplicated ID's, we can take advantage of the fact that a `TRUE` value behaves as a `1` and a `FALSE` value behaves as a `0` when a logicial variable is used in a numeric computation.
+
+```{webr-r}
+# Count the number of times ID2 is duplicated
+sum(duplicated(b$ID2))
+```
+
+
+## Checking for duplicates
+
+How do we return every row that contains a duplicate?
+
+```{webr-r}
+f <- data.frame(c1=c(1,1,2),c2=c(1,2,3))
+f
+f[duplicated(f$c1),]
+```
+
+
+
+
+```{webr-r}
+f
+f[duplicated(f$c1),]
+f[f$c1 %in% f[duplicated(f$c1), ]$c1, ]
+```
+
+Another way to list all of the rows containing a duplicated 'c1' value:
+
+```{webr-r}
+f[duplicated(f$c1) | duplicated(f$c1, fromLast = TRUE),]
+```
+
+Yet another way to list all of the rows containing a duplicated 'c1' value using functions from the 'tidyverse' package:
+
+
+```{webr-r}
+f %>% group_by(c1) %>% filter(n()>1)
+```
+
 ## Project 1 Data
 
 In the `ds` data frame we have the synthetic yet realistic data we will be using in Project 1.
@@ -58,6 +223,7 @@ dim(dd)
 names(dd)
 ```
 
+
 ## Exercise 1: duplicated values
 
 **Skill**: Checking for duplicated IDs
@@ -66,7 +232,7 @@ names(dd)
 ds %>% select(subject_id, sample_id, height) %>% head(n=10) 
 ```
 
-Check if there are any duplicated `sample_id`'s using the `duplicated` command.  If so, count how many duplicated `sample_id`'s there are. 
+Using the `ds` data frame from Project 1, check if there are any duplicated `sample_id`'s using the `duplicated` command.  If so, count how many duplicated `sample_id`'s there are. 
 
 
 ```{webr-r}
