@@ -32,12 +32,22 @@ Here are some key points regarding recoding and reshaping data in R:
     - `addmargins(table())`
     - `prop.table(table(), margin)`
 
-## Load Libraries
+## Download example data
 
 ```{webr-r}
 library(tidyverse)
+# 'kable' is in the 'knitr' R package
+library(knitr)
 # library(tidylog)
+# Download files within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/study2_key1.txt"),
+              "study2_key1.txt")
+download.file(paste0(root_srcfile,"data/study2_snp.txt"),
+              "study2_snp.txt")
 ```
+
+
 
 
 
@@ -131,14 +141,6 @@ rs35814900      Aff-S-3212091
 rs28370510      Aff-S-1032132
 ```
 
-## Download example data
-
-```{webr-r}
-# Download file within the WebR environment
-root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
-download.file(paste0(root_srcfile,"data/study2_key1.txt"),
-              "study2_key1.txt")
-```
 
 ## Duplicates
 
@@ -410,11 +412,86 @@ ds  %>%
 ```
 :::
 
+## Reshaping data
+
+### Download example data
+
+```{webr-r}
+library(tidyverse)
+library(knitr)
+# Download files within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/study2_snp.txt"),
+              "study2_snp.txt")
+```
+
+### Long & wide PLINK data
+
+* For large-scale data, PLINK is very useful for converting from 'long' to 'wide'
+
+* Long: ped, per, rsID, allele 1, allele 2
+
+* Wide: ped, per, SNP1 allele 1, SNP1 allele 2, SNP2 allele 1, SNP2 allele 2, ...
+
+**CAUTION:** When reading long data, PLINK does not warn about multiple genotypes for the same person, but rather uses the final one read in.
+
+
+
+Long format data: one row per genotype 
+
+```{webr-r}
+b <- read.table("study2_snp.txt",header=T)
+b$g <- paste(b$all1,b$all2,sep="/")
+f <- b[,c(-3,-4)]
+kable(head(f))
+```
+
+### `reshape`
+
+So here we have two SNPs typed per person, and we want to convert from ’long’ format to ’wide’ format:
+
+Wide format data: one row per individual
+
+
+```{webr-r}
+g.wide <- reshape(f,idvar="ID2",timevar="SNPID2",
+             v.names=c("g"),direction="wide")
+```
+
+Check that it worked correctly:
+
+```{webr-r}
+kable(head(g.wide))
+kable(f[f$ID2=="E992",])
+```
+
+
+### `pivot_wider`
+
+Using `pivot_wider` from `tidyverse`:
+
+```{webr-r}
+f %>% pivot_wider(id_cols = ID2, 
+    names_from = SNPID2, 
+    values_from = g) %>% 
+  head() %>% 
+  kable()
+```
+
+### Key points
+
+Here are some key points regarding reshaping data in R:
+
+* Pivot data from long to wide
+    - `pivot_wider`
+* Pivot data from wide to long
+    - `pivot_longer`
+
 ## Exercise 2: Reshaping data
 
 **Skill**: Reshaping data
 
-Select only three columns "sample_id", "Sample_trimester", "Gestationalage_sample", and then reshape from 'long' format to 'wide' format using `pivot_wider`, taking time as the "Sample_trimester".
+Select only three columns "sample_id", "Sample_trimester", "Gestationalage_sample" from the `ds` data frame, and then reshape from 'long' format to 'wide' format using `pivot_wider`, taking time as the "Sample_trimester".
 
 
 ```{webr-r}
