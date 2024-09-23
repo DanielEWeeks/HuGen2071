@@ -707,6 +707,9 @@ kable(head(pheno,4))
 
 Create a new subject ID column named "subjectID" where you have used the `DictPer` named vector to recode the original "subject_id" IDs into integer IDs.
 
+Note: If the `DictPer` named vector is not available, be sure to load the Project 1 data above using the commands in the 'Project 1 Data' section. 
+
+
 ```{webr-r}
 head(DictPer)
 ```
@@ -782,7 +785,7 @@ tri2 %>% select(subject_id, sample_id, Sample_trimester) %>%  head()
 ```
 :::
 
-## Exercise 7
+## Exercise 7: Selecting columns
 
 **Skill**: Selecting columns
 
