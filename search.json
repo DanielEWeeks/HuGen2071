@@ -1294,7 +1294,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X     Y        Z\n  &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 2009-01-01 -2.78    3.02  0.00157\n2 2009-01-02  0.173   1.79 -2.43   \n3 2009-01-03  0.0630 -1.20  1.17   \n4 2009-01-04  0.650  -1.43 -4.15   \n5 2009-01-05  0.945  -1.12  0.556  \n6 2009-01-06 -1.30    2.55  1.77   \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -2.78  \n2 2009-01-02 X      0.173 \n3 2009-01-03 X      0.0630\n4 2009-01-04 X      0.650 \n5 2009-01-05 X      0.945 \n6 2009-01-06 X     -1.30",
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y      Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.267 -2.85  -5.72 \n2 2009-01-02 -0.450 -2.59  -0.471\n3 2009-01-03  0.398  0.190 -5.38 \n4 2009-01-04 -0.493  1.27   6.10 \n5 2009-01-05  0.806  1.16  -1.03 \n6 2009-01-06 -0.156 -3.28  -2.87 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.267\n2 2009-01-02 X     -0.450\n3 2009-01-03 X      0.398\n4 2009-01-04 X     -0.493\n5 2009-01-05 X      0.806\n6 2009-01-06 X     -0.156",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1304,7 +1304,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock    price\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;\n1 2009-01-01 X     -2.78   \n2 2009-01-01 Y      3.02   \n3 2009-01-01 Z      0.00157\n4 2009-01-02 X      0.173  \n5 2009-01-02 Y      1.79   \n6 2009-01-02 Z     -2.43",
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.267\n2 2009-01-01 Y     -2.85 \n3 2009-01-01 Z     -5.72 \n4 2009-01-02 X     -0.450\n5 2009-01-02 Y     -2.59 \n6 2009-01-02 Z     -0.471",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1404,37 +1404,7 @@
     "href": "recoding_reshaping_interactive.html#duplicates",
     "title": "19  R Recoding Reshaping Exercise",
     "section": "19.6 Duplicates",
-    "text": "19.6 Duplicates\nNote above that we said that the keys must be unique.\nQuestion: How would you check in R that the keys are unique? For example, how would you check for duplicates in the ID2 column of ‘study2_key1.txt’?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnswer: In R, the duplicated function can be used to check for duplicates\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "recoding_reshaping_interactive.html#counting-duplicates",
-    "href": "recoding_reshaping_interactive.html#counting-duplicates",
-    "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.7 Counting duplicates",
-    "text": "19.7 Counting duplicates\nTo count the number of duplicated ID’s, we can take advantage of the fact that a TRUE value behaves as a 1 and a FALSE value behaves as a 0 when a logicial variable is used in a numeric computation.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "recoding_reshaping_interactive.html#checking-for-duplicates",
-    "href": "recoding_reshaping_interactive.html#checking-for-duplicates",
-    "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.8 Checking for duplicates",
-    "text": "19.8 Checking for duplicates\nHow do we return every row that contains a duplicate?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnother way to list all of the rows containing a duplicated ‘c1’ value:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYet another way to list all of the rows containing a duplicated ‘c1’ value using functions from the ‘tidyverse’ package:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "recoding_reshaping_interactive.html#key-points-duplicates",
-    "href": "recoding_reshaping_interactive.html#key-points-duplicates",
-    "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.9 Key points: Duplicates",
-    "text": "19.9 Key points: Duplicates\nHere are some key points regarding detecting duplicates:\n\nCount the number of times ID2 is duplicated\n\nsum(duplicated(b$ID2))\n\nList all rows with a duplicated c1 value\n\nf %&gt;% group_by(c1) %&gt;% filter(n()&gt;1)",
+    "text": "19.6 Duplicates\nNote above that we said that the keys must be unique.\nQuestion: How would you check in R that the keys are unique? For example, how would you check for duplicates in the ID2 column of ‘study2_key1.txt’?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnswer: In R, the duplicated function can be used to check for duplicates\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.6.1 Counting duplicates\nTo count the number of duplicated ID’s, we can take advantage of the fact that a TRUE value behaves as a 1 and a FALSE value behaves as a 0 when a logicial variable is used in a numeric computation.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.6.2 Checking for duplicates\nHow do we return every row that contains a duplicate?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnother way to list all of the rows containing a duplicated ‘c1’ value:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYet another way to list all of the rows containing a duplicated ‘c1’ value using functions from the ‘tidyverse’ package:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.6.3 Key points: Duplicates\nHere are some key points regarding detecting duplicates:\n\nCount the number of times ID2 is duplicated\n\nsum(duplicated(b$ID2))\n\nList all rows with a duplicated c1 value\n\nf %&gt;% group_by(c1) %&gt;% filter(n()&gt;1)",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1443,8 +1413,8 @@
     "objectID": "recoding_reshaping_interactive.html#project-1-data",
     "href": "recoding_reshaping_interactive.html#project-1-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.10 Project 1 Data",
-    "text": "19.10 Project 1 Data\nIn the ds data frame we have the synthetic yet realistic data we will be using in Project 1.\nIn the dd data frame we have the corresponding data dictionary.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.7 Project 1 Data",
+    "text": "19.7 Project 1 Data\nIn the ds data frame we have the synthetic yet realistic data we will be using in Project 1.\nIn the dd data frame we have the corresponding data dictionary.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1453,8 +1423,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-1-duplicated-values",
     "href": "recoding_reshaping_interactive.html#exercise-1-duplicated-values",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.11 Exercise 1: duplicated values",
-    "text": "19.11 Exercise 1: duplicated values\nSkill: Checking for duplicated IDs\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing the ds data frame from Project 1, check if there are any duplicated sample_id’s using the duplicated command. If so, count how many duplicated sample_id’s there are.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConstruct a table of the number of times each sample_id is duplicated:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nNote that it is important to be aware of missing IDs. So when constructing tables of counts using the table command, the useNA argument controls if the table includes counts of NA values.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHow many sample_id’s are NA’s?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCheck if there are any duplicated subject_ids\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nWe can check if there are any duplicated subject_id’s by counting how many duplicates there are.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.8 Exercise 1: duplicated values",
+    "text": "19.8 Exercise 1: duplicated values\nSkill: Checking for duplicated IDs\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing the ds data frame from Project 1, check if there are any duplicated sample_id’s using the duplicated command. If so, count how many duplicated sample_id’s there are.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConstruct a table of the number of times each sample_id is duplicated:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nNote that it is important to be aware of missing IDs. So when constructing tables of counts using the table command, the useNA argument controls if the table includes counts of NA values.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHow many sample_id’s are NA’s?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCheck if there are any duplicated subject_ids\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nWe can check if there are any duplicated subject_id’s by counting how many duplicates there are.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1463,8 +1433,8 @@
     "objectID": "recoding_reshaping_interactive.html#checking-for-duplicates-1",
     "href": "recoding_reshaping_interactive.html#checking-for-duplicates-1",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.12 Checking for duplicates",
-    "text": "19.12 Checking for duplicates\nHow do we return every row that contains a duplicate?\nThis approach only does not return every row that contains a duplicated ID:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.9 Checking for duplicates",
+    "text": "19.9 Checking for duplicates\nHow do we return every row that contains a duplicate?\nThis approach only does not return every row that contains a duplicated ID:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1473,8 +1443,8 @@
     "objectID": "recoding_reshaping_interactive.html#counting-the-number-of-occurences-of-the-id",
     "href": "recoding_reshaping_interactive.html#counting-the-number-of-occurences-of-the-id",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.13 Counting the number of occurences of the ID",
-    "text": "19.13 Counting the number of occurences of the ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.10 Counting the number of occurences of the ID",
+    "text": "19.10 Counting the number of occurences of the ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1483,8 +1453,8 @@
     "objectID": "recoding_reshaping_interactive.html#count-sample_id-duplicates",
     "href": "recoding_reshaping_interactive.html#count-sample_id-duplicates",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.14 Count sample_id duplicates",
-    "text": "19.14 Count sample_id duplicates\nUsing Tidyverse commands, count how many times each sample_id occcurs in the ds data frame, reporting the counts in descending order, from highest to lowest.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.11 Count sample_id duplicates",
+    "text": "19.11 Count sample_id duplicates\nUsing Tidyverse commands, count how many times each sample_id occcurs in the ds data frame, reporting the counts in descending order, from highest to lowest.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1493,8 +1463,8 @@
     "objectID": "recoding_reshaping_interactive.html#checking-for-duplicates-2",
     "href": "recoding_reshaping_interactive.html#checking-for-duplicates-2",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.15 Checking for duplicates",
-    "text": "19.15 Checking for duplicates\nHere we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.15.1 How to list all duplicates\nUse Tidyverse commands to list (1) all duplicates for sample_id and (2) all duplicates for subject_id. Sort the results by the ID.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n19.15.2 Sample ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.15.3 Subject ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.12 Checking for duplicates",
+    "text": "19.12 Checking for duplicates\nHere we list all of the rows containing a duplicated ‘ID’ value using functions from the ‘tidyverse’ package:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.12.1 How to list all duplicates\nUse Tidyverse commands to list (1) all duplicates for sample_id and (2) all duplicates for subject_id. Sort the results by the ID.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\n19.12.2 Sample ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.12.3 Subject ID\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1503,8 +1473,8 @@
     "objectID": "recoding_reshaping_interactive.html#reshaping-data",
     "href": "recoding_reshaping_interactive.html#reshaping-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.16 Reshaping data",
-    "text": "19.16 Reshaping data\n\n19.16.1 Download example data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.16.2 Long & wide PLINK data\n\nFor large-scale data, PLINK is very useful for converting from ‘long’ to ‘wide’\nLong: ped, per, rsID, allele 1, allele 2\nWide: ped, per, SNP1 allele 1, SNP1 allele 2, SNP2 allele 1, SNP2 allele 2, …\n\nCAUTION: When reading long data, PLINK does not warn about multiple genotypes for the same person, but rather uses the final one read in.\nLong format data: one row per genotype\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.16.3 reshape\nSo here we have two SNPs typed per person, and we want to convert from ’long’ format to ’wide’ format:\nWide format data: one row per individual\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCheck that it worked correctly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.16.4 pivot_wider\nUsing pivot_wider from tidyverse:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.16.5 Key points\nHere are some key points regarding reshaping data in R:\n\nPivot data from long to wide\n\npivot_wider\n\nPivot data from wide to long\n\npivot_longer",
+    "section": "19.13 Reshaping data",
+    "text": "19.13 Reshaping data\n\n19.13.1 Download example data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.13.2 Long & wide PLINK data\n\nFor large-scale data, PLINK is very useful for converting from ‘long’ to ‘wide’\nLong: ped, per, rsID, allele 1, allele 2\nWide: ped, per, SNP1 allele 1, SNP1 allele 2, SNP2 allele 1, SNP2 allele 2, …\n\nCAUTION: When reading long data, PLINK does not warn about multiple genotypes for the same person, but rather uses the final one read in.\nLong format data: one row per genotype\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.13.3 reshape\nSo here we have two SNPs typed per person, and we want to convert from ’long’ format to ’wide’ format:\nWide format data: one row per individual\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCheck that it worked correctly:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.13.4 pivot_wider\nUsing pivot_wider from tidyverse:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n19.13.5 Key points\nHere are some key points regarding reshaping data in R:\n\nPivot data from long to wide\n\npivot_wider\n\nPivot data from wide to long\n\npivot_longer",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1513,8 +1483,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-2-reshaping-data",
     "href": "recoding_reshaping_interactive.html#exercise-2-reshaping-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.17 Exercise 2: Reshaping data",
-    "text": "19.17 Exercise 2: Reshaping data\nSkill: Reshaping data\nSelect only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample” from the ds data frame, and then reshape from ‘long’ format to ‘wide’ format using pivot_wider, taking time as the “Sample_trimester”.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.17.1 Comment\nView b2 via the View(b2) command in RStudio - it nicely put all the different gestational age observations into one list for each sample_id x Sample_trimester combination.",
+    "section": "19.14 Exercise 2: Reshaping data",
+    "text": "19.14 Exercise 2: Reshaping data\nSkill: Reshaping data\nSelect only three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample” from the ds data frame, and then reshape from ‘long’ format to ‘wide’ format using pivot_wider, taking time as the “Sample_trimester”.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.14.1 Comment\nView b2 via the View(b2) command in RStudio - it nicely put all the different gestational age observations into one list for each sample_id x Sample_trimester combination.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1523,8 +1493,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-3-aggregating-data",
     "href": "recoding_reshaping_interactive.html#exercise-3-aggregating-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.18 Exercise 3: Aggregating data",
-    "text": "19.18 Exercise 3: Aggregating data\nSkill: Aggregating data\nMake a table showing the proportion of blacks and whites that are controls and cases.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.18.1 Comment:\nThe margin parameter of the prop.table command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nConstruct more readable tables with labels using xtabs\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n19.18.2 xtabs table with labels\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCreate a count cross table using Tidyverse commands\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCreate a proportion cross table using Tidyverse commands\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "19.15 Exercise 3: Aggregating data",
+    "text": "19.15 Exercise 3: Aggregating data\nSkill: Aggregating data\nMake a table showing the proportion of blacks and whites that are controls and cases.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n19.15.1 Comment:\nThe margin parameter of the prop.table command has to be specified in order to get the desired answer: “1 indicates rows, 2 indicates columns.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nConstruct more readable tables with labels using xtabs\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n19.15.2 xtabs table with labels\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCreate a count cross table using Tidyverse commands\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nCreate a proportion cross table using Tidyverse commands\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1533,8 +1503,18 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-4-summarizing-within-groups",
     "href": "recoding_reshaping_interactive.html#exercise-4-summarizing-within-groups",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.19 Exercise 4: Summarizing within groups",
-    "text": "19.19 Exercise 4: Summarizing within groups\nSkill: Summarizing within groups\nApply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNote: With split(x, f), any missing values in f are dropped together with the corresponding values of x.",
+    "section": "19.16 Exercise 4: Summarizing within groups",
+    "text": "19.16 Exercise 4: Summarizing within groups\nSkill: Summarizing within groups\nApply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNote: With split(x, f), any missing values in f are dropped together with the corresponding values of x.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "recoding_reshaping_interactive.html#recoding-data-2",
+    "href": "recoding_reshaping_interactive.html#recoding-data-2",
+    "title": "19  R Recoding Reshaping Exercise",
+    "section": "19.17 Recoding data",
+    "text": "19.17 Recoding data\n\n19.17.1 Recoding data using look-up tables\nApproach 1\n\nImplement our dictionaries using look-up tables\n\nUse a named vector.\n\n\nHere’s an example of how to do this:\n\nUse the information in study2_key1.txt to set up a dictionary dictPer that maps ‘E’ person IDs to integer person IDs.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nRead in study2_pheno.txt, and using dictPer, translate the person IDs and write it out again with the translated person IDs.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1543,8 +1523,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-5-recoding-data",
     "href": "recoding_reshaping_interactive.html#exercise-5-recoding-data",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.20 Exercise 5: Recoding data",
-    "text": "19.20 Exercise 5: Recoding data\nApproach 1\n\nImplement our dictionaries using look-up tables\n\nUse a named vector.\n\n\nSkill:: Recoding IDs using a dictionary\nCreate a new subject ID column named “subjectID” where you have used the DictPer named vector to recode the original “subject_id” IDs into integer IDs.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nApproach 2\n\nImplement our dictionaries using left joins\n\n\n19.20.1 Comment\nI usually prefer to use a merge command like left_join to merge in the new IDs into my data frame.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "20.1 Exercise 5: Recoding data",
+    "text": "20.1 Exercise 5: Recoding data\nApproach 1\n\nImplement our dictionaries using look-up tables\n\nUse a named vector.\n\n\nSkill:: Recoding IDs using a dictionary\nCreate a new subject ID column named “subjectID” where you have used the DictPer named vector to recode the original “subject_id” IDs into integer IDs.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nApproach 2\n\nImplement our dictionaries using left joins\n\n\n20.1.1 Comment\nI usually prefer to use a merge command like left_join to merge in the new IDs into my data frame.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1553,8 +1533,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-6-filtering-rows",
     "href": "recoding_reshaping_interactive.html#exercise-6-filtering-rows",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.21 Exercise 6: Filtering rows",
-    "text": "19.21 Exercise 6: Filtering rows\nSkill: Filtering rows.\nCreate a data frame tri1 containing the records for Trimester 1, and a second data frame tri2 containing the records for Trimester 2.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "20.2 Exercise 6: Filtering rows",
+    "text": "20.2 Exercise 6: Filtering rows\nSkill: Filtering rows.\nCreate a data frame tri1 containing the records for Trimester 1, and a second data frame tri2 containing the records for Trimester 2.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -1563,8 +1543,8 @@
     "objectID": "recoding_reshaping_interactive.html#exercise-7",
     "href": "recoding_reshaping_interactive.html#exercise-7",
     "title": "19  R Recoding Reshaping Exercise",
-    "section": "19.22 Exercise 7",
-    "text": "19.22 Exercise 7\nSkill: Selecting columns\nUpdate tri1 and tri2 to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "20.3 Exercise 7",
+    "text": "20.3 Exercise 7\nSkill: Selecting columns\nUpdate tri1 and tri2 to only contain the three columns “sample_id”, “Sample_trimester”, “Gestationalage_sample”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
@@ -2064,7 +2044,7 @@
     "href": "EDA.html#missing-data",
     "title": "23  R Exploratory Data Analysis Exercise",
     "section": "24.7 Missing data",
-    "text": "24.7 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we could use plot_missing from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\nTask: Try out plot_missing on the subject-level data set ds.subj.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nplot_missing(ds.subj)\n\n\n\n\n\n\n\n\nIt is kind of unusual to have no missing data in a real data set.\nTo see what the output might look like when there is some missing data, let’s introduce some using the createNAs function from this StackOverflow entry:\nhttps://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame\n\ncreateNAs &lt;- function(x, pctNA = 0.1) {\n    n &lt;- nrow(x)\n    p &lt;- ncol(x)\n    NAloc &lt;- rep(FALSE, n * p)\n    NAloc[sample.int(n * p, floor(n * p * pctNA))] &lt;- TRUE\n    x[matrix(NAloc, nrow = n, ncol = p)] &lt;- NA\n    return(x)\n}\n\ndf &lt;- ds.subj\ndf &lt;- createNAs(df)\ndf &lt;- data.frame(df)\nplot_missing(df)\n\n\n\n\n\n\n\n\n\nprofile_missing(df)\n\n                    feature num_missing pct_missing\n1                subject_id           3  0.05555556\n2                    strata           8  0.14814815\n3                      race           8  0.14814815\n4     maternal_age_delivery           9  0.16666667\n5       case_control_status          13  0.24074074\n6       prepregnancy_weight           3  0.05555556\n7                    height           4  0.07407407\n8          prepregnancy_BMI           7  0.12962963\n9                 gravidity           7  0.12962963\n10                   parity           7  0.12962963\n11  gestationalage_delivery           4  0.07407407\n12    average_SBP_lt20weeks           2  0.03703704\n13    average_DBP_lt20weeks           3  0.05555556\n14        average_SBP_labor           5  0.09259259\n15        average_DBP_labor           4  0.07407407\n16           smoke_lifetime           7  0.12962963\n17         baby_birthweight           2  0.03703704\n18                 baby_sex           4  0.07407407\n19 baby_birthweight_centile           7  0.12962963\n20                 baby_SGA           4  0.07407407\n21      placental_pathology           3  0.05555556\n22                PE_status           4  0.07407407\n\n\nWhen there is some missing data, in addition to applying plot_missing and profile_missing, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.\nhttps://cran.r-project.org/web/packages/VIM/vignettes/VIM.html",
+    "text": "24.7 Missing data\n\nWhat is the pattern of missing data?\n\nHow are missing data coded?\nIs there a single missing data code?\n\n\nHere we could use plot_missing from the DataExplorer R package.\nhttps://boxuancui.github.io/DataExplorer/index.html\nTask: Try out plot_missing on the subject-level data set ds.subj.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nplot_missing(ds.subj)\n\n\n\n\n\n\n\n\nIt is kind of unusual to have no missing data in a real data set.\nTo see what the output might look like when there is some missing data, let’s introduce some using the createNAs function from this StackOverflow entry:\nhttps://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame\n\ncreateNAs &lt;- function(x, pctNA = 0.1) {\n    n &lt;- nrow(x)\n    p &lt;- ncol(x)\n    NAloc &lt;- rep(FALSE, n * p)\n    NAloc[sample.int(n * p, floor(n * p * pctNA))] &lt;- TRUE\n    x[matrix(NAloc, nrow = n, ncol = p)] &lt;- NA\n    return(x)\n}\n\ndf &lt;- ds.subj\ndf &lt;- createNAs(df)\ndf &lt;- data.frame(df)\nplot_missing(df)\n\n\n\n\n\n\n\n\n\nprofile_missing(df)\n\n                    feature num_missing pct_missing\n1                subject_id           2  0.03703704\n2                    strata          10  0.18518519\n3                      race           5  0.09259259\n4     maternal_age_delivery           2  0.03703704\n5       case_control_status           2  0.03703704\n6       prepregnancy_weight           7  0.12962963\n7                    height           4  0.07407407\n8          prepregnancy_BMI           9  0.16666667\n9                 gravidity           8  0.14814815\n10                   parity           7  0.12962963\n11  gestationalage_delivery           8  0.14814815\n12    average_SBP_lt20weeks           3  0.05555556\n13    average_DBP_lt20weeks           4  0.07407407\n14        average_SBP_labor           5  0.09259259\n15        average_DBP_labor           4  0.07407407\n16           smoke_lifetime           5  0.09259259\n17         baby_birthweight           6  0.11111111\n18                 baby_sex           6  0.11111111\n19 baby_birthweight_centile           8  0.14814815\n20                 baby_SGA           5  0.09259259\n21      placental_pathology           6  0.11111111\n22                PE_status           2  0.03703704\n\n\nWhen there is some missing data, in addition to applying plot_missing and profile_missing, you could also apply functions from the ‘VIM’ R package, which has a number of commands that are useful for visualizing missing data patterns.\nhttps://cran.r-project.org/web/packages/VIM/vignettes/VIM.html",
     "crumbs": [
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>R Exploratory Data Analysis Exercise</span>"
     ]
