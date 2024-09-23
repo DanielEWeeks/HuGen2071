@@ -45,6 +45,8 @@ download.file(paste0(root_srcfile,"data/study2_key1.txt"),
               "study2_key1.txt")
 download.file(paste0(root_srcfile,"data/study2_snp.txt"),
               "study2_snp.txt")
+download.file(paste0(root_srcfile,"data/study2_pheno.txt"),
+              "study2_pheno.txt")
 ```
 
 
@@ -162,7 +164,7 @@ table(duplicated(b$ID2))
 ```
 
 
-## Counting duplicates
+### Counting duplicates
 
 To count the number of duplicated ID's, we can take advantage of the fact that a `TRUE` value behaves as a `1` and a `FALSE` value behaves as a `0` when a logicial variable is used in a numeric computation.
 
@@ -172,7 +174,7 @@ sum(duplicated(b$ID2))
 ```
 
 
-## Checking for duplicates
+### Checking for duplicates
 
 How do we return every row that contains a duplicate?
 
@@ -204,7 +206,7 @@ Yet another way to list all of the rows containing a duplicated 'c1' value using
 f %>% group_by(c1) %>% filter(n()>1)
 ```
 
-## Key points: Duplicates
+### Key points: Duplicates
 
 Here are some key points regarding detecting duplicates:
 
@@ -643,6 +645,56 @@ tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)
 
 Note: With `split(x, f)`, any missing values in `f` are dropped together with the corresponding values of `x`.
 :::
+
+## Recoding data
+
+### Recoding data using look-up tables
+
+**Approach 1**
+
+* Implement our dictionaries using look-up tables
+    - Use a named vector.
+
+Here's an example of how to do this:
+
+* Use the information in `study2_key1.txt` to set up a dictionary `dictPer` that maps 'E' person IDs to integer person IDs.
+
+```{webr-r}
+key1 <- read.table(file="study2_key1.txt", header=TRUE, 
+                   stringsAsFactors = FALSE)
+head(key1,2)
+dictPer <- key1$ID1
+names(dictPer) <- key1$ID2
+head(dictPer,8)
+```
+
+* Read in study2_pheno.txt, and using `dictPer`, translate the person IDs and write it out again with the translated person IDs.
+
+```{webr-r}
+pheno <- read.table("study2_pheno.txt", header=TRUE, 
+                    stringsAsFactors = FALSE)
+pheno$ID1 <- dictPer[pheno$ID2]
+kable(head(pheno,4))
+```
+
+
+# Recoding data using left joins
+
+**Approach 2**
+
+* Implement our dictionaries using left joins 
+
+Here's an example of how to do this:
+
+* Read in study2_pheno.txt, and using `dictPer`, translate the person IDs and write it out again with the translated person IDs.
+
+```{webr-r}
+pheno <- read.table("study2_pheno.txt", header=TRUE, 
+                    stringsAsFactors = FALSE)
+pheno <- left_join(pheno,key1, by=c("ID2"))
+kable(head(pheno,4))
+```
+
 
 ## Exercise 5: Recoding data
 
