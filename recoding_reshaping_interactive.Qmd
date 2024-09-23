@@ -678,7 +678,7 @@ kable(head(pheno,4))
 ```
 
 
-# Recoding data using left joins
+### Recoding data using left joins
 
 **Approach 2**
 
