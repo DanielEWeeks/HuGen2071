@@ -1,9 +1,23 @@
 ---
+webr:
+  packages: ['tidyverse','ggforce','ggrain','palmerpenguins']
 editor: 
   mode: source
 ---
 
 # R Graphics Exercise
+
+## Acknowledgments
+
+Portions of this are from 
+
+<https://datacarpentry.org/R-ecology-lesson/instructor/04-visualization-ggplot2.html>
+
+All Data Carpentry instructional material is made available under the Creative Commons Attribution license. Copyright (c) Data Carpentry.
+
+Link: <https://datacarpentry.org>
+
+Accordingly, this chapter is also licensed using the CC-BY 4.0 license.   <https://creativecommons.org/licenses/by/4.0/>
 
 ## The Grammer of Graphics
 
@@ -31,11 +45,25 @@ library(ggforce)
 theme_set(theme_gray(base_size = 18))
 ```
 
-## Exercise 1
+## Download example data
 
-Read in and set up the data set `b`, a cleaned version of our simulated data set:
+```{webr-r}
+library(tidyverse)
+# 'kable' is in the 'knitr' R package
+library(knitr)
+library(ggforce)
+# library(tidylog)
+# Download files within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/study1.csv"),
+              "study1.csv")
+download.file(paste0(root_srcfile,"data/example.tsv"),
+              "example.tsv")
+download.file(paste0(root_srcfile,"data/BoxPlots.tsv"),
+              "BoxPlots.tsv")
+```
 
-```{r}
+```{r,echo=FALSE}
 a <- read.csv("data/study1.csv")
 a$ind <- seq_along(a$t)
 b <- a[-c(1001:1004),]
@@ -43,30 +71,95 @@ b$g.f <- factor(b$g)
 b$geno <- paste(b$all1,b$all2,sep="/")
 ```
 
-Using ggplot and data set `b`, plot `ind` vs. `t`, coloring by case-control status (`trait`). What do you observe about the data?
+
+## Exercise 1
+
+Read in and set up the data set `b`, a cleaned version of our simulated data set:
+
+```{webr-r}
+a <- read.csv("study1.csv")
+a$ind <- seq_along(a$t)
+b <- a[-c(1001:1004),]
+b$g.f <- factor(b$g)
+b$geno <- paste(b$all1,b$all2,sep="/")
+dim(b)
+head(b)
+```
+
+::: callout-tip
+## Introduction from Data Carpentry
+**Plotting with ggplot2**
+
+`ggplot2` is a plotting package that provides helpful commands to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.
+
+*Use long format data*      
+`ggplot2` plots work best with data in the ‘long’ format, i.e., a column for every variable, and a row for every observation. Well-structured data will save you lots of time when making figures with `ggplot2`
+
+*Build layer by layer*        
+ggplot graphics are built layer by layer by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.
+
+*Basic template*        
+To build a ggplot, we will use the following basic template that can be used for different types of plots:
+
+```
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
+```
+
+**Notes**
+
+* Anything you put in the `ggplot()` function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x- and y-axis you set up in `aes()`.
+* You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the `ggplot()` function.
+* The + sign used to add layers must be placed at the end of each line containing a layer. If, instead, the + sign is added in the line before the other layer, ggplot2 will not add the new layer and will return an error message.
+*  You may notice that we sometimes reference `ggplot2` and sometimes `ggplot`. To clarify, `ggplot2` is the name of the most recent version of the package. However, any time we call the function itself, it’s just called `ggplot()`.
+
+
+**Key Points**
+
+* Start simple and build your plots iteratively.
+* The `ggplot()` function initiates a plot. 
+* Use `aes()` when mapping a variable from the data to a part of the plot
+* `geom_` functions add representations of your data.
+* Use `facet_` to partition a plot into multiple plots based on a factor included in the dataset.
+
+
+**Additional Points**
+
+These points are not illustrated here in this current exercise:
+
+* Use premade `theme_` functions to broadly change appearance, and the `theme()` function to fine-tune
+* The `patchwork` library can combine separate plots into a single figure
+* Use `ggsave()` to save plots in your favorite format and dimensions
+
+See <<https://datacarpentry.org/R-ecology-lesson/instructor/04-visualization-ggplot2.html> for further details. 
+
+:::
+
+
+Starting with the data set `b`, use ggplot's framework
+
+```
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
+```
+
+to plot `ind` vs. `t`, coloring by case-control status (`trait`). What do you observe about the data?
+
+```{webr-r}
+# Edit/add/try out R code here
+# Replace the blanks
+ggplot(data=____, aes(x=____, y=____, color=____)) + 
+   geom______()
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
    geom_point()
 ```
 :::
 
-## Exercise 2
 
-Using ggplot, plot `ind` vs. `t`, coloring by case-control status (`trait`) and faceting by `geno`. What do you observe about the data?
-
-::: {.callout-tip collapse="true"}
-## Expand to see solution
-
-```{r}
-ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
-  geom_point() + 
-  facet_grid(~ geno)
-```
-:::
 
 ## Facetting
 
@@ -86,6 +179,26 @@ This will facet in rows by `geno`:
 facet_grid(geno ~ .)
 ```
 
+## Exercise 2
+
+Using ggplot, plot `ind` vs. `t`, coloring by case-control status (`trait`) and faceting by `geno`. What do you observe about the data?
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+```{webr-r}
+ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
+  geom_point() + 
+  facet_grid(~ geno)
+```
+:::
+
+## Faceting, continued
+
 The current recommended notation for facetting instead clearly names the rows and columns that you'd like to facet on.
 
 This will facet in columns by `geno`:
@@ -102,32 +215,37 @@ facet_grid(rows = vars(geno))
 
 Try these various ways of facetting out.
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 g <- ggplot(data=b, aes(x=ind, y=t, color=trait)) + 
   geom_point() 
 g  + 
   facet_grid(. ~ geno)
 ```
 
-```{r}
+```{webr-r}
 g + facet_grid(geno ~ .)
 ```
 
-```{r}
+```{webr-r}
 g + facet_grid(cols = vars(geno))
 ```
 
-```{r}
+```{webr-r}
 g + facet_grid(rows = vars(geno))
 ```
 :::
 
 ## Always plot your data
 
-```{r}
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 library(tidyverse)
 d <- read_tsv("data/example.tsv")
 n1 <- rep(c("x","y"), 13)
@@ -136,6 +254,17 @@ n3 <- c("", "", c(sort(rep(c(1:12), 2))))
 names(d) <- paste0(n1,n2,n3)
 names(d)
 ```
+
+```{webr-r}
+library(tidyverse)
+d <- read_tsv("example.tsv")
+n1 <- rep(c("x","y"), 13)
+n2 <- c("","",rep("_",24))
+n3 <- c("", "", c(sort(rep(c(1:12), 2))))
+names(d) <- paste0(n1,n2,n3)
+names(d)
+```
+
 
 ## Similar regression lines
 
@@ -154,7 +283,8 @@ ggplot(d,aes(x=x,y=y)) + geom_point() +
 
 Now try this:
 
-```         
+```{webr-r}
+# Edit/add/try out R code here
 ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
   geom_smooth(method="lm")
 ```
@@ -162,7 +292,7 @@ ggplot(d,aes(x=x_1,y=y_1)) + geom_point() +
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ggplot(d,aes(x=x_1,y=y_1)) + geom_point() + 
   geom_smooth(method="lm") + ggtitle("Linear regression of y_1 ~ x_1")
 ```
@@ -170,7 +300,8 @@ ggplot(d,aes(x=x_1,y=y_1)) + geom_point() +
 
 And now try this:
 
-```         
+```{webr-r}
+# Edit/add/try out R code here
 ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
   geom_smooth(method="lm")
 ```
@@ -180,7 +311,7 @@ ggplot(d,aes(x=x_3,y=y_3)) + geom_point() +
 
 ### Always plot your data!
 
-```{r}
+```{webr-r}
 ggplot(d,aes(x=x_3,y=y_3)) + geom_point() + 
   geom_smooth(method="lm") + ggtitle("Linear regression of y_3 ~ x_3")
 ```
@@ -188,8 +319,15 @@ ggplot(d,aes(x=x_3,y=y_3)) + geom_point() +
 
 ## Always plot your data
 
-```{r message=FALSE,warning=FALSE}
+```{r echo=FALSE,message=FALSE,warning=FALSE, results='hide'}
 f <- read_tsv("data/BoxPlots.tsv")
+# Delete the first column
+f <- f[,-1]
+head(f)
+```
+
+```{webr-r}
+f <- read_tsv("BoxPlots.tsv")
 # Delete the first column
 f <- f[,-1]
 head(f)
@@ -197,13 +335,14 @@ head(f)
 
 Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.
 
-```{r}
+```{webr-r}
 head(stack(f),2)
 ```
 
 Now try this:
 
-```         
+```{webr-r}
+# Edit/add/try out R code here
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_boxplot()
 ```
@@ -227,12 +366,13 @@ While the box plots are identical, box plots may not tell the whole story.
 
 Let's try violin plots instead:
 
-```         
+A violin plot is a mirrored density plot.
+
+```{webr-r}
+# Edit/add/try out R code here
 ggplot(stack(f), aes(x = ind, y = values)) +
   geom_violin()
 ```
-
-A violin plot is a mirrored density plot.
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -249,7 +389,9 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 
 Sidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor & Francis; 2018 Jul 3;27(3):673--676. DOI: <https://doi.org/10.1080/10618600.2017.1366914>
 
-```         
+
+```{webr-r}
+# Edit/add/try out R code here
 library(ggforce)
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina()
@@ -271,7 +413,7 @@ ggplot(stack(f), aes(x = ind, y = values)) +
 
 `method == "counts"`: The borders are defined by the number of samples that occupy the same bin.
 
-```         
+```{webr-r}        
 ggplot(stack(f), aes(x = ind, y = values)) +
    geom_violin() + geom_sina(method="count")
 ```
@@ -297,12 +439,18 @@ Allen M, Poggiali D, Whitaker K, Marshall TR, Van Langen J, Kievit RA. Raincloud
 
 <https://github.com/RainCloudPlots/RainCloudPlots>
 
-Try it out.
+Try it out, using `geom_rain()`
+
+```{webr-r}
+# Edit/add/try out R code here
+library(ggrain)
+ggplot(stack(f), aes(x = ind, y = values)) + ___________
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 library(ggrain)
 ggplot(stack(f), aes(x = ind, y = values)) + geom_rain()
 ```
@@ -314,7 +462,7 @@ Sometimes we'd like to draw multiple plots, looping across variables. Doing this
 
 Here's one way to do this - this example code will generate two scatter plots:
 
-```{r}
+```{webr-r}
 x.names <- c("x","x_1")
 y.names <- c("y", "y_1")
 for (i in 1:2) {
@@ -330,7 +478,7 @@ for (i in 1:2) {
 
 See <https://r4ds.hadley.nz/functions.html#plot-functions>
 
-```{r}
+```{webr-r}
 library(palmerpenguins)
 
 PlDensity <- function(fill, ...) {
@@ -343,15 +491,15 @@ PlDensity <- function(fill, ...) {
 
 Example from: <https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
 
-```{r}
+```{webr-r}
 PlDensity(species)
 ```
 
-```{r}
+```{webr-r}
 PlDensity(island, sex) %>% print() %>% suppressWarnings()
 ```
 
-```{r}
+```{webr-r}
 PlDensity(sex, island, year) %>% print() %>% suppressWarnings()
 ```
 
@@ -359,7 +507,7 @@ PlDensity(sex, island, year) %>% print() %>% suppressWarnings()
 
 Consider this example code:
 
-```{r}
+```{webr-r}
 histogram <- function(df, var, binwidth) {
   df |> 
     ggplot(aes({{ var }})) + 
@@ -371,7 +519,7 @@ From: <https://twitter.com/hadleywickham/status/1574373127349575680?s=20&t=FLbwE
 
 When applied to the quantitative trait `t` from the data frame `b`, this generates this histogram:
 
-```{r}
+```{webr-r}
 histogram(b, t, 0.1)
 ```
 
@@ -379,11 +527,20 @@ histogram(b, t, 0.1)
 
 After reading the example above, extend the `histogram` function to allow facetting and use it to draw a histogram of the quantitative trait `t` facetted by `geno` using the data set `b` that we set up above.
 
+```{webr-r}
+# Edit/add/try out R code here
+histogram <- function(df, var, binwidth) {
+  df |> 
+    ggplot(aes({{ var }})) + 
+    geom_histogram(binwidth = binwidth)
+}
+```
+
 ::: callout-tip
 ## Hints
 
 -   See <https://r4ds.hadley.nz/functions.html#plot-functions>
--   Use the `{{ var }}` approach
+-   Use the `vars({{ var }})` approach
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -402,9 +559,18 @@ foo <- function(x) {
 }
 ```
 
+The `vars()` function is used for quoting faceting variables. The help page for `vars()` says:
+
+"Just like aes(), vars() is a quoting function that takes inputs to be evaluated in the context of a dataset. These inputs can be:
+
+* variable names
+* complex expressions
+
+In both cases, the results (the vectors that the variable represents or the results of the expressions) are used to form faceting groups."  
+
 Tweet: <https://twitter.com/hadleywickham/status/1574380137524887554?s=20&t=FLbwErwEKQKWtKIGufDLIQ>
 
-```{r}
+```{webr-r}
 histogram <- function(df, var, binwidth, grp) {
   df |> 
     ggplot(aes({{ var }})) + 
@@ -413,11 +579,11 @@ histogram <- function(df, var, binwidth, grp) {
 }
 ```
 
-```{r}
+```{webr-r}
 histogram(b, t, 0.1)
 ```
 
-```{r}
+```{webr-r}
 histogram(b, t, 0.1, geno)
 ```
 :::
