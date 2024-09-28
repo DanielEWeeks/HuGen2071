@@ -1,6 +1,6 @@
 ---
 webr:
-  packages: ['tidyverse']
+  packages: ['tidyverse','tidylog']
 editor: 
   mode: source  
 ---
@@ -23,14 +23,15 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 - Inconsistencies in the values of the keys can be hard to fix.        
 - **Always check the dimensions**, before and after the merge, to make sure the 
 merged object has the expected number of rows and columns.             
-- Always explicitly name the keys you are merging on.                  
+- Always explicitly name the keys you are merging on.
+- When using tidyverse `join` commands, load the `tidylog` R package in order to turn on very useful additional feedback. 
 
 
 ## Load Libraries
 
 ```{webr-r}
 library(tidyverse)
-# library(tidylog)
+library(tidylog)
 ```
 
 ## Input data
@@ -194,6 +195,7 @@ If you notice any problems with this merge, prepare a report for the PI detailin
 -   *Always check the dimensions* to make sure the merged object has the expected number of rows and columns.
 -   Always explicitly name the keys you are merging on.
     -   If you don't name them, then the join command will use all variables in common across `x` and `y`.
+- When using tidyverse `join` commands, load the `tidylog` R package in order to turn on very useful additional feedback.     
 
 ## Merge in new phenotype information
 
@@ -211,7 +213,11 @@ If you notice any problems with this merge, prepare a report for the PI detailin
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
+Here we load the `tidylog` R package, which will result in useful feedback when tidyverse commands are executed.  
+
 ```{webr-r}
+# Load 'tidylog' 
+library(tidylog)
 # Check for duplicated IDs
 sum(duplicated(b$subject_id))
 sum(duplicated(new$subject_id))
