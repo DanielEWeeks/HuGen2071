@@ -154,6 +154,15 @@ b$ID <- sample(c(1:nrow(b)), replace = FALSE)
 head(b %>% select(subject_id, ID))
 sum(duplicated(b$ID))
 ```
+
+This could also be done using the `sample-int()` function:
+
+```{webr-r}
+b <- b %>% mutate(ID=sample.int(nrow(.)))
+head(b %>% select(subject_id, ID))
+sum(duplicated(b$ID))
+```
+
 :::
 
 ## Merge in new phenotype information
