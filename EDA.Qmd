@@ -1,4 +1,6 @@
 ---
+webr:
+  packages: ['tidyverse','tidylog','DataExplorer','GGally']
 editor: 
   mode: source
 ---  
@@ -20,22 +22,37 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
     - Understand how the phenotypes are related to each other
     - Understand how the data are organized
 * Plot often, plot everything!
+* Are the data consistent with your expectations?
+    - "Unusual" data may be erroneous.
 
-## Load Libraries
 
-```{r load_libraries,message=FALSE}
+## Project 1 Data
+
+In the `ds` data frame we have the synthetic yet realistic data we will be using in Project 1.
+
+In the `dd` data frame we have the corresponding data dictionary.
+
+```{webr-r}
 library(tidyverse)
 library(tidylog)
 library(DataExplorer)
 library(GGally)
+library(knitr)
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/exercise.RData"),
+              "exercise.RData")
+load("exercise.RData", verbose = TRUE)
+ls()
 ```
+
 
 ## Explore Project 1 data
 
 Let's explore the Project 1 data set:
 
-```{r}
-load("data/project1.RData", verbose = TRUE)
+```{r, echo=FALSE}
+load("data/project1.RData")
 ```
 
 -   ds = data set
@@ -47,29 +64,48 @@ load("data/project1.RData", verbose = TRUE)
 * Which are subject-specific?
 * How to structure the data for sharing via dbGaP?
 
-## Dimensions
+## Dimensions and Names
 
+-   What are the names of the variables in our data files?
 -   What are the dimensions of our data?
 
 ## Dimensions
 
-Task: Examine the dimensions of our data and data dictionary.
+**Task:**: Examine the names and dimensions of our data and data dictionary.
+
+::: {.callout-tip collapse="true"}
+
+Here the commands `names()`, `dim()`, `head()`, and `tail()` are useful.
+
+Another useful command is `glimpse()`.  Its man page describes it as:
+
+> glimpse() is like a transposed version of print(): columns run down the page, and data runs across. This makes it possible to see every column in a data frame. It's a little like str() applied to a data frame but it tries to show you as much data as possible.
+:::
+
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ### Data `ds`
 
-```{r}
+```{webr-r}
 dim(ds)
 names(ds)
+glimpse(ds)
+head(ds)
 ```
 
 ### Data dictionay `dd`
 
-```{r}
+```{webr-r}
 dim(dd)
 names(dd)
+glimpse(ds)
+head(dd)
 ```
 
 :::
@@ -85,12 +121,17 @@ names(dd)
 
 Is it one row per sample or per subject?
 
-Question: How would you figure out the answer to this question?
+**Question:** How would you figure out the answer to this question?
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
+dim(ds)
 sum(duplicated(ds$sample_id))
 length(unique(ds$sample_id))
 length(unique(ds$subject_id))
@@ -101,32 +142,54 @@ length(unique(ds$subject_id))
 
 To figure out which phenotypes vary within subjects, it would be helpful to answer this question:
 
-Question: How can we figure out the number of unique values in each column of our `ds` data frame?
+**Question:** How can we figure out the number of unique values in each column of our `ds` data frame?
 
-A similar related question is: How would you count the number of subjects who have more than one distinct measure at each of the phenotypes?
+::: {.callout-tip collapse="true"}
+The R commands `unique()` and `length()` could be useful here.
+
+Write a simple function to do this for a single selected column of the `ds` data frame, and then figure out how to apply your function to every column of your data frame. 
+:::
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 sapply(ds,function(x) {length(unique(x))}) %>%
   sort(decreasing=TRUE) %>% kable()
 ```
 
 This can also be generated using the `map` function from the `purrr` R package.
 
-```{r}
+```{webr-r}
 ds %>% map(\(x) length(unique(x))) %>%
   unlist() %>% 
   sort(decreasing = TRUE) %>% 
   kable()
 ```
 
-Suppose we wanted to directly count the number of subjects who have more than one distinct measure at each of the phenotypes.  
+:::
 
+A similar related question is: How would you count the number of subjects who have more than one distinct measure at each of the phenotypes?
+
+**Task:** For each phenotype, total the count the number of subjects who have more than one distinct measure.  
+
+::: {.callout-tip collapse="true"}
 One approach for doing this would be to take the phenotype and group by `subject_id` and count distinct values within those subject-specific groups, and then add up the total number of subjects who have more than one distinct value.
+:::
 
-```{r}
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+
+```{webr-r}
 subject.N <- function(df.col, subj.ID) {
   # Count distinct entries when grouped by subj.ID
   # Input:
@@ -161,16 +224,20 @@ The variables with a count of zero here are those where no more than 1 distinct 
 
 ### Subject-level data set
 
-Task: Construct a subject-level data set `ds.subj`
+**Task:** Construct a subject-level data set `ds.subj`
 
 How would you construct a subject-level data set?
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 We need to drop the sample-specific measures, retaining only subject-level measures, and then select unique records:
 
-```{r}
+```{webr-r}
 ds.subj <- ds %>% 
   select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>% 
   distinct()
@@ -178,12 +245,14 @@ ds.subj <- ds %>%
 
 But there is a duplicated record where `race` differs but all other attributes are identical, so we filter one of those two records out:
 
-```{r}
+```{webr-r}
 sum(duplicated(ds.subj$subject_id))
 ds.subj %>% group_by(subject_id) %>% filter(n() > 1)
 ds.subj <- ds.subj %>% filter(race != "White")
 sum(duplicated(ds.subj$subject_id))
 ```
+
+Note: When you notice a duplicated record like that, you should report the discrepancy back to the person primarily in charge of the data, so they can correct their source data. 
 :::
 
 ## Coding
@@ -201,11 +270,21 @@ Using the subject-level data set `ds.subj`, let's recode `case_control_status` f
 
 First, look up the coding used for the `case_control_status` variable in the Data Dictionary `dd`:
 
-```{r}
+```{webr-r}
 dd %>% filter(R21.Variable.Name=="case_control_status") %>% pull(Variable.Coding)
 ```
 
-Task: Using the subject-level data set `ds.subj`, recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
+**Task:**: Using the subject-level data set `ds.subj`, recode `case_control_status` from `0` and `1` into a new `PE_status` variable coded as `control` and `case`.
+
+::: {.callout-tip collapse="true"}
+Coding `case_control_status` as a factor might be helpful here.
+
+Another approach would be to use `mutate` and `case_when` commands from the Tidyverse. 
+:::
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -214,7 +293,7 @@ So the data dictionary gives the meaning of the `0` and `1` codes:
 
 "0: normotensive control; 1: preeclampsia case"
 
-```{r}
+```{webr-r}
 ds.subj$PE_status <- factor(ds.subj$case_control_status)
 levels(ds.subj$PE_status)
 levels(ds.subj$PE_status) <- c("control","case")
@@ -225,10 +304,10 @@ xtabs(~ case_control_status + PE_status, data = ds.subj )
 
 Recoding could also be done using Tidyverse function:
 
-```{r}
+```{webr-r}
 ds.subj <- ds.subj %>% mutate(PE_status = 
-                                case_when(case_control_status == 0 ~ "control",
-                                         case_control_status == 1 ~ "case"))
+  case_when(case_control_status == 0 ~ "control",
+  case_control_status == 1 ~ "case"))
 xtabs(~ case_control_status + PE_status, data = ds.subj )
 ```
 
@@ -246,12 +325,16 @@ Here we could use `plot_missing` from the `DataExplorer` R package.
 <https://boxuancui.github.io/DataExplorer/index.html>
 
 
-Task: Try out `plot_missing` on the subject-level data set `ds.subj`.
+**Task:**: Try out `plot_missing` on the subject-level data set `ds.subj`.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 plot_missing(ds.subj)
 ```
 
@@ -261,7 +344,7 @@ To see what the output might look like when there is some missing data, let's in
 
 <https://stackoverflow.com/questions/39513837/add-exact-proportion-of-random-missing-values-to-data-frame>
 
-```{r}
+```{webr-r}
 createNAs <- function (x, pctNA = 0.1) {
   n <- nrow(x)
   p <- ncol(x)
@@ -277,8 +360,9 @@ df <- data.frame(df)
 plot_missing(df)
 ```
 
-```{r}
-profile_missing(df)
+```{webr-r}
+profile_missing(df) %>% 
+  arrange(pct_missing)
 ```
 
 
@@ -304,25 +388,29 @@ plot_histogram	Plot histogram
 plot_qq	Plot QQ plot
 ```
 
-Task: Try out these commands. 
+**Task:**: Try out these commands. 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 plot_bar(ds.subj)
 ```
 
-```{r}
+```{webr-r}
 plot_histogram(ds.subj)
 ```
 
-```{r}
+```{webr-r}
 plot_density(ds.subj)
 ```
 
 
-```{r}
+```{webr-r}
 plot_qq(ds.subj)
 ```
 
@@ -333,30 +421,35 @@ plot_qq(ds.subj)
 -   How do our data vary and co-vary?
     -   Do multiple measures agree with each other?
     -   Are there sex-specific or age-specific differences?
+    -   Are there trait-specific differences?
 
 
-Task: As it is of interest to examine how our traits vary by pre-eclampsia case/control status, we can explore this by using the `by="PE_status"` argument within the `DataExplorer` commands to break down the plots drawn in the previous section by `PE_status`.
+**Task:**: As it is of interest to examine how our traits vary by pre-eclampsia case/control status, we can explore this by using the `by="PE_status"` argument within the `DataExplorer` commands to break down the plots drawn in the previous section by `PE_status`.
 
 Also try creating boxplots using the `plot_boxplot` command. 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ### Bar plots
 
-```{r}
+```{webr-r}
 plot_bar(ds.subj, by="PE_status")
 ```
 
 ### Box plots
 
-```{r}
+```{webr-r}
 plot_boxplot(ds.subj, by="PE_status")
 ```
 
 ### QQ plots
 
-```{r}
+```{webr-r}
 plot_qq(ds.subj, by="PE_status")
 ```
 
@@ -366,13 +459,17 @@ plot_qq(ds.subj, by="PE_status")
 
 For plotting correlation matrices, `DataExplorer` provides the `plot_correlation` command.
 
-Task: Try `plot_correlation` out, on the subset of numeric columns.
+**Task:**: Try `plot_correlation` out, on the subset of numeric columns.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 
-```{r}
+```{webr-r}
 plot_correlation(ds.subj %>% select(where(is.numeric)))
 ```
 
@@ -382,24 +479,28 @@ plot_correlation(ds.subj %>% select(where(is.numeric)))
 
 Use `ggpairs` from the `GGally` R package.
 
-```{r}
+```{webr-r}
 # To illustrate, let's just use three of the numeric traits:
 ds1 <- ds.subj[ , c(15,17,19)]
 names(ds1)
 ```
 
-Task: Try it out - apply `ggpairs` to `ds1`. 
+**Task:**: Try it out - apply `ggpairs` to `ds1`. 
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ggpairs(ds1)
 ```
 
 :::
 
-Task: Redraw the `ggpairs` plot, using the `mapping` argument to color by `PE_status`.
+**Task:**: Redraw the `ggpairs` plot, using the `mapping` argument to color by `PE_status`.
 
 To figure out how do this, look at the examples in the `?ggpairs` function documentation.
 
@@ -409,11 +510,14 @@ To figure out how do this, look at the examples in the `?ggpairs` function docum
 This cannot be done using the `ds1` object because that does not contain any `PE_status` information.
 :::
 
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 ggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))
 ```
 
@@ -429,7 +533,7 @@ The `ggcorr` function from the `GGally` R package can also be used to make a cor
 
 
 
-```{r}
+```{webr-r}
 ggcorr(ds1, label=TRUE)
 ```
 
