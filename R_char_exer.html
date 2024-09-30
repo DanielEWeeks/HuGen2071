@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"label":"unnamed-chunk-1","read-only":"false","message":"true","dpi":72,"editor-font-scale":"1","out-height":"","warning":"true","out-width":"700px","autorun":"false","editor-max-height":"","editor-quick-suggestions":"false","fig-width":7,"output":"true","editor-word-wrap":"true","classes":"","fig-cap":"","results":"markup","comment":"","fig-height":5,"context":"interactive"},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here"},{"id":2,"options":{"label":"unnamed-chunk-2","read-only":"false","message":"true","dpi":72,"editor-font-scale":"1","out-height":"","warning":"true","out-width":"700px","autorun":"false","editor-max-height":"","editor-quick-suggestions":"false","fig-width":7,"output":"true","editor-word-wrap":"true","classes":"","fig-cap":"","results":"markup","comment":"","fig-height":5,"context":"interactive"},"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here"},{"id":3,"options":{"label":"unnamed-chunk-3","read-only":"false","message":"true","dpi":72,"editor-font-scale":"1","out-height":"","warning":"true","out-width":"700px","autorun":"false","editor-max-height":"","editor-quick-suggestions":"false","fig-width":7,"output":"true","editor-word-wrap":"true","classes":"","fig-cap":"","results":"markup","comment":"","fig-height":5,"context":"interactive"},"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here"},{"id":4,"options":{"label":"unnamed-chunk-4","read-only":"false","message":"true","dpi":72,"editor-font-scale":"1","out-height":"","warning":"true","out-width":"700px","autorun":"false","editor-max-height":"","editor-quick-suggestions":"false","fig-width":7,"output":"true","editor-word-wrap":"true","classes":"","fig-cap":"","results":"markup","comment":"","fig-height":5,"context":"interactive"},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here"}];
+globalThis.qwebrCellDetails = [{"options":{"editor-word-wrap":"true","out-height":"","message":"true","editor-max-height":"","output":"true","context":"interactive","editor-font-scale":"1","warning":"true","fig-cap":"","label":"unnamed-chunk-1","dpi":72,"out-width":"700px","classes":"","results":"markup","fig-height":5,"fig-width":7,"read-only":"false","editor-quick-suggestions":"false","autorun":"false","comment":""},"id":1,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here"},{"options":{"editor-word-wrap":"true","out-height":"","message":"true","editor-max-height":"","output":"true","context":"interactive","editor-font-scale":"1","warning":"true","fig-cap":"","label":"unnamed-chunk-2","dpi":72,"out-width":"700px","classes":"","results":"markup","fig-height":5,"fig-width":7,"read-only":"false","editor-quick-suggestions":"false","autorun":"false","comment":""},"id":2,"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here"},{"options":{"editor-word-wrap":"true","out-height":"","message":"true","editor-max-height":"","output":"true","context":"interactive","editor-font-scale":"1","warning":"true","fig-cap":"","label":"unnamed-chunk-3","dpi":72,"out-width":"700px","classes":"","results":"markup","fig-height":5,"fig-width":7,"read-only":"false","editor-quick-suggestions":"false","autorun":"false","comment":""},"id":3,"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here"},{"options":{"editor-word-wrap":"true","out-height":"","message":"true","editor-max-height":"","output":"true","context":"interactive","editor-font-scale":"1","warning":"true","fig-cap":"","label":"unnamed-chunk-4","dpi":72,"out-width":"700px","classes":"","results":"markup","fig-height":5,"fig-width":7,"read-only":"false","editor-quick-suggestions":"false","autorun":"false","comment":""},"id":4,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here"}];
 
 </script>
 <script type="module">
@@ -1774,38 +1774,44 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">

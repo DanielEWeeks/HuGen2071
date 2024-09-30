@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>24&nbsp; GRanges Exercise – HuGen2071 book</title>
+<title>25&nbsp; GRanges Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./QC.html" rel="next">
-<link href="./EDA.html" rel="prev">
+<link href="./Interactive_Graphics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GRanges.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GRanges.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -287,38 +287,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -372,17 +378,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introductory-background" id="toc-introductory-background" class="nav-link active" data-scroll-target="#introductory-background"><span class="header-section-number">24.1</span> Introductory Background</a></li>
-  <li><a href="#active-learning" id="toc-active-learning" class="nav-link" data-scroll-target="#active-learning"><span class="header-section-number">24.2</span> Active Learning</a></li>
-  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">24.3</span> Suggested readings</a></li>
-  <li><a href="#install-the-needed-bioconductor-libraries-one-time-only" id="toc-install-the-needed-bioconductor-libraries-one-time-only" class="nav-link" data-scroll-target="#install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">24.4</span> Install the needed Bioconductor libraries (one time only)</a></li>
-  <li><a href="#construct-the-gene-list" id="toc-construct-the-gene-list" class="nav-link" data-scroll-target="#construct-the-gene-list"><span class="header-section-number">24.5</span> Construct the gene list</a></li>
-  <li><a href="#construct-a-grange-containing-our-top-snp" id="toc-construct-a-grange-containing-our-top-snp" class="nav-link" data-scroll-target="#construct-a-grange-containing-our-top-snp"><span class="header-section-number">24.6</span> Construct a GRange containing our top SNP</a></li>
-  <li><a href="#search-for-match" id="toc-search-for-match" class="nav-link" data-scroll-target="#search-for-match"><span class="header-section-number">24.7</span> Search for match</a></li>
-  <li><a href="#convert-entrez-gene-ids-to-gene-names" id="toc-convert-entrez-gene-ids-to-gene-names" class="nav-link" data-scroll-target="#convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">24.8</span> Convert Entrez Gene IDs to Gene Names</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">24.9</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">24.11</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">24.13</span> Question 3</a></li>
+  <li><a href="#introductory-background" id="toc-introductory-background" class="nav-link active" data-scroll-target="#introductory-background"><span class="header-section-number">25.1</span> Introductory Background</a></li>
+  <li><a href="#active-learning" id="toc-active-learning" class="nav-link" data-scroll-target="#active-learning"><span class="header-section-number">25.2</span> Active Learning</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">25.3</span> Suggested readings</a></li>
+  <li><a href="#install-the-needed-bioconductor-libraries-one-time-only" id="toc-install-the-needed-bioconductor-libraries-one-time-only" class="nav-link" data-scroll-target="#install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">25.4</span> Install the needed Bioconductor libraries (one time only)</a></li>
+  <li><a href="#construct-the-gene-list" id="toc-construct-the-gene-list" class="nav-link" data-scroll-target="#construct-the-gene-list"><span class="header-section-number">25.5</span> Construct the gene list</a></li>
+  <li><a href="#construct-a-grange-containing-our-top-snp" id="toc-construct-a-grange-containing-our-top-snp" class="nav-link" data-scroll-target="#construct-a-grange-containing-our-top-snp"><span class="header-section-number">25.6</span> Construct a GRange containing our top SNP</a></li>
+  <li><a href="#search-for-match" id="toc-search-for-match" class="nav-link" data-scroll-target="#search-for-match"><span class="header-section-number">25.7</span> Search for match</a></li>
+  <li><a href="#convert-entrez-gene-ids-to-gene-names" id="toc-convert-entrez-gene-ids-to-gene-names" class="nav-link" data-scroll-target="#convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">25.8</span> Convert Entrez Gene IDs to Gene Names</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">25.9</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">25.11</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">25.13</span> Question 3</a></li>
   </ul>
 </nav>
     </div>
@@ -391,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></h1>
 </div>
 
 
@@ -491,18 +497,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now we’d like to annotate each of these SNPs in terms of nearby or overlapping genes.</p>
 <p>While we could do this using online databases like UCSC Genome Browser (<a href="http://genome.ucsc.edu/cgi-bin/hgGateway" class="uri">http://genome.ucsc.edu/cgi-bin/hgGateway</a>), we could also use BioConductor R packages to write our own functions to retrieve this information into a nice tabular format, for each SNP, listing any gene that they might be in, including the SNP’s position and the gene boundaries.</p>
-<section id="introductory-background" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="introductory-background"><span class="header-section-number">24.1</span> Introductory Background</h2>
+<section id="introductory-background" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="introductory-background"><span class="header-section-number">25.1</span> Introductory Background</h2>
 <p>An Introduction to Bioconductor’s Packages for Working with Range Data</p>
 <p><a href="https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md" class="uri">https://github.com/vsbuffalo/genomicranges-intro/blob/master/notes.md</a></p>
 </section>
-<section id="active-learning" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="active-learning"><span class="header-section-number">24.2</span> Active Learning</h2>
+<section id="active-learning" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="active-learning"><span class="header-section-number">25.2</span> Active Learning</h2>
 <p>Working with genomics ranges</p>
 <p><a href="https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html" class="uri">https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges.html</a></p>
 </section>
-<section id="suggested-readings" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="suggested-readings"><span class="header-section-number">24.3</span> Suggested readings</h2>
+<section id="suggested-readings" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="suggested-readings"><span class="header-section-number">25.3</span> Suggested readings</h2>
 <p>In “Bioinformatics Data Skills”, see Chapter 9 “Working with Range Data”</p>
 <p>Bioinformatics Data Skills<br>
 Editor: Vince Buffalo<br>
@@ -511,8 +517,8 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <p>Hello Ranges: An Introduction to Analyzing Genomic Ranges in R.<br>
 <a href="https://www.bioconductor.org/help/course-materials/2016/BioC2016/ConcurrentWorkshops3/Lawrence/tutorial.pdf">link</a></p>
 </section>
-<section id="install-the-needed-bioconductor-libraries-one-time-only" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">24.4</span> Install the needed Bioconductor libraries (one time only)</h2>
+<section id="install-the-needed-bioconductor-libraries-one-time-only" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="install-the-needed-bioconductor-libraries-one-time-only"><span class="header-section-number">25.4</span> Install the needed Bioconductor libraries (one time only)</h2>
 <p>First, we need to figure out which genomic build was used in our data set. I usually do this by looking up the base pair positions of a couple of SNPs by hand in the ‘SNP’ data base. So if we go there and search for <code>rs3800143</code>, we end up on this web page:</p>
 <p><a href="https://www.ncbi.nlm.nih.gov/snp/rs3800143#variant_details" class="uri">https://www.ncbi.nlm.nih.gov/snp/rs3800143#variant_details</a></p>
 <p>which shows a Build GRCh37.p13 position of 1942538 on chromosome 6. So it looks like Build GRCh37.p13 was used, which is also known as Build hg19.</p>
@@ -529,8 +535,8 @@ BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")</code></pre>
 
 BiocManager::install("org.Hs.eg.db")</code></pre>
 </section>
-<section id="construct-the-gene-list" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="construct-the-gene-list"><span class="header-section-number">24.5</span> Construct the gene list</h2>
+<section id="construct-the-gene-list" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="construct-the-gene-list"><span class="header-section-number">25.5</span> Construct the gene list</h2>
 <p>Using the annotation embedded in <code>TxDb.Hsapiens.UCSC.hg19.knownGene</code>, construct a <code>GRangesList</code> object that contains a list of all the genes.</p>
 <p>Hint: Use <code>transcriptsBy</code>.</p>
 <div class="cell">
@@ -602,8 +608,8 @@ GRanges object with 1 range and 2 metadata columns:
 </div>
 <p>The names of the list elements are Entrez gene IDs.</p>
 </section>
-<section id="construct-a-grange-containing-our-top-snp" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="construct-a-grange-containing-our-top-snp"><span class="header-section-number">24.6</span> Construct a GRange containing our top SNP</h2>
+<section id="construct-a-grange-containing-our-top-snp" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="construct-a-grange-containing-our-top-snp"><span class="header-section-number">25.6</span> Construct a GRange containing our top SNP</h2>
 <p>Construct a GRange containing the top SNP. Note that the chromosome name needs to be in the same style as is seen in <code>tx.by.gene</code>. That is, the chromosome name needs to be “chr6” instead of ‘6’.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>top.snp <span class="ot">&lt;-</span> <span class="fu">with</span>(top.hits[<span class="dv">1</span>,], <span class="fu">GRanges</span>(<span class="at">seqnames=</span><span class="fu">paste0</span>(<span class="st">"chr"</span>,CHR), </span>
@@ -620,8 +626,8 @@ GRanges object with 1 range and 2 metadata columns:
 </div>
 </div>
 </section>
-<section id="search-for-match" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="search-for-match"><span class="header-section-number">24.7</span> Search for match</h2>
+<section id="search-for-match" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="search-for-match"><span class="header-section-number">25.7</span> Search for match</h2>
 <p>Now use <code>findOverlaps</code> and <code>subsetByOverlaps</code> to find any genes that overlap our top SNP.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top.snp.overlaps <span class="ot">&lt;-</span> <span class="fu">findOverlaps</span>(tx.by.gene,top.snp)</span>
@@ -651,8 +657,8 @@ GRanges object with 2 ranges and 2 metadata columns:
 <p>So our top SNP rs3800143 overlaps two transcripts in a single gene with the same start position of 1624035.</p>
 <p>However, the transcript name is not very human-readable, as it uses an Entrez Gene ID 2762.</p>
 </section>
-<section id="convert-entrez-gene-ids-to-gene-names" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">24.8</span> Convert Entrez Gene IDs to Gene Names</h2>
+<section id="convert-entrez-gene-ids-to-gene-names" class="level2" data-number="25.8">
+<h2 data-number="25.8" class="anchored" data-anchor-id="convert-entrez-gene-ids-to-gene-names"><span class="header-section-number">25.8</span> Convert Entrez Gene IDs to Gene Names</h2>
 <p>Convert the integer Entrez Gene ID 2762 to a human-readable Gene Name.</p>
 <p>This can be done using the <code>org.Hs.eg.db</code> R library.</p>
 <p>To convert Entrez Gene IDs to Gene Names, we can use another R database:</p>
@@ -685,8 +691,8 @@ GRanges object with 2 ranges and 2 metadata columns:
 </div>
 <p>So our top SNP rs3800143 overlaps the gene with the Entrez Gene ID 2762, which is also known as GMDS (GDP-mannose 4,6-dehydratase).</p>
 </section>
-<section id="question-1" class="level2" data-number="24.9">
-<h2 data-number="24.9" class="anchored" data-anchor-id="question-1"><span class="header-section-number">24.9</span> Question 1</h2>
+<section id="question-1" class="level2" data-number="25.9">
+<h2 data-number="25.9" class="anchored" data-anchor-id="question-1"><span class="header-section-number">25.9</span> Question 1</h2>
 <p>Read in the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ASSOC.file <span class="ot">&lt;-</span> <span class="st">"data/trait.qassoc.gz"</span></span>
@@ -736,8 +742,8 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<section id="answer-1" class="level2 callout-body-container callout-body" data-number="24.10">
-<h2 data-number="24.10" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">24.10</span> Answer 1</h2>
+<section id="answer-1" class="level2 callout-body-container callout-body" data-number="25.10">
+<h2 data-number="25.10" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">25.10</span> Answer 1</h2>
 <p>The top SNP rs3800143 lies in an intron of GMDS (GDP-mannose 4,6-dehydratase), Gene ID: 2762.</p>
 <p>Build hg19 (Human Feb.&nbsp;2009 (GRCh37/hg19)) gene boundaries from UCSC Genes:</p>
 <p>GMDS (uc003mtq.3) - chr6:1624035-2245868 - Homo sapiens GDP-mannose 4,6-dehydratase (GMDS), transcript variant 1, mRNA.</p>
@@ -866,8 +872,8 @@ GRanges object with 10 ranges and 0 metadata columns:
 </div>
 </div>
 </section>
-<section id="question-2" class="level2" data-number="24.11">
-<h2 data-number="24.11" class="anchored" data-anchor-id="question-2"><span class="header-section-number">24.11</span> Question 2</h2>
+<section id="question-2" class="level2" data-number="25.11">
+<h2 data-number="25.11" class="anchored" data-anchor-id="question-2"><span class="header-section-number">25.11</span> Question 2</h2>
 <p>While we have figure out above which gene our top SNP is in, what we worked out above involves very specific code. Now let’s try to generalize what we did above:</p>
 <p>Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and any gene that they might be in, including the SNP position and the gene boundaries.</p>
 <pre><code># snp.list = the ranked list of the top SNPs
@@ -900,8 +906,8 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<section id="answer-2" class="level2 callout-body-container callout-body" data-number="24.12">
-<h2 data-number="24.12" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">24.12</span> Answer 2</h2>
+<section id="answer-2" class="level2 callout-body-container callout-body" data-number="25.12">
+<h2 data-number="25.12" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">25.12</span> Answer 2</h2>
 <p>It is important to understand what the output of the <code>findOverlaps</code> function means.</p>
 <pre><code>top.snp.gene &lt;- findOverlaps(gene.bounds, top.snp)
 top.snp.gene</code></pre>
@@ -1370,8 +1376,8 @@ top.snp.gene</code></pre>
 </div>
 </div>
 </section>
-<section id="question-3" class="level2" data-number="24.13">
-<h2 data-number="24.13" class="anchored" data-anchor-id="question-3"><span class="header-section-number">24.13</span> Question 3</h2>
+<section id="question-3" class="level2" data-number="25.13">
+<h2 data-number="25.13" class="anchored" data-anchor-id="question-3"><span class="header-section-number">25.13</span> Question 3</h2>
 <p>Task: Using GRanges and associated Bioconductor tools, write a function that takes as input a ranked list of the SNPS, and returns a nice table that lists the top N of these SNPs and the <strong>closest flanking genes</strong> on both sides, including the SNP position and the gene boundaries.</p>
 <pre><code># snp.list = the ranked list of the top SNPs
 # N = the number of top SNPs to annotate
@@ -1408,8 +1414,8 @@ Expand to see solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<section id="answer-3" class="level2 callout-body-container callout-body" data-number="24.14">
-<h2 data-number="24.14" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">24.14</span> Answer 3</h2>
+<section id="answer-3" class="level2 callout-body-container callout-body" data-number="25.14">
+<h2 data-number="25.14" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">25.14</span> Answer 3</h2>
 <p>Note that we need to set up the <code>txdb</code> object within the function itself to avoid creating a dependence on the global <code>txdb</code> object. Although, it might be more efficient to create the <code>txdb</code> object once and pass it in via a function parameter instead of recreating it each time the function is called.</p>
 <p>Here we use <code>require</code> statements to indicate dependence on certain libraries having been loaded, but if this were part of an R package, we’d take care of library dependencies at the package level instead of inside of specific functions. Usually when writing functions, we assume that all of the required packages have been loaded, so we tend not to use the <code>library</code> or the <code>require</code> command within functions.</p>
 <div class="cell">
@@ -2578,13 +2584,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./EDA.html" class="pagination-link" aria-label="R Exploratory Data Analysis Exercise">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span>
+      <a href="./Interactive_Graphics.html" class="pagination-link" aria-label="Interactive Graphics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./QC.html" class="pagination-link" aria-label="Data Cleaning Exercise">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
