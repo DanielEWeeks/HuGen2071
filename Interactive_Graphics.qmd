@@ -372,9 +372,9 @@ plot.iris <- ggplot(data=iris,
    aes(x=Sepal.Length, y=Petal.Length, fill=Species,
    text=paste("Species: ",Species,"\n",
               "Sepal Length: ",Sepal.Length,"\n",
-              "Sepal Width: ",Sepal.Width,"\n",
+              "Sepal Width:  ",Sepal.Width,"\n",
               "Petal Length: ",Petal.Length,"\n",
-              "Petal Width: ",Petal.Width,"\n",
+              "Petal Width:  ",Petal.Width,"\n",
               sep=""))) +
   geom_point(size=3, alpha=0.7, shape=21)
 
