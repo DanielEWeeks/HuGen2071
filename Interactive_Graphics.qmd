@@ -365,6 +365,23 @@ It is possible to customize the labels using the ggplot2 text aesthetic to provi
 
 Example at this link: <https://www.littlemissdata.com/blog/interactiveplots>
 
+Here's an example of how to generate a custom tool tip containing information from several columns of the input `iris` data frame:
+
+```{r}
+plot.iris <- ggplot(data=iris, 
+   aes(x=Sepal.Length, y=Petal.Length, fill=Species,
+   text=paste("Species: ",Species,"\n",
+              "Sepal Length: ",Sepal.Length,"\n",
+              "Sepal Width: ",Sepal.Width,"\n",
+              "Petal Length: ",Petal.Length,"\n",
+              "Petal Width: ",Petal.Width,"\n",
+              sep=""))) +
+  geom_point(size=3, alpha=0.7, shape=21)
+
+plotly::ggplotly(plot.iris, tooltip="text") 
+```
+
+
 ## Shiny
 
 ### Example 1
