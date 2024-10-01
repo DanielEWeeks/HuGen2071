@@ -5,7 +5,7 @@ editor:
   mode: source
 ---
 
-# R Graphics Exercise
+# R Graphics Exercises
 
 ## Acknowledgments
 
