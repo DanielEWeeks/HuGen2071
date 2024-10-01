@@ -488,7 +488,6 @@ See <https://dplyr.tidyverse.org/articles/programming.html#data-masking> where t
 
 > When you have the data-variable in a function argument (i.e. an env-variable that holds a promise), you need to embrace the argument by surrounding it in doubled braces, like `filter(df, {{ var }})`
 
-See also <https://r4ds.hadley.nz/functions.html#plot-functions>
 
 
 ### Example function
@@ -498,6 +497,9 @@ Note that here we are going to use the very flexible `...` function argument.
 See <http://adv-r.had.co.nz/Functions.html> for a detailed description of how this function argument works.  In brief, they explain that:
 
 > There is a special argument called `...` . This argument will match any arguments not otherwise matched, and can be easily passed on to other functions. This is useful if you want to collect arguments to call another function, but you don’t want to prespecify their possible names.
+
+See also <https://r4ds.hadley.nz/functions.html#plot-functions>
+
 
 ```{webr-r}
 library(palmerpenguins)
