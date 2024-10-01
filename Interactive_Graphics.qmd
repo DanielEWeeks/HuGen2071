@@ -342,6 +342,15 @@ ggsave("figures/gridplot.png", fixed_gridplot, width = 6, height = 4, units = "i
 
 ## Interactive `plotly` graphics
 
+The `plotly` R package provides an interface to the open source JavaScript graphing library `ploty.js`.
+
+`ggplotly()`: transform a ggplot2 object into a plotly object.     
+`plot_ly()`: directly create a plotly object.
+
+See the book "Interactive web-based data visualization with R, plotly, and shiny" by Carson Sievert at <https://plotly-r.com>
+
+See also the comparison [here](https://jtr13.github.io/spring19/community_contribution_group17.html)
+
 ### How to use `plotly`
 
 The package `plotly` is an excellent, easy to use resource that allows you to quickly create interactive, web-based figures. We have used plotly to illustrate patterns in data to collaborators, to visualize patterns in our data during the pre-analysis stage, and even impress with "fancy" graphics during a conference talk!
@@ -381,6 +390,40 @@ plot.iris <- ggplot(data=iris,
 plotly::ggplotly(plot.iris, tooltip="text") 
 ```
 
+### Animated Interactive Plots
+
+Animated interactive plots using the ’frame’ attribute. 
+
+Example at this link: <https://slcladal.github.io/motion.html>
+
+### Interactive Linked Plots
+
+The `plotly` package, when combined with the `crosstalk` package, supports linked plots, where selection of points in one plot highlights them in the other plots.
+
+```{r}
+library(plotly)
+library(crosstalk)
+d <- SharedData$new(iris)
+p <- GGally::ggpairs(d, aes(color = Species), columns = c(1,2,3))
+highlight(ggplotly(p), on = "plotly_selected")
+```
+
+
+### Interactive Manhattan plots
+
+The `manhattan` command from the `qqman` R package provides an easy way to make Manhattan plots, but interactive annotated plots can be made using `ggplotly`.
+
+Also note that for static plots, the `ggrepel` R package can be used to annotate with SNP names.
+
+See this web page for examples at this [link](https://r-graph-gallery.com/101_Manhattan_plot.html).
+
+In particular, note in the examples:
+
+- How `ggrepel` is used for the annotation.
+- The interactive version made with `plotly`.
+
+
+See also LocusZoom at <http://locuszoom.org>
 
 ## Shiny
 
