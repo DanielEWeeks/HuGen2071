@@ -1294,7 +1294,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y      Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.141  1.90  -3.09 \n2 2009-01-02 -0.683  4.44  -0.137\n3 2009-01-03  1.69  -0.692  0.965\n4 2009-01-04  0.311 -1.71  -2.32 \n5 2009-01-05  2.00  -2.13  11.5  \n6 2009-01-06 -0.541 -0.842  4.10 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.141\n2 2009-01-02 X     -0.683\n3 2009-01-03 X      1.69 \n4 2009-01-04 X      0.311\n5 2009-01-05 X      2.00 \n6 2009-01-06 X     -0.541",
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.417   0.769   1.52 \n2 2009-01-02  0.0497 -0.497  -3.15 \n3 2009-01-03  0.421   0.0246 -2.77 \n4 2009-01-04 -1.83   -0.546  -0.254\n5 2009-01-05  0.489  -0.0433  1.74 \n6 2009-01-06  0.819  -4.07   -2.41 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.417 \n2 2009-01-02 X      0.0497\n3 2009-01-03 X      0.421 \n4 2009-01-04 X     -1.83  \n5 2009-01-05 X      0.489 \n6 2009-01-06 X      0.819",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1304,7 +1304,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.141\n2 2009-01-01 Y      1.90 \n3 2009-01-01 Z     -3.09 \n4 2009-01-02 X     -0.683\n5 2009-01-02 Y      4.44 \n6 2009-01-02 Z     -0.137",
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.417 \n2 2009-01-01 Y      0.769 \n3 2009-01-01 Z      1.52  \n4 2009-01-02 X      0.0497\n5 2009-01-02 Y     -0.497 \n6 2009-01-02 Z     -3.15",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1672,231 +1672,231 @@
   {
     "objectID": "R_graphics_exercises.html",
     "href": "R_graphics_exercises.html",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "",
     "text": "21.1 Acknowledgments\nPortions of this are from\nhttps://datacarpentry.org/R-ecology-lesson/instructor/04-visualization-ggplot2.html\nAll Data Carpentry instructional material is made available under the Creative Commons Attribution license. Copyright (c) Data Carpentry.\nLink: https://datacarpentry.org\nAccordingly, this chapter is also licensed using the CC-BY 4.0 license. https://creativecommons.org/licenses/by/4.0/",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#the-grammer-of-graphics",
     "href": "R_graphics_exercises.html#the-grammer-of-graphics",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.2 The Grammer of Graphics",
     "text": "21.2 The Grammer of Graphics\nThis slide set by Garrick Aden-Buie provides a nice introduction to plotting with ggplot2:\nA Gentle Guide to the Grammer of Graphics with ggplot2\nSlides: https://gadenbuie.github.io/gentle-ggplot2\nSource: https://github.com/gadenbuie/gentle-ggplot2",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#load-libraries",
     "href": "R_graphics_exercises.html#load-libraries",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.3 Load Libraries",
     "text": "21.3 Load Libraries\n\nlibrary(tidyverse)\nlibrary(ggforce)\n# library(tidylog)\n# Set the default font to be a bit larger:\ntheme_set(theme_gray(base_size = 18))",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#download-example-data",
     "href": "R_graphics_exercises.html#download-example-data",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.4 Download example data",
     "text": "21.4 Download example data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#exercise-1",
     "href": "R_graphics_exercises.html#exercise-1",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.5 Exercise 1",
     "text": "21.5 Exercise 1\nRead in and set up the data set b, a cleaned version of our simulated data set:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nIntroduction from Data Carpentry\n\n\n\nPlotting with ggplot2\nggplot2 is a plotting package that provides helpful commands to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.\nUse long format data\nggplot2 plots work best with data in the ‘long’ format, i.e., a column for every variable, and a row for every observation. Well-structured data will save you lots of time when making figures with ggplot2\nBuild layer by layer\nggplot graphics are built layer by layer by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.\nBasic template\nTo build a ggplot, we will use the following basic template that can be used for different types of plots:\nggplot(data = &lt;DATA&gt;, mapping = aes(&lt;MAPPINGS&gt;)) +  &lt;GEOM_FUNCTION&gt;()\nNotes\n\nAnything you put in the ggplot() function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x- and y-axis you set up in aes().\nYou can also specify aesthetics for a given geom independently of the aesthetics defined globally in the ggplot() function.\nThe + sign used to add layers must be placed at the end of each line containing a layer. If, instead, the + sign is added in the line before the other layer, ggplot2 will not add the new layer and will return an error message.\nYou may notice that we sometimes reference ggplot2 and sometimes ggplot. To clarify, ggplot2 is the name of the most recent version of the package. However, any time we call the function itself, it’s just called ggplot().\n\nKey Points\n\nStart simple and build your plots iteratively.\nThe ggplot() function initiates a plot.\nUse aes() when mapping a variable from the data to a part of the plot\ngeom_ functions add representations of your data.\nUse facet_ to partition a plot into multiple plots based on a factor included in the dataset.\n\nAdditional Points\nThese points are not illustrated here in this current exercise:\n\nUse premade theme_ functions to broadly change appearance, and the theme() function to fine-tune\nThe patchwork library can combine separate plots into a single figure\nUse ggsave() to save plots in your favorite format and dimensions\n\nSee &lt;https://datacarpentry.org/R-ecology-lesson/instructor/04-visualization-ggplot2.html for further details.\n\n\nStarting with the data set b, use ggplot’s framework\nggplot(data = &lt;DATA&gt;, mapping = aes(&lt;MAPPINGS&gt;)) +  &lt;GEOM_FUNCTION&gt;()\nto plot ind vs. t, coloring by case-control status (trait). What do you observe about the data?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#facetting",
     "href": "R_graphics_exercises.html#facetting",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.6 Facetting",
     "text": "21.6 Facetting\nFacetting can be done using the classic interface, where formula notation is used to indicate rows (before the ~) and columns (after the ~). According to the facet_grid documentation\n\n“the dot in the formula is used to indicate there should be no faceting on this dimension (either row or column)”\n\nSo this will facet in columns by geno:\nfacet_grid(~ geno)\nThis will facet in rows by geno:\nfacet_grid(geno ~ .)",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#exercise-2",
     "href": "R_graphics_exercises.html#exercise-2",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.7 Exercise 2",
     "text": "21.7 Exercise 2\nUsing ggplot, plot ind vs. t, coloring by case-control status (trait) and faceting by geno. What do you observe about the data?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#faceting-continued",
     "href": "R_graphics_exercises.html#faceting-continued",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.8 Faceting, continued",
     "text": "21.8 Faceting, continued\nThe current recommended notation for facetting instead clearly names the rows and columns that you’d like to facet on.\nThis will facet in columns by geno:\nfacet_grid(cols = vars(geno))\nThis will facet in rows by geno:\nfacet_grid(rows = vars(geno))\nTry these various ways of facetting out.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#always-plot-your-data",
     "href": "R_graphics_exercises.html#always-plot-your-data",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.9 Always plot your data",
     "text": "21.9 Always plot your data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#similar-regression-lines",
     "href": "R_graphics_exercises.html#similar-regression-lines",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.10 Similar regression lines",
     "text": "21.10 Similar regression lines\nThese three data sets have very similar regression lines:\n\nsummary(lm(x ~ y, data=d)) %&gt;%  coef()\n\n               Estimate Std. Error    t value     Pr(&gt;|t|)\n(Intercept) 56.17563819 2.87986960 19.5063131 9.435087e-42\ny           -0.03991951 0.05250204 -0.7603419 4.483288e-01\n\nsummary(lm(x_1 ~ y_1, data=d)) %&gt;%  coef()\n\n               Estimate Std. Error    t value     Pr(&gt;|t|)\n(Intercept) 56.31108156 2.87906158 19.5588319 7.158847e-42\ny_1         -0.04269949 0.05249244 -0.8134407 4.173467e-01\n\nsummary(lm(x_3 ~ y_3, data=d)) %&gt;%  coef()\n\n               Estimate Std. Error    t value     Pr(&gt;|t|)\n(Intercept) 56.18271411 2.87924135 19.5130270 9.107718e-42\ny_3         -0.04012859 0.05249468 -0.7644316 4.458966e-01\n\n\n\nggplot(d,aes(x=x,y=y)) + geom_point() +\n  geom_smooth(method=\"lm\") + ggtitle(\"Linear regression of y ~ x\")\n\n\n\n\n\n\n\n\nNow try this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nAnd now try this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n21.10.1 Always plot your data!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#always-plot-your-data-2",
     "href": "R_graphics_exercises.html#always-plot-your-data-2",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.11 Always plot your data",
     "text": "21.11 Always plot your data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nStacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow try this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n21.12 Identical box plots\nThese data have essentially identical box plots.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#identical-box-plots",
     "href": "R_graphics_exercises.html#identical-box-plots",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.12 Identical box plots",
     "text": "21.12 Identical box plots\nThese data have essentially identical box plots.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#boxplots",
     "href": "R_graphics_exercises.html#boxplots",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.13 Boxplots",
     "text": "21.13 Boxplots\nWhile the box plots are identical, box plots may not tell the whole story.\nLet’s try violin plots instead:\nA violin plot is a mirrored density plot.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n21.14 Non-identical violin plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#non-identical-violin-plots",
     "href": "R_graphics_exercises.html#non-identical-violin-plots",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.14 Non-identical violin plots",
     "text": "21.14 Non-identical violin plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#sina-plots",
     "href": "R_graphics_exercises.html#sina-plots",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.15 Sina plots",
     "text": "21.15 Sina plots\nSidiropoulos N, Sohi SH, Pedersen TL, Porse BT, Winther O, Rapin N, Bagger FO. SinaPlot: An Enhanced Chart for Simple and Truthful Representation of Single Observations Over Multiple Classes. Journal of Computational and Graphical Statistics. Taylor & Francis; 2018 Jul 3;27(3):673–676. DOI: https://doi.org/10.1080/10618600.2017.1366914\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n21.16 Sina plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#sina-plots-1",
     "href": "R_graphics_exercises.html#sina-plots-1",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.16 Sina plots",
     "text": "21.16 Sina plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#sina-plots-2",
     "href": "R_graphics_exercises.html#sina-plots-2",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.17 Sina plots",
     "text": "21.17 Sina plots\nmethod == \"counts\": The borders are defined by the number of samples that occupy the same bin.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n21.18 Sina plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#sina-plots-3",
     "href": "R_graphics_exercises.html#sina-plots-3",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.18 Sina plots",
     "text": "21.18 Sina plots",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#raincloud-plots",
     "href": "R_graphics_exercises.html#raincloud-plots",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.19 Raincloud plots",
     "text": "21.19 Raincloud plots\nRaincloud plots can be created by using the geom_rain geometry from the ggrain R package.\n\n“These”raincloud plots” can visualize raw data, probability density, and key summary statistics such as median, mean, and relevant confidence intervals in an appealing and flexible format with minimal redundancy.”\n\nAllen M, Poggiali D, Whitaker K, Marshall TR, Van Langen J, Kievit RA. Raincloud plots: a multi-platform tool for robust data visualization. Wellcome Open Res. 2021 Jan 21;4:63. PMID: 31069261 PMCID: PMC6480976 DOI: https://doi.org/10.12688/wellcomeopenres.15191.2\nhttps://github.com/RainCloudPlots/RainCloudPlots\nTry it out, using geom_rain()\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#drawing-multiple-graphs",
     "href": "R_graphics_exercises.html#drawing-multiple-graphs",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.20 Drawing multiple graphs",
     "text": "21.20 Drawing multiple graphs\nSometimes we’d like to draw multiple plots, looping across variables. Doing this within an R Markdown or Quarto Markdown document using ggplot2 is tricky. See https://dplyr.tidyverse.org/articles/programming.html and https://r4ds.hadley.nz/functions.html#plot-functions for details.\nHere’s one way to do this - this example code will generate two scatter plots:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#writing-ggplot-functions",
     "href": "R_graphics_exercises.html#writing-ggplot-functions",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.21 Writing ggplot functions",
-    "text": "21.21 Writing ggplot functions\nSee https://r4ds.hadley.nz/functions.html#plot-functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExample from: https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "21.21 Writing ggplot functions\n\n21.21.1 Data-variables vs. env-variables\nWhen writing ggplot functions, it is important to understand the distinction between data-variables and env-variables.\nSee https://dplyr.tidyverse.org/articles/programming.html#data-masking where they explain that:\n\n\nenv-variables are “programming” variables that live in an environment. They are usually created with &lt;-.\n\n\n\n\ndata-variables are “statistical” variables that live in a data frame. They usually come from data files (e.g. .csv, .xls), or are created manipulating existing variables.\n\n\n\nWhen you have the data-variable in a function argument (i.e. an env-variable that holds a promise), you need to embrace the argument by surrounding it in doubled braces, like filter(df, {{ var }})\n\n\n\n21.21.2 Example function\nNote that here we are going to use the very flexible ... function argument.\nSee http://adv-r.had.co.nz/Functions.html for a detailed description of how this function argument works. In brief, they explain that:\n\nThere is a special argument called ... . This argument will match any arguments not otherwise matched, and can be easily passed on to other functions. This is useful if you want to collect arguments to call another function, but you don’t want to prespecify their possible names.\n\nSee also https://r4ds.hadley.nz/functions.html#plot-functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExample from: https://twitter.com/yutannihilat_en/status/1574387230025875457?s=20&t=FLbwErwEKQKWtKIGufDLIQ\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#exercise-3",
     "href": "R_graphics_exercises.html#exercise-3",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.22 Exercise 3",
     "text": "21.22 Exercise 3\nConsider this example code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nFrom: https://twitter.com/hadleywickham/status/1574373127349575680?s=20&t=FLbwErwEKQKWtKIGufDLIQ\nWhen applied to the quantitative trait t from the data frame b, this generates this histogram:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n21.22.1 Exercise\nAfter reading the example above, extend the histogram function to allow facetting and use it to draw a histogram of the quantitative trait t facetted by geno using the data set b that we set up above.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nHints\n\n\n\n\nSee https://r4ds.hadley.nz/functions.html#plot-functions\nUse the vars({{ var }}) approach\n\n\n\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHadley Wickham states:\nYou have to use the vars() syntax\nfoo &lt;- function(x) {\n  ggplot(mtcars) +\n    aes(x = mpg, y = disp) +\n    geom_point() +\n    facet_wrap(vars({{ x }}))\n}\nThe vars() function is used for quoting faceting variables. The help page for vars() says:\n“Just like aes(), vars() is a quoting function that takes inputs to be evaluated in the context of a dataset. These inputs can be:\n\nvariable names\ncomplex expressions\n\nIn both cases, the results (the vectors that the variable represents or the results of the expressions) are used to form faceting groups.”\nTweet: https://twitter.com/hadleywickham/status/1574380137524887554?s=20&t=FLbwErwEKQKWtKIGufDLIQ\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
     "objectID": "R_graphics_exercises.html#source-of-data",
     "href": "R_graphics_exercises.html#source-of-data",
-    "title": "21  R Graphics Exercise",
+    "title": "21  R Graphics Exercises",
     "section": "21.23 Source of data",
     "text": "21.23 Source of data\nIllustrative data sets from https://www.research.autodesk.com/publications/same-stats-different-graphs/",
     "crumbs": [
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercise</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>R Graphics Exercises</span>"
     ]
   },
   {
