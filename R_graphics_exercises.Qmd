@@ -476,7 +476,28 @@ for (i in 1:2) {
 
 ## Writing ggplot functions
 
-See <https://r4ds.hadley.nz/functions.html#plot-functions>
+### Data-variables vs. env-variables
+
+When writing ggplot functions, it is important to understand the distinction between data-variables and env-variables. 
+
+See <https://dplyr.tidyverse.org/articles/programming.html#data-masking> where they explain that:
+
+> * env-variables are “programming” variables that live in an environment. They are usually created with `<-`.
+
+> * data-variables are “statistical” variables that live in a data frame. They usually come from data files (e.g. .csv, .xls), or are created manipulating existing variables.
+
+> When you have the data-variable in a function argument (i.e. an env-variable that holds a promise), you need to embrace the argument by surrounding it in doubled braces, like `filter(df, {{ var }})`
+
+See also <https://r4ds.hadley.nz/functions.html#plot-functions>
+
+
+### Example function
+
+Note that here we are going to use the very flexible `...` function argument.
+
+See <http://adv-r.had.co.nz/Functions.html> for a detailed description of how this function argument works.  In brief, they explain that:
+
+> There is a special argument called `...` . This argument will match any arguments not otherwise matched, and can be easily passed on to other functions. This is useful if you want to collect arguments to call another function, but you don’t want to prespecify their possible names.
 
 ```{webr-r}
 library(palmerpenguins)
