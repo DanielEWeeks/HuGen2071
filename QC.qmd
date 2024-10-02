@@ -1,4 +1,6 @@
 ---
+webr:
+  packages: ['tidyverse','dbGaPCheckup']
 editor: 
   mode: source
 ---  
@@ -84,6 +86,16 @@ First try to write out an algorithm for this Minimum and Maximum Values Check in
 
 Implement your algorithm in code.
 
+```{webr-r}
+# Edit/add/try out R code here
+library(tidyverse)
+library(dbGaPCheckup)
+## Load DD.dict.I and DS.data.I
+data(ExampleI)
+ls()
+
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -119,6 +131,10 @@ df.tmp[order(df.tmp$PERCEIVED_CONFLICT),]
 ### Make your check more robust
 
 After implementing your algorithm in R code, think about it a bit further - is it robust to the situation where only one of the MIN and MAX values is specified and the other is missing?  Is it robust to the situation where both MIN and MAX are missing?
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
@@ -184,6 +200,10 @@ DD.dict.I %>%
   select(VARNAME,MIN,MAX)
 ```
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
@@ -216,6 +236,12 @@ Based on this, we'd expect to see only `0` and `1` values in the `PREGNANT` vari
 
 What's going on?
 
+Let's examine some more columns of the data dictionary:
+
+```{webr-r}
+DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,17,18,19,20)]
+```
+
 ::::
 
 ### Handle missing values
@@ -226,7 +252,11 @@ If we further check the data dictionary for the `PREGNANT` variable, we see that
 DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,19,20)]
 ```
 
-Extend your algorithm to handle missing value codes.  To do this first outline your approach in pseudo-code.
+Extend your algorithm to handle missing value codes.  To do this first outline your approach in pseudo-code.  Then implement it in R.
+
+```{webr-r}
+# Edit/add/try out R code here
+```
 
 
 ::: {.callout-tip collapse="true"}
@@ -259,6 +289,10 @@ for (value in na.omit(non.NA.missing.codes)) {
     dataset_na <- dataset_na %>% mutate(across(everything(), 
         ~na_if(.x, value)))
 }
+```
+
+```{webr-r}
+minmax_check
 ```
 
 :::
