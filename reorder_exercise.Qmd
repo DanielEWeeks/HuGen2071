@@ -1,4 +1,6 @@
 ---
+webr:
+  packages: ['tidyverse']
 editor: 
   mode: source  
 ---
@@ -11,18 +13,14 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
-## Load Libraries
-
-```{r load_libraries,message=FALSE}
-library(tidyverse)
-library(tidylog)
-```
 
 ## Create some example data
 
 Here we set up a data dictionary `dd` and some corresponding data `ds`. However, it is better if the order of the rows in the data dictionary `dd` match the order of the columns in the data `ds`.
 
-```{r}
+```{webr-r}
+library(tidyverse)
+# library(tidylog)
 set.seed(1562345)
 # Set up a data dictionary
 dd <- data.frame(VARNAME = sample(letters,26), TYPE ="numeric")
@@ -39,17 +37,25 @@ idx <- sample(letters,26)
 idx <- c("ID",idx)
 ds <- ds %>% select(all_of(idx))
 dd <- bind_rows(dd,data.frame(VARNAME="ID", TYPE="string"))
+ls()
+```
+
+Let's examine what we've created:
+
+```{webr-r}
+# dd is the data dictionary
 dim(dd)
 head(dd)
 
+# ds is the data
 dim(ds)
-head(ds[1:3])
+head(ds[1:5])
 names(ds)
 ```
 
 ## Task: Reorder rows in `dd` in the order of `ds`'s columns
 
-```{r}
+```{webr-r}
 colnames(ds)
 dd$VARNAME
 ```
@@ -60,17 +66,21 @@ This assumes that every row of `dd` is in `colnames(ds)` and every `colnames(ds)
 
 How would you check that every variable listed in the data dictionary `dd` is named in `colnames(ds)` and every `colnames(ds)` value is represented in the data dictionary `dd`?
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 table(dd$VARNAME %in% colnames(ds))
 table(colnames(ds) %in% dd$VARNAME)
 ```
 
 Note that we should also check to see if the `VARNAME`'s are unique and the `colnames` of `ds` are unique.
 
-```{r}
+```{webr-r}
 sum(duplicated(dd$VARNAME))
 sum(duplicated(colnames(ds)))
 ```
@@ -82,21 +92,27 @@ Task: Reorder rows in the data dictionary `dd` to match the order of the columns
 
 -   What are various ways you could rearrange the rows of a data frame?
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # Assign VARNAME to be the rownames of dd
 rownames(dd) <- dd$VARNAME
 # Rearrange by row names:
 dd2 <- dd[colnames(ds),]
 # Check if this worked:
 all.equal(dd2$VARNAME, colnames(ds))
+head(dd2)
+head(ds[,1:6])
 ```
 
 We can use `match` also:
 
-```{r}
+```{webr-r}
 # match returns a vector of the positions of (first) matches of its first argument in its second.
 dd3 <- dd[match(colnames(ds), dd$VARNAME),]
 # Check if this worked:
@@ -108,12 +124,16 @@ all.equal(dd3$VARNAME, colnames(ds))
 
 Question: Is there a way to do this using `arrange`?
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see the first attempt
 
 This does not work, because `tidyverse` wants to work on columns of data within `dd`:
 
-```{r}
+```{webr-r}
 dd4 <- dd %>% arrange(colnames(ds))
 # Check if this worked:
 all.equal(dd4$VARNAME, colnames(ds))
@@ -129,7 +149,7 @@ Question: Is there a way to do this using `arrange`?
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 dd4 <- dd %>% 
   mutate(neworder = match(.$VARNAME, colnames(ds))) %>%
   arrange(neworder) %>% 
@@ -144,10 +164,14 @@ Question: Is there a way to do this using the `slice` command?
 
 `slice()` lets you index rows by their (integer) locations.
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 dd6<- dd %>% slice(match(colnames(ds), .$VARNAME))
 all.equal(dd6$VARNAME, colnames(ds))
 ```
@@ -157,14 +181,23 @@ all.equal(dd6$VARNAME, colnames(ds))
 
 Question: Is there a way to do this by transposing and then using `select`?
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # Transpose so rows become columns, and then we can use 'select' to rearrange those columns,
 # and then transpose back, and rename columns as needed. 
 dd5 <- dd %>% t()  %>% 
-  as_tibble(.name_repair = "unique") %>% 
+  as_tibble(.name_repair = "unique") 
+# Create a named vector to use in the `rename` command
+lookup <-  names(dd5)
+names(lookup) <- as.character(dd5[1,])
+dd5 <- dd5 %>% 
+  rename(all_of(lookup)) %>% 
   select(colnames(ds)) %>% 
   t() %>% as.data.frame() %>% 
   rename("VARNAME"="V1","TYPE" = "V2")
