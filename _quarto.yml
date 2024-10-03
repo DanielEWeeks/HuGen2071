@@ -41,6 +41,7 @@ book:
   - R_gotchas.qmd
   - unix_basics.qmd
   - Basic_Unix_commands.Qmd
+  - unix_basics.qmd
   - summary.qmd
   - references.qmd
   appendices:
