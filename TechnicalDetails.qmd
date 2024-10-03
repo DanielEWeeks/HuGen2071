@@ -67,6 +67,7 @@ r longmcq(opts_ci)
 **What is true about a 95% confidence interval of the mean?**
 
 ```{r}
+library("webexercises")
 opts_ci <- c(
   answer = "If you repeated the process many times, 95% of intervals calculated in this way contain the true mean",
   "There is a 95% probability that the true mean lies within this range",
