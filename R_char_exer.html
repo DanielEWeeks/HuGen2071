@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here","id":1,"options":{"results":"markup","context":"interactive","dpi":72,"out-width":"700px","message":"true","editor-quick-suggestions":"false","out-height":"","classes":"","fig-width":7,"fig-cap":"","editor-font-scale":"1","autorun":"false","comment":"","editor-word-wrap":"true","read-only":"false","fig-height":5,"warning":"true","label":"unnamed-chunk-1","output":"true","editor-max-height":""}},{"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here","id":2,"options":{"results":"markup","context":"interactive","dpi":72,"out-width":"700px","message":"true","editor-quick-suggestions":"false","out-height":"","classes":"","fig-width":7,"fig-cap":"","editor-font-scale":"1","autorun":"false","comment":"","editor-word-wrap":"true","read-only":"false","fig-height":5,"warning":"true","label":"unnamed-chunk-2","output":"true","editor-max-height":""}},{"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here","id":3,"options":{"results":"markup","context":"interactive","dpi":72,"out-width":"700px","message":"true","editor-quick-suggestions":"false","out-height":"","classes":"","fig-width":7,"fig-cap":"","editor-font-scale":"1","autorun":"false","comment":"","editor-word-wrap":"true","read-only":"false","fig-height":5,"warning":"true","label":"unnamed-chunk-3","output":"true","editor-max-height":""}},{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here","id":4,"options":{"results":"markup","context":"interactive","dpi":72,"out-width":"700px","message":"true","editor-quick-suggestions":"false","out-height":"","classes":"","fig-width":7,"fig-cap":"","editor-font-scale":"1","autorun":"false","comment":"","editor-word-wrap":"true","read-only":"false","fig-height":5,"warning":"true","label":"unnamed-chunk-4","output":"true","editor-max-height":""}}];
+globalThis.qwebrCellDetails = [{"options":{"autorun":"false","dpi":72,"fig-cap":"","label":"unnamed-chunk-1","editor-max-height":"","results":"markup","comment":"","output":"true","out-height":"","fig-height":5,"classes":"","message":"true","context":"interactive","editor-word-wrap":"true","editor-font-scale":"1","out-width":"700px","warning":"true","editor-quick-suggestions":"false","fig-width":7,"read-only":"false"},"id":1,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here"},{"options":{"autorun":"false","dpi":72,"fig-cap":"","label":"unnamed-chunk-2","editor-max-height":"","results":"markup","comment":"","output":"true","out-height":"","fig-height":5,"classes":"","message":"true","context":"interactive","editor-word-wrap":"true","editor-font-scale":"1","out-width":"700px","warning":"true","editor-quick-suggestions":"false","fig-width":7,"read-only":"false"},"id":2,"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here"},{"options":{"autorun":"false","dpi":72,"fig-cap":"","label":"unnamed-chunk-3","editor-max-height":"","results":"markup","comment":"","output":"true","out-height":"","fig-height":5,"classes":"","message":"true","context":"interactive","editor-word-wrap":"true","editor-font-scale":"1","out-width":"700px","warning":"true","editor-quick-suggestions":"false","fig-width":7,"read-only":"false"},"id":3,"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here"},{"options":{"autorun":"false","dpi":72,"fig-cap":"","label":"unnamed-chunk-4","editor-max-height":"","results":"markup","comment":"","output":"true","out-height":"","fig-height":5,"classes":"","message":"true","context":"interactive","editor-word-wrap":"true","editor-font-scale":"1","out-width":"700px","warning":"true","editor-quick-suggestions":"false","fig-width":7,"read-only":"false"},"id":4,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here"}];
 
 </script>
 <script type="module">
@@ -1804,14 +1804,14 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+  <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+  <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
