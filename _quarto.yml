@@ -40,6 +40,7 @@ book:
   - R_questions.qmd
   - R_gotchas.qmd
   - Basic_Unix_commands.Qmd
+  - unix_basics.qmd
   - summary.qmd
   - references.qmd
   appendices:
