@@ -15,6 +15,7 @@ Here's a recording of this lecture (48 minutes 14 seconds):
 [PDF slide set](pdfs/R_basics.pdf){target="_blank"}
 
 <iframe width="100%" height="800" src="pdfs/R_basics.pdf">
+
 </iframe>
 
 ## Questions
@@ -35,12 +36,10 @@ answer = "FALSE",
 
 `r longmcq(choices)`
 
-
 ### Question 2
 
-Given a vector `x` of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector `y`?  More than one option may be correct.
+Given a vector `x` of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector `y`? More than one option may be correct.
 
-    
 ```{r, echo=FALSE}
 choices = c(
 answer = "y <- x[-3]",
@@ -69,13 +68,13 @@ answer = 'x["b"]',
 )
 ```
 
-`r longmcq(choices)`    
+`r longmcq(choices)`
 
 ### Question 4
 
 Given the following R code:
 
-```
+```         
 x <- 1:6
 dim(x) <- c(2, 3)
 ```
@@ -91,8 +90,7 @@ answer = "x[, 2, drop = FALSE]"
 )
 ```
 
-`r longmcq(choices)`  
-
+`r longmcq(choices)`
 
 ### Question 5
 
@@ -107,4 +105,4 @@ answer = "A data frame is a list where all elements of the list must be of the s
 )
 ```
 
-`r longmcq(choices)`      
+`r longmcq(choices)`
