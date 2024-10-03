@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Edit/add/try out R code here","id":1,"options":{"results":"markup","dpi":72,"context":"interactive","fig-width":7,"output":"true","warning":"true","label":"unnamed-chunk-1","message":"true","classes":"","autorun":"false","comment":"","read-only":"false","editor-quick-suggestions":"false","fig-cap":"","editor-word-wrap":"true","editor-max-height":"","fig-height":5,"out-height":"","out-width":"700px","editor-font-scale":"1"}}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"classes":"","out-height":"","fig-height":5,"editor-max-height":"","warning":"true","message":"true","dpi":72,"context":"interactive","output":"true","editor-font-scale":"1","fig-width":7,"editor-quick-suggestions":"false","label":"unnamed-chunk-1","comment":"","results":"markup","autorun":"false","read-only":"false","out-width":"700px","fig-cap":"","editor-word-wrap":"true"},"code":"# Edit/add/try out R code here"}];
 
 </script>
 <script type="module">
@@ -1804,14 +1804,20 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2286,15 +2292,14 @@ Expand To Learn About Collapse
 <pre><code>r longmcq(opts_ci)</code></pre>
 <p><strong>What is true about a 95% confidence interval of the mean?</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"webexercises"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>opts_ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">answer =</span> <span class="st">"If you repeated the process many times, 95% of intervals calculated in this way contain the true mean"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"There is a 95% probability that the true mean lies within this range"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Approximately 95% of the data fall within this range"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>opts_ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">answer =</span> <span class="st">"If you repeated the process many times, 95% of intervals calculated in this way contain the true mean"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"There is a 95% probability that the true mean lies within this range"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Approximately 95% of the data fall within this range"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="radio_JGMLBLLNOI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JGMLBLLNOI" value="answer"> <span>If you repeated the process many times, 95% of intervals calculated in this way contain the true mean</span></label><label><input type="radio" autocomplete="off" name="radio_JGMLBLLNOI" value=""> <span>There is a 95% probability that the true mean lies within this range</span></label><label><input type="radio" autocomplete="off" name="radio_JGMLBLLNOI" value=""> <span>Approximately 95% of the data fall within this range</span></label>
+<div id="radio_IKZBKSIBEA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IKZBKSIBEA" value="answer"> <span>If you repeated the process many times, 95% of intervals calculated in this way contain the true mean</span></label><label><input type="radio" autocomplete="off" name="radio_IKZBKSIBEA" value=""> <span>There is a 95% probability that the true mean lies within this range</span></label><label><input type="radio" autocomplete="off" name="radio_IKZBKSIBEA" value=""> <span>Approximately 95% of the data fall within this range</span></label>
 </div>
 </section>
 <section id="webr-r-in-the-browser" class="level2" data-number="A.6">
@@ -2323,7 +2328,7 @@ Expand To Learn About Collapse
 <pre><code>{{&lt; pdf dummy.pdf width=100% height=800 &gt;}}</code></pre>
 <p>However, the PDF embedding done this way did not work in Chrome.</p>
 <p>Example:</p>
-{{&lt; pdf pdfs/GitHubIntro.pdf 100% 500 &gt;}}
+<p><object data="pdfs/GitHubIntro.pdf" type="application/pdf" width="100%" height="500"><p>Unable to display PDF file. <a href="pdfs/GitHubIntro.pdf">Download</a> instead.</p></object></p>
 <p>So instead we used an iframe, which works on Chrome, Firefox, and Safari:</p>
 <pre><code> &lt;iframe width="100%" height="800" src="pdfs/GitHubIntro.pdf"&gt;</code></pre>
 <p>Note that for iframe embedding of Panopto video from the University of Pittsburgh, one needs to use a credentialless iframe.</p>

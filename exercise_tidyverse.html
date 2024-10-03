@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"editor-font-scale":"1","fig-width":7,"editor-quick-suggestions":"false","context":"interactive","fig-height":5,"label":"unnamed-chunk-1","editor-word-wrap":"true","results":"markup","warning":"true","output":"true","autorun":"false","read-only":"false","comment":"","classes":"","fig-cap":"","dpi":72,"out-width":"700px","message":"true","out-height":"","editor-max-height":""},"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"options":{"editor-font-scale":"1","fig-width":7,"editor-quick-suggestions":"false","context":"interactive","fig-height":5,"label":"unnamed-chunk-2","editor-word-wrap":"true","results":"markup","warning":"true","output":"true","autorun":"false","read-only":"false","comment":"","classes":"","fig-cap":"","dpi":72,"out-width":"700px","message":"true","out-height":"","editor-max-height":""},"id":2,"code":"# Edit/add R code here"},{"options":{"editor-font-scale":"1","fig-width":7,"editor-quick-suggestions":"false","context":"interactive","fig-height":5,"label":"unnamed-chunk-3","editor-word-wrap":"true","results":"markup","warning":"true","output":"true","autorun":"false","read-only":"false","comment":"","classes":"","fig-cap":"","dpi":72,"out-width":"700px","message":"true","out-height":"","editor-max-height":""},"id":3,"code":"# Edit/add R code here"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"warning":"true","message":"true","editor-quick-suggestions":"false","out-width":"700px","comment":"","context":"interactive","read-only":"false","out-height":"","autorun":"false","editor-max-height":"","output":"true","results":"markup","label":"unnamed-chunk-1","classes":"","fig-height":5,"editor-word-wrap":"true","dpi":72,"fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"id":2,"options":{"warning":"true","message":"true","editor-quick-suggestions":"false","out-width":"700px","comment":"","context":"interactive","read-only":"false","out-height":"","autorun":"false","editor-max-height":"","output":"true","results":"markup","label":"unnamed-chunk-2","classes":"","fig-height":5,"editor-word-wrap":"true","dpi":72,"fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here"},{"id":3,"options":{"warning":"true","message":"true","editor-quick-suggestions":"false","out-width":"700px","comment":"","context":"interactive","read-only":"false","out-height":"","autorun":"false","editor-max-height":"","output":"true","results":"markup","label":"unnamed-chunk-3","classes":"","fig-height":5,"editor-word-wrap":"true","dpi":72,"fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here"}];
 
 </script>
 <script type="module">
@@ -1804,14 +1804,20 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2287,26 +2293,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time           X      Y     Z
-  &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 2009-01-01 0.174 -2.38   2.99
-2 2009-01-02 1.47   1.15  -3.87
-3 2009-01-03 0.983 -2.78  -1.61
-4 2009-01-04 2.79   2.64  -4.37
-5 2009-01-05 0.417 -0.855  9.95
-6 2009-01-06 0.576 -1.04   4.95</code></pre>
+  time            X      Y      Z
+  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01  0.295 -1.07  -2.92 
+2 2009-01-02 -0.588  4.47   2.39 
+3 2009-01-03  0.311  0.101 -0.315
+4 2009-01-04 -1.24   0.800  3.70 
+5 2009-01-05 -0.312 -3.07   0.251
+6 2009-01-06 -0.541 -1.75   0.255</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock price
-  &lt;date&gt;     &lt;chr&gt; &lt;dbl&gt;
-1 2009-01-01 X     0.174
-2 2009-01-02 X     1.47 
-3 2009-01-03 X     0.983
-4 2009-01-04 X     2.79 
-5 2009-01-05 X     0.417
-6 2009-01-06 X     0.576</code></pre>
+  time       stock  price
+  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
+1 2009-01-01 X      0.295
+2 2009-01-02 X     -0.588
+3 2009-01-03 X      0.311
+4 2009-01-04 X     -1.24 
+5 2009-01-05 X     -0.312
+6 2009-01-06 X     -0.541</code></pre>
 </div>
 </div>
 </section>
@@ -2319,12 +2325,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.174
-2 2009-01-01 Y     -2.38 
-3 2009-01-01 Z      2.99 
-4 2009-01-02 X      1.47 
-5 2009-01-02 Y      1.15 
-6 2009-01-02 Z     -3.87 </code></pre>
+1 2009-01-01 X      0.295
+2 2009-01-01 Y     -1.07 
+3 2009-01-01 Z     -2.92 
+4 2009-01-02 X     -0.588
+5 2009-01-02 Y      4.47 
+6 2009-01-02 Z      2.39 </code></pre>
 </div>
 </div>
 </section>
