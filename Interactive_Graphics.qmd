@@ -396,9 +396,11 @@ Animated interactive plots using the ’frame’ attribute.
 
 Example at this link: <https://slcladal.github.io/motion.html>
 
+See also the `gganimate` R package <https://cran.r-project.org/package=gganimate>. 
+
 ### Interactive Linked Plots
 
-The `plotly` package, when combined with the `crosstalk` package, supports linked plots, where selection of points in one plot highlights them in the other plots.
+The `plotly` package, when combined with the `crosstalk` package, supports linked plots, where selection of points in one plot highlights them in the other plots.  This is known as "linked brushing". 
 
 ```{r}
 library(plotly)
@@ -424,6 +426,10 @@ In particular, note in the examples:
 
 
 See also LocusZoom at <http://locuszoom.org>
+
+### CRAN Task View: Dynamic Visualizations and Interactive Graphics
+
+For an overview of R packages that are useful in this area, see the CRAN Task View: Dynamic Visualizations and Interactive Graphics at <https://cran.r-project.org/web/views/DynamicVisualizations.html>
 
 ## Shiny
 
