@@ -397,6 +397,10 @@ Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporas
  
 -   Make sure you've done the Unix setup homework assignment; for the in-class exercises you will need to connect to htc and use git there
 
+### Online Lecture
+
+Unix Basics: <https://danieleweeks.github.io/HuGen2071/unix_basics.html>
+
 ### Active Learning - Unix: Basics
 
 Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/shell-novice/>
