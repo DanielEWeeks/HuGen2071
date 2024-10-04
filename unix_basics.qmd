@@ -6,7 +6,7 @@ Here's a recording of this lecture (65 minutes 59 seconds):
 
 [Recording](https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=be9b3b4e-aaaf-4f26-8a34-b1f2011fd167){.external target="_blank"}
 
-<iframe credentialless src="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=be9b3b4e-aaaf-4f26-8a34-b1f2011fd167&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+<iframe credentialless src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=be9b3b4e-aaaf-4f26-8a34-b1f2011fd167&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 
 </iframe>
 
