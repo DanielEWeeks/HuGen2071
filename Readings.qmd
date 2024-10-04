@@ -387,29 +387,29 @@ Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporas
 
 ## Unix: Basics
 
-### Learning Objectives - Unix: Basics
+### Learning Objectives
 
 -   To learn basic Unix commands
 
-### Preparation - Unix: Basics
+### Preparation
 
--   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
+-   Watch the online lecture and do the Active Learning before class
  
--   Make sure you've done the Unix setup homework assignment; for the in-class exercises you will need to connect to htc and use git there
+-   Do the Unix setup homework assignment
 
 ### Online Lecture
 
 Unix Basics: <https://danieleweeks.github.io/HuGen2071/unix_basics.html>
 
-### Active Learning - Unix: Basics
+### Active Learning
 
 Software Carpentry Unix Shell intro parts 1-3 <https://swcarpentry.github.io/shell-novice/>
 
-### Required Reading - Unix: Basics
+### Required Reading
 
 See Active Learning.
 
-### Suggested Reading - Unix: Basics
+### Suggested Reading
 
 [Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/) Chapter 2. Setting up and managing a bioinformatics project.
 
@@ -421,7 +421,7 @@ Terminus, a web-based game for learning and practicing basic Unix commands <http
 
 ## Unix: Streams, Pipes, Scripts
 
-### Learning Objectives - Unix: Streams, Pipes, Scripts
+### Learning Objectives
 
 -   To learn how streams operate in Unix
 -   To learn out to pass streamed data from program to program in Unix
@@ -429,19 +429,23 @@ Terminus, a web-based game for learning and practicing basic Unix commands <http
 -   To learn how to write a script that can run in Unix
 -   To learn about the cluster and how to submit jobs there
 
-### Preparation - Unix: Streams, Pipes, Scripts
+### Preparation
 
--   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
+-   Watch the online lecture and do the Active Learning before class
 
-### Active Learning - Unix: Streams, Pipes, Scripts
+### Online Lecture
+
+Unix: Streams, Pipes, Scripts: <https://danieleweeks.github.io/HuGen2071/unix_streams_pipes_scripts.html>
+
+### Active Learning
 
 Software Carpentry Unix Shell intro parts 4 and 6 <https://swcarpentry.github.io/shell-novice/>
 
-### Required Reading - Unix: Streams, Pipes, Scripts
+### Required Reading
 
 See Active Learning.
 
-### Suggested Reading - Unix: Streams, Pipes, Scripts
+### Suggested Reading
 
 [Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 3. Remedial Unix Shell (from "working with streams and redirection" to and not including "command substitution")
 
@@ -489,47 +493,57 @@ Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks E
 
 ## Unix: Data Manipulation
 
-### Learning Objectives - Unix: Data Manipulation
+### Learning Objectives
 
 -   To learn Unix tools like sed and awk that can be used to manipulate data
 
-### Preparation - Unix: Data Manipulation
+### Preparation
+
+-   Watch the online lecture and do the Active Learning before class
+
+### Online Lecture
+
+Unix Data Manipulation: <https://danieleweeks.github.io/HuGen2071/unix_data_manipulation.html>
 
 See Required Reading.
 
-### Active Learning - Unix: Data Manipulation
+### Active Learning
 
 See Required Reading.
 
-### Required Reading - Unix: Data Manipulation
+### Required Reading
 
 [Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 7. Unix Data Tools (Beginning of chapter up to and including "Finding Unique values in Uniq")
 
-### Suggested Reading - Unix: Data Manipulation
+### Suggested Reading
 
 None.
 
 
 ## Unix: Miscellaneous
 
-### Learning Objectives - Unix: Miscellaneous
+### Learning Objectives
 
 -   To learn to string programs together to process data
 -   To learn how to parallelize functions in Unix
 
-### Preparation - Unix: Miscellaneous
+### Preparation
+
+-   Watch the online lecture and do the Active Learning before class
+
+### Online Lecture
+
+Unix Miscellaneous: <https://danieleweeks.github.io/HuGen2071/unix_miscellaneous.html>
+
+### Active Learning
 
 See Required Reading.
 
-### Active Learning - Unix: Miscellaneous
-
-See Required Reading.
-
-### Required Reading - Unix: Miscellaneous
+### Required Reading
 
 [Buffalo (2015)](https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/)Chapter 7. Unix Data Tools ("Join" through the end of the chapter)
 
-### Suggested Reading - Unix: Miscellaneous
+### Suggested Reading
 
 None.
 

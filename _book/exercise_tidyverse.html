@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"warning":"true","editor-font-scale":"1","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","label":"unnamed-chunk-1","out-width":"700px","read-only":"false","fig-width":7,"results":"markup","context":"interactive","autorun":"false","output":"true","classes":"","editor-word-wrap":"true","comment":"","editor-quick-suggestions":"false","editor-max-height":""},"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","id":1},{"options":{"warning":"true","editor-font-scale":"1","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","label":"unnamed-chunk-2","out-width":"700px","read-only":"false","fig-width":7,"results":"markup","context":"interactive","autorun":"false","output":"true","classes":"","editor-word-wrap":"true","comment":"","editor-quick-suggestions":"false","editor-max-height":""},"code":"# Edit/add R code here","id":2},{"options":{"warning":"true","editor-font-scale":"1","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","label":"unnamed-chunk-3","out-width":"700px","read-only":"false","fig-width":7,"results":"markup","context":"interactive","autorun":"false","output":"true","classes":"","editor-word-wrap":"true","comment":"","editor-quick-suggestions":"false","editor-max-height":""},"code":"# Edit/add R code here","id":3}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"warning":"true","out-height":"","label":"unnamed-chunk-1","editor-max-height":"","dpi":72,"autorun":"false","fig-width":7,"context":"interactive","out-width":"700px","editor-font-scale":"1","message":"true","read-only":"false","comment":"","output":"true","fig-cap":"","results":"markup","editor-quick-suggestions":"false","classes":"","editor-word-wrap":"true","fig-height":5},"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"id":2,"options":{"warning":"true","out-height":"","label":"unnamed-chunk-2","editor-max-height":"","dpi":72,"autorun":"false","fig-width":7,"context":"interactive","out-width":"700px","editor-font-scale":"1","message":"true","read-only":"false","comment":"","output":"true","fig-cap":"","results":"markup","editor-quick-suggestions":"false","classes":"","editor-word-wrap":"true","fig-height":5},"code":"# Edit/add R code here"},{"id":3,"options":{"warning":"true","out-height":"","label":"unnamed-chunk-3","editor-max-height":"","dpi":72,"autorun":"false","fig-width":7,"context":"interactive","out-width":"700px","editor-font-scale":"1","message":"true","read-only":"false","comment":"","output":"true","fig-cap":"","results":"markup","editor-quick-suggestions":"false","classes":"","editor-word-wrap":"true","fig-height":5},"code":"# Edit/add R code here"}];
 
 </script>
 <script type="module">
@@ -1816,8 +1816,26 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2295,24 +2313,24 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 4
   time            X      Y      Z
   &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01  1.19  -2.40   4.22 
-2 2009-01-02 -0.307 -0.961 -0.523
-3 2009-01-03 -0.115  1.62  -2.86 
-4 2009-01-04  1.12   2.57   6.70 
-5 2009-01-05  0.512  0.408  1.21 
-6 2009-01-06  0.753  2.45  -3.34 </code></pre>
+1 2009-01-01  0.368  1.17   3.46 
+2 2009-01-02  0.356 -1.68   3.07 
+3 2009-01-03  0.181 -0.869 -1.07 
+4 2009-01-04  0.678  1.10   0.475
+5 2009-01-05 -1.21  -2.24   3.02 
+6 2009-01-06 -0.200 -0.520  9.15 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      1.19 
-2 2009-01-02 X     -0.307
-3 2009-01-03 X     -0.115
-4 2009-01-04 X      1.12 
-5 2009-01-05 X      0.512
-6 2009-01-06 X      0.753</code></pre>
+1 2009-01-01 X      0.368
+2 2009-01-02 X      0.356
+3 2009-01-03 X      0.181
+4 2009-01-04 X      0.678
+5 2009-01-05 X     -1.21 
+6 2009-01-06 X     -0.200</code></pre>
 </div>
 </div>
 </section>
@@ -2325,12 +2343,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      1.19 
-2 2009-01-01 Y     -2.40 
-3 2009-01-01 Z      4.22 
-4 2009-01-02 X     -0.307
-5 2009-01-02 Y     -0.961
-6 2009-01-02 Z     -0.523</code></pre>
+1 2009-01-01 X      0.368
+2 2009-01-01 Y      1.17 
+3 2009-01-01 Z      3.46 
+4 2009-01-02 X      0.356
+5 2009-01-02 Y     -1.68 
+6 2009-01-02 Z      3.07 </code></pre>
 </div>
 </div>
 </section>

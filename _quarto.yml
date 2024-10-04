@@ -41,6 +41,9 @@ book:
   - R_gotchas.qmd
   - Basic_Unix_commands.Qmd
   - unix_basics.qmd
+  - unix_streams_pipes_scripts.qmd
+  - unix_data_manipulation.qmd
+  - unix_miscellaneous.qmd
   - summary.qmd
   - references.qmd
   appendices:
