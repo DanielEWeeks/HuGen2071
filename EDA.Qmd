@@ -222,7 +222,7 @@ ds %>% map(\(x) subject.N(x, subj.ID)) %>%
 The variables with a count of zero here are those where no more than 1 distinct value was observed for each subject.  These are likely subject-level variables. Indeed, for the majority of these, the variable names are consistent with them being subject-level variables instead of variables that are measured every time a sample was taken.   
 
 
-Here's another solution for this problem, written by Tianze (Vincent) Luo, a student in our Fall 2024 HuGen 2071 course:"
+Here's another solution for this problem, written by Tianze (Vincent) Luo, a student in our Fall 2024 HuGen 2071 course:
 
 ```{webr-r}
 df_check = data.frame(col=rep(NA, length(colnames(ds)) ), 
