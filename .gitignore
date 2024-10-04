@@ -4,3 +4,4 @@ HuGen2071_book.Rproj
 _book/*
 /.quarto/
 *_files
+*.html
