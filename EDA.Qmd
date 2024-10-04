@@ -71,7 +71,7 @@ load("data/project1.RData")
 
 ## Dimensions
 
-**Task:**: Examine the names and dimensions of our data and data dictionary.
+**Task:** Examine the names and dimensions of our data and data dictionary.
 
 ::: {.callout-tip collapse="true"}
 
@@ -171,6 +171,7 @@ ds %>% map(\(x) length(unique(x))) %>%
   kable()
 ```
 
+
 :::
 
 A similar related question is: How would you count the number of subjects who have more than one distinct measure at each of the phenotypes?
@@ -220,9 +221,57 @@ ds %>% map(\(x) subject.N(x, subj.ID)) %>%
 
 The variables with a count of zero here are those where no more than 1 distinct value was observed for each subject.  These are likely subject-level variables. Indeed, for the majority of these, the variable names are consistent with them being subject-level variables instead of variables that are measured every time a sample was taken.   
 
+
+Here's another solution for this problem, written by Tianze (Vincent) Luo, a student in our Fall 2024 HuGen 2071 course:"
+
+```{webr-r}
+df_check = data.frame(col=rep(NA, length(colnames(ds)) ), 
+    numbOfSubj_nonUniqVal=NA)
+
+suppressMessages(
+  for (i in seq(length(colnames(ds))) ) {
+    # store the current looping column
+    df_check[i,"col"] = colnames(ds)[i]
+    
+    #store the number of subjects with non-unique values in that col 
+    non_unique_subj=0 
+    # print(colnames(ds)[i]) # which column we are at
+    
+    for( x in unique(ds$subject_id) ){ #loop through each individual
+      subj_filter = ds %>% 
+        select(subject_id, colnames(ds)[i]) %>% 
+        filter(subject_id==x) %>% 
+        distinct() %>% # find distinct rows
+        nrow() # count number of subjects with non-unique value in that col
+      
+      if (subj_filter > 1){
+        non_unique_subj = non_unique_subj+1
+      }
+    }
+    df_check[i,"numbOfSubj_nonUniqVal"] = non_unique_subj
+    # print(non_unique_subj)
+  }
+)
+
+df_check %>% arrange(desc(numbOfSubj_nonUniqVal))
+```
+
 :::
 
 ### Subject-level data set
+
+For submission to dbGaP, we need to separate the phenotype data into subject-level data and sample-level data. 
+
+The dbGaP submission guide here
+
+<https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/#12-what-data-must-be-included-in> 
+
+discusses the distinction between sample-level phenotypes and subject-level phenotypes as follows:
+
+> For the Subject Phenotypes, it would be data relevant to the individual person. For the Sample Attributes, it would be data relevant to the sample derived from the person. For instance, do not list the RACE variable in the Sample Attributes, since RACE is stable for a person across samples. However, for variables like TREATMENT, if the person was only treated once, and data was collected, then TREATMENT could belong in the Subject Phenotypes table. However, if TREATMENT was completed multiple times, and each time a sample was extracted, then it would be better for TREATMENT to be tracked in the Sample Attributes table.
+
+
+Hint: Remember that in the original study design, a blood sample was to be taken once per trimester.  Each of these blood samples was assigned a sample ID, and for each of these, the trimester (1, 2, or 3) and the gestational age of the baby at the time of sampling was recorded.  When the synthetic data were generated, not everyone ended up with exactly 3 samples.
 
 **Task:** Construct a subject-level data set `ds.subj`
 
