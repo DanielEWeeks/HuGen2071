@@ -118,6 +118,7 @@ The most basic tip is keep it simple! Stick with a clean and clear message, what
 -   Use icons when possible to reduce unnecessary labeling
 -   Pay attention to scale (e.g., start axis at zero not 2.4 to 3.5)
 -   Include your data/outliers where possible
+-   Be sure to increase your font size early on, as most journals require a large font size at time of publication.
 
 ### Visualization Don'ts
 
@@ -430,6 +431,53 @@ See also LocusZoom at <http://locuszoom.org>
 ### CRAN Task View: Dynamic Visualizations and Interactive Graphics
 
 For an overview of R packages that are useful in this area, see the CRAN Task View: Dynamic Visualizations and Interactive Graphics at <https://cran.r-project.org/web/views/DynamicVisualizations.html>
+
+## Labelling outliers
+
+Example of labeling outliers (from Deducer tutorial video)
+
+```{r, warning = FALSE}
+library(carData)
+data(Leinhardt)
+# Set up a new column that only has non-blank names 
+# for the outliers:
+Leinhardt$outName <- ifelse(Leinhardt$infant > 300, rownames(Leinhardt), "")
+ggplot() +
+  geom_point(aes(x = region, y = infant, size = income),
+             data = Leinhardt,
+             alpha = 0.6598) +
+  geom_text(
+    aes(x = region, y = infant, label = outName),
+    data = Leinhardt,
+    size = 3.0,
+    hjust = 1.2052,
+    vjust = 0.5155,
+    parse = FALSE
+  )
+```
+
+## Avoiding overlapping labels
+
+The `ggrepel` R package can be used to avoid overlapping labels in plots. 
+
+> "Text labels repel away from each other, away from data points, and away from edges of the plotting area"
+
+See <https://ggrepel.slowkow.com/#examples> for examples.
+
+
+```{r, warning = FALSE}
+library(ggrepel)
+ggplot() +
+  geom_point(aes(x = region, y = infant, size = income),
+             data = Leinhardt,
+             alpha = 0.6598) +
+  geom_text_repel(
+    aes(x = region, y = infant, label = outName),
+    size = 3.0,
+    data = Leinhardt
+  )
+```
+
 
 ## Shiny
 
