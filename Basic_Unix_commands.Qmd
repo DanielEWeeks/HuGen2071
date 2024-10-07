@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source
+--- 
+
 # Basic Shell Commands
 
 ## Acknowledgment and License
@@ -10,10 +15,18 @@ This chapter is licensed under the [CC BY 3.0](https://creativecommons.org/licen
 
 ------------------------------------------------------------------------
 
+## Unix Terminal
+
+Here is an interactive Linux terminal (x86 Alpine Linux 3.12.0) created by the [JSLinux](https://bellard.org/jslinux/) project. You can use this terminal to practice the Unix commands in this cheatsheet.
+
+```{=html}
+<iframe width="100%" height="800" src="https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&mem=192" allowfullscreen scrolling="yes" class="iframe-class" frameborder="0"></iframe>
+```
+
 ## Shell Basics:
 
 | Command        | Definition                                                                                                     |
-|----------------|----------------------------------------------------------------------------------------------------------------|
+|--------------|----------------------------------------------------------|
 | `.`            | a single period refers to the current directory                                                                |
 | `..`           | a double period refers to the directory immediately above the current directory                                |
 | `~`            | refers to your home directory. *Note:* this command does NOT work on Windows machines (Mac and Linux are okay) |
@@ -28,7 +41,7 @@ This chapter is licensed under the [CC BY 3.0](https://creativecommons.org/licen
 ### How to create new files and directories..
 
 | Command           | Definition                                                                                                                                                                                                                                                                                                                                           |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------|------------------------------------------------------------|
 | `mkdir ./dirname` | makes a new directory called dirname below the current directory. *Note:* Windows users will need to use `\` instead of `/` for the path separator                                                                                                                                                                                                   |
 | `nano filename`   | if `filename` does not exist, `nano` creates it and opens the `nano` text editor. If the file exists, `nano` opens it. *Note:* *(i)* You can use a different text editor if you like. In gnome Linux, `gedit` works really well too. *(ii)* `nano` (or `gedit`) create text files. It doesn't matter what the file extension is (or if there is one) |
 
@@ -37,14 +50,14 @@ This chapter is licensed under the [CC BY 3.0](https://creativecommons.org/licen
 #### *Remember that deleting is forever. There is NO going back*
 
 | Command           | Definition                                                                                                      |
-|-------------------|-----------------------------------------------------------------------------------------------------------------|
+|---------------|---------------------------------------------------------|
 | `rm ./filename`   | deletes a file called `filename` from the current directory                                                     |
 | `rmdir ./dirname` | deletes the directory `dirname` from the current directory. *Note:* `dirname` must be empty for `rmdir` to run. |
 
 ### How to copy and rename files and directories...
 
 | Command             | Definition                                                                                                                                                                                                        |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|-----------------------------------------------------------|
 | `mv tmp/filename .` | moves the file `filename` from the directory `tmp` to the current directory. *Note:* *(i)* the original `filename` in `tmp` is deleted. *(ii)* `mv` can also be used to rename files (e.g., `mv filename newname` |
 | `cp tmp/filename .` | copies the file `filename` from the directory `tmp` to the current directory. *Note:* *(i)* the original file is still there                                                                                      |
 
@@ -73,7 +86,7 @@ See the cheatsheet on regular expressions on the second page of this [PDF cheats
 Redirection operators can be used to redirect the output from a program from the display screen to a file where it is saved (or many other places too, like your printer or to another program where it can be used as input).
 
 | Command | Description                                                                                                                     |
-|---------|---------------------------------------------------------------------------------------------------------------------------------|
+|------------|------------------------------------------------------------|
 | `>`     | write `stdout` to a new file; overwrites any file with that name (e.g., `ls *.md > mardkownfiles.txt`)                          |
 | `>>`    | append `stdout` to a previously existing file; if the file does not exist, it is created (e.g., `ls *.md >> markdownfiles.txt`) |
 | `<`     | assigns the information in a file to a variable, loop, etc (e.g., `n < markdownfiles.md`)                                       |
@@ -83,7 +96,7 @@ Redirection operators can be used to redirect the output from a program from the
 A special kind of redirection is called a pipe and is denoted by `|`.
 
 | Command | Description                                                                                                                                           |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------|------------------------------------------------------------|
 | \|      | Output from one command line program can be used as input to another one (e.g. ls \*.md \| head gives you the first 5 `*.md` files in your directory) |
 
 ##### Example:
@@ -178,13 +191,13 @@ Use `man bash` or `man test` to learn about other operators you can use.
 To find information within files, you use a command called `grep`.
 
 | Example command                | Description                                                                                    |
-|--------------------------------|------------------------------------------------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | `grep [options] day haiku.txt` | finds every instance of the string `day` in the file haiku.txt and pipes it to standard output |
 
 #### Commonly used `grep` options
 
 |      | `grep` options                                                                                                                                                                                                       |
-|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-----------|-------------------------------------------------------------|
 | `-E` | tells grep you will be using a regular expression. Enclose the regular expression in quotes. *Note:* the power of `grep` comes from using regular expressions. Please see the regular expressions sheet for examples |
 | `-i` | makes matching case-insensitive                                                                                                                                                                                      |
 | `-n` | limits the number of lines that match to the first n matches                                                                                                                                                         |
@@ -196,13 +209,13 @@ To find information within files, you use a command called `grep`.
 To find file and directory names, you use a command called `find`
 
 | Example command  | Description                                                                                                                                                           |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|----------------------------------------------------------|
 | `find . -type d` | `find` recursively descends the directory tree for each path listed to match the expression given in the command line with file or directory names in the search path |
 
 #### Commonly used `find` options
 
 |               | `find` options                                                                                                                                          |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|-----------------------------------------------------------|
 | `-type [df]`  | `d` lists directories; `f` lists files                                                                                                                  |
 | `-maxdepth n` | `find` automatically searches subdirectories. If you don't want that, specify the number of levels below the working directory you would like to search |
 | `-mindepth n` | starts `find`'s search `n` levels below the working directory                                                                                           |
