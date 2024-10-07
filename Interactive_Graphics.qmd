@@ -29,9 +29,21 @@ Accordingly this chapter is also licensed according the the CC by 4.0 license.
 
 -   Learn some basic visualization dos and don'ts
 -   Learn how to customize color in plots
--   Gain a basic understanding of package `cowplot`
+-   Gain a basic understanding of packages `cowplot` and `patchwork` for multi-paneled plots
 -   Introduction to interactive `plotly` package
 :::
+
+**Goals:** To learn how to use R to:
+
+* Make multi-paneled plots
+* Make a ggplot2 graph interactive
+  * Make a more informative pop-up with customized labels 
+  * Make an animated interactive graph
+* Make interactive Manhattan and LocusZoom plots 
+* Create linked interactive plots
+* Label outliers
+* Avoid overlapping labels
+* Create an interactive web app using Shiny
 
 <br>
 
@@ -251,7 +263,7 @@ sonify(x=iris$Petal.Width, y = iris$Petal.Length, play = FALSE)
 
 </audio>
 
-## Publishing Plots
+## Publishing Multi-paneled Plots
 
 ### `cowplot`
 
