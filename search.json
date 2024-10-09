@@ -1294,7 +1294,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "18  R Tidyverse Exercise",
     "section": "18.4 Gather",
-    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y      Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  1.06  -1.28    6.04 \n2 2009-01-02 -0.511 -0.0956 -2.17 \n3 2009-01-03  0.698  1.47   -0.374\n4 2009-01-04  1.46  -2.80    0.772\n5 2009-01-05 -1.12   0.933  -7.09 \n6 2009-01-06  0.349  1.18    0.727\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.06 \n2 2009-01-02 X     -0.511\n3 2009-01-03 X      0.698\n4 2009-01-04 X      1.46 \n5 2009-01-05 X     -1.12 \n6 2009-01-06 X      0.349",
+    "text": "18.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01 -0.651  0.306  1.29\n2 2009-01-02 -0.325  3.43  -2.27\n3 2009-01-03 -0.116 -2.21  -1.26\n4 2009-01-04 -0.196 -1.07  -4.82\n5 2009-01-05  1.26  -0.683  6.95\n6 2009-01-06 -0.607 -1.58  -6.43\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.651\n2 2009-01-02 X     -0.325\n3 2009-01-03 X     -0.116\n4 2009-01-04 X     -0.196\n5 2009-01-05 X      1.26 \n6 2009-01-06 X     -0.607",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1304,7 +1304,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "18  R Tidyverse Exercise",
     "section": "18.5 Pivot_longer",
-    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.06  \n2 2009-01-01 Y     -1.28  \n3 2009-01-01 Z      6.04  \n4 2009-01-02 X     -0.511 \n5 2009-01-02 Y     -0.0956\n6 2009-01-02 Z     -2.17",
+    "text": "18.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.651\n2 2009-01-01 Y      0.306\n3 2009-01-01 Z      1.29 \n4 2009-01-02 X     -0.325\n5 2009-01-02 Y      3.43 \n6 2009-01-02 Z     -2.27",
     "crumbs": [
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1974,7 +1974,7 @@
     "href": "reorder_exercise.html#question-use-slice",
     "title": "22  R Reordering Exercise",
     "section": "22.7 Question: use slice",
-    "text": "22.7 Question: use slice\nQuestion: Is there a way to do this using the slice command?\nslice() lets you index rows by their (integer) locations.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "22.7 Question: use slice\nQuestion: Is there a way to do this using the slice command?\nThe slice() function lets you index rows by their (integer) locations.\nHint: Combine slice with match.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nThe match function returns a vector of the positions of (first) matches of its first argument in its second. So if you have a data frame with row names, you can use match to get the positions of the row names you want to select. You can then use slice to select the rows by position.\nAccording to its documentation, slice lets you index rows by their (integer) locations. It allows you to select, remove, and duplicate rows. Here’s an example combining slice and match where we have a data frame with row names and we want to select the rows in the order “A”, “B”, “C”:\n&gt; df\n  a b\nB 1 3\nC 2 2\nA 3 1\n&gt; match(c(\"A\",\"B\",\"C\"),rownames(df))\n[1] 3 1 2\n&gt; df %&gt;% slice(match(c(\"A\",\"B\",\"C\"),rownames(df)))\n  a b\nA 3 1\nB 1 3\nC 2 2\nHere the match vector of 3 1 2 tells us that row “A” is in position 3, row “B” is in position 1, and row “C” is in position 2. So when we do slice(3,1,2) that moves row 3 into position 1, row 1 into position 2, and row 2 into position 3, as desired.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Reordering Exercise</span>"
     ]
@@ -1984,7 +1984,7 @@
     "href": "reorder_exercise.html#question-use-select",
     "title": "22  R Reordering Exercise",
     "section": "22.8 Question: use select?",
-    "text": "22.8 Question: use select?\nQuestion: Is there a way to do this by transposing and then using select?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "22.8 Question: use select?\nQuestion: Is there a way to do this by transposing and then using select?\nThe t() function transposes a matrix or data frame. It generates a new data frame where the rows are the columns of the original data frame and the columns are the rows of the original data frame.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHere is an example of using t() to transpose a data frame:\n&gt; df\n  a b\nB 1 3\nC 2 2\nA 3 1\n&gt; t(df)\n  B C A\na 1 2 3\nb 3 2 1\nWhen we use t(df) we get a new data frame where the rows are the columns of the original data frame and the columns are the rows of the original data frame.\nWe can then use select to rearrange the columns, and then transpose back to get the original data frame with the columns in the desired order.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Reordering Exercise</span>"
     ]
