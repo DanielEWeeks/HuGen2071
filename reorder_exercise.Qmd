@@ -162,7 +162,9 @@ all.equal(dd4$VARNAME, colnames(ds))
 
 Question: Is there a way to do this using the `slice` command?
 
-`slice()` lets you index rows by their (integer) locations.
+The `slice()` function lets you index rows by their (integer) locations.
+
+Hint: Combine `slice` with `match`.
 
 ```{webr-r}
 # Edit/add/try out R code here
@@ -171,22 +173,65 @@ Question: Is there a way to do this using the `slice` command?
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
+The `match` function returns a vector of the positions of (first) matches of its first argument in its second.  So if you have a data frame with row names, you can use `match` to get the positions of the row names you want to select.  You can then use `slice` to select the rows by position.
+
+According to its documentation, `slice` lets you index rows by their (integer) locations. It allows you to select, remove, and duplicate rows. 
+Here's an example combining `slice` and `match` where we have a data frame with row names and we want to select the rows in the order "A", "B", "C":
+  
+```
+> df
+  a b
+B 1 3
+C 2 2
+A 3 1
+> match(c("A","B","C"),rownames(df))
+[1] 3 1 2
+> df %>% slice(match(c("A","B","C"),rownames(df)))
+  a b
+A 3 1
+B 1 3
+C 2 2
+```
+
+Here the match vector of `3 1 2` tells us that row "A" is in position 3, row "B" is in position 1, and row "C" is in position 2. So when we do `slice(3,1,2)` that moves row 3 into position 1, row 1 into position 2, and row 2 into position 3, as desired.
+
 ```{webr-r}
 dd6<- dd %>% slice(match(colnames(ds), .$VARNAME))
 all.equal(dd6$VARNAME, colnames(ds))
 ```
+
 :::
 
 ## Question: use `select`?
 
 Question: Is there a way to do this by transposing and then using `select`?
 
+The `t()` function transposes a matrix or data frame. It generates a new data frame where the rows are the columns of the original data frame and the columns are the rows of the original data frame.
+
 ```{webr-r}
 # Edit/add/try out R code here
 ```
 
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
+
+Here is an example of using `t()` to transpose a data frame:
+
+```
+> df
+  a b
+B 1 3
+C 2 2
+A 3 1
+> t(df)
+  B C A
+a 1 2 3
+b 3 2 1
+```
+
+When we use `t(df)` we get a new data frame where the rows are the columns of the original data frame and the columns are the rows of the original data frame. 
+
+We can then use `select` to rearrange the columns, and then transpose back to get the original data frame with the columns in the desired order.
 
 ```{webr-r}
 # Transpose so rows become columns, and then we can use 'select' to rearrange those columns,
