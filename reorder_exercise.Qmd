@@ -110,6 +110,8 @@ head(dd2)
 head(ds[,1:6])
 ```
 
+This works by assigning `VARNAME` to be the row names of `dd`, and then rearranging `dd` by row names.
+
 We can use `match` also:
 
 ```{webr-r}
@@ -118,6 +120,17 @@ dd3 <- dd[match(colnames(ds), dd$VARNAME),]
 # Check if this worked:
 all.equal(dd3$VARNAME, colnames(ds))
 ```
+
+To better understand how this works, let's look at the `match` function's output:
+
+```{webr-r}
+match(colnames(ds), dd$VARNAME)
+colnames(ds)[1]
+dd$VARNAME[27]
+```
+
+The first element of the `match` output is 27.  This means that the first element in `colnames(ds)`, `ID` is the 27th element in `dd$VARNAME`. So when we do `dd[match(colnames(ds), dd$VARNAME),]`, we're moving the 27th row of `dd` into the first position, so as to put the `ID` row first. And so on. Thus `dd[match(colnames(ds), dd$VARNAME),]` rearranges the rows of `dd` into the order of the `colnames(ds)`.
+
 :::
 
 ## Question: use `arrange`?
@@ -138,6 +151,9 @@ dd4 <- dd %>% arrange(colnames(ds))
 # Check if this worked:
 all.equal(dd4$VARNAME, colnames(ds))
 ```
+
+You can't use `colnames(ds)` directly in `arrange` because `arrange` wants to work on columns of data within `dd`, and `colnames(ds)` is not a column of `dd`.  In the Tidyverse, it is generally required that you work with columns of data contained within the input data frame, and not with external data that lies outside of the input data frame such as, in this case, the column names of `ds`.
+
 :::
 
 ## Question: use `arrange`?
@@ -146,16 +162,24 @@ Question: Is there a way to do this using `arrange`?
 
 `arrange()` orders the rows of a data frame by the values of selected columns.
 
+```{webr-r}
+# Edit/add/try out R code here
+```
+
+
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
 ```{webr-r}
 dd4 <- dd %>% 
-  mutate(neworder = match(.$VARNAME, colnames(ds))) %>%
+  mutate(neworder = match(VARNAME, colnames(ds))) %>%
   arrange(neworder) %>% 
   select(-neworder)
 all.equal(dd4$VARNAME, colnames(ds))
 ```
+
+This works by creating a new column `neworder` that contains the position of the `VARNAME` in the `colnames(ds)`. We then use `arrange` to sort by this new column, and then remove the new column.
+
 :::
 
 ## Question: use `slice`
@@ -193,10 +217,12 @@ B 1 3
 C 2 2
 ```
 
-Here the match vector of `3 1 2` tells us that row "A" is in position 3, row "B" is in position 1, and row "C" is in position 2. So when we do `slice(3,1,2)` that moves row 3 into position 1, row 1 into position 2, and row 2 into position 3, as desired.
+Here the match vector of `3 1 2` tells us that row "A" is in position 3 in the `rownames(df)` vector, row "B" is in position 1, and row "C" is in position 2. So when we do `slice(3,1,2)` that moves row 3 into position 1, row 1 into position 2, and row 2 into position 3, as desired.
+
+In our case, we can use `match` to get the positions of the `VARNAME`'s, and then use `slice` to rearrange the rows by position.
 
 ```{webr-r}
-dd6<- dd %>% slice(match(colnames(ds), .$VARNAME))
+dd6<- dd %>% slice(match(colnames(ds), VARNAME))
 all.equal(dd6$VARNAME, colnames(ds))
 ```
 
@@ -233,6 +259,8 @@ When we use `t(df)` we get a new data frame where the rows are the columns of th
 
 We can then use `select` to rearrange the columns, and then transpose back to get the original data frame with the columns in the desired order.
 
+So here we apply this to our data dictionary `dd`:
+
 ```{webr-r}
 # Transpose so rows become columns, and then we can use 'select' to rearrange those columns,
 # and then transpose back, and rename columns as needed. 
@@ -248,6 +276,9 @@ dd5 <- dd5 %>%
   rename("VARNAME"="V1","TYPE" = "V2")
 all.equal(dd5$VARNAME, colnames(ds))
 ```
+
+This works by transposing the data frame so that the rows become columns. We then use `select` to rearrange the columns, and then transpose back to get the original data frame with the columns in the desired order. We then rename the columns as needed.
+
 :::
 
 ## Question: use row names
