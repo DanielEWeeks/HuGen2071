@@ -162,7 +162,42 @@ sapply(ds,function(x) {length(unique(x))}) %>%
   sort(decreasing=TRUE) %>% kable()
 ```
 
-This can also be generated using the `map` function from the `purrr` R package.
+Regarding this `sapply(ds,function(x) {length(unique(x))})` approach, `sapply` is defined as:
+
+```
+sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+```
+
+where `X` is an R object, and `FUN` is the function to be applied to each element of `X`.  When `X` is a data frame, `sapply` feeds each column of `X` into the `FUN` function, one by one.  Here's an example where we first apply the `max` function to each column of `df`, and then apply the `min` function to each column of `df`:
+
+```
+> df
+  a b c d
+1 3 4 1 2
+2 1 1 4 4
+3 4 2 2 1
+4 2 3 3 3
+> sapply(df, max)
+a b c d 
+4 4 4 4 
+> sapply(df, min)
+a b c d 
+1 1 1 1 
+```
+
+So we know that when using `sapply` on a data frame, its first argument is the name of the data frame (`ds`) and its second argument is the function that we wish to apply to each column of the data frame.  
+
+Here, in the `sapply(ds, function(x) {length(unique(x))})` command we are defining our own function as:
+
+```
+function(x) {
+  length(unique(x))
+}
+```
+
+When applied by `sapply` to each column of `ds`, this function will return the number of unique values in each column.  
+
+The same output can also be generated using the `map` function from the `purrr` R package.
 
 ```{webr-r}
 ds %>% map(\(x) length(unique(x))) %>%
