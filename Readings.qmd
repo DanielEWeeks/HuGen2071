@@ -374,7 +374,6 @@ For more details, see this Current Protocols paper, which is long and detailed, 
 
 Patel H, Lee S-H, Breen G, Menzel S, Ojewunmi O, Dobson RJB. The COPILOT Raw Illumina Genotyping QC Protocol. Current Protocols. 2022;2(4):e373. PMID: 35452565 DOI: <https://doi.org/10.1002/cpz1.373>
 
-
 ### Suggested Readings
 
 Kässens JC, Wienbrandt L, Ellinghaus D. BIGwas: Single-command quality control and association testing for multi-cohort and biobank-scale GWAS/PheWAS data. GigaScience. 2021 Jun 1;10(6):giab047. PMID: 34184051 PMCID: PMC8239664 DOI: <https://doi.org/10.1093/gigascience/giab047>
@@ -394,7 +393,7 @@ Laurie CC, Doheny KF, Mirel DB, Pugh EW, Bierut LJ, Bhangale T, Boehm F, Caporas
 ### Preparation
 
 -   Watch the online lecture and do the Active Learning before class
- 
+
 -   Do the Unix setup homework assignment
 
 ### Online Lecture
@@ -453,17 +452,23 @@ See Active Learning.
 
 ### Learning Objectives
 
--   To learn about what genetic data is stored and principles for storing it
+By the end of the learning activities on this topic, students will be able to:
+
+-   Implement a method for storing relationship information about individuals.
+-   Implement a method for distinguishing between social gender, biological sex, and sex chromosome complement.
+-   Create a data set that can store basic pedigree information "by hand."
 
 ### Readings
-
-Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture's folder)
 
 Bennett RL, Steinhaus KA, Uhrich SB, O'Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <https://doi.org/10.1007/BF01408073>. PMID: 24234481.
 
 Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <https://doi.org/10.1007/s10897-008-9169-9>. Epub 2008 Sep 16. PMID: 18792771.
 
 Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. <https://doi.org/10.1002/jgc4.1621>. Epub ahead of print. PMID: 36106433.
+
+Montañez A. Beyond XX and XY: The Extraordinary Complexity of Sex Determination. Sci Am. 2017 Sep;317(3):50. [https://doi.org/10.1038/scientificamerican0917-50](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdoi.org%2F10.1038%2Fscientificamerican0917-50&data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448813518%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=Czs2lTVARr0jw6la42gTMytxCZZf7OGluDqq5rio7Dw%3D&reserved=0 "https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdoi.org%2F10.1038%2Fscientificamerican0917-50&data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448813518%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=Czs2lTVARr0jw6la42gTMytxCZZf7OGluDqq5rio7Dw%3D&reserved=0").
+
+Montañez A. Visualizing Sex as a Spectrum. Sci Am blog. 2017 Aug 29. [https://www.scientificamerican.com/blog/sa-visual/visualizing-sex-as-a-spectrum/](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.scientificamerican.com%2Fblog%2Fsa-visual%2Fvisualizing-sex-as-a-spectrum%2F&data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448836604%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=OiSlJS2aFKe5WOCEz47sJMvwzY41coEve1zI0CpSkEc%3D&reserved=0 "https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.scientificamerican.com%2Fblog%2Fsa-visual%2Fvisualizing-sex-as-a-spectrum%2F&data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448836604%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=OiSlJS2aFKe5WOCEz47sJMvwzY41coEve1zI0CpSkEc%3D&reserved=0").
 
 ## PLINK I
 
@@ -478,6 +483,8 @@ Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: S
 Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <https://doi.org/10.1002/mpr.1608>
 
 <https://github.com/MareesAT/GWA_tutorial/>
+
+Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, which is included in this lecture's repository).
 
 ## PLINK II
 
@@ -518,7 +525,6 @@ See Required Reading.
 ### Suggested Reading
 
 None.
-
 
 ## Unix: Miscellaneous
 
