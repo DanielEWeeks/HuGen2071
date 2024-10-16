@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1024,16 +1024,20 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <h2 data-number="4.18" class="anchored" data-anchor-id="genetic-data-structures"><span class="header-section-number">4.18</span> Genetic Data Structures</h2>
 <section id="learning-objectives-15" class="level3" data-number="4.18.1">
 <h3 data-number="4.18.1" class="anchored" data-anchor-id="learning-objectives-15"><span class="header-section-number">4.18.1</span> Learning Objectives</h3>
+<p>By the end of the learning activities on this topic, students will be able to:</p>
 <ul>
-<li>To learn about what genetic data is stored and principles for storing it</li>
+<li>Implement a method for storing relationship information about individuals.</li>
+<li>Implement a method for distinguishing between social gender, biological sex, and sex chromosome complement.</li>
+<li>Create a data set that can store basic pedigree information “by hand.”</li>
 </ul>
 </section>
 <section id="readings-1" class="level3" data-number="4.18.2">
 <h3 data-number="4.18.2" class="anchored" data-anchor-id="readings-1"><span class="header-section-number">4.18.2</span> Readings</h3>
-<p>Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, included in this lecture’s folder)</p>
 <p>Bennett RL, Steinhaus KA, Uhrich SB, O’Sullivan CK, Resta RG, Lochner-Doyle D, Markel DS, Vincent V, Hamanishi J. Recommendations for standardized human pedigree nomenclature. J Genet Couns. 1995 Dec;4(4):267-79. <a href="https://doi.org/10.1007/BF01408073" class="uri">https://doi.org/10.1007/BF01408073</a>. PMID: 24234481.</p>
 <p>Bennett RL, French KS, Resta RG, Doyle DL. Standardized human pedigree nomenclature: update and assessment of the recommendations of the National Society of Genetic Counselors. J Genet Couns. 2008 Oct;17(5):424-33. <a href="https://doi.org/10.1007/s10897-008-9169-9" class="uri">https://doi.org/10.1007/s10897-008-9169-9</a>. Epub 2008 Sep 16. PMID: 18792771.</p>
 <p>Bennett RL, French KS, Resta RG, Austin J. Practice resource-focused revision: Standardized pedigree nomenclature update centered on sex and gender inclusivity: A practice resource of the National Society of Genetic Counselors. J Genet Couns. 2022 Sep 15. <a href="https://doi.org/10.1002/jgc4.1621" class="uri">https://doi.org/10.1002/jgc4.1621</a>. Epub ahead of print. PMID: 36106433.</p>
+<p>Montañez A. Beyond XX and XY: The Extraordinary Complexity of Sex Determination. Sci Am. 2017 Sep;317(3):50.&nbsp;<a href="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdoi.org%2F10.1038%2Fscientificamerican0917-50&amp;data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448813518%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=Czs2lTVARr0jw6la42gTMytxCZZf7OGluDqq5rio7Dw%3D&amp;reserved=0" title="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdoi.org%2F10.1038%2Fscientificamerican0917-50&amp;data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448813518%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=Czs2lTVARr0jw6la42gTMytxCZZf7OGluDqq5rio7Dw%3D&amp;reserved=0">https://doi.org/10.1038/scientificamerican0917-50</a>.</p>
+<p>Montañez A. Visualizing Sex as a Spectrum. Sci Am blog. 2017 Aug 29.&nbsp;<a href="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.scientificamerican.com%2Fblog%2Fsa-visual%2Fvisualizing-sex-as-a-spectrum%2F&amp;data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448836604%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=OiSlJS2aFKe5WOCEz47sJMvwzY41coEve1zI0CpSkEc%3D&amp;reserved=0" title="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.scientificamerican.com%2Fblog%2Fsa-visual%2Fvisualizing-sex-as-a-spectrum%2F&amp;data=05%7C02%7Cjonchernus%40pitt.edu%7Cd242b70557244b10dd0e08dcede7e55d%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638646827448836604%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=OiSlJS2aFKe5WOCEz47sJMvwzY41coEve1zI0CpSkEc%3D&amp;reserved=0">https://www.scientificamerican.com/blog/sa-visual/visualizing-sex-as-a-spectrum/</a>.</p>
 </section>
 </section>
 <section id="plink-i" class="level2" data-number="4.19">
@@ -1050,6 +1054,7 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <h3 data-number="4.19.2" class="anchored" data-anchor-id="readings-2"><span class="header-section-number">4.19.2</span> Readings</h3>
 <p>Marees AT, de Kluiver H, Stringer S, Vorspan F, Curis E, Marie-Claire C, Derks EM. A tutorial on conducting genome-wide association studies: Quality control and statistical analysis. Int J Methods Psychiatr Res. 2018 Jun;27(2):e1608. PMID: 29484742 PMCID: PMC6001694 DOI: <a href="https://doi.org/10.1002/mpr.1608" class="uri">https://doi.org/10.1002/mpr.1608</a></p>
 <p><a href="https://github.com/MareesAT/GWA_tutorial/" class="uri">https://github.com/MareesAT/GWA_tutorial/</a></p>
+<p>Introduction to PLINK (22n14-rlm-Introduction_to_PLINK.pdf, which is included in this lecture’s repository).</p>
 </section>
 </section>
 <section id="plink-ii" class="level2" data-number="4.20">
