@@ -22,73 +22,118 @@ Here's a recording of this lecture (53 minutes 54 seconds):
 
 ### Question 1
 
-Which of the following benefits does version control offer over emailing files back and forth?
-
-Please select the correct options (more than one may be correct).
+Which of the following statements about typing commands into the terminal is correct?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-answer="It provides a complete history of file changes, including who made them and when",
-"It eliminates the need for collaboration on projects",
-answer = "It prevents accidental overwrites and lost files",
-"It automatically detects and resolves all conflicts between users",
-answer = "It makes it easy to revert to previous versions of files"
-)
+"By default, output (stdout and stderr) goes to the screen. You can pipe it to files with the | operator.",
+"By default, output (stdout and sdterr) goes to a log file, unless you redirect them to the screen.",
+"By default, stdout goes to the screen and stderr goes to a log file.",
+answer="By default, output (stdout and stderr) goes to the screen. You can redirect it to files with operators like >, >>, 2>, and 2>>.")
 ```
 
 `r longmcq(choices)`
 
 ### Question 2
 
-Which Git command is used to obtain a complete copy of a remote repository for the first time?
-
-Please select the correct option.
+What is the difference between the > and >> operators?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"git pull",
-"git fetch",
-answer = "git clone",
-"git push"
-)
+"The first prints to the screen, while the second appends to a file.",
+"The first redirects standard out to a file, while the second redirects standard error to a file.",
+"The first pipes redirects standard out to a file, while the second pipes standard out into another command.",
+answer="The first redirects standard out and overwrites an existing file, while the second redirects and appends it to the file.")
 ```
 
 `r longmcq(choices)`
 
 ### Question 3
 
-Which of the following Git workflows is generally considered best practice for efficient and collaborative development?
-
-Please select the correct option.
+How could you print lines 50-60 of a file? There are two correct answers.
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"Pull, commit, push",
-answer = "Pull, work, commit, pull, push",
-"Commit, push, pull",
-"Pull, work, commit, push"
-)
+"tail -n50 file | head -n11",
+answer="tail -n+50 file | head -n11",
+answer="head -n60 file | tail -n11",
+"tail -n50 file | head -n10",
+"head -n60 file | head -n10")
 ```
 
 `r longmcq(choices)`
 
 ### Question 4
 
-What typically causes a Git conflict?
-
-Please select the correct option.
+For an ordinary bash script (not a script you need to submit as a Slurm job), what lines should you always include?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-answer="When two people make different changes to the same line in a file",
-"When you forget to commit your changes before pushing to a remote repository",
-"When you accidentally delete a file from your local repository",
-"When you try to merge two completely unrelated projects"
+answer="#!/bin/bash and set -euxo pipefail",
+"#SLURM",
+"bash",
+"sbatch")
+```
+
+`r longmcq(choices)`
+
+### Question 5
+
+For a slurm script, what additional lines do you need to add at the top of a bash script, after the line with #!/bin/bash?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c("Nothing",
+answer="#SBATCH -M teach and #SBATCH -A hugen2071-2024f"
 )
+```
+
+`r longmcq(choices)`
+
+### Question 6
+
+If you want to run the bash script script.sh with three command-line arguments, `hello` and `100` and `goodbye`, what command do you use?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+"script('hello', 100, 'goodbye')",
+"sbatch hello 100 goodbye",
+answer="bash script.sh hello 100 goodbye",
+"bash script.sh")
+```
+
+`r longmcq(choices)`
+
+### Question 7
+
+If my username is xyz123, how do I check the status of my Slurm jobs?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+"queue xyz123",
+"scancel xyz123",
+"squeue xyz123",
+answer="squeue -u xyz123")
+```
+
+`r longmcq(choices)`
+
+### Question 8
+
+If my Slurm job quits because of an error, what should I do?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+"Run it again.",
+"Immediately ask for help.",
+answer="Carefully read the log file, which is named something like slurm-NUMBER.out, where NUMBER was the job ID.")
 ```
 
 `r longmcq(choices)`
