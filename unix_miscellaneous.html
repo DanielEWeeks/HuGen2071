@@ -375,7 +375,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">33.3.1</span> Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">33.3.2</span> Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">33.3.3</span> Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">33.3.4</span> Question 4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -419,34 +418,23 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="33.3" class="anchored" data-anchor-id="questions"><span class="header-section-number">33.3</span> Questions</h2>
 <section id="question-1" class="level3" data-number="33.3.1">
 <h3 data-number="33.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">33.3.1</span> Question 1</h3>
-<p>Which of the following benefits does version control offer over emailing files back and forth?</p>
-<p>Please select the correct options (more than one may be correct).</p>
-<div id="radio_HRBDARKCUQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HRBDARKCUQ" value="answer"> <span>It provides a complete history of file changes, including who made them and when</span></label><label><input type="radio" autocomplete="off" name="radio_HRBDARKCUQ" value=""> <span>It eliminates the need for collaboration on projects</span></label><label><input type="radio" autocomplete="off" name="radio_HRBDARKCUQ" value="answer"> <span>It prevents accidental overwrites and lost files</span></label><label><input type="radio" autocomplete="off" name="radio_HRBDARKCUQ" value=""> <span>It automatically detects and resolves all conflicts between users</span></label><label><input type="radio" autocomplete="off" name="radio_HRBDARKCUQ" value="answer"> <span>It makes it easy to revert to previous versions of files</span></label>
+<p>What command would make a symbolic link to /really/long/path/to/data/folder/ and name it data_shortcut? What command would remove the link?</p>
+<div id="radio_PJSKJJZMBM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PJSKJJZMBM" value=""> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_PJSKJJZMBM" value="answer"> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_PJSKJJZMBM" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_PJSKJJZMBM" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label>
 </div>
 </section>
 <section id="question-2" class="level3" data-number="33.3.2">
 <h3 data-number="33.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">33.3.2</span> Question 2</h3>
-<p>Which Git command is used to obtain a complete copy of a remote repository for the first time?</p>
-<p>Please select the correct option.</p>
-<div id="radio_QTTLZSIQEH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QTTLZSIQEH" value=""> <span>git pull</span></label><label><input type="radio" autocomplete="off" name="radio_QTTLZSIQEH" value=""> <span>git fetch</span></label><label><input type="radio" autocomplete="off" name="radio_QTTLZSIQEH" value="answer"> <span>git clone</span></label><label><input type="radio" autocomplete="off" name="radio_QTTLZSIQEH" value=""> <span>git push</span></label>
+<p>Which of the following are needed/advised when running an R script on htc? Multiple answers may be correct.</p>
+<div id="radio_ZKGXYZTIYY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZKGXYZTIYY" value="answer"> <span>Loading the modules you need (a version of gcc and a version of R)</span></label><label><input type="radio" autocomplete="off" name="radio_ZKGXYZTIYY" value="answer"> <span>Running the script with a command like Rscript –vanilla my_script.R</span></label><label><input type="radio" autocomplete="off" name="radio_ZKGXYZTIYY" value="answer"> <span>Including options(echo=TRUE) at the top of the R script so that each line of R code is echoed before its output</span></label><label><input type="radio" autocomplete="off" name="radio_ZKGXYZTIYY" value="answer"> <span>Doing args &lt;- (commandArgs(T)) and then for (i in 1:length(args)) { eval(parse(text =args[[i]])) } in the script to parse command-line arguments</span></label>
 </div>
 </section>
 <section id="question-3" class="level3" data-number="33.3.3">
 <h3 data-number="33.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">33.3.3</span> Question 3</h3>
-<p>Which of the following Git workflows is generally considered best practice for efficient and collaborative development?</p>
-<p>Please select the correct option.</p>
-<div id="radio_ZFXPEXIRBT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZFXPEXIRBT" value=""> <span>Pull, commit, push</span></label><label><input type="radio" autocomplete="off" name="radio_ZFXPEXIRBT" value="answer"> <span>Pull, work, commit, pull, push</span></label><label><input type="radio" autocomplete="off" name="radio_ZFXPEXIRBT" value=""> <span>Commit, push, pull</span></label><label><input type="radio" autocomplete="off" name="radio_ZFXPEXIRBT" value=""> <span>Pull, work, commit, push</span></label>
-</div>
-</section>
-<section id="question-4" class="level3" data-number="33.3.4">
-<h3 data-number="33.3.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">33.3.4</span> Question 4</h3>
-<p>What typically causes a Git conflict?</p>
-<p>Please select the correct option.</p>
-<div id="radio_HWCOCWAZPP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HWCOCWAZPP" value="answer"> <span>When two people make different changes to the same line in a file</span></label><label><input type="radio" autocomplete="off" name="radio_HWCOCWAZPP" value=""> <span>When you forget to commit your changes before pushing to a remote repository</span></label><label><input type="radio" autocomplete="off" name="radio_HWCOCWAZPP" value=""> <span>When you accidentally delete a file from your local repository</span></label><label><input type="radio" autocomplete="off" name="radio_HWCOCWAZPP" value=""> <span>When you try to merge two completely unrelated projects</span></label>
+<p>Which of the following are true of Slurm job arrays?</p>
+<div id="radio_FDSATIKADN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>They are an alternative to using a loop to repeat similar tasks.</span></label><label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>They implement parallelism by running each task in the array as a separate Slurm job.</span></label><label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>They are slightly simpler to use when the tasks/files you need to loop over are labelled 1, 2, 3, … n.</span></label><label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>Add #SBATCH –array=1-n to your Slurm script in order implement the array (replacing n with the number of tasks in the array).</span></label><label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>Inside the script, the variable $SLURM_ARRAY_TASK_ID functions like a looping index variable that you can use to control which task gets executed in each job in the array.</span></label><label><input type="radio" autocomplete="off" name="radio_FDSATIKADN" value="answer"> <span>However, they can still loop over any list of files by using syntax like that shown in the last slide.</span></label>
 </div>
 
 
