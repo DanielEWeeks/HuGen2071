@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"fig-cap":"","warning":"true","fig-height":5,"message":"true","autorun":"false","editor-font-scale":"1","out-height":"","editor-word-wrap":"true","label":"unnamed-chunk-1","fig-width":7,"comment":"","out-width":"700px","editor-quick-suggestions":"false","results":"markup","output":"true","context":"interactive","dpi":72,"classes":"","editor-max-height":"","read-only":"false"}},{"id":2,"code":"# Edit/add R code here","options":{"fig-cap":"","warning":"true","fig-height":5,"message":"true","autorun":"false","editor-font-scale":"1","out-height":"","editor-word-wrap":"true","label":"unnamed-chunk-2","fig-width":7,"comment":"","out-width":"700px","editor-quick-suggestions":"false","results":"markup","output":"true","context":"interactive","dpi":72,"classes":"","editor-max-height":"","read-only":"false"}},{"id":3,"code":"# Edit/add R code here","options":{"fig-cap":"","warning":"true","fig-height":5,"message":"true","autorun":"false","editor-font-scale":"1","out-height":"","editor-word-wrap":"true","label":"unnamed-chunk-3","fig-width":7,"comment":"","out-width":"700px","editor-quick-suggestions":"false","results":"markup","output":"true","context":"interactive","dpi":72,"classes":"","editor-max-height":"","read-only":"false"}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"classes":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","results":"markup","read-only":"false","dpi":72,"label":"unnamed-chunk-1","out-height":"","fig-height":5,"context":"interactive","editor-font-scale":"1","warning":"true","comment":"","message":"true","out-width":"700px","autorun":"false","fig-cap":"","fig-width":7,"editor-max-height":""}},{"id":2,"code":"# Edit/add R code here","options":{"classes":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","results":"markup","read-only":"false","dpi":72,"label":"unnamed-chunk-2","out-height":"","fig-height":5,"context":"interactive","editor-font-scale":"1","warning":"true","comment":"","message":"true","out-width":"700px","autorun":"false","fig-cap":"","fig-width":7,"editor-max-height":""}},{"id":3,"code":"# Edit/add R code here","options":{"classes":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","results":"markup","read-only":"false","dpi":72,"label":"unnamed-chunk-3","out-height":"","fig-height":5,"context":"interactive","editor-font-scale":"1","warning":"true","comment":"","message":"true","out-width":"700px","autorun":"false","fig-cap":"","fig-width":7,"editor-max-height":""}}];
 
 </script>
 <script type="module">
@@ -2210,26 +2210,20 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 data-number="18.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">18.1</span> Load Libraries</h2>
 <p>Load the <code>tidyverse</code> packages</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="untidy-data" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="untidy-data"><span class="header-section-number">18.2</span> Untidy data</h2>
 <p>Let’s use the World Health Organization TB data set from the <code>tidyr</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>who <span class="ot">&lt;-</span> tidyr<span class="sc">::</span>who</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>who <span class="ot">&lt;-</span> tidyr<span class="sc">::</span>who</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7240   60</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     iso2  iso3   year new_sp_m014 new_sp_m1524
@@ -2276,7 +2270,7 @@ Expand to see solution
 <p>Question: How would we make these data tidy?</p>
 <p>Consider this portion of the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014) <span class="sc">&amp;</span> new_sp_m014<span class="sc">&gt;</span><span class="dv">0</span>), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014) <span class="sc">&amp;</span> new_sp_m014<span class="sc">&gt;</span><span class="dv">0</span>), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   country     iso2  iso3   year new_sp_m014
@@ -2307,54 +2301,54 @@ sp    m     014  30</code></pre>
 <section id="gather" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="gather"><span class="header-section-number">18.4</span> Gather</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">as.Date</span>(<span class="st">'2009-01-01'</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Z =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">4</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">as.Date</span>(<span class="st">'2009-01-01'</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Z =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">4</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time              X      Y       Z
-  &lt;date&gt;        &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-1 2009-01-01  0.969    0.358 -6.76  
-2 2009-01-02  0.174    0.433 -6.64  
-3 2009-01-03 -1.41    -0.577  2.73  
-4 2009-01-04  1.23    -3.38  -0.0110
-5 2009-01-05 -0.298   -2.22   6.12  
-6 2009-01-06 -0.00302  1.61  -4.12  </code></pre>
+  time             X      Y       Z
+  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 2009-01-01 -0.643   1.33  -4.22  
+2 2009-01-02 -0.284   0.465  7.19  
+3 2009-01-03  0.578   0.939  3.59  
+4 2009-01-04  0.529   2.73   0.0280
+5 2009-01-05  0.197  -1.46  -4.24  
+6 2009-01-06  0.0254  0.241  4.87  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock    price
-  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;
-1 2009-01-01 X      0.969  
-2 2009-01-02 X      0.174  
-3 2009-01-03 X     -1.41   
-4 2009-01-04 X      1.23   
-5 2009-01-05 X     -0.298  
-6 2009-01-06 X     -0.00302</code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X     -0.643 
+2 2009-01-02 X     -0.284 
+3 2009-01-03 X      0.578 
+4 2009-01-04 X      0.529 
+5 2009-01-05 X      0.197 
+6 2009-01-06 X      0.0254</code></pre>
 </div>
 </div>
 </section>
 <section id="pivot_longer" class="level2" data-number="18.5">
 <h2 data-number="18.5" class="anchored" data-anchor-id="pivot_longer"><span class="header-section-number">18.5</span> Pivot_longer</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(X,Y,Z), <span class="at">names_to=</span> <span class="st">"stock"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(X,Y,Z), <span class="at">names_to=</span> <span class="st">"stock"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.969
-2 2009-01-01 Y      0.358
-3 2009-01-01 Z     -6.76 
-4 2009-01-02 X      0.174
-5 2009-01-02 Y      0.433
-6 2009-01-02 Z     -6.64 </code></pre>
+1 2009-01-01 X     -0.643
+2 2009-01-01 Y      1.33 
+3 2009-01-01 Z     -4.22 
+4 2009-01-02 X     -0.284
+5 2009-01-02 Y      0.465
+6 2009-01-02 Z      7.19 </code></pre>
 </div>
 </div>
 </section>
@@ -2362,7 +2356,7 @@ sp    m     014  30</code></pre>
 <h2 data-number="18.6" class="anchored" data-anchor-id="who-tb-data"><span class="header-section-number">18.6</span> WHO TB data</h2>
 <p>Question: How would we convert this to tidy form?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(new_sp_m014)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     iso2  iso3   year new_sp_m014 new_sp_m1524
@@ -2390,8 +2384,8 @@ Expand to see solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>who.long <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"new"</span>), <span class="at">names_to =</span> <span class="st">"demo"</span>, <span class="at">values_to =</span> <span class="st">"n"</span>) <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(n))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>who.long <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"new"</span>), <span class="at">names_to =</span> <span class="st">"demo"</span>, <span class="at">values_to =</span> <span class="st">"n"</span>) <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(n))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     iso2  iso3   year demo             n
@@ -2409,7 +2403,7 @@ Expand to see solution
 </div>
 <p>Question: How would we split <code>demo</code> into variables?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     iso2  iso3   year demo             n
@@ -2424,7 +2418,7 @@ Expand to see solution
 </div>
 <p>Look at the variable naming scheme:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(who) <span class="sc">%&gt;%</span> <span class="fu">grep</span>(<span class="st">"m014"</span>,., <span class="at">value=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(who) <span class="sc">%&gt;%</span> <span class="fu">grep</span>(<span class="st">"m014"</span>,., <span class="at">value=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "new_sp_m014" "new_sn_m014" "new_ep_m014" "newrel_m014"</code></pre>
 </div>
@@ -2445,9 +2439,9 @@ Expand to see solution
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>who.long <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span>  </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">demo =</span> <span class="fu">str_replace</span>(demo, <span class="st">"newrel"</span>, <span class="st">"new_rel"</span>))</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"m014"</span>,who.long<span class="sc">$</span>demo, <span class="at">value=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>who.long <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span>  </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">demo =</span> <span class="fu">str_replace</span>(demo, <span class="st">"newrel"</span>, <span class="st">"new_rel"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"m014"</span>,who.long<span class="sc">$</span>demo, <span class="at">value=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "new_sp_m014"  "new_sn_m014"  "new_ep_m014"  "new_rel_m014"</code></pre>
 </div>
@@ -2472,11 +2466,11 @@ Expand to see solution
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>who.long.v1 <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(demo, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexagerange"</span>), <span class="at">sep=</span><span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(sexagerange, <span class="at">into=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age_range"</span>), <span class="at">sep=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>new)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long.v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>who.long.v1 <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(demo, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexagerange"</span>), <span class="at">sep=</span><span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(sexagerange, <span class="at">into=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age_range"</span>), <span class="at">sep=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>new)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long.v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   country     iso2  iso3   year type  sex   age_range     n
@@ -2491,11 +2485,11 @@ Expand to see solution
 </div>
 <p>Note that <code>separate()</code> has been superseded in favour of <code>separate_wider_position()</code> and <code>separate_wider_delim()</code>. So here we use those two functions instead of <code>separate()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>who.long.v2 <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(demo, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexagerange"</span>), <span class="at">delim=</span><span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_position</span>(sexagerange, <span class="at">widths=</span><span class="fu">c</span>(<span class="st">"sex"</span><span class="ot">=</span><span class="dv">1</span>,<span class="st">"age_range"</span><span class="ot">=</span><span class="dv">4</span>), <span class="at">too_few=</span><span class="st">"align_start"</span> ) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>new)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long.v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>who.long.v2 <span class="ot">&lt;-</span> who.long <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(demo, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexagerange"</span>), <span class="at">delim=</span><span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_position</span>(sexagerange, <span class="at">widths=</span><span class="fu">c</span>(<span class="st">"sex"</span><span class="ot">=</span><span class="dv">1</span>,<span class="st">"age_range"</span><span class="ot">=</span><span class="dv">4</span>), <span class="at">too_few=</span><span class="st">"align_start"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>new)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long.v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   country     iso2  iso3   year type  sex   age_range     n
@@ -2516,7 +2510,7 @@ Expand to see solution
 <h2 data-number="18.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">18.7</span> Conclusion</h2>
 <p>Now our untidy data are tidy.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     iso2  iso3   year demo             n
