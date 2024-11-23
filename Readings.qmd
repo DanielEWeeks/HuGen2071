@@ -600,16 +600,20 @@ Data Wrangling and Processing for Genomics <https://data-lessons.github.io/wrang
 
 Relevant links: The Sequence Alignment/Map Format Specification <http://samtools.github.io/hts-specs/>
 
-## Genetic Data in R, GDS
+## Genetic Data in R and GDS
 
-### Learning Objectives - Genetic Data in R, GDS
+### Learning Objectives
 
 -   To learn about data structures in R for storing genetic data
 -   To learn about the GDS format
 
-### Preparation - Genetic Data in R, GDS
+### Preparation
 
-See Required Reading.
+-   Watch the online lecture and do the Active Learning before class
+
+### Online Lecture
+
+Genetic Data in R and GDS: <https://danieleweeks.github.io/HuGen2071/R_genetics_data_gds.html>
 
 ### Active Learning - Genetic Data in R, GDS
 
