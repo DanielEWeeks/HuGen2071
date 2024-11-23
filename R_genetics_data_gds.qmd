@@ -13,9 +13,9 @@ Here's a recording of this lecture (50 minutes 56 seconds):
 
 ## Genetic Data in R and GDS slides
 
-[PDF slide set](pdfs/genetic_data_in_r_gds_lecture){target="_blank"}
+[PDF slide set](pdfs/genetic_data_in_r_gds_lecture.pdf){target="_blank"}
 
-<iframe width="100%" height="800" src="pdfs/genetic_data_in_r_gds_lecture">
+<iframe width="100%" height="800" src="pdfs/genetic_data_in_r_gds_lecture.pdf">
 
 </iframe>
 
@@ -23,36 +23,33 @@ Here's a recording of this lecture (50 minutes 56 seconds):
 
 ### Question 1
 
-In the file tree on slide 7, if your current directory is backup (inside of thing), how could you change your directory to the other folder with the same name?
-
-Please select the correct options (more than one may be correct).
+Which of the following are true? Select the correct options (more than one may be correct).
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-answer="cd /Users/backup",
-"cd backup",
-"pwd",
-"cd",
-answer = "cd ../../backup"
+"seqArray GDS and SNP GDS files are completely interchangeable, and all functions that work with one format will work with the other",
+"they are not interchangeable, but they can be easily converted into each other with plink",
+answer = "They are not interchangeable, but they can be easily converted into each other with the seqArray package.",
+answer = "plink files can be converted into GDS files using the seqArray package"
 )
 ```
 
 `r longmcq(choices)`
 
+
 ### Question 2
 
-If your command results in an error message about a file not being found, what should you probably do first?
-
-Please select the correct option.
+How do you open, close, and save GDS files in R?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"cd to your home directory",
-answer = "pwd to make sure you're in the correct directory",
-"cd / to go to the root directory",
-"git push"
+"read.table and write.table",
+"fread and fwrite",
+"BEDMatrix",
+"seqGDS2VCF",
+answer="seqOpen, seqClose, and seqExport"
 )
 ```
 
@@ -60,17 +57,17 @@ answer = "pwd to make sure you're in the correct directory",
 
 ### Question 3
 
-What will happen if you enter the command `cp file1 file2` but `file2` is a file that already exists?
-
-Please select the correct option.
+How do you access data in a GDS object after opening it?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"there will be an error message that prevents you from overwriting the existing file2",
-"a new copy of file1 named file2_copy(1) will be created",
-"file1 will be renamed as file2",
-answer="the original file2 will be permanently overwritten with a new copy of file1"
+"the dollar-sign operator",
+"piping",
+"redirection",
+"square brackets",
+answer="seqGetData and other built-in accessor functions",
+"double square brackets"
 )
 ```
 
@@ -78,17 +75,15 @@ answer="the original file2 will be permanently overwritten with a new copy of fi
 
 ### Question 4
 
-What command will set the file permissions so that you, the owner/user, have `rwx` permissions without changing other users' permissions?
-
-Please select the correct option.
+How would you filter a GDS object and then save the filtered data to a new GDS file?
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-answer="chmod -v file u=rwx file",
-"chmod -v file o=rwx file",
-"chmod -v file a=rwx file",
-"chmod -v file u+x file"
+"seqGetFilter and then seqExport",
+"seqSetFilter and then seqClose",
+answer="seqSetFilter and then seqExport",
+"seqSetFilter and then write.table"
 )
 ```
 
@@ -96,71 +91,18 @@ answer="chmod -v file u=rwx file",
 
 ### Question 5
 
-What is the difference between `tail -n20 file` and `tail -n+20 file`?
-
-Please select the correct option.
+Which of the following are true? Select all that apply.
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"The first one prints the last 20 lines, but the second one prints the first 20 lines.",
-"There is no difference.",
-answer="The first one prints the last 20 lines, but the second one prints from line 20 to the end of the file.",
-"The first one prints the last 20 lines, but the second one just prints line 20."
-)
-```
-
-`r longmcq(choices)`
-
-### Question 6
-
-What git commands will you use to submit your homework (assume your working directory is your homework repository)?
-
-Please select the correct option.
-
-```{r, echo=FALSE}
-library(webexercises)
-choices = c(
-"push",
-"git add and then git push",
-answer="First do git pull to make sure your repo is up to date. Then use git add to add the files you want to upload. Then git commit -m with a message. Then git push.",
-"Just git push."
-)
-```
-
-`r longmcq(choices)`
-
-### Question 7
-
-How do you print out the exit status of the last process?
-
-Please select the correct option.
-
-```{r, echo=FALSE}
-library(webexercises)
-choices = c(
-"echo 0",
-"echo exit_status",
-"just type a dollar sign and then a question mark",
-answer="echo $?"
-)
-```
-
-`r longmcq(choices)`
-
-### Question 8
-
-What is the first thing you should do after logging on to the computing cluster?
-
-Please select the correct option.
-
-```{r, echo=FALSE}
-library(webexercises)
-choices = c(
-answer="srun -M teach -A hugen2071-2024f --pty bash",
-"pwd",
-"git pull",
-"exit"
+"GDS files cannot store the same information as a VCF file",
+answer="GDS files are more flexible than plink file formats",
+answer="GDS files are smaller and more efficient than plink and VCF files",
+answer="GDS files integrate with specialized packages for GWAS data cleaning, kinship and population structure calculations, and association analysis",
+"When GDS files are opened, the entire dataset is read into memory",
+"seqArray cannot be used to convert from VCF to GDS and from GDS to VCF",
+answer="plink can be used to convert from plink to VCF and from VCF to plink"
 )
 ```
 

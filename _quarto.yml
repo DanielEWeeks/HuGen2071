@@ -44,6 +44,7 @@ book:
   - unix_streams_pipes_scripts.qmd
   - unix_data_manipulation.qmd
   - unix_miscellaneous.qmd
+  - R_genetics_data_gds.qmd
   - summary.qmd
   - references.qmd
   appendices:
