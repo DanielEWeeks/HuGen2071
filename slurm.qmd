@@ -1,0 +1,117 @@
+---
+editor: 
+  mode: source
+--- 
+
+# Slurm script settings
+
+## Recommended settings
+
+The following settings are recommended for all Slurm scripts:
+
+1. Turn on `set -v` to echo each line of the script to the standard error.
+2. Turn on `set -euo pipefail` to exit the script if any command fails.
+3. Direct both the standard output and standard error to a single log file.
+4. Head any intermediate file so the log file contains information about the contents of each of these files.
+
+## Detailed example Slurm scripts
+
+The best way to document what your Slurm script did is to turn on the option
+
+```
+set -v
+```
+
+to echo each line of the script to the standard error, and then make sure both the standard output and standard error are directed to a single log file. 
+
+Seeing both the script commands and their output in a single file makes it much easier to understand what the script did and to troubleshoot any problems that may have occurred.
+
+
+The [Slurm documentation](https://slurm.schedmd.com/sbatch.html) states that:
+
+> "By default both standard output and standard error are directed to a file of the name "slurm-%j.out", where the "%j" is replaced with the job allocation number."
+
+### `test1.sh` example script
+
+We can illustrate this with this simple Slurm script:
+
+```
+#!/bin/bash
+#SBATCH -M teach
+#SBATCH -A hugen2071-2024f
+#SBATCH --time=00:00:10
+set -v
+set -euo pipefail
+echo "Line 1"
+echo "Line 2"
+echo "Line 3"
+```
+
+When we submit `test1.sh` using this command:
+
+```
+sbatch test1.sh
+```
+
+we get a single `slurm-4682.out` file that contains both the shell script commands
+and their output: 
+
+```
+set -euo pipefail
+echo "Line 1"
+Line 1
+echo "Line 2"
+Line 2
+echo "Line 3"
+Line 3
+```
+
+### `test2.sh` example script
+
+Alternatively, the `--output` option can be used to redirect all output to a single file.
+
+As the [Slurm documentation](https://slurm.schedmd.com/sbatch.html) states about this option:
+
+> "Instruct Slurm to connect the batch script's standard output directly to the file name specified in the "filename pattern". By default both standard output and standard error are directed to the same file."
+
+
+We illustrate this with this simple Slurm script `test2.sh`:
+
+```
+#!/bin/bash
+#SBATCH -M teach
+#SBATCH -A hugen2071-2024f
+#SBATCH --time=00:00:10
+#SBATCH --output=test2_%j.log 
+set -v
+set -euo pipefail
+echo "Line 1"
+echo "Line 2"
+echo "Line 3"
+```
+
+When we submit `test2.sh` using this command:
+
+```
+sbatch test2.sh
+```
+
+we get a single `test2_4684.log` file that contains both the shell script commands
+and their output: 
+
+```
+set -euo pipefail
+echo "Line 1"
+Line 1
+echo "Line 2"
+Line 2
+echo "Line 3"
+Line 3
+```
+
+## For more information
+
+For more information on `set` options, see [The Set Builtin](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html) section of the [GNU Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
+
+
+For more information about Slurm options, see the [Slurm Batch Jobs](https://crc-pages.pitt.edu/user-manual/slurm/batch-jobs/) section of the [CRC User Manual](https://crc-pages.pitt.edu/user-manual/).

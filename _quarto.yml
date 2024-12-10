@@ -42,6 +42,7 @@ book:
   - Basic_Unix_commands.Qmd
   - unix_basics.qmd
   - unix_streams_pipes_scripts.qmd
+  - slurm.qmd
   - unix_data_manipulation.qmd
   - unix_miscellaneous.qmd
   - R_genetics_data_gds.qmd
