@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","label":"unnamed-chunk-1","results":"markup","out-width":"700px","comment":"","classes":"","editor-font-scale":"1","dpi":72,"editor-max-height":"","editor-word-wrap":"true","context":"interactive","warning":"true","output":"true","message":"true","editor-quick-suggestions":"false","autorun":"false","out-height":""},"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"id":2,"options":{"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","label":"unnamed-chunk-2","results":"markup","out-width":"700px","comment":"","classes":"","editor-font-scale":"1","dpi":72,"editor-max-height":"","editor-word-wrap":"true","context":"interactive","warning":"true","output":"true","message":"true","editor-quick-suggestions":"false","autorun":"false","out-height":""},"code":"# Edit/add R code here"},{"id":3,"options":{"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","label":"unnamed-chunk-3","results":"markup","out-width":"700px","comment":"","classes":"","editor-font-scale":"1","dpi":72,"editor-max-height":"","editor-word-wrap":"true","context":"interactive","warning":"true","output":"true","message":"true","editor-quick-suggestions":"false","autorun":"false","out-height":""},"code":"# Edit/add R code here"}];
+globalThis.qwebrCellDetails = [{"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","id":1,"options":{"editor-quick-suggestions":"false","results":"markup","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","label":"unnamed-chunk-1","out-width":"700px","dpi":72,"fig-cap":"","message":"true","warning":"true","autorun":"false","classes":"","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","read-only":"false","editor-max-height":""}},{"code":"# Edit/add R code here","id":2,"options":{"editor-quick-suggestions":"false","results":"markup","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","label":"unnamed-chunk-2","out-width":"700px","dpi":72,"fig-cap":"","message":"true","warning":"true","autorun":"false","classes":"","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","read-only":"false","editor-max-height":""}},{"code":"# Edit/add R code here","id":3,"options":{"editor-quick-suggestions":"false","results":"markup","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","label":"unnamed-chunk-3","out-width":"700px","dpi":72,"fig-cap":"","message":"true","warning":"true","autorun":"false","classes":"","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","read-only":"false","editor-max-height":""}}];
 
 </script>
 <script type="module">
@@ -1822,26 +1822,32 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./slurm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2317,26 +2323,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X       Y        Z
-  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1 2009-01-01  0.244  3.46    4.60   
-2 2009-01-02 -1.65   2.03    0.0932 
-3 2009-01-03 -1.38   2.44   -0.00714
-4 2009-01-04 -2.35   0.472   3.98   
-5 2009-01-05  1.19   0.0770  6.72   
-6 2009-01-06  1.17  -0.0612  6.48   </code></pre>
+  time            X       Y      Z
+  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01  0.548  1.20    5.56 
+2 2009-01-02  0.358  0.0401  2.48 
+3 2009-01-03  0.411 -1.98   -0.526
+4 2009-01-04  1.18   0.739  -2.45 
+5 2009-01-05  0.712 -1.21   -0.616
+6 2009-01-06 -1.27   1.89   -3.76 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.244
-2 2009-01-02 X     -1.65 
-3 2009-01-03 X     -1.38 
-4 2009-01-04 X     -2.35 
-5 2009-01-05 X      1.19 
-6 2009-01-06 X      1.17 </code></pre>
+1 2009-01-01 X      0.548
+2 2009-01-02 X      0.358
+3 2009-01-03 X      0.411
+4 2009-01-04 X      1.18 
+5 2009-01-05 X      0.712
+6 2009-01-06 X     -1.27 </code></pre>
 </div>
 </div>
 </section>
@@ -2347,14 +2353,14 @@ sp    m     014  30</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock   price
-  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X      0.244 
-2 2009-01-01 Y      3.46  
-3 2009-01-01 Z      4.60  
-4 2009-01-02 X     -1.65  
-5 2009-01-02 Y      2.03  
-6 2009-01-02 Z      0.0932</code></pre>
+  time       stock  price
+  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
+1 2009-01-01 X     0.548 
+2 2009-01-01 Y     1.20  
+3 2009-01-01 Z     5.56  
+4 2009-01-02 X     0.358 
+5 2009-01-02 Y     0.0401
+6 2009-01-02 Z     2.48  </code></pre>
 </div>
 </div>
 </section>

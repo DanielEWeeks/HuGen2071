@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./unix_data_manipulation.html" rel="next">
+<link href="./slurm.html" rel="next">
 <link href="./unix_basics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -301,26 +301,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./slurm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -430,57 +436,57 @@ ul.task-list li input[type="checkbox"] {
 <section id="question-1" class="level3" data-number="31.3.1">
 <h3 data-number="31.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">31.3.1</span> Question 1</h3>
 <p>Which of the following statements about typing commands into the terminal is correct?</p>
-<div id="radio_DGALOILUKT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DGALOILUKT" value=""> <span>By default, output (stdout and stderr) goes to the screen. You can pipe it to files with the | operator.</span></label><label><input type="radio" autocomplete="off" name="radio_DGALOILUKT" value=""> <span>By default, output (stdout and sdterr) goes to a log file, unless you redirect them to the screen.</span></label><label><input type="radio" autocomplete="off" name="radio_DGALOILUKT" value=""> <span>By default, stdout goes to the screen and stderr goes to a log file.</span></label><label><input type="radio" autocomplete="off" name="radio_DGALOILUKT" value="answer"> <span>By default, output (stdout and stderr) goes to the screen. You can redirect it to files with operators like &gt;, &gt;&gt;, 2&gt;, and 2&gt;&gt;.</span></label>
+<div id="radio_KIIKGGFGTX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KIIKGGFGTX" value=""> <span>By default, output (stdout and stderr) goes to the screen. You can pipe it to files with the | operator.</span></label><label><input type="radio" autocomplete="off" name="radio_KIIKGGFGTX" value=""> <span>By default, output (stdout and sdterr) goes to a log file, unless you redirect them to the screen.</span></label><label><input type="radio" autocomplete="off" name="radio_KIIKGGFGTX" value=""> <span>By default, stdout goes to the screen and stderr goes to a log file.</span></label><label><input type="radio" autocomplete="off" name="radio_KIIKGGFGTX" value="answer"> <span>By default, output (stdout and stderr) goes to the screen. You can redirect it to files with operators like &gt;, &gt;&gt;, 2&gt;, and 2&gt;&gt;.</span></label>
 </div>
 </section>
 <section id="question-2" class="level3" data-number="31.3.2">
 <h3 data-number="31.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">31.3.2</span> Question 2</h3>
 <p>What is the difference between the &gt; and &gt;&gt; operators?</p>
-<div id="radio_WBZPGOQSED" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WBZPGOQSED" value=""> <span>The first prints to the screen, while the second appends to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_WBZPGOQSED" value=""> <span>The first redirects standard out to a file, while the second redirects standard error to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_WBZPGOQSED" value=""> <span>The first pipes redirects standard out to a file, while the second pipes standard out into another command.</span></label><label><input type="radio" autocomplete="off" name="radio_WBZPGOQSED" value="answer"> <span>The first redirects standard out and overwrites an existing file, while the second redirects and appends it to the file.</span></label>
+<div id="radio_DJFUVTINXQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DJFUVTINXQ" value=""> <span>The first prints to the screen, while the second appends to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_DJFUVTINXQ" value=""> <span>The first redirects standard out to a file, while the second redirects standard error to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_DJFUVTINXQ" value=""> <span>The first pipes redirects standard out to a file, while the second pipes standard out into another command.</span></label><label><input type="radio" autocomplete="off" name="radio_DJFUVTINXQ" value="answer"> <span>The first redirects standard out and overwrites an existing file, while the second redirects and appends it to the file.</span></label>
 </div>
 </section>
 <section id="question-3" class="level3" data-number="31.3.3">
 <h3 data-number="31.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">31.3.3</span> Question 3</h3>
 <p>How could you print lines 50-60 of a file? There are two correct answers.</p>
-<div id="radio_WDIHDZPUFN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WDIHDZPUFN" value=""> <span>tail -n50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_WDIHDZPUFN" value="answer"> <span>tail -n+50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_WDIHDZPUFN" value="answer"> <span>head -n60 file | tail -n11</span></label><label><input type="radio" autocomplete="off" name="radio_WDIHDZPUFN" value=""> <span>tail -n50 file | head -n10</span></label><label><input type="radio" autocomplete="off" name="radio_WDIHDZPUFN" value=""> <span>head -n60 file | head -n10</span></label>
+<div id="radio_TZGJSMMFIN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TZGJSMMFIN" value=""> <span>tail -n50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_TZGJSMMFIN" value="answer"> <span>tail -n+50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_TZGJSMMFIN" value="answer"> <span>head -n60 file | tail -n11</span></label><label><input type="radio" autocomplete="off" name="radio_TZGJSMMFIN" value=""> <span>tail -n50 file | head -n10</span></label><label><input type="radio" autocomplete="off" name="radio_TZGJSMMFIN" value=""> <span>head -n60 file | head -n10</span></label>
 </div>
 </section>
 <section id="question-4" class="level3" data-number="31.3.4">
 <h3 data-number="31.3.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">31.3.4</span> Question 4</h3>
 <p>For an ordinary bash script (not a script you need to submit as a Slurm job), what lines should you always include?</p>
-<div id="radio_KTPWGBXWTR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KTPWGBXWTR" value="answer"> <span>#!/bin/bash and set -euxo pipefail</span></label><label><input type="radio" autocomplete="off" name="radio_KTPWGBXWTR" value=""> <span>#SLURM</span></label><label><input type="radio" autocomplete="off" name="radio_KTPWGBXWTR" value=""> <span>bash</span></label><label><input type="radio" autocomplete="off" name="radio_KTPWGBXWTR" value=""> <span>sbatch</span></label>
+<div id="radio_VFCLSEYTHV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VFCLSEYTHV" value="answer"> <span>#!/bin/bash and set -euxo pipefail</span></label><label><input type="radio" autocomplete="off" name="radio_VFCLSEYTHV" value=""> <span>#SLURM</span></label><label><input type="radio" autocomplete="off" name="radio_VFCLSEYTHV" value=""> <span>bash</span></label><label><input type="radio" autocomplete="off" name="radio_VFCLSEYTHV" value=""> <span>sbatch</span></label>
 </div>
 </section>
 <section id="question-5" class="level3" data-number="31.3.5">
 <h3 data-number="31.3.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">31.3.5</span> Question 5</h3>
 <p>For a slurm script, what additional lines do you need to add at the top of a bash script, after the line with #!/bin/bash?</p>
-<div id="radio_VRRFSLWYVU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VRRFSLWYVU" value=""> <span>Nothing</span></label><label><input type="radio" autocomplete="off" name="radio_VRRFSLWYVU" value="answer"> <span>#SBATCH -M teach and #SBATCH -A hugen2071-2024f</span></label>
+<div id="radio_IFLFUYBTMM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IFLFUYBTMM" value=""> <span>Nothing</span></label><label><input type="radio" autocomplete="off" name="radio_IFLFUYBTMM" value="answer"> <span>#SBATCH -M teach and #SBATCH -A hugen2071-2024f</span></label>
 </div>
 </section>
 <section id="question-6" class="level3" data-number="31.3.6">
 <h3 data-number="31.3.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">31.3.6</span> Question 6</h3>
 <p>If you want to run the bash script script.sh with three command-line arguments, <code>hello</code> and <code>100</code> and <code>goodbye</code>, what command do you use?</p>
-<div id="radio_SXGKRJTQKT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SXGKRJTQKT" value=""> <span>script('hello', 100, 'goodbye')</span></label><label><input type="radio" autocomplete="off" name="radio_SXGKRJTQKT" value=""> <span>sbatch hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_SXGKRJTQKT" value="answer"> <span>bash script.sh hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_SXGKRJTQKT" value=""> <span>bash script.sh</span></label>
+<div id="radio_ZBSMLEQIDN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZBSMLEQIDN" value=""> <span>script('hello', 100, 'goodbye')</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSMLEQIDN" value=""> <span>sbatch hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSMLEQIDN" value="answer"> <span>bash script.sh hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSMLEQIDN" value=""> <span>bash script.sh</span></label>
 </div>
 </section>
 <section id="question-7" class="level3" data-number="31.3.7">
 <h3 data-number="31.3.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">31.3.7</span> Question 7</h3>
 <p>If my username is xyz123, how do I check the status of my Slurm jobs?</p>
-<div id="radio_ZFZDUKSGHJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZFZDUKSGHJ" value=""> <span>queue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_ZFZDUKSGHJ" value=""> <span>scancel xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_ZFZDUKSGHJ" value=""> <span>squeue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_ZFZDUKSGHJ" value="answer"> <span>squeue -u xyz123</span></label>
+<div id="radio_BGRLIVFCHW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BGRLIVFCHW" value=""> <span>queue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_BGRLIVFCHW" value=""> <span>scancel xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_BGRLIVFCHW" value=""> <span>squeue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_BGRLIVFCHW" value="answer"> <span>squeue -u xyz123</span></label>
 </div>
 </section>
 <section id="question-8" class="level3" data-number="31.3.8">
 <h3 data-number="31.3.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">31.3.8</span> Question 8</h3>
 <p>If my Slurm job quits because of an error, what should I do?</p>
-<div id="radio_JRIFDDJIXH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JRIFDDJIXH" value=""> <span>Run it again.</span></label><label><input type="radio" autocomplete="off" name="radio_JRIFDDJIXH" value=""> <span>Immediately ask for help.</span></label><label><input type="radio" autocomplete="off" name="radio_JRIFDDJIXH" value="answer"> <span>Carefully read the log file, which is named something like slurm-NUMBER.out, where NUMBER was the job ID.</span></label>
+<div id="radio_HGQBDQGFDL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HGQBDQGFDL" value=""> <span>Run it again.</span></label><label><input type="radio" autocomplete="off" name="radio_HGQBDQGFDL" value=""> <span>Immediately ask for help.</span></label><label><input type="radio" autocomplete="off" name="radio_HGQBDQGFDL" value="answer"> <span>Carefully read the log file, which is named something like slurm-NUMBER.out, where NUMBER was the job ID.</span></label>
 </div>
 
 
@@ -1128,8 +1134,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./unix_data_manipulation.html" class="pagination-link" aria-label="Unix Data Manipulation">
-        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./slurm.html" class="pagination-link" aria-label="Slurm script settings">
+        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
