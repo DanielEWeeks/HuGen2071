@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>32&nbsp; Unix Streams, Pipes, Scripts – HuGen2071 book</title>
+<title>4&nbsp; Large Language Models (LLMs) – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./slurm.html" rel="next">
-<link href="./unix_basics.html" rel="prev">
+<link href="./Readings.html" rel="next">
+<link href="./logistics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./unix_streams_pipes_scripts.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LLMs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></span></a>
   </div>
 </li>
@@ -301,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link active">
+  <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
@@ -386,19 +386,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#unix-streams-pipes-scripts" id="toc-unix-streams-pipes-scripts" class="nav-link active" data-scroll-target="#unix-streams-pipes-scripts"><span class="header-section-number">32.1</span> Unix Streams, Pipes, Scripts</a></li>
-  <li><a href="#unix-basics-slides" id="toc-unix-basics-slides" class="nav-link" data-scroll-target="#unix-basics-slides"><span class="header-section-number">32.2</span> Unix Basics slides</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">32.3</span> Questions</a>
-  <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">32.3.1</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">32.3.2</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">32.3.3</span> Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">32.3.4</span> Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">32.3.5</span> Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">32.3.6</span> Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">32.3.7</span> Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">32.3.8</span> Question 8</a></li>
-  </ul></li>
+  <li><a href="#dont-use-llms-when-trying-to-learn-to-program" id="toc-dont-use-llms-when-trying-to-learn-to-program" class="nav-link active" data-scroll-target="#dont-use-llms-when-trying-to-learn-to-program"><span class="header-section-number">4.1</span> Don’t use LLMs when trying to learn to program</a></li>
+  <li><a href="#llms-and-subtle-mistakes" id="toc-llms-and-subtle-mistakes" class="nav-link" data-scroll-target="#llms-and-subtle-mistakes"><span class="header-section-number">4.2</span> LLMs and subtle mistakes</a></li>
+  <li><a href="#the-artificial-intelligence-assessment-scale" id="toc-the-artificial-intelligence-assessment-scale" class="nav-link" data-scroll-target="#the-artificial-intelligence-assessment-scale"><span class="header-section-number">4.3</span> The Artificial Intelligence Assessment Scale</a></li>
+  <li><a href="#declaration-of-artificial-intelligence-ai-usage" id="toc-declaration-of-artificial-intelligence-ai-usage" class="nav-link" data-scroll-target="#declaration-of-artificial-intelligence-ai-usage"><span class="header-section-number">4.4</span> Declaration of Artificial Intelligence (AI) usage</a></li>
   </ul>
 </nav>
     </div>
@@ -407,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></h1>
 </div>
 
 
@@ -424,79 +415,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="unix-streams-pipes-scripts" class="level2" data-number="32.1">
-<h2 data-number="32.1" class="anchored" data-anchor-id="unix-streams-pipes-scripts"><span class="header-section-number">32.1</span> Unix Streams, Pipes, Scripts</h2>
-<p>Here’s a recording of this lecture (53 minutes 54 seconds):</p>
-<p><a href="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cd5dbe85-1a77-468c-bad0-b1fd00c66910" class="external" target="_blank">Recording</a></p>
-<iframe credentialless="" src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=cd5dbe85-1a77-468c-bad0-b1fd00c66910&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
-</iframe>
+<section id="dont-use-llms-when-trying-to-learn-to-program" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="dont-use-llms-when-trying-to-learn-to-program"><span class="header-section-number">4.1</span> Don’t use LLMs when trying to learn to program</h2>
+<blockquote class="blockquote">
+<p>“Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible.” - Andrew Heiss</p>
+</blockquote>
+<p>While large language models (LLMs) can quickly generate plausible code, LLMs have no knowledge of whether or not that code is correct or if it will even run. LLMs simply spit out what sounds good based on concepts that were most common in their training data.</p>
+<p>So to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework and midterm problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.</p>
+<p>Our recommendation is not to use LLMs to solve your homework and midterm problems.</p>
+<p>This concurs with Andrew Heiss’s advice (<a href="https://datavizf24.classes.andrewheiss.com/resource/ai-bs.html">link</a>) that</p>
+<blockquote class="blockquote">
+<p>“I highly recommend <strong>not</strong> using ChatGPT or similar large language models (LLMs) in this class.”</p>
+</blockquote>
 </section>
-<section id="unix-basics-slides" class="level2" data-number="32.2">
-<h2 data-number="32.2" class="anchored" data-anchor-id="unix-basics-slides"><span class="header-section-number">32.2</span> Unix Basics slides</h2>
-<p><a href="pdfs/unix_streams_pipes_scripts.pdf" target="_blank">PDF slide set</a></p>
-<iframe width="100%" height="800" src="pdfs/unix_streams_pipes_scripts.pdf">
-</iframe>
+<section id="llms-and-subtle-mistakes" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="llms-and-subtle-mistakes"><span class="header-section-number">4.2</span> LLMs and subtle mistakes</h2>
+<p>Here’s an example where GitHub Copilot gives an incorrect answer to this question:</p>
+<p><strong>Question:</strong> Can you find a subtle mistake in the read_data_file function?</p>
+<pre><code>results &lt;- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
+read_data_file &lt;- function(n=1, results) {
+  fl1 &lt;- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
+  results$dataset[n] &lt;- paste0("dataset",n,".txt")
+  results$N &lt;- nrow(fl1)
+  results$mean[n] &lt;- mean(fl1$trait)
+  results$median[n] &lt;- median(fl1$trait)
+  results$var[n] &lt;- var(fl1$trait)
+  invisible(results)
+}</code></pre>
+<p>GitHub Copilot doesn’t like the <code>invisible(results)</code> line at the end of the function but that is not a ‘mistake’ per se - that is a programming choice.</p>
+<p>GitHub Copilot’s output is as follows:</p>
+<pre><code># The mistake is that the function does not return the updated results data frame.
+# The function should return the results data frame at the end.
+read_data_file &lt;- function(n=1, results) {
+  fl1 &lt;- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
+  results$dataset[n] &lt;- paste0("dataset",n,".txt")
+  results$N[n] &lt;- nrow(fl1)
+  results$mean[n] &lt;- mean(fl1$trait)
+  results$median[n] &lt;- median(fl1$trait)
+  results$var[n] &lt;- var(fl1$trait)
+  return(results)  # Return the updated results data frame
+}
+for (i in 1:6) {
+  results &lt;- read_data_file(n=i, results=results)
+}</code></pre>
+<p>Note that to know whether or not GitHub Copilot’s plausible sounding answer is correct you’d actually need to know R yourself. Further, not only did GitHub Copilot misdiagnose the problem, what’s worse about GitHub Copilot’s answer is GitHub Copilot actually fixed the subtle mistake without explaining what it did. Do you see what it did? Do you understand what it did?</p>
 </section>
-<section id="questions" class="level2" data-number="32.3">
-<h2 data-number="32.3" class="anchored" data-anchor-id="questions"><span class="header-section-number">32.3</span> Questions</h2>
-<section id="question-1" class="level3" data-number="32.3.1">
-<h3 data-number="32.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">32.3.1</span> Question 1</h3>
-<p>Which of the following statements about typing commands into the terminal is correct?</p>
-<div id="radio_TMZZWQRHYX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TMZZWQRHYX" value=""> <span>By default, output (stdout and stderr) goes to the screen. You can pipe it to files with the | operator.</span></label><label><input type="radio" autocomplete="off" name="radio_TMZZWQRHYX" value=""> <span>By default, output (stdout and sdterr) goes to a log file, unless you redirect them to the screen.</span></label><label><input type="radio" autocomplete="off" name="radio_TMZZWQRHYX" value=""> <span>By default, stdout goes to the screen and stderr goes to a log file.</span></label><label><input type="radio" autocomplete="off" name="radio_TMZZWQRHYX" value="answer"> <span>By default, output (stdout and stderr) goes to the screen. You can redirect it to files with operators like &gt;, &gt;&gt;, 2&gt;, and 2&gt;&gt;.</span></label>
+<section id="the-artificial-intelligence-assessment-scale" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="the-artificial-intelligence-assessment-scale"><span class="header-section-number">4.3</span> The Artificial Intelligence Assessment Scale</h2>
+<p>The Artificial Intelligence Assessment Scale is a schema for defining different levels of acceptable usage of artificial intelligence (AI) in assignments. It helps clarify how AI can be used in a way that supports learning while maintaining academic integrity.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ai-assessment-scale-large.png" class="img-fluid figure-img"></p>
+<figcaption>Artificial Intelligence Assessment Scale</figcaption>
+</figure>
 </div>
+<p>The Artificial Intelligence Assessment Scale was created by <a href="https://doi.org/10.48550/arXiv.2412.09029">Perkins et al.&nbsp;(2024)</a> and is a revised version of the initial <a href="https://doi.org/10.53761/q3azde36">AI Assessment Scale</a> developed earlier by Perkins et al.&nbsp;(2024). The authors’ goal “was to offer a way for educators, including ourselves, to have open dialogue with students about the values of educational integrity, and to prioritise a transparent approach to how GenAI could be used in assessment.</p>
+<p><strong>References:</strong></p>
+<ol type="1">
+<li>Perkins M, Roe J, Furze L. The AI Assessment Scale Revisited: A Framework for Educational Assessment. arXiv. 2024 Dec 12; DOI: https://doi.org/10.48550/arXiv.2412.09029<br>
+</li>
+<li>Perkins M, Furze L, Roe J, MacVaugh J. The Artificial Intelligence Assessment Scale (AIAS): A Framework for Ethical Integration of Generative AI in Educational Assessment. Journal of University Teaching and Learning Practice. 2024 Apr 19;21(06). DOI: https://doi.org/10.53761/q3azde36</li>
+</ol>
 </section>
-<section id="question-2" class="level3" data-number="32.3.2">
-<h3 data-number="32.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">32.3.2</span> Question 2</h3>
-<p>What is the difference between the &gt; and &gt;&gt; operators?</p>
-<div id="radio_SOLCEYQBQE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SOLCEYQBQE" value=""> <span>The first prints to the screen, while the second appends to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_SOLCEYQBQE" value=""> <span>The first redirects standard out to a file, while the second redirects standard error to a file.</span></label><label><input type="radio" autocomplete="off" name="radio_SOLCEYQBQE" value=""> <span>The first pipes redirects standard out to a file, while the second pipes standard out into another command.</span></label><label><input type="radio" autocomplete="off" name="radio_SOLCEYQBQE" value="answer"> <span>The first redirects standard out and overwrites an existing file, while the second redirects and appends it to the file.</span></label>
-</div>
-</section>
-<section id="question-3" class="level3" data-number="32.3.3">
-<h3 data-number="32.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">32.3.3</span> Question 3</h3>
-<p>How could you print lines 50-60 of a file? There are two correct answers.</p>
-<div id="radio_EAENSOCOLF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EAENSOCOLF" value=""> <span>tail -n50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_EAENSOCOLF" value="answer"> <span>tail -n+50 file | head -n11</span></label><label><input type="radio" autocomplete="off" name="radio_EAENSOCOLF" value="answer"> <span>head -n60 file | tail -n11</span></label><label><input type="radio" autocomplete="off" name="radio_EAENSOCOLF" value=""> <span>tail -n50 file | head -n10</span></label><label><input type="radio" autocomplete="off" name="radio_EAENSOCOLF" value=""> <span>head -n60 file | head -n10</span></label>
-</div>
-</section>
-<section id="question-4" class="level3" data-number="32.3.4">
-<h3 data-number="32.3.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">32.3.4</span> Question 4</h3>
-<p>For an ordinary bash script (not a script you need to submit as a Slurm job), what lines should you always include?</p>
-<div id="radio_BWLOMFDHUH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BWLOMFDHUH" value="answer"> <span>#!/bin/bash and set -euxo pipefail</span></label><label><input type="radio" autocomplete="off" name="radio_BWLOMFDHUH" value=""> <span>#SLURM</span></label><label><input type="radio" autocomplete="off" name="radio_BWLOMFDHUH" value=""> <span>bash</span></label><label><input type="radio" autocomplete="off" name="radio_BWLOMFDHUH" value=""> <span>sbatch</span></label>
-</div>
-</section>
-<section id="question-5" class="level3" data-number="32.3.5">
-<h3 data-number="32.3.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">32.3.5</span> Question 5</h3>
-<p>For a slurm script, what additional lines do you need to add at the top of a bash script, after the line with #!/bin/bash?</p>
-<div id="radio_FCOKZLEXSV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FCOKZLEXSV" value=""> <span>Nothing</span></label><label><input type="radio" autocomplete="off" name="radio_FCOKZLEXSV" value="answer"> <span>#SBATCH -M teach and #SBATCH -A hugen2071-2024f</span></label>
-</div>
-</section>
-<section id="question-6" class="level3" data-number="32.3.6">
-<h3 data-number="32.3.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">32.3.6</span> Question 6</h3>
-<p>If you want to run the bash script script.sh with three command-line arguments, <code>hello</code> and <code>100</code> and <code>goodbye</code>, what command do you use?</p>
-<div id="radio_ZPGHGXXJRQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZPGHGXXJRQ" value=""> <span>script('hello', 100, 'goodbye')</span></label><label><input type="radio" autocomplete="off" name="radio_ZPGHGXXJRQ" value=""> <span>sbatch hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_ZPGHGXXJRQ" value="answer"> <span>bash script.sh hello 100 goodbye</span></label><label><input type="radio" autocomplete="off" name="radio_ZPGHGXXJRQ" value=""> <span>bash script.sh</span></label>
-</div>
-</section>
-<section id="question-7" class="level3" data-number="32.3.7">
-<h3 data-number="32.3.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">32.3.7</span> Question 7</h3>
-<p>If my username is xyz123, how do I check the status of my Slurm jobs?</p>
-<div id="radio_PGGBOSDVTN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PGGBOSDVTN" value=""> <span>queue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_PGGBOSDVTN" value=""> <span>scancel xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_PGGBOSDVTN" value=""> <span>squeue xyz123</span></label><label><input type="radio" autocomplete="off" name="radio_PGGBOSDVTN" value="answer"> <span>squeue -u xyz123</span></label>
-</div>
-</section>
-<section id="question-8" class="level3" data-number="32.3.8">
-<h3 data-number="32.3.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">32.3.8</span> Question 8</h3>
-<p>If my Slurm job quits because of an error, what should I do?</p>
-<div id="radio_KWJNQWFXVS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KWJNQWFXVS" value=""> <span>Run it again.</span></label><label><input type="radio" autocomplete="off" name="radio_KWJNQWFXVS" value=""> <span>Immediately ask for help.</span></label><label><input type="radio" autocomplete="off" name="radio_KWJNQWFXVS" value="answer"> <span>Carefully read the log file, which is named something like slurm-NUMBER.out, where NUMBER was the job ID.</span></label>
-</div>
+<section id="declaration-of-artificial-intelligence-ai-usage" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="declaration-of-artificial-intelligence-ai-usage"><span class="header-section-number">4.4</span> Declaration of Artificial Intelligence (AI) usage</h2>
+<p>Each assignment will define the desired acceptable usage of Artificial Intelligence (AI).</p>
+<p>If the assignment expects no usage of AI, you will be asked to include an explicit statement that AI was not used.</p>
+<p>If you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.</p>
+<p>So, for each assignment where AI may be used, you will be required to say whether and how you used AI for assistance.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1135,13 +1123,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./unix_basics.html" class="pagination-link" aria-label="Unix Basics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Basics</span></span>
+      <a href="./logistics.html" class="pagination-link" aria-label="Logistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Logistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./slurm.html" class="pagination-link" aria-label="Slurm script settings">
-        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Readings.html" class="pagination-link" aria-label="Active Learning and Readings">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

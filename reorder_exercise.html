@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>22&nbsp; R Reordering Exercise – HuGen2071 book</title>
+<title>23&nbsp; R Reordering Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-1","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"library(tidyverse)\n# library(tidylog)\nset.seed(1562345)\n# Set up a data dictionary\ndd <- data.frame(VARNAME = sample(letters,26), TYPE =\"numeric\")\n# Set up data \nds <- as.data.frame(t(dd %>% arrange(VARNAME)))\nnames(ds) <- letters\nrownames(ds) <- NULL\nds[1,] <- rnorm(26)\nds[2,] <- runif(26)\nds$ID <- c(1,2)\nds <- ds %>% select(ID, everything())\n# Randomly rearrange the columns\nidx <- sample(letters,26)\nidx <- c(\"ID\",idx)\nds <- ds %>% select(all_of(idx))\ndd <- bind_rows(dd,data.frame(VARNAME=\"ID\", TYPE=\"string\"))\nls()"},{"id":2,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-2","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# dd is the data dictionary\ndim(dd)\nhead(dd)\n\n# ds is the data\ndim(ds)\nhead(ds[1:5])\nnames(ds)"},{"id":3,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-3","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"colnames(ds)\ndd$VARNAME"},{"id":4,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-4","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":5,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-5","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"table(dd$VARNAME %in% colnames(ds))\ntable(colnames(ds) %in% dd$VARNAME)"},{"id":6,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-6","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"sum(duplicated(dd$VARNAME))\nsum(duplicated(colnames(ds)))"},{"id":7,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-7","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":8,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-8","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Assign VARNAME to be the rownames of dd\nrownames(dd) <- dd$VARNAME\n# Rearrange by row names:\ndd2 <- dd[colnames(ds),]\n# Check if this worked:\nall.equal(dd2$VARNAME, colnames(ds))\nhead(dd2)\nhead(ds[,1:6])"},{"id":9,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-9","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# match returns a vector of the positions of (first) matches of its first argument in its second.\ndd3 <- dd[match(colnames(ds), dd$VARNAME),]\n# Check if this worked:\nall.equal(dd3$VARNAME, colnames(ds))"},{"id":10,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-10","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"match(colnames(ds), dd$VARNAME)\ncolnames(ds)[1]\ndd$VARNAME[27]"},{"id":11,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-11","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":12,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-12","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"dd4 <- dd %>% arrange(colnames(ds))\n# Check if this worked:\nall.equal(dd4$VARNAME, colnames(ds))"},{"id":13,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-13","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":14,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-14","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"dd4 <- dd %>% \n  mutate(neworder = match(VARNAME, colnames(ds))) %>%\n  arrange(neworder) %>% \n  select(-neworder)\nall.equal(dd4$VARNAME, colnames(ds))"},{"id":15,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-15","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":16,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-16","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"dd6<- dd %>% slice(match(colnames(ds), VARNAME))\nall.equal(dd6$VARNAME, colnames(ds))"},{"id":17,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-17","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Edit/add/try out R code here"},{"id":18,"options":{"fig-height":5,"output":"true","editor-word-wrap":"true","autorun":"false","context":"interactive","results":"markup","out-width":"700px","editor-quick-suggestions":"false","dpi":72,"comment":"","classes":"","label":"unnamed-chunk-18","editor-max-height":"","out-height":"","fig-cap":"","read-only":"false","message":"true","warning":"true","fig-width":7,"editor-font-scale":"1"},"code":"# Transpose so rows become columns, and then we can use 'select' to rearrange those columns,\n# and then transpose back, and rename columns as needed. \ndd5 <- dd %>% t()  %>% \n  as_tibble(.name_repair = \"unique\") \n# Create a named vector to use in the `rename` command\nlookup <-  names(dd5)\nnames(lookup) <- as.character(dd5[1,])\ndd5 <- dd5 %>% \n  rename(all_of(lookup)) %>% \n  select(colnames(ds)) %>% \n  t() %>% as.data.frame() %>% \n  rename(\"VARNAME\"=\"V1\",\"TYPE\" = \"V2\")\nall.equal(dd5$VARNAME, colnames(ds))"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-height":5,"label":"unnamed-chunk-1","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"library(tidyverse)\n# library(tidylog)\nset.seed(1562345)\n# Set up a data dictionary\ndd <- data.frame(VARNAME = sample(letters,26), TYPE =\"numeric\")\n# Set up data \nds <- as.data.frame(t(dd %>% arrange(VARNAME)))\nnames(ds) <- letters\nrownames(ds) <- NULL\nds[1,] <- rnorm(26)\nds[2,] <- runif(26)\nds$ID <- c(1,2)\nds <- ds %>% select(ID, everything())\n# Randomly rearrange the columns\nidx <- sample(letters,26)\nidx <- c(\"ID\",idx)\nds <- ds %>% select(all_of(idx))\ndd <- bind_rows(dd,data.frame(VARNAME=\"ID\", TYPE=\"string\"))\nls()"},{"id":2,"options":{"fig-height":5,"label":"unnamed-chunk-2","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# dd is the data dictionary\ndim(dd)\nhead(dd)\n\n# ds is the data\ndim(ds)\nhead(ds[1:5])\nnames(ds)"},{"id":3,"options":{"fig-height":5,"label":"unnamed-chunk-3","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"colnames(ds)\ndd$VARNAME"},{"id":4,"options":{"fig-height":5,"label":"unnamed-chunk-4","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":5,"options":{"fig-height":5,"label":"unnamed-chunk-5","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"table(dd$VARNAME %in% colnames(ds))\ntable(colnames(ds) %in% dd$VARNAME)"},{"id":6,"options":{"fig-height":5,"label":"unnamed-chunk-6","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"sum(duplicated(dd$VARNAME))\nsum(duplicated(colnames(ds)))"},{"id":7,"options":{"fig-height":5,"label":"unnamed-chunk-7","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":8,"options":{"fig-height":5,"label":"unnamed-chunk-8","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Assign VARNAME to be the rownames of dd\nrownames(dd) <- dd$VARNAME\n# Rearrange by row names:\ndd2 <- dd[colnames(ds),]\n# Check if this worked:\nall.equal(dd2$VARNAME, colnames(ds))\nhead(dd2)\nhead(ds[,1:6])"},{"id":9,"options":{"fig-height":5,"label":"unnamed-chunk-9","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# match returns a vector of the positions of (first) matches of its first argument in its second.\ndd3 <- dd[match(colnames(ds), dd$VARNAME),]\n# Check if this worked:\nall.equal(dd3$VARNAME, colnames(ds))"},{"id":10,"options":{"fig-height":5,"label":"unnamed-chunk-10","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"match(colnames(ds), dd$VARNAME)\ncolnames(ds)[1]\ndd$VARNAME[27]"},{"id":11,"options":{"fig-height":5,"label":"unnamed-chunk-11","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":12,"options":{"fig-height":5,"label":"unnamed-chunk-12","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"dd4 <- dd %>% arrange(colnames(ds))\n# Check if this worked:\nall.equal(dd4$VARNAME, colnames(ds))"},{"id":13,"options":{"fig-height":5,"label":"unnamed-chunk-13","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":14,"options":{"fig-height":5,"label":"unnamed-chunk-14","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"dd4 <- dd %>% \n  mutate(neworder = match(VARNAME, colnames(ds))) %>%\n  arrange(neworder) %>% \n  select(-neworder)\nall.equal(dd4$VARNAME, colnames(ds))"},{"id":15,"options":{"fig-height":5,"label":"unnamed-chunk-15","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":16,"options":{"fig-height":5,"label":"unnamed-chunk-16","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"dd6<- dd %>% slice(match(colnames(ds), VARNAME))\nall.equal(dd6$VARNAME, colnames(ds))"},{"id":17,"options":{"fig-height":5,"label":"unnamed-chunk-17","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Edit/add/try out R code here"},{"id":18,"options":{"fig-height":5,"label":"unnamed-chunk-18","results":"markup","autorun":"false","output":"true","editor-max-height":"","read-only":"false","out-width":"700px","classes":"","dpi":72,"comment":"","editor-quick-suggestions":"false","out-height":"","editor-font-scale":"1","message":"true","context":"interactive","warning":"true","editor-word-wrap":"true","fig-width":7,"fig-cap":""},"code":"# Transpose so rows become columns, and then we can use 'select' to rearrange those columns,\n# and then transpose back, and rename columns as needed. \ndd5 <- dd %>% t()  %>% \n  as_tibble(.name_repair = \"unique\") \n# Create a named vector to use in the `rename` command\nlookup <-  names(dd5)\nnames(lookup) <- as.character(dd5[1,])\ndd5 <- dd5 %>% \n  rename(all_of(lookup)) %>% \n  select(colnames(ds)) %>% \n  t() %>% as.data.frame() %>% \n  rename(\"VARNAME\"=\"V1\",\"TYPE\" = \"V2\")\nall.equal(dd5$VARNAME, colnames(ds))"}];
 
 </script>
 <script type="module">
@@ -1569,7 +1569,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reorder_exercise.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reorder_exercise.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1620,200 +1620,206 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Readings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gitIntro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GitHub</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Git_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Git Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RBasicsLecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture: R Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture: R Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Rbasics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RFactors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slurm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1867,15 +1873,15 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#create-some-example-data" id="toc-create-some-example-data" class="nav-link active" data-scroll-target="#create-some-example-data"><span class="header-section-number">22.1</span> Create some example data</a></li>
-  <li><a href="#task-reorder-rows-in-dd-in-the-order-of-dss-columns" id="toc-task-reorder-rows-in-dd-in-the-order-of-dss-columns" class="nav-link" data-scroll-target="#task-reorder-rows-in-dd-in-the-order-of-dss-columns"><span class="header-section-number">22.2</span> Task: Reorder rows in <code>dd</code> in the order of <code>ds</code>’s columns</a></li>
-  <li><a href="#assumption-check-question" id="toc-assumption-check-question" class="nav-link" data-scroll-target="#assumption-check-question"><span class="header-section-number">22.3</span> Assumption Check Question</a></li>
-  <li><a href="#task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" id="toc-task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" class="nav-link" data-scroll-target="#task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds"><span class="header-section-number">22.4</span> Task: Reorder rows in <code>dd</code> to match the order of the columns in <code>ds</code></a></li>
-  <li><a href="#question-use-arrange" id="toc-question-use-arrange" class="nav-link" data-scroll-target="#question-use-arrange"><span class="header-section-number">22.5</span> Question: use <code>arrange</code>?</a></li>
-  <li><a href="#question-use-arrange-1" id="toc-question-use-arrange-1" class="nav-link" data-scroll-target="#question-use-arrange-1"><span class="header-section-number">22.6</span> Question: use <code>arrange</code>?</a></li>
-  <li><a href="#question-use-slice" id="toc-question-use-slice" class="nav-link" data-scroll-target="#question-use-slice"><span class="header-section-number">22.7</span> Question: use <code>slice</code></a></li>
-  <li><a href="#question-use-select" id="toc-question-use-select" class="nav-link" data-scroll-target="#question-use-select"><span class="header-section-number">22.8</span> Question: use <code>select</code>?</a></li>
-  <li><a href="#question-use-row-names" id="toc-question-use-row-names" class="nav-link" data-scroll-target="#question-use-row-names"><span class="header-section-number">22.9</span> Question: use row names</a></li>
+  <li><a href="#create-some-example-data" id="toc-create-some-example-data" class="nav-link active" data-scroll-target="#create-some-example-data"><span class="header-section-number">23.1</span> Create some example data</a></li>
+  <li><a href="#task-reorder-rows-in-dd-in-the-order-of-dss-columns" id="toc-task-reorder-rows-in-dd-in-the-order-of-dss-columns" class="nav-link" data-scroll-target="#task-reorder-rows-in-dd-in-the-order-of-dss-columns"><span class="header-section-number">23.2</span> Task: Reorder rows in <code>dd</code> in the order of <code>ds</code>’s columns</a></li>
+  <li><a href="#assumption-check-question" id="toc-assumption-check-question" class="nav-link" data-scroll-target="#assumption-check-question"><span class="header-section-number">23.3</span> Assumption Check Question</a></li>
+  <li><a href="#task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" id="toc-task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" class="nav-link" data-scroll-target="#task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds"><span class="header-section-number">23.4</span> Task: Reorder rows in <code>dd</code> to match the order of the columns in <code>ds</code></a></li>
+  <li><a href="#question-use-arrange" id="toc-question-use-arrange" class="nav-link" data-scroll-target="#question-use-arrange"><span class="header-section-number">23.5</span> Question: use <code>arrange</code>?</a></li>
+  <li><a href="#question-use-arrange-1" id="toc-question-use-arrange-1" class="nav-link" data-scroll-target="#question-use-arrange-1"><span class="header-section-number">23.6</span> Question: use <code>arrange</code>?</a></li>
+  <li><a href="#question-use-slice" id="toc-question-use-slice" class="nav-link" data-scroll-target="#question-use-slice"><span class="header-section-number">23.7</span> Question: use <code>slice</code></a></li>
+  <li><a href="#question-use-select" id="toc-question-use-select" class="nav-link" data-scroll-target="#question-use-select"><span class="header-section-number">23.8</span> Question: use <code>select</code>?</a></li>
+  <li><a href="#question-use-row-names" id="toc-question-use-row-names" class="nav-link" data-scroll-target="#question-use-row-names"><span class="header-section-number">23.9</span> Question: use row names</a></li>
   </ul>
 </nav>
     </div>
@@ -2168,7 +2174,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></h1>
 </div>
 
 
@@ -2185,8 +2191,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="create-some-example-data" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="create-some-example-data"><span class="header-section-number">22.1</span> Create some example data</h2>
+<section id="create-some-example-data" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="create-some-example-data"><span class="header-section-number">23.1</span> Create some example data</h2>
 <p>Here we set up a data dictionary <code>dd</code> and some corresponding data <code>ds</code>. However, it is better if the order of the rows in the data dictionary <code>dd</code> match the order of the columns in the data <code>ds</code>.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2194,14 +2200,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="task-reorder-rows-in-dd-in-the-order-of-dss-columns" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="task-reorder-rows-in-dd-in-the-order-of-dss-columns"><span class="header-section-number">22.2</span> Task: Reorder rows in <code>dd</code> in the order of <code>ds</code>’s columns</h2>
+<section id="task-reorder-rows-in-dd-in-the-order-of-dss-columns" class="level2" data-number="23.2">
+<h2 data-number="23.2" class="anchored" data-anchor-id="task-reorder-rows-in-dd-in-the-order-of-dss-columns"><span class="header-section-number">23.2</span> Task: Reorder rows in <code>dd</code> in the order of <code>ds</code>’s columns</h2>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>This assumes that every row of <code>dd</code> is in <code>colnames(ds)</code> and every <code>colnames(ds)</code> value is represented in <code>dd</code>. Perhaps that should be checked first.</p>
 </section>
-<section id="assumption-check-question" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="assumption-check-question"><span class="header-section-number">22.3</span> Assumption Check Question</h2>
+<section id="assumption-check-question" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="assumption-check-question"><span class="header-section-number">23.3</span> Assumption Check Question</h2>
 <p>How would you check that every variable listed in the data dictionary <code>dd</code> is named in <code>colnames(ds)</code> and every <code>colnames(ds)</code> value is represented in the data dictionary <code>dd</code>?</p>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2226,8 +2232,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds"><span class="header-section-number">22.4</span> Task: Reorder rows in <code>dd</code> to match the order of the columns in <code>ds</code></h2>
+<section id="task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds" class="level2" data-number="23.4">
+<h2 data-number="23.4" class="anchored" data-anchor-id="task-reorder-rows-in-dd-to-match-the-order-of-the-columns-in-ds"><span class="header-section-number">23.4</span> Task: Reorder rows in <code>dd</code> to match the order of the columns in <code>ds</code></h2>
 <p>Task: Reorder rows in the data dictionary <code>dd</code> to match the order of the columns in the data <code>ds</code></p>
 <ul>
 <li>What are various ways you could rearrange the rows of a data frame?</li>
@@ -2260,8 +2266,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="question-use-arrange" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="question-use-arrange"><span class="header-section-number">22.5</span> Question: use <code>arrange</code>?</h2>
+<section id="question-use-arrange" class="level2" data-number="23.5">
+<h2 data-number="23.5" class="anchored" data-anchor-id="question-use-arrange"><span class="header-section-number">23.5</span> Question: use <code>arrange</code>?</h2>
 <p>Question: Is there a way to do this using <code>arrange</code>?</p>
 <div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2285,8 +2291,8 @@ Expand to see the first attempt
 </div>
 </div>
 </section>
-<section id="question-use-arrange-1" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="question-use-arrange-1"><span class="header-section-number">22.6</span> Question: use <code>arrange</code>?</h2>
+<section id="question-use-arrange-1" class="level2" data-number="23.6">
+<h2 data-number="23.6" class="anchored" data-anchor-id="question-use-arrange-1"><span class="header-section-number">23.6</span> Question: use <code>arrange</code>?</h2>
 <p>Question: Is there a way to do this using <code>arrange</code>?</p>
 <p><code>arrange()</code> orders the rows of a data frame by the values of selected columns.</p>
 <div id="qwebr-insertion-location-13"></div>
@@ -2310,8 +2316,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="question-use-slice" class="level2" data-number="22.7">
-<h2 data-number="22.7" class="anchored" data-anchor-id="question-use-slice"><span class="header-section-number">22.7</span> Question: use <code>slice</code></h2>
+<section id="question-use-slice" class="level2" data-number="23.7">
+<h2 data-number="23.7" class="anchored" data-anchor-id="question-use-slice"><span class="header-section-number">23.7</span> Question: use <code>slice</code></h2>
 <p>Question: Is there a way to do this using the <code>slice</code> command?</p>
 <p>The <code>slice()</code> function lets you index rows by their (integer) locations.</p>
 <p>Hint: Combine <code>slice</code> with <code>match</code>.</p>
@@ -2351,8 +2357,8 @@ C 2 2</code></pre>
 </div>
 </div>
 </section>
-<section id="question-use-select" class="level2" data-number="22.8">
-<h2 data-number="22.8" class="anchored" data-anchor-id="question-use-select"><span class="header-section-number">22.8</span> Question: use <code>select</code>?</h2>
+<section id="question-use-select" class="level2" data-number="23.8">
+<h2 data-number="23.8" class="anchored" data-anchor-id="question-use-select"><span class="header-section-number">23.8</span> Question: use <code>select</code>?</h2>
 <p>Question: Is there a way to do this by transposing and then using <code>select</code>?</p>
 <p>The <code>t()</code> function transposes a matrix or data frame. It generates a new data frame where the rows are the columns of the original data frame and the columns are the rows of the original data frame.</p>
 <div id="qwebr-insertion-location-17"></div>
@@ -2389,8 +2395,8 @@ b 3 2 1</code></pre>
 </div>
 </div>
 </section>
-<section id="question-use-row-names" class="level2" data-number="22.9">
-<h2 data-number="22.9" class="anchored" data-anchor-id="question-use-row-names"><span class="header-section-number">22.9</span> Question: use row names</h2>
+<section id="question-use-row-names" class="level2" data-number="23.9">
+<h2 data-number="23.9" class="anchored" data-anchor-id="question-use-row-names"><span class="header-section-number">23.9</span> Question: use row names</h2>
 <p>Question: What about using row names?</p>
 <p>“While a tibble can have row names (e.g., when converting from a regular data frame), they are removed when subsetting with the [ operator. A warning will be raised when attempting to assign non-NULL row names to a tibble. Generally, it is best to avoid row names, because they are basically a character column with different semantics than every other column.”</p>
 <p>From: https://tibble.tidyverse.org/reference/rownames.html</p>
@@ -3035,12 +3041,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./R_graphics_exercises.html" class="pagination-link" aria-label="R Graphics Exercises">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./EDA.html" class="pagination-link" aria-label="R Exploratory Data Analysis Exercise">
-        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

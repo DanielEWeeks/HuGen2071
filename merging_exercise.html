@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20&nbsp; R Merging Exercise – HuGen2071 book</title>
+<title>21&nbsp; R Merging Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-1","editor-max-height":"","editor-quick-suggestions":"false"},"code":"library(tidyverse)\nlibrary(tidylog)"},{"id":2,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-2","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/project1.RData\"),\n              \"project1.RData\")\nload(\"project1.RData\", verbose = TRUE)\ndim(ds)\ndim(dd)"},{"id":3,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-3","editor-max-height":"","editor-quick-suggestions":"false"},"code":"a <- ds %>% \n  select(\"subject_id\", \n         \"maternal_age_delivery\", \n         \"case_control_status\", \n         \"prepregnancy_BMI\") %>% \n  arrange(subject_id)\ndim(a)\nhead(a,10)\ntail(a)"},{"id":4,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-4","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Edit/add/try out R code here"},{"id":5,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-5","editor-max-height":"","editor-quick-suggestions":"false"},"code":"dim(a)\nb <- unique(a)\ndim(b)\nhead(b)\n\nb1 <- a %>% distinct()\ndim(b1)\n\nall.equal(b,b1)\nall.equal(b,b1, check.attributes=FALSE)\nhead(rownames(b))\nhead(rownames(b1))\n# Reset row names\nrownames(b) <- NULL\nrownames(b1) <- NULL\nall.equal(b,b1)"},{"id":6,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-6","editor-max-height":"","editor-quick-suggestions":"false"},"code":"(ex1 <- data.frame(ID=c(1,1,1,2),trait=c(10, 9, 9, 11)))\nunique(ex1)\n\nex1 %>% distinct()"},{"id":7,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-7","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Edit/add/try out R code here"},{"id":8,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-8","editor-max-height":"","editor-quick-suggestions":"false"},"code":"sum(duplicated(b$subject_id))\nb %>% \n  group_by(subject_id) %>% \n  filter(n()>1)"},{"id":9,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-9","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Edit/add/try out R code here"},{"id":10,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-10","editor-max-height":"","editor-quick-suggestions":"false"},"code":"set.seed(10234)\nb$ID <- sample(c(1:nrow(b)), replace = FALSE)\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"id":11,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-11","editor-max-height":"","editor-quick-suggestions":"false"},"code":"b <- b %>% mutate(ID=sample.int(nrow(.)))\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"id":12,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-12","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/newtrait.tsv\"),\n              \"newtrait.tsv\")\nnew <- read_tsv(\"newtrait.tsv\")\nhead(new)\ndim(new)\ndim(b)"},{"id":13,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-13","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Edit/add/try out R code here"},{"id":14,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-14","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Load 'tidylog' \nlibrary(tidylog)\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\nsum(duplicated(new$subject_id))\n\n# Which one is duplicated\nnew %>% \n  group_by(subject_id) %>% \n  mutate(n=n()) %>% \n  filter(n>1)\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\nsum(is.na(new$subject_id))\n\n# Check the dimensions\ndim(b)\ndim(new)\nb2 <- left_join(b, new, by=\"subject_id\")\nhead(b2)\ndim(b2)\nb3 <- full_join(b, new, by=\"subject_id\")\ndim(b3)"},{"id":15,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-15","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Edit/add/try out R code here"},{"id":16,"options":{"autorun":"false","fig-height":5,"comment":"","warning":"true","message":"true","out-width":"700px","context":"interactive","out-height":"","editor-word-wrap":"true","editor-font-scale":"1","classes":"","read-only":"false","fig-cap":"","output":"true","dpi":72,"fig-width":7,"results":"markup","label":"unnamed-chunk-16","editor-max-height":"","editor-quick-suggestions":"false"},"code":"# Tally how many of b's subject_id's are in new\ntable(b$subject_id %in% new$subject_id)\n# Tally how many of new's subject_id's are in b\ntable(new$subject_id %in% b$subject_id)\n# List the b's subject_id's that are not in new\nb$subject_id[!(b$subject_id %in% new$subject_id)]\n# List the new's subject_id's that are not in b\nnew$subject_id[!(new$subject_id %in% b$subject_id)]\n\n# Simpler to do this with anti_join's\nanti_join(b, new, by=\"subject_id\")\nanti_join(new, b, by=\"subject_id\")"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-1","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"library(tidyverse)\nlibrary(tidylog)"},{"id":2,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-2","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/project1.RData\"),\n              \"project1.RData\")\nload(\"project1.RData\", verbose = TRUE)\ndim(ds)\ndim(dd)"},{"id":3,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-3","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"a <- ds %>% \n  select(\"subject_id\", \n         \"maternal_age_delivery\", \n         \"case_control_status\", \n         \"prepregnancy_BMI\") %>% \n  arrange(subject_id)\ndim(a)\nhead(a,10)\ntail(a)"},{"id":4,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-4","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Edit/add/try out R code here"},{"id":5,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-5","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"dim(a)\nb <- unique(a)\ndim(b)\nhead(b)\n\nb1 <- a %>% distinct()\ndim(b1)\n\nall.equal(b,b1)\nall.equal(b,b1, check.attributes=FALSE)\nhead(rownames(b))\nhead(rownames(b1))\n# Reset row names\nrownames(b) <- NULL\nrownames(b1) <- NULL\nall.equal(b,b1)"},{"id":6,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-6","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"(ex1 <- data.frame(ID=c(1,1,1,2),trait=c(10, 9, 9, 11)))\nunique(ex1)\n\nex1 %>% distinct()"},{"id":7,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-7","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Edit/add/try out R code here"},{"id":8,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-8","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"sum(duplicated(b$subject_id))\nb %>% \n  group_by(subject_id) %>% \n  filter(n()>1)"},{"id":9,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-9","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Edit/add/try out R code here"},{"id":10,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-10","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"set.seed(10234)\nb$ID <- sample(c(1:nrow(b)), replace = FALSE)\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"id":11,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-11","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"b <- b %>% mutate(ID=sample.int(nrow(.)))\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"id":12,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-12","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/newtrait.tsv\"),\n              \"newtrait.tsv\")\nnew <- read_tsv(\"newtrait.tsv\")\nhead(new)\ndim(new)\ndim(b)"},{"id":13,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-13","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Edit/add/try out R code here"},{"id":14,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-14","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Load 'tidylog' \nlibrary(tidylog)\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\nsum(duplicated(new$subject_id))\n\n# Which one is duplicated\nnew %>% \n  group_by(subject_id) %>% \n  mutate(n=n()) %>% \n  filter(n>1)\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\nsum(is.na(new$subject_id))\n\n# Check the dimensions\ndim(b)\ndim(new)\nb2 <- left_join(b, new, by=\"subject_id\")\nhead(b2)\ndim(b2)\nb3 <- full_join(b, new, by=\"subject_id\")\ndim(b3)"},{"id":15,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-15","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Edit/add/try out R code here"},{"id":16,"options":{"output":"true","dpi":72,"fig-cap":"","editor-font-scale":"1","comment":"","out-height":"","context":"interactive","results":"markup","editor-word-wrap":"true","classes":"","out-width":"700px","label":"unnamed-chunk-16","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false","message":"true","fig-width":7,"autorun":"false","fig-height":5},"code":"# Tally how many of b's subject_id's are in new\ntable(b$subject_id %in% new$subject_id)\n# Tally how many of new's subject_id's are in b\ntable(new$subject_id %in% b$subject_id)\n# List the b's subject_id's that are not in new\nb$subject_id[!(b$subject_id %in% new$subject_id)]\n# List the new's subject_id's that are not in b\nnew$subject_id[!(new$subject_id %in% b$subject_id)]\n\n# Simpler to do this with anti_join's\nanti_join(b, new, by=\"subject_id\")\nanti_join(new, b, by=\"subject_id\")"}];
 
 </script>
 <script type="module">
@@ -1569,7 +1569,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./merging_exercise.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./merging_exercise.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1620,200 +1620,206 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Readings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Active Learning and Readings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gitIntro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GitHub</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Git_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Git Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RBasicsLecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture: R Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture: R Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Rbasics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RFactors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slurm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1867,17 +1873,17 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#merging-best-practice" id="toc-merging-best-practice" class="nav-link active" data-scroll-target="#merging-best-practice"><span class="header-section-number">20.1</span> Merging Best Practice</a></li>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">20.2</span> Load Libraries</a></li>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data"><span class="header-section-number">20.3</span> Input data</a></li>
-  <li><a href="#select-a-subset-of-subject-level-fields" id="toc-select-a-subset-of-subject-level-fields" class="nav-link" data-scroll-target="#select-a-subset-of-subject-level-fields"><span class="header-section-number">20.4</span> Select a subset of subject-level fields</a></li>
-  <li><a href="#unique-records" id="toc-unique-records" class="nav-link" data-scroll-target="#unique-records"><span class="header-section-number">20.5</span> Unique records</a></li>
-  <li><a href="#check-that-the-subject_ids-are-now-not-duplicated" id="toc-check-that-the-subject_ids-are-now-not-duplicated" class="nav-link" data-scroll-target="#check-that-the-subject_ids-are-now-not-duplicated"><span class="header-section-number">20.6</span> Check that the <code>subject_id</code>’s are now not duplicated</a></li>
-  <li><a href="#create-random-integer-ids" id="toc-create-random-integer-ids" class="nav-link" data-scroll-target="#create-random-integer-ids"><span class="header-section-number">20.7</span> Create random integer IDs</a></li>
-  <li><a href="#merge-in-new-phenotype-information" id="toc-merge-in-new-phenotype-information" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information"><span class="header-section-number">20.8</span> Merge in new phenotype information</a></li>
-  <li><a href="#always-be-careful-when-merging." id="toc-always-be-careful-when-merging." class="nav-link" data-scroll-target="#always-be-careful-when-merging."><span class="header-section-number">20.9</span> Always be careful when merging.</a></li>
-  <li><a href="#merge-in-new-phenotype-information-1" id="toc-merge-in-new-phenotype-information-1" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information-1"><span class="header-section-number">20.10</span> Merge in new phenotype information</a></li>
-  <li><a href="#further-checks" id="toc-further-checks" class="nav-link" data-scroll-target="#further-checks"><span class="header-section-number">20.11</span> Further checks</a></li>
+  <li><a href="#merging-best-practice" id="toc-merging-best-practice" class="nav-link active" data-scroll-target="#merging-best-practice"><span class="header-section-number">21.1</span> Merging Best Practice</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">21.2</span> Load Libraries</a></li>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data"><span class="header-section-number">21.3</span> Input data</a></li>
+  <li><a href="#select-a-subset-of-subject-level-fields" id="toc-select-a-subset-of-subject-level-fields" class="nav-link" data-scroll-target="#select-a-subset-of-subject-level-fields"><span class="header-section-number">21.4</span> Select a subset of subject-level fields</a></li>
+  <li><a href="#unique-records" id="toc-unique-records" class="nav-link" data-scroll-target="#unique-records"><span class="header-section-number">21.5</span> Unique records</a></li>
+  <li><a href="#check-that-the-subject_ids-are-now-not-duplicated" id="toc-check-that-the-subject_ids-are-now-not-duplicated" class="nav-link" data-scroll-target="#check-that-the-subject_ids-are-now-not-duplicated"><span class="header-section-number">21.6</span> Check that the <code>subject_id</code>’s are now not duplicated</a></li>
+  <li><a href="#create-random-integer-ids" id="toc-create-random-integer-ids" class="nav-link" data-scroll-target="#create-random-integer-ids"><span class="header-section-number">21.7</span> Create random integer IDs</a></li>
+  <li><a href="#merge-in-new-phenotype-information" id="toc-merge-in-new-phenotype-information" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information"><span class="header-section-number">21.8</span> Merge in new phenotype information</a></li>
+  <li><a href="#always-be-careful-when-merging." id="toc-always-be-careful-when-merging." class="nav-link" data-scroll-target="#always-be-careful-when-merging."><span class="header-section-number">21.9</span> Always be careful when merging.</a></li>
+  <li><a href="#merge-in-new-phenotype-information-1" id="toc-merge-in-new-phenotype-information-1" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information-1"><span class="header-section-number">21.10</span> Merge in new phenotype information</a></li>
+  <li><a href="#further-checks" id="toc-further-checks" class="nav-link" data-scroll-target="#further-checks"><span class="header-section-number">21.11</span> Further checks</a></li>
   </ul>
 </nav>
     </div>
@@ -2170,7 +2176,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></h1>
 </div>
 
 
@@ -2187,8 +2193,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="merging-best-practice" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="merging-best-practice"><span class="header-section-number">20.1</span> Merging Best Practice</h2>
+<section id="merging-best-practice" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="merging-best-practice"><span class="header-section-number">21.1</span> Merging Best Practice</h2>
 <ul>
 <li><em>Always</em> be careful when merging.<br>
 </li>
@@ -2208,25 +2214,25 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>When using tidyverse <code>join</code> commands, load the <code>tidylog</code> R package in order to turn on very useful additional feedback.</li>
 </ul>
 </section>
-<section id="load-libraries" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">20.2</span> Load Libraries</h2>
+<section id="load-libraries" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">21.2</span> Load Libraries</h2>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="input-data" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="input-data"><span class="header-section-number">20.3</span> Input data</h2>
+<section id="input-data" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="input-data"><span class="header-section-number">21.3</span> Input data</h2>
 <p>Let’s load the synthetic simulated Project 1 data and associated data dictionary:</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="select-a-subset-of-subject-level-fields" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="select-a-subset-of-subject-level-fields"><span class="header-section-number">20.4</span> Select a subset of subject-level fields</h2>
+<section id="select-a-subset-of-subject-level-fields" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="select-a-subset-of-subject-level-fields"><span class="header-section-number">21.4</span> Select a subset of subject-level fields</h2>
 <p>Set up a data frame ‘a’ that has these subject-level fields: “subject_id” “maternal_age_delivery” “case_control_status” “prepregnancy_BMI”</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="unique-records" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="unique-records"><span class="header-section-number">20.5</span> Unique records</h2>
+<section id="unique-records" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="unique-records"><span class="header-section-number">21.5</span> Unique records</h2>
 <p>The data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.</p>
 <p>From your data frame ‘a’ select only the unique records, creating data frame <code>b</code>.</p>
 <div id="qwebr-insertion-location-4"></div>
@@ -2245,8 +2251,8 @@ Expand to see solution
 <div class="callout-body-container callout-body">
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<section id="comment" class="level3" data-number="20.5.1">
-<h3 data-number="20.5.1" class="anchored" data-anchor-id="comment"><span class="header-section-number">20.5.1</span> Comment</h3>
+<section id="comment" class="level3" data-number="21.5.1">
+<h3 data-number="21.5.1" class="anchored" data-anchor-id="comment"><span class="header-section-number">21.5.1</span> Comment</h3>
 <p>It is better to apply <code>unique</code> to the whole data frame, not just to the <code>subject_id</code> column, as that ensures that you are selecting whole records that are unique across all of their columns.</p>
 <p>Note that the <code>dplyr</code> R package provides the <code>distinct</code> command, which keeps only unique/distinct rows from a data frame. It is faster than the <code>unique</code> command.</p>
 <div id="qwebr-insertion-location-6"></div>
@@ -2256,8 +2262,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="check-that-the-subject_ids-are-now-not-duplicated" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="check-that-the-subject_ids-are-now-not-duplicated"><span class="header-section-number">20.6</span> Check that the <code>subject_id</code>’s are now not duplicated</h2>
+<section id="check-that-the-subject_ids-are-now-not-duplicated" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="check-that-the-subject_ids-are-now-not-duplicated"><span class="header-section-number">21.6</span> Check that the <code>subject_id</code>’s are now not duplicated</h2>
 <p>Are the <code>subject_id</code>’s unique?</p>
 <div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2279,8 +2285,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="create-random-integer-ids" class="level2" data-number="20.7">
-<h2 data-number="20.7" class="anchored" data-anchor-id="create-random-integer-ids"><span class="header-section-number">20.7</span> Create random integer IDs</h2>
+<section id="create-random-integer-ids" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="create-random-integer-ids"><span class="header-section-number">21.7</span> Create random integer IDs</h2>
 <p>Create a new column <code>ID</code> containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the <code>sample</code> command, sampling integers from 1 to the number of rows in data frame <code>b</code>.</p>
 <div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2305,16 +2311,16 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="merge-in-new-phenotype-information" class="level2" data-number="20.8">
-<h2 data-number="20.8" class="anchored" data-anchor-id="merge-in-new-phenotype-information"><span class="header-section-number">20.8</span> Merge in new phenotype information</h2>
+<section id="merge-in-new-phenotype-information" class="level2" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="merge-in-new-phenotype-information"><span class="header-section-number">21.8</span> Merge in new phenotype information</h2>
 <p>The PI has sent you new trait data for your subjects.</p>
 <div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Carefully merge this in using tidyverse commands.</p>
 <p>If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.</p>
 </section>
-<section id="always-be-careful-when-merging." class="level2" data-number="20.9">
-<h2 data-number="20.9" class="anchored" data-anchor-id="always-be-careful-when-merging."><span class="header-section-number">20.9</span> Always be careful when merging.</h2>
+<section id="always-be-careful-when-merging." class="level2" data-number="21.9">
+<h2 data-number="21.9" class="anchored" data-anchor-id="always-be-careful-when-merging."><span class="header-section-number">21.9</span> Always be careful when merging.</h2>
 <ul>
 <li><em>Always check for duplicated IDs</em> before doing the merge.</li>
 <li>Always check that your ID columns do not contain any missing values.</li>
@@ -2331,8 +2337,8 @@ Expand to see solution
 <li>When using tidyverse <code>join</code> commands, load the <code>tidylog</code> R package in order to turn on very useful additional feedback.</li>
 </ul>
 </section>
-<section id="merge-in-new-phenotype-information-1" class="level2" data-number="20.10">
-<h2 data-number="20.10" class="anchored" data-anchor-id="merge-in-new-phenotype-information-1"><span class="header-section-number">20.10</span> Merge in new phenotype information</h2>
+<section id="merge-in-new-phenotype-information-1" class="level2" data-number="21.10">
+<h2 data-number="21.10" class="anchored" data-anchor-id="merge-in-new-phenotype-information-1"><span class="header-section-number">21.10</span> Merge in new phenotype information</h2>
 <p>Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame <code>b</code> which was created above when from your data frame ‘a’ you selected only the unique records.</p>
 <p>If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.</p>
 <div id="qwebr-insertion-location-13"></div>
@@ -2356,8 +2362,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="further-checks" class="level2" data-number="20.11">
-<h2 data-number="20.11" class="anchored" data-anchor-id="further-checks"><span class="header-section-number">20.11</span> Further checks</h2>
+<section id="further-checks" class="level2" data-number="21.11">
+<h2 data-number="21.11" class="anchored" data-anchor-id="further-checks"><span class="header-section-number">21.11</span> Further checks</h2>
 <p>When merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.</p>
 <p>Check if the set of <code>subject_id</code> IDs in your dataframe <code>b</code> fully overlaps the set of <code>subject_id</code> IDs in the <code>new</code> data set. If there is not full overlap, document which IDs do not overlap.</p>
 <p>Hint: Use an <code>anti_join</code>.</p>
@@ -3022,12 +3028,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./recoding_reshaping_interactive.html" class="pagination-link" aria-label="R Recoding Reshaping Exercise">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./R_graphics_exercises.html" class="pagination-link" aria-label="R Graphics Exercises">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
