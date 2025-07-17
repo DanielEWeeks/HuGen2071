@@ -3,17 +3,17 @@ editor:
   mode: source
 ---
 
-# Large Language Models (LLMs)
+# Artificial Intelligence
 
-## Don't use LLMs when trying to learn to program
+## Don't use Large Language Models (LLMs) when trying to learn to program
 
 > "Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible." - Andrew Heiss
 
 While large language models (LLMs) can quickly generate plausible code, LLMs have no knowledge of whether or not that code is correct or if it will even run. LLMs simply spit out what sounds good based on concepts that were most common in their training data.
 
-So to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework and midterm problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.
+So to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.
 
-Our recommendation is not to use LLMs to solve your homework and midterm problems.
+Our recommendation is **not** to use LLMs to solve your homework problems in this course.
 
 This concurs with Andrew Heiss's advice ([link](https://datavizf24.classes.andrewheiss.com/resource/ai-bs.html)) that
 
@@ -21,7 +21,7 @@ This concurs with Andrew Heiss's advice ([link](https://datavizf24.classes.andre
 
 ## LLMs and subtle mistakes
 
-Here's an example where GitHub Copilot gives an incorrect answer to this question:
+Here's an example where GitHub Copilot gave an incorrect answer to this question:
 
 **Question:** Can you find a subtle mistake in the read_data_file function?
 
@@ -37,6 +37,8 @@ read_data_file <- function(n=1, results) {
   invisible(results)
 }
 ```
+
+**GitHub Copilot's Answer**
 
 GitHub Copilot doesn't like the `invisible(results)` line at the end of the function but that is not a 'mistake' per se - that is a programming choice.
 
@@ -82,4 +84,3 @@ If the assignment expects no usage of AI, you will be asked to include an explic
 
 If you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.
 
-So, for each assignment where AI may be used, you will be required to say whether and how you used AI for assistance.
