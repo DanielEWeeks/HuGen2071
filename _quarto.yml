@@ -14,6 +14,7 @@ book:
   - preparation.qmd 
   - intro.qmd
   - logistics.qmd
+  - LLMs.qmd
   - Readings.qmd
   - gitIntro.qmd
   - Git_commands.Qmd

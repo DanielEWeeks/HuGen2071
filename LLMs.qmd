@@ -1,0 +1,85 @@
+---
+editor: 
+  mode: source
+---
+
+# Large Language Models (LLMs)
+
+## Don't use LLMs when trying to learn to program
+
+> "Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible." - Andrew Heiss
+
+While large language models (LLMs) can quickly generate plausible code, LLMs have no knowledge of whether or not that code is correct or if it will even run. LLMs simply spit out what sounds good based on concepts that were most common in their training data.
+
+So to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework and midterm problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.
+
+Our recommendation is not to use LLMs to solve your homework and midterm problems.
+
+This concurs with Andrew Heiss's advice ([link](https://datavizf24.classes.andrewheiss.com/resource/ai-bs.html)) that
+
+> "I highly recommend **not** using ChatGPT or similar large language models (LLMs) in this class."
+
+## LLMs and subtle mistakes
+
+Here's an example where GitHub Copilot gives an incorrect answer to this question:
+
+**Question:** Can you find a subtle mistake in the read_data_file function?
+
+```         
+results <- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)
+read_data_file <- function(n=1, results) {
+  fl1 <- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
+  results$dataset[n] <- paste0("dataset",n,".txt")
+  results$N <- nrow(fl1)
+  results$mean[n] <- mean(fl1$trait)
+  results$median[n] <- median(fl1$trait)
+  results$var[n] <- var(fl1$trait)
+  invisible(results)
+}
+```
+
+GitHub Copilot doesn't like the `invisible(results)` line at the end of the function but that is not a 'mistake' per se - that is a programming choice.
+
+GitHub Copilot's output is as follows:
+
+```         
+# The mistake is that the function does not return the updated results data frame.
+# The function should return the results data frame at the end.
+read_data_file <- function(n=1, results) {
+  fl1 <- read.table(paste0("data/dataset",n,".txt"),sep="\t",header=TRUE)
+  results$dataset[n] <- paste0("dataset",n,".txt")
+  results$N[n] <- nrow(fl1)
+  results$mean[n] <- mean(fl1$trait)
+  results$median[n] <- median(fl1$trait)
+  results$var[n] <- var(fl1$trait)
+  return(results)  # Return the updated results data frame
+}
+for (i in 1:6) {
+  results <- read_data_file(n=i, results=results)
+}
+```
+
+Note that to know whether or not GitHub Copilot's plausible sounding answer is correct you'd actually need to know R yourself. Further, not only did GitHub Copilot misdiagnose the problem, what's worse about GitHub Copilot's answer is GitHub Copilot actually fixed the subtle mistake without explaining what it did. Do you see what it did? Do you understand what it did?
+
+## The Artificial Intelligence Assessment Scale
+
+The Artificial Intelligence Assessment Scale is a schema for defining different levels of acceptable usage of artificial intelligence (AI) in assignments. It helps clarify how AI can be used in a way that supports learning while maintaining academic integrity.
+
+![Artificial Intelligence Assessment Scale](img/ai-assessment-scale-large.png)
+
+The Artificial Intelligence Assessment Scale was created by [Perkins et al. (2024)](https://doi.org/10.48550/arXiv.2412.09029) and is a revised version of the initial [AI Assessment Scale](https://doi.org/10.53761/q3azde36) developed earlier by Perkins et al. (2024). The authors' goal "was to offer a way for educators, including ourselves, to have open dialogue with students about the values of educational integrity, and to prioritise a transparent approach to how GenAI could be used in assessment.
+
+**References:**
+
+1.  Perkins M, Roe J, Furze L. The AI Assessment Scale Revisited: A Framework for Educational Assessment. arXiv. 2024 Dec 12; DOI: https://doi.org/10.48550/arXiv.2412.09029\
+2.  Perkins M, Furze L, Roe J, MacVaugh J. The Artificial Intelligence Assessment Scale (AIAS): A Framework for Ethical Integration of Generative AI in Educational Assessment. Journal of University Teaching and Learning Practice. 2024 Apr 19;21(06). DOI: https://doi.org/10.53761/q3azde36
+
+## Declaration of Artificial Intelligence (AI) usage
+
+Each assignment will define the desired acceptable usage of Artificial Intelligence (AI).
+
+If the assignment expects no usage of AI, you will be asked to include an explicit statement that AI was not used.
+
+If you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.
+
+So, for each assignment where AI may be used, you will be required to say whether and how you used AI for assistance.
