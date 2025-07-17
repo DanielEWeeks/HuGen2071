@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"out-height":"","classes":"","warning":"true","results":"markup","context":"interactive","editor-font-scale":"1","read-only":"false","comment":"","autorun":"false","editor-quick-suggestions":"false","output":"true","message":"true","fig-height":5,"dpi":72,"editor-max-height":"","editor-word-wrap":"true","out-width":"700px","label":"unnamed-chunk-1","fig-width":7,"fig-cap":""}},{"id":2,"code":"# Edit/add R code here","options":{"out-height":"","classes":"","warning":"true","results":"markup","context":"interactive","editor-font-scale":"1","read-only":"false","comment":"","autorun":"false","editor-quick-suggestions":"false","output":"true","message":"true","fig-height":5,"dpi":72,"editor-max-height":"","editor-word-wrap":"true","out-width":"700px","label":"unnamed-chunk-2","fig-width":7,"fig-cap":""}},{"id":3,"code":"# Edit/add R code here","options":{"out-height":"","classes":"","warning":"true","results":"markup","context":"interactive","editor-font-scale":"1","read-only":"false","comment":"","autorun":"false","editor-quick-suggestions":"false","output":"true","message":"true","fig-height":5,"dpi":72,"editor-max-height":"","editor-word-wrap":"true","out-width":"700px","label":"unnamed-chunk-3","fig-width":7,"fig-cap":""}}];
+globalThis.qwebrCellDetails = [{"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","id":1,"options":{"read-only":"false","fig-width":7,"output":"true","fig-height":5,"out-width":"700px","message":"true","context":"interactive","fig-cap":"","results":"markup","autorun":"false","label":"unnamed-chunk-1","warning":"true","comment":"","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-word-wrap":"true","editor-quick-suggestions":"false"}},{"code":"# Edit/add R code here","id":2,"options":{"read-only":"false","fig-width":7,"output":"true","fig-height":5,"out-width":"700px","message":"true","context":"interactive","fig-cap":"","results":"markup","autorun":"false","label":"unnamed-chunk-2","warning":"true","comment":"","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-word-wrap":"true","editor-quick-suggestions":"false"}},{"code":"# Edit/add R code here","id":3,"options":{"read-only":"false","fig-width":7,"output":"true","fig-height":5,"out-width":"700px","message":"true","context":"interactive","fig-cap":"","results":"markup","autorun":"false","label":"unnamed-chunk-3","warning":"true","comment":"","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-word-wrap":"true","editor-quick-suggestions":"false"}}];
 
 </script>
 <script type="module">
@@ -1655,7 +1655,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Large Language Models (LLMs)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Artificial Intelligence</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2329,26 +2329,26 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time             X      Y      Z
-  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01  0.265  -0.197  4.79 
-2 2009-01-02 -0.0127 -4.37   0.223
-3 2009-01-03 -1.04   -3.04   1.13 
-4 2009-01-04 -0.669   2.82   0.861
-5 2009-01-05  1.45    1.00  -6.63 
-6 2009-01-06 -0.684   0.722 -1.45 </code></pre>
+  time             X       Y      Z
+  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01  0.488  -0.100  -2.77 
+2 2009-01-02  0.939   1.14   -1.73 
+3 2009-01-03 -0.975  -0.146   5.59 
+4 2009-01-04 -0.0566 -0.0746 -2.88 
+5 2009-01-05  1.55    1.20    0.961
+6 2009-01-06  0.873  -0.776  -5.18 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock   price
   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X      0.265 
-2 2009-01-02 X     -0.0127
-3 2009-01-03 X     -1.04  
-4 2009-01-04 X     -0.669 
-5 2009-01-05 X      1.45  
-6 2009-01-06 X     -0.684 </code></pre>
+1 2009-01-01 X      0.488 
+2 2009-01-02 X      0.939 
+3 2009-01-03 X     -0.975 
+4 2009-01-04 X     -0.0566
+5 2009-01-05 X      1.55  
+6 2009-01-06 X      0.873 </code></pre>
 </div>
 </div>
 </section>
@@ -2359,14 +2359,14 @@ sp    m     014  30</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock   price
-  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2009-01-01 X      0.265 
-2 2009-01-01 Y     -0.197 
-3 2009-01-01 Z      4.79  
-4 2009-01-02 X     -0.0127
-5 2009-01-02 Y     -4.37  
-6 2009-01-02 Z      0.223 </code></pre>
+  time       stock  price
+  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
+1 2009-01-01 X      0.488
+2 2009-01-01 Y     -0.100
+3 2009-01-01 Z     -2.77 
+4 2009-01-02 X      0.939
+5 2009-01-02 Y      1.14 
+6 2009-01-02 Z     -1.73 </code></pre>
 </div>
 </div>
 </section>

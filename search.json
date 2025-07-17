@@ -112,51 +112,51 @@
   {
     "objectID": "LLMs.html",
     "href": "LLMs.html",
-    "title": "4  Large Language Models (LLMs)",
+    "title": "4  Artificial Intelligence",
     "section": "",
-    "text": "4.1 Don’t use LLMs when trying to learn to program\nWhile large language models (LLMs) can quickly generate plausible code, LLMs have no knowledge of whether or not that code is correct or if it will even run. LLMs simply spit out what sounds good based on concepts that were most common in their training data.\nSo to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework and midterm problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.\nOur recommendation is not to use LLMs to solve your homework and midterm problems.\nThis concurs with Andrew Heiss’s advice (link) that",
+    "text": "4.1 Don’t use Large Language Models (LLMs) when trying to learn to program\nWhile large language models (LLMs) can quickly generate plausible code, LLMs have no knowledge of whether or not that code is correct or if it will even run. LLMs simply spit out what sounds good based on concepts that were most common in their training data.\nSo to usefully use LLMs to help solve programming problems, you yourself need to know enough to be able to evaluate whether the presented solution is right or wrong. Thus, if you yourself really want to learn to program, using LLMs to solve your homework and midterm problems will short circuit the learning process. Plus we as your teachers are not interested in evaluating LLM-generated output, as that gives us no measure of what you yourself know and markedly reduces our ability to help you learn.\nOur recommendation is not to use LLMs to solve your homework and midterm problems.\nThis concurs with Andrew Heiss’s advice (link) that",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large Language Models (LLMs)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
   },
   {
-    "objectID": "LLMs.html#dont-use-llms-when-trying-to-learn-to-program",
-    "href": "LLMs.html#dont-use-llms-when-trying-to-learn-to-program",
-    "title": "4  Large Language Models (LLMs)",
+    "objectID": "LLMs.html#dont-use-large-language-models-llms-when-trying-to-learn-to-program",
+    "href": "LLMs.html#dont-use-large-language-models-llms-when-trying-to-learn-to-program",
+    "title": "4  Artificial Intelligence",
     "section": "",
     "text": "“Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible.” - Andrew Heiss\n\n\n\n\n\n\n“I highly recommend not using ChatGPT or similar large language models (LLMs) in this class.”",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large Language Models (LLMs)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
   },
   {
     "objectID": "LLMs.html#llms-and-subtle-mistakes",
     "href": "LLMs.html#llms-and-subtle-mistakes",
-    "title": "4  Large Language Models (LLMs)",
+    "title": "4  Artificial Intelligence",
     "section": "4.2 LLMs and subtle mistakes",
     "text": "4.2 LLMs and subtle mistakes\nHere’s an example where GitHub Copilot gives an incorrect answer to this question:\nQuestion: Can you find a subtle mistake in the read_data_file function?\nresults &lt;- data.frame(dataset=rep(NA,6),N=NA, mean=NA, median=NA, var=NA)\nread_data_file &lt;- function(n=1, results) {\n  fl1 &lt;- read.table(paste0(\"data/dataset\",n,\".txt\"),sep=\"\\t\",header=TRUE)\n  results$dataset[n] &lt;- paste0(\"dataset\",n,\".txt\")\n  results$N &lt;- nrow(fl1)\n  results$mean[n] &lt;- mean(fl1$trait)\n  results$median[n] &lt;- median(fl1$trait)\n  results$var[n] &lt;- var(fl1$trait)\n  invisible(results)\n}\nGitHub Copilot doesn’t like the invisible(results) line at the end of the function but that is not a ‘mistake’ per se - that is a programming choice.\nGitHub Copilot’s output is as follows:\n# The mistake is that the function does not return the updated results data frame.\n# The function should return the results data frame at the end.\nread_data_file &lt;- function(n=1, results) {\n  fl1 &lt;- read.table(paste0(\"data/dataset\",n,\".txt\"),sep=\"\\t\",header=TRUE)\n  results$dataset[n] &lt;- paste0(\"dataset\",n,\".txt\")\n  results$N[n] &lt;- nrow(fl1)\n  results$mean[n] &lt;- mean(fl1$trait)\n  results$median[n] &lt;- median(fl1$trait)\n  results$var[n] &lt;- var(fl1$trait)\n  return(results)  # Return the updated results data frame\n}\nfor (i in 1:6) {\n  results &lt;- read_data_file(n=i, results=results)\n}\nNote that to know whether or not GitHub Copilot’s plausible sounding answer is correct you’d actually need to know R yourself. Further, not only did GitHub Copilot misdiagnose the problem, what’s worse about GitHub Copilot’s answer is GitHub Copilot actually fixed the subtle mistake without explaining what it did. Do you see what it did? Do you understand what it did?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large Language Models (LLMs)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
   },
   {
     "objectID": "LLMs.html#the-artificial-intelligence-assessment-scale",
     "href": "LLMs.html#the-artificial-intelligence-assessment-scale",
-    "title": "4  Large Language Models (LLMs)",
+    "title": "4  Artificial Intelligence",
     "section": "4.3 The Artificial Intelligence Assessment Scale",
     "text": "4.3 The Artificial Intelligence Assessment Scale\nThe Artificial Intelligence Assessment Scale is a schema for defining different levels of acceptable usage of artificial intelligence (AI) in assignments. It helps clarify how AI can be used in a way that supports learning while maintaining academic integrity.\n\n\n\nArtificial Intelligence Assessment Scale\n\n\nThe Artificial Intelligence Assessment Scale was created by Perkins et al. (2024) and is a revised version of the initial AI Assessment Scale developed earlier by Perkins et al. (2024). The authors’ goal “was to offer a way for educators, including ourselves, to have open dialogue with students about the values of educational integrity, and to prioritise a transparent approach to how GenAI could be used in assessment.\nReferences:\n\nPerkins M, Roe J, Furze L. The AI Assessment Scale Revisited: A Framework for Educational Assessment. arXiv. 2024 Dec 12; DOI: https://doi.org/10.48550/arXiv.2412.09029\n\nPerkins M, Furze L, Roe J, MacVaugh J. The Artificial Intelligence Assessment Scale (AIAS): A Framework for Ethical Integration of Generative AI in Educational Assessment. Journal of University Teaching and Learning Practice. 2024 Apr 19;21(06). DOI: https://doi.org/10.53761/q3azde36",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large Language Models (LLMs)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
   },
   {
     "objectID": "LLMs.html#declaration-of-artificial-intelligence-ai-usage",
     "href": "LLMs.html#declaration-of-artificial-intelligence-ai-usage",
-    "title": "4  Large Language Models (LLMs)",
+    "title": "4  Artificial Intelligence",
     "section": "4.4 Declaration of Artificial Intelligence (AI) usage",
     "text": "4.4 Declaration of Artificial Intelligence (AI) usage\nEach assignment will define the desired acceptable usage of Artificial Intelligence (AI).\nIf the assignment expects no usage of AI, you will be asked to include an explicit statement that AI was not used.\nIf you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.\nSo, for each assignment where AI may be used, you will be required to say whether and how you used AI for assistance.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large Language Models (LLMs)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
   },
   {
@@ -1344,7 +1344,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "19  R Tidyverse Exercise",
     "section": "19.4 Gather",
-    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.265  -0.197  4.79 \n2 2009-01-02 -0.0127 -4.37   0.223\n3 2009-01-03 -1.04   -3.04   1.13 \n4 2009-01-04 -0.669   2.82   0.861\n5 2009-01-05  1.45    1.00  -6.63 \n6 2009-01-06 -0.684   0.722 -1.45 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.265 \n2 2009-01-02 X     -0.0127\n3 2009-01-03 X     -1.04  \n4 2009-01-04 X     -0.669 \n5 2009-01-05 X      1.45  \n6 2009-01-06 X     -0.684",
+    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.488  -0.100  -2.77 \n2 2009-01-02  0.939   1.14   -1.73 \n3 2009-01-03 -0.975  -0.146   5.59 \n4 2009-01-04 -0.0566 -0.0746 -2.88 \n5 2009-01-05  1.55    1.20    0.961\n6 2009-01-06  0.873  -0.776  -5.18 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.488 \n2 2009-01-02 X      0.939 \n3 2009-01-03 X     -0.975 \n4 2009-01-04 X     -0.0566\n5 2009-01-05 X      1.55  \n6 2009-01-06 X      0.873",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1354,7 +1354,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "19  R Tidyverse Exercise",
     "section": "19.5 Pivot_longer",
-    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.265 \n2 2009-01-01 Y     -0.197 \n3 2009-01-01 Z      4.79  \n4 2009-01-02 X     -0.0127\n5 2009-01-02 Y     -4.37  \n6 2009-01-02 Z      0.223",
+    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.488\n2 2009-01-01 Y     -0.100\n3 2009-01-01 Z     -2.77 \n4 2009-01-02 X      0.939\n5 2009-01-02 Y      1.14 \n6 2009-01-02 Z     -1.73",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
