@@ -63,7 +63,7 @@ for (i in 1:6) {
 
 Note that to know whether or not GitHub Copilot's plausible sounding answer is correct you'd actually need to know R yourself. Further, not only did GitHub Copilot misdiagnose the problem, what's worse about GitHub Copilot's answer is GitHub Copilot actually fixed the subtle mistake without explaining what it did. Do you see what it did? Do you understand what it did?
 
-## Stochastic Parrot
+## Stochastic Parrots
 
 It is important to remember that Large Language Models do not know what is true or false - they are simply "stochastic parrots" that generate plausible sounding text based on the patterns they learned from their training data. 
 
