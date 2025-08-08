@@ -140,11 +140,21 @@
     ]
   },
   {
+    "objectID": "LLMs.html#stochastic-parrots",
+    "href": "LLMs.html#stochastic-parrots",
+    "title": "4  Artificial Intelligence",
+    "section": "4.3 Stochastic Parrots",
+    "text": "4.3 Stochastic Parrots\nIt is important to remember that Large Language Models do not know what is true or false - they are simply “stochastic parrots” that generate plausible sounding text based on the patterns they learned from their training data.\nHere’s an amusing example:\n\nThis is amusing because we have adequate knowledge ourselves to know that the word “blueberries” only contains two b’s, not three. It is also amusing because this uses the most current GPT-5 version of ChatGPT, which was described as: “GPT-5 is the first time that it really feels like talking to an expert in any topic, like a PhD-level expert.” Must be like talking to me - I have a Ph.D. and I can’t count either!\nHowever, this is actually very concerning because when using artificial intelligence in more complicated situations where you don’t have the domain knowledge to know that the provided answer is wrong, you could easily fooled into thinking that the answer is correct.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
+    ]
+  },
+  {
     "objectID": "LLMs.html#the-artificial-intelligence-assessment-scale",
     "href": "LLMs.html#the-artificial-intelligence-assessment-scale",
     "title": "4  Artificial Intelligence",
-    "section": "4.3 The Artificial Intelligence Assessment Scale",
-    "text": "4.3 The Artificial Intelligence Assessment Scale\nThe Artificial Intelligence Assessment Scale is a schema for defining different levels of acceptable usage of artificial intelligence (AI) in assignments. It helps clarify how AI can be used in a way that supports learning while maintaining academic integrity.\n\n\n\nArtificial Intelligence Assessment Scale\n\n\nThe Artificial Intelligence Assessment Scale was created by Perkins et al. (2024) and is a revised version of the initial AI Assessment Scale developed earlier by Perkins et al. (2024). The authors’ goal “was to offer a way for educators, including ourselves, to have open dialogue with students about the values of educational integrity, and to prioritise a transparent approach to how GenAI could be used in assessment.\nReferences:\n\nPerkins M, Roe J, Furze L. The AI Assessment Scale Revisited: A Framework for Educational Assessment. arXiv. 2024 Dec 12; DOI: https://doi.org/10.48550/arXiv.2412.09029\n\nPerkins M, Furze L, Roe J, MacVaugh J. The Artificial Intelligence Assessment Scale (AIAS): A Framework for Ethical Integration of Generative AI in Educational Assessment. Journal of University Teaching and Learning Practice. 2024 Apr 19;21(06). DOI: https://doi.org/10.53761/q3azde36",
+    "section": "4.4 The Artificial Intelligence Assessment Scale",
+    "text": "4.4 The Artificial Intelligence Assessment Scale\nThe Artificial Intelligence Assessment Scale is a schema for defining different levels of acceptable usage of artificial intelligence (AI) in assignments. It helps clarify how AI can be used in a way that supports learning while maintaining academic integrity.\n\n\n\nArtificial Intelligence Assessment Scale\n\n\nThe Artificial Intelligence Assessment Scale was created by Perkins et al. (2024) and is a revised version of the initial AI Assessment Scale developed earlier by Perkins et al. (2024). The authors’ goal “was to offer a way for educators, including ourselves, to have open dialogue with students about the values of educational integrity, and to prioritise a transparent approach to how GenAI could be used in assessment.\nReferences:\n\nPerkins M, Roe J, Furze L. The AI Assessment Scale Revisited: A Framework for Educational Assessment. arXiv. 2024 Dec 12; DOI: https://doi.org/10.48550/arXiv.2412.09029\n\nPerkins M, Furze L, Roe J, MacVaugh J. The Artificial Intelligence Assessment Scale (AIAS): A Framework for Ethical Integration of Generative AI in Educational Assessment. Journal of University Teaching and Learning Practice. 2024 Apr 19;21(06). DOI: https://doi.org/10.53761/q3azde36",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
@@ -153,8 +163,8 @@
     "objectID": "LLMs.html#declaration-of-artificial-intelligence-ai-usage",
     "href": "LLMs.html#declaration-of-artificial-intelligence-ai-usage",
     "title": "4  Artificial Intelligence",
-    "section": "4.4 Declaration of Artificial Intelligence (AI) usage",
-    "text": "4.4 Declaration of Artificial Intelligence (AI) usage\nEach assignment will define the desired acceptable usage of Artificial Intelligence (AI).\nIf the assignment expects no usage of AI, you will be asked to include an explicit statement that AI was not used.\nIf you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.",
+    "section": "4.5 Declaration of Artificial Intelligence (AI) usage",
+    "text": "4.5 Declaration of Artificial Intelligence (AI) usage\nEach assignment will define the desired acceptable usage of Artificial Intelligence (AI).\nIf the assignment expects no usage of AI, you will be asked to include an explicit statement that AI was not used.\nIf you used AI, you will be required to include a statement that describes how you used AI to help you complete the assignment.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
@@ -1344,7 +1354,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "19  R Tidyverse Exercise",
     "section": "19.4 Gather",
-    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.690   2.64   -2.06 \n2 2009-01-02  0.543  -2.94   -0.539\n3 2009-01-03  0.947  -0.0851  2.81 \n4 2009-01-04 -0.575   0.766   1.29 \n5 2009-01-05 -1.33    2.19    2.60 \n6 2009-01-06  0.0994 -2.02   -0.162\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.690 \n2 2009-01-02 X      0.543 \n3 2009-01-03 X      0.947 \n4 2009-01-04 X     -0.575 \n5 2009-01-05 X     -1.33  \n6 2009-01-06 X      0.0994",
+    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time           X      Y      Z\n  &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 1.24  -1.38  -6.28 \n2 2009-01-02 1.15  -0.147  1.42 \n3 2009-01-03 0.374  1.91  -1.26 \n4 2009-01-04 0.133  1.05  -6.24 \n5 2009-01-05 0.410 -1.18  -0.947\n6 2009-01-06 1.93  -2.19  -3.34 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock price\n  &lt;date&gt;     &lt;chr&gt; &lt;dbl&gt;\n1 2009-01-01 X     1.24 \n2 2009-01-02 X     1.15 \n3 2009-01-03 X     0.374\n4 2009-01-04 X     0.133\n5 2009-01-05 X     0.410\n6 2009-01-06 X     1.93",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1354,7 +1364,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "19  R Tidyverse Exercise",
     "section": "19.5 Pivot_longer",
-    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.690\n2 2009-01-01 Y      2.64 \n3 2009-01-01 Z     -2.06 \n4 2009-01-02 X      0.543\n5 2009-01-02 Y     -2.94 \n6 2009-01-02 Z     -0.539",
+    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.24 \n2 2009-01-01 Y     -1.38 \n3 2009-01-01 Z     -6.28 \n4 2009-01-02 X      1.15 \n5 2009-01-02 Y     -0.147\n6 2009-01-02 Z      1.42",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]

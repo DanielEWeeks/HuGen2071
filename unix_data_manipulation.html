@@ -441,48 +441,48 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="34.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">34.3.1</span> Question 1</h3>
 <p>Suppose file.bim is a tab-delimited plink bim file (meaning the second column has rsIDs). Which command will find the number of lines corresponding to rs2345, without finding spurious matches like rs23456?</p>
 <p>Please select the correct options (more than one may be correct).</p>
-<div id="radio_DGKIXIVHRT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value=""> <span>grep rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value=""> <span>grep -o rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value=""> <span>grep -oc rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value="answer"> <span>grep -wc rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value="answer"> <span>grep -w rs2345 file.bim | wc -l</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value="answer"> <span>awk '$2 == “rs2345”' file.bim | wc -l</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value="answer"> <span>grep -c “rs2345” file.bim (the unprinted characters are supposed to be word boundaries, i.e., backslash-b)</span></label><label><input type="radio" autocomplete="off" name="radio_DGKIXIVHRT" value="answer"> <span>cut -f2 file.bim | sort | uniq -c | awk '$2 == “rs2345” {print $1}'</span></label>
+<div id="radio_LKTZQKJZRG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value=""> <span>grep rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value=""> <span>grep -o rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value=""> <span>grep -oc rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value="answer"> <span>grep -wc rs2345 file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value="answer"> <span>grep -w rs2345 file.bim | wc -l</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value="answer"> <span>awk '$2 == “rs2345”' file.bim | wc -l</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value="answer"> <span>grep -c “rs2345” file.bim (the unprinted characters are supposed to be word boundaries, i.e., backslash-b)</span></label><label><input type="radio" autocomplete="off" name="radio_LKTZQKJZRG" value="answer"> <span>cut -f2 file.bim | sort | uniq -c | awk '$2 == “rs2345” {print $1}'</span></label>
 </div>
 </section>
 <section id="question-2" class="level3" data-number="34.3.2">
 <h3 data-number="34.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">34.3.2</span> Question 2</h3>
 <p>Which of the following cut commands extracts the first and third columns (in that order) from a comma-separated file named data.csv?</p>
 <p>Please select the correct option(s).</p>
-<div id="radio_XNKJLRNBFE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value="answer"> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value=""> <span> -f1,3 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value="answer"> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value=""> <span> -f3,1 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value=""> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value=""> <span> -f1-3 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_XNKJLRNBFE" value="answer"> <span>awk -F”,” '{print $1” “$3}' data.csv</span></label>
+<div id="radio_JVUAOWIFLH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value="answer"> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value=""> <span> -f1,3 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value="answer"> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value=""> <span> -f3,1 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value=""> <span>cut -d</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value=""> <span> -f1-3 data.csv</span></label><label><input type="radio" autocomplete="off" name="radio_JVUAOWIFLH" value="answer"> <span>awk -F”,” '{print $1” “$3}' data.csv</span></label>
 </div>
 </section>
 <section id="question-3" class="level3" data-number="34.3.3">
 <h3 data-number="34.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">34.3.3</span> Question 3</h3>
 <p>Which of the following commands correctly outputs a count of the unique lines from a file named records.txt, sorted by the most frequent line first?</p>
 <p>Please select the correct option(s).</p>
-<div id="radio_LUNPGYFYXT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LUNPGYFYXT" value=""> <span>uniq -c records.txt | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_LUNPGYFYXT" value=""> <span>sort -u records.txt | uniq -c | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_LUNPGYFYXT" value="answer"> <span>sort records.txt | uniq -c | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_LUNPGYFYXT" value=""> <span>sort -c records.txt | uniq -d | sort -nr</span></label>
+<div id="radio_RCKKMICCLZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RCKKMICCLZ" value=""> <span>uniq -c records.txt | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_RCKKMICCLZ" value=""> <span>sort -u records.txt | uniq -c | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_RCKKMICCLZ" value="answer"> <span>sort records.txt | uniq -c | sort -k1,1nr</span></label><label><input type="radio" autocomplete="off" name="radio_RCKKMICCLZ" value=""> <span>sort -c records.txt | uniq -d | sort -nr</span></label>
 </div>
 </section>
 <section id="question-4" class="level3" data-number="34.3.4">
 <h3 data-number="34.3.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">34.3.4</span> Question 4</h3>
 <p>Which of the following statements about awk is correct?</p>
 <p>Please select the correct option(s).</p>
-<div id="radio_RWLNERMECJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RWLNERMECJ" value=""> <span>awk 'print $1' file prints the first column of file.</span></label><label><input type="radio" autocomplete="off" name="radio_RWLNERMECJ" value="answer"> <span>awk '{ print $1 }' file prints the first column of file.</span></label><label><input type="radio" autocomplete="off" name="radio_RWLNERMECJ" value="answer"> <span>awk '{ print $2, $3 }' file prints the second and third columns, separated by a space.</span></label><label><input type="radio" autocomplete="off" name="radio_RWLNERMECJ" value="answer"> <span>awk '{ print $2 ” ” $3 }' file prints the second and third columns, separated by a tab.</span></label>
+<div id="radio_ISUDUDWGTJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ISUDUDWGTJ" value=""> <span>awk 'print $1' file prints the first column of file.</span></label><label><input type="radio" autocomplete="off" name="radio_ISUDUDWGTJ" value="answer"> <span>awk '{ print $1 }' file prints the first column of file.</span></label><label><input type="radio" autocomplete="off" name="radio_ISUDUDWGTJ" value="answer"> <span>awk '{ print $2, $3 }' file prints the second and third columns, separated by a space.</span></label><label><input type="radio" autocomplete="off" name="radio_ISUDUDWGTJ" value="answer"> <span>awk '{ print $2 ” ” $3 }' file prints the second and third columns, separated by a tab.</span></label>
 </div>
 </section>
 <section id="question-5" class="level3" data-number="34.3.5">
 <h3 data-number="34.3.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">34.3.5</span> Question 5</h3>
 <p>Which sed command will recode chromosome X as chromosome 23 in a plink bim file?</p>
 <p>Please select the correct option(s).</p>
-<div id="radio_EFZYROEXBE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EFZYROEXBE" value=""> <span>sed 's/^X$/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_EFZYROEXBE" value="answer"> <span>sed 's/^X/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_EFZYROEXBE" value=""> <span>sed 's/X/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_EFZYROEXBE" value=""> <span>sed '/^X/d' file.bim</span></label>
+<div id="radio_OTNKJTZVLZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OTNKJTZVLZ" value=""> <span>sed 's/^X$/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_OTNKJTZVLZ" value="answer"> <span>sed 's/^X/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_OTNKJTZVLZ" value=""> <span>sed 's/X/23/' file.bim</span></label><label><input type="radio" autocomplete="off" name="radio_OTNKJTZVLZ" value=""> <span>sed '/^X/d' file.bim</span></label>
 </div>
 </section>
 <section id="question-6" class="level3" data-number="34.3.6">
 <h3 data-number="34.3.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">34.3.6</span> Question 6</h3>
 <p>Which command would flip a DNA strand to its complement?</p>
 <p>Please select the correct option(s).</p>
-<div id="radio_ELCWDCXWYQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ELCWDCXWYQ" value=""> <span>tr 'AT' | tr 'CG' | tr 'GC' | 'TA'</span></label><label><input type="radio" autocomplete="off" name="radio_ELCWDCXWYQ" value=""> <span>tr 'ACGT' 'TG'</span></label><label><input type="radio" autocomplete="off" name="radio_ELCWDCXWYQ" value=""> <span>tr 'AGTC' 'TCGA'</span></label><label><input type="radio" autocomplete="off" name="radio_ELCWDCXWYQ" value="answer"> <span>tr 'ACGT' 'TGCA'</span></label>
+<div id="radio_DQVZJXTJUP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DQVZJXTJUP" value=""> <span>tr 'AT' | tr 'CG' | tr 'GC' | 'TA'</span></label><label><input type="radio" autocomplete="off" name="radio_DQVZJXTJUP" value=""> <span>tr 'ACGT' 'TG'</span></label><label><input type="radio" autocomplete="off" name="radio_DQVZJXTJUP" value=""> <span>tr 'AGTC' 'TCGA'</span></label><label><input type="radio" autocomplete="off" name="radio_DQVZJXTJUP" value="answer"> <span>tr 'ACGT' 'TGCA'</span></label>
 </div>
 
 
