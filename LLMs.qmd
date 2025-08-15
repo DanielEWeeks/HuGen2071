@@ -5,6 +5,16 @@ editor:
 
 # Artificial Intelligence
 
+## Artificial Intelligence and the Learning Process
+
+On August 12, 2025 in a New York Times article entitled "What A.I. Really Means for Learning", by Meher Ahmad, Jessica Grose, and Tressie McMillan Cottom, Tressie McMillan Cottom said the following:
+
+> the skill set that you get when you can make mundane tasks automated, when you can outsource them to technology as A.I. promises to do, is that then human beings are left to do arguably the higher-order work of making sense of things.
+ 
+> The problem is learning the basic skill was a steppingstone to learning how to make sense of things, right? So the challenge there is that A.I. hollows out the foundation of learning because it strips you, gets rid of the mistakes, it gets rid of the opportunities for serendipity.
+
+This is an important point because it highlights that the process of learning is not just about getting the right answer, but also about making mistakes and learning from them. This is particularly true when learning to program because such learning typically consists of a very iterative process of writing code that you think will work, running it, and then, when it doesn't work, trying to figure out why it didn't work. If you use AI to do your homework for you, you are missing out on the opportunity to learn from your mistakes and to develop a deeper understanding of the material.
+
 ## Don't use Large Language Models (LLMs) when trying to learn to program
 
 > "Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible." - Andrew Heiss
