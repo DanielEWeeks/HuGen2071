@@ -124,7 +124,7 @@
     "href": "LLMs.html#artificial-intelligence-and-the-learning-process",
     "title": "4  Artificial Intelligence",
     "section": "",
-    "text": "“the skill set that you get when you can make mundane tasks automated, when you can outsource them to technology as A.I. promises to do, is that then human beings are left to do arguably the higher-order work of making sense of things. The problem is learning the basic skill was a steppingstone to learning how to make sense of things, right? So the challenge there is that A.I. hollows out the foundation of learning because it strips you, gets rid of the mistakes, it gets rid of the opportunities for serendipity.”",
+    "text": "“The skill set that you get when you can make mundane tasks automated, when you can outsource them to technology as A.I. promises to do, is that then human beings are left to do arguably the higher-order work of making sense of things.\nThe problem is learning the basic skill was a steppingstone to learning how to make sense of things, right? So the challenge there is that A.I. hollows out the foundation of learning because it strips you, gets rid of the mistakes, it gets rid of the opportunities for serendipity.”",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Artificial Intelligence</span>"
     ]
@@ -1364,7 +1364,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "19  R Tidyverse Exercise",
     "section": "19.4 Gather",
-    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time              X       Y      Z\n  &lt;date&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  1.07    -1.71    0.614\n2 2009-01-02 -0.118    0.430  -7.19 \n3 2009-01-03  0.00451 -0.0394  1.75 \n4 2009-01-04 -1.02     2.23    5.89 \n5 2009-01-05 -0.164   -0.0864 -1.10 \n6 2009-01-06  0.0980  -3.13   -1.07 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock    price\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;\n1 2009-01-01 X      1.07   \n2 2009-01-02 X     -0.118  \n3 2009-01-03 X      0.00451\n4 2009-01-04 X     -1.02   \n5 2009-01-05 X     -0.164  \n6 2009-01-06 X      0.0980",
+    "text": "19.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time           X      Y       Z\n  &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01 1.53   0.235 -4.50  \n2 2009-01-02 0.432  0.518  0.877 \n3 2009-01-03 0.965  0.204  0.0129\n4 2009-01-04 1.13  -1.63  -3.82  \n5 2009-01-05 0.533  2.00  -0.227 \n6 2009-01-06 0.289 -0.211 -2.61  \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock price\n  &lt;date&gt;     &lt;chr&gt; &lt;dbl&gt;\n1 2009-01-01 X     1.53 \n2 2009-01-02 X     0.432\n3 2009-01-03 X     0.965\n4 2009-01-04 X     1.13 \n5 2009-01-05 X     0.533\n6 2009-01-06 X     0.289",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1374,7 +1374,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "19  R Tidyverse Exercise",
     "section": "19.5 Pivot_longer",
-    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.07 \n2 2009-01-01 Y     -1.71 \n3 2009-01-01 Z      0.614\n4 2009-01-02 X     -0.118\n5 2009-01-02 Y      0.430\n6 2009-01-02 Z     -7.19",
+    "text": "19.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.53 \n2 2009-01-01 Y      0.235\n3 2009-01-01 Z     -4.50 \n4 2009-01-02 X      0.432\n5 2009-01-02 Y      0.518\n6 2009-01-02 Z      0.877",
     "crumbs": [
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
