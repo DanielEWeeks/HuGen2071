@@ -15,6 +15,10 @@ On August 12, 2025 in a New York Times article entitled "What A.I. Really Means 
 
 This is an important point because it highlights that the process of learning is not just about getting the right answer, but also about making mistakes and learning from them. This is particularly true when learning to program because such learning typically consists of a very iterative process of writing code that you think will work, running it, and then, when it doesn't work, trying to figure out why it didn't work. If you use AI to program for you in this course, you are missing out on the opportunity to learn from your mistakes and to develop a deeper understanding of the material.
 
+![](img/Sousanis-Ai-Standalone-scaled.jpg)
+
+This image, from [https://spinweaveandcut.com/fall-2025-syllabi/](https://spinweaveandcut.com/fall-2025-syllabi/), was created by Nick Sousanis and used by permission.
+
 ## Don't use Large Language Models (LLMs) when trying to learn to program
 
 > "Remember that LLMs are (philosophical) bullshit machines. They don’t care if the answer if gives you is wrong or right. They don’t care if the code runs or not. All they care about is if the answer looks plausible." - Andrew Heiss
