@@ -40,6 +40,9 @@ answer = "Ordinal data can be coded using ordinal factors to represent the order
 
 `r longmcq(choices)`
 
+```{webr-r}
+# Edit/add R code here
+```
 
 ### Question 2
 
@@ -57,6 +60,10 @@ answer = 'x[2], x["name"], x[!is.na(x)]',
 `r longmcq(choices)`
 
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ### Question 3
 
 Which of the following R code snippets best illustrates how NA values can interfere with subsetting, where x is c(1, 6, NA, 8)?
@@ -71,3 +78,7 @@ answer = 'x[x > 5]'
 ```
 
 `r longmcq(choices)`
+
+```{webr-r}
+# Edit/add R code here
+```

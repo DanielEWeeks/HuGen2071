@@ -36,6 +36,10 @@ answer = "FALSE",
 
 `r longmcq(choices)`
 
+```{webr-r}
+# Edit/add R code here
+```
+
 ### Question 2
 
 Given a vector `x` of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector `y`? More than one option may be correct.
@@ -50,6 +54,10 @@ answer = "y <- x[c(1:2, 4:10)]",
 ```
 
 `r longmcq(choices)`
+
+```{webr-r}
+# Edit/add R code here
+```
 
 ### Question 3
 
@@ -69,6 +77,10 @@ answer = 'x["b"]',
 ```
 
 `r longmcq(choices)`
+
+```{webr-r}
+# Edit/add R code here
+```
 
 ### Question 4
 
@@ -92,6 +104,11 @@ answer = "x[, 2, drop = FALSE]"
 
 `r longmcq(choices)`
 
+
+```{webr-r}
+# Edit/add R code here
+```
+
 ### Question 5
 
 Which of the following statements are true about data frames in R?
@@ -106,3 +123,7 @@ answer = "A data frame is a list where all elements of the list must be of the s
 ```
 
 `r longmcq(choices)`
+
+```{webr-r}
+# Edit/add R code here
+```
