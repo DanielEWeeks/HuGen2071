@@ -21,6 +21,7 @@ book:
   - RBasicsLecture.qmd
   - Rbasics.qmd
   - RFactors.qmd
+  - RCharactersLecture.qmd
   - R_char_exer.Qmd
   - RLoops.qmd
   - loops.qmd

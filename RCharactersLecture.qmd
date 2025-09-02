@@ -1,0 +1,110 @@
+# Lecture: R Character Manipulation
+
+## R Character Manipulation lecture
+
+Here's a recording of this lecture (42 minutes 49 seconds):
+
+[Recording](https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=58718f98-b868-443e-9e0a-b34c0158657c){.external target="_blank"}
+
+<iframe credentialless src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=58718f98-b868-443e-9e0a-b34c0158657c&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+
+</iframe>
+
+## R Character Manipulation slides
+
+[PDF slide set](pdfs/R_character_manipulation_full.pdf){target="_blank"}
+
+<iframe width="100%" height="800" src="pdfs/R_character_manipulation_full.pdf">
+
+</iframe>
+
+## Questions
+
+NOTE: These questions have not yet been updated for this lecture.
+
+### Question 1
+
+What does `a <- 9; a < - 9` do?
+
+```{r, echo=FALSE}
+library(webexercises)
+choices = c(
+"TRUE",
+"9",
+answer = "FALSE",
+"-9"
+)
+```
+
+`r longmcq(choices)`
+
+### Question 2
+
+Given a vector `x` of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector `y`? More than one option may be correct.
+
+```{r, echo=FALSE}
+choices = c(
+answer = "y <- x[-3]",
+"y <- x[3] <- NULL",
+answer = "y <- x[c(1:2, 4:10)]",
+"y <- x[1:2, 4:10]"
+)
+```
+
+`r longmcq(choices)`
+
+### Question 3
+
+Given the following vector:
+
+`x <- c(a = 1, b = 2, c = 3)`
+
+Which of the following R code snippets will extract only the element corresponding to the name "b"?
+
+```{r, echo=FALSE}
+choices = c(
+answer = "x[2]",
+answer = 'x["b"]',
+'x[x == "b"]',
+"x[x > 1]"
+)
+```
+
+`r longmcq(choices)`
+
+### Question 4
+
+Given the following R code:
+
+```         
+x <- 1:6
+dim(x) <- c(2, 3)
+```
+
+Which of the following options correctly extracts the second column of the matrix `x` as a column vector?
+
+```{r, echo=FALSE}
+choices = c(
+"x[2, ]",
+'x[, 2]',
+'x[2]',
+answer = "x[, 2, drop = FALSE]"
+)
+```
+
+`r longmcq(choices)`
+
+### Question 5
+
+Which of the following statements are true about data frames in R?
+
+```{r, echo=FALSE}
+choices = c(
+"A data frame is a type of list where all elements must be of the same data type.",
+answer = 'A data frame is a list where elements can be of different data types.',
+'A data frame is a matrix where elements must be of the same data type.',
+answer = "A data frame is a list where all elements of the list must be of the same length."
+)
+```
+
+`r longmcq(choices)`
