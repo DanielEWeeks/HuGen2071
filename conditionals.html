@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Conditionals in R – HuGen2071 book</title>
+<title>16&nbsp; Conditionals in R – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"weight <- 65\nspecies <- \"DM\"\nweight > 50\nspecies == \"DM\"","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-1","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":1},{"code":"10 >= 5\nis.na(5)\n\"DM\" %in% c(\"DM\", \"DO\", \"DS\")\n\"PP\" %in% c(\"DM\", \"DO\", \"DS\")","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-2","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":2},{"code":"5 > 2 & 6 >=10","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-3","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":3},{"code":"5 > 2 | 6 >=10","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-4","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":4},{"code":"c(1, 1, 2, 3, 1) == 1","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-5","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":5},{"code":"(site = c('a', 'b', 'c', 'd'))\n(state = c('FL', 'FL', 'GA', 'AL'))","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-6","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":6},{"code":"state == 'FL'","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-7","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":7},{"code":"site[state == 'FL']","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-8","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":8},{"code":"site[c(TRUE, TRUE, FALSE, FALSE)]","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-9","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":9},{"code":"(w <- 10.2)\n(x <- 1.3)\n(y <- 2.8)\n(z <- 17.5)\n(colors <- c(\"red\", \"blue\", \"green\"))\n(masses <- c(45.2, 36.1, 27.8, 81.6, 42.4))","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-10","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":10},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-11","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":11},{"code":"x = 6\nif (x > 5){\n  x = x^2\n}\nx","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-12","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":12},{"code":"x = 4\nif (x > 5){\n  x = x^2\n}\nx","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-13","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":13},{"code":"veg_type <- \"shrub\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n  }\nmass","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-14","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":14},{"code":"age_class = \"sapling\"\nif (){\n  \n}\ny","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-15","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":15},{"code":"veg_type <- \"grass\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n} else if (veg_type == \"grass\") {\n  mass <- 0.65 * volume^1.2\n}\nmass","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-16","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":16},{"code":"veg_type <- \"tree\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n} else if (veg_type == \"grass\") {\n  mass <- 0.65 * volume^1.2\n} else {\n  mass <- NA\n}\nmass","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-17","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":17},{"code":"age_class = \"seedling\"\nif (){\n  \n}\ny","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-18","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":18},{"code":"age_class = \"adult\"\nif (){\n  \n}\ny","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-19","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":19},{"code":"x <- 5\nif (x > 2){\n  x * 2\n}\nif (x > 4){\n  x * 4\n}\nx","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-20","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":20},{"code":"x <- 5\nif (x > 2){\n  x * 2\n} else if (x > 4){\n  x * 4\n}\nx","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-21","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":21},{"code":"est_mass <- function(volume, veg_type){\n  if (veg_type == \"shrub\") {\n    mass <- 2.65 * volume^0.9\n  } else if (veg_type == \"grass\") {\n    mass <- 0.65 * volume^1.2\n  } else {\n    mass <- NA\n  }\n  return(mass)\n}","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-22","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":22},{"code":"est_mass(1.6, \"shrub\")\nest_mass(1.6, \"grass\")\nest_mass(1.6, \"tree\")","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-23","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":23},{"code":"get_mass_from_length_theropoda <- function(length){\n  mass <- 0.73 * length ^ 3.63\n  return(mass)\n}","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-24","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":24},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-25","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":25},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-26","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":26},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-27","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":27},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-28","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":28},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-29","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":29},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-30","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":30},{"code":"est_mass <- function(volume, veg_type, age){\n  if (veg_type == \"shrub\") {\n    if (age < 5) {\n      mass <- 1.6 * volume^0.8\n    } else {\n      mass <- 2.65 * volume^0.9\n  }\n  } else if (veg_type == \"grass\" | veg_type == \"sedge\") {\n    mass <- 0.65 * volume^1.2\n  } else {\n    mass <- NA\n  }\n  return(mass)\n}\n\nest_mass(1.6, \"shrub\", age = 2)\nest_mass(1.6, \"shrub\", age = 6)","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-31","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":31},{"code":"# Edit/add/try out R code here","options":{"classes":"","warning":"true","read-only":"false","fig-width":7,"message":"true","editor-max-height":"","editor-quick-suggestions":"false","comment":"","autorun":"false","editor-font-scale":"1","fig-height":5,"out-height":"","label":"unnamed-chunk-32","dpi":72,"context":"interactive","fig-cap":"","out-width":"700px","results":"markup","output":"true","editor-word-wrap":"true"},"id":32}];
+globalThis.qwebrCellDetails = [{"code":"weight <- 65\nspecies <- \"DM\"\nweight > 50\nspecies == \"DM\"","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-1","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":1},{"code":"10 >= 5\nis.na(5)\n\"DM\" %in% c(\"DM\", \"DO\", \"DS\")\n\"PP\" %in% c(\"DM\", \"DO\", \"DS\")","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-2","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":2},{"code":"5 > 2 & 6 >=10","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-3","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":3},{"code":"5 > 2 | 6 >=10","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-4","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":4},{"code":"c(1, 1, 2, 3, 1) == 1","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-5","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":5},{"code":"(site = c('a', 'b', 'c', 'd'))\n(state = c('FL', 'FL', 'GA', 'AL'))","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-6","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":6},{"code":"state == 'FL'","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-7","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":7},{"code":"site[state == 'FL']","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-8","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":8},{"code":"site[c(TRUE, TRUE, FALSE, FALSE)]","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-9","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":9},{"code":"(w <- 10.2)\n(x <- 1.3)\n(y <- 2.8)\n(z <- 17.5)\n(colors <- c(\"red\", \"blue\", \"green\"))\n(masses <- c(45.2, 36.1, 27.8, 81.6, 42.4))","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-10","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":10},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-11","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":11},{"code":"x = 6\nif (x > 5){\n  x = x^2\n}\nx","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-12","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":12},{"code":"x = 4\nif (x > 5){\n  x = x^2\n}\nx","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-13","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":13},{"code":"veg_type <- \"shrub\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n  }\nmass","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-14","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":14},{"code":"age_class = \"sapling\"\nif (){\n  \n}\ny","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-15","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":15},{"code":"veg_type <- \"grass\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n} else if (veg_type == \"grass\") {\n  mass <- 0.65 * volume^1.2\n}\nmass","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-16","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":16},{"code":"veg_type <- \"tree\"\nvolume <- 16.08\nif (veg_type == \"shrub\") {\n  mass <- 2.65 * volume^0.9\n} else if (veg_type == \"grass\") {\n  mass <- 0.65 * volume^1.2\n} else {\n  mass <- NA\n}\nmass","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-17","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":17},{"code":"age_class = \"seedling\"\nif (){\n  \n}\ny","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-18","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":18},{"code":"age_class = \"adult\"\nif (){\n  \n}\ny","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-19","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":19},{"code":"x <- 5\nif (x > 2){\n  x * 2\n}\nif (x > 4){\n  x * 4\n}\nx","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-20","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":20},{"code":"x <- 5\nif (x > 2){\n  x * 2\n} else if (x > 4){\n  x * 4\n}\nx","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-21","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":21},{"code":"est_mass <- function(volume, veg_type){\n  if (veg_type == \"shrub\") {\n    mass <- 2.65 * volume^0.9\n  } else if (veg_type == \"grass\") {\n    mass <- 0.65 * volume^1.2\n  } else {\n    mass <- NA\n  }\n  return(mass)\n}","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-22","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":22},{"code":"est_mass(1.6, \"shrub\")\nest_mass(1.6, \"grass\")\nest_mass(1.6, \"tree\")","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-23","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":23},{"code":"get_mass_from_length_theropoda <- function(length){\n  mass <- 0.73 * length ^ 3.63\n  return(mass)\n}","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-24","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":24},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-25","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":25},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-26","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":26},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-27","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":27},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-28","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":28},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-29","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":29},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-30","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":30},{"code":"est_mass <- function(volume, veg_type, age){\n  if (veg_type == \"shrub\") {\n    if (age < 5) {\n      mass <- 1.6 * volume^0.8\n    } else {\n      mass <- 2.65 * volume^0.9\n  }\n  } else if (veg_type == \"grass\" | veg_type == \"sedge\") {\n    mass <- 0.65 * volume^1.2\n  } else {\n    mass <- NA\n  }\n  return(mass)\n}\n\nest_mass(1.6, \"shrub\", age = 2)\nest_mass(1.6, \"shrub\", age = 6)","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-31","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":31},{"code":"# Edit/add/try out R code here","options":{"classes":"","out-width":"700px","fig-height":5,"fig-width":7,"out-height":"","editor-font-scale":"1","label":"unnamed-chunk-32","editor-quick-suggestions":"false","editor-max-height":"","output":"true","editor-word-wrap":"true","dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","autorun":"false","message":"true","read-only":"false","fig-cap":""},"id":32}];
 
 </script>
 <script type="module">
@@ -1569,7 +1569,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conditionals.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conditionals in R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conditionals.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditionals in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1662,170 +1662,176 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Subsetting Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./RCharactersLecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slurm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1879,26 +1885,26 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">15.1</span> Acknowledgment/License</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">15.2</span> Source code</a></li>
-  <li><a href="#conditionals" id="toc-conditionals" class="nav-link" data-scroll-target="#conditionals"><span class="header-section-number">15.3</span> Conditionals</a>
+  <li><a href="#acknowledgmentlicense" id="toc-acknowledgmentlicense" class="nav-link active" data-scroll-target="#acknowledgmentlicense"><span class="header-section-number">16.1</span> Acknowledgment/License</a></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="header-section-number">16.2</span> Source code</a></li>
+  <li><a href="#conditionals" id="toc-conditionals" class="nav-link" data-scroll-target="#conditionals"><span class="header-section-number">16.3</span> Conditionals</a>
   <ul class="collapse">
-  <li><a href="#tasks-choice-operators" id="toc-tasks-choice-operators" class="nav-link" data-scroll-target="#tasks-choice-operators"><span class="header-section-number">15.3.1</span> Tasks: Choice Operators</a></li>
+  <li><a href="#tasks-choice-operators" id="toc-tasks-choice-operators" class="nav-link" data-scroll-target="#tasks-choice-operators"><span class="header-section-number">16.3.1</span> Tasks: Choice Operators</a></li>
   </ul></li>
-  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">15.4</span> <code>if</code> statements</a>
+  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">16.4</span> <code>if</code> statements</a>
   <ul class="collapse">
-  <li><a href="#task-1-basic-if-statements" id="toc-task-1-basic-if-statements" class="nav-link" data-scroll-target="#task-1-basic-if-statements"><span class="header-section-number">15.4.1</span> Task 1: Basic If Statements</a></li>
-  <li><a href="#sec-Tasks_2-3" id="toc-sec-Tasks_2-3" class="nav-link" data-scroll-target="#sec-Tasks_2-3"><span class="header-section-number">15.4.2</span> Tasks 2-3: Basic If Statements</a></li>
+  <li><a href="#task-1-basic-if-statements" id="toc-task-1-basic-if-statements" class="nav-link" data-scroll-target="#task-1-basic-if-statements"><span class="header-section-number">16.4.1</span> Task 1: Basic If Statements</a></li>
+  <li><a href="#sec-Tasks_2-3" id="toc-sec-Tasks_2-3" class="nav-link" data-scroll-target="#sec-Tasks_2-3"><span class="header-section-number">16.4.2</span> Tasks 2-3: Basic If Statements</a></li>
   </ul></li>
-  <li><a href="#multiple-ifs-vs-else-if" id="toc-multiple-ifs-vs-else-if" class="nav-link" data-scroll-target="#multiple-ifs-vs-else-if"><span class="header-section-number">15.5</span> Multiple ifs vs else if</a></li>
-  <li><a href="#using-conditionals-inside-functions" id="toc-using-conditionals-inside-functions" class="nav-link" data-scroll-target="#using-conditionals-inside-functions"><span class="header-section-number">15.6</span> Using Conditionals Inside Functions</a>
+  <li><a href="#multiple-ifs-vs-else-if" id="toc-multiple-ifs-vs-else-if" class="nav-link" data-scroll-target="#multiple-ifs-vs-else-if"><span class="header-section-number">16.5</span> Multiple ifs vs else if</a></li>
+  <li><a href="#using-conditionals-inside-functions" id="toc-using-conditionals-inside-functions" class="nav-link" data-scroll-target="#using-conditionals-inside-functions"><span class="header-section-number">16.6</span> Using Conditionals Inside Functions</a>
   <ul class="collapse">
-  <li><a href="#task-size-estimates-by-name" id="toc-task-size-estimates-by-name" class="nav-link" data-scroll-target="#task-size-estimates-by-name"><span class="header-section-number">15.6.1</span> Task: Size Estimates by Name</a></li>
+  <li><a href="#task-size-estimates-by-name" id="toc-task-size-estimates-by-name" class="nav-link" data-scroll-target="#task-size-estimates-by-name"><span class="header-section-number">16.6.1</span> Task: Size Estimates by Name</a></li>
   </ul></li>
-  <li><a href="#automatically-extracting-functions" id="toc-automatically-extracting-functions" class="nav-link" data-scroll-target="#automatically-extracting-functions"><span class="header-section-number">15.7</span> Automatically extracting functions</a></li>
-  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span class="header-section-number">15.8</span> Nested conditionals</a>
+  <li><a href="#automatically-extracting-functions" id="toc-automatically-extracting-functions" class="nav-link" data-scroll-target="#automatically-extracting-functions"><span class="header-section-number">16.7</span> Automatically extracting functions</a></li>
+  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span class="header-section-number">16.8</span> Nested conditionals</a>
   <ul class="collapse">
-  <li><a href="#task-4-basic-if-statements" id="toc-task-4-basic-if-statements" class="nav-link" data-scroll-target="#task-4-basic-if-statements"><span class="header-section-number">15.8.1</span> Task 4: Basic If Statements</a></li>
+  <li><a href="#task-4-basic-if-statements" id="toc-task-4-basic-if-statements" class="nav-link" data-scroll-target="#task-4-basic-if-statements"><span class="header-section-number">16.8.1</span> Task 4: Basic If Statements</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2192,7 +2198,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conditionals in R</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditionals in R</span></h1>
 </div>
 
 
@@ -2209,8 +2215,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="acknowledgmentlicense" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">15.1</span> Acknowledgment/License</h2>
+<section id="acknowledgmentlicense" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="acknowledgmentlicense"><span class="header-section-number">16.1</span> Acknowledgment/License</h2>
 <p>The original source for this chapter was from the web site</p>
 <p><a href="https://datacarpentry.org/semester-biology/" class="uri">https://datacarpentry.org/semester-biology/</a></p>
 <p>which was built using this underlying code</p>
@@ -2221,12 +2227,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>The material presented here has been modified from the original source.</p>
 <p>Accordingly this chapter is made available under the same license terms.</p>
 </section>
-<section id="source-code" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">15.2</span> Source code</h2>
+<section id="source-code" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="source-code"><span class="header-section-number">16.2</span> Source code</h2>
 <p>If you’d like to work within R Studio using the source code of this chapter, you can obtain it from <a href="https://github.com/DanielEWeeks/HuGen2071/blob/main/conditionals.qmd">here</a>.</p>
 </section>
-<section id="conditionals" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">15.3</span> Conditionals</h2>
+<section id="conditionals" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">16.3</span> Conditionals</h2>
 <ul>
 <li>Conditional statements are when we check to see if some condition is true or not</li>
 <li>We used these for filtering data in <code>dplyr</code></li>
@@ -2298,8 +2304,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>This keeps the first and second values in <code>site</code> because the values in the vector are <code>TRUE</code></li>
 <li>This is how <code>dplyr::filter()</code> and other methods for subsetting data work</li>
 </ul>
-<section id="tasks-choice-operators" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="tasks-choice-operators"><span class="header-section-number">15.3.1</span> Tasks: Choice Operators</h3>
+<section id="tasks-choice-operators" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="tasks-choice-operators"><span class="header-section-number">16.3.1</span> Tasks: Choice Operators</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2327,8 +2333,8 @@ Important
 </div>
 </section>
 </section>
-<section id="if-statements" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">15.4</span> <code>if</code> statements</h2>
+<section id="if-statements" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">16.4</span> <code>if</code> statements</h2>
 <ul>
 <li>Conditional statements generate logical values to filter inputs.</li>
 <li><code>if</code> statements use conditional statements to control flow of the program.</li>
@@ -2356,8 +2362,8 @@ Important
 </ul>
 <div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<section id="task-1-basic-if-statements" class="level3" data-number="15.4.1">
-<h3 data-number="15.4.1" class="anchored" data-anchor-id="task-1-basic-if-statements"><span class="header-section-number">15.4.1</span> Task 1: Basic If Statements</h3>
+<section id="task-1-basic-if-statements" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="task-1-basic-if-statements"><span class="header-section-number">16.4.1</span> Task 1: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2389,8 +2395,8 @@ Important
 <div id="qwebr-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="sec-Tasks_2-3" class="level3" data-number="15.4.2">
-<h3 data-number="15.4.2" class="anchored" data-anchor-id="sec-Tasks_2-3"><span class="header-section-number">15.4.2</span> Tasks 2-3: Basic If Statements</h3>
+<section id="sec-Tasks_2-3" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="sec-Tasks_2-3"><span class="header-section-number">16.4.2</span> Tasks 2-3: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2412,8 +2418,8 @@ Important
 </div>
 </section>
 </section>
-<section id="multiple-ifs-vs-else-if" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="multiple-ifs-vs-else-if"><span class="header-section-number">15.5</span> Multiple ifs vs else if</h2>
+<section id="multiple-ifs-vs-else-if" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="multiple-ifs-vs-else-if"><span class="header-section-number">16.5</span> Multiple ifs vs else if</h2>
 <ul>
 <li>Multiple ifs check each conditional separately</li>
 <li>Executes code of all conditions that are <code>TRUE</code></li>
@@ -2427,8 +2433,8 @@ Important
 <div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="using-conditionals-inside-functions" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="using-conditionals-inside-functions"><span class="header-section-number">15.6</span> Using Conditionals Inside Functions</h2>
+<section id="using-conditionals-inside-functions" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="using-conditionals-inside-functions"><span class="header-section-number">16.6</span> Using Conditionals Inside Functions</h2>
 <ul>
 <li>We’ve used a conditional to estimate mass differently for different types of vegetation</li>
 <li>This is the kind of code we are going to want to reuse, so let’s move it into a function</li>
@@ -2451,8 +2457,8 @@ Important
 <li>It assigns <code>NA</code> to mass</li>
 <li>It then finishes the if/else if/else statement and returns the value for <code>mass</code>, which is <code>NA</code> to the global environment</li>
 </ul>
-<section id="task-size-estimates-by-name" class="level3" data-number="15.6.1">
-<h3 data-number="15.6.1" class="anchored" data-anchor-id="task-size-estimates-by-name"><span class="header-section-number">15.6.1</span> Task: Size Estimates by Name</h3>
+<section id="task-size-estimates-by-name" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="task-size-estimates-by-name"><span class="header-section-number">16.6.1</span> Task: Size Estimates by Name</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2464,8 +2470,8 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Do Size Estimates by Name</strong></p>
-<section id="part-i" class="level4" data-number="15.6.1.1">
-<h4 data-number="15.6.1.1" class="anchored" data-anchor-id="part-i"><span class="header-section-number">15.6.1.1</span> Part I</h4>
+<section id="part-i" class="level4" data-number="16.6.1.1">
+<h4 data-number="16.6.1.1" class="anchored" data-anchor-id="part-i"><span class="header-section-number">16.6.1.1</span> Part I</h4>
 <p>The length of an organism is typically strongly correlated with its body mass. This is useful because it allows us to estimate the mass of an organism even if we only know its length. This relationship generally takes the form:</p>
 <blockquote class="blockquote">
 <p>mass = a * length^b</p>
@@ -2485,8 +2491,8 @@ Important
 <div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="part-ii" class="level4" data-number="15.6.1.2">
-<h4 data-number="15.6.1.2" class="anchored" data-anchor-id="part-ii"><span class="header-section-number">15.6.1.2</span> Part II</h4>
+<section id="part-ii" class="level4" data-number="16.6.1.2">
+<h4 data-number="16.6.1.2" class="anchored" data-anchor-id="part-ii"><span class="header-section-number">16.6.1.2</span> Part II</h4>
 <p>To make it even easier to work with your dinosaur size estimation functions you decide to create a function that lets you specify which dinosaur group you need to estimate the size of by name and then have the function automatically choose the right parameters.</p>
 <p>Create a new function <code>get_mass_from_length_by_name()</code> that takes two arguments, the <code>length</code> and the name of the dinosaur group. Inside this function use <code>if</code>/<code>else if</code>/<code>else</code> statements to check to see if the name is one of the following values and if so use the associated <code>a</code> and <code>b</code> values to estimate the species mass.</p>
 <ul>
@@ -2512,8 +2518,8 @@ Important
 </div>
 </section>
 </section>
-<section id="automatically-extracting-functions" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="automatically-extracting-functions"><span class="header-section-number">15.7</span> Automatically extracting functions</h2>
+<section id="automatically-extracting-functions" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="automatically-extracting-functions"><span class="header-section-number">16.7</span> Automatically extracting functions</h2>
 <ul>
 <li>Can pull code out into functions</li>
 <li>Highlight the code</li>
@@ -2521,8 +2527,8 @@ Important
 <li>Provide a name for the function</li>
 </ul>
 </section>
-<section id="nested-conditionals" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="nested-conditionals"><span class="header-section-number">15.8</span> Nested conditionals</h2>
+<section id="nested-conditionals" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="nested-conditionals"><span class="header-section-number">16.8</span> Nested conditionals</h2>
 <ul>
 <li>Sometimes decisions are more complicated</li>
 <li>For example we might have different equations for some vegetation types based on the age of the plant</li>
@@ -2536,8 +2542,8 @@ Important
 <li>If so does one calculation, if not does another</li>
 <li>But nesting can be difficult to follow so try to minimize it</li>
 </ul>
-<section id="task-4-basic-if-statements" class="level3" data-number="15.8.1">
-<h3 data-number="15.8.1" class="anchored" data-anchor-id="task-4-basic-if-statements"><span class="header-section-number">15.8.1</span> Task 4: Basic If Statements</h3>
+<section id="task-4-basic-if-statements" class="level3" data-number="16.8.1">
+<h3 data-number="16.8.1" class="anchored" data-anchor-id="task-4-basic-if-statements"><span class="header-section-number">16.8.1</span> Task 4: Basic If Statements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2549,7 +2555,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Do Task 4 in Basic If Statements</strong></p>
-<p>4. Convert your conditional statement from Task 3 in <a href="#sec-Tasks_2-3" class="quarto-xref"><span>Section 15.4.2</span></a> into a function that takes <code>age_class</code> as an argument and returns <code>y</code>. Call this function 5 times, once with each of the following values for <code>age_class</code>: “sapling”, “seedling”, “adult”, “mature”, “established”.</p>
+<p>4. Convert your conditional statement from Task 3 in <a href="#sec-Tasks_2-3" class="quarto-xref"><span>Section 16.4.2</span></a> into a function that takes <code>age_class</code> as an argument and returns <code>y</code>. Call this function 5 times, once with each of the following values for <code>age_class</code>: “sapling”, “seedling”, “adult”, “mature”, “established”.</p>
 <div id="qwebr-insertion-location-32"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
@@ -3196,12 +3202,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./loops.html" class="pagination-link" aria-label="Loops in R, Part I">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./loops_part2.html" class="pagination-link" aria-label="Loops in R, Part II">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

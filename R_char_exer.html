@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; R Character Exercise – HuGen2071 book</title>
+<title>13&nbsp; R Character Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"fig-height":5,"context":"interactive","message":"true","classes":"","out-width":"700px","editor-quick-suggestions":"false","output":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-1","results":"markup","comment":"","editor-max-height":"","read-only":"false","warning":"true","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"autorun":"false"},"id":1,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here"},{"options":{"fig-height":5,"context":"interactive","message":"true","classes":"","out-width":"700px","editor-quick-suggestions":"false","output":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-2","results":"markup","comment":"","editor-max-height":"","read-only":"false","warning":"true","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"autorun":"false"},"id":2,"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here"},{"options":{"fig-height":5,"context":"interactive","message":"true","classes":"","out-width":"700px","editor-quick-suggestions":"false","output":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-3","results":"markup","comment":"","editor-max-height":"","read-only":"false","warning":"true","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"autorun":"false"},"id":3,"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here"},{"options":{"fig-height":5,"context":"interactive","message":"true","classes":"","out-width":"700px","editor-quick-suggestions":"false","output":"true","fig-width":7,"editor-font-scale":"1","label":"unnamed-chunk-4","results":"markup","comment":"","editor-max-height":"","read-only":"false","warning":"true","editor-word-wrap":"true","out-height":"","fig-cap":"","dpi":72,"autorun":"false"},"id":4,"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here"}];
+globalThis.qwebrCellDetails = [{"options":{"editor-quick-suggestions":"false","message":"true","context":"interactive","editor-max-height":"","read-only":"false","editor-word-wrap":"true","classes":"","output":"true","autorun":"false","dpi":72,"fig-height":5,"comment":"","fig-cap":"","label":"unnamed-chunk-1","fig-width":7,"results":"markup","warning":"true","out-height":"","editor-font-scale":"1","out-width":"700px"},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here","id":1},{"options":{"editor-quick-suggestions":"false","message":"true","context":"interactive","editor-max-height":"","read-only":"false","editor-word-wrap":"true","classes":"","output":"true","autorun":"false","dpi":72,"fig-height":5,"comment":"","fig-cap":"","label":"unnamed-chunk-2","fig-width":7,"results":"markup","warning":"true","out-height":"","editor-font-scale":"1","out-width":"700px"},"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here","id":2},{"options":{"editor-quick-suggestions":"false","message":"true","context":"interactive","editor-max-height":"","read-only":"false","editor-word-wrap":"true","classes":"","output":"true","autorun":"false","dpi":72,"fig-height":5,"comment":"","fig-cap":"","label":"unnamed-chunk-3","fig-width":7,"results":"markup","warning":"true","out-height":"","editor-font-scale":"1","out-width":"700px"},"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# Edit/add code here","id":3},{"options":{"editor-quick-suggestions":"false","message":"true","context":"interactive","editor-max-height":"","read-only":"false","editor-word-wrap":"true","classes":"","output":"true","autorun":"false","dpi":72,"fig-height":5,"comment":"","fig-cap":"","label":"unnamed-chunk-4","fig-width":7,"results":"markup","warning":"true","out-height":"","editor-font-scale":"1","out-width":"700px"},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here","id":4}];
 
 </script>
 <script type="module">
@@ -1603,7 +1603,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_char_exer.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Character Exercise</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_char_exer.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R Character Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1696,170 +1696,176 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Subsetting Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./RCharactersLecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slurm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1913,22 +1919,22 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">12.1</span> Load Libraries</a></li>
-  <li><a href="#useful-rstudio-cheatsheet" id="toc-useful-rstudio-cheatsheet" class="nav-link" data-scroll-target="#useful-rstudio-cheatsheet"><span class="header-section-number">12.2</span> Useful RStudio cheatsheet</a></li>
-  <li><a href="#scenario-1" id="toc-scenario-1" class="nav-link" data-scroll-target="#scenario-1"><span class="header-section-number">12.3</span> Scenario 1</a></li>
-  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">12.4</span> Discussion Questions</a>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">13.1</span> Load Libraries</a></li>
+  <li><a href="#useful-rstudio-cheatsheet" id="toc-useful-rstudio-cheatsheet" class="nav-link" data-scroll-target="#useful-rstudio-cheatsheet"><span class="header-section-number">13.2</span> Useful RStudio cheatsheet</a></li>
+  <li><a href="#scenario-1" id="toc-scenario-1" class="nav-link" data-scroll-target="#scenario-1"><span class="header-section-number">13.3</span> Scenario 1</a></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">13.4</span> Discussion Questions</a>
   <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">12.4.1</span> Question 1</a></li>
-  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1"><span class="header-section-number">12.4.2</span> Answer 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">12.4.3</span> Question 2</a></li>
-  <li><a href="#answer-2" id="toc-answer-2" class="nav-link" data-scroll-target="#answer-2"><span class="header-section-number">12.4.4</span> Answer 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">12.4.5</span> Question 3</a></li>
-  <li><a href="#answer-3" id="toc-answer-3" class="nav-link" data-scroll-target="#answer-3"><span class="header-section-number">12.4.6</span> Answer 3</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">13.4.1</span> Question 1</a></li>
+  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1"><span class="header-section-number">13.4.2</span> Answer 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">13.4.3</span> Question 2</a></li>
+  <li><a href="#answer-2" id="toc-answer-2" class="nav-link" data-scroll-target="#answer-2"><span class="header-section-number">13.4.4</span> Answer 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">13.4.5</span> Question 3</a></li>
+  <li><a href="#answer-3" id="toc-answer-3" class="nav-link" data-scroll-target="#answer-3"><span class="header-section-number">13.4.6</span> Answer 3</a></li>
   </ul></li>
-  <li><a href="#scenario-2" id="toc-scenario-2" class="nav-link" data-scroll-target="#scenario-2"><span class="header-section-number">12.5</span> Scenario 2</a>
+  <li><a href="#scenario-2" id="toc-scenario-2" class="nav-link" data-scroll-target="#scenario-2"><span class="header-section-number">13.5</span> Scenario 2</a>
   <ul class="collapse">
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">12.5.1</span> Question 4</a></li>
-  <li><a href="#answer-4" id="toc-answer-4" class="nav-link" data-scroll-target="#answer-4"><span class="header-section-number">12.5.2</span> Answer 4</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">13.5.1</span> Question 4</a></li>
+  <li><a href="#answer-4" id="toc-answer-4" class="nav-link" data-scroll-target="#answer-4"><span class="header-section-number">13.5.2</span> Answer 4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2222,7 +2228,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Character Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R Character Exercise</span></h1>
 </div>
 
 
@@ -2239,21 +2245,21 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="load-libraries" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">12.1</span> Load Libraries</h2>
+<section id="load-libraries" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="load-libraries"><span class="header-section-number">13.1</span> Load Libraries</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidylog)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="useful-rstudio-cheatsheet" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="useful-rstudio-cheatsheet"><span class="header-section-number">12.2</span> Useful RStudio cheatsheet</h2>
+<section id="useful-rstudio-cheatsheet" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="useful-rstudio-cheatsheet"><span class="header-section-number">13.2</span> Useful RStudio cheatsheet</h2>
 <p>See the “String manipulation with stringr cheatsheet” at</p>
 <p><a href="https://rstudio.github.io/cheatsheets/html/strings.html" class="uri">https://rstudio.github.io/cheatsheets/html/strings.html</a></p>
 </section>
-<section id="scenario-1" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="scenario-1"><span class="header-section-number">12.3</span> Scenario 1</h2>
+<section id="scenario-1" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="scenario-1"><span class="header-section-number">13.3</span> Scenario 1</h2>
 <p>You are working with three different sets of collaborators: 1) the clinical group that did the field work and generated the anthropometric measurements; 2) the medical laboratory that measured blood pressure in a controlled environment; and 3) the molecular laboratory that generated the genotypes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clin <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"data/clinical_data.txt"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
@@ -2348,10 +2354,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </section>
-<section id="discussion-questions" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">12.4</span> Discussion Questions</h2>
-<section id="question-1" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">12.4.1</span> Question 1</h3>
+<section id="discussion-questions" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">13.4</span> Discussion Questions</h2>
+<section id="question-1" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">13.4.1</span> Question 1</h3>
 <p>The clinical group, which measured height, used integer IDs, but the medical group, which measured the blood pressure, decided to prefix the integer IDs with the string ‘SG’ (so as to distinguish them from other studies that were also using integer IDs). So ID ‘1’ was mapped to ID ‘SG0001’.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2386,8 +2392,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <p>Discuss how, using R commands, you would reformat the integer IDs to be in the format “SGXXXX”. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.</p>
 <p>Hint: Use the <code>formatC</code> function.</p>
-<section id="interactive-webr-chunk" class="level4" data-number="12.4.1.1">
-<h4 data-number="12.4.1.1" class="anchored" data-anchor-id="interactive-webr-chunk"><span class="header-section-number">12.4.1.1</span> Interactive WebR chunk</h4>
+<section id="interactive-webr-chunk" class="level4" data-number="13.4.1.1">
+<h4 data-number="13.4.1.1" class="anchored" data-anchor-id="interactive-webr-chunk"><span class="header-section-number">13.4.1.1</span> Interactive WebR chunk</h4>
 <p>You can interactively run R within this WebR chunk by clicking the <code>Run code</code> tab. Note that this is a limited version of R which runs within your web browser.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2406,8 +2412,8 @@ Note
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
-<section id="answer-1" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">12.4.2</span> Answer 1</h3>
+<section id="answer-1" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="answer-1"><span class="header-section-number">13.4.2</span> Answer 1</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2476,8 +2482,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="question-2" class="level3" data-number="12.4.3">
-<h3 data-number="12.4.3" class="anchored" data-anchor-id="question-2"><span class="header-section-number">12.4.3</span> Question 2</h3>
+<section id="question-2" class="level3" data-number="13.4.3">
+<h3 data-number="13.4.3" class="anchored" data-anchor-id="question-2"><span class="header-section-number">13.4.3</span> Question 2</h3>
 <p>Discuss how, using R commands, you would reformat the “SGXXXX” IDs to be integer IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2527,8 +2533,8 @@ Warning
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="answer-2" class="level3" data-number="12.4.4">
-<h3 data-number="12.4.4" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">12.4.4</span> Answer 2</h3>
+<section id="answer-2" class="level3" data-number="13.4.4">
+<h3 data-number="13.4.4" class="anchored" data-anchor-id="answer-2"><span class="header-section-number">13.4.4</span> Answer 2</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2620,8 +2626,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="question-3" class="level3" data-number="12.4.5">
-<h3 data-number="12.4.5" class="anchored" data-anchor-id="question-3"><span class="header-section-number">12.4.5</span> Question 3</h3>
+<section id="question-3" class="level3" data-number="13.4.5">
+<h3 data-number="13.4.5" class="anchored" data-anchor-id="question-3"><span class="header-section-number">13.4.5</span> Question 3</h3>
 <p>The genotype group used IDs in the style “TaqMan-SG0001-190601”, where the first string is “TaqMan” and the ending string is the date of the genotyping experiment.</p>
 <p>Discuss how, using R commands, you would extract an “SGXXXX” style ID from the “TaqMan-SG0001-190601” style IDs. Write down your ideas in the next section, and, if you have time, try them out within an R chunk.</p>
 <p>Note that one of the IDs has a lower case ‘g’ in it - how would you correct this, using R commands?</p>
@@ -2660,8 +2666,8 @@ Expand to see solution
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="answer-3" class="level3" data-number="12.4.6">
-<h3 data-number="12.4.6" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">12.4.6</span> Answer 3</h3>
+<section id="answer-3" class="level3" data-number="13.4.6">
+<h3 data-number="13.4.6" class="anchored" data-anchor-id="answer-3"><span class="header-section-number">13.4.6</span> Answer 3</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2753,8 +2759,8 @@ Expand to see solution
 </div>
 </section>
 </section>
-<section id="scenario-2" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">12.5</span> Scenario 2</h2>
+<section id="scenario-2" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">13.5</span> Scenario 2</h2>
 <p>A replication sample has been measured, and that is using IDs in the style “RP5XXX”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>joint <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"data/joint_data.txt"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
@@ -2804,8 +2810,8 @@ Expand to see solution
 </table>
 </div>
 </div>
-<section id="question-4" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="question-4"><span class="header-section-number">12.5.1</span> Question 4</h3>
+<section id="question-4" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="question-4"><span class="header-section-number">13.5.1</span> Question 4</h3>
 <p>Discuss how you would use R commands to split the ‘joint’ data frame into an ‘SG’ and ‘RP’ specific piece? Write down your ideas in the next section, and, if you have time, try them out within an R chunk.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2857,8 +2863,8 @@ Expand to see solution
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="answer-4" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="answer-4"><span class="header-section-number">12.5.2</span> Answer 4</h3>
+<section id="answer-4" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="answer-4"><span class="header-section-number">13.5.2</span> Answer 4</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3622,12 +3628,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./RCharactersLecture.html" class="pagination-link" aria-label="Lecture: R Character Manipulation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./RLoops.html" class="pagination-link" aria-label="Lecture: Loops in R">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>25&nbsp; R Exploratory Data Analysis Exercise – HuGen2071 book</title>
+<title>26&nbsp; R Exploratory Data Analysis Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nlibrary(tidylog)\nlibrary(DataExplorer)\nlibrary(GGally)\nlibrary(knitr)\n# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/exercise.RData\"),\n              \"exercise.RData\")\nload(\"exercise.RData\", verbose = TRUE)\nls()","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-1","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":2,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-2","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":3,"code":"dim(ds)\nnames(ds)\nglimpse(ds)\nhead(ds)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-3","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":4,"code":"dim(dd)\nnames(dd)\nglimpse(ds)\nhead(dd)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-4","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":5,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-5","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":6,"code":"dim(ds)\nsum(duplicated(ds$sample_id))\nlength(unique(ds$sample_id))\nlength(unique(ds$subject_id))","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-6","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":7,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-7","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":8,"code":"sapply(ds,function(x) {length(unique(x))}) %>%\n  sort(decreasing=TRUE) %>% kable()","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-8","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":9,"code":"ds %>% map(\\(x) length(unique(x))) %>%\n  unlist() %>% \n  sort(decreasing = TRUE) %>% \n  kable()","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-9","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":10,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-10","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":11,"code":"subject.N <- function(df.col, subj.ID) {\n  # Count distinct entries when grouped by subj.ID\n  # Input:\n  #   df.col = a phenotype vector\n  #   subj.ID = a vector of corresponding subject IDs\n  #\n  # Construct a dataframe containing the phenotype and subject IDS\n  df <- bind_cols(df.col = df.col, subj.ID = subj.ID)\n  # \n  suppressMessages(\n    df.n <- df %>%\n      group_by(subj.ID) %>%\n      distinct() %>%\n      mutate(n = n()) %>%\n      select(subj.ID, n) %>%\n      distinct()\n  )\n  # Count how many subj.ID's have more than one distinct value\n  sum(df.n$n > 1)\n}\n\nsubj.ID <- ds$subject_id\n# Apply our function using 'map'\nds %>% map(\\(x) subject.N(x, subj.ID)) %>% \n  unlist() %>% \n  sort(decreasing = TRUE)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-11","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":12,"code":"df_check = data.frame(col=rep(NA, length(colnames(ds)) ), \n    numbOfSubj_nonUniqVal=NA)\n\nsuppressMessages(\n  for (i in seq(length(colnames(ds))) ) {\n    # store the current looping column\n    df_check[i,\"col\"] = colnames(ds)[i]\n    \n    #store the number of subjects with non-unique values in that col \n    non_unique_subj=0 \n    # print(colnames(ds)[i]) # which column we are at\n    \n    for( x in unique(ds$subject_id) ){ #loop through each individual\n      subj_filter = ds %>% \n        select(subject_id, colnames(ds)[i]) %>% \n        filter(subject_id==x) %>% \n        distinct() %>% # find distinct rows\n        nrow() # count number of subjects with non-unique value in that col\n      \n      if (subj_filter > 1){\n        non_unique_subj = non_unique_subj+1\n      }\n    }\n    df_check[i,\"numbOfSubj_nonUniqVal\"] = non_unique_subj\n    # print(non_unique_subj)\n  }\n)\n\ndf_check %>% arrange(desc(numbOfSubj_nonUniqVal))","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-12","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":13,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-13","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":14,"code":"ds.subj <- ds %>% \n  select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>% \n  distinct()","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-14","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":15,"code":"sum(duplicated(ds.subj$subject_id))\nds.subj %>% group_by(subject_id) %>% filter(n() > 1)\nds.subj <- ds.subj %>% filter(race != \"White\")\nsum(duplicated(ds.subj$subject_id))","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-15","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":16,"code":"dd %>% filter(R21.Variable.Name==\"case_control_status\") %>% pull(Variable.Coding)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-16","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":17,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-17","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":18,"code":"ds.subj$PE_status <- factor(ds.subj$case_control_status)\nlevels(ds.subj$PE_status)\nlevels(ds.subj$PE_status) <- c(\"control\",\"case\")\n\n# Check that the recoding was correct:\nxtabs(~ case_control_status + PE_status, data = ds.subj )","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-18","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":19,"code":"ds.subj <- ds.subj %>% mutate(PE_status = \n  case_when(case_control_status == 0 ~ \"control\",\n  case_control_status == 1 ~ \"case\"))\nxtabs(~ case_control_status + PE_status, data = ds.subj )","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-19","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":20,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-20","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":21,"code":"plot_missing(ds.subj)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-21","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":22,"code":"createNAs <- function (x, pctNA = 0.1) {\n  n <- nrow(x)\n  p <- ncol(x)\n  NAloc <- rep(FALSE, n * p)\n  NAloc[sample.int(n * p, floor(n * p * pctNA))] <- TRUE\n  x[matrix(NAloc, nrow = n, ncol = p)] <- NA\n  return(x)\n}\n\ndf <- ds.subj\ndf <- createNAs(df)\ndf <- data.frame(df)\nplot_missing(df)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-22","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":23,"code":"profile_missing(df) %>% \n  arrange(pct_missing)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-23","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":24,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-24","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":25,"code":"plot_bar(ds.subj)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-25","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":26,"code":"plot_histogram(ds.subj)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-26","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":27,"code":"plot_density(ds.subj)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-27","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":28,"code":"plot_qq(ds.subj)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-28","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":29,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-29","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":30,"code":"plot_bar(ds.subj, by=\"PE_status\")","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-30","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":31,"code":"plot_boxplot(ds.subj, by=\"PE_status\")","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-31","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":32,"code":"plot_qq(ds.subj, by=\"PE_status\")","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-32","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":33,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-33","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":34,"code":"plot_correlation(ds.subj %>% select(where(is.numeric)))","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-34","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":35,"code":"# To illustrate, let's just use three of the numeric traits:\nds1 <- ds.subj[ , c(15,17,19)]\nnames(ds1)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-35","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":36,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-36","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":37,"code":"ggpairs(ds1)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-37","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":38,"code":"# Edit/add/try out R code here","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-38","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":39,"code":"ggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-39","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}},{"id":40,"code":"ggcorr(ds1, label=TRUE)","options":{"editor-quick-suggestions":"false","output":"true","results":"markup","editor-word-wrap":"true","fig-height":5,"context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-40","fig-width":7,"classes":"","warning":"true","editor-max-height":"","autorun":"false","fig-cap":"","read-only":"false","out-width":"700px","editor-font-scale":"1","comment":"","dpi":72}}];
+globalThis.qwebrCellDetails = [{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-1","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"library(tidyverse)\nlibrary(tidylog)\nlibrary(DataExplorer)\nlibrary(GGally)\nlibrary(knitr)\n# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/exercise.RData\"),\n              \"exercise.RData\")\nload(\"exercise.RData\", verbose = TRUE)\nls()","id":1},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-2","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":2},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-3","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"dim(ds)\nnames(ds)\nglimpse(ds)\nhead(ds)","id":3},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-4","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"dim(dd)\nnames(dd)\nglimpse(ds)\nhead(dd)","id":4},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-5","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":5},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-6","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"dim(ds)\nsum(duplicated(ds$sample_id))\nlength(unique(ds$sample_id))\nlength(unique(ds$subject_id))","id":6},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-7","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":7},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-8","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"sapply(ds,function(x) {length(unique(x))}) %>%\n  sort(decreasing=TRUE) %>% kable()","id":8},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-9","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ds %>% map(\\(x) length(unique(x))) %>%\n  unlist() %>% \n  sort(decreasing = TRUE) %>% \n  kable()","id":9},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-10","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":10},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-11","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"subject.N <- function(df.col, subj.ID) {\n  # Count distinct entries when grouped by subj.ID\n  # Input:\n  #   df.col = a phenotype vector\n  #   subj.ID = a vector of corresponding subject IDs\n  #\n  # Construct a dataframe containing the phenotype and subject IDS\n  df <- bind_cols(df.col = df.col, subj.ID = subj.ID)\n  # \n  suppressMessages(\n    df.n <- df %>%\n      group_by(subj.ID) %>%\n      distinct() %>%\n      mutate(n = n()) %>%\n      select(subj.ID, n) %>%\n      distinct()\n  )\n  # Count how many subj.ID's have more than one distinct value\n  sum(df.n$n > 1)\n}\n\nsubj.ID <- ds$subject_id\n# Apply our function using 'map'\nds %>% map(\\(x) subject.N(x, subj.ID)) %>% \n  unlist() %>% \n  sort(decreasing = TRUE)","id":11},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-12","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"df_check = data.frame(col=rep(NA, length(colnames(ds)) ), \n    numbOfSubj_nonUniqVal=NA)\n\nsuppressMessages(\n  for (i in seq(length(colnames(ds))) ) {\n    # store the current looping column\n    df_check[i,\"col\"] = colnames(ds)[i]\n    \n    #store the number of subjects with non-unique values in that col \n    non_unique_subj=0 \n    # print(colnames(ds)[i]) # which column we are at\n    \n    for( x in unique(ds$subject_id) ){ #loop through each individual\n      subj_filter = ds %>% \n        select(subject_id, colnames(ds)[i]) %>% \n        filter(subject_id==x) %>% \n        distinct() %>% # find distinct rows\n        nrow() # count number of subjects with non-unique value in that col\n      \n      if (subj_filter > 1){\n        non_unique_subj = non_unique_subj+1\n      }\n    }\n    df_check[i,\"numbOfSubj_nonUniqVal\"] = non_unique_subj\n    # print(non_unique_subj)\n  }\n)\n\ndf_check %>% arrange(desc(numbOfSubj_nonUniqVal))","id":12},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-13","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":13},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-14","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ds.subj <- ds %>% \n  select(-sample_id, -Sample_trimester, -Gestationalage_sample) %>% \n  distinct()","id":14},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-15","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"sum(duplicated(ds.subj$subject_id))\nds.subj %>% group_by(subject_id) %>% filter(n() > 1)\nds.subj <- ds.subj %>% filter(race != \"White\")\nsum(duplicated(ds.subj$subject_id))","id":15},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-16","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"dd %>% filter(R21.Variable.Name==\"case_control_status\") %>% pull(Variable.Coding)","id":16},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-17","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":17},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-18","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ds.subj$PE_status <- factor(ds.subj$case_control_status)\nlevels(ds.subj$PE_status)\nlevels(ds.subj$PE_status) <- c(\"control\",\"case\")\n\n# Check that the recoding was correct:\nxtabs(~ case_control_status + PE_status, data = ds.subj )","id":18},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-19","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ds.subj <- ds.subj %>% mutate(PE_status = \n  case_when(case_control_status == 0 ~ \"control\",\n  case_control_status == 1 ~ \"case\"))\nxtabs(~ case_control_status + PE_status, data = ds.subj )","id":19},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-20","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":20},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-21","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_missing(ds.subj)","id":21},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-22","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"createNAs <- function (x, pctNA = 0.1) {\n  n <- nrow(x)\n  p <- ncol(x)\n  NAloc <- rep(FALSE, n * p)\n  NAloc[sample.int(n * p, floor(n * p * pctNA))] <- TRUE\n  x[matrix(NAloc, nrow = n, ncol = p)] <- NA\n  return(x)\n}\n\ndf <- ds.subj\ndf <- createNAs(df)\ndf <- data.frame(df)\nplot_missing(df)","id":22},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-23","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"profile_missing(df) %>% \n  arrange(pct_missing)","id":23},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-24","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":24},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-25","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_bar(ds.subj)","id":25},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-26","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_histogram(ds.subj)","id":26},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-27","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_density(ds.subj)","id":27},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-28","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_qq(ds.subj)","id":28},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-29","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":29},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-30","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_bar(ds.subj, by=\"PE_status\")","id":30},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-31","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_boxplot(ds.subj, by=\"PE_status\")","id":31},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-32","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_qq(ds.subj, by=\"PE_status\")","id":32},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-33","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":33},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-34","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"plot_correlation(ds.subj %>% select(where(is.numeric)))","id":34},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-35","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# To illustrate, let's just use three of the numeric traits:\nds1 <- ds.subj[ , c(15,17,19)]\nnames(ds1)","id":35},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-36","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":36},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-37","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ggpairs(ds1)","id":37},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-38","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# Edit/add/try out R code here","id":38},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-39","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ggpairs(ds.subj, columns = c(15, 17, 19), ggplot2::aes(color = PE_status))","id":39},{"options":{"editor-font-scale":"1","output":"true","results":"markup","comment":"","fig-cap":"","fig-height":5,"out-height":"","warning":"true","editor-quick-suggestions":"false","autorun":"false","message":"true","read-only":"false","dpi":72,"label":"unnamed-chunk-40","classes":"","context":"interactive","editor-max-height":"","out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"ggcorr(ds1, label=TRUE)","id":40}];
 
 </script>
 <script type="module">
@@ -1569,7 +1569,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./EDA.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./EDA.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1662,170 +1662,176 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R_subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Subsetting Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./RCharactersLecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_char_exer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R Character Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RLoops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lecture: Loops in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Loops in R, Part I</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conditionals in R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_part2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Loops in R, Part II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">R Functions Excercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Tidyverse Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./recoding_reshaping_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Recoding Reshaping Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./merging_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Merging Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_graphics_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Graphics Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reorder_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Interactive_Graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GRanges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">GRanges Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./QC.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Data Cleaning Exercise</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Questions about R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gotchas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">R gotchas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Basic_Unix_commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Basic Shell Commands</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_streams_pipes_scripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unix Streams, Pipes, Scripts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./slurm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Slurm script settings</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Data Manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./unix_miscellaneous.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Unix Miscellaneous</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1879,33 +1885,33 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link active" data-scroll-target="#exploratory-data-analysis"><span class="header-section-number">26</span> Exploratory Data Analysis</a>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link active" data-scroll-target="#exploratory-data-analysis"><span class="header-section-number">27</span> Exploratory Data Analysis</a>
   <ul class="collapse">
-  <li><a href="#project-1-data" id="toc-project-1-data" class="nav-link" data-scroll-target="#project-1-data"><span class="header-section-number">26.1</span> Project 1 Data</a></li>
-  <li><a href="#explore-project-1-data" id="toc-explore-project-1-data" class="nav-link" data-scroll-target="#explore-project-1-data"><span class="header-section-number">26.2</span> Explore Project 1 data</a></li>
-  <li><a href="#dimensions-and-names" id="toc-dimensions-and-names" class="nav-link" data-scroll-target="#dimensions-and-names"><span class="header-section-number">26.3</span> Dimensions and Names</a></li>
-  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions"><span class="header-section-number">26.4</span> Dimensions</a></li>
-  <li><a href="#arrangement" id="toc-arrangement" class="nav-link" data-scroll-target="#arrangement"><span class="header-section-number">26.5</span> Arrangement</a>
+  <li><a href="#project-1-data" id="toc-project-1-data" class="nav-link" data-scroll-target="#project-1-data"><span class="header-section-number">27.1</span> Project 1 Data</a></li>
+  <li><a href="#explore-project-1-data" id="toc-explore-project-1-data" class="nav-link" data-scroll-target="#explore-project-1-data"><span class="header-section-number">27.2</span> Explore Project 1 data</a></li>
+  <li><a href="#dimensions-and-names" id="toc-dimensions-and-names" class="nav-link" data-scroll-target="#dimensions-and-names"><span class="header-section-number">27.3</span> Dimensions and Names</a></li>
+  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions"><span class="header-section-number">27.4</span> Dimensions</a></li>
+  <li><a href="#arrangement" id="toc-arrangement" class="nav-link" data-scroll-target="#arrangement"><span class="header-section-number">27.5</span> Arrangement</a>
   <ul class="collapse">
-  <li><a href="#samples-or-subjects" id="toc-samples-or-subjects" class="nav-link" data-scroll-target="#samples-or-subjects"><span class="header-section-number">26.5.1</span> Samples or subjects</a></li>
-  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">26.5.2</span> Unique values</a></li>
-  <li><a href="#subject-level-data-set" id="toc-subject-level-data-set" class="nav-link" data-scroll-target="#subject-level-data-set"><span class="header-section-number">26.5.3</span> Subject-level data set</a></li>
+  <li><a href="#samples-or-subjects" id="toc-samples-or-subjects" class="nav-link" data-scroll-target="#samples-or-subjects"><span class="header-section-number">27.5.1</span> Samples or subjects</a></li>
+  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">27.5.2</span> Unique values</a></li>
+  <li><a href="#subject-level-data-set" id="toc-subject-level-data-set" class="nav-link" data-scroll-target="#subject-level-data-set"><span class="header-section-number">27.5.3</span> Subject-level data set</a></li>
   </ul></li>
-  <li><a href="#coding" id="toc-coding" class="nav-link" data-scroll-target="#coding"><span class="header-section-number">26.6</span> Coding</a>
+  <li><a href="#coding" id="toc-coding" class="nav-link" data-scroll-target="#coding"><span class="header-section-number">27.6</span> Coding</a>
   <ul class="collapse">
-  <li><a href="#recode-for-understandability" id="toc-recode-for-understandability" class="nav-link" data-scroll-target="#recode-for-understandability"><span class="header-section-number">26.6.1</span> Recode for understandability</a></li>
+  <li><a href="#recode-for-understandability" id="toc-recode-for-understandability" class="nav-link" data-scroll-target="#recode-for-understandability"><span class="header-section-number">27.6.1</span> Recode for understandability</a></li>
   </ul></li>
-  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="header-section-number">26.7</span> Missing data</a></li>
-  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">26.8</span> Distribution</a></li>
-  <li><a href="#variation" id="toc-variation" class="nav-link" data-scroll-target="#variation"><span class="header-section-number">26.9</span> Variation</a>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="header-section-number">27.7</span> Missing data</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">27.8</span> Distribution</a></li>
+  <li><a href="#variation" id="toc-variation" class="nav-link" data-scroll-target="#variation"><span class="header-section-number">27.9</span> Variation</a>
   <ul class="collapse">
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">26.9.4</span> Correlation</a></li>
-  <li><a href="#ggpairs" id="toc-ggpairs" class="nav-link" data-scroll-target="#ggpairs"><span class="header-section-number">26.9.5</span> <code>ggpairs</code></a></li>
-  <li><a href="#ggcorr" id="toc-ggcorr" class="nav-link" data-scroll-target="#ggcorr"><span class="header-section-number">26.9.6</span> <code>ggcorr</code></a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">27.9.4</span> Correlation</a></li>
+  <li><a href="#ggpairs" id="toc-ggpairs" class="nav-link" data-scroll-target="#ggpairs"><span class="header-section-number">27.9.5</span> <code>ggpairs</code></a></li>
+  <li><a href="#ggcorr" id="toc-ggcorr" class="nav-link" data-scroll-target="#ggcorr"><span class="header-section-number">27.9.6</span> <code>ggcorr</code></a></li>
   </ul></li>
-  <li><a href="#dataexplorer" id="toc-dataexplorer" class="nav-link" data-scroll-target="#dataexplorer"><span class="header-section-number">26.10</span> <code>DataExplorer</code></a></li>
-  <li><a href="#datamaid" id="toc-datamaid" class="nav-link" data-scroll-target="#datamaid"><span class="header-section-number">26.11</span> <code>dataMaid</code></a></li>
-  <li><a href="#smarteda" id="toc-smarteda" class="nav-link" data-scroll-target="#smarteda"><span class="header-section-number">26.12</span> <code>SmartEDA</code></a></li>
+  <li><a href="#dataexplorer" id="toc-dataexplorer" class="nav-link" data-scroll-target="#dataexplorer"><span class="header-section-number">27.10</span> <code>DataExplorer</code></a></li>
+  <li><a href="#datamaid" id="toc-datamaid" class="nav-link" data-scroll-target="#datamaid"><span class="header-section-number">27.11</span> <code>dataMaid</code></a></li>
+  <li><a href="#smarteda" id="toc-smarteda" class="nav-link" data-scroll-target="#smarteda"><span class="header-section-number">27.12</span> <code>SmartEDA</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2199,7 +2205,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">R Exploratory Data Analysis Exercise</span></h1>
 </div>
 
 
@@ -2216,8 +2222,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="exploratory-data-analysis" class="level1" data-number="26">
-<h1 data-number="26"><span class="header-section-number">26</span> Exploratory Data Analysis</h1>
+<section id="exploratory-data-analysis" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Exploratory Data Analysis</h1>
 <ul>
 <li>Goal: Understand your data</li>
 <li>Ask questions
@@ -2233,15 +2239,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>“Unusual” data may be erroneous.</li>
 </ul></li>
 </ul>
-<section id="project-1-data" class="level2" data-number="26.1">
-<h2 data-number="26.1" class="anchored" data-anchor-id="project-1-data"><span class="header-section-number">26.1</span> Project 1 Data</h2>
+<section id="project-1-data" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="project-1-data"><span class="header-section-number">27.1</span> Project 1 Data</h2>
 <p>In the <code>ds</code> data frame we have the synthetic yet realistic data we will be using in Project 1.</p>
 <p>In the <code>dd</code> data frame we have the corresponding data dictionary.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="explore-project-1-data" class="level2" data-number="26.2">
-<h2 data-number="26.2" class="anchored" data-anchor-id="explore-project-1-data"><span class="header-section-number">26.2</span> Explore Project 1 data</h2>
+<section id="explore-project-1-data" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="explore-project-1-data"><span class="header-section-number">27.2</span> Explore Project 1 data</h2>
 <p>Let’s explore the Project 1 data set:</p>
 <ul>
 <li>ds = data set</li>
@@ -2254,15 +2260,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>How to structure the data for sharing via dbGaP?</li>
 </ul>
 </section>
-<section id="dimensions-and-names" class="level2" data-number="26.3">
-<h2 data-number="26.3" class="anchored" data-anchor-id="dimensions-and-names"><span class="header-section-number">26.3</span> Dimensions and Names</h2>
+<section id="dimensions-and-names" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="dimensions-and-names"><span class="header-section-number">27.3</span> Dimensions and Names</h2>
 <ul>
 <li>What are the names of the variables in our data files?</li>
 <li>What are the dimensions of our data?</li>
 </ul>
 </section>
-<section id="dimensions" class="level2" data-number="26.4">
-<h2 data-number="26.4" class="anchored" data-anchor-id="dimensions"><span class="header-section-number">26.4</span> Dimensions</h2>
+<section id="dimensions" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="dimensions"><span class="header-section-number">27.4</span> Dimensions</h2>
 <p><strong>Task:</strong> Examine the names and dimensions of our data and data dictionary.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -2298,13 +2304,13 @@ Expand to see solution
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<section id="data-ds" class="level3" data-number="26.4.1">
-<h3 data-number="26.4.1" class="anchored" data-anchor-id="data-ds"><span class="header-section-number">26.4.1</span> Data <code>ds</code></h3>
+<section id="data-ds" class="level3" data-number="27.4.1">
+<h3 data-number="27.4.1" class="anchored" data-anchor-id="data-ds"><span class="header-section-number">27.4.1</span> Data <code>ds</code></h3>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="data-dictionay-dd" class="level3" data-number="26.4.2">
-<h3 data-number="26.4.2" class="anchored" data-anchor-id="data-dictionay-dd"><span class="header-section-number">26.4.2</span> Data dictionay <code>dd</code></h3>
+<section id="data-dictionay-dd" class="level3" data-number="27.4.2">
+<h3 data-number="27.4.2" class="anchored" data-anchor-id="data-dictionay-dd"><span class="header-section-number">27.4.2</span> Data dictionay <code>dd</code></h3>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
@@ -2312,8 +2318,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="arrangement" class="level2" data-number="26.5">
-<h2 data-number="26.5" class="anchored" data-anchor-id="arrangement"><span class="header-section-number">26.5</span> Arrangement</h2>
+<section id="arrangement" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="arrangement"><span class="header-section-number">27.5</span> Arrangement</h2>
 <ul>
 <li>How are the data arranged?
 <ul>
@@ -2322,8 +2328,8 @@ Expand to see solution
 <li>Were subjects sampled more than once?</li>
 </ul></li>
 </ul>
-<section id="samples-or-subjects" class="level3" data-number="26.5.1">
-<h3 data-number="26.5.1" class="anchored" data-anchor-id="samples-or-subjects"><span class="header-section-number">26.5.1</span> Samples or subjects</h3>
+<section id="samples-or-subjects" class="level3" data-number="27.5.1">
+<h3 data-number="27.5.1" class="anchored" data-anchor-id="samples-or-subjects"><span class="header-section-number">27.5.1</span> Samples or subjects</h3>
 <p>Is it one row per sample or per subject?</p>
 <p><strong>Question:</strong> How would you figure out the answer to this question?</p>
 <div id="qwebr-insertion-location-5"></div>
@@ -2346,8 +2352,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="unique-values" class="level3" data-number="26.5.2">
-<h3 data-number="26.5.2" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">26.5.2</span> Unique values</h3>
+<section id="unique-values" class="level3" data-number="27.5.2">
+<h3 data-number="27.5.2" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">27.5.2</span> Unique values</h3>
 <p>To figure out which phenotypes vary within subjects, it would be helpful to answer this question:</p>
 <p><strong>Question:</strong> How can we figure out the number of unique values in each column of our <code>ds</code> data frame?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -2452,8 +2458,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="subject-level-data-set" class="level3" data-number="26.5.3">
-<h3 data-number="26.5.3" class="anchored" data-anchor-id="subject-level-data-set"><span class="header-section-number">26.5.3</span> Subject-level data set</h3>
+<section id="subject-level-data-set" class="level3" data-number="27.5.3">
+<h3 data-number="27.5.3" class="anchored" data-anchor-id="subject-level-data-set"><span class="header-section-number">27.5.3</span> Subject-level data set</h3>
 <p>For submission to dbGaP, we need to separate the phenotype data into subject-level data and sample-level data.</p>
 <p>The dbGaP submission guide here</p>
 <p><a href="https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/#12-what-data-must-be-included-in" class="uri">https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/#12-what-data-must-be-included-in</a></p>
@@ -2490,8 +2496,8 @@ Expand to see solution
 </div>
 </section>
 </section>
-<section id="coding" class="level2" data-number="26.6">
-<h2 data-number="26.6" class="anchored" data-anchor-id="coding"><span class="header-section-number">26.6</span> Coding</h2>
+<section id="coding" class="level2" data-number="27.6">
+<h2 data-number="27.6" class="anchored" data-anchor-id="coding"><span class="header-section-number">27.6</span> Coding</h2>
 <ul>
 <li>How are the data coded?
 <ul>
@@ -2502,8 +2508,8 @@ Expand to see solution
 <li>Do we need to skip rows when reading the data in?</li>
 </ul></li>
 </ul>
-<section id="recode-for-understandability" class="level3" data-number="26.6.1">
-<h3 data-number="26.6.1" class="anchored" data-anchor-id="recode-for-understandability"><span class="header-section-number">26.6.1</span> Recode for understandability</h3>
+<section id="recode-for-understandability" class="level3" data-number="27.6.1">
+<h3 data-number="27.6.1" class="anchored" data-anchor-id="recode-for-understandability"><span class="header-section-number">27.6.1</span> Recode for understandability</h3>
 <p>Using the subject-level data set <code>ds.subj</code>, let’s recode <code>case_control_status</code> from <code>0</code> and <code>1</code> into a new <code>PE_status</code> variable coded as <code>control</code> and <code>case</code>.</p>
 <p>First, look up the coding used for the <code>case_control_status</code> variable in the Data Dictionary <code>dd</code>:</p>
 <div id="qwebr-insertion-location-16"></div>
@@ -2552,8 +2558,8 @@ Expand to see solution
 </div>
 </section>
 </section>
-<section id="missing-data" class="level2" data-number="26.7">
-<h2 data-number="26.7" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">26.7</span> Missing data</h2>
+<section id="missing-data" class="level2" data-number="27.7">
+<h2 data-number="27.7" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">27.7</span> Missing data</h2>
 <ul>
 <li>What is the pattern of missing data?
 <ul>
@@ -2593,8 +2599,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="distribution" class="level2" data-number="26.8">
-<h2 data-number="26.8" class="anchored" data-anchor-id="distribution"><span class="header-section-number">26.8</span> Distribution</h2>
+<section id="distribution" class="level2" data-number="27.8">
+<h2 data-number="27.8" class="anchored" data-anchor-id="distribution"><span class="header-section-number">27.8</span> Distribution</h2>
 <ul>
 <li>What is the distribution of each of our phenotypes?
 <ul>
@@ -2635,8 +2641,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="variation" class="level2" data-number="26.9">
-<h2 data-number="26.9" class="anchored" data-anchor-id="variation"><span class="header-section-number">26.9</span> Variation</h2>
+<section id="variation" class="level2" data-number="27.9">
+<h2 data-number="27.9" class="anchored" data-anchor-id="variation"><span class="header-section-number">27.9</span> Variation</h2>
 <ul>
 <li>How do our data vary and co-vary?
 <ul>
@@ -2661,26 +2667,26 @@ Expand to see solution
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<section id="bar-plots" class="level3" data-number="26.9.1">
-<h3 data-number="26.9.1" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">26.9.1</span> Bar plots</h3>
+<section id="bar-plots" class="level3" data-number="27.9.1">
+<h3 data-number="27.9.1" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">27.9.1</span> Bar plots</h3>
 <div id="qwebr-insertion-location-30"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="box-plots" class="level3" data-number="26.9.2">
-<h3 data-number="26.9.2" class="anchored" data-anchor-id="box-plots"><span class="header-section-number">26.9.2</span> Box plots</h3>
+<section id="box-plots" class="level3" data-number="27.9.2">
+<h3 data-number="27.9.2" class="anchored" data-anchor-id="box-plots"><span class="header-section-number">27.9.2</span> Box plots</h3>
 <div id="qwebr-insertion-location-31"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="qq-plots" class="level3" data-number="26.9.3">
-<h3 data-number="26.9.3" class="anchored" data-anchor-id="qq-plots"><span class="header-section-number">26.9.3</span> QQ plots</h3>
+<section id="qq-plots" class="level3" data-number="27.9.3">
+<h3 data-number="27.9.3" class="anchored" data-anchor-id="qq-plots"><span class="header-section-number">27.9.3</span> QQ plots</h3>
 <div id="qwebr-insertion-location-32"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </div>
 </div>
 </div>
-<section id="correlation" class="level3" data-number="26.9.4">
-<h3 data-number="26.9.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">26.9.4</span> Correlation</h3>
+<section id="correlation" class="level3" data-number="27.9.4">
+<h3 data-number="27.9.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">27.9.4</span> Correlation</h3>
 <p>For plotting correlation matrices, <code>DataExplorer</code> provides the <code>plot_correlation</code> command.</p>
 <p><strong>Task:</strong>: Try <code>plot_correlation</code> out, on the subset of numeric columns.</p>
 <div id="qwebr-insertion-location-33"></div>
@@ -2703,8 +2709,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="ggpairs" class="level3" data-number="26.9.5">
-<h3 data-number="26.9.5" class="anchored" data-anchor-id="ggpairs"><span class="header-section-number">26.9.5</span> <code>ggpairs</code></h3>
+<section id="ggpairs" class="level3" data-number="27.9.5">
+<h3 data-number="27.9.5" class="anchored" data-anchor-id="ggpairs"><span class="header-section-number">27.9.5</span> <code>ggpairs</code></h3>
 <p>Use <code>ggpairs</code> from the <code>GGally</code> R package.</p>
 <div id="qwebr-insertion-location-35"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2763,8 +2769,8 @@ Expand to see solution
 </div>
 </div>
 </section>
-<section id="ggcorr" class="level3" data-number="26.9.6">
-<h3 data-number="26.9.6" class="anchored" data-anchor-id="ggcorr"><span class="header-section-number">26.9.6</span> <code>ggcorr</code></h3>
+<section id="ggcorr" class="level3" data-number="27.9.6">
+<h3 data-number="27.9.6" class="anchored" data-anchor-id="ggcorr"><span class="header-section-number">27.9.6</span> <code>ggcorr</code></h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2782,23 +2788,23 @@ Note
 </div>
 </section>
 </section>
-<section id="dataexplorer" class="level2" data-number="26.10">
-<h2 data-number="26.10" class="anchored" data-anchor-id="dataexplorer"><span class="header-section-number">26.10</span> <code>DataExplorer</code></h2>
+<section id="dataexplorer" class="level2" data-number="27.10">
+<h2 data-number="27.10" class="anchored" data-anchor-id="dataexplorer"><span class="header-section-number">27.10</span> <code>DataExplorer</code></h2>
 <p>We can quickly create a report using the <code>create_report</code> function from the <code>DataExplorer</code> R package</p>
 <pre><code>create_report(ds.subj)</code></pre>
 <p>See</p>
 <p><a href="https://boxuancui.github.io/DataExplorer/" class="uri">https://boxuancui.github.io/DataExplorer/</a></p>
 </section>
-<section id="datamaid" class="level2" data-number="26.11">
-<h2 data-number="26.11" class="anchored" data-anchor-id="datamaid"><span class="header-section-number">26.11</span> <code>dataMaid</code></h2>
+<section id="datamaid" class="level2" data-number="27.11">
+<h2 data-number="27.11" class="anchored" data-anchor-id="datamaid"><span class="header-section-number">27.11</span> <code>dataMaid</code></h2>
 <p>The <code>dataMaid</code> R package can also be used to create an exporatory data analysis report.</p>
 <pre><code>library(dataMaid)
 makeDataReport(ds.subj, output="html")</code></pre>
 <p>See</p>
 <p><a href="https://www.jstatsoft.org/article/view/v090i06" class="uri">https://www.jstatsoft.org/article/view/v090i06</a></p>
 </section>
-<section id="smarteda" class="level2" data-number="26.12">
-<h2 data-number="26.12" class="anchored" data-anchor-id="smarteda"><span class="header-section-number">26.12</span> <code>SmartEDA</code></h2>
+<section id="smarteda" class="level2" data-number="27.12">
+<h2 data-number="27.12" class="anchored" data-anchor-id="smarteda"><span class="header-section-number">27.12</span> <code>SmartEDA</code></h2>
 <p>The <code>SmartEDA</code> R package also has a command to create an exploratory data analysis report - this command is <code>ExpReport</code>.</p>
 <pre><code>library(SmartEDA)
 ExpReport(ds.subj, op_file="SmartEDAReport.html")
@@ -3446,12 +3452,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./reorder_exercise.html" class="pagination-link" aria-label="R Reordering Exercise">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">R Reordering Exercise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Interactive_Graphics.html" class="pagination-link" aria-label="Interactive Graphics">
-        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Interactive Graphics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
