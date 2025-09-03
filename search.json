@@ -690,273 +690,273 @@
     ]
   },
   {
-    "objectID": "R_subsetting.html",
-    "href": "R_subsetting.html",
-    "title": "11  R Subsetting Exercise",
-    "section": "",
-    "text": "11.1 Ackowledgements\nThis chapter is a slightly modified version of the\nSubsetting Data\nchapter from\nR for Reproducible Scientific Analysis\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#learning-objectives",
-    "href": "R_subsetting.html#learning-objectives",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.2 Learning objectives",
-    "text": "11.2 Learning objectives\n\n\nTo be able to subset vectors, factors, matrices, lists, and data frames\nTo be able to extract individual and multiple elements: by index, by name, using comparison operations\nTo be able to skip and remove elements from various data structures.\n\n\n\n\nHow can I work with subsets of data in R?\n\n\nR has many powerful subset operators. Mastering them will allow you to easily perform complex operations on any kind of dataset.\nThere are six different ways we can subset any kind of object, and three different subsetting operators for the different data structures.\nLet’s start with the workhorse of R: a simple numeric vector.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nAtomic vectors\n\n\n\nIn R, simple vectors containing character strings, numbers, or logical values are called atomic vectors because they can’t be further simplified.\n\n\nSo now that we’ve created a dummy vector to play with, how do we get at its contents?",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#accessing-elements-using-their-indices",
-    "href": "R_subsetting.html#accessing-elements-using-their-indices",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.3 Accessing elements using their indices",
-    "text": "11.3 Accessing elements using their indices\nTo extract elements of a vector we can give their corresponding index, starting from one:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIt may look different, but the square brackets operator is a function. For vectors (and matrices), it means “get me the nth element”.\nWe can ask for multiple elements at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nOr slices of the vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nthe : operator creates a sequence of numbers from the left element to the right.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can ask for the same element multiple times:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we ask for an index beyond the length of the vector, R will return a missing value:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is a vector of length one containing an NA, whose name is also NA.\nIf we ask for the 0th element, we get an empty vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nVector numbering in R starts at 1\n\n\n\nIn many programming languages (C and Python, for example), the first element of a vector has an index of 0. In R, the first element is 1.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#skipping-and-removing-elements",
-    "href": "R_subsetting.html#skipping-and-removing-elements",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.4 Skipping and removing elements",
-    "text": "11.4 Skipping and removing elements\nIf we use a negative number as the index of a vector, R will return every element except for the one specified:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can skip multiple elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Order of operations\n\n\n\nA common trip up for novices occurs when trying to skip slices of a vector. It’s natural to try to negate a sequence like so, but this gives a somewhat cryptic error message:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut remember the order of operations. : is really a function. It takes its first argument as -1, and its second as 3, so generates the sequence of numbers: c(-1, 0, 1, 2, 3).\nThe correct solution is to wrap that function call in brackets, so that the - operator applies to the result:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nTo remove elements from a vector, we need to assign the result back into the variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-1",
-    "href": "R_subsetting.html#challenge-1",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.5 Challenge 1",
-    "text": "11.5 Challenge 1\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCome up with at least 2 different commands that will produce the following output:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAfter you find 2 different commands, compare notes with your neighbour. Did you have different strategies?\n\n\n\n\n\n\nSolution to challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#subsetting-by-name",
-    "href": "R_subsetting.html#subsetting-by-name",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.6 Subsetting by name",
-    "text": "11.6 Subsetting by name\nWe can extract elements by using their name, instead of extracting by index:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is usually a much more reliable way to subset objects: the position of various elements can often change when chaining together subsetting operations, but the names will always remain the same!",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#logical-operations",
-    "href": "R_subsetting.html#logical-operations",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.7 Subsetting through other logical operations",
-    "text": "11.7 Subsetting through other logical operations\nWe can also use any logical vector to subset:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSince comparison operators (e.g. &gt;, &lt;, ==) evaluate to logical vectors, we can also use them to succinctly subset vectors: the following statement gives the same result as the previous one.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBreaking it down, this statement first evaluates x&gt;7, generating a logical vector c(FALSE, FALSE, TRUE, FALSE, TRUE), and then selects the elements of x corresponding to the TRUE values.\nWe can use == to mimic the previous method of indexing by name (remember you have to use == rather than = for comparisons):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Combining logical conditions\n\n\n\nWe often want to combine multiple logical criteria. For example, we might want to find all the countries that are located in Asia or Europe and have life expectancies within a certain range. Several operations for combining logical vectors exist in R:\n\n&, the “logical AND” operator: returns TRUE if both the left and right are TRUE.\n|, the “logical OR” operator: returns TRUE, if either the left or right (or both) are TRUE.\n\nYou may sometimes see && and || instead of & and |. These two-character operators only look at the first element of each vector and ignore the remaining elements. In general you should not use the two-character operators in data analysis; save them for programming, i.e. deciding whether to execute a statement.\n\n!, the “logical NOT” operator: converts TRUE to FALSE and FALSE to TRUE. It can negate a single logical condition (eg !TRUE becomes FALSE), or a whole vector of conditions(eg !c(TRUE, FALSE) becomes c(FALSE, TRUE)).\n\nAdditionally, you can compare the elements within a single vector using the all function (which returns TRUE if every element of the vector is TRUE) and the any function (which returns TRUE if one or more elements of the vector are TRUE).",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-2",
-    "href": "R_subsetting.html#challenge-2",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.8 Challenge 2",
-    "text": "11.8 Challenge 2\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWrite a subsetting command to return the values in x that are greater than 4 and less than 7.\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#skipping-named-elements",
-    "href": "R_subsetting.html#skipping-named-elements",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.9 Skipping named elements",
-    "text": "11.9 Skipping named elements\nSkipping or removing named elements is a little harder. If we try to skip one named element by negating the string, R complains (slightly obscurely) that it doesn’t know how to take the negative of a string:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHowever, we can use the != (not-equals) operator to construct a logical vector that will do what we want:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSkipping multiple named indices is a little bit harder still. Suppose we want to drop the \"a\" and \"c\" elements, so we try this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR did something, but it gave us a warning that we ought to pay attention to - and it apparently gave us the wrong answer (the \"c\" element is still included in the vector)!\nSo what does != actually do in this case? That’s an excellent question.\n\n11.9.1 Recycling\nLet’s take a look at the comparison component of this code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does R give TRUE as the third element of this vector, when names(x)[3] != \"c\" is obviously false? When you use !=, R tries to compare each element of the left argument with the corresponding element of its right argument. What happens when you compare vectors of different lengths?\n\nWhen one vector is shorter than the other, it gets recycled:\n\nIn this case R repeats c(\"a\", \"c\") as many times as necessary to match names(x), i.e. we get c(\"a\",\"c\",\"a\",\"c\",\"a\"). Since the recycled \"a\" doesn’t match the third element of names(x), the value of != is TRUE. Because in this case the longer vector length (5) isn’t a multiple of the shorter vector length (2), R printed a warning message. If we had been unlucky and names(x) had contained six elements, R would silently have done the wrong thing (i.e., not what we intended it to do). This recycling rule can can introduce hard-to-find and subtle bugs!\nThe way to get R to do what we really want (match each element of the left argument with all of the elements of the right argument) it to use the %in% operator. The %in% operator goes through each element of its left argument, in this case the names of x, and asks, “Does this element occur in the second argument?”. Here, since we want to exclude values, we also need a ! operator to change “in” to “not in”:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-3",
-    "href": "R_subsetting.html#challenge-3",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.10 Challenge 3",
-    "text": "11.10 Challenge 3\nSelecting elements of a vector that match any of a list of components is a very common data analysis task. For example, the gapminder data set contains country and continent variables, but no information between these two scales. Suppose we want to pull out information from southeast Asia: how do we set up an operation to produce a logical vector that is TRUE for all of the countries in southeast Asia and FALSE otherwise?\nSuppose you have these data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThere’s a wrong way (using only ==), which will give you a warning; a clunky way (using the logical operators == and |); and an elegant way (using %in%). See whether you can come up with all three and explain how they (don’t) work.\n\n\n\n\n\n\nSolution to challenge 3\n\n\n\n\n\n\nThe wrong way to do this problem is countries==seAsia. This gives a warning (\"In countries == seAsia : longer object length is not a multiple of shorter object length\") and the wrong answer (a vector of all FALSE values), because none of the recycled values of seAsia happen to line up correctly with matching values in country.\nThe clunky (but technically correct) way to do this problem is\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n(or countries==seAsia[1] | countries==seAsia[2] | ...). This gives the correct values, but hopefully you can see how awkward it is (what if we wanted to select countries from a much longer list?).\n\nThe best way to do this problem is countries %in% seAsia, which is both correct and easy to type (and read).",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#handling-special-values",
-    "href": "R_subsetting.html#handling-special-values",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.11 Handling special values",
-    "text": "11.11 Handling special values\nAt some point you will encounter functions in R that cannot handle missing, infinite, or undefined data.\nThere are a number of special functions you can use to filter out this data:\n\nis.na will return all positions in a vector, matrix, or data.frame containing NA (or NaN)\nlikewise, is.nan, and is.infinite will do the same for NaN and Inf.\nis.finite will return all positions in a vector, matrix, or data.frame that do not contain NA, NaN or Inf.\nna.omit will filter out all missing values from a vector",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#factor-subsetting",
-    "href": "R_subsetting.html#factor-subsetting",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.12 Factor subsetting",
-    "text": "11.12 Factor subsetting\nNow that we’ve explored the different ways to subset vectors, how do we subset the other data structures?\nFactor subsetting works the same way as vector subsetting.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSkipping elements will not remove the level even if no more of that category exists in the factor:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#matrix-subsetting",
-    "href": "R_subsetting.html#matrix-subsetting",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.13 Matrix subsetting",
-    "text": "11.13 Matrix subsetting\nMatrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can leave the first or second arguments blank to retrieve all the rows or columns respectively:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we only access one row or column, R will automatically convert the result to a vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf you want to keep the output as a matrix, you need to specify a third argument; drop = FALSE:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUnlike vectors, if we try to access a row or column outside of the matrix, R will throw an error:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Higher dimensional arrays\n\n\n\nwhen dealing with multi-dimensional arrays, each argument to [ corresponds to a dimension. For example, a 3D array, the first three arguments correspond to the rows, columns, and depth dimension.\n\n\nBecause matrices are vectors, we can also subset using only one argument:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis usually isn’t useful, and often confusing to read. However it is useful to note that matrices are laid out in column-major format by default. That is the elements of the vector are arranged column-wise:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf you wish to populate the matrix by row, use byrow=TRUE:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMatrices can also be subsetted using their rownames and column names instead of their row and column indices.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-4",
-    "href": "R_subsetting.html#challenge-4",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.14 Challenge 4",
-    "text": "11.14 Challenge 4\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhich of the following commands will extract the values 11 and 14?\n\nA. m[2,4,2,5]\nB. m[2:5]\nC. m[4:5,2]\nD. m[2,c(4,5)]\n\n\n\n\n\n\nSolution to challenge 4\n\n\n\n\n\nD",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#list-subsetting",
-    "href": "R_subsetting.html#list-subsetting",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.15 List subsetting",
-    "text": "11.15 List subsetting\nNow we’ll introduce some new subsetting operators. There are three functions used to subset lists. We’ve already seen these when learning about atomic vectors and matrices: [, [[, and $.\nUsing [ will always return a list. If you want to subset a list, but not extract an element, then you will likely use [.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis returns a list with one element.\nWe can subset elements of a list exactly the same way as atomic vectors using [. Comparison operations however won’t work as they’re not recursive, they will try to condition on the data structures in each element of the list, not the individual elements within those data structures.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo extract individual elements of a list, you need to use the double-square bracket function: [[.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNotice that now the result is a vector, not a list.\nYou can’t extract more than one element at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNor use it to skip elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut you can use names to both subset and extract elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe $ function is a shorthand way for extracting elements by name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-5",
-    "href": "R_subsetting.html#challenge-5",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.16 Challenge 5",
-    "text": "11.16 Challenge 5\nGiven the following list:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the “b” item in the list.\n\n\n\n\n\n\nSolution to challenge 5\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-6",
-    "href": "R_subsetting.html#challenge-6",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.17 Challenge 6",
-    "text": "11.17 Challenge 6\nGiven a linear model:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExtract the residual degrees of freedom (hint: attributes() will help you)\n\n\n\n\n\n\nSolution to challenge 6\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#data-frames",
-    "href": "R_subsetting.html#data-frames",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.18 Data frames",
-    "text": "11.18 Data frames\nRemember the data frames are lists underneath the hood, so similar rules apply. However they are also two dimensional objects:\n[ with one argument will act the same way as for lists, where each list element corresponds to a column. The resulting object will be a data frame:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSimilarly, [[ will act to extract a single column:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnd $ provides a convenient shorthand to extract columns by name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWith two arguments, [ behaves the same way as for matrices:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we subset a single row, the result will be a data frame (because the elements are mixed types):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut for a single column the result will be a vector (this can be changed with the third argument, drop = FALSE).",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-7",
-    "href": "R_subsetting.html#challenge-7",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.19 Challenge 7",
-    "text": "11.19 Challenge 7\nFix each of the following common data frame subsetting errors:\n\nExtract observations collected for the year 1957\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract all columns except 1 through to 4\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the rows where the life expectancy is longer the 80 years\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the first row, and the fourth and fifth columns (continent and lifeExp).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdvanced: extract rows that contain information for the years 2002 and 2007\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 7\n\n\n\n\n\nFix each of the following common data frame subsetting errors:\n\nExtract observations collected for the year 1957\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract all columns except 1 through to 4\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the rows where the life expectancy is longer than 80 years\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the first row, and the fourth and fifth columns (continent and lifeExp).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdvanced: extract rows that contain information for the years 2002 and 2007\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
-    "objectID": "R_subsetting.html#challenge-8",
-    "href": "R_subsetting.html#challenge-8",
-    "title": "11  R Subsetting Exercise",
-    "section": "11.20 Challenge 8",
-    "text": "11.20 Challenge 8\n\nWhy does gapminder[1:20] return an error? How does it differ from gapminder[1:20, ]?\nCreate a new data.frame called gapminder_small that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.\n\n\n\n\n\n\n\nSolution to challenge 8\n\n\n\n\n\n\ngapminder is a data.frame so needs to be subsetted on two dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
-    ]
-  },
-  {
     "objectID": "R_factors_exercise.html",
     "href": "R_factors_exercise.html",
-    "title": "12  R Factors Exercise",
+    "title": "11  R Factors Exercise",
     "section": "",
-    "text": "12.1 Ackowledgements\nThis chapter is a slightly modified version of the\nUnderstanding Factors\nchapter from\nProgramming with R\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.",
+    "text": "11.1 Ackowledgements\nThis chapter is a slightly modified version of the\nUnderstanding Factors\nchapter from\nProgramming with R\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#objectives",
     "href": "R_factors_exercise.html#objectives",
-    "title": "12  R Factors Exercise",
-    "section": "12.2 Objectives",
-    "text": "12.2 Objectives\n\nUnderstand how to represent categorical data in R.\nKnow the difference between ordered and unordered factors.\nBe aware of some of the problems encountered when using factors.",
+    "title": "11  R Factors Exercise",
+    "section": "11.2 Objectives",
+    "text": "11.2 Objectives\n\nUnderstand how to represent categorical data in R.\nKnow the difference between ordered and unordered factors.\nBe aware of some of the problems encountered when using factors.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#questions",
     "href": "R_factors_exercise.html#questions",
-    "title": "12  R Factors Exercise",
-    "section": "12.3 Questions",
-    "text": "12.3 Questions\n\nHow is categorical data represented in R?\nHow do I work with factors?",
+    "title": "11  R Factors Exercise",
+    "section": "11.3 Questions",
+    "text": "11.3 Questions\n\nHow is categorical data represented in R?\nHow do I work with factors?",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#factors",
     "href": "R_factors_exercise.html#factors",
-    "title": "12  R Factors Exercise",
-    "section": "12.4 Factors",
-    "text": "12.4 Factors\nFactors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.\nFactors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.\nOnce created, factors can only contain a pre-defined set values, known as levels. By default, R always sortslevelsin alphabetical order. For instance, if you have a factor with 2 levels:\n\n\n\n\n\n\nThe factor() Command\n\n\n\nThe factor() command is used to create and modify factors in R:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nR will assign 1 to the level \"female\" and 2 to the level \"male\" (because f comes before m, even though the first element in this vector is \"male\"). You can check this by using the function levels(), and check the number of levels using nlevels():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nfood &lt;- factor(food, levels = c(\"low\", \"medium\", \"high\"), ordered = TRUE)\nfood\nlevels(food)\nmin(food) # works!\nIn R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: \"low\", \"medium\", and \"high\"” is more descriptive than 1, 2, 3. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).",
+    "title": "11  R Factors Exercise",
+    "section": "11.4 Factors",
+    "text": "11.4 Factors\nFactors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.\nFactors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.\nOnce created, factors can only contain a pre-defined set values, known as levels. By default, R always sortslevelsin alphabetical order. For instance, if you have a factor with 2 levels:\n\n\n\n\n\n\nThe factor() Command\n\n\n\nThe factor() command is used to create and modify factors in R:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nR will assign 1 to the level \"female\" and 2 to the level \"male\" (because f comes before m, even though the first element in this vector is \"male\"). You can check this by using the function levels(), and check the number of levels using nlevels():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: \"low\", \"medium\", and \"high\"” is more descriptive than 1, 2, 3. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#challenge-representing-data-in-r",
     "href": "R_factors_exercise.html#challenge-representing-data-in-r",
-    "title": "12  R Factors Exercise",
-    "section": "12.5 Challenge: Representing Data in R",
-    "text": "12.5 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
+    "title": "11  R Factors Exercise",
+    "section": "11.5 Challenge: Representing Data in R",
+    "text": "11.5 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#challenge-reordering-factors",
     "href": "R_factors_exercise.html#challenge-reordering-factors",
-    "title": "12  R Factors Exercise",
-    "section": "12.6 Challenge: Reordering Factors",
-    "text": "12.6 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "title": "11  R Factors Exercise",
+    "section": "11.6 Challenge: Reordering Factors",
+    "text": "11.6 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
     "objectID": "R_factors_exercise.html#challenge-updating-factors",
     "href": "R_factors_exercise.html#challenge-updating-factors",
-    "title": "12  R Factors Exercise",
-    "section": "12.7 Challenge: Updating Factors",
-    "text": "12.7 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
+    "title": "11  R Factors Exercise",
+    "section": "11.7 Challenge: Updating Factors",
+    "text": "11.7 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html",
+    "href": "R_subsetting.html",
+    "title": "12  R Subsetting Exercise",
+    "section": "",
+    "text": "12.1 Ackowledgements\nThis chapter is a slightly modified version of the\nSubsetting Data\nchapter from\nR for Reproducible Scientific Analysis\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#learning-objectives",
+    "href": "R_subsetting.html#learning-objectives",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.2 Learning objectives",
+    "text": "12.2 Learning objectives\n\n\nTo be able to subset vectors, factors, matrices, lists, and data frames\nTo be able to extract individual and multiple elements: by index, by name, using comparison operations\nTo be able to skip and remove elements from various data structures.\n\n\n\n\nHow can I work with subsets of data in R?\n\n\nR has many powerful subset operators. Mastering them will allow you to easily perform complex operations on any kind of dataset.\nThere are six different ways we can subset any kind of object, and three different subsetting operators for the different data structures.\nLet’s start with the workhorse of R: a simple numeric vector.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nAtomic vectors\n\n\n\nIn R, simple vectors containing character strings, numbers, or logical values are called atomic vectors because they can’t be further simplified.\n\n\nSo now that we’ve created a dummy vector to play with, how do we get at its contents?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#accessing-elements-using-their-indices",
+    "href": "R_subsetting.html#accessing-elements-using-their-indices",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.3 Accessing elements using their indices",
+    "text": "12.3 Accessing elements using their indices\nTo extract elements of a vector we can give their corresponding index, starting from one:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIt may look different, but the square brackets operator is a function. For vectors (and matrices), it means “get me the nth element”.\nWe can ask for multiple elements at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nOr slices of the vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nthe : operator creates a sequence of numbers from the left element to the right.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can ask for the same element multiple times:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we ask for an index beyond the length of the vector, R will return a missing value:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is a vector of length one containing an NA, whose name is also NA.\nIf we ask for the 0th element, we get an empty vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nVector numbering in R starts at 1\n\n\n\nIn many programming languages (C and Python, for example), the first element of a vector has an index of 0. In R, the first element is 1.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#skipping-and-removing-elements",
+    "href": "R_subsetting.html#skipping-and-removing-elements",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.4 Skipping and removing elements",
+    "text": "12.4 Skipping and removing elements\nIf we use a negative number as the index of a vector, R will return every element except for the one specified:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can skip multiple elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Order of operations\n\n\n\nA common trip up for novices occurs when trying to skip slices of a vector. It’s natural to try to negate a sequence like so, but this gives a somewhat cryptic error message:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut remember the order of operations. : is really a function. It takes its first argument as -1, and its second as 3, so generates the sequence of numbers: c(-1, 0, 1, 2, 3).\nThe correct solution is to wrap that function call in brackets, so that the - operator applies to the result:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nTo remove elements from a vector, we need to assign the result back into the variable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-1",
+    "href": "R_subsetting.html#challenge-1",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.5 Challenge 1",
+    "text": "12.5 Challenge 1\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCome up with at least 2 different commands that will produce the following output:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAfter you find 2 different commands, compare notes with your neighbour. Did you have different strategies?\n\n\n\n\n\n\nSolution to challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#subsetting-by-name",
+    "href": "R_subsetting.html#subsetting-by-name",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.6 Subsetting by name",
+    "text": "12.6 Subsetting by name\nWe can extract elements by using their name, instead of extracting by index:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is usually a much more reliable way to subset objects: the position of various elements can often change when chaining together subsetting operations, but the names will always remain the same!",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#logical-operations",
+    "href": "R_subsetting.html#logical-operations",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.7 Subsetting through other logical operations",
+    "text": "12.7 Subsetting through other logical operations\nWe can also use any logical vector to subset:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSince comparison operators (e.g. &gt;, &lt;, ==) evaluate to logical vectors, we can also use them to succinctly subset vectors: the following statement gives the same result as the previous one.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBreaking it down, this statement first evaluates x&gt;7, generating a logical vector c(FALSE, FALSE, TRUE, FALSE, TRUE), and then selects the elements of x corresponding to the TRUE values.\nWe can use == to mimic the previous method of indexing by name (remember you have to use == rather than = for comparisons):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Combining logical conditions\n\n\n\nWe often want to combine multiple logical criteria. For example, we might want to find all the countries that are located in Asia or Europe and have life expectancies within a certain range. Several operations for combining logical vectors exist in R:\n\n&, the “logical AND” operator: returns TRUE if both the left and right are TRUE.\n|, the “logical OR” operator: returns TRUE, if either the left or right (or both) are TRUE.\n\nYou may sometimes see && and || instead of & and |. These two-character operators only look at the first element of each vector and ignore the remaining elements. In general you should not use the two-character operators in data analysis; save them for programming, i.e. deciding whether to execute a statement.\n\n!, the “logical NOT” operator: converts TRUE to FALSE and FALSE to TRUE. It can negate a single logical condition (eg !TRUE becomes FALSE), or a whole vector of conditions(eg !c(TRUE, FALSE) becomes c(FALSE, TRUE)).\n\nAdditionally, you can compare the elements within a single vector using the all function (which returns TRUE if every element of the vector is TRUE) and the any function (which returns TRUE if one or more elements of the vector are TRUE).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-2",
+    "href": "R_subsetting.html#challenge-2",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.8 Challenge 2",
+    "text": "12.8 Challenge 2\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWrite a subsetting command to return the values in x that are greater than 4 and less than 7.\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#skipping-named-elements",
+    "href": "R_subsetting.html#skipping-named-elements",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.9 Skipping named elements",
+    "text": "12.9 Skipping named elements\nSkipping or removing named elements is a little harder. If we try to skip one named element by negating the string, R complains (slightly obscurely) that it doesn’t know how to take the negative of a string:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHowever, we can use the != (not-equals) operator to construct a logical vector that will do what we want:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSkipping multiple named indices is a little bit harder still. Suppose we want to drop the \"a\" and \"c\" elements, so we try this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR did something, but it gave us a warning that we ought to pay attention to - and it apparently gave us the wrong answer (the \"c\" element is still included in the vector)!\nSo what does != actually do in this case? That’s an excellent question.\n\n12.9.1 Recycling\nLet’s take a look at the comparison component of this code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does R give TRUE as the third element of this vector, when names(x)[3] != \"c\" is obviously false? When you use !=, R tries to compare each element of the left argument with the corresponding element of its right argument. What happens when you compare vectors of different lengths?\n\nWhen one vector is shorter than the other, it gets recycled:\n\nIn this case R repeats c(\"a\", \"c\") as many times as necessary to match names(x), i.e. we get c(\"a\",\"c\",\"a\",\"c\",\"a\"). Since the recycled \"a\" doesn’t match the third element of names(x), the value of != is TRUE. Because in this case the longer vector length (5) isn’t a multiple of the shorter vector length (2), R printed a warning message. If we had been unlucky and names(x) had contained six elements, R would silently have done the wrong thing (i.e., not what we intended it to do). This recycling rule can can introduce hard-to-find and subtle bugs!\nThe way to get R to do what we really want (match each element of the left argument with all of the elements of the right argument) it to use the %in% operator. The %in% operator goes through each element of its left argument, in this case the names of x, and asks, “Does this element occur in the second argument?”. Here, since we want to exclude values, we also need a ! operator to change “in” to “not in”:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-3",
+    "href": "R_subsetting.html#challenge-3",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.10 Challenge 3",
+    "text": "12.10 Challenge 3\nSelecting elements of a vector that match any of a list of components is a very common data analysis task. For example, the gapminder data set contains country and continent variables, but no information between these two scales. Suppose we want to pull out information from southeast Asia: how do we set up an operation to produce a logical vector that is TRUE for all of the countries in southeast Asia and FALSE otherwise?\nSuppose you have these data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThere’s a wrong way (using only ==), which will give you a warning; a clunky way (using the logical operators == and |); and an elegant way (using %in%). See whether you can come up with all three and explain how they (don’t) work.\n\n\n\n\n\n\nSolution to challenge 3\n\n\n\n\n\n\nThe wrong way to do this problem is countries==seAsia. This gives a warning (\"In countries == seAsia : longer object length is not a multiple of shorter object length\") and the wrong answer (a vector of all FALSE values), because none of the recycled values of seAsia happen to line up correctly with matching values in country.\nThe clunky (but technically correct) way to do this problem is\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n(or countries==seAsia[1] | countries==seAsia[2] | ...). This gives the correct values, but hopefully you can see how awkward it is (what if we wanted to select countries from a much longer list?).\n\nThe best way to do this problem is countries %in% seAsia, which is both correct and easy to type (and read).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#handling-special-values",
+    "href": "R_subsetting.html#handling-special-values",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.11 Handling special values",
+    "text": "12.11 Handling special values\nAt some point you will encounter functions in R that cannot handle missing, infinite, or undefined data.\nThere are a number of special functions you can use to filter out this data:\n\nis.na will return all positions in a vector, matrix, or data.frame containing NA (or NaN)\nlikewise, is.nan, and is.infinite will do the same for NaN and Inf.\nis.finite will return all positions in a vector, matrix, or data.frame that do not contain NA, NaN or Inf.\nna.omit will filter out all missing values from a vector",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#factor-subsetting",
+    "href": "R_subsetting.html#factor-subsetting",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.12 Factor subsetting",
+    "text": "12.12 Factor subsetting\nNow that we’ve explored the different ways to subset vectors, how do we subset the other data structures?\nFactor subsetting works the same way as vector subsetting.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSkipping elements will not remove the level even if no more of that category exists in the factor:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#matrix-subsetting",
+    "href": "R_subsetting.html#matrix-subsetting",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.13 Matrix subsetting",
+    "text": "12.13 Matrix subsetting\nMatrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYou can leave the first or second arguments blank to retrieve all the rows or columns respectively:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we only access one row or column, R will automatically convert the result to a vector:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf you want to keep the output as a matrix, you need to specify a third argument; drop = FALSE:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUnlike vectors, if we try to access a row or column outside of the matrix, R will throw an error:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTip: Higher dimensional arrays\n\n\n\nwhen dealing with multi-dimensional arrays, each argument to [ corresponds to a dimension. For example, a 3D array, the first three arguments correspond to the rows, columns, and depth dimension.\n\n\nBecause matrices are vectors, we can also subset using only one argument:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis usually isn’t useful, and often confusing to read. However it is useful to note that matrices are laid out in column-major format by default. That is the elements of the vector are arranged column-wise:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf you wish to populate the matrix by row, use byrow=TRUE:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMatrices can also be subsetted using their rownames and column names instead of their row and column indices.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-4",
+    "href": "R_subsetting.html#challenge-4",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.14 Challenge 4",
+    "text": "12.14 Challenge 4\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhich of the following commands will extract the values 11 and 14?\n\nA. m[2,4,2,5]\nB. m[2:5]\nC. m[4:5,2]\nD. m[2,c(4,5)]\n\n\n\n\n\n\nSolution to challenge 4\n\n\n\n\n\nD",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#list-subsetting",
+    "href": "R_subsetting.html#list-subsetting",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.15 List subsetting",
+    "text": "12.15 List subsetting\nNow we’ll introduce some new subsetting operators. There are three functions used to subset lists. We’ve already seen these when learning about atomic vectors and matrices: [, [[, and $.\nUsing [ will always return a list. If you want to subset a list, but not extract an element, then you will likely use [.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis returns a list with one element.\nWe can subset elements of a list exactly the same way as atomic vectors using [. Comparison operations however won’t work as they’re not recursive, they will try to condition on the data structures in each element of the list, not the individual elements within those data structures.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo extract individual elements of a list, you need to use the double-square bracket function: [[.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNotice that now the result is a vector, not a list.\nYou can’t extract more than one element at once:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNor use it to skip elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut you can use names to both subset and extract elements:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe $ function is a shorthand way for extracting elements by name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-5",
+    "href": "R_subsetting.html#challenge-5",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.16 Challenge 5",
+    "text": "12.16 Challenge 5\nGiven the following list:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the “b” item in the list.\n\n\n\n\n\n\nSolution to challenge 5\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-6",
+    "href": "R_subsetting.html#challenge-6",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.17 Challenge 6",
+    "text": "12.17 Challenge 6\nGiven a linear model:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExtract the residual degrees of freedom (hint: attributes() will help you)\n\n\n\n\n\n\nSolution to challenge 6\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#data-frames",
+    "href": "R_subsetting.html#data-frames",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.18 Data frames",
+    "text": "12.18 Data frames\nRemember the data frames are lists underneath the hood, so similar rules apply. However they are also two dimensional objects:\n[ with one argument will act the same way as for lists, where each list element corresponds to a column. The resulting object will be a data frame:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSimilarly, [[ will act to extract a single column:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnd $ provides a convenient shorthand to extract columns by name:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWith two arguments, [ behaves the same way as for matrices:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIf we subset a single row, the result will be a data frame (because the elements are mixed types):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBut for a single column the result will be a vector (this can be changed with the third argument, drop = FALSE).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-7",
+    "href": "R_subsetting.html#challenge-7",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.19 Challenge 7",
+    "text": "12.19 Challenge 7\nFix each of the following common data frame subsetting errors:\n\nExtract observations collected for the year 1957\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract all columns except 1 through to 4\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the rows where the life expectancy is longer the 80 years\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the first row, and the fourth and fifth columns (continent and lifeExp).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdvanced: extract rows that contain information for the years 2002 and 2007\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 7\n\n\n\n\n\nFix each of the following common data frame subsetting errors:\n\nExtract observations collected for the year 1957\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract all columns except 1 through to 4\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the rows where the life expectancy is longer than 80 years\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExtract the first row, and the fourth and fifth columns (continent and lifeExp).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nAdvanced: extract rows that contain information for the years 2002 and 2007\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_subsetting.html#challenge-8",
+    "href": "R_subsetting.html#challenge-8",
+    "title": "12  R Subsetting Exercise",
+    "section": "12.20 Challenge 8",
+    "text": "12.20 Challenge 8\n\nWhy does gapminder[1:20] return an error? How does it differ from gapminder[1:20, ]?\nCreate a new data.frame called gapminder_small that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.\n\n\n\n\n\n\n\nSolution to challenge 8\n\n\n\n\n\n\ngapminder is a data.frame so needs to be subsetted on two dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
   },
   {
@@ -1664,7 +1664,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.580   0.900  3.09 \n2 2009-01-02 -0.808  -1.23  -6.27 \n3 2009-01-03 -1.35   -0.389 -2.64 \n4 2009-01-04  0.0344 -1.04   2.43 \n5 2009-01-05 -0.119   0.223 -0.289\n6 2009-01-06 -0.644   2.30   1.46 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.580 \n2 2009-01-02 X     -0.808 \n3 2009-01-03 X     -1.35  \n4 2009-01-04 X      0.0344\n5 2009-01-05 X     -0.119 \n6 2009-01-06 X     -0.644",
+    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X         Y      Z\n  &lt;date&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.458   3.21     -3.58 \n2 2009-01-02 -0.583  -2.21      0.112\n3 2009-01-03 -0.0913 -0.000868 -1.07 \n4 2009-01-04 -0.525  -1.64      0.216\n5 2009-01-05  1.28   -4.09     -1.43 \n6 2009-01-06  1.73    2.87      4.01 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.458 \n2 2009-01-02 X     -0.583 \n3 2009-01-03 X     -0.0913\n4 2009-01-04 X     -0.525 \n5 2009-01-05 X      1.28  \n6 2009-01-06 X      1.73",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1674,7 +1674,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.580\n2 2009-01-01 Y      0.900\n3 2009-01-01 Z      3.09 \n4 2009-01-02 X     -0.808\n5 2009-01-02 Y     -1.23 \n6 2009-01-02 Z     -6.27",
+    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.458\n2 2009-01-01 Y      3.21 \n3 2009-01-01 Z     -3.58 \n4 2009-01-02 X     -0.583\n5 2009-01-02 Y     -2.21 \n6 2009-01-02 Z      0.112",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
