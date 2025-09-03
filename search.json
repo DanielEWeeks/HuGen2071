@@ -734,7 +734,7 @@
     "href": "R_factors_exercise.html#challenge-representing-data-in-r",
     "title": "11  R Factors Exercise",
     "section": "11.5 Challenge: Representing Data in R",
-    "text": "11.5 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
+    "text": "11.5 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -744,7 +744,7 @@
     "href": "R_factors_exercise.html#challenge-reordering-factors",
     "title": "11  R Factors Exercise",
     "section": "11.6 Challenge: Reordering Factors",
-    "text": "11.6 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "11.6 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -754,7 +754,7 @@
     "href": "R_factors_exercise.html#challenge-updating-factors",
     "title": "11  R Factors Exercise",
     "section": "11.7 Challenge: Updating Factors",
-    "text": "11.7 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
+    "text": "11.7 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -804,7 +804,7 @@
     "href": "R_subsetting.html#challenge-1",
     "title": "12  R Subsetting Exercise",
     "section": "12.5 Challenge 1",
-    "text": "12.5 Challenge 1\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCome up with at least 2 different commands that will produce the following output:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAfter you find 2 different commands, compare notes with your neighbour. Did you have different strategies?\n\n\n\n\n\n\nSolution to challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "12.5 Challenge 1\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCome up with at least 2 different commands that will produce the following output:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAfter you find 2 different commands, compare notes with your neighbour. Did you have different strategies?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -834,7 +834,7 @@
     "href": "R_subsetting.html#challenge-2",
     "title": "12  R Subsetting Exercise",
     "section": "12.8 Challenge 2",
-    "text": "12.8 Challenge 2\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWrite a subsetting command to return the values in x that are greater than 4 and less than 7.\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "12.8 Challenge 2\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWrite a subsetting command to return the values in x that are greater than 4 and less than 7.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -854,7 +854,7 @@
     "href": "R_subsetting.html#challenge-3",
     "title": "12  R Subsetting Exercise",
     "section": "12.10 Challenge 3",
-    "text": "12.10 Challenge 3\nSelecting elements of a vector that match any of a list of components is a very common data analysis task. For example, the gapminder data set contains country and continent variables, but no information between these two scales. Suppose we want to pull out information from southeast Asia: how do we set up an operation to produce a logical vector that is TRUE for all of the countries in southeast Asia and FALSE otherwise?\nSuppose you have these data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThere’s a wrong way (using only ==), which will give you a warning; a clunky way (using the logical operators == and |); and an elegant way (using %in%). See whether you can come up with all three and explain how they (don’t) work.\n\n\n\n\n\n\nSolution to challenge 3\n\n\n\n\n\n\nThe wrong way to do this problem is countries==seAsia. This gives a warning (\"In countries == seAsia : longer object length is not a multiple of shorter object length\") and the wrong answer (a vector of all FALSE values), because none of the recycled values of seAsia happen to line up correctly with matching values in country.\nThe clunky (but technically correct) way to do this problem is\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n(or countries==seAsia[1] | countries==seAsia[2] | ...). This gives the correct values, but hopefully you can see how awkward it is (what if we wanted to select countries from a much longer list?).\n\nThe best way to do this problem is countries %in% seAsia, which is both correct and easy to type (and read).",
+    "text": "12.10 Challenge 3\nSelecting elements of a vector that match any of a list of components is a very common data analysis task. For example, the gapminder data set contains country and continent variables, but no information between these two scales. Suppose we want to pull out information from southeast Asia: how do we set up an operation to produce a logical vector that is TRUE for all of the countries in southeast Asia and FALSE otherwise?\nSuppose you have these data:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThere’s a wrong way (using only ==), which will give you a warning; a clunky way (using the logical operators == and |); and an elegant way (using %in%). See whether you can come up with all three and explain how they (don’t) work.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 3\n\n\n\n\n\n\nThe wrong way to do this problem is countries==seAsia. This gives a warning (\"In countries == seAsia : longer object length is not a multiple of shorter object length\") and the wrong answer (a vector of all FALSE values), because none of the recycled values of seAsia happen to line up correctly with matching values in country.\nThe clunky (but technically correct) way to do this problem is\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n(or countries==seAsia[1] | countries==seAsia[2] | ...). This gives the correct values, but hopefully you can see how awkward it is (what if we wanted to select countries from a much longer list?).\n\nThe best way to do this problem is countries %in% seAsia, which is both correct and easy to type (and read).",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -894,7 +894,7 @@
     "href": "R_subsetting.html#challenge-4",
     "title": "12  R Subsetting Exercise",
     "section": "12.14 Challenge 4",
-    "text": "12.14 Challenge 4\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhich of the following commands will extract the values 11 and 14?\n\nA. m[2,4,2,5]\nB. m[2:5]\nC. m[4:5,2]\nD. m[2,c(4,5)]\n\n\n\n\n\n\nSolution to challenge 4\n\n\n\n\n\nD",
+    "text": "12.14 Challenge 4\nGiven the following code:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nWhich of the following commands will extract the values 11 and 14?\n\nA. m[2,4,2,5]\nB. m[2:5]\nC. m[4:5,2]\nD. m[2,c(4,5)]\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 4\n\n\n\n\n\nD",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -914,7 +914,7 @@
     "href": "R_subsetting.html#challenge-5",
     "title": "12  R Subsetting Exercise",
     "section": "12.16 Challenge 5",
-    "text": "12.16 Challenge 5\nGiven the following list:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the “b” item in the list.\n\n\n\n\n\n\nSolution to challenge 5\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "12.16 Challenge 5\nGiven the following list:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the “b” item in the list.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 5\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -924,7 +924,7 @@
     "href": "R_subsetting.html#challenge-6",
     "title": "12  R Subsetting Exercise",
     "section": "12.17 Challenge 6",
-    "text": "12.17 Challenge 6\nGiven a linear model:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExtract the residual degrees of freedom (hint: attributes() will help you)\n\n\n\n\n\n\nSolution to challenge 6\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "12.17 Challenge 6\nGiven a linear model:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nExtract the residual degrees of freedom (hint: attributes() will help you)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 6\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -954,7 +954,7 @@
     "href": "R_subsetting.html#challenge-8",
     "title": "12  R Subsetting Exercise",
     "section": "12.20 Challenge 8",
-    "text": "12.20 Challenge 8\n\nWhy does gapminder[1:20] return an error? How does it differ from gapminder[1:20, ]?\nCreate a new data.frame called gapminder_small that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.\n\n\n\n\n\n\n\nSolution to challenge 8\n\n\n\n\n\n\ngapminder is a data.frame so needs to be subsetted on two dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "12.20 Challenge 8\n\nWhy does gapminder[1:20] return an error? How does it differ from gapminder[1:20, ]?\nCreate a new data.frame called gapminder_small that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nSolution to challenge 8\n\n\n\n\n\n\ngapminder is a data.frame so needs to be subsetted on two dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Subsetting Exercise</span>"
     ]
@@ -1664,7 +1664,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X         Y      Z\n  &lt;date&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01  0.458   3.21     -3.58 \n2 2009-01-02 -0.583  -2.21      0.112\n3 2009-01-03 -0.0913 -0.000868 -1.07 \n4 2009-01-04 -0.525  -1.64      0.216\n5 2009-01-05  1.28   -4.09     -1.43 \n6 2009-01-06  1.73    2.87      4.01 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.458 \n2 2009-01-02 X     -0.583 \n3 2009-01-03 X     -0.0913\n4 2009-01-04 X     -0.525 \n5 2009-01-05 X      1.28  \n6 2009-01-06 X      1.73",
+    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X       Y      Z\n  &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.132   0.522   3.55 \n2 2009-01-02 -0.658  -4.22    5.17 \n3 2009-01-03  0.973  -2.13    0.935\n4 2009-01-04  0.225   0.0921 -0.589\n5 2009-01-05  0.0443  1.31   -8.78 \n6 2009-01-06 -0.0882  2.50    7.79 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.132 \n2 2009-01-02 X     -0.658 \n3 2009-01-03 X      0.973 \n4 2009-01-04 X      0.225 \n5 2009-01-05 X      0.0443\n6 2009-01-06 X     -0.0882",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1674,7 +1674,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.458\n2 2009-01-01 Y      3.21 \n3 2009-01-01 Z     -3.58 \n4 2009-01-02 X     -0.583\n5 2009-01-02 Y     -2.21 \n6 2009-01-02 Z      0.112",
+    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.132\n2 2009-01-01 Y      0.522\n3 2009-01-01 Z      3.55 \n4 2009-01-02 X     -0.658\n5 2009-01-02 Y     -4.22 \n6 2009-01-02 Z      5.17",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
