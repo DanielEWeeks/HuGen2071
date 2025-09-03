@@ -97,6 +97,10 @@ c.  `exercise < -factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), o
 
 d.  `exercise <- factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), ordered = TRUE)`
 
+```{webr-r}
+# Edit/add code here
+```
+
 ::: {.callout-tip collapse="true"}
 ### Solution
 Correct solution is **d.**
@@ -186,6 +190,10 @@ barplot(table(dat$Group))
 
 Use the `factor()` command to modify the column `dat$Group` so that the *control* group is plotted last.
 
+```{webr-r}
+# Edit/add code here
+```
+
 ::: {.callout-tip collapse="true"}
 ### Solution
 
@@ -223,6 +231,10 @@ Why does this plot show 4 levels?
 ::: hint
 How many levels does `dat$Gender` have?
 :::
+
+```{webr-r}
+# Edit/add code here
+```
 
 ::: {.callout-tip collapse="true"}
 ### Solution

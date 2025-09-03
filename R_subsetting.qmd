@@ -184,6 +184,10 @@ x[2:4]
 
 After you find 2 different commands, compare notes with your neighbour. Did you have different strategies?
 
+```{webr-r}
+# Edit/add code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 1
 
@@ -264,6 +268,10 @@ x
 ```
 
 Write a subsetting command to return the values in x that are greater than 4 and less than 7.
+
+```{webr-r}
+# Edit/add code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 2
@@ -371,6 +379,10 @@ countries <- unique(as.character(gapminder$country))
 ```
 
 There's a wrong way (using only `==`), which will give you a warning; a clunky way (using the logical operators `==` and `|`); and an elegant way (using `%in%`). See whether you can come up with all three and explain how they (don't) work.
+
+```{webr-r}
+# Edit/add code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 3
@@ -503,6 +515,11 @@ C. `m[4:5,2]`
 
 D. `m[2,c(4,5)]`
 
+
+```{webr-r}
+# Edit/add code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 4
 
@@ -574,6 +591,10 @@ str(xlist)
 
 Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the "b" item in the list.
 
+```{webr-r}
+# Edit/add code here
+```
+
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 5
 
@@ -602,6 +623,10 @@ summary(mod)
 ```
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
+
+```{webr-r}
+# Edit/add code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 6
@@ -736,6 +761,10 @@ head(gapminder[gapminder$year %in% c(2002, 2007),])
 1.  Why does `gapminder[1:20]` return an error? How does it differ from `gapminder[1:20, ]`?
 
 2.  Create a new `data.frame` called `gapminder_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
+
+```{webr-r}
+# Edit/add code here
+```
 
 ::: {.callout-tip collapse="true"}
 ## Solution to challenge 8
