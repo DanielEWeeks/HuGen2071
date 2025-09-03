@@ -71,7 +71,7 @@ levels(food)
 min(food) # doesn't work
 ```
 
-```{web-r}
+```{webr-r}
 food <- factor(food, levels = c("low", "medium", "high"), ordered = TRUE)
 food
 levels(food)
@@ -101,8 +101,9 @@ d.  `exercise <- factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), o
 ### Solution
 Correct solution is **d.**
 
-``` r
+```{webr-r}
 exercise <- factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), ordered = TRUE)
+exercise
 ```
 
 We only expect three categories ("N", "L", "I"). We can order these from least intense to most intense, so let's use `ordered`.
@@ -207,7 +208,7 @@ Values should have been recorded as lowercase 'm' and 'f'. We should correct thi
 
 ```{webr-r}
 dat$Gender[dat$Gender == 'M'] <- 'm'
-barplot(table(dat$Group))
+barplot(table(dat$Gender))
 ```
 
 ::::: challenge
