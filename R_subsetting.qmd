@@ -35,13 +35,6 @@ This chapter is made available according to the same license.
 -   How can I work with subsets of data in R?
 :::
 
-```{webr-r}
-# Download the gapminder data file within the WebR environment
-root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
-download.file(paste0(root_srcfile,"data/gapminder_data.csv"),
-              "gapminder_data.csv")
-gapminder <- read.csv("gapminder_data.csv", header = TRUE)
-```
 
 R has many powerful subset operators. Mastering them will allow you to easily perform complex operations on any kind of dataset.
 
@@ -68,6 +61,7 @@ So now that we've created a dummy vector to play with, how do we get at its cont
 To extract elements of a vector we can give their corresponding index, starting from one:
 
 ```{webr-r}
+x
 x[1]
 ```
 
@@ -80,12 +74,14 @@ It may look different, but the square brackets operator is a function. For vecto
 We can ask for multiple elements at once:
 
 ```{webr-r}
+x
 x[c(1, 3)]
 ```
 
 Or slices of the vector:
 
 ```{webr-r}
+x
 x[1:4]
 ```
 
@@ -99,12 +95,14 @@ c(1, 2, 3, 4)
 We can ask for the same element multiple times:
 
 ```{webr-r}
+x
 x[c(1,1,3)]
 ```
 
 If we ask for an index beyond the length of the vector, R will return a missing value:
 
 ```{webr-r}
+x
 x[6]
 ```
 
@@ -113,6 +111,7 @@ This is a vector of length one containing an `NA`, whose name is also `NA`.
 If we ask for the 0th element, we get an empty vector:
 
 ```{webr-r}
+x
 x[0]
 ```
 
@@ -127,27 +126,24 @@ In many programming languages (C and Python, for example), the first element of 
 If we use a negative number as the index of a vector, R will return every element *except* for the one specified:
 
 ```{webr-r}
+x
 x[-2]
 ```
 
 We can skip multiple elements:
 
 ```{webr-r}
+x
 x[c(-1, -5)]  # or x[-c(1,5)]
 ```
 
 ::: callout
 ## Tip: Order of operations
 
-A common trip up for novices occurs when trying to skip slices of a vector. It's natural to try to negate a sequence like so:
+A common trip up for novices occurs when trying to skip slices of a vector. It's natural to try to negate a sequence like so, but this gives a somewhat cryptic error message:
 
 ```{webr-r}
-x[-1:3]
-```
-
-This gives a somewhat cryptic error:
-
-```{webr-r}
+x
 x[-1:3]
 ```
 
@@ -156,6 +152,7 @@ But remember the order of operations. `:` is really a function. It takes its fir
 The correct solution is to wrap that function call in brackets, so that the `-` operator applies to the result:
 
 ```{webr-r}
+x
 x[-(1:3)]
 ```
 :::
@@ -163,6 +160,7 @@ x[-(1:3)]
 To remove elements from a vector, we need to assign the result back into the variable:
 
 ```{webr-r}
+x
 x <- x[-4]
 x
 ```
@@ -175,7 +173,7 @@ Given the following code:
 ```{webr-r}
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
-print(x)
+x
 ```
 
 Come up with at least 2 different commands that will produce the following output:
@@ -219,12 +217,14 @@ This is usually a much more reliable way to subset objects: the position of vari
 We can also use any logical vector to subset:
 
 ```{webr-r}
+x
 x[c(FALSE, FALSE, TRUE, FALSE, TRUE)]
 ```
 
 Since comparison operators (e.g. `>`, `<`, `==`) evaluate to logical vectors, we can also use them to succinctly subset vectors: the following statement gives the same result as the previous one.
 
 ```{webr-r}
+x
 x[x > 7]
 ```
 
@@ -233,6 +233,7 @@ Breaking it down, this statement first evaluates `x>7`, generating a logical vec
 We can use `==` to mimic the previous method of indexing by name (remember you have to use `==` rather than `=` for comparisons):
 
 ```{webr-r}
+x
 x[names(x) == "a"]
 ```
 
@@ -259,7 +260,7 @@ Given the following code:
 ```{webr-r}
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
-print(x)
+x
 ```
 
 Write a subsetting command to return the values in x that are greater than 4 and less than 7.
@@ -268,8 +269,9 @@ Write a subsetting command to return the values in x that are greater than 4 and
 ## Solution to challenge 2
 
 ```{webr-r}
+x
 x_subset <- x[x<7 & x>4]
-print(x_subset)
+x_subset
 ```
 :::
 ::::
@@ -301,6 +303,7 @@ Skipping or removing named elements is a little harder. If we try to skip one na
 
 ```{webr-r}
 x <- c(a=5.4, b=6.2, c=7.1, d=4.8, e=7.5) # we start again by naming a vector 'on the fly'
+x
 x[-"a"]
 ```
 
@@ -325,22 +328,24 @@ So what does `!=` actually do in this case? That's an excellent question.
 Let's take a look at the comparison component of this code:
 
 ```{webr-r}
+x
 names(x) != c("a", "c")
 ```
 
 Why does R give `TRUE` as the third element of this vector, when `names(x)[3] != "c"` is obviously false? When you use `!=`, R tries to compare each element of the left argument with the corresponding element of its right argument. What happens when you compare vectors of different lengths?
 
-![](fig/06-rmd-inequality.1.png){alt="Inequality testing"}
+![](img/06-rmd-inequality.1.png){alt="Inequality testing"}
 
 When one vector is shorter than the other, it gets *recycled*:
 
-![](fig/06-rmd-inequality.2.png){alt="Inequality testing: results of recycling"}
+![](img/06-rmd-inequality.2.png){alt="Inequality testing: results of recycling"}
 
 In this case R **repeats** `c("a", "c")` as many times as necessary to match `names(x)`, i.e. we get `c("a","c","a","c","a")`. Since the recycled `"a"` doesn't match the third element of `names(x)`, the value of `!=` is `TRUE`. Because in this case the longer vector length (5) isn't a multiple of the shorter vector length (2), R printed a warning message. If we had been unlucky and `names(x)` had contained six elements, R would *silently* have done the wrong thing (i.e., not what we intended it to do). This recycling rule can can introduce hard-to-find and subtle bugs!
 
 The way to get R to do what we really want (match *each* element of the left argument with *all* of the elements of the right argument) it to use the `%in%` operator. The `%in%` operator goes through each element of its left argument, in this case the names of `x`, and asks, "Does this element occur in the second argument?". Here, since we want to *exclude* values, we also need a `!` operator to change "in" to "not in":
 
 ```{webr-r}
+x
 x[! names(x) %in% c("a","c") ]
 ```
 
@@ -353,8 +358,12 @@ Suppose you have these data:
 
 ```{webr-r}
 seAsia <- c("Myanmar","Thailand","Cambodia","Vietnam","Laos")
-## read in the gapminder data that we downloaded in episode 2
-gapminder <- read.csv("data/gapminder_data.csv", header=TRUE)
+# Download the gapminder data file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/gapminder_data.csv"),
+              "gapminder_data.csv")
+gapminder <- read.csv("gapminder_data.csv", header = TRUE)
+dim(gapminder)
 ## extract the `country` column from a data frame (we'll see this later);
 ## convert from a factor to a character;
 ## and get just the non-repeated elements
@@ -399,6 +408,7 @@ Factor subsetting works the same way as vector subsetting.
 
 ```{webr-r}
 f <- factor(c("a", "a", "b", "c", "c", "d"))
+f
 f[f == "a"]
 f[f %in% c("b", "c")]
 f[1:3]
@@ -407,6 +417,7 @@ f[1:3]
 Skipping elements will not remove the level even if no more of that category exists in the factor:
 
 ```{webr-r}
+f
 f[-3]
 ```
 
@@ -417,6 +428,7 @@ Matrices are also subsetted using the `[` function. In this case it takes two ar
 ```{webr-r}
 set.seed(1)
 m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m
 m[3:4, c(3,1)]
 ```
 
@@ -453,6 +465,7 @@ when dealing with multi-dimensional arrays, each argument to `[` corresponds to 
 Because matrices are vectors, we can also subset using only one argument:
 
 ```{webr-r}
+m
 m[5]
 ```
 
@@ -477,7 +490,7 @@ Given the following code:
 
 ```{webr-r}
 m <- matrix(1:18, nrow=3, ncol=6)
-print(m)
+m
 ```
 
 1.  Which of the following commands will extract the values 11 and 14?
@@ -505,6 +518,7 @@ Using `[` will always return a list. If you want to *subset* a list, but not *ex
 
 ```{webr-r}
 xlist <- list(a = "Software Carpentry", b = 1:10, data = head(mtcars))
+str(xlist)
 xlist[1]
 ```
 
@@ -555,6 +569,7 @@ Given the following list:
 
 ```{webr-r}
 xlist <- list(a = "Software Carpentry", b = 1:10, data = head(mtcars))
+str(xlist)
 ```
 
 Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the "b" item in the list.
@@ -583,6 +598,7 @@ Given a linear model:
 
 ```{webr-r}
 mod <- aov(pop ~ lifeExp, data=gapminder)
+summary(mod)
 ```
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -668,7 +684,7 @@ gapminder[1, 4, 5]
 5.  Advanced: extract rows that contain information for the years 2002 and 2007
 
 ```{webr-r}
-gapminder[gapminder$year == 2002 | 2007,]
+head(gapminder[gapminder$year == 2002 | 2007,])
 ```
 
 ::: {.callout-tip collapse="true"}
@@ -680,21 +696,21 @@ Fix each of the following common data frame subsetting errors:
 
 ```{webr-r}
 # gapminder[gapminder$year = 1957,]
-gapminder[gapminder$year == 1957,]
+head(gapminder[gapminder$year == 1957,])
 ```
 
 2.  Extract all columns except 1 through to 4
 
 ```{webr-r}
 # gapminder[,-1:4]
-gapminder[,-c(1:4)]
+head(gapminder[,-c(1:4)])
 ```
 
 3.  Extract the rows where the life expectancy is longer than 80 years
 
 ```{webr-r}
 # gapminder[gapminder$lifeExp > 80]
-gapminder[gapminder$lifeExp > 80,]
+head(gapminder[gapminder$lifeExp > 80,])
 ```
 
 4.  Extract the first row, and the fourth and fifth columns (`continent` and `lifeExp`).
@@ -708,8 +724,8 @@ gapminder[1, c(4, 5)]
 
 ```{webr-r}
 # gapminder[gapminder$year == 2002 | 2007,]
-gapminder[gapminder$year == 2002 | gapminder$year == 2007,]
-gapminder[gapminder$year %in% c(2002, 2007),]
+head(gapminder[gapminder$year == 2002 | gapminder$year == 2007,])
+head(gapminder[gapminder$year %in% c(2002, 2007),])
 ```
 :::
 ::::
@@ -730,6 +746,7 @@ gapminder[gapminder$year %in% c(2002, 2007),]
 
 ```{webr-r}
 gapminder_small <- gapminder[c(1:9, 19:23),]
+head(gapminder_small)
 ```
 :::
 ::::
