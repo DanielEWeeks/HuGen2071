@@ -22,6 +22,7 @@ book:
   - Rbasics.qmd
   - RFactors.qmd
   - R_subsetting.qmd
+  - R_factors_exercise.qmd
   - RCharactersLecture.qmd
   - R_char_exer.Qmd
   - RLoops.qmd
