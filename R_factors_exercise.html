@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Lecture: R: factors, subscripting – HuGen2071 book</title>
+<title>12&nbsp; R Factors Exercise – HuGen2071 book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./R_subsetting.html" rel="next">
-<link href="./Rbasics.html" rel="prev">
+<link href="./RCharactersLecture.html" rel="next">
+<link href="./R_subsetting.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -358,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"warning":"true","editor-max-height":"","label":"unnamed-chunk-1","context":"interactive","message":"true","editor-quick-suggestions":"false","autorun":"false","comment":"","read-only":"false","output":"true","fig-height":5,"fig-width":7,"dpi":72,"out-height":"","editor-word-wrap":"true","fig-cap":"","editor-font-scale":"1","results":"markup","out-width":"700px","classes":""},"code":"# Edit/add R code here"},{"id":2,"options":{"warning":"true","editor-max-height":"","label":"unnamed-chunk-2","context":"interactive","message":"true","editor-quick-suggestions":"false","autorun":"false","comment":"","read-only":"false","output":"true","fig-height":5,"fig-width":7,"dpi":72,"out-height":"","editor-word-wrap":"true","fig-cap":"","editor-font-scale":"1","results":"markup","out-width":"700px","classes":""},"code":"# Edit/add R code here"},{"id":3,"options":{"warning":"true","editor-max-height":"","label":"unnamed-chunk-3","context":"interactive","message":"true","editor-quick-suggestions":"false","autorun":"false","comment":"","read-only":"false","output":"true","fig-height":5,"fig-width":7,"dpi":72,"out-height":"","editor-word-wrap":"true","fig-cap":"","editor-font-scale":"1","results":"markup","out-width":"700px","classes":""},"code":"# Edit/add R code here"}];
+globalThis.qwebrCellDetails = [{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-1","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"sex <- factor(c(\"male\", \"female\", \"female\", \"male\"))","id":1},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-2","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"levels(sex)\nnlevels(sex)","id":2},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-3","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"food <- factor(c(\"low\", \"high\", \"medium\", \"high\", \"low\", \"medium\", \"high\"))\nlevels(food)\nfood <- factor(food, levels = c(\"low\", \"medium\", \"high\"))\nlevels(food)\nmin(food) # doesn't work\nfood <- factor(food, levels = c(\"low\", \"medium\", \"high\"), ordered = TRUE)\nlevels(food)\nmin(food) # works!","id":3},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-4","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"f <- factor(c(3.4, 1.2, 5))\nas.numeric(f)","id":4},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-5","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"levels(f)[f]","id":5},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-6","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"f <- levels(f)[f]\nf <- as.numeric(f)","id":6},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-7","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"# Download the sample.csv data file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/sample.csv\"),\n              \"sample.csv\")\ndat <- read.csv(file = 'sample.csv', stringsAsFactors = TRUE)\ndim(dat)","id":7},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-8","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"str(dat)","id":8},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-9","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"summary(dat)","id":9},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-10","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"table(dat$Group)\nbarplot(table(dat$Group))","id":10},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-11","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"dat$Group <- factor(dat$Group, levels = c(\"Treatment1\", \"Treatment2\", \"Control\"))\nbarplot(table(dat$Group))","id":11},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-12","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"barplot(table(dat$Gender))","id":12},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-13","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"dat$Gender[dat$Gender == 'M'] <- 'm'","id":13},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-14","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"plot(x = dat$Gender, y = dat$BloodPressure)","id":14},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-15","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"dat$Gender <- droplevels(dat$Gender)\nplot(x = dat$Gender, y = dat$BloodPressure)","id":15},{"options":{"message":"true","fig-height":5,"fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","read-only":"false","results":"markup","comment":"","context":"interactive","label":"unnamed-chunk-16","output":"true","out-height":"","out-width":"700px","classes":"","autorun":"false","warning":"true","dpi":72,"fig-cap":"","editor-quick-suggestions":"false"},"code":"levels(dat$Gender)[2] <- 'f'\nplot(x = dat$Gender, y = dat$BloodPressure)","id":16}];
 
 </script>
 <script type="module">
@@ -1569,7 +1603,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./RFactors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_factors_exercise.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Factors Exercise</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1656,7 +1690,7 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./RFactors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./RFactors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></span></a>
   </div>
 </li>
@@ -1668,7 +1702,7 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_factors_exercise.html" class="sidebar-item-text sidebar-link">
+  <a href="./R_factors_exercise.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Factors Exercise</span></span></a>
   </div>
 </li>
@@ -1891,14 +1925,13 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-factors-subscripting-lecture" id="toc-r-factors-subscripting-lecture" class="nav-link active" data-scroll-target="#r-factors-subscripting-lecture"><span class="header-section-number">10.1</span> R: factors, subscripting lecture</a></li>
-  <li><a href="#r-factors-subscripting-slides" id="toc-r-factors-subscripting-slides" class="nav-link" data-scroll-target="#r-factors-subscripting-slides"><span class="header-section-number">10.2</span> R: factors, subscripting slides</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">10.3</span> Questions</a>
-  <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">10.3.1</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">10.3.2</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">10.3.3</span> Question 3</a></li>
-  </ul></li>
+  <li><a href="#ackowledgements" id="toc-ackowledgements" class="nav-link active" data-scroll-target="#ackowledgements"><span class="header-section-number">12.1</span> Ackowledgements</a></li>
+  <li><a href="#challenge-representing-data-in-r" id="toc-challenge-representing-data-in-r" class="nav-link" data-scroll-target="#challenge-representing-data-in-r"><span class="header-section-number">12.2</span> Challenge: Representing Data in R</a></li>
+  <li><a href="#converting-factors" id="toc-converting-factors" class="nav-link" data-scroll-target="#converting-factors"><span class="header-section-number">12.2.1</span> Converting Factors</a></li>
+  <li><a href="#using-factors" id="toc-using-factors" class="nav-link" data-scroll-target="#using-factors"><span class="header-section-number">12.2.2</span> Using Factors</a></li>
+  <li><a href="#challenge-reordering-factors" id="toc-challenge-reordering-factors" class="nav-link" data-scroll-target="#challenge-reordering-factors"><span class="header-section-number">12.3</span> Challenge: Reordering Factors</a></li>
+  <li><a href="#removing-levels-from-a-factor" id="toc-removing-levels-from-a-factor" class="nav-link" data-scroll-target="#removing-levels-from-a-factor"><span class="header-section-number">12.3.1</span> Removing Levels from a Factor</a></li>
+  <li><a href="#challenge-updating-factors" id="toc-challenge-updating-factors" class="nav-link" data-scroll-target="#challenge-updating-factors"><span class="header-section-number">12.4</span> Challenge: Updating Factors</a></li>
   </ul>
 </nav>
     </div>
@@ -2191,7 +2224,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture: R: factors, subscripting</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R Factors Exercise</span></h1>
 </div>
 
 
@@ -2208,51 +2241,221 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="r-factors-subscripting-lecture" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="r-factors-subscripting-lecture"><span class="header-section-number">10.1</span> R: factors, subscripting lecture</h2>
-<p>Here’s a recording of this lecture (43 minutes 25 seconds):</p>
-<p><a href="https://pitt.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=850e5bbc-cbad-4d5d-967e-b06f00fa2c54" class="external" target="_blank">Recording</a></p>
-<iframe credentialless="" src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=850e5bbc-cbad-4d5d-967e-b06f00fa2c54&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
-</iframe>
-</section>
-<section id="r-factors-subscripting-slides" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="r-factors-subscripting-slides"><span class="header-section-number">10.2</span> R: factors, subscripting slides</h2>
-<p><a href="pdfs/R_factors_dates.pdf" target="_blank">PDF slide set</a></p>
-<iframe width="100%" height="800" src="pdfs/R_factors_dates.pdf">
-</iframe>
-</section>
-<section id="questions" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="questions"><span class="header-section-number">10.3</span> Questions</h2>
-<section id="question-1" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">10.3.1</span> Question 1</h3>
-<p>Which of the following statements about factors in R is correct?</p>
-<div id="radio_DNXQVSTTMS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DNXQVSTTMS" value=""> <span>Factors can only use values that are among the initially specified levels, and cannot have new levels added later.</span></label><label><input type="radio" autocomplete="off" name="radio_DNXQVSTTMS" value=""> <span>Factors are primarily used for numerical calculations rather than categorical data.</span></label><label><input type="radio" autocomplete="off" name="radio_DNXQVSTTMS" value="answer"> <span>Ordinal data can be coded using ordinal factors to represent the order of categories.</span></label><label><input type="radio" autocomplete="off" name="radio_DNXQVSTTMS" value=""> <span>Factors can be used to add more understandable labels to data, but they do not support ordinal data.</span></label>
+<section id="ackowledgements" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="ackowledgements"><span class="header-section-number">12.1</span> Ackowledgements</h2>
+<p>This chapter is a slightly modified version of the</p>
+<p><a href="https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html">Understanding Factors</a></p>
+<p>chapter from</p>
+<p><a href="https://swcarpentry.github.io/r-novice-inflammation/">Programming with R</a></p>
+<p>by</p>
+<p>software carpentry</p>
+<p>which is made available under the Creative Commons Attribution license 4.0 <a href="https://creativecommons.org/licenses/by/4.0/">link</a>.</p>
+<p>This chapter is made available according to the same license.</p>
+<div class="objectives">
+<ul>
+<li>Understand how to represent categorical data in R.</li>
+<li>Know the difference between ordered and unordered factors.</li>
+<li>Be aware of some of the problems encountered when using factors.</li>
+</ul>
 </div>
+<div class="questions">
+<ul>
+<li>How is categorical data represented in R?</li>
+<li>How do I work with factors?</li>
+</ul>
+</div>
+<p>Factors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.</p>
+<p>Factors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.</p>
+<p>Once created, factors can only contain a pre-defined set values, known as <em>levels</em>. By default, R always sorts<em>levels</em>in alphabetical order. For instance, if you have a factor with 2 levels:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The <code>factor()</code> Command
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>factor()</code> command is used to create and modify factors in R:</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="question-2" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">10.3.2</span> Question 2</h3>
-<p>Which of the following R code snippets correctly demonstrates valid methods for subsetting data?</p>
-<div id="radio_ZBGBMIMISP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZBGBMIMISP" value="answer"> <span>x[2], x[“name”], x[x &gt; 5]</span></label><label><input type="radio" autocomplete="off" name="radio_ZBGBMIMISP" value="answer"> <span>x[2], x[“name”], x[grep(“pattern”, x)]</span></label><label><input type="radio" autocomplete="off" name="radio_ZBGBMIMISP" value="answer"> <span>x[2], x[“name”], x[!is.na(x)]</span></label><label><input type="radio" autocomplete="off" name="radio_ZBGBMIMISP" value=""> <span>x[“name”], x[TRUE], x[order(x)]</span></label>
 </div>
+</div>
+<p>R will assign <code>1</code> to the level <code>"female"</code> and <code>2</code> to the level <code>"male"</code> (because <code>f</code> comes before <code>m</code>, even though the first element in this vector is <code>"male"</code>). You can check this by using the function <code>levels()</code>, and check the number of levels using <code>nlevels()</code>:</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="question-3" class="level3" data-number="10.3.3">
-<h3 data-number="10.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">10.3.3</span> Question 3</h3>
-<p>Which of the following R code snippets best illustrates how NA values can interfere with subsetting, where x is c(1, 6, NA, 8)?</p>
-<div id="radio_WOZLMYZPWF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WOZLMYZPWF" value=""> <span>x[!is.na(x)]</span></label><label><input type="radio" autocomplete="off" name="radio_WOZLMYZPWF" value=""> <span>x[2]</span></label><label><input type="radio" autocomplete="off" name="radio_WOZLMYZPWF" value=""> <span>x[1:3]</span></label><label><input type="radio" autocomplete="off" name="radio_WOZLMYZPWF" value="answer"> <span>x[x &gt; 5]</span></label>
-</div>
+<p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: <code>"low"</code>, <code>"medium"</code>, and <code>"high"</code>” is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).</p>
+</section>
+<section id="challenge-representing-data-in-r" class="level2 challenge" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="challenge-representing-data-in-r"><span class="header-section-number">12.2</span> Challenge: Representing Data in R</h2>
+<p>You have a vector representing levels of exercise undertaken by 5 subjects</p>
+<p><strong>“L”, “N”, “N”, “I”, “L”</strong> ; N=none, L=light, I=intense</p>
+<p>What is the best way to represent this in R?</p>
+<ol type="a">
+<li><p><code>exercise &lt;- c("L", "N", "N", "I", "L")</code></p></li>
+<li><p><code>exercise &lt;- factor(c("L", "N", "N", "I", "L"), ordered = TRUE)</code></p></li>
+<li><p><code>exercise &lt; -factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), ordered = FALSE)</code></p></li>
+<li><p><code>exercise &lt;- factor(c("L", "N", "N", "I", "L"), levels = c("N", "L", "I"), ordered = TRUE)</code></p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Correct solution is <strong>d.</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>exercise <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"L"</span>, <span class="st">"N"</span>, <span class="st">"N"</span>, <span class="st">"I"</span>, <span class="st">"L"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"L"</span>, <span class="st">"I"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use <code>ordered</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="converting-factors" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="converting-factors"><span class="header-section-number">12.2.1</span> Converting Factors</h3>
+<p>Converting from a factor to a number can cause problems:</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This does not behave as expected (and there is no warning).</p>
+<p>The recommended way is to use the integer vector to index the factor levels:</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This returns a character vector, the <code>as.numeric()</code> function is still required to convert the values to the proper type (numeric).</p>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="using-factors" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="using-factors"><span class="header-section-number">12.2.2</span> Using Factors</h3>
+<p>Lets load our example data to see the use of factors:</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Default Behavior
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>stringsAsFactors = TRUE</code> was the default behavior for R prior to version 4.0. We are using it here to override the default behaviour for R version 4.0 which is <code>stringsAsFactors = FALSE</code>. It is included here for clarity.</p>
+</div>
+</div>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Notice the first 3 columns have been converted to factors. These values were text in the data file so R automatically interpreted them as categorical variables.</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Notice the <code>summary()</code> function handles factors differently to numbers (and strings), the occurrence counts for each value is often more useful information.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The <code>summary()</code> Function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>summary()</code> function is a great way of spotting errors in your data (look at the <code>dat$Gender</code> column). It’s also a great way for spotting missing data.</p>
+</div>
+</div>
+</section>
+<section id="challenge-reordering-factors" class="level2 challenge" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="challenge-reordering-factors"><span class="header-section-number">12.3</span> Challenge: Reordering Factors</h2>
+<p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance:</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Use the <code>factor()</code> command to modify the column <code>dat$Group</code> so that the <em>control</em> group is plotted last.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</section>
+<section id="removing-levels-from-a-factor" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="removing-levels-from-a-factor"><span class="header-section-number">12.3.1</span> Removing Levels from a Factor</h3>
+<p>Some of the Gender values in our dataset have been coded incorrectly. Let’s remove levels from this factor.</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Values should have been recorded as lowercase ‘m’ and ‘f’. We should correct this.</p>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="challenge-updating-factors" class="level2 challenge" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="challenge-updating-factors"><span class="header-section-number">12.4</span> Challenge: Updating Factors</h2>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Why does this plot show 4 levels?</p>
+<div class="hint">
+<p>How many levels does <code>dat$Gender</code> have?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>dat$Gender</code> has 4 levels, so the plot shows 4 levels.</p>
+</div>
+</div>
+</div>
+</section>
+<p>We need to tell R that “M” is no longer a valid value for this column. We use the <code>droplevels()</code> function to remove extra levels.</p>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Adjusting Factor Levels
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adjusting the <code>levels()</code> of a factor provides a useful shortcut for reassigning values in this case.</p>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+<div class="keypoints">
+<ul>
+<li>Factors are used to represent categorical data.</li>
+<li>Factors can be <em>ordered</em> or <em>unordered</em>.</li>
+<li>Some R functions have special methods for handling factors.</li>
+</ul>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script>
@@ -2890,13 +3093,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Rbasics.html" class="pagination-link" aria-label="R Basics Group Exercise">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Basics Group Exercise</span></span>
+      <a href="./R_subsetting.html" class="pagination-link" aria-label="R Subsetting Exercise">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Subsetting Exercise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./R_subsetting.html" class="pagination-link" aria-label="R Subsetting Exercise">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">R Subsetting Exercise</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./RCharactersLecture.html" class="pagination-link" aria-label="Lecture: R Character Manipulation">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture: R Character Manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
