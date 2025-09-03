@@ -894,17 +894,37 @@
     "href": "R_factors_exercise.html",
     "title": "12  R Factors Exercise",
     "section": "",
-    "text": "12.1 Ackowledgements\nThis chapter is a slightly modified version of the\nUnderstanding Factors\nchapter from\nProgramming with R\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.\nFactors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.\nFactors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.\nOnce created, factors can only contain a pre-defined set values, known as levels. By default, R always sortslevelsin alphabetical order. For instance, if you have a factor with 2 levels:\nR will assign 1 to the level \"female\" and 2 to the level \"male\" (because f comes before m, even though the first element in this vector is \"male\"). You can check this by using the function levels(), and check the number of levels using nlevels():\nSometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:\nIn R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: \"low\", \"medium\", and \"high\"” is more descriptive than 1, 2, 3. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).",
+    "text": "12.1 Ackowledgements\nThis chapter is a slightly modified version of the\nUnderstanding Factors\nchapter from\nProgramming with R\nby\nsoftware carpentry\nwhich is made available under the Creative Commons Attribution license 4.0 link.\nThis chapter is made available according to the same license.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
   },
   {
-    "objectID": "R_factors_exercise.html#ackowledgements",
-    "href": "R_factors_exercise.html#ackowledgements",
+    "objectID": "R_factors_exercise.html#objectives",
+    "href": "R_factors_exercise.html#objectives",
     "title": "12  R Factors Exercise",
-    "section": "",
-    "text": "Understand how to represent categorical data in R.\nKnow the difference between ordered and unordered factors.\nBe aware of some of the problems encountered when using factors.\n\n\n\n\nHow is categorical data represented in R?\nHow do I work with factors?\n\n\n\n\n\n\n\n\n\n\n\nThe factor() Command\n\n\n\nThe factor() command is used to create and modify factors in R:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "12.2 Objectives",
+    "text": "12.2 Objectives\n\nUnderstand how to represent categorical data in R.\nKnow the difference between ordered and unordered factors.\nBe aware of some of the problems encountered when using factors.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_factors_exercise.html#questions",
+    "href": "R_factors_exercise.html#questions",
+    "title": "12  R Factors Exercise",
+    "section": "12.3 Questions",
+    "text": "12.3 Questions\n\nHow is categorical data represented in R?\nHow do I work with factors?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "R_factors_exercise.html#factors",
+    "href": "R_factors_exercise.html#factors",
+    "title": "12  R Factors Exercise",
+    "section": "12.4 Factors",
+    "text": "12.4 Factors\nFactors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.\nFactors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.\nOnce created, factors can only contain a pre-defined set values, known as levels. By default, R always sortslevelsin alphabetical order. For instance, if you have a factor with 2 levels:\n\n\n\n\n\n\nThe factor() Command\n\n\n\nThe factor() command is used to create and modify factors in R:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nR will assign 1 to the level \"female\" and 2 to the level \"male\" (because f comes before m, even though the first element in this vector is \"male\"). You can check this by using the function levels(), and check the number of levels using nlevels():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nfood &lt;- factor(food, levels = c(\"low\", \"medium\", \"high\"), ordered = TRUE)\nfood\nlevels(food)\nmin(food) # works!\nIn R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: \"low\", \"medium\", and \"high\"” is more descriptive than 1, 2, 3. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -913,8 +933,8 @@
     "objectID": "R_factors_exercise.html#challenge-representing-data-in-r",
     "href": "R_factors_exercise.html#challenge-representing-data-in-r",
     "title": "12  R Factors Exercise",
-    "section": "12.2 Challenge: Representing Data in R",
-    "text": "12.2 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
+    "section": "12.5 Challenge: Representing Data in R",
+    "text": "12.5 Challenge: Representing Data in R\nYou have a vector representing levels of exercise undertaken by 5 subjects\n“L”, “N”, “N”, “I”, “L” ; N=none, L=light, I=intense\nWhat is the best way to represent this in R?\n\nexercise &lt;- c(\"L\", \"N\", \"N\", \"I\", \"L\")\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), ordered = TRUE)\nexercise &lt; -factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = FALSE)\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nCorrect solution is d.\nexercise &lt;- factor(c(\"L\", \"N\", \"N\", \"I\", \"L\"), levels = c(\"N\", \"L\", \"I\"), ordered = TRUE)\nWe only expect three categories (“N”, “L”, “I”). We can order these from least intense to most intense, so let’s use ordered.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -923,8 +943,8 @@
     "objectID": "R_factors_exercise.html#challenge-reordering-factors",
     "href": "R_factors_exercise.html#challenge-reordering-factors",
     "title": "12  R Factors Exercise",
-    "section": "12.3 Challenge: Reordering Factors",
-    "text": "12.3 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "12.6 Challenge: Reordering Factors",
+    "text": "12.6 Challenge: Reordering Factors\nThe function table() tabulates observations and can be used to create bar plots quickly. For instance:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse the factor() command to modify the column dat$Group so that the control group is plotted last.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -933,8 +953,8 @@
     "objectID": "R_factors_exercise.html#challenge-updating-factors",
     "href": "R_factors_exercise.html#challenge-updating-factors",
     "title": "12  R Factors Exercise",
-    "section": "12.4 Challenge: Updating Factors",
-    "text": "12.4 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
+    "section": "12.7 Challenge: Updating Factors",
+    "text": "12.7 Challenge: Updating Factors\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy does this plot show 4 levels?\n\nHow many levels does dat$Gender have?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ndat$Gender has 4 levels, so the plot shows 4 levels.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>R Factors Exercise</span>"
     ]
@@ -1644,7 +1664,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y     Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  0.639  -0.136 -9.07\n2 2009-01-02 -1.74   -1.20   4.99\n3 2009-01-03 -0.601  -0.582 -1.44\n4 2009-01-04  0.982   4.18   1.02\n5 2009-01-05  0.0987  0.241  6.58\n6 2009-01-06  1.39    0.830  6.34\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.639 \n2 2009-01-02 X     -1.74  \n3 2009-01-03 X     -0.601 \n4 2009-01-04 X      0.982 \n5 2009-01-05 X      0.0987\n6 2009-01-06 X      1.39",
+    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X      Y      Z\n  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.580   0.900  3.09 \n2 2009-01-02 -0.808  -1.23  -6.27 \n3 2009-01-03 -1.35   -0.389 -2.64 \n4 2009-01-04  0.0344 -1.04   2.43 \n5 2009-01-05 -0.119   0.223 -0.289\n6 2009-01-06 -0.644   2.30   1.46 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.580 \n2 2009-01-02 X     -0.808 \n3 2009-01-03 X     -1.35  \n4 2009-01-04 X      0.0344\n5 2009-01-05 X     -0.119 \n6 2009-01-06 X     -0.644",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1654,7 +1674,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.639\n2 2009-01-01 Y     -0.136\n3 2009-01-01 Z     -9.07 \n4 2009-01-02 X     -1.74 \n5 2009-01-02 Y     -1.20 \n6 2009-01-02 Z      4.99",
+    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.580\n2 2009-01-01 Y      0.900\n3 2009-01-01 Z      3.09 \n4 2009-01-02 X     -0.808\n5 2009-01-02 Y     -1.23 \n6 2009-01-02 Z     -6.27",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
