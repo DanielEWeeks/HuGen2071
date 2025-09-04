@@ -20,19 +20,22 @@ Here's a recording of this lecture (42 minutes 49 seconds):
 
 ## Questions
 
-NOTE: These questions have not yet been updated for this lecture.
-
 ### Question 1
 
-What does `a <- 9; a < - 9` do?
+Given the two vectors of alleles below, which of the following R commands would correctly combine them to produce a single vector of genotypes?
+
+```
+> a1 <- c("A","T","A")
+> a2 <- c("A","A","T")
+```
 
 ```{r, echo=FALSE}
 library(webexercises)
 choices = c(
-"TRUE",
-"9",
-answer = "FALSE",
-"-9"
+answer = "c(paste0(a1, a2))",
+answer = 'paste(a1, a2, sep = "")',
+answer = "str_c(a1, a2)",
+"c(a1, a2)"
 )
 ```
 
@@ -40,18 +43,25 @@ answer = "FALSE",
 
 ```{webr-r}
 # Edit/add R code here
+(a1 <- c("A","T","A"))
+(a2 <- c("A","A","T"))
 ```
 
 ### Question 2
 
-Given a vector `x` of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector `y`? More than one option may be correct.
+Given a vector of genotypes separated by a forward slash, which of the following R commands would correctly change it into a vector of alleles?
+R
+
+```
+> g <- c("A/A","A/T","A/T","T/T","A/A")
+```
 
 ```{r, echo=FALSE}
 choices = c(
-answer = "y <- x[-3]",
-"y <- x[3] <- NULL",
-answer = "y <- x[c(1:2, 4:10)]",
-"y <- x[1:2, 4:10]"
+'strsplit(g, "/")',
+answer = 'unlist(strsplit(g, "/"))',
+'c(strsplit(g, "/"))',
+'str_split(g, "/")'
 )
 ```
 
@@ -60,22 +70,24 @@ answer = "y <- x[c(1:2, 4:10)]",
 
 ```{webr-r}
 # Edit/add R code here
+(g <- c("A/A","A/T","A/T","T/T","A/A"))
 ```
 
 ### Question 3
 
-Given the following vector:
+Given a vector of multi-part IDs, which of the following R commands would correctly change it into a vector containing only the "Person" part of each ID?
 
-`x <- c(a = 1, b = 2, c = 3)`
-
-Which of the following R code snippets will extract only the element corresponding to the name "b"?
+```
+> id <- c("Person1-Sample1","Person1-Sample2", "Person2-Sample1", "Person30-Sample1")
+```
 
 ```{r, echo=FALSE}
 choices = c(
-answer = "x[2]",
-answer = 'x["b"]',
-'x[x == "b"]',
-"x[x > 1]"
+'strsplit(id, "-")',
+answer = 'sub("-.*", "", id)',
+answer = 'str_extract(id, "Person[0-9]+")',
+"substr(id, 1, 7)",
+answer = 'str_split_fixed(id, "-", 2)[,1]'
 )
 ```
 
@@ -83,9 +95,12 @@ answer = 'x["b"]',
 
 ```{webr-r}
 # Edit/add R code here
+(id <- c("Person1-Sample1","Person1-Sample2", "Person2-Sample1", "Person30-Sample1"))
 ```
 
 ### Question 4
+
+NOTE: These questions 4 and 5 have not yet been updated for this lecture.
 
 Given the following R code:
 
