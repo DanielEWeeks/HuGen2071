@@ -50,7 +50,7 @@ answer = "str_c(a1, a2)",
 ### Question 2
 
 Given a vector of genotypes separated by a forward slash, which of the following R commands would correctly change it into a vector of alleles?
-R
+
 
 ```
 > g <- c("A/A","A/T","A/T","T/T","A/A")
@@ -100,23 +100,14 @@ answer = 'str_split_fixed(id, "-", 2)[,1]'
 
 ### Question 4
 
-NOTE: These questions 4 and 5 have not yet been updated for this lecture.
-
-Given the following R code:
-
-```         
-x <- 1:6
-dim(x) <- c(2, 3)
-```
-
-Which of the following options correctly extracts the second column of the matrix `x` as a column vector?
+Suppose you have a data frame called df with a column named V1 containing journal names. Which of the following R commands would correctly determine the number of journals in the list that start with the phrase "GENET"?
 
 ```{r, echo=FALSE}
 choices = c(
-"x[2, ]",
-'x[, 2]',
-'x[2]',
-answer = "x[, 2, drop = FALSE]"
+'length(grepl("^GENET", df$V1))',
+answer = 'sum(grepl("^GENET", df$V1))',
+answer = 'sum(startsWith(df$V1, "GENET"))',
+'nrow(grepl("^GENET", df$V1))'
 )
 ```
 
@@ -124,6 +115,12 @@ answer = "x[, 2, drop = FALSE]"
 
 ```{webr-r}
 # Edit/add R code here
+# Download the gapminder data file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/Ranking_tab_delimited.txt"),
+              "Ranking_tab_delimited.txt")
+df <- read.csv("Ranking_tab_delimited.txt", header = FALSE)
+dim(df)
 ```
 
 ### Question 5
