@@ -100,44 +100,46 @@ answer = 'str_split_fixed(id, "-", 2)[,1]'
 
 ### Question 4
 
-Suppose you have a data frame called df with a column named V1 containing journal names. Which of the following R commands would correctly determine the number of journals in the list that start with the phrase "GENET"?
+Suppose you have a data frame called `df` with a column named `V1` containing journal names. Which of the following R commands would correctly determine the number of journals in the list that start with the phrase "GENET"?
 
 ```{r, echo=FALSE}
 choices = c(
-'length(grepl("^GENET", df$V1))',
-answer = 'sum(grepl("^GENET", df$V1))',
-answer = 'sum(startsWith(df$V1, "GENET"))',
-'nrow(grepl("^GENET", df$V1))'
+'length(grepl("^GENET", df[,"V1"]))',
+answer = 'sum(grepl("^GENET", df[,"V1"]))',
+answer = 'sum(startsWith(df[,"V1"], "GENET"))',
+'nrow(grepl("^GENET", df[,"V1"]))'
 )
 ```
 
 `r longmcq(choices)`
 
 ```{webr-r}
-# Edit/add R code here
-# Download the gapminder data file within the WebR environment
+# Download the data file within the WebR environment
 root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
 download.file(paste0(root_srcfile,"data/Ranking_tab_delimited.txt"),
               "Ranking_tab_delimited.txt")
-df <- read.csv("Ranking_tab_delimited.txt", header = FALSE)
+df <- read.table("Ranking_tab_delimited.txt", header = FALSE, sep="\t")
 dim(df)
+head(df)
+# Edit/add R code here
 ```
 
 ### Question 5
 
-Which of the following statements are true about data frames in R?
+Suppose you have a data frame named `df`. Which of the following R commands would correctly add a new, unique journal ID column named `jid` that consists of a "J" followed by the row number in the style of J1, J2, J3, etc.?
 
 ```{r, echo=FALSE}
 choices = c(
-"A data frame is a type of list where all elements must be of the same data type.",
-answer = 'A data frame is a list where elements can be of different data types.',
-'A data frame is a matrix where elements must be of the same data type.',
-answer = "A data frame is a list where all elements of the list must be of the same length."
+'df[,"jid"] <- paste("J", 1:nrow(df))',
+answer = 'df[,"jid"] <- paste0("J", 1:nrow(df))',
+'df[,"jid"] <- "J" + seq_len(nrow(df))',
+'df[,"jid"] <- paste0("J", row(df))'
 )
 ```
 
 `r longmcq(choices)`
 
 ```{webr-r}
+# Run the webR chunk above to load the data frame df
 # Edit/add R code here
 ```
