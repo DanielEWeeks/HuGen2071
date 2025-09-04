@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Edit/add R code here","id":1,"options":{"context":"interactive","out-width":"700px","comment":"","autorun":"false","editor-quick-suggestions":"false","classes":"","message":"true","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","read-only":"false","warning":"true","dpi":72,"fig-cap":"","out-height":"","label":"unnamed-chunk-1"}},{"code":"# Edit/add R code here","id":2,"options":{"context":"interactive","out-width":"700px","comment":"","autorun":"false","editor-quick-suggestions":"false","classes":"","message":"true","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","read-only":"false","warning":"true","dpi":72,"fig-cap":"","out-height":"","label":"unnamed-chunk-2"}},{"code":"# Edit/add R code here","id":3,"options":{"context":"interactive","out-width":"700px","comment":"","autorun":"false","editor-quick-suggestions":"false","classes":"","message":"true","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","read-only":"false","warning":"true","dpi":72,"fig-cap":"","out-height":"","label":"unnamed-chunk-3"}},{"code":"# Edit/add R code here","id":4,"options":{"context":"interactive","out-width":"700px","comment":"","autorun":"false","editor-quick-suggestions":"false","classes":"","message":"true","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","read-only":"false","warning":"true","dpi":72,"fig-cap":"","out-height":"","label":"unnamed-chunk-4"}},{"code":"# Edit/add R code here","id":5,"options":{"context":"interactive","out-width":"700px","comment":"","autorun":"false","editor-quick-suggestions":"false","classes":"","message":"true","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","read-only":"false","warning":"true","dpi":72,"fig-cap":"","out-height":"","label":"unnamed-chunk-5"}}];
+globalThis.qwebrCellDetails = [{"options":{"message":"true","dpi":72,"editor-max-height":"","label":"unnamed-chunk-1","out-width":"700px","warning":"true","results":"markup","read-only":"false","fig-height":5,"editor-word-wrap":"true","context":"interactive","comment":"","out-height":"","output":"true","autorun":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here\n(a1 <- c(\"A\",\"T\",\"A\"))\n(a2 <- c(\"A\",\"A\",\"T\"))","id":1},{"options":{"message":"true","dpi":72,"editor-max-height":"","label":"unnamed-chunk-2","out-width":"700px","warning":"true","results":"markup","read-only":"false","fig-height":5,"editor-word-wrap":"true","context":"interactive","comment":"","out-height":"","output":"true","autorun":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here\n(g <- c(\"A/A\",\"A/T\",\"A/T\",\"T/T\",\"A/A\"))","id":2},{"options":{"message":"true","dpi":72,"editor-max-height":"","label":"unnamed-chunk-3","out-width":"700px","warning":"true","results":"markup","read-only":"false","fig-height":5,"editor-word-wrap":"true","context":"interactive","comment":"","out-height":"","output":"true","autorun":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here\n(id <- c(\"Person1-Sample1\",\"Person1-Sample2\", \"Person2-Sample1\", \"Person30-Sample1\"))","id":3},{"options":{"message":"true","dpi":72,"editor-max-height":"","label":"unnamed-chunk-4","out-width":"700px","warning":"true","results":"markup","read-only":"false","fig-height":5,"editor-word-wrap":"true","context":"interactive","comment":"","out-height":"","output":"true","autorun":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here","id":4},{"options":{"message":"true","dpi":72,"editor-max-height":"","label":"unnamed-chunk-5","out-width":"700px","warning":"true","results":"markup","read-only":"false","fig-height":5,"editor-word-wrap":"true","context":"interactive","comment":"","out-height":"","output":"true","autorun":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"fig-cap":"","editor-font-scale":"1"},"code":"# Edit/add R code here","id":5}];
 
 </script>
 <script type="module">
@@ -2225,44 +2225,46 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="questions" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="questions"><span class="header-section-number">13.3</span> Questions</h2>
-<p>NOTE: These questions have not yet been updated for this lecture.</p>
 <section id="question-1" class="level3" data-number="13.3.1">
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">13.3.1</span> Question 1</h3>
-<p>What does <code>a &lt;- 9; a &lt; - 9</code> do?</p>
-<div id="radio_TPNRSZXHYU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TPNRSZXHYU" value=""> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_TPNRSZXHYU" value=""> <span>9</span></label><label><input type="radio" autocomplete="off" name="radio_TPNRSZXHYU" value="answer"> <span>FALSE</span></label><label><input type="radio" autocomplete="off" name="radio_TPNRSZXHYU" value=""> <span>-9</span></label>
+<p>Given the two vectors of alleles below, which of the following R commands would correctly combine them to produce a single vector of genotypes?</p>
+<pre><code>&gt; a1 &lt;- c("A","T","A")
+&gt; a2 &lt;- c("A","A","T")</code></pre>
+<div id="radio_OXHUMSKKET" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OXHUMSKKET" value="answer"> <span>c(paste0(a1, a2))</span></label><label><input type="radio" autocomplete="off" name="radio_OXHUMSKKET" value="answer"> <span>paste(a1, a2, sep = ““)</span></label><label><input type="radio" autocomplete="off" name="radio_OXHUMSKKET" value="answer"> <span>str_c(a1, a2)</span></label><label><input type="radio" autocomplete="off" name="radio_OXHUMSKKET" value=""> <span>c(a1, a2)</span></label>
 </div>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="question-2" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">13.3.2</span> Question 2</h3>
-<p>Given a vector <code>x</code> of length 10, which of the following R code snippets would remove the third element from the vector and assign the result to a new vector <code>y</code>? More than one option may be correct.</p>
-<div id="radio_HIQPDBSONI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HIQPDBSONI" value="answer"> <span>y &lt;- x[-3]</span></label><label><input type="radio" autocomplete="off" name="radio_HIQPDBSONI" value=""> <span>y &lt;- x[3] &lt;- NULL</span></label><label><input type="radio" autocomplete="off" name="radio_HIQPDBSONI" value="answer"> <span>y &lt;- x[c(1:2, 4:10)]</span></label><label><input type="radio" autocomplete="off" name="radio_HIQPDBSONI" value=""> <span>y &lt;- x[1:2, 4:10]</span></label>
+<p>Given a vector of genotypes separated by a forward slash, which of the following R commands would correctly change it into a vector of alleles? R</p>
+<pre><code>&gt; g &lt;- c("A/A","A/T","A/T","T/T","A/A")</code></pre>
+<div id="radio_DYUBCMSRTQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DYUBCMSRTQ" value=""> <span>strsplit(g, “/”)</span></label><label><input type="radio" autocomplete="off" name="radio_DYUBCMSRTQ" value="answer"> <span>unlist(strsplit(g, “/”))</span></label><label><input type="radio" autocomplete="off" name="radio_DYUBCMSRTQ" value=""> <span>c(strsplit(g, “/”))</span></label><label><input type="radio" autocomplete="off" name="radio_DYUBCMSRTQ" value=""> <span>str_split(g, “/”)</span></label>
 </div>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="question-3" class="level3" data-number="13.3.3">
 <h3 data-number="13.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">13.3.3</span> Question 3</h3>
-<p>Given the following vector:</p>
-<p><code>x &lt;- c(a = 1, b = 2, c = 3)</code></p>
-<p>Which of the following R code snippets will extract only the element corresponding to the name “b”?</p>
-<div id="radio_OGWJXFIMAJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OGWJXFIMAJ" value="answer"> <span>x[2]</span></label><label><input type="radio" autocomplete="off" name="radio_OGWJXFIMAJ" value="answer"> <span>x[“b”]</span></label><label><input type="radio" autocomplete="off" name="radio_OGWJXFIMAJ" value=""> <span>x[x == “b”]</span></label><label><input type="radio" autocomplete="off" name="radio_OGWJXFIMAJ" value=""> <span>x[x &gt; 1]</span></label>
+<p>Given a vector of multi-part IDs, which of the following R commands would correctly change it into a vector containing only the “Person” part of each ID?</p>
+<pre><code>&gt; id &lt;- c("Person1-Sample1","Person1-Sample2", "Person2-Sample1", "Person30-Sample1")</code></pre>
+<div id="radio_FEEYDHDSRS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FEEYDHDSRS" value=""> <span>strsplit(id, “-”)</span></label><label><input type="radio" autocomplete="off" name="radio_FEEYDHDSRS" value="answer"> <span>sub(“-.*“,”“, id)</span></label><label><input type="radio" autocomplete="off" name="radio_FEEYDHDSRS" value="answer"> <span>str_extract(id, “Person[0-9]+”)</span></label><label><input type="radio" autocomplete="off" name="radio_FEEYDHDSRS" value=""> <span>substr(id, 1, 7)</span></label><label><input type="radio" autocomplete="off" name="radio_FEEYDHDSRS" value="answer"> <span>str_split_fixed(id, “-”, 2)[,1]</span></label>
 </div>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="question-4" class="level3" data-number="13.3.4">
 <h3 data-number="13.3.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">13.3.4</span> Question 4</h3>
+<p>NOTE: These questions 4 and 5 have not yet been updated for this lecture.</p>
 <p>Given the following R code:</p>
 <pre><code>x &lt;- 1:6
 dim(x) &lt;- c(2, 3)</code></pre>
 <p>Which of the following options correctly extracts the second column of the matrix <code>x</code> as a column vector?</p>
-<div id="radio_ASDZGUZAVM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ASDZGUZAVM" value=""> <span>x[2, ]</span></label><label><input type="radio" autocomplete="off" name="radio_ASDZGUZAVM" value=""> <span>x[, 2]</span></label><label><input type="radio" autocomplete="off" name="radio_ASDZGUZAVM" value=""> <span>x[2]</span></label><label><input type="radio" autocomplete="off" name="radio_ASDZGUZAVM" value="answer"> <span>x[, 2, drop = FALSE]</span></label>
+<div id="radio_KUDZWREFRY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KUDZWREFRY" value=""> <span>x[2, ]</span></label><label><input type="radio" autocomplete="off" name="radio_KUDZWREFRY" value=""> <span>x[, 2]</span></label><label><input type="radio" autocomplete="off" name="radio_KUDZWREFRY" value=""> <span>x[2]</span></label><label><input type="radio" autocomplete="off" name="radio_KUDZWREFRY" value="answer"> <span>x[, 2, drop = FALSE]</span></label>
 </div>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2270,8 +2272,8 @@ dim(x) &lt;- c(2, 3)</code></pre>
 <section id="question-5" class="level3" data-number="13.3.5">
 <h3 data-number="13.3.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">13.3.5</span> Question 5</h3>
 <p>Which of the following statements are true about data frames in R?</p>
-<div id="radio_FMTJNUMMSB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FMTJNUMMSB" value=""> <span>A data frame is a type of list where all elements must be of the same data type.</span></label><label><input type="radio" autocomplete="off" name="radio_FMTJNUMMSB" value="answer"> <span>A data frame is a list where elements can be of different data types.</span></label><label><input type="radio" autocomplete="off" name="radio_FMTJNUMMSB" value=""> <span>A data frame is a matrix where elements must be of the same data type.</span></label><label><input type="radio" autocomplete="off" name="radio_FMTJNUMMSB" value="answer"> <span>A data frame is a list where all elements of the list must be of the same length.</span></label>
+<div id="radio_NUSCLPRRIE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NUSCLPRRIE" value=""> <span>A data frame is a type of list where all elements must be of the same data type.</span></label><label><input type="radio" autocomplete="off" name="radio_NUSCLPRRIE" value="answer"> <span>A data frame is a list where elements can be of different data types.</span></label><label><input type="radio" autocomplete="off" name="radio_NUSCLPRRIE" value=""> <span>A data frame is a matrix where elements must be of the same data type.</span></label><label><input type="radio" autocomplete="off" name="radio_NUSCLPRRIE" value="answer"> <span>A data frame is a list where all elements of the list must be of the same length.</span></label>
 </div>
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
