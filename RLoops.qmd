@@ -1,3 +1,8 @@
+---
+editor: 
+  mode: source
+---
+
 # Lecture: Loops in R
 
 ## Loops in R lecture
@@ -18,7 +23,6 @@ Here's a recording of this lecture (8 minutes 11 seconds):
 
 </iframe>
 
-
 ## Questions
 
 ### Question 1
@@ -36,6 +40,3 @@ answer = "Using a for loop instead of a while loop for most iterative tasks.",
 ```
 
 `r longmcq(choices)`
-
-
-

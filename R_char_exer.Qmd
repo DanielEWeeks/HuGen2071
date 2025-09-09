@@ -1,6 +1,6 @@
 ---
 webr:
-  packages: ['stringr','tidyr']
+  packages: ['stringr','tidyr','knitr','dplyr']
 editor: 
   mode: source  
 ---
@@ -155,6 +155,8 @@ Hint: Use either the `str_split_fixed` function from the `stringr` package or th
 ```{webr-r}
 # separate is in the tidyr R package
 library(tidyr)
+# mutate is in the dplyr R package
+library(dplyr)
 # Edit/add code here
 ```
 
