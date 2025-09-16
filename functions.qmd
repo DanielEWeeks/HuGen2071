@@ -194,17 +194,49 @@ class(get_mass_from_length_theropoda)
 # Edit/add/try out R code here
 ```
 
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length_theropoda(16)
+```
+
+:::	
+
 2. Create a new version of this function called `get_mass_from_length()` that takes `length`, `a` and `b` as arguments and uses the following code to estimate the mass `mass <- a * length ^ b`.
 
 ```{webr-r}
 # Edit/add/try out R code here
 ```
 
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length <- function(length, a, b){
+  mass <- a * length ^ b
+  return(mass)
+}
+class(get_mass_from_length)
+```
+
+:::	
+
+
 Use this function to estimate the mass of a Sauropoda (`a = 214.44`, `b = 1.46`) that is 26 m long.
 
 ```{webr-r}
 # Edit/add/try out R code here
 ```
+
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length(26, 214.44, 1.46)
+```
+
+:::	
 
 :::
 
@@ -240,12 +272,34 @@ Rewrite your `get_mass_from length()` function from Use and Modify so that its a
 # Edit/add/try out R code here
 ```
 
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length <- function(length, a = 39.9, b = 2.6){
+  mass <- a * length ^ b
+  return(mass)
+}
+class(get_mass_from_length)
+```
+
+:::	
+
 1. Use this function to estimate the mass of a Sauropoda (`a = 214.44`, `b = 1.46`) that is 22 m long (by setting `a` and `b` when calling the function).
 
 
 ```{webr-r}
 # Edit/add/try out R code here
 ```
+
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length(length = 22, a = 214.44, b =1.46)
+```
+
+:::	
 
 2. Use this function to estimate the mass of a dinosaur from an unknown taxonomic group that is 16m long.
    Only pass the function `length`, not `a` and `b`, so that the default values are used.
@@ -254,6 +308,15 @@ Rewrite your `get_mass_from length()` function from Use and Modify so that its a
 ```{webr-r}
 # Edit/add/try out R code here
 ```   
+
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+get_mass_from_length(length = 16)
+```
+
+:::	
 
 :::
 
@@ -324,11 +387,34 @@ Write a function called `convert_kg_to_pounds` that converts kilograms into poun
 # Edit/add/try out R code here
 ```
 
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+convert_kg_to_pounds <- function(kg) {
+    pounds = 2.205 * kg
+    return(pounds)
+}
+# Entering the name of the function prints it out:
+convert_kg_to_pounds
+```
+
+:::	
+
 Use that function and your `get_mass_from_length()` function from Default Arguments to estimate the weight, in pounds, of a 12 m long Stegosaurus with `a = 10.95` and `b = 2.64` (The estimated `a` and `b` values for *Stegosauria* from [Seebacher 2001](http://www.jstor.org/stable/4524171)).
 
 ```{webr-r}
 # Edit/add/try out R code here
 ```
+
+::: {.callout-caution collapse="true"}
+## Solution
+
+```{webr-r}
+convert_kg_to_pounds(get_mass_from_length(12, 10.95, 2.64))
+```
+
+:::	
 
 :::
 
@@ -442,3 +528,73 @@ make_graph(processed_data)
 * Can be helpful to clearly see what is a function
 * Can have RStudio highlight them
 *  Global Options -> Code -> Display -> Highlight R function calls
+
+## Scope: variable visibility
+
+* Scope: variables are local to the function (pass by value).
+
+```{webr-r}
+square <- function (number = 7) {
+   answer <- number * number
+   return(answer)
+}
+square
+```
+
+Define these two variables in the global environment:
+
+```{webr-r}
+answer <- 51
+number <- 2
+square(number=5)
+```
+
+Were they changed when we ran the `square()` function?
+
+```{webr-r}
+answer
+number
+```
+
+## Scope: pass all needed variables as arguments
+
+* Scope: If a variable is not found in the argument list, it is taken
+from the global environment
+
+```{webr-r}
+number <- 2
+square <- function() {number*number}
+square()
+```
+
+* Best to avoid using global variables within functions: pass all
+needed variables as arguments.
+   - Do not use any global variables within functions.
+
+## Key points: Writing R functions
+
+* Functions are defined using this syntax:
+
+```
+     name <- function(arguments, ...) {
+        expressions
+        return(answer)
+     }
+``` 
+
+* Functions are called using this syntax:
+
+```
+     name(arguments)
+```
+
+* Annotate your functions with clear comments.
+
+* **Do not use global variables** within your function
+  - Pass all needed variables as arguments
+* May be useful to specify default values for arguments.
+* Argument matching is done by name (full or partial) or by
+position
+   - If omitted, the default value is used.
+* Typing the name of a non-object-oriented function will print out its code.
+
