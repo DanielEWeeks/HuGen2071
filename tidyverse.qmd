@@ -26,6 +26,30 @@ The material presented here has been modified from the original source.
 
 Accordingly this chapter is made available under the same license terms.
 
+## Tidyverse Model for Data Science
+
+The Tidyverse provides tools for all these aspects of the typical data science workflow:
+
+![](img/TidyverseFramework.png)
+
+The Tidyverse aims to make the commands and tools used more consistent with our cognitive approach to data science:
+
+![](img/TidyverseCognitiveApproach.png)
+
+
+These two images are from slide sets made available by Hadley Wickham, the main creator of the Tidyverse, under the Common Creative Attribution license:
+
+![](img/cc-by-nc.png){width="30%"}
+
+See also
+
+R for Data Science <https://r4ds.had.co.nz/explore-intro.html>
+
+and
+
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H. Welcome to the Tidyverse. Journal of Open Source Software. 2019 Nov 21;4(43):1686. DOI: <https://doi.org/10.21105/joss.01686>
+
+
 ## Load gapminder data
 
 
@@ -168,6 +192,14 @@ gapminder_scandinavia
 as a sentence, which we can read as "take the gapminder data *and then* `filter` records where continent == Europe *and then* `select` the year, country and gdpPercap
 
 We can think of the `filter()` and `select()` functions as verbs in the sentence; they do things to the data flowing through the pipeline.
+
+Here's a nice illustration showing how using pipe syntax results in much easier to understand code:
+
+![](img/LittleBunnyFooFoo_and_Pipes.png)
+
+This image is from a slide set made available by Hadley Wickham under the Common Creative Attribution license:
+
+![](img/cc-by-nc.png){width="30%"}
 
  
 
