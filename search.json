@@ -1714,7 +1714,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y     Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  1.49   0.0459 -3.22\n2 2009-01-02  0.163  2.49   -1.85\n3 2009-01-03 -0.656 -3.33   -1.71\n4 2009-01-04  0.120  0.895  -5.68\n5 2009-01-05 -0.762 -3.44    2.98\n6 2009-01-06  1.15  -0.744   2.77\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.49 \n2 2009-01-02 X      0.163\n3 2009-01-03 X     -0.656\n4 2009-01-04 X      0.120\n5 2009-01-05 X     -0.762\n6 2009-01-06 X      1.15",
+    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y     Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  0.162  3.22  -1.65\n2 2009-01-02  0.262 -1.12  -6.27\n3 2009-01-03 -1.18  -1.85   2.02\n4 2009-01-04 -0.170 -1.20   6.52\n5 2009-01-05  1.93  -0.513 -7.27\n6 2009-01-06  0.367  1.27  -1.69\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.162\n2 2009-01-02 X      0.262\n3 2009-01-03 X     -1.18 \n4 2009-01-04 X     -0.170\n5 2009-01-05 X      1.93 \n6 2009-01-06 X      0.367",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1724,7 +1724,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.49  \n2 2009-01-01 Y      0.0459\n3 2009-01-01 Z     -3.22  \n4 2009-01-02 X      0.163 \n5 2009-01-02 Y      2.49  \n6 2009-01-02 Z     -1.85",
+    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.162\n2 2009-01-01 Y      3.22 \n3 2009-01-01 Z     -1.65 \n4 2009-01-02 X      0.262\n5 2009-01-02 Y     -1.12 \n6 2009-01-02 Z     -6.27",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1924,7 +1924,7 @@
     "href": "recoding_reshaping_interactive.html#exercise-4-summarizing-within-groups",
     "title": "23  R Recoding Reshaping Exercise",
     "section": "23.16 Exercise 4: Summarizing within groups",
-    "text": "23.16 Exercise 4: Summarizing within groups\nSkill: Summarizing within groups\nApply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNote: With split(x, f), any missing values in f are dropped together with the corresponding values of x.",
+    "text": "23.16 Exercise 4: Summarizing within groups\nThe split command\nsplit(x,f): divides the data x into the groups defined by f, where f is a factor or list of factors.\nTo illustrate this, we split ds into a list of data frames by baby_sex while only keeping the baby_sex and race columns:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCommands from the apply family\nWe can then apply a function to each element of the list using lapply or sapply:\nThe lapply(X, FUN) lapply returns a list of the same length as X, each element of which is the result of applying FUN to the corresponding element of X.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe sapply(X, FUN) function is a user-friendly version of lapply by default returning a vector, matrix or array if appropriate.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSkill: Summarizing within groups\nUse the split/sapply approach to apply the summary command to the “Gestationalage_sample” within each “Sample_trimester” group.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNote: With split(x, f), any missing values in the factor f are dropped together with the corresponding values of x.",
     "crumbs": [
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>R Recoding Reshaping Exercise</span>"
     ]
