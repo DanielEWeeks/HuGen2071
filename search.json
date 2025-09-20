@@ -1590,11 +1590,21 @@
     ]
   },
   {
+    "objectID": "tidyverse.html#the-dot-operator",
+    "href": "tidyverse.html#the-dot-operator",
+    "title": "21  Tidyverse",
+    "section": "21.13 The dot operator",
+    "text": "21.13 The dot operator\nIn the examples above we have passed the output of one command to the next using pipes. The output of one command becomes the first argument of the next command.\nThis is the default behaviour of pipes. If we want to pass the output of one command to a different argument of the next command, we can use the dot operator . to indicate where the output should go. For example, if we wanted to filter the gapminder data to only include rows where the year is 2007, we could do this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHere the first dot operator . indicates that the output of the previous command should be used as the data frame to be filtered. The second dot operator .$year indicates that we want to use the year variable from that same data frame.\nNote also that this is equivalent to the following, where we have used the dot operator in every part of the pipeline:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis is a reminder that the majority of Tidyverse functions take a data frame as their first argument, so that in a pipeline the output of one command can be automatically assigned the first argument of the next command. However, this is more verbose than necessary, so we usually omit the dot operator when it is not needed.\nIt also illustrates that we can use base R filtering/subsetting within a pipeline and we can include other base R functions (like head()) within a pipeline.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
+    ]
+  },
+  {
     "objectID": "tidyverse.html#splitting-your-commands-over-multiple-lines",
     "href": "tidyverse.html#splitting-your-commands-over-multiple-lines",
     "title": "21  Tidyverse",
-    "section": "21.13 Splitting your commands over multiple lines",
-    "text": "21.13 Splitting your commands over multiple lines\nIt’s generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it’s important that the %&gt;% goes at the end of the line, as in the example above. If we put it at the beginning of a line, e.g.:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nthe first line makes a valid R command. R will then treat the next line as a new command, which won’t work.\n\n\n\n\n\n\nChallenge 1\n\n\n\nWrite a single command (which can span multiple lines and includes pipes) that will produce a tibble that has the values of lifeExp, country and year, for the countries in Africa, but not for other Continents. How many rows does your tibble have? (You can use the nrow() function to find out how many rows are in a tibble.)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to Challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAs with last time, first we pass the gapminder tibble to the filter() function, then we pass the filtered version of the gapminder tibble to the select() function. Note: The order of operations is very important in this case. If we used ‘select’ first, filter would not be able to find the variable continent since we would have removed it in the previous step.",
+    "section": "21.14 Splitting your commands over multiple lines",
+    "text": "21.14 Splitting your commands over multiple lines\nIt’s generally a good idea to put one command per line when writing your analyses. This makes them easier to read. When doing this, it’s important that the %&gt;% goes at the end of the line, as in the example above. If we put it at the beginning of a line, e.g.:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nthe first line makes a valid R command. R will then treat the next line as a new command, which won’t work.\n\n\n\n\n\n\nChallenge 1\n\n\n\nWrite a single command (which can span multiple lines and includes pipes) that will produce a tibble that has the values of lifeExp, country and year, for the countries in Africa, but not for other Continents. How many rows does your tibble have? (You can use the nrow() function to find out how many rows are in a tibble.)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to Challenge 1\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAs with last time, first we pass the gapminder tibble to the filter() function, then we pass the filtered version of the gapminder tibble to the select() function. Note: The order of operations is very important in this case. If we used ‘select’ first, filter would not be able to find the variable continent since we would have removed it in the previous step.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1603,8 +1613,8 @@
     "objectID": "tidyverse.html#sorting-tibbles",
     "href": "tidyverse.html#sorting-tibbles",
     "title": "21  Tidyverse",
-    "section": "21.14 Sorting tibbles",
-    "text": "21.14 Sorting tibbles\nThe arrange() function will sort a tibble by one or more of the variables in it:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can use the desc() function to sort a variable in reverse order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "21.15 Sorting tibbles",
+    "text": "21.15 Sorting tibbles\nThe arrange() function will sort a tibble by one or more of the variables in it:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can use the desc() function to sort a variable in reverse order:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1613,8 +1623,8 @@
     "objectID": "tidyverse.html#generating-new-variables",
     "href": "tidyverse.html#generating-new-variables",
     "title": "21  Tidyverse",
-    "section": "21.15 Generating new variables",
-    "text": "21.15 Generating new variables\nThe mutate() function lets us add new variables to our tibble. It will often be the case that these are variables we derive from existing variables in the data-frame.\nAs an example, the gapminder data contains the population of each country, and its GDP per capita. We can use this to calculate the total GDP of each country:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also use functions within mutate to generate new variables. For example, to take the log of gdpPercap we could use:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe dplyr cheat sheet contains many useful functions which can be used with dplyr. This can be found in the help menu of RStudio. You will use one of these functions in the next challenge.\n\n\n\n\n\n\nChallenge 2\n\n\n\nCreate a tibble containing each country in Europe, its life expectancy in 2007 and the rank of the country’s life expectancy. (note that ranking the countries will not sort the table; the row order will be unchanged. You can use the arrange() function to sort the table).\nHint: First filter() to get the rows you want, and then use mutate() to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).\nThere are several functions for ranking observations, which handle tied values differently (including rank, min_rank, and dense_rank). For this exercise it doesn’t matter which function you choose.\nCan you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo reverse the order of the ranking, use the desc function, i.e. mutate(rank = min_rank(desc(lifeExp)))\nThere are several functions for calculating ranks; you may have used, e.g. dense_rank() The min_rank and dense_rank functions handle ties differently. The help file for dplyr’s ranking functions explains the differences, and can be accessed with ?dense_rank or ?min_rank.",
+    "section": "21.16 Generating new variables",
+    "text": "21.16 Generating new variables\nThe mutate() function lets us add new variables to our tibble. It will often be the case that these are variables we derive from existing variables in the data-frame.\nAs an example, the gapminder data contains the population of each country, and its GDP per capita. We can use this to calculate the total GDP of each country:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can also use functions within mutate to generate new variables. For example, to take the log of gdpPercap we could use:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe dplyr cheat sheet contains many useful functions which can be used with dplyr. This can be found in the help menu of RStudio. You will use one of these functions in the next challenge.\n\n\n\n\n\n\nChallenge 2\n\n\n\nCreate a tibble containing each country in Europe, its life expectancy in 2007 and the rank of the country’s life expectancy. (note that ranking the countries will not sort the table; the row order will be unchanged. You can use the arrange() function to sort the table).\nHint: First filter() to get the rows you want, and then use mutate() to create a new variable with the rank in it. The cheat-sheet contains useful functions you can use when you make new variables (the cheat-sheets can be found in the help menu in RStudio).\nThere are several functions for ranking observations, which handle tied values differently (including rank, min_rank, and dense_rank). For this exercise it doesn’t matter which function you choose.\nCan you reverse the ranking order so that the country with the longest life expectancy gets the lowest rank? Hint: This is similar to sorting in reverse order\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to challenge 2\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo reverse the order of the ranking, use the desc function, i.e. mutate(rank = min_rank(desc(lifeExp)))\nThere are several functions for calculating ranks; you may have used, e.g. dense_rank() The min_rank and dense_rank functions handle ties differently. The help file for dplyr’s ranking functions explains the differences, and can be accessed with ?dense_rank or ?min_rank.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1623,8 +1633,8 @@
     "objectID": "tidyverse.html#calculating-summary-statistics",
     "href": "tidyverse.html#calculating-summary-statistics",
     "title": "21  Tidyverse",
-    "section": "21.16 Calculating summary statistics",
-    "text": "21.16 Calculating summary statistics\nWe often wish to calculate a summary statistic (the mean, standard deviation, etc.) for a variable. We frequently want to calculate a separate summary statistic for several groups of data (e.g. the experiment and control group). We can calculate a summary statistic for the whole data-set using the dplyr’s summarise() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo generate summary statistics for each value of another variable we use the group_by() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "21.17 Calculating summary statistics",
+    "text": "21.17 Calculating summary statistics\nWe often wish to calculate a summary statistic (the mean, standard deviation, etc.) for a variable. We frequently want to calculate a separate summary statistic for several groups of data (e.g. the experiment and control group). We can calculate a summary statistic for the whole data-set using the dplyr’s summarise() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo generate summary statistics for each value of another variable we use the group_by() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1633,8 +1643,8 @@
     "objectID": "tidyverse.html#aside",
     "href": "tidyverse.html#aside",
     "title": "21  Tidyverse",
-    "section": "21.17 Aside",
-    "text": "21.17 Aside\nIn the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using weighted.mean(lifeExp, pop). For simplicty we’ve used the regular mean in the above examples.\n\n\n\n\n\n\nChallenge 3\n\n\n\nFor each combination of continent and year, calculate the average life expectancy.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to Challenge 3\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "21.18 Aside",
+    "text": "21.18 Aside\nIn the examples above it would be preferable to calculate the weighted mean (to reflect the different populations of the countries). R can calculate this for us using weighted.mean(lifeExp, pop). For simplicty we’ve used the regular mean in the above examples.\n\n\n\n\n\n\nChallenge 3\n\n\n\nFor each combination of continent and year, calculate the average life expectancy.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\nSolution to Challenge 3\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1643,8 +1653,8 @@
     "objectID": "tidyverse.html#count-and-n",
     "href": "tidyverse.html#count-and-n",
     "title": "21  Tidyverse",
-    "section": "21.18 count() and n()",
-    "text": "21.18 count() and n()\nA very common operation is to count the number of observations for each group. The dplyr package comes with two related functions that help with this.\nIf we need to use the number of observations in calculations, the n() function is useful. For instance, if we wanted to get the standard error of the life expectancy per continent:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAlthough we could use the group_by(), n() and summarize() functions to calculate the number of observations in each group, dplyr provides the count() function which automatically groups the data, calculates the totals and then ungroups it.\nFor instance, if we wanted to check the number of countries included in the dataset for the year 2002, we can use:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can optionally sort the results in descending order by adding sort=TRUE:",
+    "section": "21.19 count() and n()",
+    "text": "21.19 count() and n()\nA very common operation is to count the number of observations for each group. The dplyr package comes with two related functions that help with this.\nIf we need to use the number of observations in calculations, the n() function is useful. For instance, if we wanted to get the standard error of the life expectancy per continent:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAlthough we could use the group_by(), n() and summarize() functions to calculate the number of observations in each group, dplyr provides the count() function which automatically groups the data, calculates the totals and then ungroups it.\nFor instance, if we wanted to check the number of countries included in the dataset for the year 2002, we can use:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can optionally sort the results in descending order by adding sort=TRUE:",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1653,8 +1663,8 @@
     "objectID": "tidyverse.html#equivalent-functions-in-base-r",
     "href": "tidyverse.html#equivalent-functions-in-base-r",
     "title": "21  Tidyverse",
-    "section": "21.19 Equivalent functions in base R",
-    "text": "21.19 Equivalent functions in base R\nIn this chapter we’ve taught the tidyverse. You are likely come across code written others in base R.",
+    "section": "21.20 Equivalent functions in base R",
+    "text": "21.20 Equivalent functions in base R\nIn this chapter we’ve taught the tidyverse. You are likely come across code written others in base R.",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1663,8 +1673,8 @@
     "objectID": "tidyverse.html#other-great-resources",
     "href": "tidyverse.html#other-great-resources",
     "title": "21  Tidyverse",
-    "section": "21.20 Other great resources",
-    "text": "21.20 Other great resources\n\nData Wrangling tutorial - an excellent four part tutorial covering selecting data, filtering data, summarising and transforming your data.\nR for Data Science\n“Data Transformation with dplyr” cheatset available in RStudio via Help -&gt; Cheat Sheets\nIntroduction to dplyr - this is the package vignette. It can be viewed within R using vignette(package=\"dplyr\", \"dplyr\")",
+    "section": "21.21 Other great resources",
+    "text": "21.21 Other great resources\n\nData Wrangling tutorial - an excellent four part tutorial covering selecting data, filtering data, summarising and transforming your data.\nR for Data Science\n“Data Transformation with dplyr” cheatset available in RStudio via Help -&gt; Cheat Sheets\nIntroduction to dplyr - this is the package vignette. It can be viewed within R using vignette(package=\"dplyr\", \"dplyr\")",
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Tidyverse</span>"
     ]
@@ -1704,7 +1714,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time             X        Y      Z\n  &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n1 2009-01-01 -0.267  -0.907   -1.60 \n2 2009-01-02 -0.946   1.76    -1.57 \n3 2009-01-03  1.72   -0.503   -4.05 \n4 2009-01-04  0.594   3.02     7.36 \n5 2009-01-05  1.19   -0.00873  0.197\n6 2009-01-06  0.0815 -1.20     3.31 \n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X     -0.267 \n2 2009-01-02 X     -0.946 \n3 2009-01-03 X      1.72  \n4 2009-01-04 X      0.594 \n5 2009-01-05 X      1.19  \n6 2009-01-06 X      0.0815",
+    "text": "22.4 Gather\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X       Y     Z\n  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 2009-01-01  1.49   0.0459 -3.22\n2 2009-01-02  0.163  2.49   -1.85\n3 2009-01-03 -0.656 -3.33   -1.71\n4 2009-01-04  0.120  0.895  -5.68\n5 2009-01-05 -0.762 -3.44    2.98\n6 2009-01-06  1.15  -0.744   2.77\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      1.49 \n2 2009-01-02 X      0.163\n3 2009-01-03 X     -0.656\n4 2009-01-04 X      0.120\n5 2009-01-05 X     -0.762\n6 2009-01-06 X      1.15",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1714,7 +1724,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.267\n2 2009-01-01 Y     -0.907\n3 2009-01-01 Z     -1.60 \n4 2009-01-02 X     -0.946\n5 2009-01-02 Y      1.76 \n6 2009-01-02 Z     -1.57",
+    "text": "22.5 Pivot_longer\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      1.49  \n2 2009-01-01 Y      0.0459\n3 2009-01-01 Z     -3.22  \n4 2009-01-02 X      0.163 \n5 2009-01-02 Y      2.49  \n6 2009-01-02 Z     -1.85",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
