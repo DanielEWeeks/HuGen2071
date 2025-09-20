@@ -621,9 +621,37 @@ spread(race, prop)
 
 ## Exercise 4: Summarizing within groups
 
+**The `split` command**
+
+`split(x,f)`: divides the data `x` into the groups defined by `f`, where `f` is
+a factor or list of factors.
+
+To illustrate this, we split `ds` into a list of data frames by `baby_sex` while only keeping the `baby_sex` and `race` columns:
+
+```{webr-r}
+df <- split(ds[,c("baby_birthweight")], ds$baby_sex)
+str(df)
+```
+
+**Commands from the `apply` family**
+
+We can then apply a function to each element of the list using `lapply` or `sapply`:
+
+The `lapply(X, FUN)` lapply returns a list of the same length as `X`, each element of which is the result of applying `FUN` to the corresponding element of `X`.
+
+```{webr-r}
+lapply(df, summary)
+```
+
+The `sapply(X, FUN)` function is a user-friendly version of `lapply` by default returning a vector, matrix or array if appropriate.
+
+```{webr-r}
+sapply(df, summary)
+```
+
 **Skill**: Summarizing within groups
 
-Apply the `summary` command to the "Gestationalage_sample" within each "Sample_trimester" group.
+Use the `split`/`sapply` approach to apply the `summary` command to the "Gestationalage_sample" within each "Sample_trimester" group.
 
 
 ```{webr-r}
@@ -643,7 +671,7 @@ sapply(f, summary)
 tapply(ds$Gestationalage_sample, ds$Sample_trimester, summary)
 ```
 
-Note: With `split(x, f)`, any missing values in `f` are dropped together with the corresponding values of `x`.
+Note: With `split(x, f)`, any missing values in the factor `f` are dropped together with the corresponding values of `x`.
 :::
 
 ## Recoding data
