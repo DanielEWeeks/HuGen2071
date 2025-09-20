@@ -201,7 +201,35 @@ This image is from a slide set made available by Hadley Wickham under the Common
 
 ![](img/cc-by-nc.png){width="30%"}
 
- 
+## The dot operator
+
+In the examples above we have passed the output of one command to the next using pipes. The output of one command becomes the first argument of the next command.
+
+This is the default behaviour of pipes. If we want to pass the output of one command to a different argument of the next command, we can use the dot operator `.` to indicate where the output should go. For example, if we wanted to filter the gapminder data to only include rows where the year is 2007, we could do this:
+
+```{webr-r}
+(year_country_gdp_euro <- gapminder %>% 
+  filter(continent == "Europe") %>% 
+  select(year, country, gdpPercap) %>% 
+  .[2007 == .$year,] %>%
+   head())
+```
+
+Here the first dot operator `.` indicates that the output of the previous command should be used as the data frame to be filtered. The second dot operator `.$year` indicates that we want to use the `year` variable from that same data frame.
+
+Note also that this is equivalent to the following, where we have used the dot operator in every part of the pipeline:
+
+```{webr-r}
+(year_country_gdp_euro <- gapminder %>% 
+  filter(., continent == "Europe") %>% 
+  select(., year, country, gdpPercap) %>% 
+  .[2007 == .$year, ] %>%
+   head(.))
+```
+
+This is a reminder that the majority of Tidyverse functions take a data frame as their first argument, so that in a pipeline the output of one command can be automatically assigned the first argument of the next command. However, this is more verbose than necessary, so we usually omit the dot operator when it is not needed.
+
+It also illustrates that we can use base R filtering/subsetting within a pipeline and we can include other base R functions (like `head()`) within a pipeline.
 
 ## Splitting your commands over multiple lines
 
@@ -308,7 +336,7 @@ europeLifeExp <- gapminder %>%
   filter(continent == "Europe", year == 2007) %>% 
   select(country, lifeExp) %>% 
   mutate(rank = min_rank(lifeExp))
-europeLifeExp, n=100
+head(europeLifeExp, n=100)
 ```
 
 To reverse the order of the ranking, use the `desc` function, i.e. `mutate(rank = min_rank(desc(lifeExp)))`
