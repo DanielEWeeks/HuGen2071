@@ -708,6 +708,12 @@ kable(head(pheno,4))
 
 ### Recoding data using left joins
 
+**Joins illustrated**
+
+Here is a nice illustration of joins from RStudio (which they shared under a CC_BY 4.0 license)
+
+![](img/JoinCheetSheetRStudio.png)
+
 **Approach 2**
 
 * Implement our dictionaries using left joins 
