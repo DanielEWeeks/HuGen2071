@@ -470,6 +470,17 @@ kable(f[f$ID2=="E992",])
 
 ### `pivot_wider`
 
+Here's a nice illustration from "Intermediate Reproducible Research in R" (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:
+
+"Pivot wider in tidyr, where a set of stacked "groups" in the data on the left are placed side-by-side as new columns in the output data on the right. Notice how the values in the column N, which is used in the names_from argument, are used as the names for the new columns A and B in the new data."
+
+![](img/pivot-wider.png)
+
+For more detail, see
+
+<https://r-cubed-intermediate.rostools.org/sessions/pivots>
+
+
 Using `pivot_wider` from `tidyverse`:
 
 ```{webr-r}
@@ -479,6 +490,19 @@ f %>% pivot_wider(id_cols = ID2,
   head() %>% 
   kable()
 ```
+
+### `pivot_longer`
+
+Here's a nice illustration from "Intermediate Reproducible Research in R" (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:
+
+"Pivot longer in tidyr. New columns are called name and value. Notice how the values in A and B columns are stacked on top of each other in the newly created V column."
+
+![](img/pivot-longer.png)
+
+For more detail, see
+
+<https://r-cubed-intermediate.rostools.org/sessions/pivots>
+
 
 ### Key points
 

@@ -108,6 +108,18 @@ stocks %>% gather("stock", "price", -time) %>% head()
 
 The `gather()` function has been superseded and instead it is now recommended to use `pivot_longer()`, which is easier to use. 
 
+Here's a nice illustration from "Intermediate Reproducible Research in R" (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:
+
+"Pivot longer in tidyr. New columns are called name and value. Notice how the values in A and B columns are stacked on top of each other in the newly created V column."
+
+![](img/pivot-longer.png)
+
+For more detail, see
+
+<https://r-cubed-intermediate.rostools.org/sessions/pivots>
+
+
+
 ```{r}
 stocks %>% pivot_longer(c(X,Y,Z), names_to= "stock", values_to = "price") %>% 
   head()
