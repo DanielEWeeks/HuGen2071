@@ -38,6 +38,10 @@ So `new_sp_m014` represents the counts of new TB cases detected by a positive pu
 
 Tidy data: Have each variable in a column.
 
+Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):
+
+![](img/TidyData_CheetSheetRStudio.png)
+
 Question: Are these data tidy?
 
 ::: {.callout-tip collapse="true"}
@@ -75,6 +79,12 @@ This would place each variable in its own column.
 
 ## Gather
 
+Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):
+
+![](img/ReshapingData_CheetSheetRStudio.png)
+
+Is the `stocks` data frame tidy?
+
 ```{r}
 stocks <- tibble(
   time = as.Date('2009-01-01') + 0:9,
@@ -84,11 +94,19 @@ stocks <- tibble(
 )
 
 head(stocks)
+```
 
+The `stocks` data frame is not tidy because the variable `stock` is encoded in the column names.
+
+We can use `gather()` or `pivot_longer()` to make it tidy.
+
+```{r}
 stocks %>% gather("stock", "price", -time) %>% head()
 ```
 
 ## Pivot_longer
+
+The `gather()` function has been superseded and instead it is now recommended to use `pivot_longer()`, which is easier to use. 
 
 ```{r}
 stocks %>% pivot_longer(c(X,Y,Z), names_to= "stock", values_to = "price") %>% 
