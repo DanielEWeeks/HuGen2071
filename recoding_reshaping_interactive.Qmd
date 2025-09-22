@@ -613,11 +613,25 @@ Create a count cross table using Tidyverse commands
 
 ```{webr-r}
 ds %>%
-group_by(case_control_status, race)%>%
-summarize(n=n())%>%
+group_by(case_control_status, race) %>%
+summarize(n=n()) %>%
 spread(race, n)
 addmargins(xtabs( ~ case_control_status + race, data = ds))
 ```
+
+Or we can do this with `pivot_wider` instead as follows:
+
+```{webr-r}
+ds %>%
+  group_by(case_control_status, race) %>%
+  summarize(n=n())
+
+ds %>%
+  group_by(case_control_status, race) %>%
+  summarize(n=n()) %>%
+  pivot_wider(id_cols=case_control_status,names_from = race,values_from = n)
+```
+
 :::
 
 Create a proportion cross table using Tidyverse commands
