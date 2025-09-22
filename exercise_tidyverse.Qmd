@@ -40,7 +40,7 @@ Tidy data: Have each variable in a column.
 
 Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):
 
-![](img/TidyData_CheetSheetRStudio.png)
+![](img/TidyData_CheatSheetRStudio.png)
 
 Question: Are these data tidy?
 
@@ -81,7 +81,7 @@ This would place each variable in its own column.
 
 Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):
 
-![](img/ReshapingData_CheetSheetRStudio.png)
+![](img/ReshapingData_CheatSheetRStudio.png)
 
 Is the `stocks` data frame tidy?
 
