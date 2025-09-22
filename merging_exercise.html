@@ -358,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(tidyverse)\nlibrary(tidylog)","id":1,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-1","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/project1.RData\"),\n              \"project1.RData\")\nload(\"project1.RData\", verbose = TRUE)\ndim(ds)\ndim(dd)","id":2,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-2","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"a <- ds %>% \n  select(\"subject_id\", \n         \"maternal_age_delivery\", \n         \"case_control_status\", \n         \"prepregnancy_BMI\") %>% \n  arrange(subject_id)\ndim(a)\nhead(a,10)\ntail(a)","id":3,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-3","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Edit/add/try out R code here","id":4,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-4","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"dim(a)\nb <- unique(a)\ndim(b)\nhead(b)\n\nb1 <- a %>% distinct()\ndim(b1)\n\nall.equal(b,b1)\nall.equal(b,b1, check.attributes=FALSE)\nhead(rownames(b))\nhead(rownames(b1))\n# Reset row names\nrownames(b) <- NULL\nrownames(b1) <- NULL\nall.equal(b,b1)","id":5,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-5","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"(ex1 <- data.frame(ID=c(1,1,1,2),trait=c(10, 9, 9, 11)))\nunique(ex1)\n\nex1 %>% distinct()","id":6,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-6","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Edit/add/try out R code here","id":7,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-7","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"sum(duplicated(b$subject_id))\nb %>% \n  group_by(subject_id) %>% \n  filter(n()>1)","id":8,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-8","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Edit/add/try out R code here","id":9,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-9","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"set.seed(10234)\nb$ID <- sample(c(1:nrow(b)), replace = FALSE)\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))","id":10,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-10","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"b <- b %>% mutate(ID=sample.int(nrow(.)))\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))","id":11,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-11","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/newtrait.tsv\"),\n              \"newtrait.tsv\")\nnew <- read_tsv(\"newtrait.tsv\")\nhead(new)\ndim(new)\ndim(b)","id":12,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-12","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Edit/add/try out R code here","id":13,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-13","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Load 'tidylog' \nlibrary(tidylog)\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\nsum(duplicated(new$subject_id))\n\n# Which one is duplicated\nnew %>% \n  group_by(subject_id) %>% \n  mutate(n=n()) %>% \n  filter(n>1)\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\nsum(is.na(new$subject_id))\n\n# Check the dimensions\ndim(b)\ndim(new)\nb2 <- left_join(b, new, by=\"subject_id\")\nhead(b2)\ndim(b2)\nb3 <- full_join(b, new, by=\"subject_id\")\ndim(b3)","id":14,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-14","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Edit/add/try out R code here","id":15,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-15","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}},{"code":"# Tally how many of b's subject_id's are in new\ntable(b$subject_id %in% new$subject_id)\n# Tally how many of new's subject_id's are in b\ntable(new$subject_id %in% b$subject_id)\n# List the b's subject_id's that are not in new\nb$subject_id[!(b$subject_id %in% new$subject_id)]\n# List the new's subject_id's that are not in b\nnew$subject_id[!(new$subject_id %in% b$subject_id)]\n\n# Simpler to do this with anti_join's\nanti_join(b, new, by=\"subject_id\")\nanti_join(new, b, by=\"subject_id\")","id":16,"options":{"results":"markup","read-only":"false","dpi":72,"fig-cap":"","autorun":"false","classes":"","context":"interactive","out-height":"","message":"true","label":"unnamed-chunk-16","out-width":"700px","editor-font-scale":"1","editor-max-height":"","warning":"true","editor-quick-suggestions":"false","fig-height":5,"output":"true","fig-width":7,"editor-word-wrap":"true","comment":""}}];
+globalThis.qwebrCellDetails = [{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-1","out-height":"","dpi":72,"editor-font-scale":"1"},"id":1,"code":"library(tidyverse)\nlibrary(tidylog)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-2","out-height":"","dpi":72,"editor-font-scale":"1"},"id":2,"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/project1.RData\"),\n              \"project1.RData\")\nload(\"project1.RData\", verbose = TRUE)\ndim(ds)\ndim(dd)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-3","out-height":"","dpi":72,"editor-font-scale":"1"},"id":3,"code":"a <- ds %>% \n  select(\"subject_id\", \n         \"maternal_age_delivery\", \n         \"case_control_status\", \n         \"prepregnancy_BMI\") %>% \n  arrange(subject_id)\ndim(a)\nhead(a,10)\ntail(a)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-4","out-height":"","dpi":72,"editor-font-scale":"1"},"id":4,"code":"# Edit/add/try out R code here"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-5","out-height":"","dpi":72,"editor-font-scale":"1"},"id":5,"code":"dim(a)\nb <- unique(a)\ndim(b)\nhead(b)\n\nb1 <- a %>% distinct()\ndim(b1)\n\nall.equal(b,b1)\nall.equal(b,b1, check.attributes=FALSE)\nhead(rownames(b))\nhead(rownames(b1))\n# Reset row names\nrownames(b) <- NULL\nrownames(b1) <- NULL\nall.equal(b,b1)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-6","out-height":"","dpi":72,"editor-font-scale":"1"},"id":6,"code":"(ex1 <- data.frame(ID=c(1,1,1,2),trait=c(10, 9, 9, 11)))\nunique(ex1)\n\nex1 %>% distinct()"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-7","out-height":"","dpi":72,"editor-font-scale":"1"},"id":7,"code":"# Edit/add/try out R code here"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-8","out-height":"","dpi":72,"editor-font-scale":"1"},"id":8,"code":"sum(duplicated(b$subject_id))\nb %>% \n  group_by(subject_id) %>% \n  filter(n()>1)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-9","out-height":"","dpi":72,"editor-font-scale":"1"},"id":9,"code":"# Edit/add/try out R code here"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-10","out-height":"","dpi":72,"editor-font-scale":"1"},"id":10,"code":"set.seed(10234)\nb$ID <- sample(c(1:nrow(b)), replace = FALSE)\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-11","out-height":"","dpi":72,"editor-font-scale":"1"},"id":11,"code":"b <- b %>% mutate(ID=sample.int(nrow(.)))\nhead(b %>% select(subject_id, ID))\nsum(duplicated(b$ID))"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-12","out-height":"","dpi":72,"editor-font-scale":"1"},"id":12,"code":"# Download file within the WebR environment\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\ndownload.file(paste0(root_srcfile,\"data/newtrait.tsv\"),\n              \"newtrait.tsv\")\nnew <- read_tsv(\"newtrait.tsv\")\nhead(new)\ndim(new)\ndim(b)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-13","out-height":"","dpi":72,"editor-font-scale":"1"},"id":13,"code":"(a <- data.frame(id=c(1:3),a=rep(1,3)))                               \n(b <- data.frame(id=c(1,2,4),b=rep(2,3)))                             "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-14","out-height":"","dpi":72,"editor-font-scale":"1"},"id":14,"code":"(d <- cbind(a, \"    \" ,b)) \nleft_join(a, b, join_by(id))                                               "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-15","out-height":"","dpi":72,"editor-font-scale":"1"},"id":15,"code":"d\nright_join(a, b, join_by(id))                                                "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-16","out-height":"","dpi":72,"editor-font-scale":"1"},"id":16,"code":"d\nfull_join(a, b, join_by(id))                                               "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-17","out-height":"","dpi":72,"editor-font-scale":"1"},"id":17,"code":"(d <- cbind(a, \"    \" ,b)) \ninner_join(a, b, join_by(id))                                               "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-18","out-height":"","dpi":72,"editor-font-scale":"1"},"id":18,"code":"(a <- data.frame(ID1=c(3:1),a=rep(1,3)))                                 \n(b <- data.frame(id=c(1,2,4),b=rep(2,3)))                                "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-19","out-height":"","dpi":72,"editor-font-scale":"1"},"id":19,"code":"(d <- cbind(a, \"    \" ,b))                    \nfull_join(a, b, join_by(ID1 == id))                                      "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-20","out-height":"","dpi":72,"editor-font-scale":"1"},"id":20,"code":"(a <- data.frame(id=c(3:1),a=c('a3','a2','a1')))                     \n(b <- data.frame(id=c(2,2,4),b=c('b1','b2','b3')))                 "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-21","out-height":"","dpi":72,"editor-font-scale":"1"},"id":21,"code":"(d <- cbind(a, \"    \" ,b))                                                  \nfull_join(a,b, join_by(id))"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-22","out-height":"","dpi":72,"editor-font-scale":"1"},"id":22,"code":"a <- data.frame(id=c(2,2,1),a=c('a3','a2','a1'))                              \ncbind(a, \"    \" ,b)                                                                "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-23","out-height":"","dpi":72,"editor-font-scale":"1"},"id":23,"code":"left_join(a, b, join_by(id))   "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-24","out-height":"","dpi":72,"editor-font-scale":"1"},"id":24,"code":"cbind(a, \"    \" ,b)                                                      \nsemi_join(a, b, join_by(id))                                              "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-25","out-height":"","dpi":72,"editor-font-scale":"1"},"id":25,"code":"cbind(a, \"    \" ,b)                                                          \nanti_join(a, b, join_by(id))                                                  "},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-26","out-height":"","dpi":72,"editor-font-scale":"1"},"id":26,"code":"# Edit/add/try out R code here"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-27","out-height":"","dpi":72,"editor-font-scale":"1"},"id":27,"code":"# Load 'tidylog' \nlibrary(tidylog)\n# Check for duplicated IDs\nsum(duplicated(b$subject_id))\nsum(duplicated(new$subject_id))\n\n# Which one is duplicated\nnew %>% \n  group_by(subject_id) %>% \n  mutate(n=n()) %>% \n  filter(n>1)\n\n# Check for missing IDs\nsum(is.na(b$subject_id))\nsum(is.na(new$subject_id))\n\n# Check the dimensions\ndim(b)\ndim(new)\nb2 <- left_join(b, new, by=\"subject_id\")\nhead(b2)\ndim(b2)\nb3 <- full_join(b, new, by=\"subject_id\")\ndim(b3)"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-28","out-height":"","dpi":72,"editor-font-scale":"1"},"id":28,"code":"# Edit/add/try out R code here"},{"options":{"editor-max-height":"","comment":"","classes":"","out-width":"700px","context":"interactive","output":"true","fig-height":5,"warning":"true","autorun":"false","read-only":"false","message":"true","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-width":7,"results":"markup","label":"unnamed-chunk-29","out-height":"","dpi":72,"editor-font-scale":"1"},"id":29,"code":"# Tally how many of b's subject_id's are in new\ntable(b$subject_id %in% new$subject_id)\n# Tally how many of new's subject_id's are in b\ntable(new$subject_id %in% b$subject_id)\n# List the b's subject_id's that are not in new\nb$subject_id[!(b$subject_id %in% new$subject_id)]\n# List the new's subject_id's that are not in b\nnew$subject_id[!(new$subject_id %in% b$subject_id)]\n\n# Simpler to do this with anti_join's\nanti_join(b, new, by=\"subject_id\")\nanti_join(new, b, by=\"subject_id\")"}];
 
 </script>
 <script type="module">
@@ -1900,8 +1900,9 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#create-random-integer-ids" id="toc-create-random-integer-ids" class="nav-link" data-scroll-target="#create-random-integer-ids"><span class="header-section-number">24.7</span> Create random integer IDs</a></li>
   <li><a href="#merge-in-new-phenotype-information" id="toc-merge-in-new-phenotype-information" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information"><span class="header-section-number">24.8</span> Merge in new phenotype information</a></li>
   <li><a href="#always-be-careful-when-merging." id="toc-always-be-careful-when-merging." class="nav-link" data-scroll-target="#always-be-careful-when-merging."><span class="header-section-number">24.9</span> Always be careful when merging.</a></li>
-  <li><a href="#merge-in-new-phenotype-information-1" id="toc-merge-in-new-phenotype-information-1" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information-1"><span class="header-section-number">24.10</span> Merge in new phenotype information</a></li>
-  <li><a href="#further-checks" id="toc-further-checks" class="nav-link" data-scroll-target="#further-checks"><span class="header-section-number">24.11</span> Further checks</a></li>
+  <li><a href="#tidyverse-join-commands" id="toc-tidyverse-join-commands" class="nav-link" data-scroll-target="#tidyverse-join-commands"><span class="header-section-number">24.10</span> Tidyverse <code>join</code> commands</a></li>
+  <li><a href="#merge-in-new-phenotype-information-1" id="toc-merge-in-new-phenotype-information-1" class="nav-link" data-scroll-target="#merge-in-new-phenotype-information-1"><span class="header-section-number">24.11</span> Merge in new phenotype information</a></li>
+  <li><a href="#further-checks" id="toc-further-checks" class="nav-link" data-scroll-target="#further-checks"><span class="header-section-number">24.12</span> Further checks</a></li>
   </ul>
 </nav>
     </div>
@@ -2253,10 +2254,26 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 data-number="24.5" class="anchored" data-anchor-id="unique-records"><span class="header-section-number">24.5</span> Unique records</h2>
 <p>The data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.</p>
 <p>From your data frame ‘a’ select only the unique records, creating data frame <code>b</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the <code>unique</code> command from base R or the <code>distinct</code> command from the <code>dplyr</code> R package.</p>
+</div>
+</div>
+</div>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2265,7 +2282,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2283,10 +2300,11 @@ Expand to see solution
 <section id="check-that-the-subject_ids-are-now-not-duplicated" class="level2" data-number="24.6">
 <h2 data-number="24.6" class="anchored" data-anchor-id="check-that-the-subject_ids-are-now-not-duplicated"><span class="header-section-number">24.6</span> Check that the <code>subject_id</code>’s are now not duplicated</h2>
 <p>Are the <code>subject_id</code>’s unique?</p>
+<p>Hint: In the <code>R Recoding Reshaping Exercise</code> you learned how to check for duplicated values in a vector. Use that knowledge here.</p>
 <div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2295,7 +2313,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="qwebr-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2309,7 +2327,7 @@ Expand to see solution
 <div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2318,7 +2336,7 @@ Expand to see solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2355,37 +2373,59 @@ Expand to see solution
 <li>When using tidyverse <code>join</code> commands, load the <code>tidylog</code> R package in order to turn on very useful additional feedback.</li>
 </ul>
 </section>
-<section id="merge-in-new-phenotype-information-1" class="level2" data-number="24.10">
-<h2 data-number="24.10" class="anchored" data-anchor-id="merge-in-new-phenotype-information-1"><span class="header-section-number">24.10</span> Merge in new phenotype information</h2>
-<p>Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame <code>b</code> which was created above when from your data frame ‘a’ you selected only the unique records.</p>
-<p>If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.</p>
+<section id="tidyverse-join-commands" class="level2" data-number="24.10">
+<h2 data-number="24.10" class="anchored" data-anchor-id="tidyverse-join-commands"><span class="header-section-number">24.10</span> Tidyverse <code>join</code> commands</h2>
+<p>Here is a nice illustration of joins from RStudio (which they shared under a CC_BY 4.0 license):</p>
+<p><img src="img/JoinCheetSheetRStudio.png" class="img-fluid"></p>
+<p>To illustrate the join commands, let’s set up these data frames ‘a’ and ‘b’:</p>
 <div id="qwebr-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Here we load the <code>tidylog</code> R package, which will result in useful feedback when tidyverse commands are executed.</p>
+<p>The <code>left_join(a,b)</code> command from the ‘tidyverse’ package keeps all observations in a, joining in matching rows from b.</p>
 <div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</div>
-</section>
-<section id="further-checks" class="level2" data-number="24.11">
-<h2 data-number="24.11" class="anchored" data-anchor-id="further-checks"><span class="header-section-number">24.11</span> Further checks</h2>
-<p>When merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.</p>
-<p>Check if the set of <code>subject_id</code> IDs in your dataframe <code>b</code> fully overlaps the set of <code>subject_id</code> IDs in the <code>new</code> data set. If there is not full overlap, document which IDs do not overlap.</p>
-<p>Hint: Use an <code>anti_join</code>.</p>
+<p>The <code>right_join(a,b)</code> command keeps all observations in b, joining in matching rows from a.</p>
 <div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The <code>full_join(a,b)</code> command keeps all observations in a and b.</p>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The <code>inner_join(a,b)</code> command only keeps observations from a that have a matching key in b.</p>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>To illustrate how to handle different names for the common ID field, let’s set up these data frames a and b slightly differently:</p>
+<div id="qwebr-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>What if one data frame has non-unique IDs?</p>
+<div id="qwebr-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>merge: non-unique IDs in data frame b. A one-to-many relationship.</p>
+<div id="qwebr-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>So data frame ‘a’ originally had 3 records, but now the full join outputs a 5 record data frame.</p>
+<p>merge: non-unique IDs in both data frames a and b. All possible combinations.</p>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>A filtering <code>semi_join(a,b)</code> returns all rows from a that have a match in b</p>
+<div id="qwebr-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>A filtering <code>anti_join(a,b)</code> returns all rows from a that do not have a match in b. Useful for understanding causes of mismatches when joining.</p>
+<div id="qwebr-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In ‘R for Data Science’, the authors argue that using tidyverse-style commands (e.g., <code>left_join</code>) is better than using the <code>merge</code> command of base R because</p>
+<blockquote class="blockquote">
+<p>“they more clearly convey the intent of your code: the difference between the joins is really important but concealed in the arguments of <code>merge()</code>. dplyr’s joins are considerably faster and don’t mess with the order of the rows.”</p>
+</blockquote>
+<p>See <a href="http://r4ds.had.co.nz/relational-data.html#other-implementations" class="uri">http://r4ds.had.co.nz/relational-data.html#other-implementations</a></p>
+</section>
+<section id="merge-in-new-phenotype-information-1" class="level2" data-number="24.11">
+<h2 data-number="24.11" class="anchored" data-anchor-id="merge-in-new-phenotype-information-1"><span class="header-section-number">24.11</span> Merge in new phenotype information</h2>
+<p>Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame <code>b</code> which was created above when from your data frame ‘a’ you selected only the unique records.</p>
+<p>If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.</p>
+<div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -2399,8 +2439,34 @@ Expand to see solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Here we load the <code>tidylog</code> R package, which will result in useful feedback when tidyverse commands are executed.</p>
+<div id="qwebr-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</section>
+<section id="further-checks" class="level2" data-number="24.12">
+<h2 data-number="24.12" class="anchored" data-anchor-id="further-checks"><span class="header-section-number">24.12</span> Further checks</h2>
+<p>When merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.</p>
+<p>Check if the set of <code>subject_id</code> IDs in your dataframe <code>b</code> fully overlaps the set of <code>subject_id</code> IDs in the <code>new</code> data set. If there is not full overlap, document which IDs do not overlap.</p>
+<p>Hint: Use an <code>anti_join</code>.</p>
+<div id="qwebr-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><code>anti_join()</code> return all rows from x without a match in y.</p>
-<div id="qwebr-insertion-location-16"></div>
+<div id="qwebr-insertion-location-29"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
