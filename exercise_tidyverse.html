@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"out-height":"","fig-height":5,"warning":"true","context":"interactive","comment":"","fig-cap":"","label":"unnamed-chunk-1","fig-width":7,"classes":"","read-only":"false","editor-max-height":"","results":"markup","autorun":"false","dpi":72,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","output":"true","editor-quick-suggestions":"false","message":"true"},"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here"},{"id":2,"options":{"out-height":"","fig-height":5,"warning":"true","context":"interactive","comment":"","fig-cap":"","label":"unnamed-chunk-2","fig-width":7,"classes":"","read-only":"false","editor-max-height":"","results":"markup","autorun":"false","dpi":72,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","output":"true","editor-quick-suggestions":"false","message":"true"},"code":"# Edit/add R code here"},{"id":3,"options":{"out-height":"","fig-height":5,"warning":"true","context":"interactive","comment":"","fig-cap":"","label":"unnamed-chunk-3","fig-width":7,"classes":"","read-only":"false","editor-max-height":"","results":"markup","autorun":"false","dpi":72,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","output":"true","editor-quick-suggestions":"false","message":"true"},"code":"# Edit/add R code here"}];
+globalThis.qwebrCellDetails = [{"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","id":1,"options":{"message":"true","results":"markup","autorun":"false","fig-width":7,"dpi":72,"editor-max-height":"","output":"true","editor-font-scale":"1","editor-quick-suggestions":"false","context":"interactive","classes":"","fig-height":5,"read-only":"false","label":"unnamed-chunk-1","warning":"true","comment":"","fig-cap":"","out-width":"700px","out-height":"","editor-word-wrap":"true"}},{"code":"# Edit/add R code here","id":2,"options":{"message":"true","results":"markup","autorun":"false","fig-width":7,"dpi":72,"editor-max-height":"","output":"true","editor-font-scale":"1","editor-quick-suggestions":"false","context":"interactive","classes":"","fig-height":5,"read-only":"false","label":"unnamed-chunk-2","warning":"true","comment":"","fig-cap":"","out-width":"700px","out-height":"","editor-word-wrap":"true"}},{"code":"# Edit/add R code here","id":3,"options":{"message":"true","results":"markup","autorun":"false","fig-width":7,"dpi":72,"editor-max-height":"","output":"true","editor-font-scale":"1","editor-quick-suggestions":"false","context":"interactive","classes":"","fig-height":5,"read-only":"false","label":"unnamed-chunk-3","warning":"true","comment":"","fig-cap":"","out-width":"700px","out-height":"","editor-word-wrap":"true"}}];
 
 </script>
 <script type="module">
@@ -2280,6 +2280,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="tidy-data" class="level2" data-number="22.3">
 <h2 data-number="22.3" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">22.3</span> Tidy data</h2>
 <p>Tidy data: Have each variable in a column.</p>
+<p>Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):</p>
+<p><img src="img/TidyData_CheetSheetRStudio.png" class="img-fluid"></p>
 <p>Question: Are these data tidy?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -2336,6 +2338,9 @@ sp    m     014  30</code></pre>
 </section>
 <section id="gather" class="level2" data-number="22.4">
 <h2 data-number="22.4" class="anchored" data-anchor-id="gather"><span class="header-section-number">22.4</span> Gather</h2>
+<p>Here is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):</p>
+<p><img src="img/ReshapingData_CheetSheetRStudio.png" class="img-fluid"></p>
+<p>Is the <code>stocks</code> data frame tidy?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">as.Date</span>(<span class="st">'2009-01-01'</span>) <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,</span>
@@ -2347,31 +2352,36 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X     Y      Z
-  &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01  0.369  2.72  0.687
-2 2009-01-02 -0.853 -2.07  6.13 
-3 2009-01-03  0.312 -1.16  0.920
-4 2009-01-04 -1.42   1.45 -3.62 
-5 2009-01-05  0.852 -1.19  4.41 
-6 2009-01-06  1.21   1.69 -2.20 </code></pre>
+  time            X       Y      Z
+  &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01  1.22   3.28    3.27 
+2 2009-01-02 -0.582  2.46    1.12 
+3 2009-01-03 -0.380 -1.70   -9.80 
+4 2009-01-04 -0.490 -0.0304  0.887
+5 2009-01-05 -1.16   2.24   -7.88 
+6 2009-01-06  0.457  2.93    0.596</code></pre>
 </div>
+</div>
+<p>The <code>stocks</code> data frame is not tidy because the variable <code>stock</code> is encoded in the column names.</p>
+<p>We can use <code>gather()</code> or <code>pivot_longer()</code> to make it tidy.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.369
-2 2009-01-02 X     -0.853
-3 2009-01-03 X      0.312
-4 2009-01-04 X     -1.42 
-5 2009-01-05 X      0.852
-6 2009-01-06 X      1.21 </code></pre>
+1 2009-01-01 X      1.22 
+2 2009-01-02 X     -0.582
+3 2009-01-03 X     -0.380
+4 2009-01-04 X     -0.490
+5 2009-01-05 X     -1.16 
+6 2009-01-06 X      0.457</code></pre>
 </div>
 </div>
 </section>
 <section id="pivot_longer" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="pivot_longer"><span class="header-section-number">22.5</span> Pivot_longer</h2>
+<p>The <code>gather()</code> function has been superseded and instead it is now recommended to use <code>pivot_longer()</code>, which is easier to use.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(X,Y,Z), <span class="at">names_to=</span> <span class="st">"stock"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2379,12 +2389,12 @@ sp    m     014  30</code></pre>
 <pre><code># A tibble: 6 × 3
   time       stock  price
   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X      0.369
-2 2009-01-01 Y      2.72 
-3 2009-01-01 Z      0.687
-4 2009-01-02 X     -0.853
-5 2009-01-02 Y     -2.07 
-6 2009-01-02 Z      6.13 </code></pre>
+1 2009-01-01 X      1.22 
+2 2009-01-01 Y      3.28 
+3 2009-01-01 Z      3.27 
+4 2009-01-02 X     -0.582
+5 2009-01-02 Y      2.46 
+6 2009-01-02 Z      1.12 </code></pre>
 </div>
 </div>
 </section>
