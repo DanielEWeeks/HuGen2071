@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"fig-width":7,"warning":"true","comment":"","label":"unnamed-chunk-1","read-only":"false","fig-height":5,"dpi":72,"message":"true","out-width":"700px","out-height":"","classes":"","results":"markup","output":"true","context":"interactive","editor-font-scale":"1","autorun":"false","fig-cap":"","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"id":1},{"code":"# Edit/add R code here","options":{"fig-width":7,"warning":"true","comment":"","label":"unnamed-chunk-2","read-only":"false","fig-height":5,"dpi":72,"message":"true","out-width":"700px","out-height":"","classes":"","results":"markup","output":"true","context":"interactive","editor-font-scale":"1","autorun":"false","fig-cap":"","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"id":2},{"code":"# Edit/add R code here","options":{"fig-width":7,"warning":"true","comment":"","label":"unnamed-chunk-3","read-only":"false","fig-height":5,"dpi":72,"message":"true","out-width":"700px","out-height":"","classes":"","results":"markup","output":"true","context":"interactive","editor-font-scale":"1","autorun":"false","fig-cap":"","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"id":3}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"library(tidyverse)\nwho <- tidyr::who\n# Edit/add R code here","options":{"autorun":"false","out-height":"","editor-font-scale":"1","fig-height":5,"fig-width":7,"output":"true","dpi":72,"comment":"","out-width":"700px","message":"true","read-only":"false","editor-quick-suggestions":"false","fig-cap":"","editor-max-height":"","label":"unnamed-chunk-1","context":"interactive","results":"markup","warning":"true","classes":"","editor-word-wrap":"true"}},{"id":2,"code":"# Edit/add R code here","options":{"autorun":"false","out-height":"","editor-font-scale":"1","fig-height":5,"fig-width":7,"output":"true","dpi":72,"comment":"","out-width":"700px","message":"true","read-only":"false","editor-quick-suggestions":"false","fig-cap":"","editor-max-height":"","label":"unnamed-chunk-2","context":"interactive","results":"markup","warning":"true","classes":"","editor-word-wrap":"true"}},{"id":3,"code":"# Edit/add R code here","options":{"autorun":"false","out-height":"","editor-font-scale":"1","fig-height":5,"fig-width":7,"output":"true","dpi":72,"comment":"","out-width":"700px","message":"true","read-only":"false","editor-quick-suggestions":"false","fig-cap":"","editor-max-height":"","label":"unnamed-chunk-3","context":"interactive","results":"markup","warning":"true","classes":"","editor-word-wrap":"true"}}];
 
 </script>
 <script type="module">
@@ -2352,14 +2352,14 @@ sp    m     014  30</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  time            X      Y      Z
-  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 2009-01-01 -0.862 -3.36  -0.933
-2 2009-01-02  1.27  -2.88  -0.784
-3 2009-01-03 -0.696 -2.36  -9.68 
-4 2009-01-04  0.556 -0.720  3.70 
-5 2009-01-05 -1.81  -1.27   3.35 
-6 2009-01-06  1.06  -2.56   2.48 </code></pre>
+  time             X      Y      Z
+  &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 2009-01-01 -0.0863  1.84   0.257
+2 2009-01-02 -0.801  -2.00  -4.28 
+3 2009-01-03 -0.715  -0.648  0.181
+4 2009-01-04 -1.75   -0.252  3.16 
+5 2009-01-05  1.24    1.83   0.288
+6 2009-01-06 -0.599   1.43   0.930</code></pre>
 </div>
 </div>
 <p>The <code>stocks</code> data frame is not tidy because the variable <code>stock</code> is encoded in the column names.</p>
@@ -2368,33 +2368,38 @@ sp    m     014  30</code></pre>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="st">"stock"</span>, <span class="st">"price"</span>, <span class="sc">-</span>time) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.862
-2 2009-01-02 X      1.27 
-3 2009-01-03 X     -0.696
-4 2009-01-04 X      0.556
-5 2009-01-05 X     -1.81 
-6 2009-01-06 X      1.06 </code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X     -0.0863
+2 2009-01-02 X     -0.801 
+3 2009-01-03 X     -0.715 
+4 2009-01-04 X     -1.75  
+5 2009-01-05 X      1.24  
+6 2009-01-06 X     -0.599 </code></pre>
 </div>
 </div>
 </section>
 <section id="pivot_longer" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="pivot_longer"><span class="header-section-number">22.5</span> Pivot_longer</h2>
 <p>The <code>gather()</code> function has been superseded and instead it is now recommended to use <code>pivot_longer()</code>, which is easier to use.</p>
+<p>Here’s a nice illustration from “Intermediate Reproducible Research in R” (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:</p>
+<p>“Pivot longer in tidyr. New columns are called name and value. Notice how the values in A and B columns are stacked on top of each other in the newly created V column.”</p>
+<p><img src="img/pivot-longer.png" class="img-fluid"></p>
+<p>For more detail, see</p>
+<p><a href="https://r-cubed-intermediate.rostools.org/sessions/pivots" class="uri">https://r-cubed-intermediate.rostools.org/sessions/pivots</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(X,Y,Z), <span class="at">names_to=</span> <span class="st">"stock"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  time       stock  price
-  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-1 2009-01-01 X     -0.862
-2 2009-01-01 Y     -3.36 
-3 2009-01-01 Z     -0.933
-4 2009-01-02 X      1.27 
-5 2009-01-02 Y     -2.88 
-6 2009-01-02 Z     -0.784</code></pre>
+  time       stock   price
+  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
+1 2009-01-01 X     -0.0863
+2 2009-01-01 Y      1.84  
+3 2009-01-01 Z      0.257 
+4 2009-01-02 X     -0.801 
+5 2009-01-02 Y     -2.00  
+6 2009-01-02 Z     -4.28  </code></pre>
 </div>
 </div>
 </section>
