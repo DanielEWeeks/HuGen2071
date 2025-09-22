@@ -70,6 +70,9 @@ The data were given to us in a way that repeated subject-level information, once
 
 From your data frame 'a' select only the unique records, creating data frame `b`.
 
+::: {.callout-tip collapse="true"}
+Use the `unique` command from base R or the `distinct` command from the `dplyr` R package.
+:::
 
 ```{webr-r}
 # Edit/add/try out R code here
@@ -116,6 +119,8 @@ ex1 %>% distinct()
 ## Check that the `subject_id`'s are now not duplicated
 
 Are the `subject_id`'s unique?
+
+Hint: In the `R Recoding Reshaping Exercise` you learned how to check for duplicated values in a vector.  Use that knowledge here.
 
 
 ```{webr-r}
@@ -196,6 +201,135 @@ If you notice any problems with this merge, prepare a report for the PI detailin
 -   Always explicitly name the keys you are merging on.
     -   If you don't name them, then the join command will use all variables in common across `x` and `y`.
 - When using tidyverse `join` commands, load the `tidylog` R package in order to turn on very useful additional feedback.     
+
+## Tidyverse `join` commands  
+
+Here is a nice illustration of joins from RStudio (which they shared under a CC_BY 4.0 license):
+
+![](img/JoinCheetSheetRStudio.png)
+
+ 
+
+To illustrate the join commands, let's set up these data frames 'a' 
+and 'b': 
+
+```{webr-r}                                                           
+(a <- data.frame(id=c(1:3),a=rep(1,3)))                               
+(b <- data.frame(id=c(1,2,4),b=rep(2,3)))                             
+```                                                                   
+
+
+The `left_join(a,b)` command from the 'tidyverse' package keeps all observations in a, joining in matching rows from b.    
+
+```{webr-r}   
+(d <- cbind(a, "    " ,b)) 
+left_join(a, b, join_by(id))                                               
+```         
+
+
+The `right_join(a,b)` command keeps all observations in b, joining in matching rows from a.  
+
+```{webr-r}                                                              
+d
+right_join(a, b, join_by(id))                                                
+```     
+
+ 
+
+The `full_join(a,b)` command keeps all observations in a and b. 
+
+```{webr-r}                                                            
+d
+full_join(a, b, join_by(id))                                               
+```                                                                    
+
+
+
+The `inner_join(a,b)` command only keeps observations from a that have a matching key in b.
+
+```{webr-r}   
+(d <- cbind(a, "    " ,b)) 
+inner_join(a, b, join_by(id))                                               
+```         
+
+    
+
+To illustrate how to handle different names for the common ID field, let's set up these data frames a and b slightly differently:                                          
+```{webr-r}                                                                
+(a <- data.frame(ID1=c(3:1),a=rep(1,3)))                                 
+(b <- data.frame(id=c(1,2,4),b=rep(2,3)))                                
+```                                                                      
+
+
+
+```{webr-r}                                                          
+(d <- cbind(a, "    " ,b))                    
+full_join(a, b, join_by(ID1 == id))                                      
+```                                                                  
+
+
+
+What if one data frame has non-unique IDs?  
+
+```{webr-r}                                                            
+(a <- data.frame(id=c(3:1),a=c('a3','a2','a1')))                     
+(b <- data.frame(id=c(2,2,4),b=c('b1','b2','b3')))                 
+```                                                                  
+
+    
+
+merge: non-unique IDs in data frame b. A one-to-many relationship.  
+
+```{webr-r}                                                             
+(d <- cbind(a, "    " ,b))                                                  
+full_join(a,b, join_by(id))
+```                                                                     
+So data frame 'a' originally had 3 records, but now the full join outputs 
+a 5 record data frame.                                                
+
+     
+
+merge: non-unique IDs in both data frames a and b. All possible combinations. 
+
+```{webr-r}                                                                     
+a <- data.frame(id=c(2,2,1),a=c('a3','a2','a1'))                              
+cbind(a, "    " ,b)                                                                
+```                                                                             
+
+
+
+```{webr-r}
+left_join(a, b, join_by(id))   
+```
+
+
+
+
+A filtering `semi_join(a,b)` returns all rows from a that have a match in 
+b                                                                   
+```{webr-r}                                                          
+cbind(a, "    " ,b)                                                      
+semi_join(a, b, join_by(id))                                              
+```                                                                   
+
+  
+
+A filtering `anti_join(a,b)` returns all rows from a that do not have a match in b. Useful for understanding causes of mismatches when joining. 
+
+```{webr-r}                                                              
+cbind(a, "    " ,b)                                                          
+anti_join(a, b, join_by(id))                                                  
+```                                                                       
+
+                                   
+
+In 'R for Data Science', the authors argue that using tidyverse-style commands (e.g., `left_join`) is better than using the `merge` command of base R because 
+
+> "they more clearly convey the intent of your code: the difference between the joins is really important but concealed in the arguments of `merge()`. dplyr’s joins are considerably faster and don’t mess with the order of the rows."
+
+See <http://r4ds.had.co.nz/relational-data.html#other-implementations>
+
+
 
 ## Merge in new phenotype information
 
