@@ -50,7 +50,7 @@ dim(dd)
 
 ## Select a subset of subject-level fields
 
-Set up a data frame 'a' that has these subject-level fields: "subject_id" "maternal_age_delivery" "case_control_status" "prepregnancy_BMI"
+Set up a data frame `a` that has these subject-level fields: "subject_id" "maternal_age_delivery" "case_control_status" "prepregnancy_BMI"
 
 ```{webr-r}
 a <- ds %>% 
@@ -68,7 +68,7 @@ tail(a)
 
 The data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.
 
-From your data frame 'a' select only the unique records, creating data frame `b`.
+From your data frame `a` select only the unique records, creating data frame `b`.
 
 ::: {.callout-tip collapse="true"}
 Use the `unique` command from base R or the `distinct` command from the `dplyr` R package.
@@ -171,26 +171,11 @@ sum(duplicated(b$ID))
 
 :::
 
-## Merge in new phenotype information
 
-The PI has sent you new trait data for your subjects.
 
-```{webr-r}
-# Download file within the WebR environment
-root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
-download.file(paste0(root_srcfile,"data/newtrait.tsv"),
-              "newtrait.tsv")
-new <- read_tsv("newtrait.tsv")
-head(new)
-dim(new)
-dim(b)
-```
+## Merging Best Practice
 
-Carefully merge this in using tidyverse commands.
-
-If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you'd like to ask the PI about.
-
-## Always be careful when merging.
+Always be careful when merging.
 
 -   *Always check for duplicated IDs* before doing the merge.
 -   Always check that your ID columns do not contain any missing values.
@@ -210,8 +195,8 @@ Here is a nice illustration of joins from RStudio (which they shared under a CC_
 
  
 
-To illustrate the join commands, let's set up these data frames 'a' 
-and 'b': 
+To illustrate the join commands, let's set up these data frames `a` 
+and `b`: 
 
 ```{webr-r}                                                           
 (a <- data.frame(id=c(1:3),a=rep(1,3)))                               
@@ -284,7 +269,7 @@ merge: non-unique IDs in data frame b. A one-to-many relationship.
 (d <- cbind(a, "    " ,b))                                                  
 full_join(a,b, join_by(id))
 ```                                                                     
-So data frame 'a' originally had 3 records, but now the full join outputs 
+So data frame `a` originally had 3 records, but now the full join outputs 
 a 5 record data frame.                                                
 
      
@@ -329,11 +314,38 @@ In 'R for Data Science', the authors argue that using tidyverse-style commands (
 
 See <http://r4ds.had.co.nz/relational-data.html#other-implementations>
 
-
-
 ## Merge in new phenotype information
 
-Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame `b` which was created above when from your data frame 'a' you selected only the unique records.
+The PI has sent you new trait data for your subjects.
+
+```{webr-r}
+# Download file within the WebR environment
+root_srcfile <- "https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/"
+download.file(paste0(root_srcfile,"data/project1.RData"),
+              "project1.RData")
+download.file(paste0(root_srcfile,"data/newtrait.tsv"),
+              "newtrait.tsv")
+new <- read_tsv("newtrait.tsv")
+head(new)
+dim(new)
+load("project1.RData", verbose = TRUE)
+b <-  ds %>% 
+  select("subject_id", 
+         "maternal_age_delivery", 
+         "case_control_status", 
+         "prepregnancy_BMI") %>% 
+  distinct()
+dim(b)
+```
+
+Carefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame `b` which was created above when from your data frame `a` you selected only the unique records. Following recommended best merging practice, be sure to: 
+
+- Check for duplicated IDs before doing the merge.     
+- Check that your ID columns do not contain any missing values. 
+- Check that the values in the ID columns (e.g., the keys) match.      
+- Check the dimensions before and after the merge, to make sure the 
+merged object has the expected number of rows and columns.             
+- Explicitly name the keys you are merging on.
 
 If you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you'd like to ask the PI about.
 
@@ -355,26 +367,38 @@ library(tidylog)
 # Check for duplicated IDs
 sum(duplicated(b$subject_id))
 sum(duplicated(new$subject_id))
+```
 
-# Which one is duplicated
+Which `subject_id`'s are duplicated?
+
+```{webr-r}
 new %>% 
   group_by(subject_id) %>% 
   mutate(n=n()) %>% 
   filter(n>1)
+```
 
-# Check for missing IDs
+Now check if there are any missing values in the ID columns?
+
+```{webr-r}
 sum(is.na(b$subject_id))
 sum(is.na(new$subject_id))
+```
 
+How many of rows would you expect the merged data frame to have?
+
+```{webr-r}
 # Check the dimensions
 dim(b)
 dim(new)
 b2 <- left_join(b, new, by="subject_id")
-head(b2)
 dim(b2)
+head(b2)
 b3 <- full_join(b, new, by="subject_id")
 dim(b3)
 ```
+
+Why did the number of rows increase when doing the full join?  
 
 :::
 
@@ -409,4 +433,26 @@ new$subject_id[!(new$subject_id %in% b$subject_id)]
 anti_join(b, new, by="subject_id")
 anti_join(new, b, by="subject_id")
 ```
+:::
+
+## Letter to the PI
+
+Prepare a brief letter to the PI describing the problems in the data that you discovered when trying to merge in the new trait data.  
+
+::: {.callout-tip collapse="true"}
+## Expand to see solution
+
+Dear Dr. PI,
+
+When trying to merge in the new trait data that you sent, I noticed a few issues that I wanted to bring to your attention.
+
+The new data set has a duplicated record for `subject_id` SUBJ09.  
+
+The new data set has a `subject_id` that is not observed in our original data set: SUBJ00
+
+The new data set is missing records for these two `subject_id`'s that are observed in our original data set: SUBJ18 and SUBJ24.
+
+Please resolve these issues and send us a corrected version of the new trait data.
+
+Thank you!
 :::
