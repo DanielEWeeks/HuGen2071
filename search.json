@@ -1714,7 +1714,7 @@
     "href": "exercise_tidyverse.html#gather",
     "title": "22  R Tidyverse Exercise",
     "section": "22.4 Gather",
-    "text": "22.4 Gather\nHere is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):\n\nIs the stocks data frame tidy?\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y       Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01 -0.488  1.62   1.20  \n2 2009-01-02 -0.656  1.02  -1.07  \n3 2009-01-03 -0.144 -0.633 -3.73  \n4 2009-01-04 -0.449 -3.10   0.0510\n5 2009-01-05 -2.67   2.05   5.59  \n6 2009-01-06  0.532  2.76  -2.52  \n\n\nThe stocks data frame is not tidy because the variable stock is encoded in the column names.\nWe can use gather() or pivot_longer() to make it tidy.\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.488\n2 2009-01-02 X     -0.656\n3 2009-01-03 X     -0.144\n4 2009-01-04 X     -0.449\n5 2009-01-05 X     -2.67 \n6 2009-01-06 X      0.532",
+    "text": "22.4 Gather\nHere is a nice illustration from RStudio (which they shared under a CC_BY 4.0 license):\n\nIs the stocks data frame tidy?\n\nstocks &lt;- tibble(\n  time = as.Date('2009-01-01') + 0:9,\n  X = rnorm(10, 0, 1),\n  Y = rnorm(10, 0, 2),\n  Z = rnorm(10, 0, 4)\n)\n\nhead(stocks)\n\n# A tibble: 6 × 4\n  time            X      Y       Z\n  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 2009-01-01  0.619 -1.82   0.0693\n2 2009-01-02 -0.465  0.459 -9.07  \n3 2009-01-03  1.64   1.72  -2.49  \n4 2009-01-04  0.367 -0.253  1.96  \n5 2009-01-05  0.466  1.48  -0.637 \n6 2009-01-06  0.247  0.394  0.594 \n\n\nThe stocks data frame is not tidy because the variable stock is encoded in the column names.\nWe can use gather() or pivot_longer() to make it tidy.\n\nstocks %&gt;% gather(\"stock\", \"price\", -time) %&gt;% head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X      0.619\n2 2009-01-02 X     -0.465\n3 2009-01-03 X      1.64 \n4 2009-01-04 X      0.367\n5 2009-01-05 X      0.466\n6 2009-01-06 X      0.247",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1724,7 +1724,7 @@
     "href": "exercise_tidyverse.html#pivot_longer",
     "title": "22  R Tidyverse Exercise",
     "section": "22.5 Pivot_longer",
-    "text": "22.5 Pivot_longer\nThe gather() function has been superseded and instead it is now recommended to use pivot_longer(), which is easier to use.\nHere’s a nice illustration from “Intermediate Reproducible Research in R” (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:\n“Pivot longer in tidyr. New columns are called name and value. Notice how the values in A and B columns are stacked on top of each other in the newly created V column.”\n\nFor more detail, see\nhttps://r-cubed-intermediate.rostools.org/sessions/pivots\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock  price\n  &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;\n1 2009-01-01 X     -0.488\n2 2009-01-01 Y      1.62 \n3 2009-01-01 Z      1.20 \n4 2009-01-02 X     -0.656\n5 2009-01-02 Y      1.02 \n6 2009-01-02 Z     -1.07",
+    "text": "22.5 Pivot_longer\nThe gather() function has been superseded and instead it is now recommended to use pivot_longer(), which is easier to use.\nHere’s a nice illustration from “Intermediate Reproducible Research in R” (which they shared under a CC_BY 4.0 license), where they caption this figure as follows:\n“Pivot longer in tidyr. New columns are called name and value. Notice how the values in A and B columns are stacked on top of each other in the newly created V column.”\n\nFor more detail, see\nhttps://r-cubed-intermediate.rostools.org/sessions/pivots\n\nstocks %&gt;% pivot_longer(c(X,Y,Z), names_to= \"stock\", values_to = \"price\") %&gt;% \n  head()\n\n# A tibble: 6 × 3\n  time       stock   price\n  &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 2009-01-01 X      0.619 \n2 2009-01-01 Y     -1.82  \n3 2009-01-01 Z      0.0693\n4 2009-01-02 X     -0.465 \n5 2009-01-02 Y      0.459 \n6 2009-01-02 Z     -9.07",
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>R Tidyverse Exercise</span>"
     ]
@@ -1974,7 +1974,17 @@
     "href": "merging_exercise.html",
     "title": "24  R Merging Exercise",
     "section": "",
-    "text": "24.1 Merging Best Practice",
+    "text": "24.1 Math Art made with code",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
+    ]
+  },
+  {
+    "objectID": "merging_exercise.html#math-art-made-with-code",
+    "href": "merging_exercise.html#math-art-made-with-code",
+    "title": "24  R Merging Exercise",
+    "section": "",
+    "text": "A symmetric icon attractor, created by Daniel E. Weeks",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -1983,8 +1993,8 @@
     "objectID": "merging_exercise.html#merging-best-practice",
     "href": "merging_exercise.html#merging-best-practice",
     "title": "24  R Merging Exercise",
-    "section": "",
-    "text": "Always be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\n\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an anti_join to check this.\n\n\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions, before and after the merge, to make sure the merged object has the expected number of rows and columns.\n\nAlways explicitly name the keys you are merging on.\nWhen using tidyverse join commands, load the tidylog R package in order to turn on very useful additional feedback.",
+    "section": "24.2 Merging Best Practice",
+    "text": "24.2 Merging Best Practice\n\nAlways be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\n\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an anti_join to check this.\n\n\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions, before and after the merge, to make sure the merged object has the expected number of rows and columns.\n\nAlways explicitly name the keys you are merging on.\nWhen using tidyverse join commands, load the tidylog R package in order to turn on very useful additional feedback.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -1993,8 +2003,8 @@
     "objectID": "merging_exercise.html#load-libraries",
     "href": "merging_exercise.html#load-libraries",
     "title": "24  R Merging Exercise",
-    "section": "24.2 Load Libraries",
-    "text": "24.2 Load Libraries\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.3 Load Libraries",
+    "text": "24.3 Load Libraries\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2003,8 +2013,8 @@
     "objectID": "merging_exercise.html#input-data",
     "href": "merging_exercise.html#input-data",
     "title": "24  R Merging Exercise",
-    "section": "24.3 Input data",
-    "text": "24.3 Input data\nLet’s load the synthetic simulated Project 1 data and associated data dictionary:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.4 Input data",
+    "text": "24.4 Input data\nLet’s load the synthetic simulated Project 1 data and associated data dictionary:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2013,8 +2023,8 @@
     "objectID": "merging_exercise.html#select-a-subset-of-subject-level-fields",
     "href": "merging_exercise.html#select-a-subset-of-subject-level-fields",
     "title": "24  R Merging Exercise",
-    "section": "24.4 Select a subset of subject-level fields",
-    "text": "24.4 Select a subset of subject-level fields\nSet up a data frame a that has these subject-level fields: “subject_id” “maternal_age_delivery” “case_control_status” “prepregnancy_BMI”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.5 Select a subset of subject-level fields",
+    "text": "24.5 Select a subset of subject-level fields\nSet up a data frame a that has these subject-level fields: “subject_id” “maternal_age_delivery” “case_control_status” “prepregnancy_BMI”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2023,8 +2033,8 @@
     "objectID": "merging_exercise.html#unique-records",
     "href": "merging_exercise.html#unique-records",
     "title": "24  R Merging Exercise",
-    "section": "24.5 Unique records",
-    "text": "24.5 Unique records\nThe data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.\nFrom your data frame a select only the unique records, creating data frame b.\n\n\n\n\n\n\nTip\n\n\n\n\n\nUse the unique command from base R or the distinct command from the dplyr R package.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n24.5.1 Comment\nIt is better to apply unique to the whole data frame, not just to the subject_id column, as that ensures that you are selecting whole records that are unique across all of their columns.\nNote that the dplyr R package provides the distinct command, which keeps only unique/distinct rows from a data frame. It is faster than the unique command.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.6 Unique records",
+    "text": "24.6 Unique records\nThe data were given to us in a way that repeated subject-level information, once for each sample from each individual subject.\nFrom your data frame a select only the unique records, creating data frame b.\n\n\n\n\n\n\nTip\n\n\n\n\n\nUse the unique command from base R or the distinct command from the dplyr R package.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n24.6.1 Comment\nIt is better to apply unique to the whole data frame, not just to the subject_id column, as that ensures that you are selecting whole records that are unique across all of their columns.\nNote that the dplyr R package provides the distinct command, which keeps only unique/distinct rows from a data frame. It is faster than the unique command.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2033,8 +2043,8 @@
     "objectID": "merging_exercise.html#check-that-the-subject_ids-are-now-not-duplicated",
     "href": "merging_exercise.html#check-that-the-subject_ids-are-now-not-duplicated",
     "title": "24  R Merging Exercise",
-    "section": "24.6 Check that the subject_id’s are now not duplicated",
-    "text": "24.6 Check that the subject_id’s are now not duplicated\nAre the subject_id’s unique?\nHint: In the R Recoding Reshaping Exercise you learned how to check for duplicated values in a vector. Use that knowledge here.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.7 Check that the subject_id’s are now not duplicated",
+    "text": "24.7 Check that the subject_id’s are now not duplicated\nAre the subject_id’s unique?\nHint: In the R Recoding Reshaping Exercise you learned how to check for duplicated values in a vector. Use that knowledge here.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2043,8 +2053,8 @@
     "objectID": "merging_exercise.html#create-random-integer-ids",
     "href": "merging_exercise.html#create-random-integer-ids",
     "title": "24  R Merging Exercise",
-    "section": "24.7 Create random integer IDs",
-    "text": "24.7 Create random integer IDs\nCreate a new column ID containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the sample command, sampling integers from 1 to the number of rows in data frame b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis could also be done using the sample-int() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.8 Create random integer IDs",
+    "text": "24.8 Create random integer IDs\nCreate a new column ID containing randomly chosen integer IDs; this is necessary to de-identify the data. To do this, use the sample command, sampling integers from 1 to the number of rows in data frame b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis could also be done using the sample-int() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2053,8 +2063,8 @@
     "objectID": "merging_exercise.html#merging-best-practice-1",
     "href": "merging_exercise.html#merging-best-practice-1",
     "title": "24  R Merging Exercise",
-    "section": "24.8 Merging Best Practice",
-    "text": "24.8 Merging Best Practice\nAlways be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an ‘anti_join’ to check this.\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions to make sure the merged object has the expected number of rows and columns.\nAlways explicitly name the keys you are merging on.\n\nIf you don’t name them, then the join command will use all variables in common across x and y.\n\nWhen using tidyverse join commands, load the tidylog R package in order to turn on very useful additional feedback.",
+    "section": "24.9 Merging Best Practice",
+    "text": "24.9 Merging Best Practice\nAlways be careful when merging.\n\nAlways check for duplicated IDs before doing the merge.\nAlways check that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCan use an ‘anti_join’ to check this.\nInconsistencies in the values of the keys can be hard to fix.\n\nAlways check the dimensions to make sure the merged object has the expected number of rows and columns.\nAlways explicitly name the keys you are merging on.\n\nIf you don’t name them, then the join command will use all variables in common across x and y.\n\nWhen using tidyverse join commands, load the tidylog R package in order to turn on very useful additional feedback.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2063,8 +2073,8 @@
     "objectID": "merging_exercise.html#tidyverse-join-commands",
     "href": "merging_exercise.html#tidyverse-join-commands",
     "title": "24  R Merging Exercise",
-    "section": "24.9 Tidyverse join commands",
-    "text": "24.9 Tidyverse join commands\nHere is a nice illustration of joins from RStudio (which they shared under a CC_BY 4.0 license):\n\nTo illustrate the join commands, let’s set up these data frames a and b:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe left_join(a,b) command from the ‘tidyverse’ package keeps all observations in a, joining in matching rows from b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe right_join(a,b) command keeps all observations in b, joining in matching rows from a.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe full_join(a,b) command keeps all observations in a and b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe inner_join(a,b) command only keeps observations from a that have a matching key in b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo illustrate how to handle different names for the common ID field, let’s set up these data frames a and b slightly differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat if one data frame has non-unique IDs?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nmerge: non-unique IDs in data frame b. A one-to-many relationship.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSo data frame a originally had 3 records, but now the full join outputs a 5 record data frame.\nmerge: non-unique IDs in both data frames a and b. All possible combinations.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nA filtering semi_join(a,b) returns all rows from a that have a match in b\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nA filtering anti_join(a,b) returns all rows from a that do not have a match in b. Useful for understanding causes of mismatches when joining.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn ‘R for Data Science’, the authors argue that using tidyverse-style commands (e.g., left_join) is better than using the merge command of base R because\n\n“they more clearly convey the intent of your code: the difference between the joins is really important but concealed in the arguments of merge(). dplyr’s joins are considerably faster and don’t mess with the order of the rows.”\n\nSee http://r4ds.had.co.nz/relational-data.html#other-implementations",
+    "section": "24.10 Tidyverse join commands",
+    "text": "24.10 Tidyverse join commands\nHere is a nice illustration of joins from RStudio (which they shared under a CC_BY 4.0 license):\n\nTo illustrate the join commands, let’s set up these data frames a and b:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe left_join(a,b) command from the ‘tidyverse’ package keeps all observations in a, joining in matching rows from b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe right_join(a,b) command keeps all observations in b, joining in matching rows from a.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe full_join(a,b) command keeps all observations in a and b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe inner_join(a,b) command only keeps observations from a that have a matching key in b.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTo illustrate how to handle different names for the common ID field, let’s set up these data frames a and b slightly differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhat if one data frame has non-unique IDs?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nmerge: non-unique IDs in data frame b. A one-to-many relationship.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nSo data frame a originally had 3 records, but now the full join outputs a 5 record data frame.\nmerge: non-unique IDs in both data frames a and b. All possible combinations.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nA filtering semi_join(a,b) returns all rows from a that have a match in b\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nA filtering anti_join(a,b) returns all rows from a that do not have a match in b. Useful for understanding causes of mismatches when joining.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn ‘R for Data Science’, the authors argue that using tidyverse-style commands (e.g., left_join) is better than using the merge command of base R because\n\n“they more clearly convey the intent of your code: the difference between the joins is really important but concealed in the arguments of merge(). dplyr’s joins are considerably faster and don’t mess with the order of the rows.”\n\nSee http://r4ds.had.co.nz/relational-data.html#other-implementations",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2073,8 +2083,8 @@
     "objectID": "merging_exercise.html#merge-in-new-phenotype-information",
     "href": "merging_exercise.html#merge-in-new-phenotype-information",
     "title": "24  R Merging Exercise",
-    "section": "24.10 Merge in new phenotype information",
-    "text": "24.10 Merge in new phenotype information\nThe PI has sent you new trait data for your subjects.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCarefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame b which was created above when from your data frame a you selected only the unique records. Following recommended best merging practice, be sure to:\n\nCheck for duplicated IDs before doing the merge.\n\nCheck that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCheck the dimensions before and after the merge, to make sure the merged object has the expected number of rows and columns.\n\nExplicitly name the keys you are merging on.\n\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHere we load the tidylog R package, which will result in useful feedback when tidyverse commands are executed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhich subject_id’s are duplicated?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow check if there are any missing values in the ID columns?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHow many of rows would you expect the merged data frame to have?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy did the number of rows increase when doing the full join?",
+    "section": "24.11 Merge in new phenotype information",
+    "text": "24.11 Merge in new phenotype information\nThe PI has sent you new trait data for your subjects.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nCarefully merge in the new data in using tidyverse commands. As this is subject-level information, it should be merged into the subject-level data frame b which was created above when from your data frame a you selected only the unique records. Following recommended best merging practice, be sure to:\n\nCheck for duplicated IDs before doing the merge.\n\nCheck that your ID columns do not contain any missing values.\nCheck that the values in the ID columns (e.g., the keys) match.\n\nCheck the dimensions before and after the merge, to make sure the merged object has the expected number of rows and columns.\n\nExplicitly name the keys you are merging on.\n\nIf you notice any problems with this merge, prepare a report for the PI detailing what you noticed and what you’d like to ask the PI about.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nHere we load the tidylog R package, which will result in useful feedback when tidyverse commands are executed.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhich subject_id’s are duplicated?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow check if there are any missing values in the ID columns?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nHow many of rows would you expect the merged data frame to have?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWhy did the number of rows increase when doing the full join?",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2083,8 +2093,8 @@
     "objectID": "merging_exercise.html#further-checks",
     "href": "merging_exercise.html#further-checks",
     "title": "24  R Merging Exercise",
-    "section": "24.11 Further checks",
-    "text": "24.11 Further checks\nWhen merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.\nCheck if the set of subject_id IDs in your dataframe b fully overlaps the set of subject_id IDs in the new data set. If there is not full overlap, document which IDs do not overlap.\nHint: Use an anti_join.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nanti_join() return all rows from x without a match in y.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "section": "24.12 Further checks",
+    "text": "24.12 Further checks\nWhen merging data based on an ID shared in common, it is not only important to check for duplicated IDs, but it is also important to check for overlap of the two ID sets.\nCheck if the set of subject_id IDs in your dataframe b fully overlaps the set of subject_id IDs in the new data set. If there is not full overlap, document which IDs do not overlap.\nHint: Use an anti_join.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nanti_join() return all rows from x without a match in y.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
@@ -2093,8 +2103,8 @@
     "objectID": "merging_exercise.html#letter-to-the-pi",
     "href": "merging_exercise.html#letter-to-the-pi",
     "title": "24  R Merging Exercise",
-    "section": "24.12 Letter to the PI",
-    "text": "24.12 Letter to the PI\nPrepare a brief letter to the PI describing the problems in the data that you discovered when trying to merge in the new trait data.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nDear Dr. PI,\nWhen trying to merge in the new trait data that you sent, I noticed a few issues that I wanted to bring to your attention.\nThe new data set has a duplicated record for subject_id SUBJ09.\nThe new data set has a subject_id that is not observed in our original data set: SUBJ00\nThe new data set is missing records for these two subject_id’s that are observed in our original data set: SUBJ18 and SUBJ24.\nPlease resolve these issues and send us a corrected version of the new trait data.\nThank you!",
+    "section": "24.13 Letter to the PI",
+    "text": "24.13 Letter to the PI\nPrepare a brief letter to the PI describing the problems in the data that you discovered when trying to merge in the new trait data.\n\n\n\n\n\n\nExpand to see solution\n\n\n\n\n\nDear Dr. PI,\nWhen trying to merge in the new trait data that you sent, I noticed a few issues that I wanted to bring to your attention.\nThe new data set has a duplicated record for subject_id SUBJ09.\nThe new data set has a subject_id that is not observed in our original data set: SUBJ00\nThe new data set is missing records for these two subject_id’s that are observed in our original data set: SUBJ18 and SUBJ24.\nPlease resolve these issues and send us a corrected version of the new trait data.\nThank you!",
     "crumbs": [
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>R Merging Exercise</span>"
     ]
