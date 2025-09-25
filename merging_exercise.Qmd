@@ -13,6 +13,10 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
+## Math Art made with code
+
+![A symmetric icon attractor, created by Daniel E. Weeks](img/Symmetric_icon_attractor.jpg)
+
 ## Merging Best Practice
 
 - *Always* be careful when merging.              
