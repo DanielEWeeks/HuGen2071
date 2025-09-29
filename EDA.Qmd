@@ -104,7 +104,7 @@ head(ds)
 ```{webr-r}
 dim(dd)
 names(dd)
-glimpse(ds)
+glimpse(dd)
 head(dd)
 ```
 
