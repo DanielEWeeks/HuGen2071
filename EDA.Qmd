@@ -256,8 +256,30 @@ ds %>% map(\(x) subject.N(x, subj.ID)) %>%
 
 The variables with a count of zero here are those where no more than 1 distinct value was observed for each subject.  These are likely subject-level variables. Indeed, for the majority of these, the variable names are consistent with them being subject-level variables instead of variables that are measured every time a sample was taken.   
 
+Here's an alternative approach, where we define a function `f2` that counts the number of subjects with more than one distinct value for a specified trait, and then we loop over all traits in the `ds` data frame.  To do this, we have to use the `sym` function from the `rlang` R package to convert the trait name (a string) into a symbol.  That symbol is then unquoted using the `!!` operator so that it will work within the `dplyr` `select` command.
 
-Here's another solution for this problem, written by Tianze (Vincent) Luo, a student in our Fall 2024 HuGen 2071 course:
+```{webr-r}
+f2 <- function(df, trait) {
+    trait <- sym(trait)
+    df2 <- df %>% select(subject_id, !!trait) %>% 
+      group_by(subject_id) %>% 
+      distinct() %>%
+      mutate(count=n()) %>%
+      select(subject_id, count) %>%
+      distinct()
+    return(sum(df2$count > 1))
+}
+f2(df=ds, trait="race")
+# Turn off TidyLog messages for the loop
+options("tidylog.display" = list())
+for (t in names(ds)) {
+    cat(f2(df=ds, trait=t),": ",t,"\n")
+}
+# Turn TidyLog back on
+options("tidylog.display" = NULL)
+```
+
+Here's another solution for this problem, written by Tianze (Vincent) Luo, a student in our Fall 2024 HuGen 2071 course.  This approach is slower than the previous two approaches, but it is more explicit and may be easier to understand.  It is slow because it loops through each column of `ds`, and for each column, it loops through each subject ID.
 
 ```{webr-r}
 df_check = data.frame(col=rep(NA, length(colnames(ds)) ), 
