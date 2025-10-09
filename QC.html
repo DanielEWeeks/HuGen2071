@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -392,7 +358,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# Edit/add/try out R code here\nlibrary(tidyverse)\nlibrary(dbGaPCheckup)\n## Load DD.dict.I and DS.data.I\ndata(ExampleI)\nls()","id":1,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-1","editor-quick-suggestions":"false","fig-height":5}},{"code":"# Edit/add/try out R code here","id":2,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-2","editor-quick-suggestions":"false","fig-height":5}},{"code":"# Edit/add/try out R code here","id":3,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-3","editor-quick-suggestions":"false","fig-height":5}},{"code":"DD.dict.I[which(DD.dict.I==\"PREGNANT\"),c(1,17,18,19,20)]","id":4,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-4","editor-quick-suggestions":"false","fig-height":5}},{"code":"# Edit/add/try out R code here","id":5,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-5","editor-quick-suggestions":"false","fig-height":5}},{"code":"minmax_check","id":6,"options":{"comment":"","context":"interactive","dpi":72,"editor-max-height":"","classes":"","out-width":"700px","message":"true","output":"true","editor-word-wrap":"true","autorun":"false","fig-width":7,"read-only":"false","fig-cap":"","editor-font-scale":"1","results":"markup","warning":"true","out-height":"","label":"unnamed-chunk-6","editor-quick-suggestions":"false","fig-height":5}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"suppressMessages(library(tidyverse))\nlibrary(dbGaPCheckup)\n## Load DD.dict.I and DS.data.I\ndata(ExampleI)","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-1","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":2,"code":"DD.dict.I %>% \n  filter(VARNAME==\"PERCEIVED_CONFLICT\") %>% \n  select(VARNAME,MIN,MAX)","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-2","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":3,"code":"# Edit/add/try out R code here\nlibrary(tidyverse)\nlibrary(dbGaPCheckup)\n## Load DD.dict.I and DS.data.I\ndata(ExampleI)\nls()","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-3","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":4,"code":"# Read the vector of `PERCEIVED_CONFLICT` from `DS.data.I`\ntrait <- DS.data.I$PERCEIVED_CONFLICT\n# Read the `MIN` and `MAX` values for `PERCEIVED_CONFLICT` from `DD.dict.I`\nmin.val <- DD.dict.I %>% \n  filter(VARNAME==\"PERCEIVED_CONFLICT\") %>% \n  pull(MIN)\nmax.val <- DD.dict.I %>% \n  filter(VARNAME==\"PERCEIVED_CONFLICT\") %>%\n  pull(MAX)\n# List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].\ntrait[trait < min.val | trait > max.val] %>%\n  unique() %>%\n  sort()\n# Count any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].\ntrait[trait < min.val | trait > max.val] %>%\n  length()","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-4","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":5,"code":"details <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information\ndf.tmp <- details[[1]]$OutOfRangeValues[[1]] \ndf.tmp[order(df.tmp$PERCEIVED_CONFLICT),]","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-5","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":6,"code":"# Edit/add/try out R code here","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-6","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":7,"code":"# List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].\ntrait[trait < min.val | trait > max.val] %>% \n  unique() %>% \n  sort()","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-7","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":8,"code":"# MIN=NA, MAX=15\n16 < NA | 16 > 15\n# MIN=1, MAX=NA\n16 < 1 | 16 > NA\n# MIN=NA, MAX=NA\n16 < NA | 16 > NA","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-8","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":9,"code":"vals.low <- NA\nvals.high <- NA\nif (!is.na(min.val)) {\n  vals.low <- trait[trait < min.val]\n}\nif (!is.na(max.val)) {\n  vals.high <- trait[trait > max.val]\n}\n\nvals.OutOfRange <- c(vals.low,vals.high)\nvals.OutOfRange %>% \n  na.omit() %>% \n  unique() %>% \n  sort()","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-9","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":10,"code":"DD.dict.I %>% \n  filter(VARNAME==\"PREGNANT\") %>%\n  select(VARNAME,MIN,MAX)","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-10","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":11,"code":"# Edit/add/try out R code here","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-11","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":12,"code":"# Read the vector of `PREGNANT` from `DS.data.I`\ntrait <- DS.data.I$PREGNANT\n# Read the `MIN` and `MAX` values for `PREGNANT` from `DD.dict.I`\nmin.val <- DD.dict.I %>% \n  filter(VARNAME==\"PREGNANT\") %>% \n  pull(MIN)\nmax.val <- DD.dict.I %>% \n  filter(VARNAME==\"PREGNANT\") %>%\n  pull(MAX)\n# List any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].\ntrait[trait < min.val | trait > max.val] %>%\n  unique() %>%\n  sort()\n# Count any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].\ntrait[trait < min.val | trait > max.val] %>%\n  length()","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-12","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":13,"code":"DD.dict.I[which(DD.dict.I==\"PREGNANT\"),c(1,17,18)]","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-13","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":14,"code":"DD.dict.I[which(DD.dict.I==\"PREGNANT\"),c(1,17,18,19,20)]","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-14","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":15,"code":"DD.dict.I[which(DD.dict.I==\"PREGNANT\"),c(1,19,20)]","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-15","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":16,"code":"# Edit/add/try out R code here","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-16","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":17,"code":"# Without missing value codes specified\ndetails <- minmax_check(DD.dict.I, DS.data.I)$Information\ndetails[[1]]$OutOfRangeValues\n\n# With missing value codes specified\n# PREGNANT is no longer flagged as having out of range values.\ndetails <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-17","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}},{"id":18,"code":"minmax_check","options":{"comment":"","dpi":72,"read-only":"false","message":"true","classes":"","results":"markup","fig-cap":"","warning":"true","fig-width":7,"editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-18","output":"true","editor-quick-suggestions":"false","context":"interactive","editor-word-wrap":"true","out-height":"","autorun":"false","out-width":"700px","fig-height":5}}];
 
 </script>
 <script type="module">
@@ -2272,24 +2238,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <pre><code>MIN     The logical minimum value of the variable. If a separate code such as -1 is used for a missing field, this should not be considered as the MIN value.
 MAX     The logical maximum value for the variable. If a separate code such as 9999 is used for a missing field, this should not be considered as the MAX value.</code></pre>
 <p><strong>Task:</strong> Design and implement a check that the specified <code>MIN</code> and <code>MAX</code> values observed in the data are consistent with the values as specified in the data dictionary.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(tidyverse))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbGaPCheckup)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Load DD.dict.I and DS.data.I</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ExampleI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Using <code>DD.dict.I</code> and <code>DS.data.I</code>, check the <code>PERCEIVED_CONFLICT</code> variable to see if all the values fall within the stated <code>MIN</code> and <code>MAX</code> values.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PERCEIVED_CONFLICT"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(VARNAME,MIN,MAX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  VARNAME              MIN   MAX
-  &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
-1 PERCEIVED_CONFLICT     1    15</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="pseudo-code" class="level3" data-number="30.3.2">
 <h3 data-number="30.3.2" class="anchored" data-anchor-id="pseudo-code"><span class="header-section-number">30.3.2</span> Pseudo-code</h3>
@@ -2331,7 +2284,7 @@ Expand to see solution
 <section id="implement-min-max-check-in-r" class="level3" data-number="30.3.3">
 <h3 data-number="30.3.3" class="anchored" data-anchor-id="implement-min-max-check-in-r"><span class="header-section-number">30.3.3</span> Implement MIN, MAX check in R</h3>
 <p>Implement your algorithm in code.</p>
-<div id="qwebr-insertion-location-1"></div>
+<div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -2345,62 +2298,11 @@ Expand to see solution
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the vector of `PERCEIVED_CONFLICT` from `DS.data.I`</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>trait <span class="ot">&lt;-</span> DS.data.I<span class="sc">$</span>PERCEIVED_CONFLICT</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the `MIN` and `MAX` values for `PERCEIVED_CONFLICT` from `DD.dict.I`</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>min.val <span class="ot">&lt;-</span> DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PERCEIVED_CONFLICT"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(MIN)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>max.val <span class="ot">&lt;-</span> DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PERCEIVED_CONFLICT"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(MAX)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>trait[trait <span class="sc">&lt;</span> min.val <span class="sc">|</span> trait <span class="sc">&gt;</span> max.val] <span class="sc">%&gt;%</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 16 17 19 20 21 24 25 26 28 29 30</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>trait[trait <span class="sc">&lt;</span> min.val <span class="sc">|</span> trait <span class="sc">&gt;</span> max.val] <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 44</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>These results are consistent with those returned by the <code>minmax_check</code> function from the <code>dbGaPCheckup</code> R package:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>details <span class="ot">&lt;-</span> <span class="fu">minmax_check</span>(DD.dict.I, DS.data.I, <span class="at">non.NA.missing.codes=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">9999</span>, <span class="sc">-</span><span class="dv">4444</span>))<span class="sc">$</span>Information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Message
-[1] "ERROR: some variables have values outside of the MIN to MAX range."
-
-$Information
-# A tibble: 1 × 5
-  Trait              Check ListedMin ListedMax OutOfRangeValues 
-  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;           
-1 PERCEIVED_CONFLICT FALSE         1        15 &lt;tibble [11 × 1]&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.tmp <span class="ot">&lt;-</span> details[[<span class="dv">1</span>]]<span class="sc">$</span>OutOfRangeValues[[<span class="dv">1</span>]] </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df.tmp[<span class="fu">order</span>(df.tmp<span class="sc">$</span>PERCEIVED_CONFLICT),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 11 × 1
-   PERCEIVED_CONFLICT
-                &lt;int&gt;
- 1                 16
- 2                 17
- 3                 19
- 4                 20
- 5                 21
- 6                 24
- 7                 25
- 8                 26
- 9                 28
-10                 29
-11                 30</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
 </div>
@@ -2408,7 +2310,7 @@ $Information
 <section id="make-your-check-more-robust" class="level3" data-number="30.3.4">
 <h3 data-number="30.3.4" class="anchored" data-anchor-id="make-your-check-more-robust"><span class="header-section-number">30.3.4</span> Make your check more robust</h3>
 <p>After implementing your algorithm in R code, think about it a bit further - is it robust to the situation where only one of the MIN and MAX values is specified and the other is missing? Is it robust to the situation where both MIN and MAX are missing?</p>
-<div id="qwebr-insertion-location-2"></div>
+<div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -2422,53 +2324,14 @@ Expand to see solution
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>trait[trait <span class="sc">&lt;</span> min.val <span class="sc">|</span> trait <span class="sc">&gt;</span> max.val] <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 16 17 19 20 21 24 25 26 28 29 30</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>The code proposed here is not robust to MIN or MAX being <code>NA</code> because, for example, if MIN is <code>NA</code> and MAX is <code>15</code>, in some situations the logical indexing into the <code>trait</code> vector used of <code>trait &lt; min.val | trait &gt; max.val</code> would return <code>NA</code> instead of <code>TRUE</code> or <code>FALSE</code> as intended.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MIN=NA, MAX=15</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">&lt;</span> <span class="cn">NA</span> <span class="sc">|</span> <span class="dv">16</span> <span class="sc">&gt;</span> <span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MIN=1, MAX=NA</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> <span class="dv">16</span> <span class="sc">&gt;</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MIN=NA, MAX=NA</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> <span class="sc">&lt;</span> <span class="cn">NA</span> <span class="sc">|</span> <span class="dv">16</span> <span class="sc">&gt;</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>This are possible steps toward writing a more robust check:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vals.low <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>vals.high <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(min.val)) {</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  vals.low <span class="ot">&lt;-</span> trait[trait <span class="sc">&lt;</span> min.val]</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(max.val)) {</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  vals.high <span class="ot">&lt;-</span> trait[trait <span class="sc">&gt;</span> max.val]</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>vals.OutOfRange <span class="ot">&lt;-</span> <span class="fu">c</span>(vals.low,vals.high)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>vals.OutOfRange <span class="sc">%&gt;%</span> </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 16 17 19 20 21 24 25 26 28 29 30</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>But what would the above code return if both MIN and MAX were <code>NA</code>?</p>
 <p>If we look at the <code>minmax_check</code> code by typing <code>minmax_check</code> at the R prompt, we see that it uses a <code>which</code> when it tries to find the out-of-range values:</p>
 <pre><code>flagged &lt;- dataset_na[which(dataset_na[, ind] &lt; 
@@ -2482,18 +2345,9 @@ Expand to see solution
 <section id="check-the-pregnant-variable" class="level3" data-number="30.3.5">
 <h3 data-number="30.3.5" class="anchored" data-anchor-id="check-the-pregnant-variable"><span class="header-section-number">30.3.5</span> Check the <code>PREGNANT</code> variable</h3>
 <p>Now apply your MIN and MAX checking algorithm to the <code>PREGNANT</code> variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PREGNANT"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(VARNAME,MIN,MAX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  VARNAME    MIN   MAX
-  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-1 PREGNANT     0     1</code></pre>
-</div>
-</div>
-<div id="qwebr-insertion-location-3"></div>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -2507,44 +2361,15 @@ Expand to see solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the vector of `PREGNANT` from `DS.data.I`</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>trait <span class="ot">&lt;-</span> DS.data.I<span class="sc">$</span>PREGNANT</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the `MIN` and `MAX` values for `PREGNANT` from `DD.dict.I`</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>min.val <span class="ot">&lt;-</span> DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PREGNANT"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(MIN)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>max.val <span class="ot">&lt;-</span> DD.dict.I <span class="sc">%&gt;%</span> </span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VARNAME<span class="sc">==</span><span class="st">"PREGNANT"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(MAX)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># List any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>trait[trait <span class="sc">&lt;</span> min.val <span class="sc">|</span> trait <span class="sc">&gt;</span> max.val] <span class="sc">%&gt;%</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -9999 -4444</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count any `PREGNANT` values that lie outside of the range [`MIN`, ..., `MAX`].</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>trait[trait <span class="sc">&lt;</span> min.val <span class="sc">|</span> trait <span class="sc">&gt;</span> max.val] <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 53</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>These out-of-range values of <code>-9999</code> and <code>-4444</code> look kind of strange and are unexpected given the first two entries of the <code>VALUES</code> column of the data dictionary for this variable:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>DD.dict.I[<span class="fu">which</span>(DD.dict.I<span class="sc">==</span><span class="st">"PREGNANT"</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">17</span>,<span class="dv">18</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  VARNAME  VALUES ...18
-  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
-1 PREGNANT 0=no   1=yes</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Based on this, we’d expect to see only <code>0</code> and <code>1</code> values in the <code>PREGNANT</code> variable.</p>
 <p>What’s going on?</p>
 <p>Let’s examine some more columns of the data dictionary:</p>
-<div id="qwebr-insertion-location-4"></div>
+<div id="qwebr-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
@@ -2553,17 +2378,10 @@ Expand to see solution
 <section id="handle-missing-values" class="level3" data-number="30.3.6">
 <h3 data-number="30.3.6" class="anchored" data-anchor-id="handle-missing-values"><span class="header-section-number">30.3.6</span> Handle missing values</h3>
 <p>If we further check the data dictionary for the <code>PREGNANT</code> variable, we see that the out-of-range values we observed in our check above are actually missing value codes and so should not be flagged as being out of range.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>DD.dict.I[<span class="fu">which</span>(DD.dict.I<span class="sc">==</span><span class="st">"PREGNANT"</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  VARNAME  ...19               ...20                                            
-  &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt;                                            
-1 PREGNANT -9999=missing value -4444=not applicable, participant assigned male …</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Extend your algorithm to handle missing value codes. To do this first outline your approach in pseudo-code. Then implement it in R.</p>
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-16"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -2586,48 +2404,14 @@ Expand to see solution
 <li>Count and list any non-missing <code>PREGNANT</code> values that lie outside of the range [<code>MIN</code>, …, <code>MAX</code>].</li>
 </ol>
 <p>This is essentially the approach used in the <code>minmax_check</code> function of the <code>dbGaPCheckup</code> R package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Without missing value codes specified</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>details <span class="ot">&lt;-</span> <span class="fu">minmax_check</span>(DD.dict.I, DS.data.I)<span class="sc">$</span>Information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Message
-[1] "ERROR: some variables have values outside of the MIN to MAX range."
-
-$Information
-# A tibble: 2 × 5
-  Trait              Check ListedMin ListedMax OutOfRangeValues
-  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;          
-1 PREGNANT           FALSE         0         1 &lt;int [2]&gt;       
-2 PERCEIVED_CONFLICT FALSE         1        15 &lt;int [11]&gt;      </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>details[[<span class="dv">1</span>]]<span class="sc">$</span>OutOfRangeValues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] -4444 -9999
-
-[[2]]
- [1] 25 24 16 28 17 21 30 19 26 20 29</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With missing value codes specified</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PREGNANT is no longer flagged as having out of range values.</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>details <span class="ot">&lt;-</span> <span class="fu">minmax_check</span>(DD.dict.I, DS.data.I, <span class="at">non.NA.missing.codes=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">9999</span>, <span class="sc">-</span><span class="dv">4444</span>))<span class="sc">$</span>Information</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Message
-[1] "ERROR: some variables have values outside of the MIN to MAX range."
-
-$Information
-# A tibble: 1 × 5
-  Trait              Check ListedMin ListedMax OutOfRangeValues 
-  &lt;chr&gt;              &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;           
-1 PERCEIVED_CONFLICT FALSE         1        15 &lt;tibble [11 × 1]&gt;</code></pre>
-</div>
-</div>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>If we examine the <code>minmax_check</code> code by typing <code>minmax_check</code> without parentheses at the R prompt, we see that this is how the missing value recoding step is done:</p>
 <pre><code>for (value in na.omit(non.NA.missing.codes)) {
     dataset_na &lt;- dataset_na %&gt;% mutate(across(everything(), 
         ~na_if(.x, value)))
 }</code></pre>
-<div id="qwebr-insertion-location-6"></div>
+<div id="qwebr-insertion-location-18"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </div>
