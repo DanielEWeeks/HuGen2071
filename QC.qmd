@@ -47,7 +47,7 @@ MAX 	The logical maximum value for the variable. If a separate code such as 9999
 
 
 
-```{r}
+```{webr-r}
 suppressMessages(library(tidyverse))
 library(dbGaPCheckup)
 ## Load DD.dict.I and DS.data.I
@@ -56,7 +56,7 @@ data(ExampleI)
 
 Using `DD.dict.I` and `DS.data.I`, check the `PERCEIVED_CONFLICT` variable to see if all the values fall within the stated `MIN` and `MAX` values.  
 
-```{r}
+```{webr-r}
 DD.dict.I %>% 
   filter(VARNAME=="PERCEIVED_CONFLICT") %>% 
   select(VARNAME,MIN,MAX)
@@ -99,7 +99,7 @@ ls()
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # Read the vector of `PERCEIVED_CONFLICT` from `DS.data.I`
 trait <- DS.data.I$PERCEIVED_CONFLICT
 # Read the `MIN` and `MAX` values for `PERCEIVED_CONFLICT` from `DD.dict.I`
@@ -120,7 +120,7 @@ trait[trait < min.val | trait > max.val] %>%
 
 These results are consistent with those returned by the `minmax_check` function from the `dbGaPCheckup` R package:
 
-```{r}
+```{webr-r}
 details <- minmax_check(DD.dict.I, DS.data.I, non.NA.missing.codes=c(-9999, -4444))$Information
 df.tmp <- details[[1]]$OutOfRangeValues[[1]] 
 df.tmp[order(df.tmp$PERCEIVED_CONFLICT),]
@@ -139,7 +139,7 @@ After implementing your algorithm in R code, think about it a bit further - is i
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # List any `PERCEIVED_CONFLICT` values that lie outside of the range [`MIN`, ..., `MAX`].
 trait[trait < min.val | trait > max.val] %>% 
   unique() %>% 
@@ -148,7 +148,7 @@ trait[trait < min.val | trait > max.val] %>%
 
 The code proposed here is not robust to MIN or MAX being `NA` because, for example, if MIN is `NA` and MAX is `15`, in some situations the logical indexing into the `trait` vector used of `trait < min.val | trait > max.val` would return `NA` instead of `TRUE` or `FALSE` as intended.
 
-```{r}
+```{webr-r}
 # MIN=NA, MAX=15
 16 < NA | 16 > 15
 # MIN=1, MAX=NA
@@ -159,7 +159,7 @@ The code proposed here is not robust to MIN or MAX being `NA` because, for examp
 
 This are possible steps toward writing a more robust check:
 
-```{r}
+```{webr-r}
 vals.low <- NA
 vals.high <- NA
 if (!is.na(min.val)) {
@@ -194,7 +194,7 @@ Why is this robust to either one or both of MIN and MAX being missing?
 
 Now apply your MIN and MAX checking algorithm to the `PREGNANT` variable.
 
-```{r}
+```{webr-r}
 DD.dict.I %>% 
   filter(VARNAME=="PREGNANT") %>%
   select(VARNAME,MIN,MAX)
@@ -207,7 +207,7 @@ DD.dict.I %>%
 ::: {.callout-tip collapse="true"}
 ## Expand to see solution
 
-```{r}
+```{webr-r}
 # Read the vector of `PREGNANT` from `DS.data.I`
 trait <- DS.data.I$PREGNANT
 # Read the `MIN` and `MAX` values for `PREGNANT` from `DD.dict.I`
@@ -228,7 +228,7 @@ trait[trait < min.val | trait > max.val] %>%
 
 These out-of-range values of `-9999` and `-4444` look kind of strange and are unexpected given the first two entries of the `VALUES` column of the data dictionary for this variable:
 
-```{r}
+```{webr-r}
 DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,17,18)]
 ```
 
@@ -248,7 +248,7 @@ DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,17,18,19,20)]
 
 If we further check the data dictionary for the `PREGNANT` variable, we see that the out-of-range values we observed in our check above are actually missing value codes and so should not be flagged as being out of range.
 
-```{r}
+```{webr-r}
 DD.dict.I[which(DD.dict.I=="PREGNANT"),c(1,19,20)]
 ```
 
@@ -272,7 +272,7 @@ Extend your algorithm to handle missing value codes.  To do this first outline y
 
 This is essentially the approach used in the `minmax_check` function of the `dbGaPCheckup` R package.
 
-```{r}
+```{webr-r}
 # Without missing value codes specified
 details <- minmax_check(DD.dict.I, DS.data.I)$Information
 details[[1]]$OutOfRangeValues
