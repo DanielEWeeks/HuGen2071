@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./R_genetics_data_gds.html" rel="next">
+<link href="./unix_scripting.html" rel="next">
 <link href="./unix_data_manipulation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -343,14 +343,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Unix Scripting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -405,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#unix-miscellaneous" id="toc-unix-miscellaneous" class="nav-link active" data-scroll-target="#unix-miscellaneous"><span class="header-section-number">38.1</span> Unix Miscellaneous</a></li>
-  <li><a href="#unix-basics-slides" id="toc-unix-basics-slides" class="nav-link" data-scroll-target="#unix-basics-slides"><span class="header-section-number">38.2</span> Unix Basics slides</a></li>
+  <li><a href="#unix-miscellaneous-slides" id="toc-unix-miscellaneous-slides" class="nav-link" data-scroll-target="#unix-miscellaneous-slides"><span class="header-section-number">38.2</span> Unix Miscellaneous slides</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">38.3</span> Questions</a>
   <ul class="collapse">
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">38.3.1</span> Question 1</a></li>
@@ -444,8 +450,8 @@ ul.task-list li input[type="checkbox"] {
 <iframe credentialless="" src="https://pitt.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=93c2f294-2351-4a20-92f1-b1fe010fb277&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=true&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
 </iframe>
 </section>
-<section id="unix-basics-slides" class="level2" data-number="38.2">
-<h2 data-number="38.2" class="anchored" data-anchor-id="unix-basics-slides"><span class="header-section-number">38.2</span> Unix Basics slides</h2>
+<section id="unix-miscellaneous-slides" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="unix-miscellaneous-slides"><span class="header-section-number">38.2</span> Unix Miscellaneous slides</h2>
 <p><a href="pdfs/unix_miscellaneous.pdf" target="_blank">PDF slide set</a></p>
 <iframe width="100%" height="800" src="pdfs/unix_miscellaneous.pdf">
 </iframe>
@@ -455,22 +461,22 @@ ul.task-list li input[type="checkbox"] {
 <section id="question-1" class="level3" data-number="38.3.1">
 <h3 data-number="38.3.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">38.3.1</span> Question 1</h3>
 <p>What command would make a symbolic link to /really/long/path/to/data/folder/ and name it data_shortcut? What command would remove the link?</p>
-<div id="radio_UEIQFCZZBB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UEIQFCZZBB" value=""> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_UEIQFCZZBB" value="answer"> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_UEIQFCZZBB" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_UEIQFCZZBB" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label>
+<div id="radio_TRAVAMHTGJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TRAVAMHTGJ" value=""> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_TRAVAMHTGJ" value="answer"> <span>ln -s /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_TRAVAMHTGJ" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ ; rm data_shortcut</span></label><label><input type="radio" autocomplete="off" name="radio_TRAVAMHTGJ" value=""> <span>ln -s data_shortcut /really/long/path/to/data/folder/ data_shortcut ; unlink data_shortcut</span></label>
 </div>
 </section>
 <section id="question-2" class="level3" data-number="38.3.2">
 <h3 data-number="38.3.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">38.3.2</span> Question 2</h3>
 <p>Which of the following are needed/advised when running an R script on htc? Multiple answers may be correct.</p>
-<div id="radio_EZGPZRVVKA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EZGPZRVVKA" value="answer"> <span>Loading the modules you need (a version of gcc and a version of R)</span></label><label><input type="radio" autocomplete="off" name="radio_EZGPZRVVKA" value="answer"> <span>Running the script with a command like Rscript –vanilla my_script.R</span></label><label><input type="radio" autocomplete="off" name="radio_EZGPZRVVKA" value="answer"> <span>Including options(echo=TRUE) at the top of the R script so that each line of R code is echoed before its output</span></label><label><input type="radio" autocomplete="off" name="radio_EZGPZRVVKA" value="answer"> <span>Doing args &lt;- (commandArgs(T)) and then for (i in 1:length(args)) { eval(parse(text =args[[i]])) } in the script to parse command-line arguments</span></label>
+<div id="radio_UORSEXURUC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UORSEXURUC" value="answer"> <span>Loading the modules you need (a version of gcc and a version of R)</span></label><label><input type="radio" autocomplete="off" name="radio_UORSEXURUC" value="answer"> <span>Running the script with a command like Rscript –vanilla my_script.R</span></label><label><input type="radio" autocomplete="off" name="radio_UORSEXURUC" value="answer"> <span>Including options(echo=TRUE) at the top of the R script so that each line of R code is echoed before its output</span></label><label><input type="radio" autocomplete="off" name="radio_UORSEXURUC" value="answer"> <span>Doing args &lt;- (commandArgs(T)) and then for (i in 1:length(args)) { eval(parse(text =args[[i]])) } in the script to parse command-line arguments</span></label>
 </div>
 </section>
 <section id="question-3" class="level3" data-number="38.3.3">
 <h3 data-number="38.3.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">38.3.3</span> Question 3</h3>
 <p>Which of the following are true of Slurm job arrays?</p>
-<div id="radio_YMLNONAYEV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>They are an alternative to using a loop to repeat similar tasks.</span></label><label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>They implement parallelism by running each task in the array as a separate Slurm job.</span></label><label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>They are slightly simpler to use when the tasks/files you need to loop over are labelled 1, 2, 3, … n.</span></label><label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>Add #SBATCH –array=1-n to your Slurm script in order implement the array (replacing n with the number of tasks in the array).</span></label><label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>Inside the script, the variable $SLURM_ARRAY_TASK_ID functions like a looping index variable that you can use to control which task gets executed in each job in the array.</span></label><label><input type="radio" autocomplete="off" name="radio_YMLNONAYEV" value="answer"> <span>However, they can still loop over any list of files by using syntax like that shown in the last slide.</span></label>
+<div id="radio_CQRJCERCDX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>They are an alternative to using a loop to repeat similar tasks.</span></label><label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>They implement parallelism by running each task in the array as a separate Slurm job.</span></label><label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>They are slightly simpler to use when the tasks/files you need to loop over are labelled 1, 2, 3, … n.</span></label><label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>Add #SBATCH –array=1-n to your Slurm script in order implement the array (replacing n with the number of tasks in the array).</span></label><label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>Inside the script, the variable $SLURM_ARRAY_TASK_ID functions like a looping index variable that you can use to control which task gets executed in each job in the array.</span></label><label><input type="radio" autocomplete="off" name="radio_CQRJCERCDX" value="answer"> <span>However, they can still loop over any list of files by using syntax like that shown in the last slide.</span></label>
 </div>
 
 
@@ -1118,8 +1124,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./R_genetics_data_gds.html" class="pagination-link" aria-label="Genetic Data in R and GDS">
-        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./unix_scripting.html" class="pagination-link" aria-label="Unix Scripting">
+        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Unix Scripting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

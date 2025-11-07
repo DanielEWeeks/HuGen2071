@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -392,7 +392,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"out-width":"700px","fig-cap":"","editor-max-height":"","fig-width":7,"read-only":"false","message":"true","classes":"","results":"markup","editor-quick-suggestions":"false","label":"unnamed-chunk-1","comment":"","context":"interactive","autorun":"false","dpi":72,"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"editor-font-scale":"1","out-height":""},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here"},{"id":2,"options":{"out-width":"700px","fig-cap":"","editor-max-height":"","fig-width":7,"read-only":"false","message":"true","classes":"","results":"markup","editor-quick-suggestions":"false","label":"unnamed-chunk-2","comment":"","context":"interactive","autorun":"false","dpi":72,"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"editor-font-scale":"1","out-height":""},"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here"},{"id":3,"options":{"out-width":"700px","fig-cap":"","editor-max-height":"","fig-width":7,"read-only":"false","message":"true","classes":"","results":"markup","editor-quick-suggestions":"false","label":"unnamed-chunk-3","comment":"","context":"interactive","autorun":"false","dpi":72,"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"editor-font-scale":"1","out-height":""},"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# mutate is in the dplyr R package\nlibrary(dplyr)\n# Edit/add code here"},{"id":4,"options":{"out-width":"700px","fig-cap":"","editor-max-height":"","fig-width":7,"read-only":"false","message":"true","classes":"","results":"markup","editor-quick-suggestions":"false","label":"unnamed-chunk-4","comment":"","context":"interactive","autorun":"false","dpi":72,"warning":"true","editor-word-wrap":"true","output":"true","fig-height":5,"editor-font-scale":"1","out-height":""},"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here"}];
+globalThis.qwebrCellDetails = [{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/clinical_data.txt\",\"data/lab_data.txt\",\"data/genotype_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\n# kable is not available in WebR\nkable <- head\n# Read the three files in:\nclin <- read.table(file = \"data/clinical_data.txt\", header=TRUE)\nkable(clin)\nlab <- read.table(file = \"data/lab_data.txt\", header = TRUE)\nkable(lab)\ngeno <- read.table(file = \"data/genotype_data.txt\", header = TRUE)\nkable(geno)\n# Edit/add R code here","id":1,"options":{"fig-height":5,"editor-font-scale":"1","comment":"","out-height":"","warning":"true","read-only":"false","message":"true","results":"markup","editor-max-height":"","fig-cap":"","editor-word-wrap":"true","context":"interactive","dpi":72,"label":"unnamed-chunk-1","fig-width":7,"autorun":"false","out-width":"700px","classes":"","editor-quick-suggestions":"false","output":"true"}},{"code":"# str_replace_all is in the stringr R package\nlibrary(stringr)\n# Edit/add code here","id":2,"options":{"fig-height":5,"editor-font-scale":"1","comment":"","out-height":"","warning":"true","read-only":"false","message":"true","results":"markup","editor-max-height":"","fig-cap":"","editor-word-wrap":"true","context":"interactive","dpi":72,"label":"unnamed-chunk-2","fig-width":7,"autorun":"false","out-width":"700px","classes":"","editor-quick-suggestions":"false","output":"true"}},{"code":"# separate is in the tidyr R package\nlibrary(tidyr)\n# mutate is in the dplyr R package\nlibrary(dplyr)\n# Edit/add code here","id":3,"options":{"fig-height":5,"editor-font-scale":"1","comment":"","out-height":"","warning":"true","read-only":"false","message":"true","results":"markup","editor-max-height":"","fig-cap":"","editor-word-wrap":"true","context":"interactive","dpi":72,"label":"unnamed-chunk-3","fig-width":7,"autorun":"false","out-width":"700px","classes":"","editor-quick-suggestions":"false","output":"true"}},{"code":"# Download files within the WebR environment\ndir.create(\"data\")\ninfiles <- c(\"data/joint_data.txt\")\nroot_srcfile <- \"https://raw.githubusercontent.com/DanielEWeeks/HuGen2071/main/\"\nfor (i in 1:length(infiles)) {\n   download.file(paste0(root_srcfile,infiles[i]), infiles[i])\n}\njoint <- read.table(file = \"data/joint_data.txt\", header = TRUE)\nkable(joint)\n# Edit/add code here","id":4,"options":{"fig-height":5,"editor-font-scale":"1","comment":"","out-height":"","warning":"true","read-only":"false","message":"true","results":"markup","editor-max-height":"","fig-cap":"","editor-word-wrap":"true","context":"interactive","dpi":72,"label":"unnamed-chunk-4","fig-width":7,"autorun":"false","out-width":"700px","classes":"","editor-quick-suggestions":"false","output":"true"}}];
 
 </script>
 <script type="module">
@@ -1864,14 +1864,20 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Unix Scripting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">

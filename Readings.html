@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -343,14 +343,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unix_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Unix Scripting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./R_genetics_data_gds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Genetic Data in R and GDS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -557,9 +563,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#learning-objectives---unix-scripting" id="toc-learning-objectives---unix-scripting" class="nav-link" data-scroll-target="#learning-objectives---unix-scripting"><span class="header-section-number">5.24.1</span> Learning Objectives - Unix: Scripting</a></li>
   <li><a href="#preparation---unix-scripting" id="toc-preparation---unix-scripting" class="nav-link" data-scroll-target="#preparation---unix-scripting"><span class="header-section-number">5.24.2</span> Preparation - Unix: Scripting</a></li>
-  <li><a href="#active-learning---unix-scripting" id="toc-active-learning---unix-scripting" class="nav-link" data-scroll-target="#active-learning---unix-scripting"><span class="header-section-number">5.24.3</span> Active Learning - Unix: Scripting</a></li>
-  <li><a href="#required-reading---unix-scripting" id="toc-required-reading---unix-scripting" class="nav-link" data-scroll-target="#required-reading---unix-scripting"><span class="header-section-number">5.24.4</span> Required Reading - Unix: Scripting</a></li>
-  <li><a href="#suggested-reading---unix-scripting" id="toc-suggested-reading---unix-scripting" class="nav-link" data-scroll-target="#suggested-reading---unix-scripting"><span class="header-section-number">5.24.5</span> Suggested Reading - Unix: Scripting</a></li>
+  <li><a href="#online-lecture-6" id="toc-online-lecture-6" class="nav-link" data-scroll-target="#online-lecture-6"><span class="header-section-number">5.24.3</span> Online Lecture</a></li>
+  <li><a href="#active-learning---unix-scripting" id="toc-active-learning---unix-scripting" class="nav-link" data-scroll-target="#active-learning---unix-scripting"><span class="header-section-number">5.24.4</span> Active Learning - Unix: Scripting</a></li>
+  <li><a href="#required-reading---unix-scripting" id="toc-required-reading---unix-scripting" class="nav-link" data-scroll-target="#required-reading---unix-scripting"><span class="header-section-number">5.24.5</span> Required Reading - Unix: Scripting</a></li>
+  <li><a href="#suggested-reading---unix-scripting" id="toc-suggested-reading---unix-scripting" class="nav-link" data-scroll-target="#suggested-reading---unix-scripting"><span class="header-section-number">5.24.6</span> Suggested Reading - Unix: Scripting</a></li>
   </ul></li>
   <li><a href="#vcf-bcftools-vcftools" id="toc-vcf-bcftools-vcftools" class="nav-link" data-scroll-target="#vcf-bcftools-vcftools"><span class="header-section-number">5.25</span> VCF, bcftools, vcftools</a>
   <ul class="collapse">
@@ -574,7 +581,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#learning-objectives-23" id="toc-learning-objectives-23" class="nav-link" data-scroll-target="#learning-objectives-23"><span class="header-section-number">5.27.1</span> Learning Objectives</a></li>
   <li><a href="#preparation-4" id="toc-preparation-4" class="nav-link" data-scroll-target="#preparation-4"><span class="header-section-number">5.27.2</span> Preparation</a></li>
-  <li><a href="#online-lecture-6" id="toc-online-lecture-6" class="nav-link" data-scroll-target="#online-lecture-6"><span class="header-section-number">5.27.3</span> Online Lecture</a></li>
+  <li><a href="#online-lecture-7" id="toc-online-lecture-7" class="nav-link" data-scroll-target="#online-lecture-7"><span class="header-section-number">5.27.3</span> Online Lecture</a></li>
   <li><a href="#active-learning---genetic-data-in-r-gds" id="toc-active-learning---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#active-learning---genetic-data-in-r-gds"><span class="header-section-number">5.27.4</span> Active Learning - Genetic Data in R, GDS</a></li>
   <li><a href="#required-reading---genetic-data-in-r-gds" id="toc-required-reading---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#required-reading---genetic-data-in-r-gds"><span class="header-section-number">5.27.5</span> Required Reading - Genetic Data in R, GDS</a></li>
   <li><a href="#suggested-reading---genetic-data-in-r-gds" id="toc-suggested-reading---genetic-data-in-r-gds" class="nav-link" data-scroll-target="#suggested-reading---genetic-data-in-r-gds"><span class="header-section-number">5.27.6</span> Suggested Reading - Genetic Data in R, GDS</a></li>
@@ -1182,25 +1189,29 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <h3 data-number="5.24.1" class="anchored" data-anchor-id="learning-objectives---unix-scripting"><span class="header-section-number">5.24.1</span> Learning Objectives - Unix: Scripting</h3>
 <ul>
 <li>To learn how to use control structures in Unix scripting</li>
-<li>To learning how to use variables in Unix</li>
+<li>To learn how to use variables in Unix</li>
 </ul>
 </section>
 <section id="preparation---unix-scripting" class="level3" data-number="5.24.2">
 <h3 data-number="5.24.2" class="anchored" data-anchor-id="preparation---unix-scripting"><span class="header-section-number">5.24.2</span> Preparation - Unix: Scripting</h3>
 <ul>
-<li>Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises</li>
+<li>Watch the online lecture and do the Active Learning before class</li>
 </ul>
 </section>
-<section id="active-learning---unix-scripting" class="level3" data-number="5.24.3">
-<h3 data-number="5.24.3" class="anchored" data-anchor-id="active-learning---unix-scripting"><span class="header-section-number">5.24.3</span> Active Learning - Unix: Scripting</h3>
+<section id="online-lecture-6" class="level3" data-number="5.24.3">
+<h3 data-number="5.24.3" class="anchored" data-anchor-id="online-lecture-6"><span class="header-section-number">5.24.3</span> Online Lecture</h3>
+<p>Unix Scripting: <a href="https://danieleweeks.github.io/HuGen2071/unix_scripting.html" class="uri">https://danieleweeks.github.io/HuGen2071/unix_scripting.html</a></p>
+</section>
+<section id="active-learning---unix-scripting" class="level3" data-number="5.24.4">
+<h3 data-number="5.24.4" class="anchored" data-anchor-id="active-learning---unix-scripting"><span class="header-section-number">5.24.4</span> Active Learning - Unix: Scripting</h3>
 <p>Software Carpentry Unix Shell intro parts 5 and 7 <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></p>
 </section>
-<section id="required-reading---unix-scripting" class="level3" data-number="5.24.4">
-<h3 data-number="5.24.4" class="anchored" data-anchor-id="required-reading---unix-scripting"><span class="header-section-number">5.24.4</span> Required Reading - Unix: Scripting</h3>
+<section id="required-reading---unix-scripting" class="level3" data-number="5.24.5">
+<h3 data-number="5.24.5" class="anchored" data-anchor-id="required-reading---unix-scripting"><span class="header-section-number">5.24.5</span> Required Reading - Unix: Scripting</h3>
 <p>See Active Learning.</p>
 </section>
-<section id="suggested-reading---unix-scripting" class="level3" data-number="5.24.5">
-<h3 data-number="5.24.5" class="anchored" data-anchor-id="suggested-reading---unix-scripting"><span class="header-section-number">5.24.5</span> Suggested Reading - Unix: Scripting</h3>
+<section id="suggested-reading---unix-scripting" class="level3" data-number="5.24.6">
+<h3 data-number="5.24.6" class="anchored" data-anchor-id="suggested-reading---unix-scripting"><span class="header-section-number">5.24.6</span> Suggested Reading - Unix: Scripting</h3>
 <p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 3. Remedial Unix Shell (“command substitution” through the end of the chapter.)</p>
 <p><a href="https://learning.oreilly.com/library/view/bioinformatics-data-skills/9781449367480/">Buffalo (2015)</a>Chapter 12. Bioinformatics Shell Scripting (entire chapter)</p>
 </section>
@@ -1246,8 +1257,8 @@ Web access: <a href="https://pitt.primo.exlibrisgroup.com/permalink/01PITT_INST/
 <li>Watch the online lecture and do the Active Learning before class</li>
 </ul>
 </section>
-<section id="online-lecture-6" class="level3" data-number="5.27.3">
-<h3 data-number="5.27.3" class="anchored" data-anchor-id="online-lecture-6"><span class="header-section-number">5.27.3</span> Online Lecture</h3>
+<section id="online-lecture-7" class="level3" data-number="5.27.3">
+<h3 data-number="5.27.3" class="anchored" data-anchor-id="online-lecture-7"><span class="header-section-number">5.27.3</span> Online Lecture</h3>
 <p>Genetic Data in R and GDS: <a href="https://danieleweeks.github.io/HuGen2071/R_genetics_data_gds.html" class="uri">https://danieleweeks.github.io/HuGen2071/R_genetics_data_gds.html</a></p>
 </section>
 <section id="active-learning---genetic-data-in-r-gds" class="level3" data-number="5.27.4">
