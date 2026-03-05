@@ -476,11 +476,12 @@ See also the `gganimate` R package <https://cran.r-project.org/package=gganimate
 The `plotly` package, when combined with the `crosstalk` package, supports linked plots, where selection of points in one plot highlights them in the other plots. This is known as "linked brushing".
 
 ```{r}
+#| warning: false
 library(plotly)
 library(crosstalk)
 d <- SharedData$new(iris)
 p <- GGally::ggpairs(d, aes(color = Species), columns = c(1,2,3))
-highlight(ggplotly(p), on = "plotly_selected")
+highlight(ggplotly(p), on = "plotly_selected", off = "plotly_deselect")
 ```
 
 ### Interactive Manhattan plots
