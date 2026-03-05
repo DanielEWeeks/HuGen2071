@@ -10,7 +10,7 @@ Here's a recording of this lecture (53 minutes 54 seconds):
 
 </iframe>
 
-## Unix Basics slides
+## Unix Streams, Pipes, Scripts slides
 
 [PDF slide set](pdfs/unix_streams_pipes_scripts.pdf){target="_blank"}
 

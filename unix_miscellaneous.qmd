@@ -10,7 +10,7 @@ Here's a recording of this lecture (19 minutes 57 seconds):
 
 </iframe>
 
-## Unix Basics slides
+## Unix Miscellaneous slides
 
 [PDF slide set](pdfs/unix_miscellaneous.pdf){target="_blank"}
 

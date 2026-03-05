@@ -10,7 +10,7 @@ Here's a recording of this lecture (69 minutes 22 seconds):
 
 </iframe>
 
-## Unix Basics slides
+## Unix Unix Data Manipulation slides
 
 [PDF slide set](pdfs/unix_data_manipulation.pdf){target="_blank"}
 

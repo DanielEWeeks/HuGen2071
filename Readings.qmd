@@ -558,11 +558,16 @@ None.
 ### Learning Objectives - Unix: Scripting
 
 -   To learn how to use control structures in Unix scripting
--   To learning how to use variables in Unix
+-   To learn how to use variables in Unix
 
 ### Preparation - Unix: Scripting
 
--   Do the Active Learning before class - the lecture will assume you have; otherwise you will have difficulty with the in-class exercises
+-   Watch the online lecture and do the Active Learning before class
+
+### Online Lecture
+
+Unix Scripting:
+<https://danieleweeks.github.io/HuGen2071/unix_scripting.html>
 
 ### Active Learning - Unix: Scripting
 

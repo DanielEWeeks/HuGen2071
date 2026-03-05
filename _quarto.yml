@@ -49,6 +49,7 @@ book:
   - slurm.qmd
   - unix_data_manipulation.qmd
   - unix_miscellaneous.qmd
+  - unix_scripting.qmd
   - R_genetics_data_gds.qmd
   - summary.qmd
   - references.qmd
