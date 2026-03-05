@@ -105,7 +105,9 @@ The viridis color pallettes have been built into ggplot so that you can call upo
 
 In this example we fill in our bars with the cut vairable in the diamond dataset, a categorical variable with 5 groups.
 
-```{r, echo=T, eval=T}
+```{r}
+#| echo: true
+#| eval: true
 #| fig-alt: "Stacked bar chart of the ggplot2 diamonds dataset. The x-axis shows diamond clarity grades from I1 (lowest) to IF (highest). The y-axis shows count up to approximately 13,000. Bars are stacked by cut quality (Fair, Good, Very Good, Premium, Ideal) and colored using the viridis plasma palette, ranging from vivid purple-blue for Fair through brilliant orange to yellow-green for Ideal."
 library(ggplot2)
 ggplot(diamonds, aes(x = clarity, fill = cut)) + 
@@ -220,7 +222,11 @@ Discussions of visualization so far have taken for granted that visualization is
 
 The `BrailleR` package ([read more here](https://r-resources.massey.ac.nz/BrailleRInAction/)), has a `VI()` function that wraps around plots and provides a text-description output. We can use the VI wrapper to interact with our plots from a textual perspective and identify what information is missing. Such text can also be used as alt-text when publishing this material. What could we do to our plot to improve the text description?
 
-```{r, echo=T, eval=T, warning= F, message = F}
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
 #install.packages("BrailleR")
 library(BrailleR)
 
@@ -235,7 +241,11 @@ VI(barplot_braille)
 
 The `sonification` package's `sonify` function can be used to represent data in audio form, where the x-axis can span sound across time, so that the length of time a sound plays follows the data long the x-axis from left to right; the y-axis can be expressed as pitch, so that the pitch of the sound matches to the values of the data (lower value = lower pitch).
 
-```{r, echo = F, eval = T, warning= F, message = F}
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
 library(sonify)
 library(seewave)
 sonif <- sonify(iris$Petal.Width, play=FALSE)
@@ -244,14 +254,22 @@ savewav(sonif, file = "sw.width.sound.wav")
 
 One variable can be used as an input to hear the distribution. For instance this univariate plot of iris petal width visually looks like this:
 
-```{r, echo=T, eval=T, warning= F, message = F}
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
 #| fig-alt: "Base R index plot of iris petal width (cm) on the y-axis for all 150 observations. Two distinct horizontal bands of points are visible: a lower band near 0.1–0.6 cm (setosa) and an upper band from approximately 1.0–2.5 cm (versicolor and virginica). This plot accompanies a sonification example in which the same distribution is represented as audio."
 plot(iris$Petal.Width)
 ```
 
 Using `sonify` instead of plot, the distribution of iris petal width sounds like this:
 
-```{r, echo = T, eval = T, warning= F, message = F}
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
 #install.packages("sonify")
 library(sonify)
 sonify(iris$Petal.Width, play = FALSE)
@@ -263,21 +281,33 @@ If you try this on your computer it should play autmatically, buy on the website
   <source src="sw.width.sound.wav" type="audio/wav">
 </audio>
 
-```{r, echo = F, eval = T, warning= F, message = F}
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
 sonif <- sonify(x = iris$Petal.Width, y = iris$Petal.Length, play=FALSE)
 savewav(sonif, file = "sw.width.length.sound.wav")
 ```
 
 Two variables can be used as input to hear the relationship between continuous variables. For instance this bivariate plot of iris petal length and petal width visually looks like this:
 
-```{r, echo=T, eval=T, warning= F, message = F}
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
 #| fig-alt: "Base R scatterplot of iris petal width (x-axis) versus petal length (y-axis) for all 150 observations. A strong positive correlation is visible, with two clusters: a tight group of small-petaled setosa specimens and a larger spread of versicolor and virginica. This plot accompanies a sonification example in which petal width is mapped to time and petal length to pitch."
 plot(x = iris$Petal.Width, y = iris$Petal.Length)
 ```
 
 And using `sonify`, sounds like this:
 
-```{r, echo=T, eval=T, warning= F, message = F}
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
 sonify(x=iris$Petal.Width, y = iris$Petal.Length, play = FALSE)
 ```
 
@@ -291,7 +321,11 @@ sonify(x=iris$Petal.Width, y = iris$Petal.Length, play = FALSE)
 
 A few excellent options exist for creating multi-paneled plots for publications. The first and foremost is a package by Claus Wilke called [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html). With `cowplot`, it's possible to quickly combine existing `ggplots`, creating publication quality plots. See the vignette for more options, but here's a quick example from the vignette below:
 
-```{r, echo = F, warning = F, message = F}
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
 detach("package:BrailleR", unload=TRUE)
 ```
 
