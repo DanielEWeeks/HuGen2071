@@ -224,13 +224,13 @@ The `BrailleR` package ([read more here](https://r-resources.massey.ac.nz/Braill
 #install.packages("BrailleR")
 library(BrailleR)
 
-barplot <- ggplot(diamonds, aes(x = clarity, fill = cut)) + 
+barplot_braille <- ggplot(diamonds, aes(x = clarity, fill = cut)) + 
   geom_bar() +
   theme(axis.text.x = element_text(angle=70, vjust=0.5)) +
   scale_fill_viridis_d(option = "C") +
   theme_classic()
 
-VI(barplot)
+VI(barplot_braille)
 ```
 
 The `sonification` package's `sonify` function can be used to represent data in audio form, where the x-axis can span sound across time, so that the length of time a sound plays follows the data long the x-axis from left to right; the y-axis can be expressed as pitch, so that the pitch of the sound matches to the values of the data (lower value = lower pitch).
