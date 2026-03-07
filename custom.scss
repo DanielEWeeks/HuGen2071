@@ -6,7 +6,7 @@
 
 /* Fix insufficient color contrast for blockquote text (ratio was 4.39:1) */
 blockquote,
-blockquote p {
+blockquote * {
   color: #4a555f;
 }
 
