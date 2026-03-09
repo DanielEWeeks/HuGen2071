@@ -10,6 +10,11 @@ blockquote * {
   color: #4a555f;
 }
 
+/* Fix insufficient color contrast for table captions */
+caption {
+  color: #4a555f;
+}
+
 /* Fix insufficient color contrast for code inside heading links (blue link color #3d71e6 on #f9fafb was 4.27:1) */
 h1 a code, h2 a code, h3 a code, h4 a code, h5 a code, h6 a code {
   color: #2a5bc7;
